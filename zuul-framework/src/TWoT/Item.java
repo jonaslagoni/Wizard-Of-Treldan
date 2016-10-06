@@ -9,39 +9,53 @@ package TWoT;
  *
  * @author Mads
  */
-public class Item {
+public class Item extends Interior{
     
     // creating variables for Items
-    private String ITEMNAME;
-    private int VALUE;
-    private String DESCRIPTION;
-    
-    // creating the Constructor
-    public Item(String ITEMNAME, int VALUE, String DESCRIPTION) {
-        this.DESCRIPTION = DESCRIPTION;
-        this.ITEMNAME = ITEMNAME;
-        this.VALUE = VALUE;
-        
+    private String itemName;
+    private int itemValue;
+    private String itemDescription;
+
+    /**
+     * @return the itemName
+     */
+    public String getItemName() {
+        return itemName;
     }
 
     /**
-     * @return the ITEMNAME
+     * @param itemName the itemName to set
      */
-    public String getITEMNAME() {
-        return ITEMNAME;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     /**
-     * @return the VALUE
+     * @return the itemValue
      */
-    public int getVALUE() {
-        return VALUE;
+    public int getItemValue() {
+        return itemValue;
     }
 
     /**
-     * @return the DESCRIPTION
+     * @param itemValue the itemValue to set
      */
-    public String getDESCRIPTION() {
-        return DESCRIPTION;
+    public void setItemValue(int itemValue) {
+        this.itemValue = itemValue;
     }
+
+    /**
+     * @return the itemDescription
+     */
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    /**
+     * @param itemDescription the itemDescription to set
+     */
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+
 }

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Kasper
  */
-public class Monster {
+public class Monster extends Interior {
     private String monsterName;
     private double attValue;
     private double defValue;
@@ -20,6 +20,14 @@ public class Monster {
     private int goldDrop;
     private List<Item> itemDrop = new ArrayList();
     
+    /**
+     * 
+     * @param monsterName
+     * @param attValue
+     * @param defValue
+     * @param health
+     * @param goldDrop 
+     */
     public Monster(String monsterName, double attValue, double defValue, int health, int goldDrop){
         this.monsterName = monsterName;
         this.attValue = attValue;

@@ -9,7 +9,7 @@ package TWoT;
  *
  * @author Lagoni
  */
-public class Npc {
+public class Npc extends Interior {
     private String name, dialog;
     private Item itemToGive, itemToGet;
     private boolean passiv;

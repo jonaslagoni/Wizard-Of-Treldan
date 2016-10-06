@@ -14,7 +14,9 @@ public class Player {
     private double attValue;
     private double defValue;
     private int health;
-    public Player(String playerName, double attValue, double defValue, int health){
+    private int gold = 0;
+    
+    public Player(String playerName, double attValue, double defValue, int health, Inventory inventory){
         this.playerName = playerName;
         this.attValue = attValue;
         this.defValue = defValue;
@@ -68,11 +70,29 @@ public class Player {
     public void setHealth(int health) {
         this.health = health;
     }
+    
+    public void regenHealth(int healthToRegen){
+        this.health = health + healthToRegen;
+    }
 
     /**
      * @param damage the damage to take
      */
     public void setDamage(int damage) {
         health -= damage;
+    }
+
+    /**
+     * @return the gold
+     */
+    public int getGold() {
+        return gold;
+    }
+
+    /**
+     * @param gold the gold to set
+     */
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }

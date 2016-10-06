@@ -1,55 +1,63 @@
 
 package TWoT;
 
-import java.util.Set;
 import java.util.HashMap;
+import java.util.Set;
 
 
 public class Room{
-    // Init the variables
     private String description;
-    private HashMap<String, Room> exits;
-
-    //create the constructor with argument of type String
-    public Room(String description){
-        // Set the description of the room to the variable
-        this.description = description;
-        
-        // Create an object of hashmap with types String, Room.
-        exits = new HashMap<String, Room>();
-    }
+    private String name;
+    private HashMap<String, Interior> mapInterior = new HashMap();
     
-    // Set the exit of the room to the direction and which room it is.
-    public void setExit(String direction, Room neighbor){
-        exits.put(direction, neighbor);
+    public Room (String description, String name){
+        this.description = description;
+        this.name = name;
+               
     }
 
-    // Returns the short description of the room
-    public String getShortDescription(){
+    /**
+     * @return the description
+     */
+    public String getDescription() {
         return description;
     }
 
-    // Returns the long descrtion of the room
-    public String getLongDescription(){
-        return "You are " + description + ".\n" + getExitString();
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
-
-    // Returns a string with each exit of this room.
-    private String getExitString(){
-        String returnString = "Exits:";
-        // Create a set of String of the hashmpas keys
-        Set<String> keys = exits.keySet();
-        // For each of the keys add the exit to the string.
-        for(String exit : keys) {
-            returnString += " " + exit;
+    /**
+     * Adds a key and value to HashMap
+     * @param key
+     * @param value 
+     */
+    public void addMapInterior(String key, Interior value){
+       mapInterior.put(key, value);
+       
+    }
+    /**
+     * Returns a string of the keys from HashMap
+     * @return 
+     */
+    public String getMapInterior(){
+        Set<String> rs = mapInterior.keySet();
+        String returnString = "Exits: ";
+        for (String s: rs){
+            returnString += s + " ";
         }
-        // Return the string
         return returnString;
+       
     }
-
-    // Return the room at String direction, null if no exit there.
-    public Room getExit(String direction){
-        return exits.get(direction);
+    /**
+     * Returns the value to the key
+     * @param key
+     * @return 
+     */
+    public Interior getMapInt(String key){
+        return mapInterior.get(key);
     }
 }
 

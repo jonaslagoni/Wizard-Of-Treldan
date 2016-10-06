@@ -4,7 +4,7 @@ package TWoT;
  *
  * @author Mathias
  */
-public class Exit {
+public class Exit extends Interior{
     
     private Room newRoom;
 
