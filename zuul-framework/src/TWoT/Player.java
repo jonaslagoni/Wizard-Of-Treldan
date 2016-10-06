@@ -38,11 +38,15 @@ public class Player{
         playersInventory.addInventoryItem(i);
     }
     
+    public void addItemToEquippableInventory(EquippableItem i){
+        playersInventory.addEquipItem(i);
+    }
+    
     public List<Item> getInventoryItems(){
         return playersInventory.getInventoryItems();
     }
     
-    public List<Item> getEquippableItems(){
+    public List<EquippableItem> getEquippableItems(){
         return playersInventory.getEquippableItem();
     }
             

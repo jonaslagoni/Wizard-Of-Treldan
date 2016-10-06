@@ -60,7 +60,8 @@ public class TWoT{
         Interior roomCellarExit = new Exit(roomVillage);
         Interior roomCellarStick = new QuestItem("The niddle in the Hay stack", 1, "Nothing interresting happens");
         Interior roomCellarCheeseSandwich = new UseableItem("The sandwich of gold", 20, "dare eat it?");
-        Interior roomCellarCheeseSandwich = new EquippableItem();
+        Interior roomCellarSword = new EquippableItem("Sword", 100, "dare to use it?", 1.1, 0, ItemType.WEAPON);
+        roomCellar.addMapInterior("sword", roomCellarSword);
         roomCellar.addMapInterior("north", roomCellarExit);
         roomCellar.addMapInterior("west", roomCellarStick);
         roomCellar.addMapInterior("east", roomCellarCheeseSandwich);
@@ -162,8 +163,9 @@ public class TWoT{
             }else if(interior instanceof Item){
                 player.addItemToInventory((Item)interior);
                 if(interior instanceof EquippableItem){
-                    
+                    player.addItemToEquippableInventory((EquippableItem)interior);
                 }
+                return "You pickedup a " + ((Item) interior).getItemName() + " -- " + ((Item) interior).getItemDescription();
             }
         }
         return "nothing here";
@@ -173,7 +175,7 @@ public class TWoT{
         return player.getInventoryItems();
     }
     
-    public List<Item> getEquippableItems(){
+    public List<EquippableItem> getEquippableItems(){
         return player.getEquippableItems();
     }
     /**

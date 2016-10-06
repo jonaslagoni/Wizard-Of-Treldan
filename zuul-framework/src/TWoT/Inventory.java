@@ -13,13 +13,13 @@ import java.util.List;
  * @author Kasper
  */
 public class Inventory {
-    private List<Item> Equip = new ArrayList();
+    private List<EquippableItem> Equip = new ArrayList();
     private List<Item> Inventory = new ArrayList();
 
     /**
      * @return the EquippableItem
      */
-    public List<Item> getEquippableItem() {
+    public List<EquippableItem> getEquippableItem() {
         return Equip;
     }
 

@@ -6,6 +6,7 @@
 package TWoT;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -62,6 +63,12 @@ public class Gui{
         
         // As long as the game has not finished yet.
         while (! finished) {
+            List<EquippableItem> l = twot.getEquippableItems();
+            for(EquippableItem e: l){
+                System.out.println("You inventory:");
+                System.out.print("Item: " + e.getItemName() + " attack value: " +  e.getAttackBuff() + " deff value: " + e.getDefenseBuff());
+                System.out.println("");
+            }
             // Update the variable with the processedcommand. If "quit" the quit method is called.
             finished = processCommand(twot.getCommand());
         }
