@@ -22,7 +22,8 @@ public class Gui{
     public Gui(){
         //Create the object from gameclass
         twot = new TWoT();
-        twot.testMatch();
+        printWelcome();
+        play();
     }
     
     /**
@@ -91,7 +92,7 @@ public class Gui{
         else if (commandWord == CommandWord.GO) {
             // If commandWord is go go the room defined in the command.
             // If the command does not have a second word the user intered "go" without a where.
-            System.out.println(twot.goRoom(command));
+            System.out.println(twot.goTo(command));
         }
         else if (commandWord == CommandWord.QUIT) {
             // If the user wants to quit quit.

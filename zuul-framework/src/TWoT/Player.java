@@ -5,23 +5,47 @@
  */
 package TWoT;
 
+import java.util.List;
+
 /**
  *
  * @author Lagoni
  */
-public class Player {
+public class Player{
     private String playerName;
     private double attValue;
     private double defValue;
     private int health;
     private int gold = 0;
+    private Inventory playersInventory;
     
-    public Player(String playerName, double attValue, double defValue, int health, Inventory inventory){
+    public Player(String playerName, double attValue, double defValue, int health, Inventory playersInventory){
+        this.playerName = playerName;
+        this.attValue = attValue;
+        this.defValue = defValue;
+        this.health = health;
+        this.playersInventory = playersInventory;
+    }
+    
+    public Player(String playerName, double attValue, double defValue, int health){
         this.playerName = playerName;
         this.attValue = attValue;
         this.defValue = defValue;
         this.health = health;
     }
+    
+    public void addItemToInventory(Item i){
+        playersInventory.addInventoryItem(i);
+    }
+    
+    public List<Item> getInventoryItems(){
+        return playersInventory.getInventoryItems();
+    }
+    
+    public List<Item> getEquippableItems(){
+        return playersInventory.getEquippableItem();
+    }
+            
     /**
      * @return the monsterName
      */

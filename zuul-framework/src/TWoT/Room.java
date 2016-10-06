@@ -10,7 +10,7 @@ public class Room{
     private String name;
     private HashMap<String, Interior> mapInterior = new HashMap();
     
-    public Room (String description, String name){
+    public Room (String name, String description){
         this.description = description;
         this.name = name;
                
@@ -20,7 +20,7 @@ public class Room{
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return description + getMapInterior();
     }
 
     /**
@@ -56,7 +56,7 @@ public class Room{
      * @param key
      * @return 
      */
-    public Interior getMapInt(String key){
+    public Interior getMapInterior(String key){
         return mapInterior.get(key);
     }
 }

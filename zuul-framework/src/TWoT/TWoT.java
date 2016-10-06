@@ -9,11 +9,14 @@ public class TWoT{
     // Init variabels
     private Parser parser;
     private Room currentRoom;
+    private Player player;
     
     // Create the constructor for TWoT class
     public TWoT(){
         // Create the different rooms used
         createRooms();
+        
+        player = new Player("BOB", 1.0, 1.0, 100, new Inventory());
         
         // Create a parser object from class Parser.
         parser = new Parser();
@@ -36,36 +39,46 @@ public class TWoT{
      * Creates all the rooms in the game.
      */
     private void createRooms(){
-        // Deffine the 5 rooms from klass Room
-        Room outside, theatre, pub, lab, office;
-      
-        // Create objects from the class Room.
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        // Deffine rooms
+        Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForrest, roomTower, roomCave, roomClearing, roomDungeon, roomLibrary, roomHollowTree;
         
-        // Set the exits for outside
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-
-        // Set the exit for Theatre.
-        theatre.setExit("west", outside);
-
-        // Set the exit for the Pub
-        pub.setExit("east", outside);
-
-        // Set the exits for the Lab
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        //set the exit for the office.
-        office.setExit("west", lab);
-
+        
+        roomCellar = new Room("Cellar", "test");
+        roomVillage = new Room("Treldan", "test");
+        roomHouse1 = new Room("House of the guard", "test");
+        roomHouse2 = new Room("House of riches", "test");
+        roomHouse3 = new Room("House of reborn", "test");
+        roomForrest = new Room("The Treldan forrest", "test");
+        roomTower = new Room("TWoT tower", "test");
+        roomCave = new Room("Grulls lair", "test");
+        roomClearing = new Room("Clearing of unicorns", "test");
+        roomDungeon = new Room("Dungeon of suffering", "test");
+        roomLibrary = new Room("The neverending library", "test");
+        roomHollowTree = new Room("The hollow tree", "test");
+        
+        // roomCellar
+        Interior roomCellarExit = new Exit(roomVillage);
+        Interior roomCellarStick = new QuestItem("The niddle in the Hay stack", 1, "Nothing interresting happens");
+        Interior roomCellarCheeseSandwich = new UseableItem("The sandwich of gold", 20, "dare eat it?");
+        Interior roomCellarCheeseSandwich = new EquippableItem();
+        roomCellar.addMapInterior("north", roomCellarExit);
+        roomCellar.addMapInterior("west", roomCellarStick);
+        roomCellar.addMapInterior("east", roomCellarCheeseSandwich);
+        
+        //roomVillage
+        Interior roomVillageExit1 = new Exit(roomHouse1);
+        Interior roomVillageExit2 = new Exit(roomHouse2);
+        Interior roomVillageExit3 = new Exit(roomHouse3);
+        Interior roomVillageNPC = new Npc("Guard", "Help!", true);
+        roomVillage.addMapInterior("house1", roomVillageExit1);
+        roomVillage.addMapInterior("house2", roomVillageExit2);
+        roomVillage.addMapInterior("house3", roomVillageExit3);
+        roomVillage.addMapInterior("west", roomVillageNPC);
+        
+        
+        
         //set which room you start in.
-        currentRoom = outside;
+        currentRoom = roomCellar;
     }
     
     /**
@@ -90,7 +103,7 @@ public class TWoT{
         welcomeList.put("welcomeMessage1", "Welcome to the World of Zuul!");
         welcomeList.put("welcomeMessage2", "World of Zuul is a new, incredibly boring adventure game.");
         welcomeList.put("needHelp", "Type '" + CommandWord.HELP + "' if you need help.");
-        welcomeList.put("getRooms", currentRoom.getLongDescription());
+        welcomeList.put("getRooms", currentRoom.getDescription());
         return welcomeList;
     }
 
@@ -128,7 +141,7 @@ public class TWoT{
      * @param command
      * @return String
      */
-    public String goRoom(Command command){
+    public String goTo(Command command){
         
         // Get the direction where the user wants to go.
         String direction = command.getSecondWord();
@@ -136,19 +149,33 @@ public class TWoT{
             return "Go where?";
         }
         // Create an object of klass Room and return if the exit is correct.
-        Room nextRoom = currentRoom.getExit(direction);
-
+        Interior interior = currentRoom.getMapInterior(direction);
         // If the nextroom is null it means that there was no next room in that direction.
-        if (nextRoom == null) {
-            return "Room dosent exist";
+        if (interior == null) {
+            return "place dosent exist";
         }else {
-            //If there is a room go to the room by setting the currentRoom to nextRoom.
-            currentRoom = nextRoom;
-            //Print the longDesc from the room to know where to go.
-            return currentRoom.getLongDescription();
+            if(interior instanceof Exit){
+                //If there is a room go to the room by setting the currentRoom to nextRoom.
+                currentRoom = ((Exit) interior).getNewRoom();
+                //Print the longDesc from the room to know where to go.
+                return currentRoom.getDescription();
+            }else if(interior instanceof Item){
+                player.addItemToInventory((Item)interior);
+                if(interior instanceof EquippableItem){
+                    
+                }
+            }
         }
+        return "nothing here";
     }
     
+    public List<Item> getInventoryItems(){
+        return player.getInventoryItems();
+    }
+    
+    public List<Item> getEquippableItems(){
+        return player.getEquippableItems();
+    }
     /**
      * Returns false if the user entered more then "quit" and return true otherwise
      * @param command

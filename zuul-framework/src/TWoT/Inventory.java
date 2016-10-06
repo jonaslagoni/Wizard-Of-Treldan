@@ -6,31 +6,27 @@
 package TWoT;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Kasper
  */
 public class Inventory {
-    private ArrayList Equip = new ArrayList();
-    private ArrayList Inventory = new ArrayList();
-
-    public Inventory(ArrayList Equip, ArrayList Inventory) {
-        this.Equip = Equip;
-        this.Inventory = Inventory;
-    }
+    private List<Item> Equip = new ArrayList();
+    private List<Item> Inventory = new ArrayList();
 
     /**
      * @return the EquippableItem
      */
-    public ArrayList getEquippableItem() {
+    public List<Item> getEquippableItem() {
         return Equip;
     }
 
     /**
      * @return the UseableItem
      */
-    public ArrayList getUseableItem() {
+    public List<Item> getInventoryItems() {
         return Inventory;
     }
     
@@ -38,7 +34,7 @@ public class Inventory {
         Inventory.add(i);
     }
     
-   /* public void addEquipItem(Inventory i){
+    public void addEquipItem(EquippableItem i){
         Equip.add(i);
-    }*/
+    }
 }
