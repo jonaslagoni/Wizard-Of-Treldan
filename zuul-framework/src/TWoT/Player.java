@@ -5,34 +5,26 @@
  */
 package TWoT;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
- * @author Kasper
+ * @author Lagoni
  */
-public class Monster {
-    private String monsterName;
+public class Player {
+    private String playerName;
     private double attValue;
     private double defValue;
     private int health;
-    private int goldDrop;
-    private List<Item> itemDrop = new ArrayList();
-    
-    public Monster(String monsterName, double attValue, double defValue, int health, int goldDrop){
-        this.monsterName = monsterName;
+    public Player(String playerName, double attValue, double defValue, int health){
+        this.playerName = playerName;
         this.attValue = attValue;
         this.defValue = defValue;
         this.health = health;
-        this.goldDrop = goldDrop;
     }
-
     /**
      * @return the monsterName
      */
-    public String getMonsterName() {
-        return monsterName;
+    public String getPlayerName() {
+        return playerName;
     }
 
     /**
@@ -83,27 +75,4 @@ public class Monster {
     public void setDamage(int damage) {
         health -= damage;
     }
-    
-    /**
-     * @return the goldDrop
-     */
-    public int getGoldDrop() {
-        return goldDrop;
-    }
-
-    /**
-     * @param goldDrop the goldDrop to set
-     */
-    public void setGoldDrop(int goldDrop) {
-        this.goldDrop = goldDrop;
-    }
-
-    /**
-     * @return the itemDrop
-     */
-    public List<Item> getItemDrop() {
-        return itemDrop;
-    }
-    
-    
 }

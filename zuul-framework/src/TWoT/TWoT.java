@@ -18,7 +18,20 @@ public class TWoT{
         // Create a parser object from class Parser.
         parser = new Parser();
     }
-
+    
+    public void testMatch(){
+        Player p = new Player("kaj", 2.0, 2.0, 100);
+        Monster m = new Monster("Monster", 1.9, 2.0, 100, 100);
+        Combat c = new Combat(p, m);
+        List<String> combatText;
+        combatText = c.fight();
+        for(String s: combatText){
+            System.out.println(s);
+        }
+        System.out.println("You have: " + p.getHealth() + " health left.");
+    }
+    
+    
     /**
      * Creates all the rooms in the game.
      */

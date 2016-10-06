@@ -22,12 +22,7 @@ public class Gui{
     public Gui(){
         //Create the object from gameclass
         twot = new TWoT();
-        
-        //Print the welcome
-        printWelcome();
-        
-        //start the game
-        play();
+        twot.testMatch();
     }
     
     /**
