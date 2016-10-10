@@ -23,15 +23,7 @@ public class TWoT{
     }
     
     public void testMatch(){
-        Player p = new Player("kaj", 2.0, 2.0, 100);
-        Monster m = new Monster("Monster", 1.9, 2.0, 100, 100);
-        Combat c = new Combat(p, m);
-        List<String> combatText;
-        combatText = c.fight();
-        for(String s: combatText){
-            System.out.println(s);
-        }
-        System.out.println("You have: " + p.getHealth() + " health left.");
+        
     }
     
     
@@ -60,8 +52,6 @@ public class TWoT{
         Interior roomCellarExit = new Exit(roomVillage);
         Interior roomCellarStick = new QuestItem("The niddle in the Hay stack", 1, "Nothing interresting happens");
         Interior roomCellarCheeseSandwich = new UseableItem("The sandwich of gold", 20, "dare eat it?");
-        Interior roomCellarSword = new EquippableItem("Sword", 100, "dare to use it?", 1.1, 0, ItemType.WEAPON);
-        roomCellar.addMapInterior("sword", roomCellarSword);
         roomCellar.addMapInterior("north", roomCellarExit);
         roomCellar.addMapInterior("west", roomCellarStick);
         roomCellar.addMapInterior("east", roomCellarCheeseSandwich);
@@ -154,23 +144,13 @@ public class TWoT{
         // If the nextroom is null it means that there was no next room in that direction.
         if (interior == null) {
             return "place dosent exist";
-        }else {
-            if(interior instanceof Exit){
-                //If there is a room go to the room by setting the currentRoom to nextRoom.
-                currentRoom = ((Exit) interior).getNewRoom();
-                //Print the longDesc from the room to know where to go.
-                return currentRoom.getDescription();
-            }else if(interior instanceof Item){
-                player.addItemToInventory((Item)interior);
-                if(interior instanceof EquippableItem){
-                    player.addItemToEquippableInventory((EquippableItem)interior);
-                }
-                return "You pickedup a " + ((Item) interior).getItemName() + " -- " + ((Item) interior).getItemDescription();
-            }
         }
         return "nothing here";
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public List<Item> getInventoryItems(){
         return player.getInventoryItems();
     }

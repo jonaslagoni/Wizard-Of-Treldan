@@ -13,15 +13,13 @@ public class EquippableItem extends Item {
     
     private double attackBuff;
     private double defenseBuff;
-    private ItemType itemType;
     
-    public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff, ItemType itemType){
+    public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff){
         setItemName(itemName);
         setItemValue(itemValue);
         setItemDescription(itemDescription);
         this.attackBuff = attackBuff;
         this.defenseBuff = defenseBuff;
-        this.itemType = itemType;
     }
 
     /**

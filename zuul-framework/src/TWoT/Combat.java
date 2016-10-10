@@ -22,35 +22,6 @@ public class Combat {
         this.player = player;
     }
     
-    public List<String> fight(){
-        List<String> combatText = new ArrayList();
-        while(player.getHealth() > 0 && monster.getHealth() > 0){
-            int playerRoll = (int)((Math.random()*playerDice)+1);
-            int monsterRoll = (int)((Math.random()*monsterDice)+1);
-            combatText.add("Player rolled: " + playerRoll);
-            combatText.add("Monster rolled: " + monsterRoll);
-            if(playerRoll > monsterRoll){
-                int baseDamage = playerRoll-monsterRoll;
-                combatText.add("You won.");
-                int damage = (int)Math.round((player.getAttValue()/monster.getDefValue())*baseDamage);
-                monster.setDamage(damage);
-                combatText.add("Monster took " + damage + " damage");
-            }else if(monsterRoll > playerRoll){
-                int baseDamage = monsterRoll-playerRoll;
-                combatText.add("Monster won.");
-                int damage = (int)Math.round((monster.getAttValue()/player.getDefValue())*baseDamage);
-                player.setDamage(damage);
-                combatText.add("You took " + damage + " damage");
-            }
-        }
-        if(player.getHealth() < 0){
-            combatText.add("You died!");
-        }else if(monster.getHealth() < 0){
-            combatText.add("The monster died.");
-        }
-        return combatText;
-    }
-    
     /**
      * @return the player
      */
