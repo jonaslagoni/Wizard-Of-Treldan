@@ -14,6 +14,14 @@ public class EquippableItem extends Item {
     private double attackBuff;
     private double defenseBuff;
     
+    /**
+     * 
+     * @param itemName
+     * @param itemValue
+     * @param itemDescription
+     * @param attackBuff
+     * @param defenseBuff 
+     */
     public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff){
         super.setItemName(itemName);
         super.setItemValue(itemValue);
