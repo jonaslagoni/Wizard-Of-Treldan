@@ -138,4 +138,46 @@ public class Player{
     public void setGold(int gold) {
         this.gold = gold;
     }
+    
+    /**
+     * 
+     * @param att 
+     */
+    public void addAtt(double att) {
+        this.attValue += att;
+    }
+    
+    /**
+     * 
+     * @param att 
+     */
+    public void removeAtt(double att) {
+        this.attValue -= att;
+    }
+
+    
+    /**
+     * 
+     * @param def 
+     */
+    public void addDef(double def) {
+        this.defValue += def;
+    }
+    
+    /**
+     * 
+     * @param def 
+     */
+    public void removeDef(double def) {
+        this.defValue -= def;
+    }
+    
+    
+    /**
+     * 
+     * @param gold 
+     */
+    public void addGold(double gold) {
+        this.gold += gold;
+    }
 }
