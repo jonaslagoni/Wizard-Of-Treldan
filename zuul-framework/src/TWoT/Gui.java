@@ -23,8 +23,7 @@ public class Gui{
     public Gui(){
         //Create the object from gameclass
         twot = new TWoT();
-        printWelcome();
-        play();
+        twot.testMatch();
     }
     
     /**

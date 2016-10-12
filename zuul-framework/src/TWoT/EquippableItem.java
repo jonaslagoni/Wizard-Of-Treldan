@@ -15,9 +15,9 @@ public class EquippableItem extends Item {
     private double defenseBuff;
     
     public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff){
-        setItemName(itemName);
-        setItemValue(itemValue);
-        setItemDescription(itemDescription);
+        super.setItemName(itemName);
+        super.setItemValue(itemValue);
+        super.setItemDescription(itemDescription);
         this.attackBuff = attackBuff;
         this.defenseBuff = defenseBuff;
     }

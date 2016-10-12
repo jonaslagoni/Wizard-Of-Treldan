@@ -23,7 +23,25 @@ public class TWoT{
     }
     
     public void testMatch(){
-        
+        player = new Player("Test player1", 2.0, 1.0, 100, new Inventory());
+        Monster monster = new Monster("Test monster1", 1.0, 1.0, 100, 100);
+        Combat c = new Combat(player, monster);
+        List<Fight> fight = c.AFight();
+        for(Fight f: fight){
+            System.out.println("Who won: " + f.winner());
+            System.out.println("Player rolled: " + f.getPlayerRoll());
+            System.out.println("Monster rolled: " + f.getMonsterRoll());
+            System.out.println(f.winner() + " took " + f.getDamage() + " damage.");
+            if(f.isDone()){
+                if(f.getMonster().getHealth() <= 0){
+                    System.out.println("\nPlayer won!");
+                    System.out.println("Monster dropped: " + f.getMonster().getGoldDrop() + " gold.");
+                }else{
+                    System.out.println("Monster won!");
+                }
+            }
+            System.out.println();
+        }
     }
     
     

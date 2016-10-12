@@ -22,6 +22,13 @@ public class Monster extends Interior {
     
     /**
      * 
+     */
+    public Monster(){
+        
+    }
+    
+    /**
+     * 
      * @param monsterName
      * @param attValue
      * @param defValue

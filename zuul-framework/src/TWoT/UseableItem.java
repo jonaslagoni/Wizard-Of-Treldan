@@ -15,12 +15,15 @@ public class UseableItem extends Item{
     
     
     /**
-     * Constructor for UseableItem
+     * 
+     * @param itemName
+     * @param itemValue
+     * @param itemDescription 
      */
     public UseableItem(String itemName, int itemValue, String itemDescription){
-        setItemName(itemName);
-        setItemValue(itemValue);
-        setItemDescription(itemDescription);
+        super.setItemName(itemName);
+        super.setItemValue(itemValue);
+        super.setItemDescription(itemDescription);
     }
 
     /**

@@ -19,6 +19,21 @@ public class Player{
     private int gold = 0;
     private Inventory playersInventory;
     
+    /**
+     * 
+     */
+    public Player(){
+        
+    }
+    
+    /**
+     * 
+     * @param playerName
+     * @param attValue
+     * @param defValue
+     * @param health
+     * @param playersInventory 
+     */
     public Player(String playerName, double attValue, double defValue, int health, Inventory playersInventory){
         this.playerName = playerName;
         this.attValue = attValue;
