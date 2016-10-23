@@ -7,6 +7,7 @@ package TWoT;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -16,14 +17,30 @@ import java.util.List;
 public class Gui{
     //init game class
     private TWoT twot;
-    
+    private Parser parser;
     /**
      * Starts the game
      */
     public Gui(){
         //Create the object from gameclass
         twot = new TWoT();
-        twot.testMatch();
+        // Create a parser object from class Parser.
+        parser = new Parser();
+        
+        setPlayerName();
+        printWelcome();
+        play();
+    }
+    
+    /**
+     * Player enters a name for their character.
+     */
+    private void setPlayerName(){
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter a name for your character:");
+        String nextName = scanner.next();
+        twot.setPlayerName(nextName);
     }
     
     /**
@@ -32,6 +49,7 @@ public class Gui{
     private void printWelcome(){
         //get the welcome hashmap from gameclass
         HashMap<String, String> welcomeList = twot.getWelcomeMessages();
+        System.out.println("Welcome " + twot.getPlayerName());
         System.out.println(welcomeList.get("welcomeMessage1"));
         System.out.println(welcomeList.get("welcomeMessage2"));
         System.out.println();
@@ -50,6 +68,15 @@ public class Gui{
         System.out.println(helpList.get("helpMessage2"));
         System.out.println();
         System.out.println(helpList.get("helpMessage3"));
+        //get all the commands we can do.
+        HashMap<String, CommandWord> commands = parser.showCommands();
+        //init the empty string
+        String s = "";
+        //go through each set of values and insert the key to the string.
+        for (String key: commands.keySet()) {
+            s += key + " ";
+        }
+        helpList.put("commands", s);
         System.out.println(helpList.get("commands"));
     }
     
@@ -59,15 +86,17 @@ public class Gui{
     private void play(){
         // Set our initial finish to false since the game just started.
         boolean finished = false;
-        
-        // As long as the game has not finished yet.
-        while (! finished) {
-            List<EquippableItem> l = twot.getEquippableItems();
-            
-            finished = processCommand(twot.getCommand());
+        boolean quit = false;
+        while(!quit){
+            // As long as the game has not finished yet.
+            while (! finished) {
+                finished = processCommand(parser.getCommand());
+            }
+            // Print goodbye
+            System.out.println("Thank you for playing. Good bye.");
+            System.out.println("");
+            callMenu();
         }
-        // Print goodbye
-        System.out.println("Thank you for playing.  Good bye.");
     }
     
     /**
@@ -105,9 +134,52 @@ public class Gui{
         return wantToQuit;
     }
     
+    /**
+     * 
+     * @return 
+     */
+    public static boolean callMenu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to The Wizard of Treldan!");
+        System.out.println("******************");
+        
+        for(String s: TWoT.getMenuSelections()){
+            System.out.println("----" + s + "----");
+        }
+        System.out.println("******************");
+        System.out.println("Please enter either 'new game', 'load game' or 'exit game'.");
+        String menuChoice = scanner.nextLine();
+        menuChoice = menuChoice.toLowerCase();
+        
+        while(!menuChoice.equals("new game") || !menuChoice.equals("load game") || !menuChoice.equals("exit game")){
+            if(menuChoice.equals("new game") || menuChoice.equals("load game") || menuChoice.equals("exit game")){
+                break;
+            }
+            System.out.println("Looks like you entered something wrong. Please try again:");
+            menuChoice = scanner.nextLine();
+            menuChoice = menuChoice.toLowerCase();
+        }
+        switch (menuChoice) {
+            case "new game":
+                Gui g = new Gui();
+                break;
+            case "load game":
+                //load a game
+                break;
+            case "exit game":
+                System.out.println("Thank you for atleast consider playing The Wizard of Treldan.");
+                System.exit(1);
+                break;
+        }
+        return true;
+    }
     
+    /**
+     * 
+     * @param args 
+     */
     public static void main(String[] args){
         //make an object of this class.
-        Gui g = new Gui();
+        callMenu();
     }
 }

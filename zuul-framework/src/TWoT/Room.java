@@ -2,6 +2,7 @@
 package TWoT;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -58,6 +59,26 @@ public class Room{
      */
     public Interior getMapInterior(String key){
         return mapInterior.get(key);
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public String getFullDescription(){
+        String returnString = "";
+        for(Map.Entry<String, Interior> entry : mapInterior.entrySet()){
+            if(entry.getValue() instanceof Item){
+                returnString += "| Direction: " + entry.getKey() + ", Item: " + ((Item)entry.getValue()).getItemName() + "|";
+            }else if(entry.getValue() instanceof Exit){
+                returnString += "| Direction: " + entry.getKey() + ", Exit: " + ((Exit)entry.getValue()).getNewRoom().getName()+ "|";
+            }else if(entry.getValue() instanceof Npc){
+                returnString += "| Direction: " + entry.getKey() + ", Npc: " + ((Npc)entry.getValue()).getName()+ "|";
+            }else if(entry.getValue() instanceof Monster){
+                returnString += "| Direction: " + entry.getKey() + ", Monster: " + ((Monster)entry.getValue()).getMonsterName()+ "|";
+            }
+        }
+        return returnString;
     }
 }
 

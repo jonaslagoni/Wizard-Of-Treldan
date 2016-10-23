@@ -4,24 +4,25 @@
  * and open the template in the editor.
  */
 package TWoT;
-
+import java.util.*;
 /**
  *
  * @author Lagoni
  */
 public class Npc extends Interior {
-    private String name, dialog;
+    private String name;
     private Item itemToGive, itemToGet;
     private boolean passiv;
+    private List<String> conversation = new ArrayList();
     /**
      * Constructor.
      * @param name
      * @param dialog
      * @param passiv 
+     * @param conversation
      */
-    public Npc(String name, String dialog, boolean passiv){
+    public Npc(String name, boolean passiv){
         this.name = name;
-        this.dialog = dialog;
         this.passiv = passiv;
     }
 
@@ -32,19 +33,7 @@ public class Npc extends Interior {
         return name;
     }
 
-    /**
-     * @return the dialog
-     */
-    public String getDialog() {
-        return dialog;
-    }
 
-    /**
-     * @param dialog the dialog to set
-     */
-    public void setDialog(String dialog) {
-        this.dialog = dialog;
-    }
 
     /**
      * @return the itemToGive
@@ -86,5 +75,21 @@ public class Npc extends Interior {
      */
     public void setPassiv(boolean passiv) {
         this.passiv = passiv;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<String> getConversation() {
+        return conversation;
+    }
+    
+    /**
+     * 
+     * @param dialog 
+     */
+    public void addConversation(String dialog) {
+        conversation.add(dialog);
     }
 }

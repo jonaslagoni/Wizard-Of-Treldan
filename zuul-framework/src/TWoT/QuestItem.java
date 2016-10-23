@@ -10,7 +10,6 @@ package TWoT;
  * @author Lagoni
  */
 public class QuestItem extends Item {
-    
     public QuestItem(String itemName, int itemValue, String itemDescription){
         super.setItemName(itemName);
         super.setItemValue(itemValue);

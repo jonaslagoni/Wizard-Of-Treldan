@@ -18,17 +18,20 @@ public class Fight {
     private int damage;
     private boolean isDone;
     private String winner;
+    
     /**
      * 
      * @param winner
      * @param player
      * @param monster
      * @param playerRoll
-     * @param monsterRoll 
+     * @param monsterRoll
+     * @param damage
+     * @param isDone 
      */
     public Fight(String winner, Player player, Monster monster, int playerRoll, int monsterRoll, int damage, boolean isDone){
         this.winner = winner;
-        this.player = player;
+        this.player = (Player)player.clone();
         this.monster = monster;
         this.monsterRoll = monsterRoll;
         this.playerRoll = playerRoll;

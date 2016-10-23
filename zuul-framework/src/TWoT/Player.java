@@ -177,7 +177,55 @@ public class Player{
      * 
      * @param gold 
      */
-    public void addGold(double gold) {
+    public void addGold(int gold) {
         this.gold += gold;
+    }
+    
+    /**
+     * Returns the total item value of player's WHOLE inventory as an integer.
+     * @return 
+     */
+    public int getTotalItemValue(){
+        int totalItemValue = 0;
+        int totalEquipValue= 0;
+        
+        //Making a new list equal to the list of items the player has in inventory.
+        List<Item> Inventory = playersInventory.getInventoryItems();
+        List<EquippableItem> Equip = playersInventory.getEquippableItem();
+        
+        //Traverses through every item in inventory and counts each item's values
+        for(Item item: Inventory){
+            int iValue = item.getItemValue();
+            totalItemValue = totalItemValue + iValue;
+        }
+        for(EquippableItem equip: Equip){
+            int eValue = equip.getItemValue();
+            totalEquipValue = totalEquipValue + eValue;
+        }
+        //Returns the total item value as integer.
+        return totalEquipValue + totalItemValue;
+        
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    protected Object clone(){
+        try {
+            return super.clone();
+        }catch (CloneNotSupportedException e) {
+            // This should never happen
+            throw new InternalError(e.toString());
+        }
+    }
+    
+    /**
+     * 
+     * @param playerName 
+     */
+    public void setPlayerName(String playerName){
+        this.playerName = playerName;
     }
 }

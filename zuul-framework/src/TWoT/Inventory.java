@@ -13,28 +13,28 @@ import java.util.List;
  * @author Kasper
  */
 public class Inventory {
-    private List<EquippableItem> Equip = new ArrayList();
-    private List<Item> Inventory = new ArrayList();
+    private List<EquippableItem> equipedInventory = new ArrayList();
+    private List<Item> itemInventory = new ArrayList();
 
     /**
      * @return the EquippableItem
      */
     public List<EquippableItem> getEquippableItem() {
-        return Equip;
+        return equipedInventory;
     }
 
     /**
      * @return the UseableItem
      */
     public List<Item> getInventoryItems() {
-        return Inventory;
+        return itemInventory;
     }
     
     public void addInventoryItem(Item i){
-        Inventory.add(i);
+        itemInventory.add(i);
     }
     
     public void addEquipItem(EquippableItem i){
-        Equip.add(i);
+        equipedInventory.add(i);
     }
 }
