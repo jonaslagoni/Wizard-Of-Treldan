@@ -48,34 +48,34 @@ public class TWoT{
      */
     private void createRooms(){
         // Deffine rooms
-        Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForrest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
+        Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
 
-        roomCellar = new Room("Cellar", "You wake up in a dull cellar. Light is emitting from a torch on the wall "
+        roomCellar = new Room("Cellar", "***Cellar*** \n You wake up in a dull cellar. Light is emitting from a torch on the wall "
                 + "and you barely get on your feet. You’ve been laying on a haystack for God knows how long and "
                 + "your feet are extremely sore. To your right you see a table with multiple drawers and right in "
                 + "front of you an old door with a lock. You can choose to inspect the door, the table or the haystack behind you.");
-        roomVillage = new Room("Treldan", "t’s dark outside. You seem to be familiar with this part of the village. "
+        roomVillage = new Room("Village of Treldan", "***Village of Treldan*** \n It’s dark outside. You seem to be familiar with this part of the village. "
                 + "You still wonder why you were locked up in that cell, but your thoughts are quickly interrupted "
                 + "by a sobbing by the gate. A guard seems to be crying, and something doesn’t seem right in the "
                 + "village. All houses seem to be empty and the doors are wide open. You gasp as you see several "
                 + "people lying dead in the side of the road. \n\"You enter the town of Treldan, you can choose to "
                 + "inspect the guard at the gate, house one, house two or house three.\"");
-        roomHouse1 = new Room("House of the reborn", "The house you venture into is dark – very dark. It seems like "
+        roomHouse1 = new Room("House of the Reborn", "***House of the Reborn*** \n The house you venture into is dark – very dark. It seems like "
                 + "there is a man in a corner of the room close you and a woman in the other end of the room.\" "
                 + "You enter the house, you can choose to inspect the woman, the man or leave through the door "
                 + "behind you.");
-        roomHouse2 = new Room("House of riches", "You use your bloody key to get in. This house is lit up by a "
+        roomHouse2 = new Room("House of Riches", "***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
                 + "candle on the table. There’s a blood-stained bed in the corner of the room. A bunch of sacks "
                 + "are placed up against a poorly build wardrobe. The other corner is not lit up by the candle and "
                 + "you can’t see what is there. You enter the house, you can choose to inspect the wardrobe, the "
                 + "bed, the dark corner or leave through the door behind you.");
-        roomHouse3 = new Room("House of the guard", "The door is barred from the inside, you jump through an open "
+        roomHouse3 = new Room("House of the Guard", "***House of the Guard*** \n The door is barred from the inside, you jump through an open "
                 + "window in the house, cutting yourself on a sharp piece of glass. Loose 5 HP. The house is neatly "
                 + "decorated, and the infected clearly havent been in here, in the left corner of the room there is "
                 + "a dusty set of armor and lying in an open chest at the end of a double-bed. Additionally, there "
                 + "is also a small kitchen area with knives, pots, pans, and the like.   You enter the house, you "
-                + "can chose to inspect the Kitchen, the bed, or the chest.");
-        roomForrest = new Room("The forrest of Treldan", "As you ride through the forest you are ambushed by a pack "
+                + "can chose to inspect the kitchen, the bed, the chest or go back through the door behind you.");
+        roomForest = new Room("The Forest of Treldan", "***The Forest of Treldan*** \n As you ride through the forest you are ambushed by a pack "
                 + "of goblins who try to murder you and take your valuables. You almost fall prey to the savages, "
                 + "as you are saved by a wizard who zaps! the goblins with magic and scare them away. He heals your "
                 + "wounds and helps you back on your feet. You thank the wizard and ask him if there is anything "
@@ -84,56 +84,84 @@ public class TWoT{
                 + "scout around and look for anything, and spot a dead goblin and a couple of suspicious looking "
                 + "mushrooms. \nYou can go to the wizards house, look at the mushrooms, and search the dead "
                 + "goblin. Alternatively, you can also go back to the village.");
-        roomWizardHouse = new Room ("The wizards house","The wizards house is more like a hollow tree with doors "
+        roomWizardHouse = new Room ("The Nice Wizard's House","***The Wizard's House*** \n The wizard's house is better described as a hollow tree with doors "
                 + "and windows, you can see a number of magical artifacts, a staircase to a upstairs part of the "
                 + "house, there is also what looks to be an alchemy lab. The wizard sits quietly in a comfy chair "
                 + "with his legs up, snoring. You enter the Wizards house, you can chose to interact with the "
                 + "wizard, the alchemy lab, the magical items, or go upstairs.");
-        roomCave = new Room("Troll cave", "You enter the troll cave, and immediately get sorrounded by 3 trolls,"
+        roomCave = new Room("Troll Cave", "***Troll Cave*** \n You enter the troll cave, and immediately get sorrounded by 3 trolls,"
                 + " one directly in fron of you, one to the left, and one to your right. in the back "
                 + "you can see a larger shadowy figure in the back of the cave, but you need to "
                 + "get rid of the trolls to get to him first. \nYou can interact with the 3 trolls in front of "
                 + "you but you need to kill all of them in order to get further into the cave");
-        roomCaveGruul = new Room("","You approach the shadowy figure and as you come closer, the giant troll rises"
+        roomCaveGruul = new Room("Gruul's Lair","***Gruul's Lair*** \n You approach the shadowy figure and as you come closer, the giant troll rises"
                 + " up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
-        roomClearing = new Room("Clearing of unicorns", "You enter the clearing of unicorns and are immediately"
+        roomClearing = new Room("Clearing of Unicorns", "***Clearing of Unicorns*** \n You enter the clearing of unicorns and are immediately"
                 + " blinded by a bright light. As you regain your sight you lay eyes upon the most magnificent "
                 + "create you have ever seen. The unicorn looks at you curiously and goes back to eating grass. "
                 + "You scout the surrounding area for anything else, and spot an old tree. ");
-        roomDungeon = new Room("Dungeon of suffering", "A big whoosh and you find yourself in some kind of dungeon "
+        roomDungeon = new Room("Dungeon of Suffering", "***Dungeon of Suffering*** \n A big whoosh and you find yourself in some kind of dungeon "
                 + "– probably the one belonging to the evil wizard of Treldan. You realise you must be in his Tower."
                 + " You get up on your feet and sees that the room your in is barely lit by torches, the walls are "
                 + "slimy and there are no windows. To no surprise you find three heavely armored skeletons. You "
                 + "sigh. You can choose to inspect either skeleton one, skeleton two or skeleton three.");
-        roomLibrary = new Room("The neverending library", "You find yourself in the biggest room you’ve ever been "
-                + "in. Books and books is all you see, and bookcases fill up the gigantic room. It would take ages "
+        roomLibrary = new Room("The Neverending Library", "***The Neverending Library*** \n You find yourself in the biggest room you’ve ever been "
+                + "in. Books upon books is all you see, and bookcases fill up the gigantic room. It would take ages "
                 + "to go through every single book, you think to yourself.");
-        roomEvilWizardsLair = new Room("The evil wizards lair", "s you ascend the stairs your legs feel heavier and "
+        roomEvilWizardsLair = new Room("The Evil Wizard's Lair", "***The Evil Wizard's Lair*** \n As you ascend the stairs your legs feel heavier and "
                 + "heavier. You can barely walk as you make it up to the final step – the pain is then suddenly "
                 + "relieved. You open a large door and you see the Evil Wizard of Treldan standing in the room with "
                 + "a giant dragon.");
 
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
-        Interior roomCellarStick = new QuestItem("The niddle in the Hay stack", 1, "Nothing interresting happens");
-        Interior roomCellarCheeseSandwich = new UseableItem("The sandwich of gold", 20, "dare eat it?");
-        roomCellar.addMapInterior("north", roomCellarExit);
-        roomCellar.addMapInterior("west", roomCellarStick);
-        roomCellar.addMapInterior("east", roomCellarCheeseSandwich);
+        Interior roomCellarStick = new QuestItem("The needle in the haystack.", 1, "Nothing interesting happens.");
+        Interior roomCellarCheeseSandwich = new UseableItem("A newly made cheese sandwhich.", 20, "Do you dare eat it?");
+        roomCellar.addMapInterior("door", roomCellarExit);
+        roomCellar.addMapInterior("haystack", roomCellarStick);
+        roomCellar.addMapInterior("table", roomCellarCheeseSandwich);
 
         //roomVillage
         Interior roomVillageExit1 = new Exit(roomHouse1);
         Interior roomVillageExit2 = new Exit(roomHouse2);
         Interior roomVillageExit3 = new Exit(roomHouse3);
-        Interior roomVillageExit4 = new Exit(roomForrest);
+        Interior roomVillageExit4 = new Exit(roomForest);
         Npc mogens = new Npc("Mogens", true);
         mogens.addConversation("g");
         Interior roomVillageNPC = mogens;
         roomVillage.addMapInterior("house1", roomVillageExit1);
         roomVillage.addMapInterior("house2", roomVillageExit2);
         roomVillage.addMapInterior("house3", roomVillageExit3);
-        roomVillage.addMapInterior("west", roomVillageNPC);
+        roomVillage.addMapInterior("guard", roomVillageNPC);
         
+        //roomHouse1
+        Interior roomHouse1Exit = new Exit(roomVillage);
+        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 0);
+        Interior roomHouse1Woman = woman;
+        Interior roomHouse1Man = new UseableItem("Cheese sandwhich", 20, "Nom nom nom");
+        roomHouse1.addMapInterior("Woman", roomHouse1Woman);
+        roomHouse1.addMapInterior("Man", roomHouse1Man);
+        roomHouse1.addMapInterior("Door", roomHouse1Exit);
+        
+        //roomHouse2
+        Interior roomHouse2Exit = new Exit(roomVillage);
+        Interior roomHouse2Wardrobe = new EquippableItem("Dull Sword", 842,"Dull and a sword.",1.3,1.0); //Tag 10 skade
+        Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying");
+        Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon");
+        roomHouse2.addMapInterior("Door", roomHouse2Exit);
+        roomHouse2.addMapInterior("Wardrobe", roomHouse2Wardrobe);
+        roomHouse2.addMapInterior("Bed", roomHouse2Bed);
+        roomHouse2.addMapInterior("Dark Corner", roomHouse2DarkCorner);
+        
+        //roomHouse3
+        Interior roomHouse3Exit = new Exit(roomVillage);
+        //Interior roomHouse3Kitchen = new PlayerGold;
+        //Interior roomHouse3Bed = new PlayerHealth;
+        Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 1.0, 1.3);
+        roomHouse3.addMapInterior("Door", roomHouse3Exit);
+        //roomHouse3.addMapInterior("Kitchen", roomHouse3Kitchen);
+        //roomHouse3.addMapInterior("Bed", roomHouse3Bed);
+        roomHouse3.addMapInterior("Chest", roomHouse3Chest);
         
         //roomForrest
         Interior roomForrestExit1 = new Exit(roomWizardHouse);
@@ -141,14 +169,14 @@ public class TWoT{
         Interior roomForrestExit3 = new Exit(roomClearing);
         Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.");
         Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0);
-        roomForrest.addMapInterior("Mushrooms", roomForrestMushroom);
-        roomForrest.addMapInterior("Dead goblin", roomForrestDeadGoblin);
-        roomForrest.addMapInterior("Wizard's house", roomForrestExit1);
-        roomForrest.addMapInterior("Gruul's lair", roomForrestExit2);
-        roomForrest.addMapInterior("Clearing of unicorns", roomForrestExit3);
+        roomForest.addMapInterior("Mushroom", roomForrestMushroom);
+        roomForest.addMapInterior("Dead goblin", roomForrestDeadGoblin);
+        roomForest.addMapInterior("Wizard's house", roomForrestExit1);
+        roomForest.addMapInterior("Troll cave", roomForrestExit2);
+        roomForest.addMapInterior("Clearing of unicorns", roomForrestExit3);
         
         //roomWizardHouse
-        Interior roomWizardHouseExit = new Exit(roomForrest);
+        Interior roomWizardHouseExit = new Exit(roomForest);
         Interior roomWizardHouseUpstairs = new UseableItem("Smooth ruby.", 200, "A valueable stone.");
         Interior roomWizardHouseBox = new UseableItem("Mysterious Ring",150,"Odd looking ring with a curiously intricate design, you decide to hold onto it.");
         Interior roomWizardHouseLab = new UseableItem("Health Potion",20,"Regenerates health points");
@@ -162,7 +190,7 @@ public class TWoT{
         roomWizardHouse.addMapInterior("Forrest", roomWizardHouseExit);
         
         //roomCave
-        Interior roomCaveExit1 = new Exit(roomForrest);
+        Interior roomCaveExit1 = new Exit(roomForest);
         Interior roomCaveExit2 = new Exit(roomCaveGruul);
         Monster troll = new Monster("Troll", 1.0, 1.0, 50, 3000);
         Interior roomWizardHouseMonster1 = troll;
@@ -182,7 +210,7 @@ public class TWoT{
         roomCave.addMapInterior("Troll Cave", roomCaveGruulExit1);
         
         //roomClearing
-        Interior roomClearingExit1 = new Exit(roomForrest);
+        Interior roomClearingExit1 = new Exit(roomForest);
         Monster giant_troll_boss = new Monster("Humongous troll", 2.1, 1.5, 200, 100);
         Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 2000000000);
         Interior roomClearingMonster1 = unicorn;
@@ -232,7 +260,7 @@ public class TWoT{
      * @return 
      */
     public HashMap<String, String> getWelcomeMessages(){
-        HashMap<String, String> welcomeList = new HashMap<String, String>();
+        HashMap<String, String> welcomeList = new HashMap();
         welcomeList.put("welcomeMessage1", "Welcome to the World of Zuul!");
         welcomeList.put("welcomeMessage2", "World of Zuul is a new, incredibly boring adventure game.");
         welcomeList.put("needHelp", "Type '" + CommandWord.HELP + "' if you need help.");
@@ -251,7 +279,7 @@ public class TWoT{
      */
     public HashMap<String, String> getHelpMessages(){
         //init a new object of type hashmap
-        HashMap<String, String> helpList = new HashMap<String, String>();
+        HashMap<String, String> helpList = new HashMap();
         helpList.put("helpMessage1",  "You are at " + currentRoom.getName());
         helpList.put("helpMessage2", "Here is where you can go: " + currentRoom.getFullDescription());
         helpList.put("helpMessage3", "Your command words are:");

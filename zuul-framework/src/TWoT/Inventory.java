@@ -30,10 +30,18 @@ public class Inventory {
         return itemInventory;
     }
     
+    /**
+     * 
+     * @param i 
+     */
     public void addInventoryItem(Item i){
         itemInventory.add(i);
     }
     
+    /**
+     * 
+     * @param i 
+     */
     public void addEquipItem(EquippableItem i){
         equipedInventory.add(i);
     }

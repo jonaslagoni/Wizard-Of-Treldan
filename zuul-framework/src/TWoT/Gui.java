@@ -118,13 +118,11 @@ public class Gui{
         // Check if commandword is help
         if (commandWord == CommandWord.HELP) {
             printHelp();
-        }
-        else if (commandWord == CommandWord.GO) {
+        }else if (commandWord == CommandWord.GO) {
             // If commandWord is go go the room defined in the command.
             // If the command does not have a second word the user intered "go" without a where.
             System.out.println(twot.goTo(command));
-        }
-        else if (commandWord == CommandWord.QUIT) {
+        }else if (commandWord == CommandWord.QUIT) {
             // If the user wants to quit quit.
             wantToQuit = twot.quit(command);
             if(!wantToQuit){
