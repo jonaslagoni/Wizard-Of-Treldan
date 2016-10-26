@@ -2,6 +2,8 @@
 // Use package zuulframework
 package TWoT;
 
+import static TWoT.EquippableItem.EItem.CHEST_SLOT;
+import static TWoT.EquippableItem.EItem.WEAPON_SLOT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,9 @@ public class TWoT{
     private Room currentRoom;
     private Player player;
     
+    // Deffine rooms
+    private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
+
     // Create the constructor for TWoT class
     public TWoT(){
         // Create the different rooms used
@@ -47,9 +52,6 @@ public class TWoT{
      * Creates all the rooms in the game.
      */
     private void createRooms(){
-        // Deffine rooms
-        Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
-
         roomCellar = new Room("Cellar", "***Cellar*** \n You wake up in a dull cellar. Light is emitting from a torch on the wall "
                 + "and you barely get on your feet. You’ve been laying on a haystack for God knows how long and "
                 + "your feet are extremely sore. To your right you see a table with multiple drawers and right in "
@@ -145,7 +147,7 @@ public class TWoT{
         
         //roomHouse2
         Interior roomHouse2Exit = new Exit(roomVillage);
-        Interior roomHouse2Wardrobe = new EquippableItem("Dull Sword", 842,"Dull and a sword.",1.3,1.0); //Tag 10 skade
+        Interior roomHouse2Wardrobe = new EquippableItem("Dull Sword", 842,"Dull and a sword.",1.3,1.0, WEAPON_SLOT); //Tag 10 skade
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying");
         Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon");
         roomHouse2.addMapInterior("Door", roomHouse2Exit);
@@ -157,7 +159,7 @@ public class TWoT{
         Interior roomHouse3Exit = new Exit(roomVillage);
         //Interior roomHouse3Kitchen = new PlayerGold;
         //Interior roomHouse3Bed = new PlayerHealth;
-        Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 1.0, 1.3);
+        Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 1.0, 1.3, CHEST_SLOT);
         roomHouse3.addMapInterior("Door", roomHouse3Exit);
         //roomHouse3.addMapInterior("Kitchen", roomHouse3Kitchen);
         //roomHouse3.addMapInterior("Bed", roomHouse3Bed);
@@ -168,7 +170,7 @@ public class TWoT{
         Interior roomForrestExit2 = new Exit(roomCave);
         Interior roomForrestExit3 = new Exit(roomClearing);
         Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.");
-        Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0);
+        Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT);
         roomForest.addMapInterior("Mushroom", roomForrestMushroom);
         roomForest.addMapInterior("Dead goblin", roomForrestDeadGoblin);
         roomForest.addMapInterior("Wizard's house", roomForrestExit1);
@@ -294,14 +296,11 @@ public class TWoT{
      * @return String
      */
     public String goTo(Command command){
-        
-        // Get the direction where the user wants to go.
-        String direction = command.getSecondWord();
         if(!command.hasSecondWord()) {
             return "Go where?";
         }
         // Create an object of klass Room and return if the exit is correct.
-        Interior interior = currentRoom.getMapInterior(direction);
+        Interior interior = currentRoom.getMapInterior(command.getSecondWord());
         // If the nextroom is null it means that there was no next room in that direction.
         if(interior == null) {
             return "place dosent exist";
@@ -312,6 +311,41 @@ public class TWoT{
             return "nothing here";
         }
     }
+    
+    public String inspectThing(Command command){
+        if(!command.hasSecondWord()){
+            return "Inspect what?";
+        }
+        Interior interior = currentRoom.getMapInterior(command.getSecondWord());
+        if(interior == null){
+            return "interior doesn't exist";
+        }
+        else if(interior instanceof Item){
+            if(interior instanceof EquippableItem){
+                return "this is an equippable item";
+            }
+            else if(interior instanceof QuestItem){
+                return "this is a quest item";
+            }
+            else if(interior instanceof UseableItem){
+                return "this is a useable item";
+            }
+            else{
+                return "mystery";
+            }
+        }
+        else if(interior instanceof Npc){
+            return "This is an Npc";
+        }
+        else if(interior instanceof Monster){
+            return "This is a Monster";
+        }
+        else{
+            return "Use \"Go to\" to exit";
+        }
+    }
+    
+    
     /**
      * 
      * @return 

@@ -13,6 +13,7 @@ public class EquippableItem extends Item {
     
     private double attackBuff;
     private double defenseBuff;
+    private EItem eItem;
     
     /**
      * 
@@ -22,14 +23,18 @@ public class EquippableItem extends Item {
      * @param attackBuff
      * @param defenseBuff 
      */
-    public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff){
+    public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff, EItem eItem){
         super.setItemName(itemName);
         super.setItemValue(itemValue);
         super.setItemDescription(itemDescription);
         this.attackBuff = attackBuff;
         this.defenseBuff = defenseBuff;
+        this.eItem = eItem;
     }
-
+    
+    public enum EItem {
+        HEAD_SLOT, WEAPON_SLOT, CHEST_SLOT, LEG_SLOT, BOOT_SLOT, GLOVES_SLOT, RING_SLOT, AMULET_SLOT;
+    }
     /**
      * @return the attackBuff
      */

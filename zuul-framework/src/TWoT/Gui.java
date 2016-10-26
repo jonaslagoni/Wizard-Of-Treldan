@@ -128,7 +128,11 @@ public class Gui{
             if(!wantToQuit){
                 System.out.println("Quit what?");
             }
+        }else if (commandWord == CommandWord.INSPECT){
+            System.out.println(twot.inspectThing(command));
         }
+
+    
         return wantToQuit;
     }
     

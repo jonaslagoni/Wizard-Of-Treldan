@@ -13,7 +13,11 @@ public class Command{
     public Command(CommandWord commandWord, String secondWord){
         // Set the variables to the arguments in the constructor
         this.commandWord = commandWord;
-        this.secondWord = secondWord;
+        if(secondWord != null){
+            this.secondWord = secondWord.toLowerCase();
+        }else{
+            this.secondWord = secondWord;
+        }
     }
     
     // Return the commandWord of type CommandWord

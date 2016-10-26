@@ -9,6 +9,6 @@ package TWoT;
  *
  * @author Lagoni
  */
-public class Interior {
+public abstract class Interior {
     
 }
