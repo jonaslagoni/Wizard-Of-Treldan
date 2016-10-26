@@ -5,14 +5,10 @@
  */
 package JavaFX;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-
 /**
  *
  * @author jonas
  */
-public abstract class Sprite {
-    abstract void setPosition(double x, double y);
-    abstract void render(GraphicsContext gc);
+public class World {
+    
 }

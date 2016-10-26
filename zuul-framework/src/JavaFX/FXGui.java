@@ -33,6 +33,7 @@ public class FXGui extends Application {
     @Override
     public void start(Stage theStage) 
     {
+        /*
         theStage.setTitle( "Collect the Money Bags!" );
 
         Group root = new Group();
@@ -150,6 +151,7 @@ public class FXGui extends Application {
         }.start();
 
         theStage.show();
+        */
     }
     
 }
