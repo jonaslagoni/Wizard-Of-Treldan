@@ -31,8 +31,11 @@ public class TestFXGui extends Application {
         Scene theScene = new Scene( root );
         primaryStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 1024, 512 );
-        root.getChildren().add( canvas );
+        Canvas canvas_still_sprites = new Canvas( 1024, 512 );
+        root.getChildren().add( canvas_still_sprites );
+        
+        Canvas canvas_moveable_sprites = new Canvas( 1024, 512 );
+        root.getChildren().add( canvas_moveable_sprites );
         
         Canvas player_canvas = new Canvas( 1024, 512 );
         root.getChildren().add( player_canvas );
@@ -40,6 +43,8 @@ public class TestFXGui extends Application {
         PlayerSprite player = new PlayerSprite();
         player.setImage("player.png");
         player.setPosition(200, 0);
+        player.setHeight(64);
+        player.setWidth(64);
         ArrayList<String> input = new ArrayList<String>();
         theScene.setOnKeyReleased(
             new EventHandler<KeyEvent>(){
@@ -73,16 +78,29 @@ public class TestFXGui extends Application {
                     
                 }
             });
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        GraphicsContext player_gc = player_canvas.getGraphicsContext2D();
-        WorldGenerator world = new WorldGenerator(gc);
-        List<Sprite> sprites = world.getSprites();
+        GraphicsContext ground_still_gc = canvas_still_sprites.getGraphicsContext2D();
+        GraphicsContext ground_moveable_gc = canvas_moveable_sprites.getGraphicsContext2D();
+        GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        
+        WorldGenerator world = new WorldGenerator();
+        
+        List<Sprite> sprites_still = world.getStillSprites();
+        List<Sprite> sprites_moveable = world.getMoveableSprites();
+        
         LongValue lastNanoTime = new LongValue( System.nanoTime() );
-        for(Sprite sprite: sprites){
-            sprite.render(gc);
+        
+        for(Sprite sprite: sprites_still){
+            sprite.render(ground_still_gc);
         }
+        
+        for(Sprite sprite: sprites_moveable){
+            sprite.render(ground_moveable_gc);
+        }
+        
+        
         IntValue score = new IntValue(0);
         new AnimationTimer(){
+            private int animationDelay = 0;
             public void handle(long currentNanoTime){
                 double elapsedTime = (currentNanoTime - lastNanoTime.value) / 1000000000.0;
                 lastNanoTime.value = currentNanoTime;
@@ -101,14 +119,27 @@ public class TestFXGui extends Application {
                     player.setDirection(Direction.WALK_UP);
                 }
                 if(input.contains("DOWN")){
-                    player.setVelocity(0,100);
+                    if(player.intersects_buttom(world.getSpriteList_moveable())){
+                        player.setVelocity(0,0);
+                    }else{
+                        player.setVelocity(0,100);
+                    }
                     player.setDirection(Direction.WALK_DOWN);
                 }
                 if(input.isEmpty()){
                     player.setDirection(Direction.STANDSTILL);
                 }
-                player_gc.clearRect(0, 0, 1024,512);
-                player.render(player_gc);
+                moveable_gc.clearRect(0, 0, 1024,512);
+                if(animationDelay == 40){
+                    ground_moveable_gc.clearRect(0, 0, 1024,512);
+                    for(Sprite sprite: sprites_moveable){
+                        sprite.render(ground_moveable_gc);
+                    }
+                    animationDelay = 0;
+                }else{
+                    animationDelay++;
+                }
+                player.render(moveable_gc);
             }
         }.start();
         primaryStage.show();

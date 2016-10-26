@@ -6,6 +6,7 @@
  */
 package JavaFX;
 
+import java.util.List;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -14,7 +15,7 @@ import javafx.scene.image.Image;
  *
  * @author jonas
  */
-public class PlayerSprite {
+public class PlayerSprite{
     private Image image;
     private double positionX;
     private double positionY;
@@ -33,6 +34,13 @@ public class PlayerSprite {
         direction = Direction.STANDSTILL;
         animationCounter = 3;
         animationDelay = 1;
+    }
+
+    /**
+     * @return the positionX
+     */
+    public double getPositionX() {
+        return positionX;
     }
     
     public enum Direction {
@@ -73,15 +81,15 @@ public class PlayerSprite {
     public void render(GraphicsContext gc) {
         //gc.drawImage(image, positionX, getPositionY());
         if(getDirection().equals(Direction.STANDSTILL)){
-            gc.drawImage(getImage(), 8+(64*0), 8+(64*2), 64, 64, positionX, positionY, 64, 64);
+            gc.drawImage(getImage(), 8+(64*0), 8+(64*2), 64, 64, getPositionX(), getPositionY(), 64, 64);
         }else if(getDirection().equals(Direction.WALK_DOWN)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*10), 64, 64, positionX, positionY, 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*10), 64, 64, getPositionX(), getPositionY(), 64, 64);
         }else if(getDirection().equals(Direction.WALK_LEFT)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*9), 64, 64, positionX, positionY, 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*9), 64, 64, getPositionX(), getPositionY(), 64, 64);
         }else if(getDirection().equals(Direction.WALK_UP)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*8), 64, 64, positionX, positionY, 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*8), 64, 64, getPositionX(), getPositionY(), 64, 64);
         }else if(getDirection().equals(Direction.WALK_RIGHT)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*11), 64, 64, positionX, positionY, 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*11), 64, 64, getPositionX(), getPositionY(), 64, 64);
         }
         if(animationCounter != 8){
             if(animationDelay == 4){
@@ -97,15 +105,27 @@ public class PlayerSprite {
     }
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(positionX, getPositionY(), getWidth(), getHeight());
+        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
     }
 
-    public boolean intersects(SingleSprite s) {
-        return s.getBoundary().intersects(this.getBoundary());
+    public boolean intersects_buttom(List<Sprite> s) {
+        for(Sprite sprites: s){
+            Rectangle2D spriteBound = sprites.getBoundary();
+            Rectangle2D thisBound = this.getBoundary();
+            if((spriteBound.getMinY()-sprites.getPositionX()) < thisBound.getMaxY()){
+                if((spriteBound.getMinX()) < thisBound.getMaxX()){
+                    System.out.println(sprites.getPositionY());
+                    System.out.println(spriteBound.getMinX());
+                    System.out.println(thisBound.getMaxX());
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public String toString() {
-        return " Position: [" + positionX + "," + getPositionY() + "]"
+        return " Position: [" + getPositionX() + "," + getPositionY() + "]"
                 + " Velocity: [" + getVelocityX() + "," + getVelocityY() + "]";
     }
 

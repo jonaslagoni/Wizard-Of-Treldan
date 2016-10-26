@@ -5,27 +5,33 @@
  */
 package JavaFX;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 /**
  *
  * @author jonas
  */
 public class GroupSprite extends Sprite{
-    private SingleSprite singleSprite;
+    private List<SingleSprite> sprites = new ArrayList();
     private double positionX;
     private double positionY;
     private double width;
     private double height;
 
-    public GroupSprite(SingleSprite singleSprite) {
-        this.singleSprite = singleSprite;
+    public GroupSprite(SingleSprite sprites) {
+        this.sprites.add(sprites);
         positionX = 0;
         positionY = 0;
     }
-
+    
+    public GroupSprite(List<SingleSprite> sprites) {
+        this.sprites = sprites;
+        positionX = 0;
+        positionY = 0;
+    }
 
     public void setPosition(double x, double y) {
         positionX = x;
@@ -33,13 +39,16 @@ public class GroupSprite extends Sprite{
     }
 
     public void render(GraphicsContext gc) {
+        int sprite_number = 0;
+        SingleSprite singleSprite =  getSprites().get(sprite_number);
         //gc.drawImage(image, positionX, getPositionY());
         double renderCounterHeight = Math.round(height/singleSprite.getHeight());
         double renderCounterWidth = Math.round(width/singleSprite.getWidth());
         
-        System.out.println(renderCounterHeight + " | " + renderCounterWidth);
         for(int i = 0; i < renderCounterHeight; i++){
             for(int k = 0; k < renderCounterWidth; k++){
+                sprite_number = (int)Math.round((Math.random()*(getSprites().size()-1)));
+                singleSprite =  getSprites().get(sprite_number);
                 gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSpriteWidth(), singleSprite.getSpriteHeight(), getPositionY()+(singleSprite.getWidth()*k), getPositionX()+(singleSprite.getHeight()*i), singleSprite.getWidth(), singleSprite.getHeight());
             }
             gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSpriteWidth(), singleSprite.getSpriteHeight(), getPositionY(), getPositionX()+(singleSprite.getHeight()*i), singleSprite.getWidth(), singleSprite.getHeight());
@@ -48,12 +57,12 @@ public class GroupSprite extends Sprite{
     }
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(positionX, getPositionY(), getWidth(), getHeight());
+        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
     }
 
 
     public String toString() {
-        return " Position: [" + positionX + "," + getPositionY() + "]";
+        return " Position: [" + getPositionX() + "," + getPositionY() + "]";
     }
 
     /**
@@ -96,5 +105,12 @@ public class GroupSprite extends Sprite{
      */
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    /**
+     * @return the sprites
+     */
+    public List<SingleSprite> getSprites() {
+        return sprites;
     }
 }

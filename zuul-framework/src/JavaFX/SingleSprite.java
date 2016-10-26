@@ -62,11 +62,11 @@ public class SingleSprite extends Sprite {
 
     public void render(GraphicsContext gc) {
         //gc.drawImage(image, positionX, getPositionY());
-        gc.drawImage(getImage(), spritePosX, spritePosY, spriteWidth, spriteHeight, positionX, positionY, width, height);
+        gc.drawImage(getImage(), spritePosX, spritePosY, spriteWidth, spriteHeight, getPositionX(), getPositionY(), width, height);
     }
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(positionX, getPositionY(), getWidth(), getHeight());
+        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
     }
 
     public boolean intersects(SingleSprite s) {
@@ -74,7 +74,7 @@ public class SingleSprite extends Sprite {
     }
 
     public String toString() {
-        return " Position: [" + positionX + "," + getPositionY() + "]"
+        return " Position: [" + getPositionX() + "," + getPositionY() + "]"
                 + " Velocity: [" + getVelocityX() + "," + getVelocityY() + "]";
     }
 
@@ -188,5 +188,12 @@ public class SingleSprite extends Sprite {
      */
     public Image getImage() {
         return image;
+    }
+
+    /**
+     * @return the positionX
+     */
+    public double getPositionX() {
+        return positionX;
     }
 }
