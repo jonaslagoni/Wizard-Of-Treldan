@@ -19,6 +19,7 @@ public class WorldGenerator extends TestFXGui{
     //all sprites generated in this world
     private List<Sprite> spriteList_still;
     private List<Sprite> spriteList_moveable;
+    private List<Sprite> menu_sprites;
     //All normal sprites
     private Sprite ground_grass1, ground_grass2, ground_grass3;
     private Sprite ground_stone_light1, ground_stone_light2, ground_stone_light3;
@@ -33,6 +34,7 @@ public class WorldGenerator extends TestFXGui{
     public WorldGenerator(){
         spriteList_still = new ArrayList();
         spriteList_moveable = new ArrayList();
+        menu_sprites = new ArrayList();
         //init all normal tiles
         initSprites();
         
@@ -51,6 +53,11 @@ public class WorldGenerator extends TestFXGui{
         ((GroupSprite)grass_group).setWidth(512);
         spriteList_moveable.add(grass_group);
         
+        Sprite gass_group = new GroupSprite(getGround_grass_sprites());
+        ((GroupSprite)gass_group).setPosition(0, 0);
+        ((GroupSprite)gass_group).setHeight(512);
+        ((GroupSprite)gass_group).setWidth(1024);
+        menu_sprites.add(gass_group);
     }
     public void initGroupSprites(){
         initGroupLightStoneSprites();
@@ -277,5 +284,12 @@ public class WorldGenerator extends TestFXGui{
      */
     public List<SingleSprite> getGround_water_sprites() {
         return ground_water_sprites;
+    }
+
+    /**
+     * @return the menu_sprites
+     */
+    public List<Sprite> getMenu_sprites() {
+        return menu_sprites;
     }
 }

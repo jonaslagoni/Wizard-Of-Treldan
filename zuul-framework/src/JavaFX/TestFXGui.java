@@ -17,7 +17,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 /**
  *
  * @author jonas
@@ -27,10 +30,75 @@ public class TestFXGui extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("The wizard of Treldan");
+        showMenu(primaryStage);
+        primaryStage.setResizable(false);
+        primaryStage.setWidth(1024);
+        primaryStage.setHeight(512);
+        primaryStage.show();
+    }
+    public void showMenu(Stage primaryStage){
+        Group menuGroup = new Group();
+        Scene menuScene = new Scene( menuGroup );
+        Pane anchorpane = new Pane();
+        
+        Canvas canvas_movealbe_sprites = new Canvas( 1024, 512 );
+        canvas_movealbe_sprites.relocate(0, 0);
+        GraphicsContext ground_moveable_gc = canvas_movealbe_sprites.getGraphicsContext2D();
+        
+        WorldGenerator world = new WorldGenerator();
+        List<Sprite> menu_sprites = world.getMenu_sprites();
+        for(Sprite sprite: menu_sprites){
+            sprite.render(ground_moveable_gc);
+        }
+        new AnimationTimer(){
+            private int animationDelay = 0;
+            public void handle(long currentNanoTime){
+                if(animationDelay == 40){
+                    ground_moveable_gc.clearRect(0, 0, 1024,512);
+                    for(Sprite sprite: menu_sprites){
+                        sprite.render(ground_moveable_gc);
+                    }
+                    animationDelay = 0;
+                }else{
+                    animationDelay++;
+                }
+            }
+        }.start();
+        anchorpane.setPrefSize(768, 512);
+        Button start = new Button();
+        start.setText("New Game");
+        start.setFont(new Font("Tahoma", 20));
+        start.setPrefSize(150, 50);
+        start.relocate(200, 100);
+        start.addEventHandler(MouseEvent.MOUSE_CLICKED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                    move_around(primaryStage);
+                }
+        });
+        anchorpane.getChildren().add(start);
+        
+        Button load = new Button();
+        load.setText("Load Game");
+        load.setFont(new Font("Tahoma", 20));
+        load.setPrefSize(150, 50);
+        load.relocate(200, 200);
+        load.addEventHandler(MouseEvent.MOUSE_CLICKED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                    move_around(primaryStage);
+                }
+        });
+        anchorpane.getChildren().add(load);
+        
+        menuGroup.getChildren().add( canvas_movealbe_sprites );
+        menuGroup.getChildren().add(anchorpane);
+        primaryStage.setScene( menuScene );
+    }
+    
+    public void move_around(Stage primaryStage){
         Group root = new Group();
         Scene theScene = new Scene( root );
-        primaryStage.setScene( theScene );
-
         Canvas canvas_still_sprites = new Canvas( 1024, 512 );
         root.getChildren().add( canvas_still_sprites );
         
@@ -45,6 +113,7 @@ public class TestFXGui extends Application {
         player.setPosition(200, 0);
         player.setHeight(64);
         player.setWidth(64);
+        
         ArrayList<String> input = new ArrayList<String>();
         theScene.setOnKeyReleased(
             new EventHandler<KeyEvent>(){
@@ -138,9 +207,9 @@ public class TestFXGui extends Application {
                 player.render(moveable_gc);
             }
         }.start();
-        primaryStage.show();
+        
+        primaryStage.setScene( theScene );
     }
-
     /**
      * @param args the command line arguments
      */
