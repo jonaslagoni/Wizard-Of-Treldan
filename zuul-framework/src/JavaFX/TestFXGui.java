@@ -119,11 +119,7 @@ public class TestFXGui extends Application {
                     player.setDirection(Direction.WALK_UP);
                 }
                 if(input.contains("DOWN")){
-                    if(player.intersects_buttom(world.getSpriteList_moveable())){
-                        player.setVelocity(0,0);
-                    }else{
-                        player.setVelocity(0,100);
-                    }
+                    player.setVelocity(0,100);
                     player.setDirection(Direction.WALK_DOWN);
                 }
                 if(input.isEmpty()){
