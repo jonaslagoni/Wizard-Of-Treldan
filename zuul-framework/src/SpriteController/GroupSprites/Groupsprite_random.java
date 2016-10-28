@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JavaFX;
+package SpriteController.GroupSprites;
 
+import SpriteController.SingleSprite;
+import SpriteController.Sprite;
+import SpriteController.Sprite;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Rectangle2D;
@@ -14,28 +17,18 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * @author jonas
  */
-public class GroupSprite extends Sprite{
-    private List<SingleSprite> sprites = new ArrayList();
-    private double positionX;
-    private double positionY;
-    private double width;
-    private double height;
+public class Groupsprite_random extends Sprite implements Groupsprite{
+    private List<SingleSprite> sprites;
 
-    public GroupSprite(SingleSprite sprites) {
+    public Groupsprite_random(SingleSprite sprites) {
+        this.sprites = new ArrayList<SingleSprite>();
         this.sprites.add(sprites);
-        positionX = 0;
-        positionY = 0;
+        setPosition(0, 0);
     }
     
-    public GroupSprite(List<SingleSprite> sprites) {
+    public Groupsprite_random(List<SingleSprite> sprites) {
         this.sprites = sprites;
-        positionX = 0;
-        positionY = 0;
-    }
-
-    public void setPosition(double x, double y) {
-        positionX = x;
-        positionY = y;
+        setPosition(0, 0);
     }
 
     public void render(GraphicsContext gc) {
@@ -65,33 +58,6 @@ public class GroupSprite extends Sprite{
         return " Position: [" + getPositionX() + "," + getPositionY() + "]";
     }
 
-    /**
-     * @return the positionY
-     */
-    public double getPositionY() {
-        return positionY;
-    }
-
-    /**
-     * @return the positionX
-     */
-    public double getPositionX() {
-        return positionX;
-    }
-
-    /**
-     * @return the width
-     */
-    public double getWidth() {
-        return width;
-    }
-
-    /**
-     * @return the height
-     */
-    public double getHeight() {
-        return height;
-    }
 
     /**
      * @param width the width to set

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  * using http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/
  */
-package JavaFX;
+package SpriteController;
 
 import java.util.List;
 import javafx.geometry.Rectangle2D;

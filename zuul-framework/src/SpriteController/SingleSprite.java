@@ -1,5 +1,6 @@
-package JavaFX;
+package SpriteController;
 
+import SpriteController.Sprite;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Rectangle2D;
@@ -7,20 +8,15 @@ import javafx.geometry.Rectangle2D;
 public class SingleSprite extends Sprite {
 
     private Image image;
-    private double positionX;
-    private double positionY;
     private double velocityX;
     private double velocityY;
-    private double width;
-    private double height;
     private double spritePosX;
     private double spritePosY;
     private double spriteWidth;
     private double spriteHeight;
 
     public SingleSprite() {
-        positionX = 0;
-        positionY = 0;
+        setPosition(0,0);
         velocityX = 0;
         velocityY = 0;
         spritePosX = 0;
@@ -40,11 +36,6 @@ public class SingleSprite extends Sprite {
         setImage(i);
     }
 
-    public void setPosition(double x, double y) {
-        positionX = x;
-        positionY = y;
-    }
-
     public void setVelocity(double x, double y) {
         velocityX = x;
         velocityY = y;
@@ -56,8 +47,8 @@ public class SingleSprite extends Sprite {
     }
 
     public void update(double time) {
-        positionX += getVelocityX() * time;
-        positionY += getVelocityY() * time;
+        addPositionX(getVelocityX() * time);
+        addPositionY(getVelocityY() * time);
     }
 
     public void render(GraphicsContext gc) {
@@ -77,14 +68,6 @@ public class SingleSprite extends Sprite {
         return " Position: [" + getPositionX() + "," + getPositionY() + "]"
                 + " Velocity: [" + getVelocityX() + "," + getVelocityY() + "]";
     }
-
-    /**
-     * @return the positionY
-     */
-    public double getPositionY() {
-        return positionY;
-    }
-
     /**
      * @return the velocityX
      */
@@ -190,10 +173,4 @@ public class SingleSprite extends Sprite {
         return image;
     }
 
-    /**
-     * @return the positionX
-     */
-    public double getPositionX() {
-        return positionX;
-    }
 }
