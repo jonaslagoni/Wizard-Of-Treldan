@@ -14,6 +14,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -24,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.StageStyle;
 /**
  *
  * @author jonas
@@ -35,11 +37,11 @@ public class TestFXGui extends Application {
     @Override
     public void start(Stage primaryStage) {
         mainStage = primaryStage;
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         mainStage.setTitle("The wizard of Treldan");
         world = new SpriteGenerator();
         input = new ArrayList<String>();
         showMenuMap();
-        mainStage.setResizable(false);
         mainStage.setWidth(1024);
         mainStage.setHeight(512);
         mainStage.show();
@@ -57,17 +59,16 @@ public class TestFXGui extends Application {
             public void handle(KeyEvent e){
                 String code = e.getCode().toString();
                 input.remove(code);
-
-                if(e.getCode().toString().equals("LEFT")){
+                if(code.equals("LEFT")){
                     player.setVelocity(0,player.getVelocityY());
                 }
-                if(e.getCode().toString().equals("RIGHT")){
+                if(code.equals("RIGHT")){
                     player.setVelocity(0,player.getVelocityY());
                 }
-                if(e.getCode().toString().equals("UP")){
+                if(code.equals("UP")){
                     player.setVelocity(player.getVelocityX(),0);
                 }
-                if(e.getCode().toString().equals("DOWN")){
+                if(code.equals("DOWN")){
                     player.setVelocity(player.getVelocityX(),0);
                 }
             }
@@ -78,7 +79,7 @@ public class TestFXGui extends Application {
             public void handle(KeyEvent e)
             {
                 String code = e.getCode().toString();
-
+                System.out.println(e.getCode().toString());
                 // only add once... prevent duplicates
                 if ( !input.contains(code) )
                     input.add( code );
@@ -114,8 +115,8 @@ public class TestFXGui extends Application {
         
         SpriteGenerator world = new SpriteGenerator();
         
-        List<Sprite> sprites_still = world.getStillSprites();
-        List<Sprite> sprites_moveable = world.getMoveableSprites();
+        List<Sprite> sprites_still = world.getSpriteList_still();
+        List<Sprite> sprites_moveable = world.getSpriteList_moveable();
         
         LongValue lastNanoTime = new LongValue( System.nanoTime() );
         
@@ -171,7 +172,7 @@ public class TestFXGui extends Application {
         return theScene;
     }
     
-        public Scene testMap(){
+    public Scene testMap(){
         Group root = new Group();
         Scene theScene = new Scene( root );
         Canvas canvas_still_sprites = new Canvas( 1024, 512 );
@@ -197,8 +198,8 @@ public class TestFXGui extends Application {
         
         SpriteGenerator world = new SpriteGenerator();
         
-        List<Sprite> sprites_still = world.getStillSprites();
-        List<Sprite> sprites_moveable = world.getMoveableSprites();
+        List<Sprite> sprites_still = world.getSpriteList_still();
+        List<Sprite> sprites_moveable = world.getSpriteList_moveable();
         
         LongValue lastNanoTime = new LongValue( System.nanoTime() );
         
@@ -210,34 +211,60 @@ public class TestFXGui extends Application {
             sprite.render(ground_moveable_gc);
         }
         
-        
+        Rectangle2D worldBoundRight = new Rectangle2D(1045, 0, 1, 512);
+        Rectangle2D worldBoundLeft = new Rectangle2D(-5, 0, 1, 512);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 512, 1024, 1);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
         IntValue score = new IntValue(0);
         new AnimationTimer(){
             private int animationDelay = 0;
             public void handle(long currentNanoTime){
                 double elapsedTime = (currentNanoTime - lastNanoTime.value) / 1000000000.0;
                 lastNanoTime.value = currentNanoTime;
-                player.update(elapsedTime);
-                
                 if (input.contains("LEFT")){
-                    player.setVelocity(-100,0);
+                    if(player.intersects_sprite_left(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_world_left(worldBoundLeft)){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(-100,0);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
                 if(input.contains("RIGHT")){
-                    player.setVelocity(100,0);
+                    if(player.intersects_sprite_right(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_world_right(worldBoundRight)){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(100,0);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
                 if(input.contains("UP")){
-                    player.setVelocity(0,-100);
+                    if(player.intersects_sprite_top(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_world_top(worldBoundTop)){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(0,-100);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
                 if(input.contains("DOWN")){
-                    player.setVelocity(0,100);
+                    if(player.intersects_sprite_bottom(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_world_bottom(worldBoundBottom)){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(0,100);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
                 if(input.isEmpty()){
                     player.setDirection(PlayerSprite.Direction.STANDSTILL);
                 }
+                player.update(elapsedTime);
                 moveable_gc.clearRect(0, 0, 1024,512);
                 if(animationDelay == 40){
                     ground_moveable_gc.clearRect(0, 0, 1024,512);
@@ -263,26 +290,10 @@ public class TestFXGui extends Application {
         Canvas canvas_movealbe_sprites = new Canvas( 1024, 512 );
         canvas_movealbe_sprites.relocate(0, 0);
         GraphicsContext ground_moveable_gc = canvas_movealbe_sprites.getGraphicsContext2D();
-        
-        SpriteGenerator world = new SpriteGenerator();
         List<Sprite> menu_sprites = world.getMenu_sprites();
         for(Sprite sprite: menu_sprites){
             sprite.render(ground_moveable_gc);
         }
-        new AnimationTimer(){
-            private int animationDelay = 0;
-            public void handle(long currentNanoTime){
-                if(animationDelay == 40){
-                    ground_moveable_gc.clearRect(0, 0, 1024,512);
-                    for(Sprite sprite: menu_sprites){
-                        sprite.render(ground_moveable_gc);
-                    }
-                    animationDelay = 0;
-                }else{
-                    animationDelay++;
-                }
-            }
-        }.start();
         anchorpane.setPrefSize(768, 512);
         Button start = new Button();
         start.setText("New Game");

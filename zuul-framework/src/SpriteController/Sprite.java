@@ -5,9 +5,9 @@
  */
 package SpriteController;
 
+import java.awt.Rectangle;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 /**
  *
@@ -45,8 +45,13 @@ public abstract class Sprite {
      * 
      * @return 
      */
-    public abstract Rectangle2D getBoundary();
+    public Rectangle2D getBoundary(){
+        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
+    }
 
+    public String toString() {
+        return " Position: [" + getPositionX() + "," + getPositionY() + "]";
+    }
     /**
      * @param positionX the positionX to set
      */

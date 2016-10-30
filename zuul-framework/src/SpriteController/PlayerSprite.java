@@ -26,6 +26,12 @@ public class PlayerSprite{
     private Direction direction;
     private int animationCounter;
     private int animationDelay;
+    private int sprite_width = 64;
+    private int sprite_height = 64;
+    private int world_sprite_width = 32;
+    private int world_sprite_height = 32;
+    
+    
     public PlayerSprite() {
         positionX = 0;
         positionY = 0;
@@ -81,15 +87,15 @@ public class PlayerSprite{
     public void render(GraphicsContext gc) {
         //gc.drawImage(image, positionX, getPositionY());
         if(getDirection().equals(Direction.STANDSTILL)){
-            gc.drawImage(getImage(), 8+(64*0), 8+(64*2), 64, 64, getPositionX(), getPositionY(), 64, 64);
+            gc.drawImage(getImage(), 8+(64*0), 8+(64*2), sprite_width, sprite_height, getPositionX(), getPositionY(), sprite_width, sprite_height);
         }else if(getDirection().equals(Direction.WALK_DOWN)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*10), 64, 64, getPositionX(), getPositionY(), 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*10), sprite_width, sprite_height, getPositionX(), getPositionY(), sprite_width, sprite_height);
         }else if(getDirection().equals(Direction.WALK_LEFT)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*9), 64, 64, getPositionX(), getPositionY(), 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*9), sprite_width, sprite_height, getPositionX(), getPositionY(), sprite_width, sprite_height);
         }else if(getDirection().equals(Direction.WALK_UP)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*8), 64, 64, getPositionX(), getPositionY(), 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*8), sprite_width, sprite_height, getPositionX(), getPositionY(), sprite_width, sprite_height);
         }else if(getDirection().equals(Direction.WALK_RIGHT)){
-            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*11), 64, 64, getPositionX(), getPositionY(), 64, 64);
+            gc.drawImage(getImage(), 8+(64*animationCounter), 8+(64*11), sprite_width, sprite_height, getPositionX(), getPositionY(), sprite_width, sprite_height);
         }
         if(animationCounter != 8){
             if(animationDelay == 4){
@@ -104,26 +110,49 @@ public class PlayerSprite{
         
     }
 
-    public Rectangle2D getBoundary() {
-        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
-    }
 
-    public boolean intersects_buttom(List<Sprite> s) {
-        for(Sprite sprites: s){
-            Rectangle2D spriteBound = sprites.getBoundary();
-            Rectangle2D thisBound = this.getBoundary();
-            if((spriteBound.getMinY()-sprites.getPositionX()) < thisBound.getMaxY()){
-                if((spriteBound.getMinX()) < thisBound.getMaxX()){
-                    System.out.println(sprites.getPositionY());
-                    System.out.println(spriteBound.getMinX());
-                    System.out.println(thisBound.getMaxX());
-                    return true;
-                }
-            }
-        }
-        return false;
+    
+    public boolean intersects_sprite_top(Sprite s) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX(), getPositionY()-2, getWidth(), getHeight());
+        return player_boundary.intersects(s.getBoundary());
     }
-
+    
+    public boolean intersects_sprite_bottom(Sprite s) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX(), getPositionY()+2, getWidth(), getHeight());
+        return player_boundary.intersects(s.getBoundary());
+    }
+    
+    public boolean intersects_sprite_left(Sprite s) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX()-2, getPositionY(), getWidth(), getHeight());
+        return player_boundary.intersects(s.getBoundary());
+    }
+    
+    public boolean intersects_sprite_right(Sprite s) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX()+2, getPositionY(), getWidth(), getHeight());
+        return player_boundary.intersects(s.getBoundary());
+    }
+    
+    
+    public boolean intersects_world_top(Rectangle2D worldBoundary) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX(), getPositionY()-2, getWidth(), getHeight());
+        return player_boundary.intersects(worldBoundary);
+    }
+    
+    public boolean intersects_world_bottom(Rectangle2D worldBoundary) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX(), getPositionY()+2, getWidth(), getHeight());
+        return player_boundary.intersects(worldBoundary);
+    }
+    
+    public boolean intersects_world_left(Rectangle2D worldBoundary) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX()-2, getPositionY(), getWidth(), getHeight());
+        return player_boundary.intersects(worldBoundary);
+    }
+    
+    public boolean intersects_world_right(Rectangle2D worldBoundary) {
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX()+2, getPositionY(), getWidth(), getHeight());
+        return player_boundary.intersects(worldBoundary);
+    }
+    
     public String toString() {
         return " Position: [" + getPositionX() + "," + getPositionY() + "]"
                 + " Velocity: [" + getVelocityX() + "," + getVelocityY() + "]";

@@ -5,9 +5,12 @@
  */
 package SpriteController;
 
+import SpriteController.SingleSprites.Ground_grass_sprites;
+import SpriteController.SingleSprites.Ground_water_sprites;
+import SpriteController.SingleSprites.Ground_stone_sprites;
 import SpriteController.GroupSprites.Groupsprite_random;
 import JavaFX.TestFXGui;
-import SpriteController.Sprites.*;
+import SpriteController.GroupSprites.Groupsprite_circle;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -38,6 +41,11 @@ public class SpriteGenerator extends TestFXGui{
     private List<SingleSprite> ALL_ground_stone_sprites;
     private List<SingleSprite> ALL_ground_water_sprites;
     
+    private List<SingleSprite> ground_water_grass_circle;
+    private List<SingleSprite> ground_water_grass_circle_edge;
+    private List<SingleSprite> ground_grass_random_1;
+    private List<SingleSprite> ground_water_random_1;
+    
     /**
      * 
      * @param gc 
@@ -53,23 +61,29 @@ public class SpriteGenerator extends TestFXGui{
         //init all group tiles
         initGroupSprites();
         
-        Sprite test_group = new Groupsprite_random(ALL_ground_water_sprites);
+        Sprite test_group = new Groupsprite_random(ground_grass_random_1);
         ((Groupsprite_random)test_group).setPosition(0, 0);
         ((Groupsprite_random)test_group).setHeight(512);
         ((Groupsprite_random)test_group).setWidth(1024);
         spriteList_still.add(test_group);
         
-        Sprite grass_group = new Groupsprite_random(getGround_water_sprites());
-        ((Groupsprite_random)grass_group).setPosition(128, 256);
-        ((Groupsprite_random)grass_group).setHeight(256);
-        ((Groupsprite_random)grass_group).setWidth(512);
-        spriteList_moveable.add(grass_group);
+        Sprite grass_group = new Groupsprite_circle(ground_water_grass_circle_edge);
+        ((Groupsprite_circle)grass_group).setPosition(256, 128);
+        ((Groupsprite_circle)grass_group).setHeight(256);
+        ((Groupsprite_circle)grass_group).setWidth(512);
+        spriteList_still.add(grass_group);
         
-        Sprite gass_group = new Groupsprite_random(getGround_grass_sprites());
-        ((Groupsprite_random)gass_group).setPosition(0, 0);
-        ((Groupsprite_random)gass_group).setHeight(512);
-        ((Groupsprite_random)gass_group).setWidth(1024);
-        menu_sprites.add(gass_group);
+        Sprite water_group = new Groupsprite_random(ground_water_random_1);
+        ((Groupsprite_random)water_group).setPosition(160, 288);
+        ((Groupsprite_random)water_group).setHeight(192);
+        ((Groupsprite_random)water_group).setWidth(448);
+        spriteList_moveable.add(water_group);
+        
+        Sprite circle = new Groupsprite_circle(ground_water_grass_circle);
+        ((Groupsprite_circle)circle).setPosition(0, 0);
+        ((Groupsprite_circle)circle).setHeight(512);
+        ((Groupsprite_circle)circle).setWidth(1024);
+        menu_sprites.add(circle);
     }
     
     
@@ -81,8 +95,28 @@ public class SpriteGenerator extends TestFXGui{
         initALL_ground_stone_sprites();
         initALL_ground_grass_sprites();
         initALL_ground_water_sprites();
+        initWaterGrassCircle();
+        initGround_grass_random_1();
+        initGround_water_random_1();
+        initWaterGrassCircleEdge();
     }
-
+    
+    public void initGround_grass_random_1(){
+        ground_grass_random_1 = new ArrayList();
+        ground_grass_random_1.add(ground_grass_sprites.getGround_grass1());
+        ground_grass_random_1.add(ground_grass_sprites.getGround_grass2());
+        ground_grass_random_1.add(ground_grass_sprites.getGround_grass3());
+        ground_grass_random_1.add(ground_grass_sprites.getGround_grass_flowers1());
+        ground_grass_random_1.add(ground_grass_sprites.getGround_grass_flowers2());
+        ground_grass_random_1.add(ground_grass_sprites.getGround_grass_flowers3());
+    }
+    
+    public void initGround_water_random_1(){
+        ground_water_random_1 = new ArrayList();
+        ground_water_random_1.add(ground_water_sprites.getGround_water1());
+        ground_water_random_1.add(ground_water_sprites.getGround_water2());
+        ground_water_random_1.add(ground_water_sprites.getGround_water3());
+    }
     /**
      * All light stone
      */
@@ -118,14 +152,6 @@ public class SpriteGenerator extends TestFXGui{
         ALL_ground_water_sprites.add(ground_water_sprites.getGround_water1());
         ALL_ground_water_sprites.add(ground_water_sprites.getGround_water2());
         ALL_ground_water_sprites.add(ground_water_sprites.getGround_water3());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_E());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_N());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_NE());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_NW());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_S());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_SE());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_SW());
-        ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_dirtEdge_W());
         ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_grassEdge_E());
         ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_grassEdge_N());
         ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_grassEdge_NE());
@@ -136,7 +162,30 @@ public class SpriteGenerator extends TestFXGui{
         ALL_ground_water_sprites.add(ground_water_sprites.getGround_water_grassEdge_W());
     }
 
+    public void initWaterGrassCircle(){
+        ground_water_grass_circle = new ArrayList();
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_NW());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_N());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_NE());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_E());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_SE());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_S());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_SW());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water_grassEdge_W());
+        ground_water_grass_circle.add(ground_water_sprites.getGround_water4());
+    }
     
+    public void initWaterGrassCircleEdge(){
+        ground_water_grass_circle_edge = new ArrayList();
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_NW());
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_N());
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_NE());
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_E());
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_SE());
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_S());
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_SW());
+        ground_water_grass_circle_edge.add(ground_water_sprites.getGround_water_grassEdge_W());
+    }
 /**
  * Here goes all the normal sprites.
  */
@@ -171,22 +220,6 @@ public class SpriteGenerator extends TestFXGui{
     }
     
     
-    /**
-     * 
-     * @return 
-     */
-    public List<Sprite> getStillSprites(){
-        return getSpriteList_still();
-    }
-    /**
-     *  Get the list of moveable sprites
-     * @return 
-     */
-    public List<Sprite> getMoveableSprites(){
-        return getSpriteList_moveable();
-    }
-    
-    
     
     /*
      * This is where all theg generated get and setters are.
@@ -197,5 +230,26 @@ public class SpriteGenerator extends TestFXGui{
      */
     public static String getSpriteSheet() {
         return spriteSheet;
+    }
+
+    /**
+     * @return the spriteList_still
+     */
+    public List<Sprite> getSpriteList_still() {
+        return spriteList_still;
+    }
+
+    /**
+     * @return the spriteList_moveable
+     */
+    public List<Sprite> getSpriteList_moveable() {
+        return spriteList_moveable;
+    }
+
+    /**
+     * @return the menu_sprites
+     */
+    public List<Sprite> getMenu_sprites() {
+        return menu_sprites;
     }
 }

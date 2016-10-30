@@ -1,9 +1,9 @@
 
 // Use package zuulframework
-package TWoT;
+package TWoT_test;
 
-import static TWoT.EquippableItem.EItem.CHEST_SLOT;
-import static TWoT.EquippableItem.EItem.WEAPON_SLOT;
+import static TWoT_test.EquippableItem.EItem.CHEST_SLOT;
+import static TWoT_test.EquippableItem.EItem.WEAPON_SLOT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -117,7 +117,7 @@ public class TWoT{
 
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
-        Interior roomCellarStick = new QuestItem("The needle in the haystack.", 1, "Nothing interesting happens.");
+        Interior roomCellarStick = new QuestItem("The needle in the haystack.", 1, "Nothing interesting happens.", 1);
         Interior roomCellarCheeseSandwich = new UseableItem("A newly made cheese sandwhich.", 20, "Do you dare eat it?");
         roomCellar.addMapInterior("door", roomCellarExit);
         roomCellar.addMapInterior("haystack", roomCellarStick);
@@ -148,7 +148,7 @@ public class TWoT{
         //roomHouse2
         Interior roomHouse2Exit = new Exit(roomVillage);
         Interior roomHouse2Wardrobe = new EquippableItem("Dull Sword", 842,"Dull and a sword.",1.3,1.0, WEAPON_SLOT); //Tag 10 skade
-        Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying");
+        Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 2);
         Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon");
         roomHouse2.addMapInterior("Door", roomHouse2Exit);
         roomHouse2.addMapInterior("Wardrobe", roomHouse2Wardrobe);
@@ -228,7 +228,7 @@ public class TWoT{
         Interior roomDungeonExit = new Exit(roomLibrary);
         Interior roomDungeonSkeleton1 = new UseableItem("",0,"");
         Interior roomDungeonSkeleton2 = new UseableItem("",0,"");
-        Interior roomDungeonSkeleton3 = new QuestItem("Broken handle",50,"Couldn't handle it");
+        Interior roomDungeonSkeleton3 = new QuestItem("Broken handle",50,"Couldn't handle it", 3);
         roomDungeon.addMapInterior("Dead skeleton numero uno", roomDungeonSkeleton1);
         roomDungeon.addMapInterior("Dead skeleton numero dos", roomDungeonSkeleton2);
         roomDungeon.addMapInterior("Dead skeleton numero tres", roomDungeonSkeleton3);
@@ -305,6 +305,17 @@ public class TWoT{
         if(interior == null) {
             return "place dosent exist";
         }else if(interior instanceof Exit){
+            if(currentRoom == roomCellar){
+                for(Item i: getInventoryItems()){
+                    if(i instanceof QuestItem){
+                        if(((QuestItem)i).getQuestItemId() == 1){
+                            currentRoom = ((Exit)interior).getNewRoom();
+                            return currentRoom.getFullDescription();
+                        }
+                    }
+                }
+                return "You need to get the needle first ";
+            }
             currentRoom = ((Exit)interior).getNewRoom();
             return currentRoom.getFullDescription();
         }else{
@@ -312,36 +323,52 @@ public class TWoT{
         }
     }
     
-    public String inspectThing(Command command){
+    public List<String> inspectThing(Command command){
+        List<String> inspectActions = new ArrayList();
         if(!command.hasSecondWord()){
-            return "Inspect what?";
+            inspectActions.add("Inspect what?");
+            return inspectActions;
         }
         Interior interior = currentRoom.getMapInterior(command.getSecondWord());
         if(interior == null){
-            return "interior doesn't exist";
+            inspectActions.add("interior doesn't exist");
+            return inspectActions;
         }
         else if(interior instanceof Item){
             if(interior instanceof EquippableItem){
-                return "this is an equippable item";
+                currentRoom.removeInterior(command.getSecondWord());
+                player.addItemToInventory((Item)interior);
+                inspectActions.add("this is an equippable item and it has been added to inventory");
+                return inspectActions;
             }
             else if(interior instanceof QuestItem){
-                return "this is a quest item";
+                currentRoom.removeInterior(command.getSecondWord());
+                player.addItemToInventory((Item)interior);
+                inspectActions.add("this is a quest item and it has been added to inventory");
+                return inspectActions;
             }
             else if(interior instanceof UseableItem){
-                return "this is a useable item";
+                currentRoom.removeInterior(command.getSecondWord());
+                player.addItemToInventory((Item)interior);
+                inspectActions.add("this is a useable item and it has been added to inventory");
+                return inspectActions;
             }
             else{
-                return "mystery";
+                inspectActions.add("mystery Item nothing happend");
+                return inspectActions;
             }
         }
         else if(interior instanceof Npc){
-            return "This is an Npc";
+            inspectActions.add("This is an Npc");
+            return inspectActions;
         }
         else if(interior instanceof Monster){
-            return "This is a Monster";
+            inspectActions.add("This is a Monster");
+            return inspectActions;
         }
         else{
-            return "Use \"Go to\" to exit";
+            inspectActions.add("Use \"Go to\" to go to an exit");
+            return inspectActions;
         }
     }
     
@@ -404,6 +431,4 @@ public class TWoT{
     public String getPlayerName(){
         return player.getPlayerName();
     }
-    
-    
 }

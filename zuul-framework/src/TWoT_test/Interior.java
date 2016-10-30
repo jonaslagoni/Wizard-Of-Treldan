@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SpriteController.GroupSprites;
+package TWoT_test;
 
 /**
  *
- * @author jonas
+ * @author Lagoni
  */
-public interface Groupsprite {
+public abstract class Interior {
     
 }

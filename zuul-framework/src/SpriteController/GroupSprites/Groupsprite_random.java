@@ -7,7 +7,6 @@ package SpriteController.GroupSprites;
 
 import SpriteController.SingleSprite;
 import SpriteController.Sprite;
-import SpriteController.Sprite;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.geometry.Rectangle2D;
@@ -17,9 +16,9 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * @author jonas
  */
-public class Groupsprite_random extends Sprite implements Groupsprite{
+public class Groupsprite_random extends Sprite{
     private List<SingleSprite> sprites;
-
+    
     public Groupsprite_random(SingleSprite sprites) {
         this.sprites = new ArrayList<SingleSprite>();
         this.sprites.add(sprites);
@@ -35,8 +34,8 @@ public class Groupsprite_random extends Sprite implements Groupsprite{
         int sprite_number = 0;
         SingleSprite singleSprite =  getSprites().get(sprite_number);
         //gc.drawImage(image, positionX, getPositionY());
-        double renderCounterHeight = Math.round(height/singleSprite.getHeight());
-        double renderCounterWidth = Math.round(width/singleSprite.getWidth());
+        double renderCounterHeight = Math.round(getHeight()/singleSprite.getHeight());
+        double renderCounterWidth = Math.round(getWidth()/singleSprite.getWidth());
         
         for(int i = 0; i < renderCounterHeight; i++){
             for(int k = 0; k < renderCounterWidth; k++){
@@ -49,28 +48,10 @@ public class Groupsprite_random extends Sprite implements Groupsprite{
         
     }
 
-    public Rectangle2D getBoundary() {
-        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
-    }
 
 
     public String toString() {
         return " Position: [" + getPositionX() + "," + getPositionY() + "]";
-    }
-
-
-    /**
-     * @param width the width to set
-     */
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    /**
-     * @param height the height to set
-     */
-    public void setHeight(double height) {
-        this.height = height;
     }
 
     /**

@@ -53,7 +53,7 @@ public class SingleSprite extends Sprite {
 
     public void render(GraphicsContext gc) {
         //gc.drawImage(image, positionX, getPositionY());
-        gc.drawImage(getImage(), spritePosX, spritePosY, spriteWidth, spriteHeight, getPositionX(), getPositionY(), width, height);
+        gc.drawImage(getImage(), spritePosX, spritePosY, getSpriteWidth(), getSpriteHeight(), getPositionX(), getPositionY(), getWidth(), getHeight());
     }
 
     public Rectangle2D getBoundary() {
@@ -80,20 +80,6 @@ public class SingleSprite extends Sprite {
      */
     public double getVelocityY() {
         return velocityY;
-    }
-
-    /**
-     * @return the width
-     */
-    public double getWidth() {
-        return width;
-    }
-
-    /**
-     * @return the height
-     */
-    public double getHeight() {
-        return height;
     }
 
     /**
@@ -150,20 +136,6 @@ public class SingleSprite extends Sprite {
      */
     public void setSpriteHeight(double spriteHeight) {
         this.spriteHeight = spriteHeight;
-    }
-
-    /**
-     * @param width the width to set
-     */
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    /**
-     * @param height the height to set
-     */
-    public void setHeight(double height) {
-        this.height = height;
     }
 
     /**
