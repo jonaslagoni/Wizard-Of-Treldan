@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 /**
@@ -34,6 +35,7 @@ public class TestFXGui extends Application {
     private SpriteGenerator world;
     private Stage mainStage;
     private ArrayList<String> input;
+    private ArrayList<String> menu_input;
     @Override
     public void start(Stage primaryStage) {
         mainStage = primaryStage;
@@ -41,6 +43,7 @@ public class TestFXGui extends Application {
         mainStage.setTitle("The wizard of Treldan");
         world = new SpriteGenerator();
         input = new ArrayList<String>();
+        menu_input = new ArrayList<String>();
         showMenuMap();
         mainStage.setWidth(1024);
         mainStage.setHeight(512);
@@ -81,6 +84,15 @@ public class TestFXGui extends Application {
                 String code = e.getCode().toString();
                 System.out.println(e.getCode().toString());
                 // only add once... prevent duplicates
+                
+                if(code.equals("I")){
+                    if(!menu_input.contains(code)){
+                        menu_input.add(code);
+                    }else{
+                        menu_input.remove(code);
+                    }
+                }
+            
                 if ( !input.contains(code) )
                     input.add( code );
 
@@ -181,8 +193,12 @@ public class TestFXGui extends Application {
         Canvas canvas_moveable_sprites = new Canvas( 1024, 512 );
         root.getChildren().add( canvas_moveable_sprites );
         
+        
         Canvas player_canvas = new Canvas( 1024, 512 );
         root.getChildren().add( player_canvas );
+        
+        Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
+        root.getChildren().add( canvas_menu_sprites );
         
         PlayerSprite player = new PlayerSprite();
         player.setImage("player.png");
@@ -195,6 +211,7 @@ public class TestFXGui extends Application {
         GraphicsContext ground_still_gc = canvas_still_sprites.getGraphicsContext2D();
         GraphicsContext ground_moveable_gc = canvas_moveable_sprites.getGraphicsContext2D();
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        GraphicsContext menu_gc = canvas_menu_sprites.getGraphicsContext2D();
         
         SpriteGenerator world = new SpriteGenerator();
         
@@ -221,6 +238,7 @@ public class TestFXGui extends Application {
             public void handle(long currentNanoTime){
                 double elapsedTime = (currentNanoTime - lastNanoTime.value) / 1000000000.0;
                 lastNanoTime.value = currentNanoTime;
+                player.setDirection(PlayerSprite.Direction.STANDSTILL);
                 if (input.contains("LEFT")){
                     if(player.intersects_sprite_left(sprites_still.get(1))){
                         player.setVelocity(0, 0);
@@ -261,9 +279,6 @@ public class TestFXGui extends Application {
                     }
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
-                if(input.isEmpty()){
-                    player.setDirection(PlayerSprite.Direction.STANDSTILL);
-                }
                 player.update(elapsedTime);
                 moveable_gc.clearRect(0, 0, 1024,512);
                 if(animationDelay == 40){
@@ -276,6 +291,13 @@ public class TestFXGui extends Application {
                     animationDelay++;
                 }
                 player.render(moveable_gc);
+                
+                if(menu_input.contains("I")){
+                    menu_gc.setFill(Color.CADETBLUE);
+                    menu_gc.fillRect(1024-250, 0, 250, 512);
+                }else{
+                    menu_gc.clearRect(0, 0, 1024,512);
+                }
             }
         }.start();
         return theScene;
