@@ -56,10 +56,6 @@ public class SingleSprite extends Sprite {
         gc.drawImage(getImage(), spritePosX, spritePosY, getSpriteWidth(), getSpriteHeight(), getPositionX(), getPositionY(), getWidth(), getHeight());
     }
 
-    public Rectangle2D getBoundary() {
-        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
-    }
-
     public boolean intersects(SingleSprite s) {
         return s.getBoundary().intersects(this.getBoundary());
     }

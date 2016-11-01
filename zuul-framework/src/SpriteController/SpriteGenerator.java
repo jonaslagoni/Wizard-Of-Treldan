@@ -8,6 +8,7 @@ package SpriteController;
 import SpriteController.SingleSprites.Ground_grass_sprites;
 import SpriteController.SingleSprites.Ground_water_sprites;
 import SpriteController.SingleSprites.Ground_stone_sprites;
+import SpriteController.SingleSprites.Interior_misc;
 import SpriteController.GroupSprites.Groupsprite_random;
 import JavaFX.TestFXGui;
 import SpriteController.GroupSprites.Groupsprite_circle;
@@ -20,13 +21,26 @@ import java.util.List;
 public class SpriteGenerator extends TestFXGui{
     //The spritesheet
     private static String spriteSheet = "terrain_atlas.png";
+    private static String buildingSheet = "base_out_atlas.png";
     private static int sprite_width = 32;
     private static int sprite_height = 32;
+
+    /**
+     * @return the buildingSheet
+     */
+    public static String getBuildingSheet() {
+        return buildingSheet;
+    }
     
     //all sprites generated in this world
     private List<Sprite> spriteList_still;
     private List<Sprite> spriteList_moveable;
     private List<Sprite> menu_sprites;
+    
+    /**
+     * Map 1
+     */
+    private List<Sprite> map1_sprites_still;
     
     //All normal sprites
     //all ground water sprites
@@ -35,6 +49,8 @@ public class SpriteGenerator extends TestFXGui{
     private Ground_grass_sprites ground_grass_sprites;
     //all ground stone sprites
     private Ground_stone_sprites ground_stone_sprites;
+    //all misc sprites
+    private Interior_misc interior_misc;
     
     //All group ground sprites
     private List<SingleSprite> ALL_ground_grass_sprites;
@@ -43,8 +59,14 @@ public class SpriteGenerator extends TestFXGui{
     
     private List<SingleSprite> ground_water_grass_circle;
     private List<SingleSprite> ground_water_grass_circle_edge;
+    private List<SingleSprite> wall_stone_circle_edge;
     private List<SingleSprite> ground_grass_random_1;
     private List<SingleSprite> ground_water_random_1;
+    
+    /**
+     * all sprites for map 1
+     */
+    private List<SingleSprite> map1_ground_stones_random_1;
     
     /**
      * 
@@ -54,12 +76,31 @@ public class SpriteGenerator extends TestFXGui{
         spriteList_still = new ArrayList();
         spriteList_moveable = new ArrayList();
         menu_sprites = new ArrayList();
+        map1_sprites_still = new ArrayList();
         
         //init all normal tiles
         initSprites();
         
         //init all group tiles
         initGroupSprites();
+        
+        Sprite floor = new Groupsprite_random(map1_ground_stones_random_1);
+        ((Groupsprite_random)floor).setPosition(0, 0);
+        ((Groupsprite_random)floor).setHeight(256+128);
+        ((Groupsprite_random)floor).setWidth(512+128);
+        map1_sprites_still.add(floor);
+        
+        Sprite haystack = interior_misc.getHay_bed();
+        haystack.setPosition(250, 100);
+        haystack.setHeight(80);
+        haystack.setWidth(56);
+        map1_sprites_still.add(haystack);
+        
+        Sprite stone_wall_edge = new Groupsprite_circle(wall_stone_circle_edge);
+        ((Groupsprite_circle)stone_wall_edge).setPosition(0, 0);
+        ((Groupsprite_circle)stone_wall_edge).setHeight(256+128);
+        ((Groupsprite_circle)stone_wall_edge).setWidth(512+128);
+        map1_sprites_still.add(stone_wall_edge);
         
         Sprite test_group = new Groupsprite_random(ground_grass_random_1);
         ((Groupsprite_random)test_group).setPosition(0, 0);
@@ -98,9 +139,22 @@ public class SpriteGenerator extends TestFXGui{
         initWaterGrassCircle();
         initGround_grass_random_1();
         initGround_water_random_1();
+        initMap1_sprites_still();
         initWaterGrassCircleEdge();
+        initWall_stone_circle_edge();
     }
-    
+    public void initWall_stone_circle_edge(){
+        
+        wall_stone_circle_edge = new ArrayList();
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_NW());
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_N());
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_NE());
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_E());
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_SE());
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_S());
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_SW());
+        wall_stone_circle_edge.add(ground_stone_sprites.getStone_dark_wall_W());
+    }
     public void initGround_grass_random_1(){
         ground_grass_random_1 = new ArrayList();
         ground_grass_random_1.add(ground_grass_sprites.getGround_grass1());
@@ -110,7 +164,15 @@ public class SpriteGenerator extends TestFXGui{
         ground_grass_random_1.add(ground_grass_sprites.getGround_grass_flowers2());
         ground_grass_random_1.add(ground_grass_sprites.getGround_grass_flowers3());
     }
-    
+    public void initMap1_sprites_still(){
+        map1_ground_stones_random_1 = new ArrayList();
+        SingleSprite s = ground_stone_sprites.getStone_dark1();
+        SingleSprite s2 = ground_stone_sprites.getStone_dark2();
+        SingleSprite s3 = ground_stone_sprites.getStone_dark3();
+        map1_ground_stones_random_1.add(s);
+        map1_ground_stones_random_1.add(s2);
+        map1_ground_stones_random_1.add(s3);
+    }
     public void initGround_water_random_1(){
         ground_water_random_1 = new ArrayList();
         ground_water_random_1.add(ground_water_sprites.getGround_water1());
@@ -193,30 +255,10 @@ public class SpriteGenerator extends TestFXGui{
      * Init all sprites that are avaliable
      */
     public void initSprites(){
-        initGroundWaterSprites();
-        initGroundGrassSprites();
-        initGroundStoneSprites();
-    }
-    
-    /**
-     * Init all grass sprites
-     */
-    public void initGroundGrassSprites(){
         ground_grass_sprites = new Ground_grass_sprites();
-    }
-    
-    /**
-     * Init all stone sprites
-     */
-    public void initGroundStoneSprites(){
         ground_stone_sprites = new Ground_stone_sprites();
-    }
-
-    /**
-     * Init all water sprites
-     */
-    public void initGroundWaterSprites(){
         ground_water_sprites = new Ground_water_sprites();
+        interior_misc = new Interior_misc();
     }
     
     
@@ -251,5 +293,12 @@ public class SpriteGenerator extends TestFXGui{
      */
     public List<Sprite> getMenu_sprites() {
         return menu_sprites;
+    }
+
+    /**
+     * @return the map1_sprites_still
+     */
+    public List<Sprite> getMap1_sprites_still() {
+        return map1_sprites_still;
     }
 }

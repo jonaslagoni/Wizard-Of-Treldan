@@ -44,7 +44,7 @@ public class TestFXGui extends Application {
         world = new SpriteGenerator();
         input = new ArrayList<String>();
         menu_input = new ArrayList<String>();
-        showMenuMap();
+        showMap1();
         mainStage.setWidth(1024);
         mainStage.setHeight(512);
         mainStage.show();
@@ -52,6 +52,10 @@ public class TestFXGui extends Application {
     
     public void showMenuMap(){
         mainStage.setScene(menuMap());
+    }
+    
+    public void showMap1(){
+        mainStage.setScene(map1());
     }
     
     public void showTestMap(){
@@ -99,36 +103,39 @@ public class TestFXGui extends Application {
             }
         };
     }
-    
     public Scene map1(){
         Group root = new Group();
         Scene theScene = new Scene( root );
-        Canvas canvas_still_sprites = new Canvas( 1024, 512 );
+        theScene.setFill(Color.BLACK);
+        Canvas canvas_still_sprites = new Canvas( 512+128, 256+128 );
+        canvas_still_sprites.relocate(256-40, 128-40);
         root.getChildren().add( canvas_still_sprites );
         
-        Canvas canvas_moveable_sprites = new Canvas( 1024, 512 );
-        root.getChildren().add( canvas_moveable_sprites );
-        
-        Canvas player_canvas = new Canvas( 1024, 512 );
+        Canvas player_canvas = new Canvas( 512+128, 256+128 );
+        player_canvas.relocate(256-40, 128-40);
         root.getChildren().add( player_canvas );
+        
+        Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
+        canvas_menu_sprites.relocate(256, 128);
+        root.getChildren().add( canvas_menu_sprites );
         
         PlayerSprite player = new PlayerSprite();
         player.setImage("player.png");
-        player.setPosition(200, 200);
+        player.setPosition(100, 100);
         player.setHeight(64);
         player.setWidth(64);
-        
         
         theScene.setOnKeyReleased(playerMovement(player));
         theScene.setOnKeyPressed(userPressedKey());
         GraphicsContext ground_still_gc = canvas_still_sprites.getGraphicsContext2D();
-        GraphicsContext ground_moveable_gc = canvas_moveable_sprites.getGraphicsContext2D();
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        GraphicsContext menu_gc = canvas_menu_sprites.getGraphicsContext2D();
+        
+        
         
         SpriteGenerator world = new SpriteGenerator();
         
-        List<Sprite> sprites_still = world.getSpriteList_still();
-        List<Sprite> sprites_moveable = world.getSpriteList_moveable();
+        List<Sprite> sprites_still = world.getMap1_sprites_still();
         
         LongValue lastNanoTime = new LongValue( System.nanoTime() );
         
@@ -136,49 +143,85 @@ public class TestFXGui extends Application {
             sprite.render(ground_still_gc);
         }
         
-        for(Sprite sprite: sprites_moveable){
-            sprite.render(ground_moveable_gc);
-        }
-        
-        
+        Rectangle2D worldBoundRight = new Rectangle2D(512+95, 0, 1, 256+80);
+        Rectangle2D worldBoundLeft = new Rectangle2D(0, 0, 1, 256+80);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 256+90, 512+80, 1);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
         IntValue score = new IntValue(0);
         new AnimationTimer(){
             private int animationDelay = 0;
             public void handle(long currentNanoTime){
                 double elapsedTime = (currentNanoTime - lastNanoTime.value) / 1000000000.0;
                 lastNanoTime.value = currentNanoTime;
-                player.update(elapsedTime);
-                
+                player.setDirection(PlayerSprite.Direction.STANDSTILL);
                 if (input.contains("LEFT")){
-                    player.setVelocity(-100,0);
+                    if(player.intersects_world_left(worldBoundLeft)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_left(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(-100,0);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
                 if(input.contains("RIGHT")){
-                    player.setVelocity(100,0);
+                    if(player.intersects_world_right(worldBoundRight)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_right(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(100,0);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
                 if(input.contains("UP")){
-                    player.setVelocity(0,-100);
+                    if(player.intersects_world_top(worldBoundTop)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_top(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(0,-100);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
                 if(input.contains("DOWN")){
-                    player.setVelocity(0,100);
+                    if(player.intersects_world_bottom(worldBoundBottom)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_bottom(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(0,100);
+                    }
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
-                if(input.isEmpty()){
-                    player.setDirection(PlayerSprite.Direction.STANDSTILL);
-                }
+                player.update(elapsedTime);
                 moveable_gc.clearRect(0, 0, 1024,512);
-                if(animationDelay == 40){
-                    ground_moveable_gc.clearRect(0, 0, 1024,512);
-                    for(Sprite sprite: sprites_moveable){
-                        sprite.render(ground_moveable_gc);
-                    }
-                    animationDelay = 0;
-                }else{
-                    animationDelay++;
-                }
                 player.render(moveable_gc);
+                
+                /*
+                // draw the boundaries for test
+                //bottom
+                moveable_gc.setFill(Color.CADETBLUE);
+                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-14, player.getWidth()-47, 5);
+
+                //top
+                moveable_gc.setFill(Color.BEIGE);
+                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-22, player.getWidth()-47, 5);
+
+                //left
+                moveable_gc.setFill(Color.DARKGREEN);
+                moveable_gc.fillRect(player.getPositionX()+11, player.getPositionY()+player.getWidth()-20, 5, 10);
+
+                //right
+                moveable_gc.setFill(Color.CRIMSON);
+                moveable_gc.fillRect(player.getPositionX()+player.getWidth()-32,  player.getPositionY()+player.getWidth()-20, 5, 10);
+                */
+                if(menu_input.contains("I")){
+                    menu_gc.setFill(Color.CADETBLUE);
+                    menu_gc.fillRect(1024-250, 0, 250, 512);
+                }else{
+                    menu_gc.clearRect(0, 0, 1024,512);
+                }
             }
         }.start();
         return theScene;

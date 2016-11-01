@@ -31,7 +31,7 @@ public class Groupsprite_circle  extends Sprite{
     }
 
     public Rectangle2D getBoundary(){
-        return new Rectangle2D(getPositionX()+35, getPositionY()+10, getWidth()-55, getHeight()-65);
+        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
     }
     
     public void render(GraphicsContext gc) {

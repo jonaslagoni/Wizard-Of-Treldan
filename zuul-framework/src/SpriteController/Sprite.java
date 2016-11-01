@@ -48,7 +48,6 @@ public abstract class Sprite {
     public Rectangle2D getBoundary(){
         return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
     }
-
     public String toString() {
         return " Position: [" + getPositionX() + "," + getPositionY() + "]";
     }
