@@ -5,8 +5,14 @@
  */
 package TWoT_test;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -31,7 +37,6 @@ public class Gui{
         printWelcome();
         play();
     }
-    
     /**
      * Player enters a name for their character.
      */
@@ -134,12 +139,70 @@ public class Gui{
             for(String s: twot.inspectThing(command)){
                 System.out.println(s);
             }
+        }else if (commandWord == CommandWord.INVENTORY){
+            List<Item> questItems = new ArrayList();
+            List<Item> usableItems = new ArrayList();
+            List<Item> equippableItems = new ArrayList();
+            System.out.println("\n|--INVENTORY---");
+            for(Item i: twot.getInventoryItems()){
+                if(i instanceof QuestItem){
+                    questItems.add(i);
+                } else if (i instanceof UseableItem){
+                    usableItems.add(i);
+                } else if (i instanceof EquippableItem){
+                    equippableItems.add(i);
+                }
+            }
+            System.out.println("|QUEST ITEMS|");
+            if(!questItems.isEmpty()){
+                for(Item q: questItems){
+                    System.out.println(q.getItemName() + " - " + q.getItemDescription());
+                }
+            }else{
+                System.out.println("No items");
+            }
+            
+            System.out.println("|USABLE ITEMS|");
+            
+            if(!usableItems.isEmpty()){
+                for(Item u: usableItems){
+                    System.out.println(u.getItemName() + " - " + u.getItemDescription());
+                }
+            }else{
+                System.out.println("No items");
+            }
+            
+            System.out.println("|EQUIPPABLE ITEMS|");
+            if(!equippableItems.isEmpty()){
+                for(Item e: equippableItems){
+                    System.out.println(e.getItemName() + " - " + e.getItemDescription());
+                }
+            }else{
+                System.out.println("No items");
+            }
+        }else if (commandWord == CommandWord.PLAYER){
+            System.out.println("");
+            System.out.println("******************");
+            System.out.println("Name    : "+twot.getPlayerName());
+            System.out.println("Health  : "+twot.getPlayerHealth());
+            System.out.println("Attack  : "+twot.getPlayerAtt());
+            System.out.println("Defense : "+twot.getPlayerDeff());
+            System.out.println("Gold    : "+twot.getPlayerGold());
+            System.out.println("******************");
+            System.out.println("**EQUIPPED ITEMS**");
+            if(!twot.getEquippableItems().isEmpty()){
+                for(Map.Entry<EquippableItem.EItem, EquippableItem> ei: twot.getEquippableItems().entrySet()){
+                    System.out.println(ei.getKey() + ": " + ei.getValue().getItemName() + " : ATTV " + ei.getValue().getAttackBuff() + " : DEFFV " + ei.getValue().getDefenseBuff());
+                }
+            }else{
+                System.out.println("No equipped items..");
+            }
         }
 
     
         return wantToQuit;
     }
-    
+
     /**
      * 
      * @return 
@@ -170,8 +233,6 @@ public class Gui{
                 Gui g = new Gui();
                 break;
             case "load game":
-                System.out.println("You cannot load games yet.");
-                System.out.println("");
                 callMenu();
                 break;
             case "exit game":

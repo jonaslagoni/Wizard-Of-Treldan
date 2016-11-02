@@ -34,6 +34,20 @@ public class EquippableItem extends Item {
         this.eItem = eItem;
         super.setItemId(itemId);
     }
+
+    /**
+     * @return the eItem
+     */
+    public EItem geteItem() {
+        return eItem;
+    }
+
+    /**
+     * @param eItem the eItem to set
+     */
+    public void seteItem(EItem eItem) {
+        this.eItem = eItem;
+    }
     
     public enum EItem {
         HEAD_SLOT, WEAPON_SLOT, CHEST_SLOT, LEG_SLOT, BOOT_SLOT, GLOVES_SLOT, RING_SLOT, AMULET_SLOT;

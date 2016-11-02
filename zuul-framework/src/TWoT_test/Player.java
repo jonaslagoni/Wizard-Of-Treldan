@@ -5,7 +5,9 @@
  */
 package TWoT_test;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -55,10 +57,8 @@ public class Player{
         playersInventory.addInventoryItem(i);
     }
     
-    public void addItemToEquippableInventory(EquippableItem i){
-        playersInventory.addEquipItem(i);
-        this.addAtt(i.getAttackBuff());
-        this.addDef(i.getDefenseBuff());
+    public void addItemToEquippableInventory(EquippableItem i, Player p){
+        playersInventory.addEquipItem(i, p);
     }
     public void removeItemToEquippableInventory(EquippableItem i){
         playersInventory.removeEquipItem(i);
@@ -70,7 +70,7 @@ public class Player{
         return playersInventory.getInventoryItems();
     }
     
-    public List<EquippableItem> getEquippableItems(){
+    public HashMap<EquippableItem.EItem, EquippableItem> getEquippableItems(){
         return playersInventory.getEquippableItem();
     }
             
@@ -190,31 +190,6 @@ public class Player{
         this.gold += gold;
     }
     
-    /**
-     * Returns the total item value of player's WHOLE inventory as an integer.
-     * @return 
-     */
-    public int getTotalItemValue(){
-        int totalItemValue = 0;
-        int totalEquipValue= 0;
-        
-        //Making a new list equal to the list of items the player has in inventory.
-        List<Item> Inventory = playersInventory.getInventoryItems();
-        List<EquippableItem> Equip = playersInventory.getEquippableItem();
-        
-        //Traverses through every item in inventory and counts each item's values
-        for(Item item: Inventory){
-            int iValue = item.getItemValue();
-            totalItemValue = totalItemValue + iValue;
-        }
-        for(EquippableItem equip: Equip){
-            int eValue = equip.getItemValue();
-            totalEquipValue = totalEquipValue + eValue;
-        }
-        //Returns the total item value as integer.
-        return totalEquipValue + totalItemValue;
-        
-    }
     
     
     /**

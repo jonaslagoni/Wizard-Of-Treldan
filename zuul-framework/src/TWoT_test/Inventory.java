@@ -6,20 +6,21 @@
 package TWoT_test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  *
  * @author Kasper
  */
-public class Inventory {
-    private List<EquippableItem> equippedInventory = new ArrayList();
+public class Inventory{
+    private HashMap<EquippableItem.EItem, EquippableItem> equippedInventory = new HashMap();
     private List<Item> itemInventory = new ArrayList();
 
     /**
      * @return the EquippableItem
      */
-    public List<EquippableItem> getEquippableItem() {
+    public HashMap<EquippableItem.EItem, EquippableItem> getEquippableItem() {
         return equippedInventory;
     }
 
@@ -46,9 +47,38 @@ public class Inventory {
      * 
      * @param i 
      */
-    public void addEquipItem(EquippableItem i){
-        equippedInventory.add(i);
-        
+    public void addEquipItem(EquippableItem i, Player p){
+        if(equippedInventory.containsKey(i.geteItem())){
+            EquippableItem currentEItem = equippedInventory.get(i.geteItem());
+            if(currentEItem.geteItem() == EquippableItem.EItem.WEAPON_SLOT && i.geteItem() == EquippableItem.EItem.WEAPON_SLOT){
+                if(currentEItem.getAttackBuff() < i.getAttackBuff()){
+                    addInventoryItem(currentEItem);
+                    equippedInventory.remove(i.geteItem());
+                    equippedInventory.put(i.geteItem(), i);
+                    p.removeAtt(currentEItem.getAttackBuff());
+                    p.addAtt(i.getAttackBuff());
+                }else{
+                    addInventoryItem(i);
+                }
+            }else{
+                if(currentEItem.getDefenseBuff() < i.getDefenseBuff()){
+                    addInventoryItem(currentEItem);
+                    equippedInventory.remove(i.geteItem());
+                    equippedInventory.put(i.geteItem(), i);
+                    p.removeDef(currentEItem.getDefenseBuff());
+                    p.addDef(i.getDefenseBuff());
+                }else{
+                    addInventoryItem(i);
+                }
+            }
+        }else{
+            if(i.geteItem() == EquippableItem.EItem.WEAPON_SLOT){
+                p.addAtt(i.getAttackBuff());
+            }else{
+                p.addDef(i.getDefenseBuff());
+            }
+            equippedInventory.put(i.geteItem(), i);
+        }
     }
     
     public void removeEquipItem(EquippableItem i){

@@ -4,11 +4,12 @@ package TWoT_test;
 
 import static TWoT_test.EquippableItem.EItem.CHEST_SLOT;
 import static TWoT_test.EquippableItem.EItem.WEAPON_SLOT;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class TWoT{
+public class TWoT implements Serializable{
     // Init variabels
     private Room currentRoom;
     private Player player;
@@ -20,11 +21,8 @@ public class TWoT{
     public TWoT(){
         // Create the different rooms used
         createRooms();
-        
         player = new Player("StartName", 1.0, 1.0, 100, new Inventory());
-        
     }
-    
     public void testMatch(){
         player = new Player("Test player1", 2.0, 1.0, 100, new Inventory());
         Monster monster = new Monster("Test monster1", 1.0, 1.0, 100, 100);
@@ -138,7 +136,7 @@ public class TWoT{
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
-        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 0);
+        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50);
         Interior roomHouse1Woman = woman;
         Interior roomHouse1Man = new UseableItem("Cheese sandwhich", 20, "Nom nom nom", "A dead man is half-sitting in a chair. In his pockets you find a cheese sandwhich.", 55501);
         roomHouse1.addMapInterior("woman", roomHouse1Woman);
@@ -242,7 +240,7 @@ public class TWoT{
         /*
         Interior roomEvilWizardsLairDevice = new OuchItem(TBA);
         Interior roomEvilWizardsLairDevice2 = new OuchItem(TBA);
-        Monster evil_wizard_f_boss = new Monster("Evil wizard!!1!", 3.0, 3.0, 1, 900);
+        Monster evil_wizard_f_boss = new Monster("Evil wizard!!!!", 3.0, 3.0, 1, 900);
         roomEvilWizardsLair.addMapInterior("It looks like a pot, but it's a landmine, ouch.",roomEvilWizardsLairDevice);
         roomEvilWizardsLair.addMapInterior("It looks like a glass, but it's a samsung note7, ouch.",roomEvilWizardsLairDevice2);
         roomEvilWizardsLair.addMapInterior("It looks like a pot, but it's really the evil wizard.",evil_wizard_f_boss);
@@ -347,7 +345,7 @@ public class TWoT{
         else if(interior instanceof Item){
             if(interior instanceof EquippableItem){
                 currentRoom.removeInterior(command.getSecondWord());
-                player.addItemToInventory((Item)interior);
+                player.addItemToEquippableInventory((EquippableItem)interior, player);
                 inspectActions.add(((EquippableItem) interior).getRoomDescription());
                 player.addHighscore(((EquippableItem) interior).getItemValue());
                 return inspectActions;
@@ -409,8 +407,15 @@ public class TWoT{
                 player.removeHighscore(69);
                 player.setHealth(100);
             } else {
-                inspectActions.add("Your remaining hp: " + player.getHealth());
+                for(Item i: combat.getMonster().getItemDrop()){
+                    inspectActions.add("You got item " + i.getItemName());
+                    player.addItemToInventory(i);
+                }
+                int goldDrop = combat.getMonster().getGoldDrop();
+                inspectActions.add("You got " + goldDrop + " gold.");
+                player.addGold(goldDrop);
                 currentRoom.removeInterior(command.getSecondWord());
+                inspectActions.add("Your remaining hp: " + player.getHealth());
             }
             return inspectActions;
         }
@@ -428,11 +433,12 @@ public class TWoT{
     public List<Item> getInventoryItems(){
         return player.getInventoryItems();
     }
+    
     /**
      * 
      * @return 
      */
-    public List<EquippableItem> getEquippableItems(){
+    public HashMap<EquippableItem.EItem, EquippableItem> getEquippableItems(){
         return player.getEquippableItems();
     }
     
@@ -450,7 +456,6 @@ public class TWoT{
             return true;
         }
     }
-    
     
     /**
      * 
@@ -479,4 +484,45 @@ public class TWoT{
     public String getPlayerName(){
         return player.getPlayerName();
     }
+    
+    public static List<String> getInventoryMenu(){
+        List<String> menu = new ArrayList();
+        menu.add("FULL INVENTORY");
+        menu.add("EQUIPPED ITEMS");
+        menu.add("QUEST ITEMS IN INVENTORY");
+        menu.add("USEABLE ITEMS IN INVENTORY");
+        menu.add("EQUIPPED ITEMS IN INVENTORY");
+        menu.add("PLAYER STATS");
+        return menu;
+    }
+    
+     /**
+     * 
+     * @return 
+     */
+    public double getPlayerAtt(){
+        return player.getAttValue();
+    }
+     /**
+     * 
+     * @return 
+     */
+    public double getPlayerDeff(){
+        return player.getDefValue();
+    }
+    /**
+     * 
+     * @return 
+     */
+    public double getPlayerHealth(){
+        return player.getHealth();
+    }
+    /**
+     * 
+     * @return 
+     */
+    public double getPlayerGold(){
+        return player.getGold();
+    }
+    
 }
