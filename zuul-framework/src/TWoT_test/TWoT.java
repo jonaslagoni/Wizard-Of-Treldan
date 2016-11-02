@@ -213,7 +213,7 @@ public class TWoT implements Serializable{
         Monster giant_troll_boss = new Monster("Humongous troll", 2.1, 1.5, 200, 100, "A humongous troll attacks you.");
         Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "");
         Interior roomClearingMonster1 = unicorn;
-        Interior roomClearingTree = new UseableItem("Doorknob", 0, "You don't have a door", "", 55508);
+        Interior roomClearingTree = new Npc("Old Tree", false, 22204);
         Interior roomClearingBoss = giant_troll_boss;
         roomClearing.addMapInterior("troll", roomClearingBoss);
         roomClearing.addMapInterior("forest", roomClearingExit1);
@@ -386,10 +386,24 @@ public class TWoT implements Serializable{
                     }
                     inspectActions.add("The guard stops his sobbing as you near him. “Who’s there?!” he yells. You decide not to reveal your identity, and the guard continues: ”Oh, why does it matter? I’ll letout of the Treldan if you find my wife and kids. I have orders to stay at my post.” The guard sits down and continues his sobbing.");
                     break;
+                case 22204:
+                    for(Item i: getInventoryItems()){
+                        if(i instanceof QuestItem){
+                            if(((QuestItem)i).getItemId() == 99904){
+                                inspectActions.add("You hack at the old tree for a while and finally it snaps in half, and tilts inwards towards the unicorn, who sadly, but fortunately for you doesn’t react in time and gets smashed by the tree");
+                                ((Monster)roomClearing.getMapInterior("unicorn")).setRoomDescription("The tree that fell on the unicorn exposes the unicorns heart and innards, you hold out a vial and watch in marvel as the liquid rainbow gathers in it");
+                                player.addHighscore(1000);
+                                return inspectActions;
+                            }
+                        }
+                    }
+                    inspectActions.add("You approach the old tree, it looks like it can be cut down fairly easily with 	the right tool");
+                    break;
             }
             return inspectActions;
         }
         else if(interior instanceof Monster){
+            if(((Monster) interior).getMobID())
             Combat combat = new Combat(player, (Monster)interior);
             inspectActions.add("You found a monster! It's a " + ((Monster) interior).getMonsterName() + ".");
             for(Fight f : combat.AFight()){

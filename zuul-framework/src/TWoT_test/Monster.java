@@ -20,7 +20,7 @@ public class Monster extends Interior {
     private int goldDrop;
     private List<Item> itemDrop = new ArrayList();
     private String roomDescription;
-    
+    private int mobID;
     /**
      * 
      */
@@ -36,13 +36,14 @@ public class Monster extends Interior {
      * @param health
      * @param goldDrop 
      */
-    public Monster(String monsterName, double attValue, double defValue, int health, int goldDrop, String roomDescription){
+    public Monster(String monsterName, double attValue, double defValue, int health, int goldDrop, String roomDescription, int mobID){
         this.monsterName = monsterName;
         this.attValue = attValue;
         this.defValue = defValue;
         this.health = health;
         this.goldDrop = goldDrop;
         this.roomDescription = roomDescription;
+        this.mobID = mobID;
     }
 
     /**
@@ -134,6 +135,20 @@ public class Monster extends Interior {
      */
     public void setRoomDescription(String roomDescription) {
         this.roomDescription = roomDescription;
+    }
+
+    /**
+     * @return the mobID
+     */
+    public int getMobID() {
+        return mobID;
+    }
+
+    /**
+     * @param mobID the mobID to set
+     */
+    public void setMobID(int mobID) {
+        this.mobID = mobID;
     }
     
     
