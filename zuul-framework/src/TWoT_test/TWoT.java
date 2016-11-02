@@ -148,6 +148,7 @@ public class TWoT implements Serializable{
         Interior roomHouse2Wardrobe = new EquippableItem("Dull Sword", 842,"Dull and a sword.",1.7,1.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
         Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502);
+        int i = 5;
 
         roomHouse2.addMapInterior("door", roomHouse2Exit);
         roomHouse2.addMapInterior("wardrobe", roomHouse2Wardrobe);
@@ -228,6 +229,10 @@ public class TWoT implements Serializable{
         Interior roomDungeonSkeleton1 = new UseableItem("",0,"", "", 0);
         Interior roomDungeonSkeleton2 = new UseableItem("",0,"", "", 0);
         Interior roomDungeonSkeleton3 = new QuestItem("Broken handle",50,"Couldn't handle it", 99903, "");
+        Interior roomDungeonExit2 = new Exit(roomLibrary);
+        Interior roomDungeonSkeleton12 = new UseableItem("",0,"", "", 0);
+        Interior roomDungeonSkeleton22 = new UseableItem("",0,"", "", 0);
+        Interior roomDungeonSkeleton32 = new QuestItem("Broken handle",50,"Couldn't handle it", 99903, "");
         roomDungeon.addMapInterior("skeleton1", roomDungeonSkeleton1);
         roomDungeon.addMapInterior("skeleton2", roomDungeonSkeleton2);
         roomDungeon.addMapInterior("skeleton3", roomDungeonSkeleton3);
