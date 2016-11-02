@@ -59,7 +59,7 @@ public class TWoT implements Serializable{
                 + "by a sobbing by the gate.\nA guard seems to be crying, and something doesn’t seem right in the "
                 + "village. All houses seem to be empty and the doors are wide open.\nYou gasp as you see several "
                 + "people lying dead in the side of the road.\nYou enter the town of Treldan; you can choose to "
-                + "inspect the guard at the gate, house one, house two or house three.\"");
+                + "inspect the guard at the gate, the axe on the ground, house one, house two or house three.\"");
         roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \nThe house you venture into is dark – very dark. It seems like "
                 + "there is a man in a corner of the room close you and a woman in the other end of the room."
                 + "\nYou enter the house, you can choose to inspect the woman, the man or leave through the door "
@@ -126,12 +126,14 @@ public class TWoT implements Serializable{
         Interior roomVillageExit1 = new Exit(roomHouse1);
         Interior roomVillageExit2 = new Exit(roomHouse2);
         Interior roomVillageExit3 = new Exit(roomHouse3);
+        Interior roomVillageAxe = new QuestItem("Lumberjack axe", 1, "Could be useful later.", 99904, "You pickup the axe from the road.");
         Npc mogens = new Npc("Mogens", true, 22201);
         Interior roomVillageNPC = mogens;
         roomVillage.addMapInterior("house1", roomVillageExit1);
         roomVillage.addMapInterior("house2", roomVillageExit2);
         roomVillage.addMapInterior("house3", roomVillageExit3);
         roomVillage.addMapInterior("guard", roomVillageNPC);
+        roomVillage.addMapInterior("axe", roomVillageAxe);
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
@@ -218,7 +220,7 @@ public class TWoT implements Serializable{
         roomClearing.addMapInterior("troll", roomClearingBoss);
         roomClearing.addMapInterior("forest", roomClearingExit1);
         roomClearing.addMapInterior("unicorn", roomClearingMonster1);
-        roomClearing.addMapInterior("Tree", roomClearingTree);
+        roomClearing.addMapInterior("tree", roomClearingTree);
         
         
         //roomDungeon
