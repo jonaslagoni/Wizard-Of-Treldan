@@ -172,10 +172,10 @@ public class TWoT{
         Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.", "You go pick up a mushroom, it stinks, but it might come in handy scaring off weaker foes.", 55504);
         Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
         roomForest.addMapInterior("mushroom", roomForrestMushroom);
-        roomForest.addMapInterior("dead goblin", roomForrestDeadGoblin);
-        roomForest.addMapInterior("wizard's house", roomForrestExit1);
-        roomForest.addMapInterior("troll cave", roomForrestExit2);
-        roomForest.addMapInterior("clearing of unicorns", roomForrestExit3);
+        roomForest.addMapInterior("goblin", roomForrestDeadGoblin);
+        roomForest.addMapInterior("house", roomForrestExit1);
+        roomForest.addMapInterior("cave", roomForrestExit2);
+        roomForest.addMapInterior("clearing", roomForrestExit3);
         
         //roomWizardHouse
         Interior roomWizardHouseExit = new Exit(roomForest);
@@ -186,8 +186,8 @@ public class TWoT{
         wizard.addConversation("g");
         Interior roomWizardHouseNPC = wizard;
         roomWizardHouse.addMapInterior("upstairs", roomWizardHouseUpstairs);
-        roomWizardHouse.addMapInterior("box of items", roomWizardHouseBox);
-        roomWizardHouse.addMapInterior("alchemy lab", roomWizardHouseLab);
+        roomWizardHouse.addMapInterior("box", roomWizardHouseBox);
+        roomWizardHouse.addMapInterior("lab", roomWizardHouseLab);
         roomWizardHouse.addMapInterior("wizard", roomWizardHouseNPC);
         roomWizardHouse.addMapInterior("forest", roomWizardHouseExit);
         
@@ -218,10 +218,10 @@ public class TWoT{
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new UseableItem("Doorknob", 0, "You don't have a door", "", 55508);
         Interior roomClearingBoss = giant_troll_boss;
-        roomClearing.addMapInterior("giant troll", roomClearingBoss);
+        roomClearing.addMapInterior("troll", roomClearingBoss);
         roomClearing.addMapInterior("forest", roomClearingExit1);
         roomClearing.addMapInterior("unicorn", roomClearingMonster1);
-        roomClearing.addMapInterior("old tree", roomClearingTree);
+        roomClearing.addMapInterior("Tree", roomClearingTree);
         
         
         //roomDungeon
@@ -232,7 +232,7 @@ public class TWoT{
         roomDungeon.addMapInterior("skeleton1", roomDungeonSkeleton1);
         roomDungeon.addMapInterior("skeleton2", roomDungeonSkeleton2);
         roomDungeon.addMapInterior("skeleton3", roomDungeonSkeleton3);
-        roomDungeon.addMapInterior("hidden pathway", roomDungeonExit);
+        roomDungeon.addMapInterior("pathway", roomDungeonExit);
         
         //roomLibrary
         Interior roomLibraryExit = new Exit(roomEvilWizardsLair);
