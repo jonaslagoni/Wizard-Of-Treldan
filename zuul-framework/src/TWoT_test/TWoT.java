@@ -233,7 +233,8 @@ public class TWoT implements Serializable{
         
         //roomLibrary
         Interior roomLibraryExit = new Exit(roomEvilWizardsLair);
-        roomLibrary.addMapInterior("book on da shelf", roomLibraryExit);
+        roomLibrary.addMapInterior("lair", roomLibraryExit);
+        Npc stranger = new Npc("Stranger", true, 22203);
         
         //roomEvilWizardsLair
         /*
