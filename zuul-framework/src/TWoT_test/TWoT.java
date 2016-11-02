@@ -528,5 +528,7 @@ public class TWoT implements Serializable{
     public double getPlayerGold(){
         return player.getGold();
     }
-    
+    public void playerRegenHealth(int healthToRegen){
+        player.regenHealth(healthToRegen);
+    }
 }
