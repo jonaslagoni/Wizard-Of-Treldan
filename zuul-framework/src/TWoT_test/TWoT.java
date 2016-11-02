@@ -227,6 +227,10 @@ public class TWoT implements Serializable{
         Interior roomDungeonSkeleton1 = new UseableItem("",0,"", "", 0);
         Interior roomDungeonSkeleton2 = new UseableItem("",0,"", "", 0);
         Interior roomDungeonSkeleton3 = new QuestItem("Broken handle",50,"Couldn't handle it", 99903, "");
+        Interior roomDungeonExit2 = new Exit(roomLibrary);
+        Interior roomDungeonSkeleton12 = new UseableItem("",0,"", "", 0);
+        Interior roomDungeonSkeleton22 = new UseableItem("",0,"", "", 0);
+        Interior roomDungeonSkeleton32 = new QuestItem("Broken handle",50,"Couldn't handle it", 99903, "");
         roomDungeon.addMapInterior("skeleton1", roomDungeonSkeleton1);
         roomDungeon.addMapInterior("skeleton2", roomDungeonSkeleton2);
         roomDungeon.addMapInterior("skeleton3", roomDungeonSkeleton3);
