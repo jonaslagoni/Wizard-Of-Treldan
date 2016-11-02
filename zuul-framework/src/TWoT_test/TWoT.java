@@ -170,6 +170,7 @@ public class TWoT implements Serializable{
         Interior roomForrestExit1 = new Exit(roomWizardHouse);
         Interior roomForrestExit2 = new Exit(roomCave);
         Interior roomForrestExit3 = new Exit(roomClearing);
+        Interior roomForrestExit4 = new Exit(roomVillage);
         Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.", "You go pick up a mushroom, it stinks, but it might come in handy scaring off weaker foes.", 55504);
         Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
         roomForest.addMapInterior("mushroom", roomForrestMushroom);
@@ -177,6 +178,7 @@ public class TWoT implements Serializable{
         roomForest.addMapInterior("house", roomForrestExit1);
         roomForest.addMapInterior("cave", roomForrestExit2);
         roomForest.addMapInterior("clearing", roomForrestExit3);
+        roomForest.addMapInterior("village", roomForrestExit4);
         
         //roomWizardHouse
         Interior roomWizardHouseExit = new Exit(roomForest);
@@ -210,8 +212,8 @@ public class TWoT implements Serializable{
         Interior roomCaveGruulExit1 = new Exit(roomCave);
         Interior gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, the giant troll it rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
         ((Monster)gruul).addDropItem(new QuestItem("Magic staff", 700, "Magic staff the wizard told you to get", 99906, ""));
-        roomCave.addMapInterior("gruul", gruul);
-        roomCave.addMapInterior("cave", roomCaveGruulExit1);
+        roomCaveGruul.addMapInterior("gruul", gruul);
+        roomCaveGruul.addMapInterior("cave", roomCaveGruulExit1);
         
         //roomClearing
         Interior roomClearingExit1 = new Exit(roomForest);
@@ -346,7 +348,6 @@ public class TWoT implements Serializable{
     }
     
     public List<String> inspectThing(Command command){
-        moveNpc();
         List<String> inspectActions = new ArrayList();
         if(!command.hasSecondWord()){
             inspectActions.add("Inspect what?");
@@ -418,6 +419,8 @@ public class TWoT implements Serializable{
                         player.removeInventoryItem(item1);
                         player.removeInventoryItem(item2);
                         roomVillage.addMapInterior("stranger", stranger);
+                    }else{
+                        inspectActions.add("zzzzzzzzzzzzzzzz\" You wake up the wizard \"zzz..oo.ahwhat? who? oh it's you traveler, thank you for coming to see me. As i mentioned i have need of help to defeat the evil Wizard, first of all i can't get inside his evil castle, buta stranger in the village will be able to teleport you inside if you want to help me, but the evil troll Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
                     }
                     break;
                 
@@ -432,8 +435,8 @@ public class TWoT implements Serializable{
                                 inspectActions.add("You hack at the old tree for a while and finally it snaps in half, and tilts inwards towards the unicorn, who sadly, but fortunately for you doesn’t react in time and gets smashed by the tree");
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setRoomDescription("The tree that fell on the unicorn exposes the unicorns heart and innards. You finish the unicorn off and hold out a vial and watch in marvel as the liquid rainbow gathers in it");
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setHealth(1);
-                                ((Monster)roomClearing.getMapInterior("unicorn")).setAttValue(0);
-                                ((Monster)roomClearing.getMapInterior("unicorn")).setDefValue(0);
+                                ((Monster)roomClearing.getMapInterior("unicorn")).setAttValue(0.1);
+                                ((Monster)roomClearing.getMapInterior("unicorn")).setDefValue(0.1);
                                 player.addHighscore(1000);
                                 return inspectActions;
                             }
