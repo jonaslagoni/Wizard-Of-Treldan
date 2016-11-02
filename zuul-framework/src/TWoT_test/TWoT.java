@@ -194,10 +194,12 @@ public class TWoT implements Serializable{
         //roomCave
         Interior roomCaveExit1 = new Exit(roomForest);
         Interior roomCaveExit2 = new Exit(roomCaveGruul);
-        Monster troll = new Monster("Troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
-        Interior roomWizardHouseMonster1 = troll;
-        Interior roomWizardHouseMonster2 = troll;
-        Interior roomWizardHouseMonster3 = troll;
+        Monster troll1 = new Monster("Nasty troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
+        Monster troll2 = new Monster("Ugly troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
+        Monster troll3 = new Monster("Beautifull troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
+        Interior roomWizardHouseMonster1 = troll1;
+        Interior roomWizardHouseMonster2 = troll2;
+        Interior roomWizardHouseMonster3 = troll3;
         roomCave.addMapInterior("troll1",roomWizardHouseMonster1);
         roomCave.addMapInterior("troll2",roomWizardHouseMonster2);
         roomCave.addMapInterior("troll3",roomWizardHouseMonster3);
@@ -206,15 +208,21 @@ public class TWoT implements Serializable{
         
         //roomCaveGrull
         Interior roomCaveGruulExit1 = new Exit(roomCave);
+<<<<<<< HEAD
         Monster gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, a giant troll rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
         Interior roomCaveGruulMonster = gruul;
         roomCave.addMapInterior("gruul", roomCaveGruulMonster);
+=======
+        Interior gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, the giant troll it rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
+        ((Monster)gruul).addDropItem(new QuestItem("Magic staff", 700, "Magic staff the wizard told you to get", 99906, ""));
+        roomCave.addMapInterior("gruul", gruul);
+>>>>>>> origin/master
         roomCave.addMapInterior("cave", roomCaveGruulExit1);
         
         //roomClearing
         Interior roomClearingExit1 = new Exit(roomForest);
         Monster giant_troll_boss = new Monster("Humongous troll", 2.1, 1.5, 200, 100, "A humongous troll attacks you.");
-        Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "");
+        Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "The unicorn doesent like you so it charges at you.");
         unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of good", 99905, ""));
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
@@ -325,6 +333,14 @@ public class TWoT implements Serializable{
                 description.add("A giant lock is on the door and it seems indestructible.");
                 description.add("Some sort of lockpick would come in handy.");
                 return description;
+            }else if(currentRoom == roomCave){
+                if(roomCave.getMapInterior("troll1") == null && roomCave.getMapInterior("troll2") == null && roomCave.getMapInterior("troll3") == null){
+                    currentRoom = ((Exit)interior).getNewRoom();
+                    return description;
+                }else{
+                    description.add("You have to defeat the 3 trolls to continue.");
+                    return description;
+                }
             }
             currentRoom = ((Exit)interior).getNewRoom();
             description.add(currentRoom.getDescription());
@@ -431,6 +447,7 @@ public class TWoT implements Serializable{
                     }
                     inspectActions.add("You approach the old tree, it looks like it can be cut down fairly easily with 	the right tool");
                     break;
+                    
             }
             return inspectActions;
         }
