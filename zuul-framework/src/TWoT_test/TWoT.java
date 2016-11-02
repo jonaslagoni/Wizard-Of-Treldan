@@ -308,7 +308,7 @@ public class TWoT{
             description.add("Place doesn't exist.");
             return description;
         }else if(interior instanceof Exit){
-            if(currentRoom == roomVillage){
+            if(currentRoom == roomCellar){
                 for(Item i: getInventoryItems()){
                     if(i instanceof QuestItem){
                         if(((QuestItem)i).getItemId() == 99901){
