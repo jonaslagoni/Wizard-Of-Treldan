@@ -34,8 +34,8 @@ public class Parser{
         if(tokenizer.hasNext()) {
             word1 = tokenizer.next().toLowerCase();
             // If the user has entered 2'n word set word2 to the 2'n word.
-            if(tokenizer.hasNext()) {
-                word2 = tokenizer.next().toLowerCase();
+            while(tokenizer.hasNext()){
+                word2 += " " + tokenizer.next().toLowerCase();
             }
         }
         // Return the Command object.
