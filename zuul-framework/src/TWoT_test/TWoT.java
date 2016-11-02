@@ -393,7 +393,11 @@ public class TWoT implements Serializable{
                         if(i instanceof QuestItem){
                             if(((QuestItem)i).getItemId() == 99904){
                                 inspectActions.add("You hack at the old tree for a while and finally it snaps in half, and tilts inwards towards the unicorn, who sadly, but fortunately for you doesn’t react in time and gets smashed by the tree");
-                                ((Monster)roomClearing.getMapInterior("unicorn")).setRoomDescription("The tree that fell on the unicorn exposes the unicorns heart and innards, you hold out a vial and watch in marvel as the liquid rainbow gathers in it");
+                                ((Monster)roomClearing.getMapInterior("unicorn")).setRoomDescription("The tree that fell on the unicorn exposes the unicorns heart and innards. You finish the unicorn off and hold out a vial and watch in marvel as the liquid rainbow gathers in it");
+                                ((Monster)roomClearing.getMapInterior("unicorn")).setHealth(1);
+                                ((Monster)roomClearing.getMapInterior("unicorn")).setAttValue(0);
+                                ((Monster)roomClearing.getMapInterior("unicorn")).setDefValue(0);
+                                
                                 player.addHighscore(1000);
                                 return inspectActions;
                             }
@@ -405,7 +409,6 @@ public class TWoT implements Serializable{
             return inspectActions;
         }
         else if(interior instanceof Monster){
-            if(((Monster) interior).getMobID())
             Combat combat = new Combat(player, (Monster)interior);
             inspectActions.add("You found a monster! It's a " + ((Monster) interior).getMonsterName() + ".");
             for(Fight f : combat.AFight()){
