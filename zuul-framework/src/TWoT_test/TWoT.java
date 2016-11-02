@@ -214,6 +214,7 @@ public class TWoT implements Serializable{
         Interior roomClearingExit1 = new Exit(roomForest);
         Monster giant_troll_boss = new Monster("Humongous troll", 2.1, 1.5, 200, 100, "A humongous troll attacks you.");
         Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "");
+        unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of good", 99905, ""));
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
         Interior roomClearingBoss = giant_troll_boss;
@@ -397,7 +398,6 @@ public class TWoT implements Serializable{
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setHealth(1);
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setAttValue(0);
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setDefValue(0);
-                                
                                 player.addHighscore(1000);
                                 return inspectActions;
                             }
