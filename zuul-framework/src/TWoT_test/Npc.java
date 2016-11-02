@@ -13,14 +13,12 @@ public class Npc extends Interior {
     private String name;
     private Item itemToGive, itemToGet;
     private boolean passiv;
-    private List<String> conversation = new ArrayList();
     private int npcID;
     /**
      * Constructor.
      * @param name
      * @param dialog
      * @param passiv 
-     * @param conversation
      */
     public Npc(String name, boolean passiv, int npcID){
         this.name = name;
@@ -77,22 +75,6 @@ public class Npc extends Interior {
      */
     public void setPassiv(boolean passiv) {
         this.passiv = passiv;
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    public List<String> getConversation() {
-        return conversation;
-    }
-    
-    /**
-     * 
-     * @param dialog 
-     */
-    public void addConversation(String dialog) {
-        conversation.add(dialog);
     }
 
     /**

@@ -25,7 +25,7 @@ public class TWoT implements Serializable{
     }
     public void testMatch(){
         player = new Player("Test player1", 2.0, 1.0, 100, new Inventory());
-        Monster monster = new Monster("Test monster1", 1.0, 1.0, 100, 100);
+        Monster monster = new Monster("Test monster1", 1.0, 1.0, 100, 100, "Test monster");
         Combat c = new Combat(player, monster);
         List<Fight> fight = c.AFight();
         for(Fight f: fight){
@@ -127,7 +127,6 @@ public class TWoT implements Serializable{
         Interior roomVillageExit2 = new Exit(roomHouse2);
         Interior roomVillageExit3 = new Exit(roomHouse3);
         Npc mogens = new Npc("Mogens", true, 22201);
-        mogens.addConversation("g");
         Interior roomVillageNPC = mogens;
         roomVillage.addMapInterior("house1", roomVillageExit1);
         roomVillage.addMapInterior("house2", roomVillageExit2);
@@ -136,7 +135,7 @@ public class TWoT implements Serializable{
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
-        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50);
+        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
         Interior roomHouse1Woman = woman;
         Interior roomHouse1Man = new UseableItem("Cheese sandwhich", 20, "Nom nom nom", "A dead man is half-sitting in a chair. In his pockets you find a cheese sandwhich.", 55501);
         roomHouse1.addMapInterior("woman", roomHouse1Woman);
@@ -148,9 +147,6 @@ public class TWoT implements Serializable{
         Interior roomHouse2Wardrobe = new EquippableItem("Dull Sword", 842,"Dull and a sword.",1.7,1.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
         Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502);
-        int i = 5;
-        
-        
         roomHouse2.addMapInterior("door", roomHouse2Exit);
         roomHouse2.addMapInterior("wardrobe", roomHouse2Wardrobe);
         roomHouse2.addMapInterior("bed", roomHouse2Bed);
@@ -163,7 +159,7 @@ public class TWoT implements Serializable{
         Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 1.0, 1.3, CHEST_SLOT, "There is a set of leather armor  in the chest, it's old and rusty but durable, you  put it on and it suits you surprisingly well.", 33302);
         roomHouse3.addMapInterior("door", roomHouse3Exit);
         roomHouse3.addMapInterior("kitchen", roomHouse3Kitchen);
-        //roomHouse3.addMapInterior("Bed", roomHouse3Bed);
+        //roomHouse3.addMapInterior("bed", roomHouse3Bed);
         roomHouse3.addMapInterior("chest", roomHouse3Chest);
         
         //roomForrest
@@ -184,7 +180,6 @@ public class TWoT implements Serializable{
         Interior roomWizardHouseBox = new UseableItem("Mysterious Ring",150,"Odd looking ring with a curiously intricate design, you decide to hold onto it.", "You rummage through the box of magical artifacts, and find a odd looking ring with a curiously intricate design, you decide to hold onto it.", 55506);
         Interior roomWizardHouseLab = new UseableItem("Health Potion",20,"Regenerates health points", "You search the alchemy lab and find a health potion.", 55507);
         Npc wizard = new Npc("Wizard", true, 22202);
-        wizard.addConversation("g");
         Interior roomWizardHouseNPC = wizard;
         roomWizardHouse.addMapInterior("upstairs", roomWizardHouseUpstairs);
         roomWizardHouse.addMapInterior("box", roomWizardHouseBox);
@@ -195,7 +190,7 @@ public class TWoT implements Serializable{
         //roomCave
         Interior roomCaveExit1 = new Exit(roomForest);
         Interior roomCaveExit2 = new Exit(roomCaveGruul);
-        Monster troll = new Monster("Troll", 1.0, 1.0, 50, 3000);
+        Monster troll = new Monster("Troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
         Interior roomWizardHouseMonster1 = troll;
         Interior roomWizardHouseMonster2 = troll;
         Interior roomWizardHouseMonster3 = troll;
@@ -207,15 +202,15 @@ public class TWoT implements Serializable{
         
         //roomCaveGrull
         Interior roomCaveGruulExit1 = new Exit(roomCave);
-        Monster gruul = new Monster("Gruul", 1.8, 2.0, 100, 5);
+        Monster gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, the giant troll it rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
         Interior roomCaveGruulMonster = gruul;
         roomCave.addMapInterior("gruul", roomCaveGruulMonster);
         roomCave.addMapInterior("cave", roomCaveGruulExit1);
         
         //roomClearing
         Interior roomClearingExit1 = new Exit(roomForest);
-        Monster giant_troll_boss = new Monster("Humongous troll", 2.1, 1.5, 200, 100);
-        Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 2000000000);
+        Monster giant_troll_boss = new Monster("Humongous troll", 2.1, 1.5, 200, 100, "A humongous troll attacks you.");
+        Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "");
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new UseableItem("Doorknob", 0, "You don't have a door", "", 55508);
         Interior roomClearingBoss = giant_troll_boss;
@@ -230,10 +225,6 @@ public class TWoT implements Serializable{
         Interior roomDungeonSkeleton1 = new UseableItem("",0,"", "", 0);
         Interior roomDungeonSkeleton2 = new UseableItem("",0,"", "", 0);
         Interior roomDungeonSkeleton3 = new QuestItem("Broken handle",50,"Couldn't handle it", 99903, "");
-        Interior roomDungeonExit2 = new Exit(roomLibrary);
-        Interior roomDungeonSkeleton12 = new UseableItem("",0,"", "", 0);
-        Interior roomDungeonSkeleton22 = new UseableItem("",0,"", "", 0);
-        Interior roomDungeonSkeleton32 = new QuestItem("Broken handle",50,"Couldn't handle it", 99903, "");
         roomDungeon.addMapInterior("skeleton1", roomDungeonSkeleton1);
         roomDungeon.addMapInterior("skeleton2", roomDungeonSkeleton2);
         roomDungeon.addMapInterior("skeleton3", roomDungeonSkeleton3);
