@@ -382,17 +382,13 @@ public class TWoT implements Serializable{
                     for(Item i: getInventoryItems()){
                         if(i instanceof QuestItem){
                             if(((QuestItem)i).getItemId() == 99902){
-                                inspectActions.add("You found my kids!?");
                                 player.removeInventoryItem(i);
-                                inspectActions.add("As a reword i let you pass to the forrest.");
                                 Interior roomVillageExit4 = new Exit(roomForest);
                                 roomVillage.addMapInterior("forest", roomVillageExit4);
                                 return inspectActions;
                             }
                         }
                     }
-                    inspectActions.add("Hello my name is " + ((Npc) interior).getName());
-                    inspectActions.add("I cant find my kids anywhere, can you?");
                     break;
             }
             return inspectActions;
