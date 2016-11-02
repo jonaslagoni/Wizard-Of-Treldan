@@ -432,6 +432,9 @@ public class TWoT implements Serializable{
         return player.getInventoryItems();
     }
     
+    public void removeItemFromInventory(Item i){
+        player.removeInventoryItem(i);
+    }
     /**
      * 
      * @return 
