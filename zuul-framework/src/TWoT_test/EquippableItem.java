@@ -24,13 +24,15 @@ public class EquippableItem extends Item {
      * @param attackBuff
      * @param defenseBuff 
      */
-    public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff, EItem eItem){
+    public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff, EItem eItem, String roomDescription, int itemId){
         super.setItemName(itemName);
         super.setItemValue(itemValue);
         super.setItemDescription(itemDescription);
+        super.setRoomDescription(roomDescription);
         this.attackBuff = attackBuff;
         this.defenseBuff = defenseBuff;
         this.eItem = eItem;
+        super.setItemId(itemId);
     }
     
     public enum EItem {

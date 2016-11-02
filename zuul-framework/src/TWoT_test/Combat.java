@@ -50,9 +50,9 @@ public class Combat {
                         player.setDamage(damageDealt);
                         
                         if(player.getHealth() > 0) {
-                            fightSystem.add(new Fight("Monster", player, monster, rollPlayer, rollMonster, damageDealt, false));
+                            fightSystem.add(new Fight(monster.getMonsterName(), player, monster, rollPlayer, rollMonster, damageDealt, false));
                         }else{
-                            fightSystem.add(new Fight("Monster", player, monster, rollPlayer, rollMonster, damageDealt, true));
+                            fightSystem.add(new Fight(monster.getMonsterName(), player, monster, rollPlayer, rollMonster, damageDealt, true));
                         }
                     }
                 }
@@ -67,9 +67,9 @@ public class Combat {
                         monster.setDamage(damageDealt);
                         
                         if(monster.getHealth() > 0) {
-                            fightSystem.add(new Fight("Player", player, monster, rollPlayer, rollMonster, damageDealt, false));
+                            fightSystem.add(new Fight(player.getPlayerName(), player, monster, rollPlayer, rollMonster, damageDealt, false));
                         }else{
-                            fightSystem.add(new Fight("Player", player, monster, rollPlayer, rollMonster, damageDealt, true));
+                            fightSystem.add(new Fight(player.getPlayerName(), player, monster, rollPlayer, rollMonster, damageDealt, true));
                         }
                     }
                 }

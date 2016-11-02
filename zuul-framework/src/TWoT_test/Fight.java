@@ -32,7 +32,7 @@ public class Fight {
      */
     public Fight(String winner, Player player, Monster monster, int playerRoll, int monsterRoll, int damage, boolean isDone){
         this.winner = winner;
-        this.player = (Player)player.clone();
+        this.player = player;
         this.monster = monster;
         this.monsterRoll = monsterRoll;
         this.playerRoll = playerRoll;
@@ -95,5 +95,10 @@ public class Fight {
      */
     public boolean isDone(){
         return isDone;
+    }
+    
+    
+    public String toString(){
+        return winner + " dealt " + damage + " damage.";
     }
 }

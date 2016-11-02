@@ -11,18 +11,11 @@ package TWoT_test;
  * @author Lagoni
  */
 public class QuestItem extends Item {
-    private int questItemId;
-    public QuestItem(String itemName, int itemValue, String itemDescription, int questItemId){
+    public QuestItem(String itemName, int itemValue, String itemDescription, int questItemId, String interiorDescription){
         super.setItemName(itemName);
         super.setItemValue(itemValue);
         super.setItemDescription(itemDescription);
-        this.questItemId = questItemId;
-    }
-
-    /**
-     * @return the questItemId
-     */
-    public int getQuestItemId() {
-        return questItemId;
+        super.setRoomDescription(interiorDescription);
+        super.setItemId(questItemId);
     }
 }

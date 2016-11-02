@@ -16,6 +16,8 @@ public class Item extends Interior{
     private String itemName;
     private int itemValue;
     private String itemDescription;
+    private String interiorDescription;
+    private int itemId;
 
     /**
      * @return the itemName
@@ -57,6 +59,34 @@ public class Item extends Interior{
      */
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
+    }
+
+    /**
+     * @return the roomDescription
+     */
+    public String getRoomDescription() {
+        return interiorDescription;
+    }
+
+    /**
+     * @param roomDescription the roomDescription to set
+     */
+    public void setRoomDescription(String roomDescription) {
+        this.interiorDescription = roomDescription;
+    }
+
+    /**
+     * @return the itemId
+     */
+    public int getItemId() {
+        return itemId;
+    }
+
+    /**
+     * @param itemId the itemId to set
+     */
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
 }

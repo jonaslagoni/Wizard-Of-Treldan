@@ -121,7 +121,9 @@ public class Gui{
         }else if (commandWord == CommandWord.GO) {
             // If commandWord is go go the room defined in the command.
             // If the command does not have a second word the user intered "go" without a where.
-            System.out.println(twot.goTo(command));
+            for(String s: twot.goTo(command)){
+                System.out.println(s);
+            }
         }else if (commandWord == CommandWord.QUIT) {
             // If the user wants to quit quit.
             wantToQuit = twot.quit(command);
@@ -129,7 +131,9 @@ public class Gui{
                 System.out.println("Quit what?");
             }
         }else if (commandWord == CommandWord.INSPECT){
-            System.out.println(twot.inspectThing(command));
+            for(String s: twot.inspectThing(command)){
+                System.out.println(s);
+            }
         }
 
     
@@ -166,7 +170,9 @@ public class Gui{
                 Gui g = new Gui();
                 break;
             case "load game":
-                //load a game
+                System.out.println("You cannot load games yet.");
+                System.out.println("");
+                callMenu();
                 break;
             case "exit game":
                 System.out.println("Thank you for atleast consider playing The Wizard of Treldan.");
