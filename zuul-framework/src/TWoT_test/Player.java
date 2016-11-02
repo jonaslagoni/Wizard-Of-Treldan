@@ -5,6 +5,7 @@
  */
 package TWoT_test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Player{
     private double defValue;
     private int health;
     private int gold = 0;
+    private int highscore = 0;
     private Inventory playersInventory;
     
     /**
@@ -55,6 +57,13 @@ public class Player{
     
     public void addItemToEquippableInventory(EquippableItem i){
         playersInventory.addEquipItem(i);
+        this.addAtt(i.getAttackBuff());
+        this.addDef(i.getDefenseBuff());
+    }
+    public void removeItemToEquippableInventory(EquippableItem i){
+        playersInventory.removeEquipItem(i);
+        this.removeAtt(i.getAttackBuff());
+        this.removeDef(i.getDefenseBuff());
     }
     
     public List<Item> getInventoryItems(){
@@ -207,19 +216,6 @@ public class Player{
         
     }
     
-    /**
-     * 
-     * @return 
-     */
-    @Override
-    protected Object clone(){
-        try {
-            return super.clone();
-        }catch (CloneNotSupportedException e) {
-            // This should never happen
-            throw new InternalError(e.toString());
-        }
-    }
     
     /**
      * 
@@ -227,5 +223,31 @@ public class Player{
      */
     public void setPlayerName(String playerName){
         this.playerName = playerName;
+    }
+
+    /**
+     * @return the highscore
+     */
+    public int getHighscore() {
+        return highscore;
+    }
+
+    /**
+     * @param highscore the highscore to set
+     */
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
+    }
+    
+    public void addHighscore(int h){
+        this.highscore = this.highscore + h;
+    }
+    
+    public void removeHighscore(int h){
+        this.highscore = this.highscore + h;
+    }
+    
+    public void removeInventoryItem(Item i){
+        playersInventory.removeInventoryItem(i);
     }
 }

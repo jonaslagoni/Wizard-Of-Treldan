@@ -20,10 +20,12 @@ public class UseableItem extends Item{
      * @param itemValue
      * @param itemDescription 
      */
-    public UseableItem(String itemName, int itemValue, String itemDescription){
+    public UseableItem(String itemName, int itemValue, String itemDescription, String roomDescription, int itemId){
         super.setItemName(itemName);
         super.setItemValue(itemValue);
         super.setItemDescription(itemDescription);
+        super.setRoomDescription(roomDescription);
+        super.setItemId(itemId);
     }
 
     /**

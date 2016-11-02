@@ -13,14 +13,14 @@ import java.util.List;
  * @author Kasper
  */
 public class Inventory {
-    private List<EquippableItem> equipedInventory = new ArrayList();
+    private List<EquippableItem> equippedInventory = new ArrayList();
     private List<Item> itemInventory = new ArrayList();
 
     /**
      * @return the EquippableItem
      */
     public List<EquippableItem> getEquippableItem() {
-        return equipedInventory;
+        return equippedInventory;
     }
 
     /**
@@ -38,11 +38,21 @@ public class Inventory {
         itemInventory.add(i);
     }
     
+    public void removeInventoryItem(Item i){
+        itemInventory.remove(i);
+    }
+    
     /**
      * 
      * @param i 
      */
     public void addEquipItem(EquippableItem i){
-        equipedInventory.add(i);
+        equippedInventory.add(i);
+        
+    }
+    
+    public void removeEquipItem(EquippableItem i){
+        equippedInventory.remove(i);
+        
     }
 }
