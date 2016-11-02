@@ -382,7 +382,7 @@ public class TWoT{
                                 player.removeInventoryItem(i);
                                 inspectActions.add("As a reword i let you pass to the forrest.");
                                 Interior roomVillageExit4 = new Exit(roomForest);
-                                roomVillage.addMapInterior("forrest", roomVillageExit4);
+                                roomVillage.addMapInterior("forest", roomVillageExit4);
                                 return inspectActions;
                             }
                         }
