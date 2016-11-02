@@ -13,6 +13,7 @@ public class TWoT implements Serializable{
     // Init variabels
     private Room currentRoom;
     private Player player;
+    private Npc stranger = new Npc("Stranger", true, 22203);
     
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
@@ -201,11 +202,11 @@ public class TWoT implements Serializable{
         roomCave.addMapInterior("troll2",roomWizardHouseMonster2);
         roomCave.addMapInterior("troll3",roomWizardHouseMonster3);
         roomCave.addMapInterior("forest",roomCaveExit1);
-        roomCave.addMapInterior("gruuls lair",roomCaveExit2);
+        roomCave.addMapInterior("lair",roomCaveExit2);
         
         //roomCaveGrull
         Interior roomCaveGruulExit1 = new Exit(roomCave);
-        Monster gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, the giant troll it rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
+        Monster gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, a giant troll rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
         Interior roomCaveGruulMonster = gruul;
         roomCave.addMapInterior("gruul", roomCaveGruulMonster);
         roomCave.addMapInterior("cave", roomCaveGruulExit1);
@@ -237,7 +238,6 @@ public class TWoT implements Serializable{
         //roomLibrary
         Interior roomLibraryExit = new Exit(roomEvilWizardsLair);
         roomLibrary.addMapInterior("lair", roomLibraryExit);
-        Npc stranger = new Npc("Stranger", true, 22203);
         
         //roomEvilWizardsLair
         /*
@@ -297,6 +297,7 @@ public class TWoT implements Serializable{
      * @return String
      */
     public List<String> goTo(Command command){
+        moveNpc();
         List<String> description = new ArrayList<>();
         if(!command.hasSecondWord()) {
             description.add("\"Go where?\"");
@@ -335,6 +336,7 @@ public class TWoT implements Serializable{
     }
     
     public List<String> inspectThing(Command command){
+        moveNpc();
         List<String> inspectActions = new ArrayList();
         if(!command.hasSecondWord()){
             inspectActions.add("Inspect what?");
@@ -388,6 +390,30 @@ public class TWoT implements Serializable{
                         }
                     }
                     inspectActions.add("The guard stops his sobbing as you near him. “Who’s there?!” he yells. You decide not to reveal your identity, and the guard continues: ”Oh, why does it matter? I’ll letout of the Treldan if you find my wife and kids. I have orders to stay at my post.” The guard sits down and continues his sobbing.");
+                    break;
+                case 22202:
+                    Item item1 = null;
+                    Item item2 = null;
+                    for(Item i: getInventoryItems()){
+                        if(i instanceof QuestItem){
+                            if(((QuestItem)i).getItemId() == 99905){
+                                item1 = i;
+                            } else if(((QuestItem)i).getItemId() == 99906){
+                                item2 = i;
+                            }
+                        }
+                    }
+                    if(item1 != null && item2 != null){
+                        inspectActions.add("Thank you for bringing me the items the I asked for! Go find the stranger in the village. He is known for hiding in the houses or the village. He may move his position.");
+                        player.removeInventoryItem(item1);
+                        player.removeInventoryItem(item2);
+                        roomVillage.addMapInterior("stranger", stranger);
+                    }
+                    break;
+                
+                case 22203:
+                    inspectActions.add("The wizard told me to teleport to the evil wizard's tower of doom. Get ready.");
+                    currentRoom = roomDungeon;
                     break;
                 case 22204:
                     for(Item i: getInventoryItems()){
@@ -515,6 +541,22 @@ public class TWoT implements Serializable{
         menu.add("EQUIPPED ITEMS IN INVENTORY");
         menu.add("PLAYER STATS");
         return menu;
+    }
+    
+    public void moveNpc(){
+        if(roomVillage.getMapInterior("stranger") != null){
+            roomVillage.removeInterior("stranger");
+            roomHouse1.addMapInterior("stranger", stranger);
+        } else if(roomHouse1.getMapInterior("stranger") != null){
+            roomHouse1.removeInterior("stranger");
+            roomHouse2.addMapInterior("stranger", stranger);
+        }else if(roomHouse2.getMapInterior("stranger") != null){
+            roomHouse2.removeInterior("stranger");
+            roomHouse3.addMapInterior("stranger", stranger);
+        }else if(roomHouse3.getMapInterior("stranger") != null){
+            roomHouse3.removeInterior("stranger");
+            roomHouse1.addMapInterior("stranger", stranger);
+        }
     }
     
      /**

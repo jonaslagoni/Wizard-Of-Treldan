@@ -90,4 +90,5 @@ public class Npc extends Interior {
     public void setNpcID(int npcID) {
         this.npcID = npcID;
     }
+    
 }
