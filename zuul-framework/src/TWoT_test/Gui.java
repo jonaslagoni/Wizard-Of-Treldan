@@ -197,7 +197,7 @@ public class Gui{
             for (Item i : twot.getInventoryItems()) {
                 if (i instanceof UseableItem) {
                     if (i.getItemName().equals(command.getSecondWord())) {
-                        
+                        twot.playerRegenHealth(((UseableItem) i).getHealthRegen());
                     }
                 }
             }
