@@ -5,6 +5,7 @@
  */
 package TWoT_test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,8 @@ public class Gui{
     /**
      * Starts the game
      */
+    
+    
     public Gui(){
         //Create the object from gameclass
         twot = new TWoT();
@@ -62,7 +65,7 @@ public class Gui{
     /**
      * Prints the help text.
      */
-    private void printHelp(){
+    private void printHelp() {
         //Get the helplist hashmap from gameclass
         HashMap<String, String> helpList = twot.getHelpMessages();
         System.out.println(helpList.get("helpMessage1"));
@@ -222,7 +225,7 @@ public class Gui{
      * 
      * @return 
      */
-    public static boolean callMenu(){
+    public static boolean callMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to The Wizard of Treldan!");
         System.out.println("******************");

@@ -4,8 +4,16 @@ package TWoT_test;
 
 import static TWoT_test.EquippableItem.EItem.CHEST_SLOT;
 import static TWoT_test.EquippableItem.EItem.WEAPON_SLOT;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -367,6 +375,7 @@ public class TWoT implements Serializable{
     
     public List<String> inspectThing(Command command){
         List<String> inspectActions = new ArrayList();
+        writeHighScore();
         if(!command.hasSecondWord()){
             inspectActions.add("Inspect what?");
             return inspectActions;
@@ -533,6 +542,37 @@ public class TWoT implements Serializable{
         else {
             return true;
         }
+    }
+    
+    public void writeHighScore() {
+
+          try (FileWriter fw = new FileWriter("Highscore.txt", true);
+          BufferedWriter bw = new BufferedWriter(fw);
+          PrintWriter out = new PrintWriter(bw)) {
+              
+                out.println(player.getPlayerName() + ":" + player.getHighscore() + ":");
+    
+          } catch (IOException e) {
+                System.out.println("Error at writing to Highscore.txt" + e);
+        } 
+    }
+    
+    public List<Score> readHighScore() {
+        List <Score> scoreList = new ArrayList();
+        try  {
+            for (String line : Files.readAllLines(Paths.get("Highscore.txt"))) {
+                 String playerName = Arrays.asList(line.split(":")).get(0);
+                 int playerScore = Integer.parseInt(Arrays.asList(line.split(":")).get(1));
+                 int playerTime = Integer.parseInt(Arrays.asList(line.split(":")).get(2));
+                 scoreList.add(new Score(
+                         playerName, 
+                         playerScore, 
+                         playerTime));
+            }
+        } catch (IOException e){
+                
+        }
+        return scoreList;
     }
     
     /**
