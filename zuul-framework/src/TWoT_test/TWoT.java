@@ -386,7 +386,6 @@ public class TWoT implements Serializable{
             }
         }
         else if(interior instanceof Npc){
-            inspectActions.add("This is an Npc");
             switch(((Npc) interior).getNpcID()){
                 case 22201:
                     for(Item i: getInventoryItems()){
