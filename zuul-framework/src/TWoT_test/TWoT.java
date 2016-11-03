@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -110,11 +109,10 @@ public class TWoT implements Serializable{
                 + "sigh.");
         roomLibrary = new Room("The Neverending Library", "\n\n***The Neverending Library*** \nYou find yourself in the biggest room you’ve ever been "
                 + "in. Books upon books is all you see, and bookcases fill up the gigantic room.\nIt would take ages "
-                + "to go through every single book, you think to yourself.");
+                + "to go through every single book, you think to yourself. A librarian is sitting in the library.");
         roomEvilWizardsLair = new Room("The Evil Wizard's Lair", "\n\n***The Evil Wizard's Lair*** \nAs you ascend the stairs your legs feel heavier and "
                 + "heavier.\nYou can barely walk as you make it up to the final step – the pain is then suddenly "
-                + "relieved.\nYou open a large door and you see the Evil Wizard of Treldan standing in the room with "
-                + "a giant dragon.");
+                + "relieved.\nYou open a large door and you see the Evil Wizard of Treldan standing in the room.");
 
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
