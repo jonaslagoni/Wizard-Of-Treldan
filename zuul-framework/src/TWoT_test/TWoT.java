@@ -138,10 +138,7 @@ public class TWoT implements Serializable{
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
-        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
-        Interior roomHouse1Woman = woman;
         Interior roomHouse1Man = new UseableItem("Cheese sandwhich", 20, "Nom nom nom", "A dead man is half-sitting in a chair. In his pockets you find a cheese sandwhich.", 55501);
-        roomHouse1.addMapInterior("woman", roomHouse1Woman);
         roomHouse1.addMapInterior("man", roomHouse1Man);
         roomHouse1.addMapInterior("door", roomHouse1Exit);
         
@@ -160,8 +157,12 @@ public class TWoT implements Serializable{
         Interior roomHouse3Exit = new Exit(roomVillage);
         Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503);
         //Interior roomHouse3Bed = new PlayerHealth;
+        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
+        Interior roomHouse3Woman = woman;
+        woman.addDropItem(new QuestItem("Bloody key", 8273, "This key looks bloody", 99907, ""));
         Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 1.0, 1.3, CHEST_SLOT, "There is a set of leather armor  in the chest, it's old and rusty but durable, you  put it on and it suits you surprisingly well.", 33302);
         roomHouse3.addMapInterior("door", roomHouse3Exit);
+        roomHouse3.addMapInterior("woman", roomHouse3Woman);
         roomHouse3.addMapInterior("kitchen", roomHouse3Kitchen);
         //roomHouse3.addMapInterior("bed", roomHouse3Bed);
         roomHouse3.addMapInterior("chest", roomHouse3Chest);
@@ -336,6 +337,21 @@ public class TWoT implements Serializable{
                 }else{
                     description.add("You have to defeat the 3 trolls to continue.");
                     return description;
+                }
+            }else if(currentRoom == roomVillage){
+                for(Item i: getInventoryItems()){
+                    if(i instanceof QuestItem){
+                        if(((QuestItem)i).getItemId() == 99907){
+                            currentRoom = ((Exit)interior).getNewRoom();
+                            description.add("You inserted the key, and the door unlocked.");
+                            player.removeInventoryItem(i);
+                            description.add(currentRoom.getDescription());
+                            return description;
+                        }
+                    }else{
+                        description.add("The door's locked, maybe a key's lying around.");
+                        return description;
+                    }
                 }
             }
             currentRoom = ((Exit)interior).getNewRoom();
