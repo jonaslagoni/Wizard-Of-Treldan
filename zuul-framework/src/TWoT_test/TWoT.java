@@ -14,6 +14,7 @@ public class TWoT implements Serializable{
     private Room currentRoom;
     private Player player;
     private Npc stranger = new Npc("Stranger", true, 22203);
+    private long startTime;
     
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
@@ -23,6 +24,7 @@ public class TWoT implements Serializable{
         // Create the different rooms used
         createRooms();
         player = new Player("StartName", 1.0, 1.0, 100, new Inventory());
+        startTime = (long)(System.currentTimeMillis() / 1000L);
     }
     public void testMatch(){
         player = new Player("Test player1", 2.0, 1.0, 100, new Inventory());
