@@ -375,7 +375,7 @@ public class TWoT implements Serializable{
                 currentRoom.setDescription("***Clearing of Unicorns***\nFor some reason the sun shines bright in the clearing.");
             }else if(currentRoom == roomDungeon){
                 currentRoom.setDescription("***Dungeon of Suffering***\nYou wouldn't like to live here.");
-                if(roomCave.getMapInterior("skeleton1") == null && roomCave.getMapInterior("skeleton2") == null && roomCave.getMapInterior("skeleton3") == null){
+                if(roomDungeon.getMapInterior("skeleton1") == null && roomDungeon.getMapInterior("skeleton2") == null && roomDungeon.getMapInterior("skeleton3") == null){
                     currentRoom = ((Exit)interior).getNewRoom();
                     description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     return description;
