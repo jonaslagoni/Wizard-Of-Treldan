@@ -239,12 +239,12 @@ public class Gui{
             System.out.println("----" + s + "----");
         }
         System.out.println("******************");
-        System.out.println("Please enter either 'new game', 'load game' or 'exit game'.");
+        System.out.println("Please enter either 'new game', 'load game', 'how to play' or 'exit game'.");
         String menuChoice = scanner.nextLine();
         menuChoice = menuChoice.toLowerCase();
         
-        while(!menuChoice.equals("new game") || !menuChoice.equals("load game") || !menuChoice.equals("exit game")){
-            if(menuChoice.equals("new game") || menuChoice.equals("load game") || menuChoice.equals("exit game")){
+        while(!menuChoice.equals("new game") || !menuChoice.equals("load game") || menuChoice.equals("how to play") || !menuChoice.equals("exit game")){
+            if(menuChoice.equals("new game") || menuChoice.equals("load game") || menuChoice.equals("how to play") || menuChoice.equals("exit game")){
                 break;
             }
             System.out.println("Looks like you entered something wrong. Please try again:");
@@ -256,6 +256,10 @@ public class Gui{
                 Gui g = new Gui();
                 break;
             case "load game":
+                callMenu();
+                break;
+            case "how to play":
+                System.out.println("HOWkfoiergoreg");
                 callMenu();
                 break;
             case "exit game":
