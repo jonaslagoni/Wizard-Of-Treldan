@@ -352,7 +352,6 @@ public class TWoT implements Serializable{
                             if(((QuestItem)i).getItemId() == 99907){
                                 currentRoom = ((Exit)interior).getNewRoom();
                                 description.add("You inserted the key, and the door unlocked.");
-                                player.removeInventoryItem(i);
                                 description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                                 return description;
                             }
@@ -363,6 +362,22 @@ public class TWoT implements Serializable{
                 }
             }else if(currentRoom == roomHouse1){
                 currentRoom.setDescription("***House of the Reborn***\nThe house looks spooky.");
+            }else if(currentRoom == roomHouse2){
+                currentRoom.setDescription("***House of Riches***\nThe house looks creepy.");
+            }else if(currentRoom == roomHouse3){
+                currentRoom.setDescription("***House of the Guard***\nThe house looks cozy.");
+            }else if(currentRoom == roomForest){
+                currentRoom.setDescription("***The Forest of Treldan***\nThe forest is much more quiet than before.");
+            }else if(currentRoom == roomWizardHouse){
+                currentRoom.setDescription("***The Nice Wizard's House***\nThe wizard's house is wierd but nice.");
+            }else if(currentRoom == roomCaveGruul){
+                currentRoom.setDescription("***Gruul's Lair**\nThe cave where Gruul lives.");
+            }else if(currentRoom == roomClearing){
+                currentRoom.setDescription("***Clearing of Unicorns***\nFor some reason the sun shines bright in the clearing.");
+            }else if(currentRoom == roomDungeon){
+                currentRoom.setDescription("***Dungeon of Suffering***\nYou wouldn't like to live here.");
+            }else if(currentRoom == roomLibrary){
+                currentRoom.setDescription("***The Neverending Library***\nThere's still a trillion books in the library.");
             }
             currentRoom = ((Exit)interior).getNewRoom();
             description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
@@ -452,6 +467,7 @@ public class TWoT implements Serializable{
                 case 22203:
                     inspectActions.add("The wizard told me to teleport you to the evil wizard's tower of doom. Get ready.");
                     currentRoom = roomDungeon;
+                    inspectActions.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     break;
                 case 22204:
                     for(Item i: getInventoryItems()){
