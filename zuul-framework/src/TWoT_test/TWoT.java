@@ -63,7 +63,7 @@ public class TWoT implements Serializable{
                 + "inspect the guard at the gate, the axe on the ground, house one, house two or house three.\"");
         roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \nThe house you venture into is dark – very dark. It seems like "
                 + "there is a man in a corner of the room close you and a woman in the other end of the room."
-                + "\nYou enter the house, you can choose to inspect the woman, the man or leave through the door "
+                + "\nYou enter the house, you can choose to inspect the man or leave through the door "
                 + "behind you.");
         roomHouse2 = new Room("House of Riches", "\n\n***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
                 + "candle on the table.\nThere’s a blood-stained bed in the corner of the room. A bunch of sacks "
@@ -75,7 +75,7 @@ public class TWoT implements Serializable{
                 + "decorated, and the infected clearly havent been in here, in the left corner of the room there is "
                 + "a dusty set of armor and lying in an open chest at the end of a double-bed.\nAdditionally, there "
                 + "is also a small kitchen area with knives, pots, pans, and the like.\nYou enter the house, you "
-                + "can chose to inspect the kitchen, the bed, the chest or go back through the door behind you.");
+                + "can chose to inspect the kitchen, the woman, the chest or go back through the door behind you.");
         roomForest = new Room("The Forest of Treldan", "\n\n***The Forest of Treldan*** \nAs you ride through the forest you are ambushed by a pack "
                 + "of goblins who try to murder you and take your valuables.\nYou almost fall prey to the savages, "
                 + "as you are saved by a wizard who zaps! the goblins with magic and scare them away.\nHe heals your "
