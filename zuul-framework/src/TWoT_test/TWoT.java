@@ -375,7 +375,6 @@ public class TWoT implements Serializable{
     
     public List<String> inspectThing(Command command){
         List<String> inspectActions = new ArrayList();
-        writeHighScore();
         if(!command.hasSecondWord()){
             inspectActions.add("Inspect what?");
             return inspectActions;
