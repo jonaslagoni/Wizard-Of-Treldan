@@ -195,15 +195,19 @@ public class Gui{
             }
         }else if (commandWord == CommandWord.USE) {
             boolean check = false;
+            Item usedItem = null;
             for (Item i : twot.getInventoryItems()) {
                 if (i instanceof UseableItem) {
                     if (i.getItemName().equals(command.getSecondWord())) {
                         System.out.println("You used " + i.getItemName() + " and got " + ((UseableItem) i).getHealthRegen() + " hp back.");
                         twot.playerRegenHealth(((UseableItem) i).getHealthRegen());
-                        twot.removeItemFromInventory(i);
+                        usedItem = i;
                         check = true;
                     }
                 }
+            }
+            if(usedItem != null){
+                twot.removeItemFromInventory(usedItem);
             }
             if(!check){
                 System.out.println("You carry no item with that name");
