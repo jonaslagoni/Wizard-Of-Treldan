@@ -545,12 +545,13 @@ public class TWoT implements Serializable{
     }
     
     public void writeHighScore() {
-
+        long endTime = (System.currentTimeMillis() / 1000L);
+        
           try (FileWriter fw = new FileWriter("Highscore.txt", true);
           BufferedWriter bw = new BufferedWriter(fw);
           PrintWriter out = new PrintWriter(bw)) {
               
-                out.println(player.getPlayerName() + ":" + player.getHighscore() + ":");
+                out.println(player.getPlayerName() + ":" + player.getHighscore() + ":" + (endTime - startTime));
     
           } catch (IOException e) {
                 System.out.println("Error at writing to Highscore.txt" + e);
