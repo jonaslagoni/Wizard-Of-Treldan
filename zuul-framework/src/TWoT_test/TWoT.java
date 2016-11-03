@@ -2,8 +2,7 @@
 // Use package zuulframework
 package TWoT_test;
 
-import static TWoT_test.EquippableItem.EItem.CHEST_SLOT;
-import static TWoT_test.EquippableItem.EItem.WEAPON_SLOT;
+import static TWoT_test.EquippableItem.EItem.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -235,27 +234,27 @@ public class TWoT implements Serializable{
         
         //roomDungeon
         Interior roomDungeonExit = new Exit(roomLibrary);
-        Interior roomDungeonSkeleton1 = new UseableItem("",0,"", "", 0);
-        Interior roomDungeonSkeleton2 = new UseableItem("",0,"", "", 0);
-        Interior roomDungeonSkeleton3 = new QuestItem("Broken handle",50,"Couldn't handle it", 99903, "");
-        roomDungeon.addMapInterior("skeleton1", roomDungeonSkeleton1);
-        roomDungeon.addMapInterior("skeleton2", roomDungeonSkeleton2);
-        roomDungeon.addMapInterior("skeleton3", roomDungeonSkeleton3);
+        Monster skeleton1 = new Monster("Skeleton", 1.5, 1.5, 175, 300, "The skeleton attacks you.");
+        Monster skeleton2 = new Monster("Skeleton", 1.5, 1.5, 175, 300, "The skeleton attacks you.");
+        Monster skeleton3 = new Monster("Skeleton", 1.5, 1.5, 175, 300, "The skeleton attacks you.");
+        roomDungeon.addMapInterior("skeleton1", skeleton1);
+        roomDungeon.addMapInterior("skeleton2", skeleton2);
+        roomDungeon.addMapInterior("skeleton3", skeleton3);
+        skeleton2.addDropItem(new QuestItem("Broken handle", 545, "Couldn't handle it.", 99903, ""));
         roomDungeon.addMapInterior("pathway", roomDungeonExit);
         
         //roomLibrary
-        Interior roomLibraryExit = new Exit(roomEvilWizardsLair);
-        roomLibrary.addMapInterior("lair", roomLibraryExit);
+        Interior roomLibraryDoor = new Exit(roomEvilWizardsLair);
+        Monster librarian = new Monster("Evil Librarian", 2.2, 2.0, 250, 500, "A librarian gets up from his seat - \"Hey, leave this place immdiately! You book is due!\".\nThe librarian starts throwing books at you. ");
+        librarian.addDropItem(new EquippableItem("Fancy librarian-hotpants", 677, "These pants are pretty tight.", 0.0, 1.2, LEG_SLOT, "", 33304));
+        roomLibrary.addMapInterior("librarian", librarian);
+        roomLibrary.addMapInterior("door", roomLibraryDoor);
         
         //roomEvilWizardsLair
-        /*
-        Interior roomEvilWizardsLairDevice = new OuchItem(TBA);
-        Interior roomEvilWizardsLairDevice2 = new OuchItem(TBA);
-        Monster evil_wizard_f_boss = new Monster("Evil wizard!!!!", 3.0, 3.0, 1, 900);
-        roomEvilWizardsLair.addMapInterior("It looks like a pot, but it's a landmine, ouch.",roomEvilWizardsLairDevice);
-        roomEvilWizardsLair.addMapInterior("It looks like a glass, but it's a samsung note7, ouch.",roomEvilWizardsLairDevice2);
-        roomEvilWizardsLair.addMapInterior("It looks like a pot, but it's really the evil wizard.",evil_wizard_f_boss);
-        */
+        
+        Monster roomEvilWizardsLairWizard = new Monster("Evil Wizard of Doom", 2.5, 2.5, 800, 3500, "There's no turning back now, thief!\n Face me in a final battle!");
+        roomEvilWizardsLair.addMapInterior("wizard", roomEvilWizardsLairWizard);
+        
         
         //set which room you start in.
         currentRoom = roomCellar;
@@ -376,8 +375,30 @@ public class TWoT implements Serializable{
                 currentRoom.setDescription("***Clearing of Unicorns***\nFor some reason the sun shines bright in the clearing.");
             }else if(currentRoom == roomDungeon){
                 currentRoom.setDescription("***Dungeon of Suffering***\nYou wouldn't like to live here.");
+                if(roomCave.getMapInterior("skeleton1") == null && roomCave.getMapInterior("skeleton2") == null && roomCave.getMapInterior("skeleton3") == null){
+                    currentRoom = ((Exit)interior).getNewRoom();
+                    description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
+                    return description;
+                }else{
+                    description.add("You have to defeat the 3 skeleton to continue.");
+                    return description;
+                }
             }else if(currentRoom == roomLibrary){
                 currentRoom.setDescription("***The Neverending Library***\nThere's still a trillion books in the library.");
+                 if(command.getSecondWord().equals("door")){
+                    for(Item i: getInventoryItems()){
+                        if(i instanceof QuestItem){
+                            if(((QuestItem)i).getItemId() == 99903){
+                                currentRoom = ((Exit)interior).getNewRoom();
+                                description.add("You attach the broken handle to the door and it will now open,");
+                                description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
+                                return description;
+                            }
+                        }
+                    }
+                    description.add("The door's handle is broken.");
+                    return description;
+                }
             }
             currentRoom = ((Exit)interior).getNewRoom();
             description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
