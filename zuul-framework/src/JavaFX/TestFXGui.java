@@ -281,8 +281,6 @@ public class TestFXGui extends Application {
                 if (input.contains("LEFT")){
                     if(player.intersects_world_left(worldBoundLeft)){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_left(sprites_still.get(1))){
-                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -290,8 +288,6 @@ public class TestFXGui extends Application {
                 }
                 if(input.contains("RIGHT")){
                     if(player.intersects_world_right(worldBoundRight)){
-                        player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_right(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
@@ -301,8 +297,6 @@ public class TestFXGui extends Application {
                 if(input.contains("UP")){
                     if(player.intersects_world_top(worldBoundTop)){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_top(sprites_still.get(1))){
-                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -310,8 +304,6 @@ public class TestFXGui extends Application {
                 }
                 if(input.contains("DOWN")){
                     if(player.intersects_world_bottom(worldBoundBottom)){
-                        player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_bottom(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,100);
