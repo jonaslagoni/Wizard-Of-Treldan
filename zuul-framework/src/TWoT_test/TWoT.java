@@ -424,7 +424,7 @@ public class TWoT implements Serializable{
                     break;
                 
                 case 22203:
-                    inspectActions.add("The wizard told me to teleport to the evil wizard's tower of doom. Get ready.");
+                    inspectActions.add("The wizard told me to teleport you to the evil wizard's tower of doom. Get ready.");
                     currentRoom = roomDungeon;
                     break;
                 case 22204:
@@ -476,7 +476,7 @@ public class TWoT implements Serializable{
             return inspectActions;
         }
         else{
-            inspectActions.add("Use \"Go to\" to go to an exit");
+            inspectActions.add("Use \"go\" to go to an exit");
             return inspectActions;
         }
     }
