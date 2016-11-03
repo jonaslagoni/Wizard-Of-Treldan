@@ -53,7 +53,7 @@ public class TestFXGui extends Application {
     }
     
     public void showMenuMap(){
-        mainStage.setScene(menuMap());
+        mainStage.setScene(map_kasper());
     }
     
     public void showMap1(){

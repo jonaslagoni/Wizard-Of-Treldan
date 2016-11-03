@@ -78,6 +78,7 @@ public class SpriteGenerator extends TestFXGui{
         spriteList_moveable = new ArrayList();
         menu_sprites = new ArrayList();
         map1_sprites_still = new ArrayList();
+        village_sprites_still = new ArrayList();
         
         //init all normal tiles
         initSprites();
@@ -87,7 +88,7 @@ public class SpriteGenerator extends TestFXGui{
         
         
         setMap1();
-        
+        setVillage();
         Sprite test_group = new Groupsprite_random(ground_grass_random_1);
         ((Groupsprite_random)test_group).setPosition(0, 0);
         ((Groupsprite_random)test_group).setHeight(512);
@@ -152,7 +153,11 @@ public class SpriteGenerator extends TestFXGui{
     }
     
     public void setVillage(){
-        
+        Sprite torch = interior_misc.getTorch();
+        torch.setPosition(100, 20);
+        torch.setHeight(38);
+        torch.setWidth(18);
+        village_sprites_still.add(torch);
     }
     /**
      * Here goes all group sprites
