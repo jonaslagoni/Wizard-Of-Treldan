@@ -207,8 +207,20 @@ public class Gui{
             for (Item i : twot.getInventoryItems()) {
                 if (i instanceof UseableItem) {
                     if (i.getItemName().equals(command.getSecondWord())) {
-                        System.out.println("You used " + i.getItemName() + " and got " + ((UseableItem) i).getHealthRegen() + " hp back.");
-                        twot.playerRegenHealth(((UseableItem) i).getHealthRegen());
+                        
+                                
+                            case 55507: //health potion
+                                if(twot.getPlayerHealth() != 100){
+                                    System.out.println("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
+                                    twot.playerRegenHealth(((UseableItem) i).getHealthRegen());
+                                }else{
+                                    System.out.println("You're already at full health");
+                                }
+                                
+                            default:
+                                
+                        }
+                     
                         usedItem = i;
                         check = true;
                     }
