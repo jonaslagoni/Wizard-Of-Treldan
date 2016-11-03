@@ -41,6 +41,7 @@ public class SpriteGenerator extends TestFXGui{
      * Map 1
      */
     private List<Sprite> map1_sprites_still;
+    private List<Sprite> village_sprites_still;
     
     //All normal sprites
     //all ground water sprites
@@ -84,23 +85,8 @@ public class SpriteGenerator extends TestFXGui{
         //init all group tiles
         initGroupSprites();
         
-        Sprite floor = new Groupsprite_random(map1_ground_stones_random_1);
-        ((Groupsprite_random)floor).setPosition(0, 0);
-        ((Groupsprite_random)floor).setHeight(256+128);
-        ((Groupsprite_random)floor).setWidth(512+128);
-        map1_sprites_still.add(floor);
         
-        Sprite haystack = interior_misc.getHay_bed();
-        haystack.setPosition(250, 100);
-        haystack.setHeight(80);
-        haystack.setWidth(56);
-        map1_sprites_still.add(haystack);
-        
-        Sprite stone_wall_edge = new Groupsprite_circle(wall_stone_circle_edge);
-        ((Groupsprite_circle)stone_wall_edge).setPosition(0, 0);
-        ((Groupsprite_circle)stone_wall_edge).setHeight(256+128);
-        ((Groupsprite_circle)stone_wall_edge).setWidth(512+128);
-        map1_sprites_still.add(stone_wall_edge);
+        setMap1();
         
         Sprite test_group = new Groupsprite_random(ground_grass_random_1);
         ((Groupsprite_random)test_group).setPosition(0, 0);
@@ -127,7 +113,47 @@ public class SpriteGenerator extends TestFXGui{
         menu_sprites.add(circle);
     }
     
+    public void setMap1(){
+        
+        Sprite floor = new Groupsprite_random(map1_ground_stones_random_1);
+        ((Groupsprite_random)floor).setPosition(0, 0);
+        ((Groupsprite_random)floor).setHeight(256+128);
+        ((Groupsprite_random)floor).setWidth(512+128);
+        map1_sprites_still.add(floor);
+        
+        Sprite haystack = interior_misc.getHay_bed();
+        haystack.setPosition(250, 100);
+        haystack.setHeight(80);
+        haystack.setWidth(56);
+        map1_sprites_still.add(haystack);
+        
+        Sprite stone_wall_edge = new Groupsprite_circle(wall_stone_circle_edge);
+        ((Groupsprite_circle)stone_wall_edge).setPosition(0, 0);
+        ((Groupsprite_circle)stone_wall_edge).setHeight(256+128);
+        ((Groupsprite_circle)stone_wall_edge).setWidth(512+128);
+        map1_sprites_still.add(stone_wall_edge);
+        
+        
+        Sprite torch = interior_misc.getTorch();
+        torch.setPosition(100, 20);
+        torch.setHeight(38);
+        torch.setWidth(18);
+        map1_sprites_still.add(torch);
+        
+        
+        Sprite metalDoor = interior_misc.getMetalDoor();
+        metalDoor.setPosition(200, 15);
+        map1_sprites_still.add(metalDoor);
+        
+        
+        Sprite metalDoor2 = interior_misc.getMetalDoor();
+        metalDoor2.setPosition(400, 15);
+        map1_sprites_still.add(metalDoor2);
+    }
     
+    public void setVillage(){
+        
+    }
     /**
      * Here goes all group sprites
      */
@@ -300,5 +326,12 @@ public class SpriteGenerator extends TestFXGui{
      */
     public List<Sprite> getMap1_sprites_still() {
         return map1_sprites_still;
+    }
+
+    /**
+     * @return the village_sprites_still
+     */
+    public List<Sprite> getVillage_sprites_still() {
+        return village_sprites_still;
     }
 }

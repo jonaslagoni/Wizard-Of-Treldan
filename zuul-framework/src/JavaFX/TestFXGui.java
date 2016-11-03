@@ -27,6 +27,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
+
 /**
  *
  * @author jonas
@@ -40,11 +41,12 @@ public class TestFXGui extends Application {
     public void start(Stage primaryStage) {
         mainStage = primaryStage;
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        world = new SpriteGenerator();
         mainStage.setTitle("The wizard of Treldan");
         world = new SpriteGenerator();
         input = new ArrayList<String>();
         menu_input = new ArrayList<String>();
-        showMap1();
+        showMenuMap();
         mainStage.setWidth(1024);
         mainStage.setHeight(512);
         mainStage.show();
@@ -103,6 +105,7 @@ public class TestFXGui extends Application {
             }
         };
     }
+    
     public Scene map1(){
         Group root = new Group();
         Scene theScene = new Scene( root );
@@ -116,7 +119,7 @@ public class TestFXGui extends Application {
         root.getChildren().add( player_canvas );
         
         Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
-        canvas_menu_sprites.relocate(256, 128);
+        canvas_menu_sprites.relocate(0, 0);
         root.getChildren().add( canvas_menu_sprites );
         
         PlayerSprite player = new PlayerSprite();
@@ -130,10 +133,6 @@ public class TestFXGui extends Application {
         GraphicsContext ground_still_gc = canvas_still_sprites.getGraphicsContext2D();
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         GraphicsContext menu_gc = canvas_menu_sprites.getGraphicsContext2D();
-        
-        
-        
-        SpriteGenerator world = new SpriteGenerator();
         
         List<Sprite> sprites_still = world.getMap1_sprites_still();
         
@@ -227,6 +226,130 @@ public class TestFXGui extends Application {
         return theScene;
     }
     
+    public Scene map_kasper(){
+        Group root = new Group();
+        Scene theScene = new Scene( root );
+        theScene.setFill(Color.BLACK);
+        
+        Canvas canvas_still_sprites = new Canvas( 1024, 512 );
+        canvas_still_sprites.relocate(0,0);
+        root.getChildren().add( canvas_still_sprites );
+        
+        Canvas player_canvas = new Canvas( 1024, 512 );
+        player_canvas.relocate(0, 0);
+        root.getChildren().add( player_canvas );
+        
+        Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
+        canvas_menu_sprites.relocate(0, 0);
+        root.getChildren().add( canvas_menu_sprites );
+        
+        PlayerSprite player = new PlayerSprite();
+        player.setImage("player.png");
+        player.setPosition(100, 100);
+        player.setHeight(64);
+        player.setWidth(64);
+        
+        //Keypress
+        theScene.setOnKeyReleased(playerMovement(player));
+        theScene.setOnKeyPressed(userPressedKey());
+        
+        
+        GraphicsContext ground_still_gc = canvas_still_sprites.getGraphicsContext2D();
+        GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        GraphicsContext menu_gc = canvas_menu_sprites.getGraphicsContext2D();
+        
+        
+        List<Sprite> sprites_still = world.getVillage_sprites_still();
+        
+        LongValue lastNanoTime = new LongValue( System.nanoTime() );
+        
+        for(Sprite sprite: sprites_still){
+            sprite.render(ground_still_gc);
+        }
+        
+        Rectangle2D worldBoundRight = new Rectangle2D(1045, 0, 1, 512);
+        Rectangle2D worldBoundLeft = new Rectangle2D(-5, 0, 1, 512);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 512, 1024, 1);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
+        IntValue score = new IntValue(0);
+        new AnimationTimer(){
+            private int animationDelay = 0;
+            public void handle(long currentNanoTime){
+                double elapsedTime = (currentNanoTime - lastNanoTime.value) / 1000000000.0;
+                lastNanoTime.value = currentNanoTime;
+                player.setDirection(PlayerSprite.Direction.STANDSTILL);
+                if (input.contains("LEFT")){
+                    if(player.intersects_world_left(worldBoundLeft)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_left(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(-100,0);
+                    }
+                    player.setDirection(PlayerSprite.Direction.WALK_LEFT);
+                }
+                if(input.contains("RIGHT")){
+                    if(player.intersects_world_right(worldBoundRight)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_right(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(100,0);
+                    }
+                    player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
+                }
+                if(input.contains("UP")){
+                    if(player.intersects_world_top(worldBoundTop)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_top(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(0,-100);
+                    }
+                    player.setDirection(PlayerSprite.Direction.WALK_UP);
+                }
+                if(input.contains("DOWN")){
+                    if(player.intersects_world_bottom(worldBoundBottom)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_sprite_bottom(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(0,100);
+                    }
+                    player.setDirection(PlayerSprite.Direction.WALK_DOWN);
+                }
+                player.update(elapsedTime);
+                moveable_gc.clearRect(0, 0, 1024,512);
+                player.render(moveable_gc);
+                
+                /*
+                // draw the boundaries for test
+                //bottom
+                moveable_gc.setFill(Color.CADETBLUE);
+                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-14, player.getWidth()-47, 5);
+
+                //top
+                moveable_gc.setFill(Color.BEIGE);
+                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-22, player.getWidth()-47, 5);
+
+                //left
+                moveable_gc.setFill(Color.DARKGREEN);
+                moveable_gc.fillRect(player.getPositionX()+11, player.getPositionY()+player.getWidth()-20, 5, 10);
+
+                //right
+                moveable_gc.setFill(Color.CRIMSON);
+                moveable_gc.fillRect(player.getPositionX()+player.getWidth()-32,  player.getPositionY()+player.getWidth()-20, 5, 10);
+                */
+                if(menu_input.contains("I")){
+                    menu_gc.setFill(Color.CADETBLUE);
+                    menu_gc.fillRect(1024-250, 0, 250, 512);
+                }else{
+                    menu_gc.clearRect(0, 0, 1024,512);
+                }
+            }
+        }.start();
+        return theScene;
+    }
     public Scene testMap(){
         Group root = new Group();
         Scene theScene = new Scene( root );
@@ -371,7 +494,7 @@ public class TestFXGui extends Application {
                 public void handle(MouseEvent e) {
                     Platform.runLater(new Runnable() {
                         @Override public void run() {
-                            showTestMap();
+                            showMap1();
                         }
                     });
                 }

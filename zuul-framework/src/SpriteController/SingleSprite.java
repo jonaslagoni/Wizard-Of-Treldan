@@ -23,6 +23,20 @@ public class SingleSprite extends Sprite {
         spritePosY = 0;
     }
 
+    public SingleSprite(double sPosX, double sPosY, double sW, double sH, double w, double h, Image i) {
+        setImage(i);
+        setPosition(0,0);
+        velocityX = 0;
+        velocityY = 0;
+        spriteWidth = sW;
+        spriteHeight = sH;
+        spritePosX = sPosX;
+        spritePosY = sPosY;
+        super.setHeight(h);
+        super.setWidth(w);
+        
+    }
+    
     public void setImage(Image i) {
         image = i;
         setWidth(i.getWidth());

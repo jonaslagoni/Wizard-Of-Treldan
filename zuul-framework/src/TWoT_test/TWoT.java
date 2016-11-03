@@ -645,17 +645,6 @@ public class TWoT implements Serializable{
         return player.getPlayerName();
     }
     
-    public static List<String> getInventoryMenu(){
-        List<String> menu = new ArrayList();
-        menu.add("FULL INVENTORY");
-        menu.add("EQUIPPED ITEMS");
-        menu.add("QUEST ITEMS IN INVENTORY");
-        menu.add("USEABLE ITEMS IN INVENTORY");
-        menu.add("EQUIPPED ITEMS IN INVENTORY");
-        menu.add("PLAYER STATS");
-        return menu;
-    }
-    
     public void moveNpc(){
         if(roomVillage.getMapInterior("stranger") != null){
             roomVillage.removeInterior("stranger");
