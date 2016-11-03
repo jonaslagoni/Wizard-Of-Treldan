@@ -64,28 +64,24 @@ public class TWoT implements Serializable{
         roomCellar = new Room("Cellar", "***Cellar*** \nYou wake up in a dull cellar. Light is emitting from a torch on the wall "
                 + "and you barely get on your feet.\nYou’ve been laying on a haystack for God knows how long and "
                 + "your feet are extremely sore.\nTo your right you see a table with multiple drawers and right in "
-                + "front of you an old door with a lock.\nYou can choose to inspect the door, the table or the haystack behind you.");
+                + "front of you an old door with a lock.");
         roomVillage = new Room("Village of Treldan", "\n\n***Village of Treldan*** \nIt’s dark outside. You seem to be familiar with this part of the village. "
                 + "\nYou still wonder why you were locked up in that cell, but your thoughts are quickly interrupted "
                 + "by a sobbing by the gate.\nA guard seems to be crying, and something doesn’t seem right in the "
                 + "village. All houses seem to be empty and the doors are wide open.\nYou gasp as you see several "
-                + "people lying dead in the side of the road.\nYou enter the town of Treldan; you can choose to "
-                + "inspect the guard at the gate, the axe on the ground, house one, house two or house three.\"");
+                + "people lying dead in the side of the road.\nYou enter the town of Treldan.");
         roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \nThe house you venture into is dark – very dark. It seems like "
                 + "there is a man in a corner of the room close you and a woman in the other end of the room."
-                + "\nYou enter the house, you can choose to inspect the man or leave through the door "
-                + "behind you.");
+                + "\nYou enter the house.");
         roomHouse2 = new Room("House of Riches", "\n\n***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
                 + "candle on the table.\nThere’s a blood-stained bed in the corner of the room. A bunch of sacks "
                 + "are placed up against a poorly build wardrobe.\nThe other corner is not lit up by the candle and "
-                + "you can’t see what is there.\nYou enter the house, you can choose to inspect the wardrobe, the "
-                + "bed, the dark corner or leave through the door behind you.");
+                + "you can’t see what is there.\nYou enter the house.");
         roomHouse3 = new Room("House of the Guard", "\n\n***House of the Guard*** \nThe door is barred from the inside, you jump through an open "
                 + "window in the house, cutting yourself on a sharp piece of glass. You lose 5 HP.\nThe house is neatly "
                 + "decorated, and the infected clearly havent been in here, in the left corner of the room there is "
                 + "a dusty set of armor and lying in an open chest at the end of a double-bed.\nAdditionally, there "
-                + "is also a small kitchen area with knives, pots, pans, and the like.\nYou enter the house, you "
-                + "can chose to inspect the kitchen, the woman, the chest or go back through the door behind you.");
+                + "is also a small kitchen area with knives, pots, pans, and the like.\nYou enter the house.");
         roomForest = new Room("The Forest of Treldan", "\n\n***The Forest of Treldan*** \nAs you ride through the forest you are ambushed by a pack "
                 + "of goblins who try to murder you and take your valuables.\nYou almost fall prey to the savages, "
                 + "as you are saved by a wizard who zaps! the goblins with magic and scare them away.\nHe heals your "
@@ -93,29 +89,26 @@ public class TWoT implements Serializable{
                 + "you can do to repay him. Come meet me in my house when you're ready, its the Large Tree-house "
                 + "over there.\nI have need of help in order to save Treldan! You enter the Forest of Treldan, you "
                 + "scout around and look for anything, and spot a dead goblin and a couple of suspicious looking "
-                + "mushrooms.\nYou can go to the wizards house, look at the mushrooms, and search the dead "
-                + "goblin. Alternatively, you can also go back to the village.");
+                + "mushrooms.");
         roomWizardHouse = new Room ("The Nice Wizard's House","\n\n***The Wizard's House*** \nThe wizard's house is better described as a hollow tree with doors "
                 + "and windows, you can see a number of magical artifacts, a staircase to a upstairs part of the "
                 + "house, there is also what looks to be an alchemy lab.\nThe wizard sits quietly in a comfy chair "
-                + "with his legs up, snoring.\nYou can chose to interact with the "
-                + "wizard, the alchemy lab, the magical items, or go upstairs.");
+                + "with his legs up, snoring.");
         roomCave = new Room("Troll Cave", "\n\n***Troll Cave*** \nYou enter the troll cave, and immediately get sorrounded by 3 trolls,"
                 + " one directly in fron of you, one to the left, and one to your right.\nIn the back "
                 + "you can see a larger shadowy figure in the back of the cave, but you need to "
-                + "get rid of the trolls to get to him first.\nYou can interact with the 3 trolls in front of "
-                + "you but you need to kill all of them in order to get further into the cave");
+                + "get rid of the trolls to get to him first.");
         roomCaveGruul = new Room("Gruul's Lair","\n\n***Gruul's Lair*** \n You approach the shadowy figure and as you come closer, the giant troll rises"
                 + " up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
         roomClearing = new Room("Clearing of Unicorns", "***Clearing of Unicorns*** \nYou enter the clearing of unicorns and are immediately"
                 + " blinded by a bright light.\nAs you regain your sight you lay eyes upon the most magnificent "
                 + "create you have ever seen.\nThe unicorn looks at you curiously and goes back to eating grass. "
-                + "\nYou scout the surrounding area for anything else, and spot an old tree. ");
+                + "\nYou scout the surrounding area for anything else, and spot an old tree.");
         roomDungeon = new Room("Dungeon of Suffering", "\n\n***Dungeon of Suffering*** \nA loud whoosh and you find yourself in some kind of dungeon "
                 + "– probably the one belonging to the evil wizard of Treldan.\nYou realise you must be in his Tower."
                 + "\nYou get up on your feet and sees that the room your in is barely lit by torches, the walls are "
                 + "slimy and there are no windows. To no surprise you find three heavely armored skeletons.\nYou "
-                + "sigh. You can choose to inspect either skeleton one, skeleton two or skeleton three.");
+                + "sigh.");
         roomLibrary = new Room("The Neverending Library", "\n\n***The Neverending Library*** \nYou find yourself in the biggest room you’ve ever been "
                 + "in. Books upon books is all you see, and bookcases fill up the gigantic room.\nIt would take ages "
                 + "to go through every single book, you think to yourself.");
@@ -148,8 +141,10 @@ public class TWoT implements Serializable{
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
-        Interior roomHouse1Man = new UseableItem("Cheese sandwhich", 20, "Nom nom nom", "A dead man is half-sitting in a chair. In his pockets you find a cheese sandwhich.", 55501);
+        Interior roomHouse1Man = new Monster("Zombie man", 0.7, 0.7, 50, 50, "A dead man is half-sitting in a chair. He gets on his feet and attacks you.");
+        Interior roomHouse1LooseStone = new UseableItem("Cheese sandwhich", 20, "Nom nom nom", "You move the loose stone and to your surprise you find a cheese sandwhich", 55501);
         roomHouse1.addMapInterior("man", roomHouse1Man);
+        roomHouse1.addMapInterior("stone", roomHouse1LooseStone);
         roomHouse1.addMapInterior("door", roomHouse1Exit);
         
         //roomHouse2
@@ -166,7 +161,6 @@ public class TWoT implements Serializable{
         //roomHouse3
         Interior roomHouse3Exit = new Exit(roomVillage);
         Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503);
-        //Interior roomHouse3Bed = new PlayerHealth;
         Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
         Interior roomHouse3Woman = woman;
         woman.addDropItem(new QuestItem("Bloody key", 8273, "This key looks bloody", 99907, ""));
@@ -174,7 +168,6 @@ public class TWoT implements Serializable{
         roomHouse3.addMapInterior("door", roomHouse3Exit);
         roomHouse3.addMapInterior("woman", roomHouse3Woman);
         roomHouse3.addMapInterior("kitchen", roomHouse3Kitchen);
-        //roomHouse3.addMapInterior("bed", roomHouse3Bed);
         roomHouse3.addMapInterior("chest", roomHouse3Chest);
         
         //roomForrest
@@ -266,6 +259,7 @@ public class TWoT implements Serializable{
         
         //set which room you start in.
         currentRoom = roomCellar;
+        currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getMapInterior());
     }
     
     /**
@@ -298,8 +292,8 @@ public class TWoT implements Serializable{
     public HashMap<String, String> getHelpMessages(){
         //init a new object of type hashmap
         HashMap<String, String> helpList = new HashMap();
-        helpList.put("helpMessage1",  "You are at " + currentRoom.getName());
-        helpList.put("helpMessage2", "Here is where you can go: " + currentRoom.getFullDescription());
+        helpList.put("helpMessage1",  "\nYou are at " + currentRoom.getName());
+        helpList.put("helpMessage2", "Here is where you can go: " + currentRoom.getMapInterior());
         helpList.put("helpMessage3", "Your command words are:");
         
         //return the helplist when done.
@@ -332,7 +326,7 @@ public class TWoT implements Serializable{
                             currentRoom = ((Exit)interior).getNewRoom();
                             description.add("You manage to pick the lock with the needle, but sadly the needle breaks and cannot be used later.");
                             player.removeInventoryItem(i);
-                            description.add(currentRoom.getDescription());
+                            description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                             return description;
                         }
                     }
@@ -341,31 +335,37 @@ public class TWoT implements Serializable{
                 description.add("Some sort of lockpick would come in handy.");
                 return description;
             }else if(currentRoom == roomCave){
+                currentRoom.setDescription("***Troll Cave***\nThe place is still dark.");
                 if(roomCave.getMapInterior("troll1") == null && roomCave.getMapInterior("troll2") == null && roomCave.getMapInterior("troll3") == null){
                     currentRoom = ((Exit)interior).getNewRoom();
+                    description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     return description;
                 }else{
                     description.add("You have to defeat the 3 trolls to continue.");
                     return description;
                 }
             }else if(currentRoom == roomVillage){
-                for(Item i: getInventoryItems()){
-                    if(i instanceof QuestItem){
-                        if(((QuestItem)i).getItemId() == 99907){
-                            currentRoom = ((Exit)interior).getNewRoom();
-                            description.add("You inserted the key, and the door unlocked.");
-                            player.removeInventoryItem(i);
-                            description.add(currentRoom.getDescription());
-                            return description;
+                currentRoom.setDescription("***Village of Treldan***\nThe village looks beautiful in the night.");
+                if(command.getSecondWord().equals("house2")){
+                    for(Item i: getInventoryItems()){
+                        if(i instanceof QuestItem){
+                            if(((QuestItem)i).getItemId() == 99907){
+                                currentRoom = ((Exit)interior).getNewRoom();
+                                description.add("You inserted the key, and the door unlocked.");
+                                player.removeInventoryItem(i);
+                                description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
+                                return description;
+                            }
                         }
-                    }else{
-                        description.add("The door's locked, maybe a key's lying around.");
-                        return description;
                     }
+                    description.add("The door's locked, maybe a key's lying around.");
+                    return description;
                 }
+            }else if(currentRoom == roomHouse1){
+                currentRoom.setDescription("***House of the Reborn***\nThe house looks spooky.");
             }
             currentRoom = ((Exit)interior).getNewRoom();
-            description.add(currentRoom.getDescription());
+            description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
             return description;
         }else{
             description.add("Nothing here.");

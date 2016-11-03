@@ -22,7 +22,7 @@ public class Room{
      * @return the description
      */
     public String getDescription() {
-        return description + getMapInterior();
+        return description;
     }
 
     /**
@@ -46,11 +46,12 @@ public class Room{
      */
     public String getMapInterior(){
         Set<String> rs = mapInterior.keySet();
-        String returnString = "Exits: ";
+        String returnString = "";
+        String interact = "\nYou can interact with: ";
         for (String s: rs){
             returnString += s + " ";
         }
-        return returnString;
+        return interact + returnString;
        
     }
     /**
@@ -84,6 +85,13 @@ public class Room{
     
     public void removeInterior(String s){
         mapInterior.remove(s);
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 
