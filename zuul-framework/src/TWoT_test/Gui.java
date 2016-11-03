@@ -94,8 +94,13 @@ public class Gui{
         while(!quit){
             // As long as the game has not finished yet.
             while (! finished) {
-                finished = processCommand(parser.getCommand());
+                if(twot.isIsOver()){
+                    finished = true;
+                }else{
+                    finished = processCommand(parser.getCommand());
+                }
             }
+            twot.writeHighScore();
             // Print goodbye
             System.out.println("Thank you for playing. Good bye.");
             System.out.println("");

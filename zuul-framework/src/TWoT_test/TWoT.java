@@ -21,6 +21,7 @@ public class TWoT implements Serializable{
     private Player player;
     private Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
+    private boolean isOver;
     
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
@@ -251,6 +252,7 @@ public class TWoT implements Serializable{
         //roomEvilWizardsLair
         
         Monster roomEvilWizardsLairWizard = new Monster("Evil Wizard of Doom", 2.5, 2.5, 800, 3500, "There's no turning back now, thief!\n Face me in a final battle!");
+        roomEvilWizardsLairWizard.setMobId(1);
         roomEvilWizardsLair.addMapInterior("wizard", roomEvilWizardsLairWizard);
         
         
@@ -509,6 +511,7 @@ public class TWoT implements Serializable{
             return inspectActions;
         }
         else if(interior instanceof Monster){
+            
             Combat combat = new Combat(player, (Monster)interior);
             inspectActions.add("You found a monster! It's a " + ((Monster) interior).getMonsterName() + ".");
             for(Fight f : combat.AFight()){
@@ -533,6 +536,9 @@ public class TWoT implements Serializable{
                 player.addGold(goldDrop);
                 currentRoom.removeInterior(command.getSecondWord());
                 inspectActions.add("Your remaining hp: " + player.getHealth());
+                if(((Monster) interior).getMobId() == 1){
+                    isOver = true;
+                }
             }
             return inspectActions;
         }
@@ -695,5 +701,12 @@ public class TWoT implements Serializable{
     }
     public void playerRegenHealth(int healthToRegen){
         player.regenHealth(healthToRegen);
+    }
+
+    /**
+     * @return the isOver
+     */
+    public boolean isIsOver() {
+        return isOver;
     }
 }

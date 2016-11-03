@@ -20,6 +20,7 @@ public class Monster extends Interior {
     private int goldDrop;
     private List<Item> itemDrop = new ArrayList();
     private String roomDescription;
+    private int mobId;
     /**
      * 
      */
@@ -135,6 +136,20 @@ public class Monster extends Interior {
      */
     public void setRoomDescription(String roomDescription) {
         this.roomDescription = roomDescription;
+    }
+
+    /**
+     * @return the mobId
+     */
+    public int getMobId() {
+        return mobId;
+    }
+
+    /**
+     * @param mobId the mobId to set
+     */
+    public void setMobId(int mobId) {
+        this.mobId = mobId;
     }
     
     
