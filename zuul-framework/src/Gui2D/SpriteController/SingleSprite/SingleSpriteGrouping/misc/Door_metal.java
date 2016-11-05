@@ -6,7 +6,6 @@
 package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc;
 
 import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
-import Gui2D.SpriteController.SpriteGenerator;
 
 /**
  *
@@ -17,11 +16,11 @@ public class Door_metal extends Abstract_sprite {
      * Sets the metal door sprite
      */
     public void setSprite(){
-        super.getSpriteVariable().setSpritePosX(711);
-        super.getSpriteVariable().setSpritePosY(8);
-        super.getSpriteVariable().setSprite_width(32);
-        super.getSpriteVariable().setSprite_height(48);
-        super.getSpriteVariable().setWidth(32);
-        super.getSpriteVariable().setHeight(48);
+        super.getSprite().setSpritePosX(711);
+        super.getSprite().setSpritePosY(8);
+        super.getSprite().setSprite_width(32);
+        super.getSprite().setSprite_height(48);
+        super.getSprite().setWidth(32);
+        super.getSprite().setHeight(48);
     }
 }

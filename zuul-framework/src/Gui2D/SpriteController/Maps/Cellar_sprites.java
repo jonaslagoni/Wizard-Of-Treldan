@@ -5,6 +5,7 @@
  */
 package Gui2D.SpriteController.Maps;
 
+import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
@@ -16,27 +17,62 @@ import java.util.List;
  *
  * @author jonas
  */
-public class Cellar_sprites extends SpriteController{
+public class Cellar_sprites{
     //list of grass sprites this map uses
     private List<SingleSprite> celler_grass_singlesprites;
-    
+    private List<SingleSprite> celler_stone_walls;
+    private SpriteController world;
     
     //contains all the sprites kept in the background
     private List<Sprite> cellar_background_sprites;
     
-    public void setCellar_background_SingleSprites(){
+    public Cellar_sprites(SpriteController world){
         cellar_background_sprites = new ArrayList();
+        celler_stone_walls = new ArrayList();
         celler_grass_singlesprites = new ArrayList();
+        this.world = world;
+    }
+    
+    public void setCellar_background_SingleSprites(){
         
-        celler_grass_singlesprites.add(super.getGround_sprite().getGrass_light_1());
-        celler_grass_singlesprites.add(super.getGround_sprite().getGrass_light_2());
-        celler_grass_singlesprites.add(super.getGround_sprite().getGrass_light_3());
-        celler_grass_singlesprites.add(super.getGround_sprite().getGrass_flowers_1());
-        
-        Sprite random_group_grass = new Groupsprite_random(celler_grass_singlesprites);
-        random_group_grass.setPosition(0, 0);
-        random_group_grass.setSize(1024, 512);
-        cellar_background_sprites.add(random_group_grass);
+            
+            celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_1());
+            celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_2());
+            celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_3());
+            
+            Sprite random_group_grass = new Groupsprite_random(celler_grass_singlesprites);
+            random_group_grass.setPosition(0, 0);
+            random_group_grass.setSize(1024, 512);
+            cellar_background_sprites.add(random_group_grass);
+            
+            Sprite hay_bed = world.getMisc_sprites().getHay_bed();
+            hay_bed.setPosition(32, 64);
+            cellar_background_sprites.add(hay_bed);
+            
+            
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_NW());
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_N());
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_NE());
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_E());
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_SE());
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_S());
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_SW());
+            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_W());
+            Sprite stone_walls = new Groupsprite_circle(celler_stone_walls);
+            stone_walls.setPosition(0, 0);
+            stone_walls.setSize(512, 256);
+            cellar_background_sprites.add(stone_walls);
+                    
+                    
+            Sprite torch = world.getMisc_sprites().getTorch_wall();
+            torch.setPosition(100, 10);
+            torch.setSize(torch.getWidth()/1.3, torch.getHeight()/1.3);
+            cellar_background_sprites.add(torch);
+            
+            Sprite door = world.getMisc_sprites().getDoor_metal();
+            door.setPosition(330, 15);
+            cellar_background_sprites.add(door);
+
     }
 
     /**

@@ -24,6 +24,8 @@ public class SpriteController {
     private Misc_sprites misc_sprites;
     //all water sprites
     private Water_sprites water_sprites;
+    //all structure sprites
+    private Structure_sprites structure_sprites;
     
     public SpriteController(){
         //Lets start by init every single sprite in the game so everything is ready to use
@@ -34,6 +36,7 @@ public class SpriteController {
         ground_sprite = new Ground_sprites();
         misc_sprites = new Misc_sprites();
         water_sprites = new Water_sprites();
+        structure_sprites = new Structure_sprites();
     }
 
     /**
@@ -69,6 +72,13 @@ public class SpriteController {
      */
     public static Image getPLAYER_SPRITESHEET() {
         return PLAYER_SPRITESHEET;
+    }
+
+    /**
+     * @return the structure_sprites
+     */
+    public Structure_sprites getStructure_sprites() {
+        return structure_sprites;
     }
 
 }

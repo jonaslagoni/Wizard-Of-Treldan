@@ -33,8 +33,8 @@ public class SingleSprite extends Sprite {
     }
 
     public String toString() {
-        return " Position: [" + getPositionX() + "," + getPositionY() + "]"
-                + " Velocity: [" + getVelocityX() + "," + getVelocityY() + "]";
+        return " Position: [" + super.getPositionX() + "," + super.getPositionY() + "]"
+                + " Velocity: [" + super.getVelocityX() + "," + super.getVelocityY() + "]";
     }
 
     /**

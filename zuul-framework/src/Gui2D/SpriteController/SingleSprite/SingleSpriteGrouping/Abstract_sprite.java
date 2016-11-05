@@ -33,15 +33,7 @@ public abstract class Abstract_sprite {
      * Get the sprite variable
      * @return 
      */
-    public SingleSprite getSpriteVariable(){
+    public SingleSprite getSprite(){
         return sprite;
-    }
-    
-    /**
-     * Get the metal door as a new SingleSprite
-     * @return the metalDoor
-     */
-    public SingleSprite getSprite() {
-        return new SingleSprite(sprite.getSpritePosX(), sprite.getSpritePosY(), sprite.getSprite_width(), sprite.getSprite_height(), sprite.getWidth(), sprite.getHeight(), sprite.getImage());
     }
 }

@@ -7,10 +7,8 @@ package Gui2D.Maps;
 
 import Gui2D.SpriteController.Maps.Cellar_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
-import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
-import JavaFX.LongValue;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -32,7 +30,7 @@ public class Cellar extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private Cellar_sprites s = new Cellar_sprites();
+    private Cellar_sprites s;
     /**
      * Constructor for Cellar
      * @param world 
@@ -48,23 +46,26 @@ public class Cellar extends Map{
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
-        s.setCellar_background_SingleSprites();
+        
         //set the world constructor
         super.setWorld(world);
+        
+        s = new Cellar_sprites(world);
+        s.setCellar_background_SingleSprites();
     }
     
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );
+        theScene.setFill(Color.rgb(83, 83, 83));
         
-        
-        Canvas canvas_background = new Canvas( 1024, 512 );
-        canvas_background.relocate(0, 0);
+        Canvas canvas_background = new Canvas( 512, 256);
+        canvas_background.relocate(256, 128);
         root.getChildren().add( canvas_background );
         
         //add a canvas only for the player
-        Canvas player_canvas = new Canvas(1024, 512 );
-        player_canvas.relocate(0, 0);
+        Canvas player_canvas = new Canvas(512, 256 );
+        player_canvas.relocate(256, 128);
         root.getChildren().add( player_canvas );
         
         Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
@@ -90,10 +91,10 @@ public class Cellar extends Map{
         for(Sprite sprite: sprites_still){
             sprite.render(background_gc);
         }
-        Rectangle2D worldBoundRight = new Rectangle2D(1024, 0, 1, 512);
-        Rectangle2D worldBoundLeft = new Rectangle2D(-5, 0, 1, 512);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 512, 1024, 1);
-        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
+        Rectangle2D worldBoundRight = new Rectangle2D(479, 0, 1, 512);
+        Rectangle2D worldBoundLeft = new Rectangle2D(-2, 0, 1, 512);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 216, 512, 1);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 512, 1);
         
         new AnimationTimer(){
             private int animationDelay = 0;
@@ -105,6 +106,8 @@ public class Cellar extends Map{
                 if (input.contains("LEFT")){
                     if(player.intersects_left(worldBoundLeft)){
                         player.setVelocity(0, 0);
+                    }else if(player.intersects_left(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -112,6 +115,8 @@ public class Cellar extends Map{
                 }
                 if(input.contains("RIGHT")){
                     if(player.intersects_right(worldBoundRight)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_right(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
@@ -121,6 +126,8 @@ public class Cellar extends Map{
                 if(input.contains("UP")){
                     if(player.intersects_top(worldBoundTop)){
                         player.setVelocity(0, 0);
+                    }else if(player.intersects_top(sprites_still.get(1))){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -128,6 +135,8 @@ public class Cellar extends Map{
                 }
                 if(input.contains("DOWN")){
                     if(player.intersects_bottom(worldBoundBottom)){
+                        player.setVelocity(0, 0);
+                    }else if(player.intersects_bottom(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,100);

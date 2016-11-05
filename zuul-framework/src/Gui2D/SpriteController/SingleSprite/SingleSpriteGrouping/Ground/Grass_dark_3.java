@@ -16,11 +16,11 @@ public class Grass_dark_3 extends Abstract_sprite{
      * Sets the sprite
      */
     public void setSprite(){
-        super.getSpriteVariable().setSpritePosX(282);
-        super.getSpriteVariable().setSpritePosY(173);
-        super.getSpriteVariable().setSprite_width(32);
-        super.getSpriteVariable().setSprite_height(32);
-        super.getSpriteVariable().setWidth(32);
-        super.getSpriteVariable().setHeight(32);
+        super.getSprite().setSpritePosX(282);
+        super.getSprite().setSpritePosY(173);
+        super.getSprite().setSprite_width(32);
+        super.getSprite().setSprite_height(32);
+        super.getSprite().setWidth(32);
+        super.getSprite().setHeight(32);
     }
 }

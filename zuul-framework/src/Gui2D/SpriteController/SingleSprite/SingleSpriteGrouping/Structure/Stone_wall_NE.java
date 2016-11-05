@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc;
+package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Structure;
 
 import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
 
@@ -11,16 +11,16 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Hay_bed  extends Abstract_sprite{
+public class Stone_wall_NE  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
     public void setSprite(){
-        super.getSprite().setSpritePosX(757);
+        super.getSprite().setSpritePosX(1027);
         super.getSprite().setSpritePosY(8);
-        super.getSprite().setSprite_width(57);
-        super.getSprite().setSprite_height(78);
-        super.getSprite().setWidth(57);
-        super.getSprite().setHeight(78);
+        super.getSprite().setSprite_width(64);
+        super.getSprite().setSprite_height(64);
+        super.getSprite().setWidth(64);
+        super.getSprite().setHeight(64);
     }
 }

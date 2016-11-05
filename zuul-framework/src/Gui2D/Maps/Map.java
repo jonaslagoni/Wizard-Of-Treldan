@@ -7,7 +7,6 @@ package Gui2D.Maps;
 
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.SpriteController;
-import Gui2D.SpriteController.SpriteGenerator;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;

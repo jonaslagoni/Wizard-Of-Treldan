@@ -9,6 +9,6 @@ package Gui2D.SpriteController.GroupSprites;
  *
  * @author jonas
  */
-public class Groupsprite_row extends GroupSprite{
+public class Groupsprite_row{
     
 }

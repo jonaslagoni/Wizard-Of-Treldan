@@ -6,7 +6,6 @@
 package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc;
 
 import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
-import Gui2D.SpriteController.SpriteGenerator;
 
 /**
  *
@@ -17,11 +16,11 @@ public class Candle  extends Abstract_sprite{
      * Sets the Candle sprite
      */
     public void setSprite(){
-        super.getSpriteVariable().setSpritePosX(828);
-        super.getSpriteVariable().setSpritePosY(10);
-        super.getSpriteVariable().setSprite_width(6);
-        super.getSpriteVariable().setSprite_height(25);
-        super.getSpriteVariable().setWidth(6);
-        super.getSpriteVariable().setHeight(25);
+        super.getSprite().setSpritePosX(828);
+        super.getSprite().setSpritePosY(10);
+        super.getSprite().setSprite_width(6);
+        super.getSprite().setSprite_height(25);
+        super.getSprite().setWidth(6);
+        super.getSprite().setHeight(25);
     }
 }

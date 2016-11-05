@@ -40,6 +40,8 @@ public class WizardOfTreldan extends Application {
         this.primaryStage.setWidth(1024);
         this.primaryStage.setHeight(512);
         
+        //set the title
+        this.primaryStage.setTitle("The Wizard of Treldan");
         //Init our world sprite controller
         world = new SpriteController();
         

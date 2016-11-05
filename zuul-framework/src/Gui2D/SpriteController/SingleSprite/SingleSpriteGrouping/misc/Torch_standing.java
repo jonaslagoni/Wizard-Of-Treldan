@@ -16,11 +16,11 @@ public class Torch_standing extends Abstract_sprite{
      * Sets the Torch standing sprite
      */
     public void setSprite(){
-        super.getSpriteVariable().setSpritePosX(877);
-        super.getSpriteVariable().setSpritePosY(16);
-        super.getSpriteVariable().setSprite_width(8);
-        super.getSpriteVariable().setSprite_height(74);
-        super.getSpriteVariable().setWidth(8);
-        super.getSpriteVariable().setHeight(74);
+        super.getSprite().setSpritePosX(877);
+        super.getSprite().setSpritePosY(16);
+        super.getSprite().setSprite_width(8);
+        super.getSprite().setSprite_height(74);
+        super.getSprite().setWidth(8);
+        super.getSprite().setHeight(74);
     }
 }

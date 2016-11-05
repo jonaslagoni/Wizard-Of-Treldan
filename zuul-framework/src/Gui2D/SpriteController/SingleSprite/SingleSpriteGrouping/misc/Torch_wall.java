@@ -16,11 +16,11 @@ public class Torch_wall extends Abstract_sprite {
      * Sets the torch wall sprite
      */
     public void setSprite(){
-        super.getSpriteVariable().setSpritePosX(846);
-        super.getSpriteVariable().setSpritePosY(8);
-        super.getSpriteVariable().setSprite_width(16);
-        super.getSpriteVariable().setSprite_height(56);
-        super.getSpriteVariable().setWidth(16);
-        super.getSpriteVariable().setHeight(56);
+        super.getSprite().setSpritePosX(846);
+        super.getSprite().setSpritePosY(8);
+        super.getSprite().setSprite_width(16);
+        super.getSprite().setSprite_height(56);
+        super.getSprite().setWidth(16);
+        super.getSprite().setHeight(56);
     }
 }

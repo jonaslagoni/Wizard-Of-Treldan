@@ -17,11 +17,11 @@ public class Water_grass_edge_NW extends Abstract_sprite{
      * Sets the sprite
      */
     public void setSprite(){
-        super.getSpriteVariable().setSpritePosX(216);
-        super.getSpriteVariable().setSpritePosY(74);
-        super.getSpriteVariable().setSprite_width(32);
-        super.getSpriteVariable().setSprite_height(32);
-        super.getSpriteVariable().setWidth(32);
-        super.getSpriteVariable().setHeight(32);
+        super.getSprite().setSpritePosX(216);
+        super.getSprite().setSpritePosY(74);
+        super.getSprite().setSprite_width(32);
+        super.getSprite().setSprite_height(32);
+        super.getSprite().setWidth(32);
+        super.getSprite().setHeight(32);
     }
 }

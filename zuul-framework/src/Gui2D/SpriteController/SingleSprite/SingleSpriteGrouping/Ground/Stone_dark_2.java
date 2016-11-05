@@ -16,11 +16,11 @@ public class Stone_dark_2 extends Abstract_sprite{
      * Sets the Candle sprite
      */
     public void setSprite(){
-        super.getSpriteVariable().setSpritePosX(145);
-        super.getSpriteVariable().setSpritePosY(8);
-        super.getSpriteVariable().setSprite_width(32);
-        super.getSpriteVariable().setSprite_height(32);
-        super.getSpriteVariable().setWidth(32);
-        super.getSpriteVariable().setHeight(32);
+        super.getSprite().setSpritePosX(145);
+        super.getSprite().setSpritePosY(8);
+        super.getSprite().setSprite_width(32);
+        super.getSprite().setSprite_height(32);
+        super.getSprite().setWidth(32);
+        super.getSprite().setHeight(32);
     }
 }

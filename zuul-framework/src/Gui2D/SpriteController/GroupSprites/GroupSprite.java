@@ -15,9 +15,10 @@ import javafx.scene.canvas.GraphicsContext;
  * @author jonas
  */
 public abstract class GroupSprite extends Sprite{
-    private List<SingleSprite> sprites = new ArrayList();
+    private List<SingleSprite> sprites;
     
     public GroupSprite(SingleSprite sprites) {
+        this.sprites = new ArrayList();
         this.sprites.add(sprites);
         super.setPosition(0, 0);
     }
