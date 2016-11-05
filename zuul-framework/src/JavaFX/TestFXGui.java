@@ -5,9 +5,9 @@
  */
 package JavaFX;
 
-import SpriteController.SpriteGenerator;
-import SpriteController.Sprite;
-import SpriteController.PlayerSprite;
+import Gui2D.SpriteController.SpriteGenerator;
+import Gui2D.SpriteController.Sprite;
+import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -46,7 +46,7 @@ public class TestFXGui extends Application {
         world = new SpriteGenerator();
         input = new ArrayList<String>();
         menu_input = new ArrayList<String>();
-        showMenuMap();
+        showMap1();
         mainStage.setWidth(1024);
         mainStage.setHeight(512);
         mainStage.show();
@@ -154,9 +154,9 @@ public class TestFXGui extends Application {
                 lastNanoTime.value = currentNanoTime;
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
                 if (input.contains("LEFT")){
-                    if(player.intersects_world_left(worldBoundLeft)){
+                    if(player.intersects_left(worldBoundLeft)){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_left(sprites_still.get(1))){
+                    }else if(player.intersects_left(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
@@ -164,9 +164,9 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
                 if(input.contains("RIGHT")){
-                    if(player.intersects_world_right(worldBoundRight)){
+                    if(player.intersects_right(worldBoundRight)){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_right(sprites_still.get(1))){
+                    }else if(player.intersects_right(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
@@ -174,9 +174,9 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
                 if(input.contains("UP")){
-                    if(player.intersects_world_top(worldBoundTop)){
+                    if(player.intersects_top(worldBoundTop)){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_top(sprites_still.get(1))){
+                    }else if(player.intersects_top(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
@@ -184,9 +184,9 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
                 if(input.contains("DOWN")){
-                    if(player.intersects_world_bottom(worldBoundBottom)){
+                    if(player.intersects_bottom(worldBoundBottom)){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_sprite_bottom(sprites_still.get(1))){
+                    }else if(player.intersects_bottom(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,100);
@@ -279,7 +279,7 @@ public class TestFXGui extends Application {
                 lastNanoTime.value = currentNanoTime;
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
                 if (input.contains("LEFT")){
-                    if(player.intersects_world_left(worldBoundLeft)){
+                    if(player.intersects_left(worldBoundLeft)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
@@ -287,7 +287,7 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
                 if(input.contains("RIGHT")){
-                    if(player.intersects_world_right(worldBoundRight)){
+                    if(player.intersects_right(worldBoundRight)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
@@ -295,7 +295,7 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
                 if(input.contains("UP")){
-                    if(player.intersects_world_top(worldBoundTop)){
+                    if(player.intersects_top(worldBoundTop)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
@@ -303,7 +303,7 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
                 if(input.contains("DOWN")){
-                    if(player.intersects_world_bottom(worldBoundBottom)){
+                    if(player.intersects_bottom(worldBoundBottom)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,100);
@@ -398,9 +398,9 @@ public class TestFXGui extends Application {
                 lastNanoTime.value = currentNanoTime;
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
                 if (input.contains("LEFT")){
-                    if(player.intersects_sprite_left(sprites_still.get(1))){
+                    if(player.intersects_left(sprites_still.get(1))){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_world_left(worldBoundLeft)){
+                    }else if(player.intersects_left(worldBoundLeft)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
@@ -408,9 +408,9 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
                 if(input.contains("RIGHT")){
-                    if(player.intersects_sprite_right(sprites_still.get(1))){
+                    if(player.intersects_right(sprites_still.get(1))){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_world_right(worldBoundRight)){
+                    }else if(player.intersects_right(worldBoundRight)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
@@ -418,9 +418,9 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
                 if(input.contains("UP")){
-                    if(player.intersects_sprite_top(sprites_still.get(1))){
+                    if(player.intersects_top(sprites_still.get(1))){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_world_top(worldBoundTop)){
+                    }else if(player.intersects_top(worldBoundTop)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
@@ -428,9 +428,9 @@ public class TestFXGui extends Application {
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
                 if(input.contains("DOWN")){
-                    if(player.intersects_sprite_bottom(sprites_still.get(1))){
+                    if(player.intersects_bottom(sprites_still.get(1))){
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_world_bottom(worldBoundBottom)){
+                    }else if(player.intersects_bottom(worldBoundBottom)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,100);
