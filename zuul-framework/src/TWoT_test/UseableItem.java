@@ -47,7 +47,7 @@ public class UseableItem extends Item{
     }
     
     public enum Usables {
-        FOOD,MAGIC_ITEM,ITEM_USE;
+        FOOD,MAGIC_ITEM,ITEM_USE,RARE;
     }
     
     public Usables getUsables() {
