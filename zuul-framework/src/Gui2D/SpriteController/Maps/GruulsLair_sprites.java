@@ -47,9 +47,9 @@ public class GruulsLair_sprites{
         chest.setPosition(256, 128);
         gruulslair_background_sprites.add(chest);
         
-        Sprite haystack = world.getMisc_sprites().getHay_bed();
-        haystack.setPosition(366, 234);
-        gruulslair_background_sprites.add(haystack);
+        Sprite bmushroom = world.getMisc_sprites().getBrownMushroom();
+        bmushroom.setPosition(544, 222);
+        gruulslair_background_sprites.add(bmushroom);
     }
 
     /**

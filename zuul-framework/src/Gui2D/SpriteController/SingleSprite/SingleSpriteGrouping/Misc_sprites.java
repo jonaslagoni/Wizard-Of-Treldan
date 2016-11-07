@@ -23,6 +23,10 @@ public class Misc_sprites {
     public SingleSprite getChestClosed(){
         return new Chest_closed().getSprite();
     }
+    
+    public SingleSprite getBrownMushroom(){
+        return new Brown_mushroom().getSprite();
+    }
 
     /**
      * @return the door_metal
