@@ -44,9 +44,6 @@ public class Unicorn_sprites{
         random.setPosition(0,0);
         unicorn.add(random);
         
-        List<SingleSprite> wall = new ArrayList();
-        wall.add(world.getStructure_sprites().getStone_wall_N());
-        unicorn.add((Sprite) wall);
     }
 
     public List<Sprite> getUnicorn(){
