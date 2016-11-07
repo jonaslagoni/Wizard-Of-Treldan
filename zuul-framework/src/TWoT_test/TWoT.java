@@ -549,6 +549,90 @@ public class TWoT implements Serializable{
         }
     }
     
+    public List<String> useItem(Command command){
+        List<String> use = new ArrayList();
+        boolean check = false;
+        Item usedItem = null;
+        for (Item i : getInventoryItems()) {
+            if (i instanceof UseableItem) {
+                if (i.getItemName().equals(command.getSecondWord())) {
+
+                    int itemID = i.getItemId();  
+
+                    switch(itemID){
+                        case 55501: //cheese sandwhich
+                            if(getPlayerHealth() != 100){
+                                use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
+                                playerRegenHealth(((UseableItem) i).getHealthRegen());
+
+                            }else{
+                                use.add("You're already at full health");
+                            }
+                            break;
+                            
+                        case 55502: //cinnamon roll
+                            if(getPlayerHealth() != 100){
+                                use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
+                                playerRegenHealth(((UseableItem) i).getHealthRegen());
+                            }else{
+                                use.add("You're already at full health");
+                            }
+                            break;
+                            
+                        case 55503: //old rusty coin
+                            use.add("Old dusty coin, not good for anything except highscore");
+                            break;
+                                
+                        case 55504: //mushroom
+                            if(currentRoom.equals(roomCave)){
+                                currentRoom.removeInterior("troll1");
+                                currentRoom.removeInterior("troll2");
+                                currentRoom.removeInterior("troll3");
+                                use.add("The stinking mushroom scares off the trolls and they flee out the cave");
+
+                            } else {
+                                use.add("Can't use that here");
+                            }
+
+                        case 55505: //smooth ruby
+                            use.add("A smooth looking ruby");
+                            break;
+                            
+                        case 55506: //mysterius ring
+                            use.add("You examine the ring, and suddenly a bright light shines out, and you ");
+                            currentRoom = roomVillage;
+                            break;
+                            
+                        case 55507: //health potion
+                            if(getPlayerHealth() != 100){
+                                use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
+                                playerRegenHealth(((UseableItem) i).getHealthRegen());
+                            }else{
+                                use.add("You're already at full health");
+                            }
+                            break;
+                            
+                        default:
+
+                    }
+
+                    usedItem = i;
+                    check = true;
+                }
+            }
+        }
+        if(usedItem != null){
+            removeItemFromInventory(usedItem);
+        }
+        if(!check){
+            use.add("You carry no item with that name");
+        }
+    
+    return use;
+}
+    
+    
+    
     
     
     /**
