@@ -19,15 +19,35 @@ import java.util.List;
  */
 public class House1_sprites{
     private SpriteController world;
-    
+    private List<Sprite> house;
     
     public House1_sprites(SpriteController world){
         this.world = world;
+       house = new ArrayList();
+    }
+    public void setHouse1_background_SingleSprites(){
+        house.add(world.getMisc_sprites().getHay_bed());
+        Sprite door = world.getMisc_sprites().getDoor_metal();
+        door.setPosition(343, 89);
+        house.add(door);
+        
+        List<Sprite> grrr = new ArrayList();
+        house.add(world.getStructure_sprites().getStone_wall_N());
+        
+        
+       List<SingleSprite> woof = new ArrayList();
+       woof.add(world.getGround_sprite().getGrass_dark_1());
+       woof.add(world.getGround_sprite().getGrass_dark_2());
+       Sprite random = new Groupsprite_random(woof);
+       random.setSize(1000, 400);
+       random.setPosition(260, 70);
+       house.add(random);
     }
     
-    public void setCellar_background_SingleSprites(){
-        
+        public List getHouse(){
+        return house;
     }
+            
 
     /**
      * @return the cellar_background_sprites
