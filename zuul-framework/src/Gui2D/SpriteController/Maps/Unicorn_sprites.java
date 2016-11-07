@@ -19,18 +19,38 @@ import java.util.List;
  */
 public class Unicorn_sprites{
     private SpriteController world;
+    private List<Sprite> unicorn;
     
     
     public Unicorn_sprites(SpriteController world){
         this.world = world;
+        unicorn = new ArrayList();
     }
     
-    public void setCellar_background_SingleSprites(){
+    public void setUnicorn(){
+        unicorn.add(world.getMisc_sprites().getHay_bed());
         
+        //set single sprite position
+        Sprite door = world.getMisc_sprites().getDoor_metal();
+        door.setPosition(100, 100);
+        unicorn.add(door);
+        
+        //set randomly generated group of sprites
+        List<SingleSprite> ground = new ArrayList();
+        ground.add(world.getGround_sprite().getGrass_light_1());
+        ground.add(world.getGround_sprite().getGrass_flower_1());
+        Sprite random = new Groupsprite_random(ground);
+        random.setSize(1024, 400);
+        random.setPosition(0,0);
+        unicorn.add(random);
+        
+        List<SingleSprite> wall = new ArrayList();
+        wall.add(world.getStructure_sprites().getStone_wall_N());
+        unicorn.add((Sprite) wall);
     }
 
-    /**
-     * @return the cellar_background_sprites
-     */
-    
+    public List<Sprite> getUnicorn(){
+       return unicorn; 
+    }
+
 }

@@ -22,7 +22,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class Village extends Map{
+public class Forest extends Map{
     
     // Arraylist for player movement
     private ArrayList<String> input;
@@ -35,7 +35,7 @@ public class Village extends Map{
      * Constructor for Cellar
      * @param world 
      */
-    public Village(SpriteController world){
+    public Forest(SpriteController world){
         //init our super constructor
         super();
         

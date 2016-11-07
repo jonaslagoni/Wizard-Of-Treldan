@@ -8,6 +8,7 @@ package Gui2D;
 import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
+import Gui2D.Maps.Unicorn;
 import Gui2D.SpriteController.SpriteController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,8 +21,9 @@ import javafx.stage.StageStyle;
 public class WizardOfTreldan extends Application {
     //set all our maps
     private static Map cellar;
-    private static Map village;
+    private static Map gruulslair;
     private static Map menu;
+    private static Map unicorn;
     
     //our global world generator
     private SpriteController world;
@@ -49,9 +51,10 @@ public class WizardOfTreldan extends Application {
         //Init all world maps
         cellar = new Cellar(world);
         menu = new Menu(world);
+        unicorn = new Unicorn(world);
         
         //set our first scene
-        primaryStage.setScene(menu.getScene());
+        primaryStage.setScene(unicorn.getScene());
         primaryStage.show();
     }
     
@@ -75,5 +78,10 @@ public class WizardOfTreldan extends Application {
      */
     public static void setCellarScene(){
         primaryStage.setScene(cellar.getScene());
+    }
+    
+    public static void setUnicornScene(){
+        
+        primaryStage.setScene(unicorn.getScene());
     }
 }

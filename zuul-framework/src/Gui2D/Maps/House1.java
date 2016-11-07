@@ -5,12 +5,14 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Unicorn_sprites;
+import Gui2D.SpriteController.Maps.Cellar_sprites;
+import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
-import static java.lang.System.gc;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.AnimationTimer;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,7 +22,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class Unicorn extends Map{
+public class House1 extends Map{
     
     // Arraylist for player movement
     private ArrayList<String> input;
@@ -28,12 +30,12 @@ public class Unicorn extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private Unicorn_sprites s;
+    private Cellar_sprites s;
     /**
      * Constructor for Cellar
      * @param world 
      */
-    public Unicorn(SpriteController world){
+    public House1(SpriteController world){
         //init our super constructor
         super();
         
@@ -48,8 +50,8 @@ public class Unicorn extends Map{
         //set the world constructor
         super.setWorld(world);
         
-        s = new Unicorn_sprites(world);
-        s.setUnicorn();
+        s = new Cellar_sprites(world);
+        s.setCellar_background_SingleSprites();
     }
     
     public Scene getScene(){
@@ -57,18 +59,6 @@ public class Unicorn extends Map{
         Scene theScene = new Scene( root );
         theScene.setFill(Color.rgb(83, 83, 83));
         
-        Canvas canvas = new Canvas(1024,512);
-        root.getChildren().add(canvas);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        
-        List<Sprite> unicornSprites = s.getUnicorn();
-        
-        
-        for(Sprite sprite : unicornSprites){
-            sprite.render(gc);
-        }
-        
-    
         return theScene;
     }
 }
