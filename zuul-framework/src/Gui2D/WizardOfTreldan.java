@@ -7,7 +7,11 @@ package Gui2D;
 
 import Gui2D.Maps.Cellar;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Gui2D.Maps.House2;
+=======
+import Gui2D.Maps.Forest;
+>>>>>>> origin/master
 =======
 import Gui2D.Maps.GruulsLair;
 >>>>>>> origin/master
@@ -27,7 +31,11 @@ public class WizardOfTreldan extends Application {
     private static Map cellar;
     private static Map gruulslair;
     private static Map menu;
+<<<<<<< HEAD
     private static Map house2;
+=======
+    private static Map forest;
+>>>>>>> origin/master
     
     //our global world generator
     private SpriteController world;
@@ -56,10 +64,17 @@ public class WizardOfTreldan extends Application {
         cellar = new Cellar(world);
         menu = new Menu(world);
 <<<<<<< HEAD
+<<<<<<< HEAD
         house2 = new House2(world);
         
         //set our first scene
         primaryStage.setScene(house2.getScene());
+=======
+        forest = new Forest(world);
+        
+        //set our first scene
+        primaryStage.setScene(forest.getScene());
+>>>>>>> origin/master
 =======
         gruulslair = new GruulsLair(world);
         
@@ -90,6 +105,13 @@ public class WizardOfTreldan extends Application {
     public static void setCellarScene(){
         primaryStage.setScene(cellar.getScene());
     }
+<<<<<<< HEAD
+    /**
+     * 
+     */
+    public static void setForestScene() {
+        primaryStage.setScene(forest.getScene());
+=======
     
 <<<<<<< HEAD
     public static void setHouse2Scene(){

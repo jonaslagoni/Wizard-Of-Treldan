@@ -6,13 +6,11 @@
 package Gui2D.Maps;
 
 import Gui2D.SpriteController.Maps.Cellar_sprites;
-import Gui2D.SpriteController.SingleSprite.PlayerSprite;
+import Gui2D.SpriteController.Maps.Forest_sprites;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.AnimationTimer;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -30,7 +28,7 @@ public class Forest extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private Cellar_sprites s;
+    private Forest_sprites s;
     /**
      * Constructor for Cellar
      * @param world 
@@ -50,14 +48,22 @@ public class Forest extends Map{
         //set the world constructor
         super.setWorld(world);
         
-        s = new Cellar_sprites(world);
-        s.setCellar_background_SingleSprites();
+        s = new Forest_sprites(world);
+        s.setForest_background_SingleSprites();
     }
     
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );
         theScene.setFill(Color.rgb(83, 83, 83));
+        Canvas background = new Canvas(1024, 512);
+        root.getChildren().add(background);
+        GraphicsContext backgroundContext = background.getGraphicsContext2D();
+        List<Sprite> spriteList = s.getSpriteList();
+        
+        for(Sprite s : spriteList) {
+            s.render(backgroundContext);
+        }
         
         return theScene;
     }

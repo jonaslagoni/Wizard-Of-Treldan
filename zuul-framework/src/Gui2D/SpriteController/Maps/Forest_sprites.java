@@ -20,13 +20,46 @@ import java.util.List;
 public class Forest_sprites{
     private SpriteController world;
     
+    private List<Sprite> spriteList;
     
     public Forest_sprites(SpriteController world){
         this.world = world;
+        this.spriteList = new ArrayList();
     }
     
-    public void setCellar_background_SingleSprites(){
+    public void setForest_background_SingleSprites(){
+        spriteList.add(world.getMisc_sprites().getHay_bed());
         
+        Sprite door = world.getMisc_sprites().getDoor_metal();
+        door.setPosition(100, 200);
+        spriteList.add(door);
+        
+        Sprite nWall = world.getStructure_sprites().getStone_wall_N();
+        nWall.setPosition(500, 250);
+        spriteList.add(nWall);
+        
+        Sprite eWall = world.getStructure_sprites().getStone_wall_E();
+        eWall.setPosition(530, 350);
+        spriteList.add(eWall);
+        
+        Sprite neWall = world.getStructure_sprites().getStone_wall_NE();
+        neWall.setPosition(520, 200);
+        spriteList.add(neWall);
+        
+        List<SingleSprite> singleSpriteList = new ArrayList();
+        singleSpriteList.add(world.getGround_sprite().getGrass_dark_1());
+        singleSpriteList.add(world.getGround_sprite().getGrass_flower_1());
+        singleSpriteList.add(world.getGround_sprite().getStone_light_1());
+        
+        Sprite random = new Groupsprite_random(singleSpriteList);
+        
+        random.setSize(200, 100);
+        random.setPosition(250, 125);
+        spriteList.add(random);
     }
 
+    public List<Sprite> getSpriteList() {
+        return spriteList;
+    }
+    
 }
