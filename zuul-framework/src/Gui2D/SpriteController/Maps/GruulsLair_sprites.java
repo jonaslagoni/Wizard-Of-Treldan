@@ -21,16 +21,40 @@ public class GruulsLair_sprites{
     private SpriteController world;
     
     
+    private List<Sprite> gruulslair_background_sprites;
+    
     public GruulsLair_sprites(SpriteController world){
         this.world = world;
+        this.gruulslair_background_sprites = new ArrayList();
     }
     
-    public void setCellar_background_SingleSprites(){
+    public void setGruulsLair_background_SingleSprites(){
         
+        List<SingleSprite> singleSprites = new ArrayList();
+        singleSprites.add(world.getGround_sprite().getStone_dark_1());
+        singleSprites.add(world.getGround_sprite().getStone_dark_2());
+        
+        Sprite random = new Groupsprite_random(singleSprites);
+        random.setSize(512,256);
+        random.setPosition(128,256);
+        gruulslair_background_sprites.add(random);
+        
+        Sprite door = world.getMisc_sprites().getDoor_metal();
+        door.setPosition(100, 24);
+        gruulslair_background_sprites.add(door);
+        
+        Sprite haystack = world.getMisc_sprites().getHay_bed();
+        haystack.setPosition(366, 234);
+        gruulslair_background_sprites.add(haystack);
     }
 
     /**
-     * @return the cellar_background_sprites
+     * @return the gruulslair_background_sprites
      */
+    public List<Sprite> getGruulslair_background_sprites() {
+        return gruulslair_background_sprites;
+    }
+
+   
     
 }
