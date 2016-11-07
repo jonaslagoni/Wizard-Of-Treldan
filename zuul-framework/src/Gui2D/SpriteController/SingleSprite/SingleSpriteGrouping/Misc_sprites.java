@@ -19,6 +19,10 @@ public class Misc_sprites {
     public SingleSprite getCandle() {
         return new Candle().getSprite();
     }
+    
+    public SingleSprite getChestClosed(){
+        return new Chest_closed().getSprite();
+    }
 
     /**
      * @return the door_metal

@@ -43,6 +43,10 @@ public class GruulsLair_sprites{
         door.setPosition(100, 24);
         gruulslair_background_sprites.add(door);
         
+        Sprite chest = world.getMisc_sprites().getChestClosed();
+        chest.setPosition(256, 128);
+        gruulslair_background_sprites.add(chest);
+        
         Sprite haystack = world.getMisc_sprites().getHay_bed();
         haystack.setPosition(366, 234);
         gruulslair_background_sprites.add(haystack);
