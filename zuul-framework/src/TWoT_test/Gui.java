@@ -139,10 +139,6 @@ public class Gui{
             if(!wantToQuit){
                 System.out.println("Quit what?");
             }
-        }else if (commandWord == CommandWord.INSPECT){
-            for(String s: twot.inspectThing(command)){
-                System.out.println(s);
-            }
         }else if (commandWord == CommandWord.INVENTORY){
             List<Item> questItems = new ArrayList();
             List<Item> usableItems = new ArrayList();

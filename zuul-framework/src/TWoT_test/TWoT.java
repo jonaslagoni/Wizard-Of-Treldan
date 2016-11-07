@@ -290,6 +290,8 @@ public class TWoT implements Serializable{
         }
         // Create an object of klass Room and return if the exit is correct.
         Interior interior = currentRoom.getMapInterior(command.getSecondWord());
+        List<String> inspectActions = new ArrayList();
+        
         // If the nextroom is null it means that there was no next room in that direction.
         if(interior == null) {
             description.add("Place doesn't exist.");
@@ -380,20 +382,9 @@ public class TWoT implements Serializable{
             currentRoom = ((Exit)interior).getNewRoom();
             description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
             return description;
-        }else{
-            description.add("Nothing here.");
-            return description;
         }
-    }
-    
-    public List<String> inspectThing(Command command){
-        List<String> inspectActions = new ArrayList();
-        if(!command.hasSecondWord()){
-            inspectActions.add("Inspect what?");
-            return inspectActions;
-        }
-        Interior interior = currentRoom.getMapInterior(command.getSecondWord());
-        if(interior == null){
+        
+        else if(interior == null){
             inspectActions.add("This interior doesn't exist");
             return inspectActions;
         }
@@ -523,6 +514,16 @@ public class TWoT implements Serializable{
             inspectActions.add("Use \"go\" to go to an exit");
             return inspectActions;
         }
+        
+    }
+    
+    public List<String> inspectThing(Command command){
+        List<String> inspectActions = new ArrayList();
+        if(!command.hasSecondWord()){
+            inspectActions.add("Inspect what?");
+            return inspectActions;
+        }
+        return inspectActions;
     }
     
     
