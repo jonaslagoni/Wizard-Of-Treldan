@@ -139,10 +139,6 @@ public class Gui{
             if(!wantToQuit){
                 System.out.println("Quit what?");
             }
-        }else if (commandWord == CommandWord.INSPECT){
-            for(String s: twot.inspectThing(command)){
-                System.out.println(s);
-            }
         }else if (commandWord == CommandWord.INVENTORY){
             List<Item> questItems = new ArrayList();
             List<Item> usableItems = new ArrayList();
@@ -201,13 +197,7 @@ public class Gui{
             }else{
                 System.out.println("No equipped items..");
             }
-        }else if (commandWord == CommandWord.USE) {
-           for(String use: twot.inspectThing(command)){
-                System.out.println(use);
-            }
-        }
-
-    
+        }    
         return wantToQuit;
     }
 
@@ -244,11 +234,12 @@ public class Gui{
                 callMenu();
                 break;
             case "how to play":
-                System.out.println("HOWkfoiergoreg");
+                System.out.println("\nYour command words are: help, go, use, player, inventory, quit");
+                System.out.println("");
                 callMenu();
                 break;
             case "exit game":
-                System.out.println("Thank you for atleast consider playing The Wizard of Treldan.");
+                System.out.println("Thank you for atleast consider playing The Wizard of Treldan.\n");
                 System.exit(1);
                 break;
         }
