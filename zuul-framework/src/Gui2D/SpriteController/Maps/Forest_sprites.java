@@ -56,6 +56,10 @@ public class Forest_sprites{
         random.setSize(200, 100);
         random.setPosition(250, 125);
         spriteList.add(random);
+        
+        Sprite bush = world.getMisc_sprites().getBush();
+        bush.setPosition(500, 100);
+        spriteList.add(bush);
     }
 
     public List<Sprite> getSpriteList() {
