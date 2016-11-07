@@ -33,14 +33,14 @@ public class House2_sprites{
         kappaDonger.add(door);
         
         List<SingleSprite> lol_ol = new ArrayList();
+        lol_ol.add(world.getStructure_sprites().getStone_wall_NW());
+        lol_ol.add(world.getStructure_sprites().getStone_wall_N());
+        lol_ol.add(world.getStructure_sprites().getStone_wall_NE());
         lol_ol.add(world.getStructure_sprites().getStone_wall_E());
         lol_ol.add(world.getStructure_sprites().getStone_wall_SE());
         lol_ol.add(world.getStructure_sprites().getStone_wall_S());
         lol_ol.add(world.getStructure_sprites().getStone_wall_SW());
         lol_ol.add(world.getStructure_sprites().getStone_wall_W());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_NW());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_N());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_NE());
         Sprite calculated = new Groupsprite_circle(lol_ol);
         calculated.setSize(50, 50);
         calculated.setPosition(400, 200);
