@@ -20,7 +20,7 @@ import javafx.stage.StageStyle;
 public class WizardOfTreldan extends Application {
     //set all our maps
     private static Map cellar;
-    private static Map village;
+    private static Map gruulslair;
     private static Map menu;
     
     //our global world generator
