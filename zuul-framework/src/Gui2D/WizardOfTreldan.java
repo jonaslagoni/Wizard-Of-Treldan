@@ -6,7 +6,17 @@
 package Gui2D;
 
 import Gui2D.Maps.Cellar;
+<<<<<<< HEAD
 import Gui2D.Maps.Forest;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+import Gui2D.Maps.House2;
+=======
+import Gui2D.Maps.Forest;
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
 import Gui2D.Maps.GruulsLair;
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
@@ -24,7 +34,11 @@ public class WizardOfTreldan extends Application {
     private static Map cellar;
     private static Map gruulslair;
     private static Map menu;
+<<<<<<< HEAD
+    private static Map house2;
+=======
     private static Map forest;
+>>>>>>> origin/master
     
     //our global world generator
     private SpriteController world;
@@ -52,10 +66,25 @@ public class WizardOfTreldan extends Application {
         //Init all world maps
         cellar = new Cellar(world);
         menu = new Menu(world);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        house2 = new House2(world);
+        
+        //set our first scene
+        primaryStage.setScene(house2.getScene());
+=======
+>>>>>>> origin/master
         forest = new Forest(world);
         
         //set our first scene
         primaryStage.setScene(forest.getScene());
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
         gruulslair = new GruulsLair(world);
         
         //set our first scene
@@ -89,10 +118,19 @@ public class WizardOfTreldan extends Application {
      */
     public static void setForestScene() {
         primaryStage.setScene(forest.getScene());
+<<<<<<< HEAD
     }
     /**
      * 
      */
+=======
+=======
+    
+<<<<<<< HEAD
+    public static void setHouse2Scene(){
+        primaryStage.setScene(house2.getScene());
+=======
+>>>>>>> origin/master
     public static void setGruulsLairScene(){
         primaryStage.setScene(gruulslair.getScene());
     }

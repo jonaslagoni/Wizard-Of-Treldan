@@ -5,14 +5,11 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Cellar_sprites;
-import Gui2D.SpriteController.SingleSprite.PlayerSprite;
+import Gui2D.SpriteController.Maps.House2_sprites;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.AnimationTimer;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -30,7 +27,7 @@ public class House2 extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private Cellar_sprites s;
+    private House2_sprites s;
     /**
      * Constructor for Cellar
      * @param world 
@@ -50,8 +47,8 @@ public class House2 extends Map{
         //set the world constructor
         super.setWorld(world);
         
-        s = new Cellar_sprites(world);
-        s.setCellar_background_SingleSprites();
+        s = new House2_sprites(world);
+        s.setHouse2_background_SingleSprites();
     }
     
     public Scene getScene(){
@@ -59,6 +56,15 @@ public class House2 extends Map{
         Scene theScene = new Scene( root );
         theScene.setFill(Color.rgb(83, 83, 83));
         
+        Canvas canvas = new Canvas(1024, 512);
+        root.getChildren().add(canvas);
+        GraphicsContext grphcs = canvas.getGraphicsContext2D();
+        
+        List<Sprite> lista = s.getKappaDonger();
+        for(Sprite sprite : lista){
+            sprite.render(grphcs);
+        }
+            
         return theScene;
     }
 }

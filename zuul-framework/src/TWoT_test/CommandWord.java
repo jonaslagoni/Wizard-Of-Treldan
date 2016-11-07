@@ -5,7 +5,7 @@ package TWoT_test;
 
  public enum CommandWord{
     // Set the enums that the CommandWord can be.
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), INVENTORY("inventory"), PLAYER("player"), USE("use");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), INSPECT("inspect"), INVENTORY("inventory"), PLAYER("player"), USE("use");
     
     // Init the commandString of type String
     private String commandString;
