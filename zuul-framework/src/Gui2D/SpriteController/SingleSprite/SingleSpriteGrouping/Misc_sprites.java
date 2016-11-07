@@ -24,6 +24,10 @@ public class Misc_sprites {
         return new Chest_closed().getSprite();
     }
     
+    public SingleSprite getCaveExit(){
+        return new Cave_exit().getSprite();
+    }
+    
     public SingleSprite getBrownMushroom(){
         return new Brown_mushroom().getSprite();
     }

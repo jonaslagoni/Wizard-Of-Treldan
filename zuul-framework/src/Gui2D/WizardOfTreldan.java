@@ -67,7 +67,7 @@ public class WizardOfTreldan extends Application {
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
         
-        primaryStage.setScene(menu.getScene());
+        primaryStage.setScene(gruulslair.getScene());
         primaryStage.show();
     }
     

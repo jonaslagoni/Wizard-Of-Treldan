@@ -44,12 +44,16 @@ public class GruulsLair_sprites{
         gruulslair_background_sprites.add(door);
         
         Sprite chest = world.getMisc_sprites().getChestClosed();
-        chest.setPosition(256, 128);
+        chest.setPosition(544, 128);
         gruulslair_background_sprites.add(chest);
         
         Sprite bmushroom = world.getMisc_sprites().getBrownMushroom();
         bmushroom.setPosition(544, 222);
         gruulslair_background_sprites.add(bmushroom);
+        
+        Sprite cave_exit = world.getMisc_sprites().getCaveExit();
+        cave_exit.setPosition(288, 87);
+        gruulslair_background_sprites.add(cave_exit);
     }
 
     /**
