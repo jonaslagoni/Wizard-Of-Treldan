@@ -32,29 +32,7 @@ public class TWoT implements Serializable{
         createRooms();
         player = new Player("StartName", 1.0, 1.0, 100, new Inventory());
         startTime = (long)(System.currentTimeMillis() / 1000L);
-    }
-    public void testMatch(){
-        player = new Player("Test player1", 2.0, 1.0, 100, new Inventory());
-        Monster monster = new Monster("Test monster1", 1.0, 1.0, 100, 100, "Test monster");
-        Combat c = new Combat(player, monster);
-        List<Fight> fight = c.AFight();
-        for(Fight f: fight){
-            System.out.println("Who won: " + f.winner());
-            System.out.println("Player rolled: " + f.getPlayerRoll());
-            System.out.println("Monster rolled: " + f.getMonsterRoll());
-            System.out.println(f.winner() + " took " + f.getDamage() + " damage.");
-            if(f.isDone()){
-                if(f.getMonster().getHealth() <= 0){
-                    System.out.println("\nPlayer won!");
-                    System.out.println("Monster dropped: " + f.getMonster().getGoldDrop() + " gold.");
-                }else{
-                    System.out.println("Monster won!");
-                }
-            }
-            System.out.println();
-        }
-    }
-    
+    }   
     
     /**
      * Creates all the rooms in the game.
@@ -67,11 +45,10 @@ public class TWoT implements Serializable{
         roomVillage = new Room("Village of Treldan", "\n\n***Village of Treldan*** \nIt’s dark outside. You seem to be familiar with this part of the village. "
                 + "\nYou still wonder why you were locked up in that cell, but your thoughts are quickly interrupted "
                 + "by a sobbing by the gate.\nA guard seems to be crying, and something doesn’t seem right in the "
-                + "village. All houses seem to be empty and the doors are wide open.\nYou gasp as you see several "
-                + "people lying dead in the side of the road.\nYou enter the town of Treldan.");
+                + "village. All houses seem to be empty through the windows.\nYou gasp as you see several "
+                + "people lying dead in the side of the road.");
         roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \nThe house you venture into is dark – very dark. It seems like "
-                + "there is a man in a corner of the room close you and a woman in the other end of the room."
-                + "\nYou enter the house.");
+                + "there is a man in a corner close to you and a woman in the other end of the room.");
         roomHouse2 = new Room("House of Riches", "\n\n***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
                 + "candle on the table.\nThere’s a blood-stained bed in the corner of the room. A bunch of sacks "
                 + "are placed up against a poorly build wardrobe.\nThe other corner is not lit up by the candle and "

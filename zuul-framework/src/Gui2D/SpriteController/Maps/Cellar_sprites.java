@@ -20,7 +20,7 @@ import java.util.List;
 public class Cellar_sprites{
     //list of grass sprites this map uses
     private List<SingleSprite> celler_grass_singlesprites;
-    private List<SingleSprite> celler_stone_walls;
+    private List<SingleSprite> cellar_stone_walls;
     private SpriteController world;
     
     //contains all the sprites kept in the background
@@ -28,7 +28,7 @@ public class Cellar_sprites{
     
     public Cellar_sprites(SpriteController world){
         cellar_background_sprites = new ArrayList();
-        celler_stone_walls = new ArrayList();
+        cellar_stone_walls = new ArrayList();
         celler_grass_singlesprites = new ArrayList();
         this.world = world;
     }
@@ -50,15 +50,15 @@ public class Cellar_sprites{
             cellar_background_sprites.add(hay_bed);
             
             
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_NW());
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_N());
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_NE());
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_E());
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_SE());
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_S());
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_SW());
-            celler_stone_walls.add(world.getStructure_sprites().getStone_wall_W());
-            Sprite stone_walls = new Groupsprite_circle(celler_stone_walls);
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_NW());
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_N());
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_NE());
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_E());
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_SE());
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_S());
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_SW());
+            cellar_stone_walls.add(world.getStructure_sprites().getStone_wall_W());
+            Sprite stone_walls = new Groupsprite_circle(cellar_stone_walls);
             stone_walls.setPosition(0, 0);
             stone_walls.setSize(512, 256);
             cellar_background_sprites.add(stone_walls);
