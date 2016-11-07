@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+
 /**
  *
  * @author jonas
@@ -55,6 +56,10 @@ public class Cellar extends Map{
         cellar_sprites.setCellar_background_SingleSprites();
     }
     
+    /**
+     * Returns the scene for the map Cellar
+     * @return 
+     */
     public Scene getScene(){
         //add our group
         Group root = new Group();
@@ -114,10 +119,10 @@ public class Cellar extends Map{
         Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 512, 1);
         
         new AnimationTimer(){
-            private int animationDelay = 0;
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
             //what to do each cycle
+            @Override
             public void handle(long currentNanoTime){
                 
                 //get how many sec have passed
