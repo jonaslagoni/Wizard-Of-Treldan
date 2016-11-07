@@ -197,7 +197,11 @@ public class Gui{
             }else{
                 System.out.println("No equipped items..");
             }
-        }    
+        }else if (commandWord == CommandWord.USE) {
+           for(String use: twot.useItem(command)){
+                System.out.println(use);
+            }
+        }
         return wantToQuit;
     }
 
