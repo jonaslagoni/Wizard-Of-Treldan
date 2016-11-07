@@ -13,14 +13,14 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  */
 public class Bush  extends Abstract_sprite{
     /**
-     * Sets the Candle sprite
+     * Sets the Bush sprite
      */
     public void setSprite(){
-        super.getSprite().setSpritePosX(828);
+        super.getSprite().setSpritePosX(1096);
         super.getSprite().setSpritePosY(10);
-        super.getSprite().setSprite_width(6);
-        super.getSprite().setSprite_height(25);
-        super.getSprite().setWidth(6);
-        super.getSprite().setHeight(25);
+        super.getSprite().setSprite_width(94);
+        super.getSprite().setSprite_height(80);
+        super.getSprite().setWidth(94);
+        super.getSprite().setHeight(80);
     }
 }
