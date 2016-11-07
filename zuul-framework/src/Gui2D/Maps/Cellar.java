@@ -31,7 +31,9 @@ public class Cellar extends Map{
     // ArrayList for menu key strokes.
     private final ArrayList<String> menu_input;
     
+    // Contains all the sprites to this map
     private final Cellar_sprites cellar_sprites;
+    
     /**
      * Constructor for Cellar
      * @param world 
@@ -147,6 +149,7 @@ public class Cellar extends Map{
                         this.stop();
                         //set the menu as a scene instead.
                         WizardOfTreldan.setMenuScene();
+                    //if no collission
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -174,6 +177,7 @@ public class Cellar extends Map{
                         this.stop();
                         //set the menu as a scene instead.
                         WizardOfTreldan.setMenuScene();
+                    //if no collission
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -199,6 +203,7 @@ public class Cellar extends Map{
                         this.stop();
                         //set the menu as a scene instead.
                         WizardOfTreldan.setMenuScene();
+                    //if no collission
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -212,10 +217,12 @@ public class Cellar extends Map{
                     if(player.intersects_bottom(worldBoundBottom)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                        
                     //check if the player walks into the bed
                     }else if(player.intersects_bottom(sprites_still.get(1))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                        
                     //check if the player walks into the door
                     }else if(player.intersects_left(sprites_still.get(4))){
                         //remove the input
@@ -226,6 +233,7 @@ public class Cellar extends Map{
                         this.stop();
                         //set the menu as a scene instead.
                         WizardOfTreldan.setMenuScene();
+                    //if no collission
                     }else{
                         player.setVelocity(0,100);
                     }
