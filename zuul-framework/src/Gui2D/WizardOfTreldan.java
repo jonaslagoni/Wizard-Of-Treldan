@@ -6,11 +6,8 @@
 package Gui2D;
 
 import Gui2D.Maps.Cellar;
-<<<<<<< HEAD
 import Gui2D.Maps.Forest;
-=======
 import Gui2D.Maps.GruulsLair;
->>>>>>> origin/master
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
 import Gui2D.SpriteController.SpriteController;
@@ -55,17 +52,14 @@ public class WizardOfTreldan extends Application {
         //Init all world maps
         cellar = new Cellar(world);
         menu = new Menu(world);
-<<<<<<< HEAD
         forest = new Forest(world);
         
         //set our first scene
         primaryStage.setScene(forest.getScene());
-=======
         gruulslair = new GruulsLair(world);
         
         //set our first scene
         primaryStage.setScene(gruulslair.getScene());
->>>>>>> origin/master
         primaryStage.show();
     }
     
@@ -90,16 +84,16 @@ public class WizardOfTreldan extends Application {
     public static void setCellarScene(){
         primaryStage.setScene(cellar.getScene());
     }
-<<<<<<< HEAD
     /**
      * 
      */
     public static void setForestScene() {
         primaryStage.setScene(forest.getScene());
-=======
-    
+    }
+    /**
+     * 
+     */
     public static void setGruulsLairScene(){
         primaryStage.setScene(gruulslair.getScene());
->>>>>>> origin/master
     }
 }
