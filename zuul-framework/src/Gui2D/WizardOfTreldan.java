@@ -60,14 +60,11 @@ public class WizardOfTreldan extends Application {
         house2 = new House2(world);
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
-        
-        //set our first scene
-        primaryStage.setScene(menu.getScene());
         unicorn = new Unicorn(world);
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
         
-        primaryStage.setScene(gruulslair.getScene());
+        primaryStage.setScene(menu.getScene());
         primaryStage.show();
     }
     
@@ -93,21 +90,30 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(cellar.getScene());
     }
 
-    
+    /**
+     *  Force the game to load UnicornScene
+     */
     public static void setUnicornScene(){
         primaryStage.setScene(unicorn.getScene());
     }
+    
     /**
-     * 
+     * Force the game to load ForestScene
      */
     public static void setForestScene() {
         primaryStage.setScene(forest.getScene());
     }
     
+    /**
+     * Force the game to load House2Scene
+     */
     public static void setHouse2Scene(){
         primaryStage.setScene(house2.getScene());
     }
     
+    /**
+     * Force the game to load GruulsLairScene
+     */
     public static void setGruulsLairScene(){
         primaryStage.setScene(gruulslair.getScene());
     }
