@@ -17,11 +17,11 @@ import java.util.List;
  *
  * @author jonas
  */
-public class Village_sprites{
+public class GruulsLair_sprites{
     private SpriteController world;
     
     
-    public Village_sprites(SpriteController world){
+    public GruulsLair_sprites(SpriteController world){
         this.world = world;
     }
     
