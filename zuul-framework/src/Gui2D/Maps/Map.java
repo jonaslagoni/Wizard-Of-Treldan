@@ -36,6 +36,11 @@ public abstract class Map {
         player.setPosition(0, 0);
         player.setHeight(64);
         player.setWidth(64);
+        
+        
+        //set the ArrayList'cellar_sprites from the super class Map
+        input = new ArrayList();
+        menu_input = new ArrayList();
     }
     /**
      * Return the player EventHandler for key release
