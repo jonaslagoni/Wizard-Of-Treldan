@@ -290,7 +290,6 @@ public class TWoT implements Serializable{
         }
         // Create an object of klass Room and return if the exit is correct.
         Interior interior = currentRoom.getMapInterior(command.getSecondWord());
-        List<String> inspectActions = new ArrayList();
         
         // If the nextroom is null it means that there was no next room in that direction.
         if(interior == null) {
@@ -385,34 +384,34 @@ public class TWoT implements Serializable{
         }
         
         else if(interior == null){
-            inspectActions.add("This interior doesn't exist");
-            return inspectActions;
+            description.add("This interior doesn't exist");
+            return description;
         }
         else if(interior instanceof Item){
             if(interior instanceof EquippableItem){
                 currentRoom.removeInterior(command.getSecondWord());
                 player.addItemToEquippableInventory((EquippableItem)interior, player);
-                inspectActions.add(((EquippableItem) interior).getRoomDescription());
+                description.add(((EquippableItem) interior).getRoomDescription());
                 player.addHighscore(((EquippableItem) interior).getItemValue());
-                return inspectActions;
+                return description;
             }
             else if(interior instanceof QuestItem){
                 currentRoom.removeInterior(command.getSecondWord());
                 player.addItemToInventory((Item)interior);
-                inspectActions.add(((QuestItem) interior).getRoomDescription());
+                description.add(((QuestItem) interior).getRoomDescription());
                 player.addHighscore(((QuestItem) interior).getItemValue());
-                return inspectActions;
+                return description;
             }
             else if(interior instanceof UseableItem){
                 currentRoom.removeInterior(command.getSecondWord());
                 player.addItemToInventory((Item)interior);
-                inspectActions.add(((UseableItem) interior).getRoomDescription());
+                description.add(((UseableItem) interior).getRoomDescription());
                 player.addHighscore(((UseableItem) interior).getItemValue());
-                return inspectActions;
+                return description;
             }
             else{
-                inspectActions.add("mystery Item nothing happend");
-                return inspectActions;
+                description.add("mystery Item nothing happend");
+                return description;
             }
         }
         else if(interior instanceof Npc){
@@ -421,15 +420,15 @@ public class TWoT implements Serializable{
                     for(Item i: getInventoryItems()){
                         if(i instanceof QuestItem){
                             if(((QuestItem)i).getItemId() == 99902){
-                                inspectActions.add("Thank you, thank you so much, i dont know what I would do without them \"Please, leave the village with us, this place is lost to 	the undead anyway, nothing is left for the living\" You exit the village through the back gate and 'aquire' a horse from the stables nearby and ride it to the forest of Treldan where your hideout is.");
+                                description.add("Thank you, thank you so much, i dont know what I would do without them \"Please, leave the village with us, this place is lost to 	the undead anyway, nothing is left for the living\" You exit the village through the back gate and 'aquire' a horse from the stables nearby and ride it to the forest of Treldan where your hideout is.");
                                 player.removeInventoryItem(i);
                                 Interior roomVillageExit4 = new Exit(roomForest);
                                 roomVillage.addMapInterior("forest", roomVillageExit4);
-                                return inspectActions;
+                                return description;
                             }
                         }
                     }
-                    inspectActions.add("The guard stops his sobbing as you near him. “Who’s there?!” he yells. You decide not to reveal your identity, and the guard continues: ”Oh, why does it matter? I’ll letout of the Treldan if you find my wife and kids. I have orders to stay at my post.” The guard sits down and continues his sobbing.");
+                    description.add("The guard stops his sobbing as you near him. “Who’s there?!” he yells. You decide not to reveal your identity, and the guard continues: ”Oh, why does it matter? I’ll letout of the Treldan if you find my wife and kids. I have orders to stay at my post.” The guard sits down and continues his sobbing.");
                     break;
                 case 22202:
                     Item item1 = null;
@@ -444,86 +443,86 @@ public class TWoT implements Serializable{
                         }
                     }
                     if(item1 != null && item2 != null){
-                        inspectActions.add("Thank you for bringing me the items the I asked for! Go find the stranger in the village. He is known for hiding in the houses or the village. He may move his position.");
+                        description.add("Thank you for bringing me the items the I asked for! Go find the stranger in the village. He is known for hiding in the houses or the village. He may move his position.");
                         player.removeInventoryItem(item1);
                         player.removeInventoryItem(item2);
                         roomVillage.addMapInterior("stranger", stranger);
                     }else{
-                        inspectActions.add("zzzzzzzzzzzzzzzz\" You wake up the wizard \"zzz..oo.ahwhat? who? oh it's you traveler, thank you for coming to see me. As i mentioned i have need of help to defeat the evil Wizard, first of all i can't get inside his evil castle, buta stranger in the village will be able to teleport you inside if you want to help me, but the evil troll Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
+                        description.add("zzzzzzzzzzzzzzzz\" You wake up the wizard \"zzz..oo.ahwhat? who? oh it's you traveler, thank you for coming to see me. As i mentioned i have need of help to defeat the evil Wizard, first of all i can't get inside his evil castle, buta stranger in the village will be able to teleport you inside if you want to help me, but the evil troll Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
                     }
                     break;
                 
                 case 22203:
-                    inspectActions.add("The wizard told me to teleport you to the evil wizard's tower of doom. Get ready.");
+                    description.add("The wizard told me to teleport you to the evil wizard's tower of doom. Get ready.");
                     currentRoom = roomDungeon;
-                    inspectActions.add(currentRoom.getDescription() + currentRoom.getMapInterior());
+                    description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     break;
                 case 22204:
                     for(Item i: getInventoryItems()){
                         if(i instanceof QuestItem){
                             if(((QuestItem)i).getItemId() == 99904){
-                                inspectActions.add("You hack at the old tree for a while and finally it snaps in half, and tilts inwards towards the unicorn, who sadly, but fortunately for you doesn’t react in time and gets smashed by the tree");
+                                description.add("You hack at the old tree for a while and finally it snaps in half, and tilts inwards towards the unicorn, who sadly, but fortunately for you doesn’t react in time and gets smashed by the tree");
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setRoomDescription("The tree that fell on the unicorn exposes the unicorns heart and innards. You finish the unicorn off and hold out a vial and watch in marvel as the liquid rainbow gathers in it");
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setHealth(1);
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setAttValue(0.1);
                                 ((Monster)roomClearing.getMapInterior("unicorn")).setDefValue(0.1);
                                 player.addHighscore(1000);
-                                return inspectActions;
+                                return description;
                             }
                         }
                     }
-                    inspectActions.add("You approach the old tree, it looks like it can be cut down fairly easily with 	the right tool");
+                    description.add("You approach the old tree, it looks like it can be cut down fairly easily with 	the right tool");
                     break;
                     
             }
-            return inspectActions;
+            return description;
         }
         else if(interior instanceof Monster){
             
             Combat combat = new Combat(player, (Monster)interior);
-            inspectActions.add("You found a monster! It's a " + ((Monster) interior).getMonsterName() + ".");
+            description.add("You found a monster! It's a " + ((Monster) interior).getMonsterName() + ".");
             for(Fight f : combat.AFight()){
                 if(!f.isDone()){
-                    inspectActions.add(f.toString());
+                    description.add(f.toString());
                 } else {
-                    inspectActions.add(f.toString());
-                    inspectActions.add("The winner of the fight is " + f.winner());
+                    description.add(f.toString());
+                    description.add("The winner of the fight is " + f.winner());
                 }
             }
             if(player.getHealth() < 1){
-                inspectActions.add("YOU DIED! You lost highscore points.");
+                description.add("YOU DIED! You lost highscore points.");
                 player.removeHighscore(69);
                 player.setHealth(100);
             } else {
                 for(Item i: combat.getMonster().getItemDrop()){
-                    inspectActions.add("You got item " + i.getItemName());
+                    description.add("You got item " + i.getItemName());
                     player.addItemToInventory(i);
                 }
                 int goldDrop = combat.getMonster().getGoldDrop();
-                inspectActions.add("You got " + goldDrop + " gold.");
+                description.add("You got " + goldDrop + " gold.");
                 player.addGold(goldDrop);
                 currentRoom.removeInterior(command.getSecondWord());
-                inspectActions.add("Your remaining hp: " + player.getHealth());
+                description.add("Your remaining hp: " + player.getHealth());
                 if(((Monster) interior).getMobId() == 1){
                     isOver = true;
                 }
             }
-            return inspectActions;
+            return description;
         }
         else{
-            inspectActions.add("Use \"go\" to go to an exit");
-            return inspectActions;
+            description.add("Use \"go\" to go to an exit");
+            return description;
         }
         
     }
     
     public List<String> inspectThing(Command command){
-        List<String> inspectActions = new ArrayList();
+        List<String> description = new ArrayList();
         if(!command.hasSecondWord()){
-            inspectActions.add("Inspect what?");
-            return inspectActions;
+            description.add("Inspect what?");
+            return description;
         }
-        return inspectActions;
+        return description;
     }
     
     

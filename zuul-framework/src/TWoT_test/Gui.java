@@ -255,7 +255,7 @@ public class Gui{
                 callMenu();
                 break;
             case "how to play":
-                System.out.println("HOWkfoiergoreg");
+                System.out.println("Your command words are: help, go, player, inventory, quit");
                 callMenu();
                 break;
             case "exit game":

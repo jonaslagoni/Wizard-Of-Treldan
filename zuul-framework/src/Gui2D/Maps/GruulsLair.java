@@ -5,14 +5,12 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Cellar_sprites;
+import Gui2D.SpriteController.Maps.GruulsLair_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.AnimationTimer;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -30,7 +28,7 @@ public class GruulsLair extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private Cellar_sprites s;
+    private GruulsLair_sprites g;
     /**
      * Constructor for Cellar
      * @param world 
@@ -50,14 +48,23 @@ public class GruulsLair extends Map{
         //set the world constructor
         super.setWorld(world);
         
-        s = new Cellar_sprites(world);
-        s.setCellar_background_SingleSprites();
+        g = new GruulsLair_sprites(world);
+        g.setGruulsLair_background_SingleSprites();
     }
     
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );
+        Canvas background = new Canvas(1024, 512);
         theScene.setFill(Color.rgb(83, 83, 83));
+        
+        root.getChildren().add(background);
+        GraphicsContext background_context = background.getGraphicsContext2D();
+        List<Sprite> sprites_gruul = g.getGruulslair_background_sprites();
+        
+        for(Sprite s: sprites_gruul){
+            s.render(background_context);
+        }
         
         return theScene;
     }
