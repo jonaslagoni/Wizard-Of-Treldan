@@ -32,16 +32,9 @@ public class GruulsLair_sprites{
         
         List<SingleSprite> singleSprites = new ArrayList();
         singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
         singleSprites.add(world.getGround_sprite().getStone_dark_2());
         
-        Sprite random = new Groupsprite_circle(singleSprites);
+        Sprite random = new Groupsprite_random(singleSprites);
         random.setSize(512,256);
         random.setPosition(128,256);
         gruulslair_background_sprites.add(random);
