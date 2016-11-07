@@ -56,17 +56,11 @@ public class WizardOfTreldan extends Application {
         cellar = new Cellar(world);
         menu = new Menu(world);
         house2 = new House2(world);
-        
-        //set our first scene
-        primaryStage.setScene(house2.getScene());
         forest = new Forest(world);
-        
-        //set our first scene
-        primaryStage.setScene(forest.getScene());
         gruulslair = new GruulsLair(world);
         
         //set our first scene
-        primaryStage.setScene(gruulslair.getScene());
+        primaryStage.setScene(menu.getScene());
         primaryStage.show();
     }
     

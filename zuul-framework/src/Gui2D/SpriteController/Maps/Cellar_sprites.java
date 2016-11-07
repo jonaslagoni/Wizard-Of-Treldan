@@ -70,7 +70,7 @@ public class Cellar_sprites{
             cellar_background_sprites.add(torch);
             
             Sprite door = world.getMisc_sprites().getDoor_metal();
-            door.setPosition(330, 15);
+            door.setPosition(330, 20);
             cellar_background_sprites.add(door);
 
     }

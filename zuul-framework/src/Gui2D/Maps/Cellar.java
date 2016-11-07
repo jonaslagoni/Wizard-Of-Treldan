@@ -9,6 +9,7 @@ import Gui2D.SpriteController.Maps.Cellar_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
+import Gui2D.WizardOfTreldan;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -96,7 +97,7 @@ public class Cellar extends Map{
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 216, 512, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 512, 1);
         
-        new AnimationTimer(){
+        AnimationTimer ani = new AnimationTimer(){
             private int animationDelay = 0;
             private long lastNanoTime = System.nanoTime();
             public void handle(long currentNanoTime){
@@ -108,6 +109,11 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                     }else if(player.intersects_left(sprites_still.get(1))){
                         player.setVelocity(0, 0);
+                    }else if(player.intersects_left(sprites_still.get(4))){
+                        input.remove("LEFT");
+                        player.setVelocity(0, 0);
+                        this.stop();
+                        WizardOfTreldan.setGruulsLairScene();
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -118,6 +124,11 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                     }else if(player.intersects_right(sprites_still.get(1))){
                         player.setVelocity(0, 0);
+                    }else if(player.intersects_left(sprites_still.get(4))){
+                        input.remove("RIGHT");
+                        player.setVelocity(0, 0);
+                        this.stop();
+                        WizardOfTreldan.setGruulsLairScene();
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -128,6 +139,11 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                     }else if(player.intersects_top(sprites_still.get(1))){
                         player.setVelocity(0, 0);
+                    }else if(player.intersects_left(sprites_still.get(4))){
+                        input.remove("UP");
+                        player.setVelocity(0, 0);
+                        this.stop();
+                        WizardOfTreldan.setGruulsLairScene();
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -138,6 +154,11 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                     }else if(player.intersects_bottom(sprites_still.get(1))){
                         player.setVelocity(0, 0);
+                    }else if(player.intersects_left(sprites_still.get(4))){
+                        input.remove("DOWN");
+                        player.setVelocity(0, 0);
+                        this.stop();
+                        WizardOfTreldan.setGruulsLairScene();
                     }else{
                         player.setVelocity(0,100);
                     }
@@ -172,7 +193,8 @@ public class Cellar extends Map{
                     menu_gc.clearRect(0, 0, 1024,512);
                 }
             }
-        }.start();
+        };
+        ani.start();
         return theScene;
     }
 }
