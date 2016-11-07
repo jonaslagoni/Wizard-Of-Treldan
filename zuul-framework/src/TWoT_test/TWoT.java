@@ -3,6 +3,7 @@
 package TWoT_test;
 
 import static TWoT_test.EquippableItem.EItem.*;
+import static TWoT_test.UseableItem.Usables.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -95,7 +96,7 @@ public class TWoT implements Serializable{
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
         Interior roomCellarStick = new QuestItem("A needle", 1, "It was found in the haystack", 99901, "It must have been super uncomfortable laying on the haystack.\nYou search around the haystack and end up finding a strong needle. The needle has been added to your inventory.");
-        Interior roomCellarCheeseSandwich = new UseableItem("Cheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501);
+        Interior roomCellarCheeseSandwich = new UseableItem("Cheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501,FOOD);
         roomCellar.addMapInterior("door", roomCellarExit);
         roomCellar.addMapInterior("haystack", roomCellarStick);
         roomCellar.addMapInterior("table", roomCellarCheeseSandwich);
@@ -117,7 +118,7 @@ public class TWoT implements Serializable{
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
         Interior roomHouse1Man = new Monster("Zombie man", 0.7, 0.7, 50, 50, "A dead man is half-sitting in a chair. He gets on his feet and attacks you.");
-        Interior roomHouse1LooseStone = new UseableItem("Cheese sandwhich", 20, "Nom nom nom", "You move the loose stone and to your surprise you find a cheese sandwhich", 55501);
+        Interior roomHouse1LooseStone = new UseableItem("Cheese sandwhich", 20, "Nom nom nom", "You move the loose stone and to your surprise you find a cheese sandwhich", 55501,FOOD);
         roomHouse1.addMapInterior("man", roomHouse1Man);
         roomHouse1.addMapInterior("stone", roomHouse1LooseStone);
         roomHouse1.addMapInterior("door", roomHouse1Exit);
@@ -126,7 +127,7 @@ public class TWoT implements Serializable{
         Interior roomHouse2Exit = new Exit(roomVillage);
         Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",2.1,1.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
-        Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502);
+        Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502,FOOD);
 
         roomHouse2.addMapInterior("door", roomHouse2Exit);
         roomHouse2.addMapInterior("wardrobe", roomHouse2Wardrobe);
@@ -135,7 +136,7 @@ public class TWoT implements Serializable{
         
         //roomHouse3
         Interior roomHouse3Exit = new Exit(roomVillage);
-        Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503);
+        Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503,MAGIC_ITEM);
         Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
         Interior roomHouse3Woman = woman;
         woman.addDropItem(new QuestItem("Bloody key", 8273, "This key looks bloody", 99907, ""));
@@ -150,7 +151,7 @@ public class TWoT implements Serializable{
         Interior roomForrestExit2 = new Exit(roomCave);
         Interior roomForrestExit3 = new Exit(roomClearing);
         Interior roomForrestExit4 = new Exit(roomVillage);
-        Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.", "You go pick up a mushroom, it stinks, but it might come in handy scaring off weaker foes.", 55504);
+        Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.", "You go pick up a mushroom, it stinks, but it might come in handy scaring off weaker foes.", 55504,MAGIC_ITEM);
         Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
         roomForest.addMapInterior("mushroom", roomForrestMushroom);
         roomForest.addMapInterior("goblin", roomForrestDeadGoblin);
@@ -161,9 +162,9 @@ public class TWoT implements Serializable{
         
         //roomWizardHouse
         Interior roomWizardHouseExit = new Exit(roomForest);
-        Interior roomWizardHouseUpstairs = new UseableItem("Smooth ruby", 200, "A valueable stone.", "You check the wizards room for any valuables, find a piece of jewelry, and go downstairs again.", 55505);
-        Interior roomWizardHouseBox = new UseableItem("Mysterious Ring",150,"Odd looking ring with a curiously intricate design, you decide to hold onto it.", "You rummage through the box of magical artifacts, and find a odd looking ring with a curiously intricate design, you decide to hold onto it.", 55506);
-        Interior roomWizardHouseLab = new UseableItem("Health Potion",20,"Regenerates health points", "You search the alchemy lab and find a health potion.", 55507);
+        Interior roomWizardHouseUpstairs = new UseableItem("Smooth ruby", 200, "A valueable stone.", "You check the wizards room for any valuables, find a piece of jewelry, and go downstairs again.", 55505,MAGIC_ITEM);
+        Interior roomWizardHouseBox = new UseableItem("Mysterious Ring",150,"Odd looking ring with a curiously intricate design, you decide to hold onto it.", "You rummage through the box of magical artifacts, and find a odd looking ring with a curiously intricate design, you decide to hold onto it.", 55506,MAGIC_ITEM);
+        Interior roomWizardHouseLab = new UseableItem("Health Potion",20,"Regenerates health points", "You search the alchemy lab and find a health potion.", 55507,FOOD);
         Npc wizard = new Npc("Wizard", true, 22202);
         Interior roomWizardHouseNPC = wizard;
         roomWizardHouse.addMapInterior("upstairs", roomWizardHouseUpstairs);
@@ -524,6 +525,91 @@ public class TWoT implements Serializable{
             return inspectActions;
         }
     }
+    
+    public List<String> useItem(Command command){
+        List<String> use = new ArrayList();
+        boolean check = false;
+        Item usedItem = null;
+        for (Item i : getInventoryItems()) {
+            if (i instanceof UseableItem) {
+                if (i.getItemName().equals(command.getSecondWord())) {
+
+                    int itemID = i.getItemId();  
+
+                    switch(itemID){
+                        case 55501: //cheese sandwhich
+                            if(getPlayerHealth() != 100){
+                                use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
+                                playerRegenHealth(((UseableItem) i).getHealthRegen());
+
+                            }else{
+                                use.add("You're already at full health");
+                            }
+                            break;
+                            
+                        case 55502: //cinnamon roll
+                            if(getPlayerHealth() != 100){
+                                use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
+                                playerRegenHealth(((UseableItem) i).getHealthRegen());
+                            }else{
+                                use.add("You're already at full health");
+                            }
+                            break;
+                            
+                        case 55503: //old rusty coin
+                            use.add("Old dusty coin, not good for anything except highscore");
+                            break;
+                                
+                        case 55504: //mushroom
+                            if(currentRoom.equals(roomCave)){
+                                currentRoom.removeInterior("troll1");
+                                currentRoom.removeInterior("troll2");
+                                currentRoom.removeInterior("troll3");
+                                use.add("The stinking mushroom scares off the trolls and they flee out the cave");
+
+                            } else {
+                                use.add("Can't use that here");
+                            }
+
+                        case 55505: //smooth ruby
+                            use.add("A smooth looking ruby");
+                            break;
+                            
+                        case 55506: //mysterius ring
+                            use.add("You examine the ring, and suddenly a bright light shines out, and you ");
+                            currentRoom = roomVillage;
+                            break;
+                            
+                        case 55507: //health potion
+                            if(getPlayerHealth() != 100){
+                                use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
+                                playerRegenHealth(((UseableItem) i).getHealthRegen());
+                            }else{
+                                use.add("You're already at full health");
+                            }
+                           
+                            break;
+                            
+                        default:
+                            
+                    }
+
+                    usedItem = i;
+                    check = true;
+                }
+            }
+        }
+        if(usedItem != null){
+            removeItemFromInventory(usedItem);
+        }
+        if(!check){
+            use.add("You carry no item with that name");
+        }
+    
+    return use;
+}
+    
+    
     
     
     

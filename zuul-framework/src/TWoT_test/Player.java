@@ -19,6 +19,7 @@ public class Player{
     private double attValue;
     private double defValue;
     private int health;
+    private int maxhealth;
     private int gold = 0;
     private int highscore = 0;
     private Inventory playersInventory;
