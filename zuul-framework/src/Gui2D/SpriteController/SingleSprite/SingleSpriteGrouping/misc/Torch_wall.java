@@ -15,6 +15,7 @@ public class Torch_wall extends Abstract_sprite {
     /**
      * Sets the torch wall sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(846);
         super.getSprite().setSpritePosY(8);

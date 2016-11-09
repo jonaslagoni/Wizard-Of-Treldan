@@ -15,6 +15,7 @@ public class Chest_closed  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(1223);
         super.getSprite().setSpritePosY(11);

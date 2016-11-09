@@ -11,17 +11,17 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Cave_exit  extends Abstract_sprite{
+public class Red_mushroom extends Abstract_sprite{
     /**
-     * Sets the Candle sprite
+     * Sets the Red_mushroom sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(853);
-        super.getSprite().setSpritePosY(112);
-        super.getSprite().setSprite_width(32);
-        super.getSprite().setSprite_height(43);
-        super.getSprite().setWidth(32);
-        super.getSprite().setHeight(43);
+        super.getSprite().setSpritePosX(1337);
+        super.getSprite().setSpritePosY(8);
+        super.getSprite().setSprite_width(28);
+        super.getSprite().setSprite_height(28);
+        super.getSprite().setWidth(28);
+        super.getSprite().setHeight(28);
     }
 }

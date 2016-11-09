@@ -5,7 +5,6 @@
  */
 package Gui2D.SpriteController.Maps;
 
-import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
@@ -146,7 +145,24 @@ public class Forest_sprites{
         forestTrees1.setPosition(40, 0);
         spriteList.add(forestTrees1);
         
+        List<SingleSprite> forestBigTreeStumpList = new ArrayList();
+        forestBigTreeStumpList.add(world.getMisc_sprites().getBig_Tree_Stump());
+        
+        Sprite forestBigTreeStump = new Groupsprite_random(forestBigTreeStumpList);
+        
+        forestBigTreeStump.setSize(150, 41);
+        forestBigTreeStump.setPosition(445, 190);
+        spriteList.add(forestBigTreeStump);
+        
         // END OF MISC ITEMS
+        
+        // START OF INTERACTABLE ITEMS
+        
+        Sprite mushroom1 = world.getMisc_sprites().getRed_mushroom();
+        mushroom1.setPosition(290, 350);
+        spriteList.add(mushroom1);
+        
+        // END OF INTERACTABLE ITEMS
         
     }
 

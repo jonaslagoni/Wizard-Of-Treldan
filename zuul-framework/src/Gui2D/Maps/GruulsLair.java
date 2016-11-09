@@ -51,6 +51,7 @@ public class GruulsLair extends Map{
         g.setGruulsLair_background_SingleSprites();
     }
     
+    @Override
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );

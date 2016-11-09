@@ -51,6 +51,7 @@ public class House2 extends Map{
         s.setHouse2_background_SingleSprites();
     }
     
+    @Override
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );

@@ -15,6 +15,7 @@ public class Bush  extends Abstract_sprite{
     /**
      * Sets the Bush sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(1096);
         super.getSprite().setSpritePosY(10);

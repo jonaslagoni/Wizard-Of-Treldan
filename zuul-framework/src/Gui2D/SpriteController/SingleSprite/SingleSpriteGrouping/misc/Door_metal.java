@@ -15,6 +15,7 @@ public class Door_metal extends Abstract_sprite {
     /**
      * Sets the metal door sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(711);
         super.getSprite().setSpritePosY(8);

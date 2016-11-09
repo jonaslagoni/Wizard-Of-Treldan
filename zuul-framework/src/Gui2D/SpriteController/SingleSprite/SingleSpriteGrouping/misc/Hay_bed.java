@@ -15,6 +15,7 @@ public class Hay_bed  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(757);
         super.getSprite().setSpritePosY(8);

@@ -8,7 +8,6 @@ package Gui2D.Maps;
 import Gui2D.SpriteController.Maps.Unicorn_sprites;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
-import static java.lang.System.gc;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Group;
@@ -52,6 +51,7 @@ public class Unicorn extends Map{
         s.setUnicorn();
     }
     
+    @Override
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );

@@ -15,6 +15,7 @@ public class Cave_Hole extends Abstract_sprite {
     /**
      * Sets the Cave_Hole sprite
      */
+    @Override
     public void setSprite() {
         super.getSprite().setSpritePosX(762);
         super.getSprite().setSpritePosY(112);

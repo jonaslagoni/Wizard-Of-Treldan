@@ -5,7 +5,6 @@
  */
 package Gui2D.SpriteController.Maps;
 
-import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;

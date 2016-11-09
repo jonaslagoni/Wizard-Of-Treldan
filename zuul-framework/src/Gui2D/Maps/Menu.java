@@ -30,6 +30,7 @@ public class Menu extends Map{
         super.setWorld(world);
     }
     
+    @Override
     public Scene getScene(){
         Group menuGroup = new Group();
         Scene menuScene = new Scene( menuGroup );

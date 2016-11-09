@@ -21,7 +21,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javax.swing.JTextField;
 
 /**
  *
@@ -36,6 +35,7 @@ public class PlayerSelection extends Map{
         this.game = game;
     }
     
+    @Override
     public Scene getScene(){        
         Group playerSelectionGroup = new Group();
         Scene playerScene = new Scene( playerSelectionGroup );
@@ -91,6 +91,7 @@ public class PlayerSelection extends Map{
         
         playerScene.setOnKeyPressed(
             new EventHandler<KeyEvent>(){
+                @Override
                 public void handle(KeyEvent e){
                     if(e.getCode().toString().equals("ENTER")){
                         if(playerName.getText().equals("")){

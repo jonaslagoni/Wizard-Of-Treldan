@@ -6,7 +6,6 @@
 package Gui2D.Maps;
 
 import Gui2D.SpriteController.Maps.Cave_sprites;
-import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
@@ -52,6 +51,7 @@ public class Cave extends Map{
         g.setCave_background_SingleSprites();
     }
     
+    @Override
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );

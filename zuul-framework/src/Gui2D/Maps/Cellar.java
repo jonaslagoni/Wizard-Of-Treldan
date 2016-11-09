@@ -43,6 +43,7 @@ public class Cellar extends Map{
     /**
      * Constructor for Cellar
      * @param world 
+     * @param game 
      */
     public Cellar(SpriteController world, TWoT game){
         //init our super constructor first
@@ -62,6 +63,7 @@ public class Cellar extends Map{
      * Returns the scene for the map Cellar
      * @return 
      */
+    @Override
     public Scene getScene(){
         //add our group
         Group root = new Group();

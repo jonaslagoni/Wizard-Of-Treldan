@@ -9,19 +9,19 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
 
 /**
  *
- * @author jonas
+ * @author Mads
  */
-public class Cave_exit  extends Abstract_sprite{
+public class Cave_Boulder extends Abstract_sprite{
     /**
-     * Sets the Candle sprite
+     * Sets the Cave_Boulder sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(853);
-        super.getSprite().setSpritePosY(112);
-        super.getSprite().setSprite_width(32);
-        super.getSprite().setSprite_height(43);
-        super.getSprite().setWidth(32);
-        super.getSprite().setHeight(43);
+        super.getSprite().setSpritePosX(821);
+        super.getSprite().setSpritePosY(212);
+        super.getSprite().setSprite_width(64);
+        super.getSprite().setSprite_height(32);
+        super.getSprite().setWidth(64);
+        super.getSprite().setHeight(32);
     }
 }

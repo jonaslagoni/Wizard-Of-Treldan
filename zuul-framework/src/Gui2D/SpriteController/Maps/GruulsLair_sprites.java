@@ -42,6 +42,42 @@ public class GruulsLair_sprites{
         
         // BACKGROUND END
         
+        // WALL BEGIN
+        
+        List<SingleSprite> gruulsLairEASTWALLList = new ArrayList();
+        gruulsLairEASTWALLList.add(world.getMisc_sprites().getCave_Spikes());
+        
+        Sprite gruulsLairEASTWALL = new Groupsprite_random(gruulsLairEASTWALLList);
+        gruulsLairEASTWALL.setSize(32, 448);
+        gruulsLairEASTWALL.setPosition(24, 598);
+        spriteList.add(gruulsLairEASTWALL);
+        
+        List<SingleSprite> gruulsLairWESTWALLList = new ArrayList();
+        gruulsLairWESTWALLList.add(world.getMisc_sprites().getCave_Spikes());
+        
+        Sprite gruulsLairWESTWALL = new Groupsprite_random(gruulsLairWESTWALLList);
+        gruulsLairWESTWALL.setSize(32, 448);
+        gruulsLairWESTWALL.setPosition(24, 375);
+        spriteList.add(gruulsLairWESTWALL);
+        
+        List<SingleSprite> gruulsLairNORTHWALLList = new ArrayList();
+        gruulsLairNORTHWALLList.add(world.getMisc_sprites().getCave_Boulder());
+        
+        Sprite gruulsLairNORTHWALL = new Groupsprite_random(gruulsLairNORTHWALLList);
+        gruulsLairNORTHWALL.setSize(192, 32);
+        gruulsLairNORTHWALL.setPosition(26, 407);
+        spriteList.add(gruulsLairNORTHWALL);
+        
+        Sprite gruulsLairSOUTHWALLBoulder1 = world.getMisc_sprites().getCave_Boulder();
+        gruulsLairSOUTHWALLBoulder1.setPosition(415, 440);
+        spriteList.add(gruulsLairSOUTHWALLBoulder1);
+        
+        Sprite gruulsLairSOUTHWALLBoulder2 = world.getMisc_sprites().getCave_Boulder();
+        gruulsLairSOUTHWALLBoulder2.setPosition(530, 440);
+        spriteList.add(gruulsLairSOUTHWALLBoulder2);
+        
+        // WALL END
+        
         // MISC ITEMS START
         
         Sprite gruulsLair_EXIT = world.getMisc_sprites().getCaveExit();

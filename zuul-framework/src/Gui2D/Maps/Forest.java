@@ -5,7 +5,6 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Cellar_sprites;
 import Gui2D.SpriteController.Maps.Forest_sprites;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
@@ -52,6 +51,7 @@ public class Forest extends Map{
         s.setForest_background_SingleSprites();
     }
     
+    @Override
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );

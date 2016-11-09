@@ -7,7 +7,6 @@ package Gui2D.Maps;
 
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.SpriteController;
-import TWoT_test.TWoT;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
@@ -50,6 +49,7 @@ public abstract class Map {
      */
     public EventHandler<KeyEvent> getOnKeyRelease(PlayerSprite player){
         return new EventHandler<KeyEvent>(){
+            @Override
             public void handle(KeyEvent e){
                 String code = e.getCode().toString();
                 getInput().remove(code);
@@ -75,6 +75,7 @@ public abstract class Map {
      */
     public EventHandler<KeyEvent> getOnKeyPress(){
         return new EventHandler<KeyEvent>(){
+            @Override
             public void handle(KeyEvent e)
             {
                 String code = e.getCode().toString();

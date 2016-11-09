@@ -68,5 +68,17 @@ public class Misc_sprites {
     public SingleSprite getCave_Hole() {
         return new Cave_Hole().getSprite();
     }
+    public SingleSprite getRed_mushroom() {
+        return new Red_mushroom().getSprite();
+    }
+    public SingleSprite getBig_Tree_Stump() {
+        return new Big_Tree_Stump().getSprite();
+    }
+    public SingleSprite getCave_Spikes() {
+        return new Cave_Spikes().getSprite();
+    }
+    public SingleSprite getCave_Boulder() {
+        return new Cave_Boulder().getSprite();
+    }
 }
 

@@ -15,6 +15,7 @@ public class Tree1 extends Abstract_sprite {
     /**
      * Sets the Tree1 Sprite 
      */
+    @Override
     public void setSprite() {
         super.getSprite().setSpritePosX(1269);
         super.getSprite().setSpritePosY(8);

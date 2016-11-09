@@ -15,6 +15,7 @@ public class Barrel  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(828);
         super.getSprite().setSpritePosY(10);
