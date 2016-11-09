@@ -28,6 +28,9 @@ public class Forest_sprites{
     }
     
     public void setForest_background_SingleSprites(){
+        
+        // Reference START
+        
         spriteList.add(world.getMisc_sprites().getHay_bed());
         
         Sprite door = world.getMisc_sprites().getDoor_metal();
@@ -46,20 +49,26 @@ public class Forest_sprites{
         neWall.setPosition(520, 200);
         spriteList.add(neWall);
         
-        List<SingleSprite> singleSpriteList = new ArrayList();
-        singleSpriteList.add(world.getGround_sprite().getGrass_dark_1());
-        singleSpriteList.add(world.getGround_sprite().getGrass_flower_1());
-        singleSpriteList.add(world.getGround_sprite().getStone_light_1());
         
-        Sprite random = new Groupsprite_random(singleSpriteList);
+        // Reference END
         
-        random.setSize(200, 100);
-        random.setPosition(250, 125);
-        spriteList.add(random);
+        Sprite roadPIECE1 = world.getGround_sprite().getStone_light_3();
+        roadPIECE1.setPosition(400, 100);
+        spriteList.add(roadPIECE1);
         
-        Sprite bush = world.getMisc_sprites().getBush();
-        bush.setPosition(500, 100);
-        spriteList.add(bush);
+        List<SingleSprite> roadList = new ArrayList();
+        roadList.add(world.getGround_sprite().getStone_dark_1());
+        roadList.add(world.getGround_sprite().getStone_dark_1());
+        
+        Sprite randomRoad1 = new Groupsprite_random(roadList);
+        
+        randomRoad1.setSize(96, 96);
+        randomRoad1.setPosition(190, 0);
+        spriteList.add(randomRoad1);
+        
+        Sprite bush1 = world.getMisc_sprites().getBush();
+        bush1.setPosition(500, 100);
+        spriteList.add(bush1);
     }
 
     public List<Sprite> getSpriteList() {
