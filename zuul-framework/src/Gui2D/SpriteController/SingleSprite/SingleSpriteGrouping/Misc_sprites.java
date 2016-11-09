@@ -62,5 +62,8 @@ public class Misc_sprites {
     public SingleSprite getBush() {
         return new Bush().getSprite();
     }
+    public SingleSprite getTree1() {
+        return new Tree1().getSprite();
+    }
 }
 
