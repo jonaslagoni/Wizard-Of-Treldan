@@ -5,7 +5,8 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.GruulsLair_sprites;
+import Gui2D.SpriteController.Maps.Cave_sprites;
+import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class GruulsLair extends Map{
+public class Cave extends Map{
     
     // Arraylist for player movement
     private ArrayList<String> input;
@@ -27,12 +28,12 @@ public class GruulsLair extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private GruulsLair_sprites g;
+    private Cave_sprites g;
     /**
      * Constructor for Cellar
      * @param world 
      */
-    public GruulsLair(SpriteController world){
+    public Cave(SpriteController world){
         //init our super constructor
         super();
         
@@ -47,8 +48,8 @@ public class GruulsLair extends Map{
         //set the world constructor
         super.setWorld(world);
         
-        g = new GruulsLair_sprites(world);
-        g.setGruulsLair_background_SingleSprites();
+        g = new Cave_sprites(world);
+        g.setCave_background_SingleSprites();
     }
     
     public Scene getScene(){
@@ -59,9 +60,9 @@ public class GruulsLair extends Map{
         
         root.getChildren().add(background);
         GraphicsContext background_context = background.getGraphicsContext2D();
-        List<Sprite> sprites_gruul = g.getGruulsLair_background_sprites();
+        List<Sprite> sprites_Cave = g.getCave_background_sprites();
         
-        for(Sprite s: sprites_gruul){
+        for(Sprite s: sprites_Cave){
             s.render(background_context);
         }
         

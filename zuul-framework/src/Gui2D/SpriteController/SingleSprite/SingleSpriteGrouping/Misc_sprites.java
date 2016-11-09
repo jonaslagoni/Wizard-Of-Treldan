@@ -65,5 +65,8 @@ public class Misc_sprites {
     public SingleSprite getTree1() {
         return new Tree1().getSprite();
     }
+    public SingleSprite getCave_Hole() {
+        return new Cave_Hole().getSprite();
+    }
 }
 

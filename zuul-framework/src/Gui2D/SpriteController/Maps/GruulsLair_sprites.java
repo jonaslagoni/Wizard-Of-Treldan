@@ -5,7 +5,6 @@
  */
 package Gui2D.SpriteController.Maps;
 
-import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
@@ -21,46 +20,43 @@ public class GruulsLair_sprites{
     private SpriteController world;
     
     
-    private List<Sprite> gruulslair_background_sprites;
+    private List<Sprite> spriteList;
     
     public GruulsLair_sprites(SpriteController world){
         this.world = world;
-        this.gruulslair_background_sprites = new ArrayList();
+        this.spriteList = new ArrayList();
     }
     
     public void setGruulsLair_background_SingleSprites(){
         
-        List<SingleSprite> singleSprites = new ArrayList();
-        singleSprites.add(world.getGround_sprite().getStone_dark_1());
-        singleSprites.add(world.getGround_sprite().getStone_dark_2());
+        // BACKGROUND START
         
-        Sprite random = new Groupsprite_random(singleSprites);
-        random.setSize(512,256);
-        random.setPosition(128,256);
-        gruulslair_background_sprites.add(random);
+        List<SingleSprite> gruulsLairGroundList = new ArrayList();
+        gruulsLairGroundList.add(world.getGround_sprite().getStone_dark_1());
+        gruulsLairGroundList.add(world.getGround_sprite().getStone_dark_2());
         
-        Sprite door = world.getMisc_sprites().getDoor_metal();
-        door.setPosition(100, 24);
-        gruulslair_background_sprites.add(door);
+        Sprite gruulsLairGround = new Groupsprite_random(gruulsLairGroundList);
+        gruulsLairGround.setSize(256,450);
+        gruulsLairGround.setPosition(25,375);
+        spriteList.add(gruulsLairGround);
         
-        Sprite chest = world.getMisc_sprites().getChestClosed();
-        chest.setPosition(544, 128);
-        gruulslair_background_sprites.add(chest);
+        // BACKGROUND END
         
-        Sprite bmushroom = world.getMisc_sprites().getBrownMushroom();
-        bmushroom.setPosition(544, 222);
-        gruulslair_background_sprites.add(bmushroom);
+        // MISC ITEMS START
         
-        Sprite cave_exit = world.getMisc_sprites().getCaveExit();
-        cave_exit.setPosition(288, 87);
-        gruulslair_background_sprites.add(cave_exit);
+        Sprite gruulsLair_EXIT = world.getMisc_sprites().getCaveExit();
+        gruulsLair_EXIT.setPosition(487, 430);
+        spriteList.add(gruulsLair_EXIT);
+        
+        // MISC ITEMS END
+        
     }
 
     /**
      * @return the gruulslair_background_sprites
      */
-    public List<Sprite> getGruulslair_background_sprites() {
-        return gruulslair_background_sprites;
+    public List<Sprite> getGruulsLair_background_sprites() {
+        return spriteList;
     }
 
    
