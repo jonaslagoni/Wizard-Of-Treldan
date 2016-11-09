@@ -143,4 +143,8 @@ public abstract class Map {
     public PlayerSprite getPlayer() {
         return player;
     }
+    
+    public void setScene(){
+        
+    }
 }

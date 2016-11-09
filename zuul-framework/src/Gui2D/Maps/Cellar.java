@@ -121,6 +121,7 @@ public class Cellar extends Map{
         new AnimationTimer(){
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
+            private boolean hasPrinted = false;
             //what to do each cycle
             @Override
             public void handle(long currentNanoTime){
@@ -146,14 +147,23 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                     //check if the player walks into the door
                     }else if(player.intersects_left(sprites_still.get(4))){
-                        //remove the input
-                        input.remove("LEFT");
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //set the menu as a scene instead.
-                        WizardOfTreldan.setMenuScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove the input
+                                input.remove("LEFT");
+                                //stop this AnimationTimer
+                                this.stop();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                            }
+                        }
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     //if no collission
                     }else{
                         player.setVelocity(-100,0);
@@ -173,15 +183,22 @@ public class Cellar extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into the door
-                    }else if(player.intersects_left(sprites_still.get(4))){
-                        //remove the input
-                        input.remove("RIGHT");
+                    }else if(player.intersects_right(sprites_still.get(4))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //set the menu as a scene instead.
-                        WizardOfTreldan.setMenuScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove the input
+                                input.remove("RIGHT");
+                                //stop this AnimationTimer
+                                this.stop();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                            }
+                        }
                     //if no collission
                     }else{
                         player.setVelocity(100,0);
@@ -199,15 +216,22 @@ public class Cellar extends Map{
                     }else if(player.intersects_top(sprites_still.get(1))){
                         player.setVelocity(0, 0);
                     //check if the player walks into the door
-                    }else if(player.intersects_left(sprites_still.get(4))){
-                        //remove the input
-                        input.remove("UP");
+                    }else if(player.intersects_top(sprites_still.get(4))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //set the menu as a scene instead.
-                        WizardOfTreldan.setMenuScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove the input
+                                input.remove("UP");
+                                //stop this AnimationTimer
+                                this.stop();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                            }
+                        }
                     //if no collission
                     }else{
                         player.setVelocity(0,-100);
@@ -229,15 +253,22 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                         
                     //check if the player walks into the door
-                    }else if(player.intersects_left(sprites_still.get(4))){
-                        //remove the input
-                        input.remove("DOWN");
+                    }else if(player.intersects_bottom(sprites_still.get(4))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //set the menu as a scene instead.
-                        WizardOfTreldan.setMenuScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove the input
+                                input.remove("DOWN");
+                                //stop this AnimationTimer
+                                this.stop();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                            }
+                        }
                     //if no collission
                     }else{
                         player.setVelocity(0,100);
@@ -249,6 +280,7 @@ public class Cellar extends Map{
                 if(menu_input.contains("E")){
                     if(player.intersect(sprites_still.get(1))){
                         System.out.println(game.goTo(new Command(CommandWord.GO, "haystack")).toString());
+                        hasPrinted = false;
                     }
                     menu_input.remove("E");
                 }
@@ -266,6 +298,13 @@ public class Cellar extends Map{
                     menu_gc.fillRect(1024-250, 0, 250, 512);
                 }else{
                     menu_gc.clearRect(0, 0, 1024,512);
+                }
+            }
+            public void setNewScene(){
+                switch(game.getCurrentRoomId()){
+                    case 2: 
+                        WizardOfTreldan.setMenuScene();
+                        break;
                 }
             }
         }.start();

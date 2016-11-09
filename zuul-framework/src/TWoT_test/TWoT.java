@@ -42,23 +42,23 @@ public class TWoT implements Serializable{
         roomCellar = new Room("Cellar", "***Cellar*** \nYou wake up in a dull cellar. Light is emitting from a torch on the wall "
                 + "and you barely get on your feet.\nYou’ve been laying on a haystack for God knows how long and "
                 + "your feet are extremely sore.\nTo your right you see a table with multiple drawers and right in "
-                + "front of you an old door with a lock.");
+                + "front of you an old door with a lock.", 1);
         roomVillage = new Room("Village of Treldan", "\n\n***Village of Treldan*** \nIt’s dark outside. You seem to be familiar with this part of the village. "
                 + "\nYou still wonder why you were locked up in that cell, but your thoughts are quickly interrupted "
                 + "by a sobbing by the gate.\nA guard seems to be crying, and something doesn’t seem right in the "
                 + "village. All houses seem to be empty through the windows.\nYou gasp as you see several "
-                + "people lying dead in the side of the road.");
+                + "people lying dead in the side of the road.", 2);
         roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \nThe house you venture into is dark – very dark. It seems like "
-                + "there is a man in a corner close to you and a woman in the other end of the room.");
+                + "there is a man in a corner close to you and a woman in the other end of the room.", 3);
         roomHouse2 = new Room("House of Riches", "\n\n***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
                 + "candle on the table.\nThere’s a blood-stained bed in the corner of the room. A bunch of sacks "
                 + "are placed up against a poorly build wardrobe.\nThe other corner is not lit up by the candle and "
-                + "you can’t see what is there.\nYou enter the house.");
+                + "you can’t see what is there.\nYou enter the house.", 4);
         roomHouse3 = new Room("House of the Guard", "\n\n***House of the Guard*** \nThe door is barred from the inside, you jump through an open "
                 + "window in the house, cutting yourself on a sharp piece of glass. You lose 5 HP.\nThe house is neatly "
                 + "decorated, and the infected clearly havent been in here, in the left corner of the room there is "
                 + "a dusty set of armor and lying in an open chest at the end of a double-bed.\nAdditionally, there "
-                + "is also a small kitchen area with knives, pots, pans, and the like.\nYou enter the house.");
+                + "is also a small kitchen area with knives, pots, pans, and the like.\nYou enter the house.", 5);
         roomForest = new Room("The Forest of Treldan", "\n\n***The Forest of Treldan*** \nAs you ride through the forest you are ambushed by a pack "
                 + "of goblins who try to murder you and take your valuables.\nYou almost fall prey to the savages, "
                 + "as you are saved by a wizard who zaps! the goblins with magic and scare them away.\nHe heals your "
@@ -66,32 +66,32 @@ public class TWoT implements Serializable{
                 + "you can do to repay him. Come meet me in my house when you're ready, its the Large Tree-house "
                 + "over there.\nI have need of help in order to save Treldan! You enter the Forest of Treldan, you "
                 + "scout around and look for anything, and spot a dead goblin and a couple of suspicious looking "
-                + "mushrooms.");
+                + "mushrooms.", 6);
         roomWizardHouse = new Room ("The Nice Wizard's House","\n\n***The Wizard's House*** \nThe wizard's house is better described as a hollow tree with doors "
                 + "and windows, you can see a number of magical artifacts, a staircase to a upstairs part of the "
                 + "house, there is also what looks to be an alchemy lab.\nThe wizard sits quietly in a comfy chair "
-                + "with his legs up, snoring.");
+                + "with his legs up, snoring.", 7);
         roomCave = new Room("Troll Cave", "\n\n***Troll Cave*** \nYou enter the troll cave, and immediately get sorrounded by 3 trolls,"
                 + " one directly in fron of you, one to the left, and one to your right.\nIn the back "
                 + "you can see a larger shadowy figure in the back of the cave, but you need to "
-                + "get rid of the trolls to get to him first.");
+                + "get rid of the trolls to get to him first.", 8);
         roomCaveGruul = new Room("Gruul's Lair","\n\n***Gruul's Lair*** \n You approach the shadowy figure and as you come closer, the giant troll rises"
-                + " up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
+                + " up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.", 9);
         roomClearing = new Room("Clearing of Unicorns", "***Clearing of Unicorns*** \nYou enter the clearing of unicorns and are immediately"
                 + " blinded by a bright light.\nAs you regain your sight you lay eyes upon the most magnificent "
                 + "create you have ever seen.\nThe unicorn looks at you curiously and goes back to eating grass. "
-                + "\nYou scout the surrounding area for anything else, and spot an old tree.");
+                + "\nYou scout the surrounding area for anything else, and spot an old tree.", 10);
         roomDungeon = new Room("Dungeon of Suffering", "\n\n***Dungeon of Suffering*** \nA loud whoosh and you find yourself in some kind of dungeon "
                 + "– probably the one belonging to the evil wizard of Treldan.\nYou realise you must be in his Tower."
                 + "\nYou get up on your feet and sees that the room your in is barely lit by torches, the walls are "
                 + "slimy and there are no windows. To no surprise you find three heavely armored skeletons.\nYou "
-                + "sigh.");
+                + "sigh.", 11);
         roomLibrary = new Room("The Neverending Library", "\n\n***The Neverending Library*** \nYou find yourself in the biggest room you’ve ever been "
                 + "in. Books upon books is all you see, and bookcases fill up the gigantic room.\nIt would take ages "
-                + "to go through every single book, you think to yourself. A librarian is sitting in the library.");
+                + "to go through every single book, you think to yourself. A librarian is sitting in the library.", 12);
         roomEvilWizardsLair = new Room("The Evil Wizard's Lair", "\n\n***The Evil Wizard's Lair*** \nAs you ascend the stairs your legs feel heavier and "
                 + "heavier.\nYou can barely walk as you make it up to the final step – the pain is then suddenly "
-                + "relieved.\nYou open a large door and you see the Evil Wizard of Treldan standing in the room.");
+                + "relieved.\nYou open a large door and you see the Evil Wizard of Treldan standing in the room.", 13);
 
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
@@ -776,5 +776,9 @@ public class TWoT implements Serializable{
      */
     public boolean isIsOver() {
         return isOver;
+    }
+    
+    public int getCurrentRoomId(){
+        return currentRoom.getRoomId();
     }
 }

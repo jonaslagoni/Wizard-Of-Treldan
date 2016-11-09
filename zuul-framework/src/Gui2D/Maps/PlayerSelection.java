@@ -36,7 +36,7 @@ public class PlayerSelection extends Map{
         this.game = game;
     }
     
-    public Scene getScene(){
+    public Scene getScene(){        
         Group playerSelectionGroup = new Group();
         Scene playerScene = new Scene( playerSelectionGroup );
         playerScene.setFill(javafx.scene.paint.Color.rgb(83, 83, 83));

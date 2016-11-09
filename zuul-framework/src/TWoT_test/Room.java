@@ -11,11 +11,11 @@ public class Room{
     private String description;
     private String name;
     private HashMap<String, Interior> mapInterior = new HashMap();
-    
-    public Room (String name, String description){
+    private int roomId;
+    public Room (String name, String description, int roomId){
         this.description = description;
         this.name = name;
-               
+        this.roomId = roomId;
     }
 
     /**
@@ -92,6 +92,13 @@ public class Room{
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the roomId
+     */
+    public int getRoomId() {
+        return roomId;
     }
 }
 

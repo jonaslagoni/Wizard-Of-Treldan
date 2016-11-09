@@ -54,7 +54,6 @@ public class WizardOfTreldan extends Application {
         this.primaryStage.setHeight(512);
         
         game = new TWoT();
-        System.out.println(game.getPlayerName());
         //set the title
         this.primaryStage.setTitle("The Wizard of Treldan");
         //Init our world sprite controller
@@ -82,7 +81,6 @@ public class WizardOfTreldan extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
     /**
      * Force the game to load menu scene
      */
