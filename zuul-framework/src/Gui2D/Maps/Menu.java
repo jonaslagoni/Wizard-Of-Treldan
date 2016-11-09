@@ -25,6 +25,7 @@ import javafx.scene.text.Font;
  */
 public class Menu extends Map{
     public Menu(SpriteController world){
+        super();
         //set the world constructor
         super.setWorld(world);
     }
@@ -52,7 +53,7 @@ public class Menu extends Map{
                 public void handle(MouseEvent e) {
                     Platform.runLater(new Runnable() {
                         @Override public void run() {
-                            WizardOfTreldan.setCellarScene();
+                            WizardOfTreldan.setPlayerSelectionScene();
                         }
                     });
                 }

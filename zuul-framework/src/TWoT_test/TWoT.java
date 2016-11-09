@@ -293,7 +293,7 @@ public class TWoT implements Serializable{
         Interior interior = currentRoom.getMapInterior(command.getSecondWord());
         // If the nextroom is null it means that there was no next room in that direction.
         if(interior == null) {
-            description.add("Place doesn't exist.");
+            description.add("Nothing here.");
             return description;
         }else if(interior instanceof Exit){
             if(currentRoom == roomCellar){

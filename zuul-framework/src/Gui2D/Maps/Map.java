@@ -7,6 +7,7 @@ package Gui2D.Maps;
 
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.SpriteController;
+import TWoT_test.TWoT;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
@@ -79,7 +80,7 @@ public abstract class Map {
                 String code = e.getCode().toString();
                 // only add once... prevent duplicates
                 
-                if(code.equals("I")){
+                if(code.equals("I") || code.equals("E")){
                     if(!menu_input.contains(code)){
                         getMenu_input().add(code);
                     }else{

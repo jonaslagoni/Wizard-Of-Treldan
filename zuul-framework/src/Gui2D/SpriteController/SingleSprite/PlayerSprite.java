@@ -92,6 +92,12 @@ public class PlayerSprite extends Sprite{
         
     }
     
+    public boolean intersect(Sprite s){
+        //Since the player sprite is not 100 % accurate we have to tweek its boundaries so it will look natural.
+        Rectangle2D player_boundary = new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
+        return player_boundary.intersects(s.getBoundary());
+    }
+    
     /**
      * Check if the player is intersecting N into another sprite.
      * @param s

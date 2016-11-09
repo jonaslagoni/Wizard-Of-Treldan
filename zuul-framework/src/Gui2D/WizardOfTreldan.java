@@ -6,14 +6,15 @@
 package Gui2D;
 
 import Gui2D.Maps.Cellar;
-import Gui2D.Maps.Forest;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
+import Gui2D.Maps.PlayerSelection;
 import Gui2D.Maps.Unicorn;
 import Gui2D.SpriteController.SpriteController;
+import TWoT_test.TWoT;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,10 +31,13 @@ public class WizardOfTreldan extends Application {
     private static Map unicorn;
     private static Map house2;
     private static Map forest;
+    private static Map playerSelection;
     
     //our global world generator
     private SpriteController world;
     
+    
+    private TWoT game;
     //set a global stage from the primaryStage
     private static Stage primaryStage;
     
@@ -49,14 +53,17 @@ public class WizardOfTreldan extends Application {
         this.primaryStage.setWidth(1024);
         this.primaryStage.setHeight(512);
         
+        game = new TWoT();
+        System.out.println(game.getPlayerName());
         //set the title
         this.primaryStage.setTitle("The Wizard of Treldan");
         //Init our world sprite controller
         world = new SpriteController();
         
         //Init all world maps
-        cellar = new Cellar(world);
+        cellar = new Cellar(world, game);
         menu = new Menu(world);
+        playerSelection = new PlayerSelection(world, game);
         house2 = new House2(world);
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
@@ -64,7 +71,7 @@ public class WizardOfTreldan extends Application {
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
         
-        primaryStage.setScene(menu.getScene());
+        setMenuScene();
         primaryStage.show();
     }
     
@@ -81,6 +88,13 @@ public class WizardOfTreldan extends Application {
      */
     public static void setMenuScene(){
         primaryStage.setScene(menu.getScene());
+    }
+    
+    /**
+     * Force the game to load playerSelection scene
+     */
+    public static void setPlayerSelectionScene(){
+        primaryStage.setScene(playerSelection.getScene());
     }
     
     /**

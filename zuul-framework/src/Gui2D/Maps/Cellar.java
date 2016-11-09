@@ -10,6 +10,9 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
+import TWoT_test.Command;
+import TWoT_test.CommandWord;
+import TWoT_test.TWoT;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -35,20 +38,19 @@ public class Cellar extends Map{
     // Contains all the sprites to this map
     private final Cellar_sprites cellar_sprites;
     
+    private TWoT game;
+    
     /**
      * Constructor for Cellar
      * @param world 
      */
-    public Cellar(SpriteController world){
+    public Cellar(SpriteController world, TWoT game){
         //init our super constructor first
         super();
-        
+        this.game = game;
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
-        
-        //set the world constructor
-        super.setWorld(world);
         
         //init our Cellar_sprites
         cellar_sprites = new Cellar_sprites(world);
@@ -86,8 +88,6 @@ public class Cellar extends Map{
         canvas_menu_sprites.relocate(0, 0);
         //add the canvas to the group
         root.getChildren().add( canvas_menu_sprites );
-        
-        
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
@@ -246,6 +246,12 @@ public class Cellar extends Map{
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
                 
+                if(menu_input.contains("E")){
+                    if(player.intersect(sprites_still.get(1))){
+                        System.out.println(game.goTo(new Command(CommandWord.GO, "haystack")).toString());
+                    }
+                    menu_input.remove("E");
+                }
                 //update the players velocity
                 player.update(elapsedTime);
                 //clear our player
