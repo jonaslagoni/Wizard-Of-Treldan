@@ -107,5 +107,16 @@ public class Misc_sprites {
         return new Table_tree_round_w_cards().getSprite();
     }
     
+    
+    public SingleSprite getSkeleton_bones_pile() {
+        return new Skeleton_bones_pile().getSprite();
+    }
+    public SingleSprite getSkeleton_hanging() {
+        return new Skeleton_hanging().getSprite();
+    }
+    public SingleSprite getSkeleton_head_group() {
+        return new Skeleton_head_group().getSprite();
+    }
+    
 }
 
