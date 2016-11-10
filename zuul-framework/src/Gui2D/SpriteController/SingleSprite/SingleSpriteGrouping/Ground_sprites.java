@@ -141,5 +141,9 @@ public class Ground_sprites {
     public SingleSprite getStone_floor_3(){
         return new Stone_floor_3().getSprite();
     }
+    
+    public SingleSprite getCobbleStone_dark(){
+        return new Cobblestone_dark().getSprite();
+    }
 }
 

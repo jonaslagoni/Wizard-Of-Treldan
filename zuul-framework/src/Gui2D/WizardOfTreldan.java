@@ -13,6 +13,7 @@ import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
 import Gui2D.Maps.PlayerSelection;
 import Gui2D.Maps.Unicorn;
+import Gui2D.Maps.Village;
 import Gui2D.SpriteController.SpriteController;
 import TWoT_test.TWoT;
 import javafx.application.Application;
@@ -33,6 +34,7 @@ public class WizardOfTreldan extends Application {
     private static Map house2;
     private static Map forest;
     private static Map playerSelection;
+    private static Map village;
 
     /**
      * @return the game
@@ -77,9 +79,10 @@ public class WizardOfTreldan extends Application {
         gruulslair = new GruulsLair(world);
         unicorn = new Unicorn(world);
         forest = new Forest(world);
+        village = new Village(world);
         gruulslair = new GruulsLair(world);
         
-        setCellarScene();
+        setMenuScene();
         primaryStage.show();
     }
     
@@ -109,6 +112,10 @@ public class WizardOfTreldan extends Application {
      */
     public static void setCellarScene(){
         primaryStage.setScene(cellar.getScene());
+    }
+    
+    public static void setVillageScene(){
+        primaryStage.setScene(village.getScene());
     }
 
     /**
@@ -142,6 +149,7 @@ public class WizardOfTreldan extends Application {
     public static void setClearingScene(){
         primaryStage.setScene(clearing.getScene());
     }
+    
     
     public static void resetGame(){
         game = new TWoT();

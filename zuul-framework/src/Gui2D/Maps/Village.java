@@ -9,6 +9,8 @@ import Gui2D.SpriteController.Maps.Cellar_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
+import Gui2D.WizardOfTreldan;
+import TWoT_test.TWoT;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
@@ -30,7 +32,9 @@ public class Village extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private Cellar_sprites s;
+    
+    private TWoT game;
+    
     /**
      * Constructor for Cellar
      * @param world 
@@ -50,16 +54,38 @@ public class Village extends Map{
         //set the world constructor
         super.setWorld(world);
         
-        s = new Cellar_sprites(world);
-        s.setCellar_background_SingleSprites();
+       
     }
     
     public Scene getScene(){
+        this.game = WizardOfTreldan.getGame();
+        //add group
         Group root = new Group();
+        //set the scene
         Scene theScene = new Scene( root );
+        //set background color
         theScene.setFill(Color.rgb(83, 83, 83));
-        
+        //set canvas of our background
         Canvas village_background = new Canvas();
+        //add the canvas to the group
+        root.getChildren().add(village_background);
+        
+        
+        //add a canvas only for the player
+        Canvas player_canvas = new Canvas(512, 256 );
+        //relocate the canvas so its centered.
+        player_canvas.relocate(256, 128);
+        //add the canvas to the group
+        root.getChildren().add( player_canvas );
+        
+        //add a canvas only for the menu
+        Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
+        canvas_menu_sprites.relocate(0, 0);
+        //add the canvas to the group
+        root.getChildren().add( canvas_menu_sprites );
+        
+        
+        
         
         
         return theScene;
