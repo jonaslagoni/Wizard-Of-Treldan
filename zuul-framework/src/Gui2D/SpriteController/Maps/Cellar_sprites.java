@@ -95,7 +95,7 @@ public class Cellar_sprites{
             
             
             Sprite cell_bar_front = new Groupsprite_random(world.getMisc_sprites().getCell_ironbar_front());
-            cell_bar_front.setSize(64*1.5, 32);
+            cell_bar_front.setSize(32*3, 64);
             cell_bar_front.setPosition(380+6, 11+62*2);
             cellar_background_sprites.add(cell_bar_front);
             

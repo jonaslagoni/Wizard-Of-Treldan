@@ -99,7 +99,7 @@ public class Cellar extends Map{
         
         TextArea infobox = Infobox.getInfoBox();
         StackPane s = new StackPane(infobox);
-        s.setPrefSize(250, 150);
+        s.setPrefSize(300, 150);
         s.relocate(0, 362);
         root.getChildren().add(s);
         HashMap<String, String> welcome = game.getWelcomeMessages();
@@ -160,8 +160,14 @@ public class Cellar extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into the bed
-                    }else if(player.intersects_left(sprites_still.get(1))){
-                        //Reset the velocity
+                    }else if(player.intersects_left(sprites_still.get(1)) ||
+                             player.intersects_left(sprites_still.get(7)) || 
+                             player.intersects_left(sprites_still.get(8)) ||
+                             player.intersects_left(sprites_still.get(9)) ||
+                             player.intersects_left(sprites_still.get(10))|| 
+                             player.intersects_left(sprites_still.get(11))||
+                             player.intersects_left(sprites_still.get(12))||
+                             player.intersects_left(sprites_still.get(13))){
                         player.setVelocity(0, 0);
                     //check if the player walks into the door
                     }else if(player.intersects_left(sprites_still.get(4))){
@@ -201,8 +207,14 @@ public class Cellar extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into the bed
-                    }else if(player.intersects_right(sprites_still.get(1))){
-                        //Reset the velocity
+                    }else if(player.intersects_right(sprites_still.get(1)) ||
+                             player.intersects_right(sprites_still.get(7)) || 
+                             player.intersects_right(sprites_still.get(8)) ||
+                             player.intersects_right(sprites_still.get(9)) ||
+                             player.intersects_right(sprites_still.get(10))|| 
+                             player.intersects_right(sprites_still.get(11))||
+                             player.intersects_right(sprites_still.get(12))||
+                             player.intersects_right(sprites_still.get(13))){
                         player.setVelocity(0, 0);
                     //check if the player walks into the door
                     }else if(player.intersects_right(sprites_still.get(4))){
@@ -239,7 +251,14 @@ public class Cellar extends Map{
                     if(player.intersects_top(worldBoundTop)){
                         player.setVelocity(0, 0);
                     //check if the player walks into the bed
-                    }else if(player.intersects_top(sprites_still.get(1))){
+                    }else if(player.intersects_top(sprites_still.get(1)) ||
+                             player.intersects_top(sprites_still.get(7)) || 
+                             player.intersects_top(sprites_still.get(8)) ||
+                             player.intersects_top(sprites_still.get(9)) ||
+                             player.intersects_top(sprites_still.get(10))|| 
+                             player.intersects_top(sprites_still.get(11))||
+                             player.intersects_top(sprites_still.get(12))||
+                             player.intersects_top(sprites_still.get(13))){
                         player.setVelocity(0, 0);
                     //check if the player walks into the door
                     }else if(player.intersects_top(sprites_still.get(4))){
@@ -278,8 +297,14 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                         
                     //check if the player walks into the bed
-                    }else if(player.intersects_bottom(sprites_still.get(1))){
-                        //Reset the velocity
+                    }else if(player.intersects_bottom(sprites_still.get(1)) ||
+                             player.intersects_bottom(sprites_still.get(7)) || 
+                             player.intersects_bottom(sprites_still.get(8)) ||
+                             player.intersects_bottom(sprites_still.get(9)) ||
+                             player.intersects_bottom(sprites_still.get(10))|| 
+                             player.intersects_bottom(sprites_still.get(11))||
+                             player.intersects_bottom(sprites_still.get(12))||
+                             player.intersects_bottom(sprites_still.get(13))){
                         player.setVelocity(0, 0);
                         
                     //check if the player walks into the door
