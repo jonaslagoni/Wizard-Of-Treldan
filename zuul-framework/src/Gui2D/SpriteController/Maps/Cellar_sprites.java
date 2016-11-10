@@ -42,7 +42,7 @@ public class Cellar_sprites{
             
             Sprite random_group_grass = new Groupsprite_random(celler_grass_singlesprites);
             random_group_grass.setPosition(0, 0);
-            random_group_grass.setSize(1024, 512);
+            random_group_grass.setSize(512, 256);
             cellar_background_sprites.add(random_group_grass);
             
             Sprite hay_bed = world.getMisc_sprites().getBed_hay();
@@ -81,6 +81,11 @@ public class Cellar_sprites{
             Sprite skeleton_hanging = world.getMisc_sprites().getSkeleton_hanging();
             skeleton_hanging.setPosition(390, 15);
             cellar_background_sprites.add(skeleton_hanging);
+            
+            Sprite cell_bar_straight = new Groupsprite_random(world.getMisc_sprites().getCell_ironbar_straight());
+            cell_bar_straight.setSize(6, 62*2);
+            cell_bar_straight.setPosition(380, 12);
+            cellar_background_sprites.add(cell_bar_straight);
     }
 
     /**
