@@ -56,7 +56,7 @@ public class Misc_sprites {
     /**
      * @return the hay_bed
      */
-    public SingleSprite getHay_bed() {
+    public SingleSprite getBed_hay() {
         return new Bed_hay().getSprite();
     }
     public SingleSprite getBush() {
