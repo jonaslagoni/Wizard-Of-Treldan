@@ -29,6 +29,7 @@ public class WizardOfTreldan extends Application {
     private static Map gruulslair;
     private static Map menu;
     private static Map unicorn;
+    private static Map clearing;
     private static Map house2;
     private static Map forest;
     private static Map playerSelection;
@@ -136,6 +137,10 @@ public class WizardOfTreldan extends Application {
      */
     public static void setGruulsLairScene(){
         primaryStage.setScene(gruulslair.getScene());
+    }
+    
+    public static void setClearingScene(){
+        primaryStage.setScene(clearing.getScene());
     }
     
     public static void resetGame(){

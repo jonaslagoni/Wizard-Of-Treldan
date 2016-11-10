@@ -56,7 +56,7 @@ public class Misc_sprites {
     /**
      * @return the hay_bed
      */
-    public SingleSprite getBed_hay() {
+    public SingleSprite getHay_bed() {
         return new Bed_hay().getSprite();
     }
     public SingleSprite getBush() {
@@ -80,24 +80,14 @@ public class Misc_sprites {
     public SingleSprite getCave_Boulder() {
         return new Cave_Boulder().getSprite();
     }
-    
-    public SingleSprite getBed_steel_facing_down() {
-        return new Bed_steel_facing_down().getSprite();
+    public SingleSprite getUnicorner(){
+        return new Unicorn().getSprite();
     }
-    public SingleSprite getBed_tree_facing_down() {
-        return new Bed_tree_facing_down().getSprite();
+    public SingleSprite getBushExit(){
+        return new BushExit().getSprite();
     }
-    public SingleSprite getChair_tree_facing_down() {
-        return new Chair_tree_facing_down().getSprite();
-    }
-    public SingleSprite getChair_tree_facing_up() {
-        return new Chair_tree_facing_up().getSprite();
-    }
-    public SingleSprite getChair_tree_facing_east() {
-        return new Chair_tree_facing_east().getSprite();
-    }
-    public SingleSprite getChair_tree_facing_west() {
-        return new Chair_tree_facing_west().getSprite();
+    public SingleSprite getSmallBush(){
+        return new SmallBush().getSprite();
     }
     
     public SingleSprite getTable_tree_round() {
@@ -116,6 +106,26 @@ public class Misc_sprites {
     }
     public SingleSprite getSkeleton_head_group() {
         return new Skeleton_head_group().getSprite();
+    }
+    
+    
+    public SingleSprite getBed_steel_facing_down() {
+        return new Bed_steel_facing_down().getSprite();
+    }
+    public SingleSprite getBed_tree_facing_down() {
+        return new Bed_tree_facing_down().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_down() {
+        return new Chair_tree_facing_down().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_up() {
+        return new Chair_tree_facing_up().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_east() {
+        return new Chair_tree_facing_east().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_west() {
+        return new Chair_tree_facing_west().getSprite();
     }
     
 }
