@@ -30,9 +30,9 @@ public class Groupsprite_GroupRender extends GroupSprite {
         SingleSprite singleSprite =  getSprites().get(sprite_number);
         int current_height = 0;
         int current_width = 0;
-        while(current_height < super.getHeight()) {
+        while(current_height+20 < super.getHeight()) {
             double randomPlacementY = Math.random()*20+1;
-            while(current_width < super.getWidth()) {
+            while(current_width+50 < super.getWidth()) {
                 double randomPlacementX = Math.random()*50+30;
                 sprite_number = (int)Math.round((Math.random()*(getSprites().size()-1)));
                 singleSprite =  getSprites().get(sprite_number);
