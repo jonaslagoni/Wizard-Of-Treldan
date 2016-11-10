@@ -86,6 +86,35 @@ public class Cellar_sprites{
             cell_bar_straight.setSize(6, 62*2);
             cell_bar_straight.setPosition(380, 12);
             cellar_background_sprites.add(cell_bar_straight);
+            
+            
+            Sprite cell_corner = world.getMisc_sprites().getCell_ironbar_corner();
+            cell_corner.setSize(6, 63);
+            cell_corner.setPosition(380, 12+62*2);
+            cellar_background_sprites.add(cell_corner);
+            
+            
+            Sprite cell_bar_front = new Groupsprite_random(world.getMisc_sprites().getCell_ironbar_front());
+            cell_bar_front.setSize(64*1.5, 32);
+            cell_bar_front.setPosition(380+6, 11+62*2);
+            cellar_background_sprites.add(cell_bar_front);
+            
+            Sprite chair1 = world.getMisc_sprites().getChair_tree_facing_east();
+            chair1.setPosition(120, 180);
+            cellar_background_sprites.add(chair1);
+            
+            Sprite chair2 = world.getMisc_sprites().getChair_tree_facing_west();
+            chair2.setPosition(120+40+20, 180);
+            cellar_background_sprites.add(chair2);
+            
+            Sprite chair3 = world.getMisc_sprites().getChair_tree_facing_down();
+            chair3.setPosition(120+30, 180-30);
+            cellar_background_sprites.add(chair3);
+            
+            
+            Sprite table = world.getMisc_sprites().getTable_tree_round_w_cards();
+            table.setPosition(120+25, 180);
+            cellar_background_sprites.add(table);
     }
 
     /**
