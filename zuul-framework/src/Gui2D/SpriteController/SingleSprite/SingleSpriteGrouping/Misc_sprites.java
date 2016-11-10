@@ -80,5 +80,14 @@ public class Misc_sprites {
     public SingleSprite getCave_Boulder() {
         return new Cave_Boulder().getSprite();
     }
+    public SingleSprite getUnicorner(){
+        return new Unicorn().getSprite();
+    }
+    public SingleSprite getBushExit(){
+        return new BushExit().getSprite();
+    }
+    public SingleSprite getSmallBush(){
+        return new SmallBush().getSprite();
+    }
 }
 

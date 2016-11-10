@@ -1,0 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc;
+
+import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
+
+/**
+ *
+ * @author jonas
+ */
+public class BushExit  extends Abstract_sprite{
+    /**
+     * Sets the Bush sprite
+     */
+    public void setSprite(){
+        super.getSprite().setSpritePosX(1100);
+        super.getSprite().setSpritePosY(144);
+        super.getSprite().setSprite_width(94);
+        super.getSprite().setSprite_height(80);
+        super.getSprite().setWidth(94);
+        super.getSprite().setHeight(80);
+    }
+}

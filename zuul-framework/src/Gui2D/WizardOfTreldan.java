@@ -29,6 +29,7 @@ public class WizardOfTreldan extends Application {
     private static Map gruulslair;
     private static Map menu;
     private static Map unicorn;
+    private static Map clearing;
     private static Map house2;
     private static Map forest;
     private static Map playerSelection;
