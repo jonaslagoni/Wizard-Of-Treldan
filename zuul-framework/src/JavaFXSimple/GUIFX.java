@@ -32,7 +32,7 @@ public class GUIFX extends Application {
     private TextArea textArea;
     private String help;
     private String inventory;
-    private int counter=0;
+    private int counter;
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
@@ -42,9 +42,8 @@ public class GUIFX extends Application {
         for(ArrayList<Item> list : twot.getInventory()){
             if(list.isEmpty()){
                 counter++;
-                System.out.println(counter);
                 if(counter==3){
-                    return "Your inventory is empty";
+                    return "Your inventory is empty\n";
                 }
             }
             else if(list.size()>=1){
