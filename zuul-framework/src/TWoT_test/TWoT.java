@@ -20,7 +20,7 @@ public class TWoT implements Serializable{
     // Init variabels
     private Room currentRoom;
     private Player player;
-    public Npc stranger = new Npc("Stranger", true, 22203);
+    private Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
     private boolean isOver;
     
