@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
@@ -121,6 +122,7 @@ public class Cellar extends Map{
         //create GraphicsContext from our canvas_background
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
        
+        
         //get all sprites in cellar
         List<Sprite> sprites_still = cellar_sprites.getCellar_background_sprites();
         
