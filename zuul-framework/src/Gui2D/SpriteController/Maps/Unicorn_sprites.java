@@ -28,7 +28,7 @@ public class Unicorn_sprites{
     }
     
     public void setUnicorn(){
-        unicorn.add(world.getMisc_sprites().getHay_bed());
+        unicorn.add(world.getMisc_sprites().getBed_hay());
         
         //set single sprite position
         Sprite door = world.getMisc_sprites().getDoor_metal();

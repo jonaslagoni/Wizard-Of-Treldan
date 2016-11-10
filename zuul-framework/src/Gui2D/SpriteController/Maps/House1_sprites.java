@@ -26,7 +26,7 @@ public class House1_sprites{
        house = new ArrayList();
     }
     public void setHouse1_background_SingleSprites(){
-        house.add(world.getMisc_sprites().getHay_bed());
+        house.add(world.getMisc_sprites().getBed_hay());
         Sprite door = world.getMisc_sprites().getDoor_metal();
         door.setPosition(343, 89);
         house.add(door);

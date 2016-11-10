@@ -45,7 +45,7 @@ public class Cellar_sprites{
             random_group_grass.setSize(1024, 512);
             cellar_background_sprites.add(random_group_grass);
             
-            Sprite hay_bed = world.getMisc_sprites().getHay_bed();
+            Sprite hay_bed = world.getMisc_sprites().getBed_hay();
             hay_bed.setPosition(32, 64);
             cellar_background_sprites.add(hay_bed);
             
