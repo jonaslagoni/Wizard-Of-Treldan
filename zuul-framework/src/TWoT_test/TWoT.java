@@ -687,12 +687,12 @@ public class TWoT implements Serializable{
         return scoreList;
     }
     
-    public List getInventory() {
-        ArrayList<List> inventory = new ArrayList();
+    public ArrayList<ArrayList<Item>> getInventory() {
+        ArrayList<ArrayList<Item>> inventory = new ArrayList();
         ArrayList<Item> questitem = new ArrayList();
         ArrayList<Item> equippableitem = new ArrayList();
         ArrayList<Item> useableitem = new ArrayList();
-        
+       
             for(Item i: player.getInventoryItems()) {
                 if(i instanceof QuestItem){
                     questitem.add(i);
@@ -702,9 +702,9 @@ public class TWoT implements Serializable{
                     useableitem.add(i);
                 }
             }
-            inventory.add(questitem);
-            inventory.add(equippableitem);
-            inventory.add(useableitem);
+            inventory.add((ArrayList)questitem);
+            inventory.add((ArrayList)equippableitem);
+            inventory.add((ArrayList)useableitem);
             return inventory;
     }
     

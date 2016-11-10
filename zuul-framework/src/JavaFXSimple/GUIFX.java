@@ -32,14 +32,29 @@ public class GUIFX extends Application {
     private TextArea textArea;
     private String help;
     private String inventory;
-    
+    private int counter=0;
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
         }
     private String printInventory() {
-        
-    }
+    
+        for(ArrayList<Item> list : twot.getInventory()){
+            if(list.isEmpty()){
+                counter++;
+                System.out.println(counter);
+                if(counter==3){
+                    return "Your inventory is empty";
+                }
+            }
+            else if(list.size()>=1){
+                for(Item i : list){
+                    inventory += i.getItemName()+"\n";
+                }
+            }
+        }
+        return inventory;
+}
     
     public GUIFX () {
         
@@ -92,11 +107,11 @@ public class GUIFX extends Application {
             help=printHelp();
             textArea.appendText(help);
         });
-        button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            textArea.clear();
+        button_inventory.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            inventory = printInventory();
+            textArea.appendText(inventory);
         });
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            
             textArea.clear();
         });
                 
