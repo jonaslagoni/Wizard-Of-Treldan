@@ -19,6 +19,7 @@ private SpriteController world;
 private List<Sprite> clearing_background_sprites;
 private List<SingleSprite> clearing_tree_walls;
 private List<SingleSprite> clearing_grass_singlesprites;
+private List<SingleSprite> clearing_pathway_sprites;
     
     
     public Clearing_sprites(SpriteController world){
@@ -26,18 +27,35 @@ private List<SingleSprite> clearing_grass_singlesprites;
         clearing_background_sprites = new ArrayList();
         clearing_tree_walls = new ArrayList();
         clearing_grass_singlesprites = new ArrayList();
+        clearing_pathway_sprites = new ArrayList();
         
         
     }
     
     public void setClearing(){
-            clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_light_1());
-            clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_flower_1());     
+   
+            clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_dark_1());
+            clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_dark_2()); 
+            clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_dark_3());
             Sprite clearing_group_grass = new Groupsprite_random(clearing_grass_singlesprites);
             clearing_group_grass.setPosition(0, 0);
             clearing_group_grass.setSize(800, 400);
             clearing_background_sprites.add(clearing_group_grass);
             
+            clearing_pathway_sprites.add(world.getGround_sprite().getStone_dark_1());
+            clearing_pathway_sprites.add(world.getGround_sprite().getStone_dark_2());
+            clearing_pathway_sprites.add(world.getGround_sprite().getStone_dark_3());
+            Sprite clearing_group_pathway = new Groupsprite_random(clearing_pathway_sprites);
+            clearing_group_pathway.setPosition(60, 205);
+            clearing_group_pathway.setSize(64, 135);
+            clearing_background_sprites.add(clearing_group_pathway);
+            
+            Sprite treelog = world.getMisc_sprites().getBig_Tree_Stump();
+            treelog.setPosition(350,203);
+            clearing_background_sprites.add(treelog);
+            
+           
+  
             clearing_tree_walls.add(world.getMisc_sprites().getBush());
             clearing_tree_walls.add(world.getMisc_sprites().getBush());
             clearing_tree_walls.add(world.getMisc_sprites().getBush());
@@ -52,24 +70,16 @@ private List<SingleSprite> clearing_grass_singlesprites;
             clearing_background_sprites.add(tree_walls);
             
             Sprite exit = world.getMisc_sprites().getBushExit();
-            exit.setPosition(375, 0);
+            exit.setPosition(189, 0);
             clearing_background_sprites.add(exit);
             
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
-            unicorn.setPosition(550,200);
+            unicorn.setPosition(500,100);
             clearing_background_sprites.add(unicorn);
             
             
             
-            
-            
-            
-
-            
-            
-            
-            
-                    
+                 
             /*        
             Sprite torch = world.getMisc_sprites().getTorch_wall();
             torch.setPosition(100, 10);
