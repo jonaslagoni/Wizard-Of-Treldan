@@ -37,70 +37,9 @@ public class GUIFX extends Application {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
         }
-    
     private String printInventory() {
-        List<Item> questItems = new ArrayList();
-        List<Item> usableItems = new ArrayList();
-        List<Item> equippableItems = new ArrayList();
-        for(Item i: twot.getInventoryItems()){
-            if(i instanceof QuestItem){
-                questItems.add(i);
-            } else if (i instanceof UseableItem){
-                usableItems.add(i);
-            } else if (i instanceof EquippableItem){
-                equippableItems.add(i);
-            }
-        }
-        System.out.println("|QUEST ITEMS|");
-        if(!questItems.isEmpty()){
-            for(Item q: questItems){
-                System.out.println(q.getItemName() + " - " + q.getItemDescription());
-            }
-        }else{
-            System.out.println("No items");
-        }
-
-        System.out.println("|USABLE ITEMS|");
-
-        if(!usableItems.isEmpty()){
-            for(Item u: usableItems){
-                System.out.println(u.getItemName() + " - " + u.getItemDescription());
-            }
-        }else{
-            System.out.println("No items");
-        }
-
-        System.out.println("|EQUIPPABLE ITEMS|");
-        if(!equippableItems.isEmpty()){
-            for(Item e: equippableItems){
-                System.out.println(e.getItemName() + " - " + e.getItemDescription());
-            }
-        }else{
-            System.out.println("No items");
-        }
-        return inventory;
+        
     }
-        private String playerStats() {
-        System.out.println("");
-        System.out.println("******************");
-        System.out.println("Name    : "+twot.getPlayerName());
-        System.out.println("Health  : "+twot.getPlayerHealth());
-        System.out.println("Attack  : "+twot.getPlayerAtt());
-        System.out.println("Defense : "+twot.getPlayerDeff());
-        System.out.println("Gold    : "+twot.getPlayerGold());
-        System.out.println("******************");
-        System.out.println("**EQUIPPED ITEMS**");
-        if(!twot.getEquippableItems().isEmpty()){
-            for(Map.Entry<EquippableItem.EItem, EquippableItem> ei: twot.getEquippableItems().entrySet()){
-                System.out.println(ei.getKey() + ": " + ei.getValue().getItemName() + " : ATTV " + ei.getValue().getAttackBuff() + " : DEFFV " + ei.getValue().getDefenseBuff());
-            }
-        }else{
-            System.out.println("No equipped items..");
-        }
-        return inventory;
-    }
-
-
     
     public GUIFX () {
         
