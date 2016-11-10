@@ -24,6 +24,7 @@ public class Groupsprite_GroupRender extends GroupSprite {
         super(sprites);
     }
     
+    
     @Override
     public void render(GraphicsContext gc) {
         int sprite_number = 0;

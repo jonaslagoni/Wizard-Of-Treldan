@@ -40,7 +40,7 @@ public class House1_sprites{
        woof.add(world.getGround_sprite().getGrass_dark_2());
        Sprite random = new Groupsprite_random(woof);
        random.setSize(1000, 400);
-       random.setPosition(260, 70);
+       random.setPosition(70, 260);
        house.add(random);
     }
     

@@ -44,7 +44,7 @@ private List<SingleSprite> clearing_pathway_sprites;
             
             clearing_pathway_sprites.add(world.getGround_sprite().getCobbleStone_dark());
             Sprite clearing_group_pathway = new Groupsprite_random(clearing_pathway_sprites);
-            clearing_group_pathway.setPosition(60, 205);
+            clearing_group_pathway.setPosition(205, 60);
             clearing_group_pathway.setSize(64, 128);
             clearing_background_sprites.add(clearing_group_pathway);
             
@@ -67,11 +67,11 @@ private List<SingleSprite> clearing_pathway_sprites;
             clearing_background_sprites.add(tree_walls);
             
             Sprite exit = world.getMisc_sprites().getBushExit();
-            exit.setPosition(189, 0);
+            exit.setPosition(0, 189);
             clearing_background_sprites.add(exit);
             
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
-            unicorn.setPosition(500,100);
+            unicorn.setPosition(100,500);
             clearing_background_sprites.add(unicorn);
             
             

@@ -43,7 +43,7 @@ public class House2_sprites{
         lol_ol.add(world.getStructure_sprites().getStone_wall_W());
         Sprite calculated = new Groupsprite_circle(lol_ol);
         calculated.setSize(50, 50);
-        calculated.setPosition(400, 200);
+        calculated.setPosition(200, 400);
         kappaDonger.add(calculated);
         
         List<SingleSprite> hue_hue = new ArrayList();
@@ -51,7 +51,7 @@ public class House2_sprites{
         hue_hue.add(world.getGround_sprite().getStone_dark_2());
         Sprite random = new Groupsprite_random(hue_hue);
         random.setSize(40, 200);
-        random.setPosition(3, 50);
+        random.setPosition(50, 3);
         kappaDonger.add(random);
     }
     
