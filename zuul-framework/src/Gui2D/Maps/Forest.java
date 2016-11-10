@@ -8,6 +8,7 @@ package Gui2D.Maps;
 import Gui2D.SpriteController.Maps.Forest_sprites;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
+import TWoT_test.TWoT;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Group;
@@ -27,15 +28,18 @@ public class Forest extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    private Forest_sprites s;
+    private Forest_sprites forest_sprites;
+    
+    private TWoT game;
+    
     /**
      * Constructor for Cellar
      * @param world 
      */
-    public Forest(SpriteController world){
+    public Forest(SpriteController world, TWoT game){
         //init our super constructor
         super();
-        
+        this.game = game;
         //set the ArrayList's from the super class Map
         super.setInput(new ArrayList<String>());
         super.setMenu_input(new ArrayList<String>());
@@ -47,8 +51,8 @@ public class Forest extends Map{
         //set the world constructor
         super.setWorld(world);
         
-        s = new Forest_sprites(world);
-        s.setForest_background_SingleSprites();
+        forest_sprites = new Forest_sprites(world);
+        forest_sprites.setForest_background_SingleSprites();
     }
     
     @Override
@@ -59,7 +63,7 @@ public class Forest extends Map{
         Canvas background = new Canvas(1024, 512);
         root.getChildren().add(background);
         GraphicsContext backgroundContext = background.getGraphicsContext2D();
-        List<Sprite> spriteList = s.getSpriteList();
+        List<Sprite> spriteList = forest_sprites.getSpriteList();
         
         for(Sprite s : spriteList) {
             s.render(backgroundContext);

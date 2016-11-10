@@ -7,6 +7,7 @@ package Gui2D.SpriteController.Maps;
 
 import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
+import Gui2D.SpriteController.GroupSprites.Groupsprite_GroupRender;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
@@ -72,7 +73,7 @@ public class Cellar_sprites{
             Sprite door = world.getMisc_sprites().getDoor_metal();
             door.setPosition(330, 20);
             cellar_background_sprites.add(door);
-
+            
     }
 
     /**

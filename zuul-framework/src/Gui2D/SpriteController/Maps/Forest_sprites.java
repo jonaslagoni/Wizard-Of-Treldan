@@ -6,6 +6,7 @@
 package Gui2D.SpriteController.Maps;
 
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
+import Gui2D.SpriteController.GroupSprites.Groupsprite_GroupRender;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
@@ -81,23 +82,6 @@ public class Forest_sprites{
         roadClearing.setPosition(286, 672);
         spriteList.add(roadClearing);
         
-        List<SingleSprite> roadCaveList = new ArrayList();
-        roadCaveList.add(world.getGround_sprite().getStone_dark_3());
-        
-        Sprite roadCave = new Groupsprite_random(roadCaveList);
-        
-        roadCave.setSize(96, 96);
-        roadCave.setPosition(96, 672);
-        spriteList.add(roadCave);
-        
-        Sprite roadCaveTile1 = world.getGround_sprite().getStone_dark_3();
-        roadCaveTile1.setPosition(704, 64);
-        spriteList.add(roadCaveTile1);
-        
-        Sprite roadCaveTile2 = world.getGround_sprite().getStone_dark_1();
-        roadCaveTile2.setPosition(704, 32);
-        spriteList.add(roadCaveTile2);
-        
         // END OF ROADS
         
         // START OF MISC ITEMS
@@ -120,30 +104,9 @@ public class Forest_sprites{
         bushRow2.setPosition(270, 290);
         spriteList.add(bushRow2);
         
-        Sprite bush1 = world.getMisc_sprites().getBush();
-        bush1.setPosition(580, 80);
-        spriteList.add(bush1);
-        
-        Sprite bushCaveEntrance1 = world.getMisc_sprites().getBush();
-        bushCaveEntrance1.setPosition(615, 4);
-        spriteList.add(bushCaveEntrance1);
-        
-        Sprite bushCaveEntrance2 = world.getMisc_sprites().getBush();
-        bushCaveEntrance2.setPosition(732, 4);
-        spriteList.add(bushCaveEntrance2);
-        
         Sprite caveEntrance = world.getMisc_sprites().getCaveExit();
-        caveEntrance.setPosition(704, 0);
+        caveEntrance.setPosition(704, 148);
         spriteList.add(caveEntrance);
-        
-        List<SingleSprite> forestTreeList1 = new ArrayList();
-        forestTreeList1.add(world.getMisc_sprites().getTree1());
-        
-        Sprite forestTrees1 = new Groupsprite_random(forestTreeList1);
-        
-        forestTrees1.setSize(610, 147);
-        forestTrees1.setPosition(40, 0);
-        spriteList.add(forestTrees1);
         
         List<SingleSprite> forestBigTreeStumpList = new ArrayList();
         forestBigTreeStumpList.add(world.getMisc_sprites().getBig_Tree_Stump());
@@ -154,6 +117,16 @@ public class Forest_sprites{
         forestBigTreeStump.setPosition(445, 190);
         spriteList.add(forestBigTreeStump);
         
+        Sprite forest1 = new Groupsprite_GroupRender(world.getMisc_sprites().getTree1());
+        forest1.setPosition(-100, -154);
+        forest1.setSize(650, 200);
+        spriteList.add(forest1);
+            
+        Sprite forest2 = new Groupsprite_GroupRender(world.getMisc_sprites().getTree1());
+        forest2.setPosition(720, -140);
+        forest2.setSize(225, 600);
+        spriteList.add(forest2);
+        
         // END OF MISC ITEMS
         
         // START OF INTERACTABLE ITEMS
@@ -163,6 +136,7 @@ public class Forest_sprites{
         spriteList.add(mushroom1);
         
         // END OF INTERACTABLE ITEMS
+       
         
     }
 
