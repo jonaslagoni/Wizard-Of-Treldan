@@ -30,16 +30,13 @@ public class Forest extends Map{
     
     private Forest_sprites forest_sprites;
     
-    private TWoT game;
-    
     /**
      * Constructor for Cellar
      * @param world 
      */
-    public Forest(SpriteController world, TWoT game){
+    public Forest(SpriteController world){
         //init our super constructor
         super();
-        this.game = game;
         //set the ArrayList's from the super class Map
         super.setInput(new ArrayList<String>());
         super.setMenu_input(new ArrayList<String>());

@@ -73,7 +73,6 @@ public class WizardOfTreldan extends Application {
         menu = new Menu(world);
         playerSelection = new PlayerSelection(world);
         house2 = new House2(world);
-        forest = new Forest(world);
         gruulslair = new GruulsLair(world);
         unicorn = new Unicorn(world);
         forest = new Forest(world);

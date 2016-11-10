@@ -7,7 +7,6 @@ package Gui2D.SpriteController.Maps;
 
 import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
-import Gui2D.SpriteController.GroupSprites.Groupsprite_GroupRender;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
@@ -46,7 +45,7 @@ public class Cellar_sprites{
             random_group_grass.setSize(1024, 512);
             cellar_background_sprites.add(random_group_grass);
             
-            Sprite hay_bed = world.getMisc_sprites().getHay_bed();
+            Sprite hay_bed = world.getMisc_sprites().getBed_hay();
             hay_bed.setPosition(32, 64);
             cellar_background_sprites.add(hay_bed);
             
