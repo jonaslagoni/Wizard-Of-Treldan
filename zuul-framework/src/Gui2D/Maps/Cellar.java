@@ -12,20 +12,27 @@ import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
 import TWoT_test.Command;
 import TWoT_test.CommandWord;
+import TWoT_test.Item;
 import TWoT_test.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -97,6 +104,57 @@ public class Cellar extends Map{
         canvas_menu_sprites.relocate(0, 0);
         //add the canvas to the group
         root.getChildren().add( canvas_menu_sprites );
+        
+        
+        
+        AnchorPane menu = new AnchorPane();
+        menu.getStyleClass().add("inventory");
+        menu.relocate(724, 0);
+        menu.setPrefSize(300, 512);
+        
+        
+        Text health = new Text("Health: " + game.getPlayerHealth());
+        health.relocate(5, 28);
+        health.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
+        menu.getChildren().add(health);
+        
+        ProgressBar pb = new ProgressBar(game.getPlayerHealth()/100);
+        pb.setPrefSize(292, 10);
+        pb.relocate(4, 25);
+        menu.getChildren().add(pb);
+        
+        Text attv = new Text("" + game.getPlayerAtt());
+        attv.relocate(60, 64);
+        attv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
+        attv.setFill(Color.WHITE);
+        menu.getChildren().add(attv);
+        
+        Text deffv = new Text("" + game.getPlayerDeff());
+        deffv.relocate(216, 64);
+        deffv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
+        deffv.setFill(Color.WHITE);
+        menu.getChildren().add(deffv);
+        
+        ListView<AnchorPane> list = new ListView<AnchorPane>();
+        list.getStyleClass().add("inventoryList");
+        list.relocate(4, 245);
+        list.setPrefWidth(300-8);
+        list.setPrefHeight(210);
+        ObservableList<AnchorPane> items = FXCollections.observableArrayList ();
+        List<Item> items_ingame = game.getInventoryItems();
+        for(Item i: items_ingame){
+            AnchorPane t = new AnchorPane();
+            Text itemName = new Text(i.getItemName());
+            itemName.relocate(0, 5);
+            t.getChildren().add(itemName);
+            
+            items.add(t);
+        }
+        list.setItems(items);
+        menu.getChildren().add(list);
+        root.getChildren().add(menu);
+        
+        
         
         TextArea infobox = Infobox.getInfoBox();
         StackPane s = new StackPane(infobox);

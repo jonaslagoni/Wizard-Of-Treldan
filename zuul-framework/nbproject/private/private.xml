@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/WizardOfTreldan.java</file>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/PlayerSelection.java</file>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Cellar.java</file>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Menu.java</file>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/TWoT_test/TWoT.java</file>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/SpriteController/SingleSprite/PlayerSprite.java</file>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/TWoT_test/Room.java</file>
-            <file>file:/C:/Users/Lagoni/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Map.java</file>
+            <file>file:/C:/Users/jonas/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/WizardOfTreldan.java</file>
+            <file>file:/C:/Users/jonas/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Cellar.java</file>
+            <file>file:/C:/Users/jonas/Documents/GitHub/SemesterProjekt/zuul-framework/src/TWoT_test/EquippableItem.java</file>
+            <file>file:/C:/Users/jonas/Documents/GitHub/SemesterProjekt/zuul-framework/assets/TextAreaStyle.css</file>
+            <file>file:/C:/Users/jonas/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Menu.java</file>
+            <file>file:/C:/Users/jonas/Documents/GitHub/SemesterProjekt/zuul-framework/src/TWoT_test/TWoT.java</file>
+            <file>file:/C:/Users/jonas/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/SpriteController/Maps/Cellar_sprites.java</file>
         </group>
     </open-files>
 </project-private>

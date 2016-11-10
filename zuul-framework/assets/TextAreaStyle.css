@@ -5,3 +5,29 @@
 .text-area *.text {
     -fx-text-alignment: justify;
 }
+.inventory{
+    -fx-background-image: url('inventory.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 300 512;
+    -fx-background-position: center center;
+}
+.inventoryList{
+    -fx-background-color: transparent ;
+}
+.list-view .list-cell {
+    -fx-background-color: transparent ;
+}
+.list-view .list-cell:focused {
+    -fx-background-color: #00ffff ;
+}
+.item{
+    -fx-background-color: #00ffff ;
+}
+
+.progress-bar > .track {
+  -fx-text-box-border: forestgreen;
+  -fx-control-inner-background: palegreen;
+}
+.progress-bar{
+  -fx-accent: red;
+}
