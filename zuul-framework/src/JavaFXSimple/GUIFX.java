@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -159,9 +160,9 @@ public class GUIFX extends Application {
             
             textArea.clear();
         });
-        button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            textArea.clear();
-        });
+                
+        button_exit.setOnAction(actionEvent -> Platform.exit());
+ 
         
         Scene scene1 = new Scene(root, 512, 288);
         
