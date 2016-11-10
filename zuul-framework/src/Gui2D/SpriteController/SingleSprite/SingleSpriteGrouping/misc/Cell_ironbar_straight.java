@@ -11,17 +11,17 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Cell_ironbare_straight extends Abstract_sprite {
+public class Cell_ironbar_straight extends Abstract_sprite {
     /**
      * Sets the Cave_Hole sprite
      */
     @Override
     public void setSprite() {
-        super.getSprite().setSpritePosX(855);
-        super.getSprite().setSpritePosY(312);
-        super.getSprite().setSprite_width(32);
-        super.getSprite().setSprite_height(63);
-        super.getSprite().setWidth(32);
-        super.getSprite().setHeight(63);
+        super.getSprite().setSpritePosX(841);
+        super.getSprite().setSpritePosY(313);
+        super.getSprite().setSprite_width(6);
+        super.getSprite().setSprite_height(62);
+        super.getSprite().setWidth(6);
+        super.getSprite().setHeight(62);
     }
 }

@@ -128,5 +128,16 @@ public class Misc_sprites {
         return new Chair_tree_facing_west().getSprite();
     }
     
+    
+    public SingleSprite getCell_ironbar_corner() {
+        return new Cell_ironbar_corner().getSprite();
+    }
+    public SingleSprite getCell_ironbar_straight() {
+        return new Cell_ironbar_straight().getSprite();
+    }
+    public SingleSprite getCell_ironbar_front() {
+        return new Cell_ironbar_front().getSprite();
+    }
+    
 }
 
