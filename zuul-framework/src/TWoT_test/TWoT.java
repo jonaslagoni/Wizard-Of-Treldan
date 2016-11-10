@@ -20,7 +20,7 @@ public class TWoT implements Serializable{
     // Init variabels
     private Room currentRoom;
     private Player player;
-    private Npc stranger = new Npc("Stranger", true, 22203);
+    public Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
     private boolean isOver;
     
@@ -460,6 +460,7 @@ public class TWoT implements Serializable{
                     currentRoom = roomDungeon;
                     description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     break;
+                    
                 case 22204:
                     for(Item i: getInventoryItems()){
                         if(i instanceof QuestItem){
