@@ -426,6 +426,7 @@ public class TWoT implements Serializable{
                                 player.removeInventoryItem(i);
                                 Interior roomVillageExit4 = new Exit(roomForest);
                                 roomVillage.addMapInterior("forest", roomVillageExit4);
+                                roomVillage.removeInterior("guard");
                                 return description;
                             }
                         }
