@@ -73,6 +73,14 @@ public class Cellar_sprites{
             door.setPosition(330, 20);
             cellar_background_sprites.add(door);
 
+            Sprite wood_bed = world.getMisc_sprites().getBed_tree_facing_down();
+            wood_bed.setPosition(430, 64);
+            cellar_background_sprites.add(wood_bed);
+            
+            
+            Sprite skeleton_hanging = world.getMisc_sprites().getSkeleton_hanging();
+            skeleton_hanging.setPosition(390, 15);
+            cellar_background_sprites.add(skeleton_hanging);
     }
 
     /**

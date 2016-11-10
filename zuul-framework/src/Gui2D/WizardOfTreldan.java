@@ -79,7 +79,7 @@ public class WizardOfTreldan extends Application {
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
         
-        setMenuScene();
+        setCellarScene();
         primaryStage.show();
     }
     
