@@ -30,17 +30,20 @@ public class Groupsprite_GroupRender extends GroupSprite {
         SingleSprite singleSprite =  getSprites().get(sprite_number);
         int current_height = 0;
         int current_width = 0;
-        while(current_height+20 < super.getHeight()) {
-            double randomPlacementY = Math.random()*20+1;
-            while(current_width+50 < super.getWidth()) {
-                double randomPlacementX = Math.random()*50+30;
+        double randomPlacementY = 0;
+        double randomPlacementX = 0;
+        
+        while(current_height+10 < super.getHeight()) {
+            while(current_width+40 < super.getWidth()) {
                 sprite_number = (int)Math.round((Math.random()*(getSprites().size()-1)));
                 singleSprite =  getSprites().get(sprite_number);
-                gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSprite_width(), singleSprite.getSprite_height(), getPositionX()+current_width + randomPlacementX, getPositionY()+current_height, singleSprite.getWidth(), singleSprite.getHeight());
+                gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSprite_width(), singleSprite.getSprite_height(), getPositionX()+current_width, getPositionY()+current_height, singleSprite.getWidth(), singleSprite.getHeight());
                 current_width += randomPlacementX;
+                randomPlacementX = Math.random()*40+20;
             }
-            current_width = 0;
+            current_width = (int)randomPlacementX;
             current_height += randomPlacementY;
+            randomPlacementY = Math.random()*10+7;
         }
     }
     
