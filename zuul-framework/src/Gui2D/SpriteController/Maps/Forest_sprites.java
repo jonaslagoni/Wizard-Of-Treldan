@@ -104,8 +104,8 @@ public class Forest_sprites{
         bushRow2.setPosition(290, 270);
         spriteList.add(bushRow2);
         
-        Sprite caveEntrance = world.getMisc_sprites().getCaveExit();
-        caveEntrance.setPosition(704, 148);
+        Sprite caveEntrance = world.getMisc_sprites().getBushExit();
+        caveEntrance.setPosition(678, 114);
         spriteList.add(caveEntrance);
         
         List<SingleSprite> forestBigTreeStumpList = new ArrayList();
