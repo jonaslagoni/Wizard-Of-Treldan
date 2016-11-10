@@ -27,7 +27,7 @@ public class House2_sprites{
     }
     
     public void setHouse2_background_SingleSprites(){
-        kappaDonger.add(world.getMisc_sprites().getHay_bed());
+        kappaDonger.add(world.getMisc_sprites().getBed_hay());
         Sprite door = world.getMisc_sprites().getDoor_metal();
         door.setPosition(100, 50);
         kappaDonger.add(door);

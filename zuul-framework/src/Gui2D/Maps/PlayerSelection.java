@@ -28,15 +28,17 @@ import javafx.scene.text.Text;
  */
 public class PlayerSelection extends Map{
     private TWoT game;
-    public PlayerSelection(SpriteController world, TWoT game){
+    public PlayerSelection(SpriteController world){
         super();
         //set the world constructor
         super.setWorld(world);
-        this.game = game;
     }
     
     @Override
-    public Scene getScene(){        
+    public Scene getScene(){
+        
+        game = WizardOfTreldan.getGame();
+        
         Group playerSelectionGroup = new Group();
         Scene playerScene = new Scene( playerSelectionGroup );
         playerScene.setFill(javafx.scene.paint.Color.rgb(83, 83, 83));

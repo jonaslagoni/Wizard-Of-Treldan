@@ -42,9 +42,9 @@ public class Groupsprite_random extends GroupSprite{
             for(int k = 0; k < renderCounterWidth; k++){
                 sprite_number = (int)Math.round((Math.random()*(getSprites().size()-1)));
                 singleSprite =  getSprites().get(sprite_number);
-                gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSprite_width(), singleSprite.getSprite_height(), getPositionY()+(singleSprite.getWidth()*k), getPositionX()+(singleSprite.getHeight()*i), singleSprite.getWidth(), singleSprite.getHeight());
+                gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSprite_width(), singleSprite.getSprite_height(), getPositionX()+(singleSprite.getWidth()*k), getPositionY()+(singleSprite.getHeight()*i), singleSprite.getWidth(), singleSprite.getHeight());
             }
-            gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSprite_width(), singleSprite.getSprite_height(), getPositionY(), getPositionX()+(singleSprite.getHeight()*i), singleSprite.getWidth(), singleSprite.getHeight());
+            gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSprite_width(), singleSprite.getSprite_height(), getPositionX(), getPositionY()+(singleSprite.getHeight()*i), singleSprite.getWidth(), singleSprite.getHeight());
         }
         
     }

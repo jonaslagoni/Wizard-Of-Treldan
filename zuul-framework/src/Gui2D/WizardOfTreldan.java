@@ -29,15 +29,24 @@ public class WizardOfTreldan extends Application {
     private static Map gruulslair;
     private static Map menu;
     private static Map unicorn;
+    private static Map clearing;
     private static Map house2;
     private static Map forest;
     private static Map playerSelection;
+
+    /**
+     * @return the game
+     */
+    public static TWoT getGame() {
+        return game;
+    }
     
     //our global world generator
     private SpriteController world;
     
     
-    private TWoT game;
+    private static TWoT game;
+    
     //set a global stage from the primaryStage
     private static Stage primaryStage;
     
@@ -60,9 +69,9 @@ public class WizardOfTreldan extends Application {
         world = new SpriteController();
         
         //Init all world maps
-        cellar = new Cellar(world, game);
+        cellar = new Cellar(world);
         menu = new Menu(world);
-        playerSelection = new PlayerSelection(world, game);
+        playerSelection = new PlayerSelection(world);
         house2 = new House2(world);
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
@@ -70,7 +79,7 @@ public class WizardOfTreldan extends Application {
         forest = new Forest(world);
         gruulslair = new GruulsLair(world);
         
-        setMenuScene();
+        setCellarScene();
         primaryStage.show();
     }
     
@@ -128,5 +137,13 @@ public class WizardOfTreldan extends Application {
      */
     public static void setGruulsLairScene(){
         primaryStage.setScene(gruulslair.getScene());
+    }
+    
+    public static void setClearingScene(){
+        primaryStage.setScene(clearing.getScene());
+    }
+    
+    public static void resetGame(){
+        game = new TWoT();
     }
 }

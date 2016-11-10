@@ -56,8 +56,8 @@ public class Misc_sprites {
     /**
      * @return the hay_bed
      */
-    public SingleSprite getHay_bed() {
-        return new Hay_bed().getSprite();
+    public SingleSprite getBed_hay() {
+        return new Bed_hay().getSprite();
     }
     public SingleSprite getBush() {
         return new Bush().getSprite();
@@ -80,5 +80,64 @@ public class Misc_sprites {
     public SingleSprite getCave_Boulder() {
         return new Cave_Boulder().getSprite();
     }
+    public SingleSprite getUnicorner(){
+        return new Unicorn().getSprite();
+    }
+    public SingleSprite getBushExit(){
+        return new BushExit().getSprite();
+    }
+    public SingleSprite getSmallBush(){
+        return new SmallBush().getSprite();
+    }
+    
+    public SingleSprite getTable_tree_round() {
+        return new Table_tree_round().getSprite();
+    }
+    public SingleSprite getTable_tree_round_w_cards() {
+        return new Table_tree_round_w_cards().getSprite();
+    }
+    
+    
+    public SingleSprite getSkeleton_bones_pile() {
+        return new Skeleton_bones_pile().getSprite();
+    }
+    public SingleSprite getSkeleton_hanging() {
+        return new Skeleton_hanging().getSprite();
+    }
+    public SingleSprite getSkeleton_head_group() {
+        return new Skeleton_head_group().getSprite();
+    }
+    
+    
+    public SingleSprite getBed_steel_facing_down() {
+        return new Bed_steel_facing_down().getSprite();
+    }
+    public SingleSprite getBed_tree_facing_down() {
+        return new Bed_tree_facing_down().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_down() {
+        return new Chair_tree_facing_down().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_up() {
+        return new Chair_tree_facing_up().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_east() {
+        return new Chair_tree_facing_east().getSprite();
+    }
+    public SingleSprite getChair_tree_facing_west() {
+        return new Chair_tree_facing_west().getSprite();
+    }
+    
+    
+    public SingleSprite getCell_ironbar_corner() {
+        return new Cell_ironbar_corner().getSprite();
+    }
+    public SingleSprite getCell_ironbar_straight() {
+        return new Cell_ironbar_straight().getSprite();
+    }
+    public SingleSprite getCell_ironbar_front() {
+        return new Cell_ironbar_front().getSprite();
+    }
+    
 }
 
