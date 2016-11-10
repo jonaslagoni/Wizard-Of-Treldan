@@ -41,8 +41,7 @@ public class TWoT implements Serializable{
     private void createRooms(){
         roomCellar = new Room("Cellar", "***Cellar*** \nYou wake up in a dull cellar. Light is emitting from a torch on the wall "
                 + "and you barely get on your feet.\nYou’ve been laying on a haystack for God knows how long and "
-                + "your feet are extremely sore.\nTo your right you see a table with multiple drawers and right in "
-                + "front of you an old door with a lock.", 1);
+                + "your feet are extremely sore.", 1);
         roomVillage = new Room("Village of Treldan", "\n\n***Village of Treldan*** \nIt’s dark outside. You seem to be familiar with this part of the village. "
                 + "\nYou still wonder why you were locked up in that cell, but your thoughts are quickly interrupted "
                 + "by a sobbing by the gate.\nA guard seems to be crying, and something doesn’t seem right in the "

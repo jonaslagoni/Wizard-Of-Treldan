@@ -34,7 +34,6 @@ public class Menu extends Map{
     public Scene getScene(){
         Group menuGroup = new Group();
         Scene menuScene = new Scene( menuGroup );
-        Pane anchorpane = new Pane();
         
         Canvas canvas_movealbe_sprites = new Canvas( 1024, 512 );
         canvas_movealbe_sprites.relocate(0, 0);
@@ -42,6 +41,7 @@ public class Menu extends Map{
         //set our  menu image
         background_context.drawImage(new Image("menu_background.png"), 0, 0);
         
+        Pane anchorpane = new Pane();
         anchorpane.setPrefSize(768, 512);
         Button start = new Button();
         start.setText("New Game");
@@ -54,6 +54,7 @@ public class Menu extends Map{
                 public void handle(MouseEvent e) {
                     Platform.runLater(new Runnable() {
                         @Override public void run() {
+                            WizardOfTreldan.resetGame();
                             WizardOfTreldan.setPlayerSelectionScene();
                         }
                     });

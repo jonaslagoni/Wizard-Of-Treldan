@@ -14,6 +14,7 @@ import TWoT_test.Command;
 import TWoT_test.CommandWord;
 import TWoT_test.TWoT;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
@@ -21,6 +22,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 /**
@@ -45,10 +48,9 @@ public class Cellar extends Map{
      * @param world 
      * @param game 
      */
-    public Cellar(SpriteController world, TWoT game){
+    public Cellar(SpriteController world){
         //init our super constructor first
         super();
-        this.game = game;
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
@@ -65,12 +67,16 @@ public class Cellar extends Map{
      */
     @Override
     public Scene getScene(){
+        
+        this.game = WizardOfTreldan.getGame();
         //add our group
         Group root = new Group();
         //add a scene from the group
         Scene theScene = new Scene( root );
         //set a darker background
         theScene.setFill(Color.rgb(83, 83, 83));
+        //set the styleScheet
+        theScene.getStylesheets().add("TextAreaStyle.css");
         
         Canvas canvas_background = new Canvas( 512, 256);
         //relocate the canvas so its centered.
@@ -90,6 +96,15 @@ public class Cellar extends Map{
         canvas_menu_sprites.relocate(0, 0);
         //add the canvas to the group
         root.getChildren().add( canvas_menu_sprites );
+        
+        TextArea infobox = Infobox.getInfoBox();
+        StackPane s = new StackPane(infobox);
+        s.setPrefSize(250, 150);
+        s.relocate(0, 362);
+        root.getChildren().add(s);
+        HashMap<String, String> welcome = game.getWelcomeMessages();
+        infobox.appendText(welcome.get("getRooms") + "\n");
+        
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
@@ -127,7 +142,8 @@ public class Cellar extends Map{
             //what to do each cycle
             @Override
             public void handle(long currentNanoTime){
-                
+                //request the focus back
+                root.requestFocus();
                 //get how many sec have passed
                 double elapsedTime = (currentNanoTime - lastNanoTime) / 1000000000.0;
                 //set the lastNanoTime to the nano time from parameter
@@ -153,13 +169,17 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                         if(!hasPrinted){
                             int oldId = game.getCurrentRoomId();
-                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
                             hasPrinted = true;
                             if(game.getCurrentRoomId() != oldId){
-                                //remove the input
-                                input.remove("LEFT");
+                                //remove all the inputs
+                                input.removeAll(input);
                                 //stop this AnimationTimer
                                 this.stop();
+                                //clear the textarea
+                                infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
                             }
@@ -190,13 +210,17 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                         if(!hasPrinted){
                             int oldId = game.getCurrentRoomId();
-                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
                             hasPrinted = true;
                             if(game.getCurrentRoomId() != oldId){
-                                //remove the input
-                                input.remove("RIGHT");
+                                //remove all the inputs
+                                input.removeAll(input);
                                 //stop this AnimationTimer
                                 this.stop();
+                                //clear the textarea
+                                infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
                             }
@@ -223,13 +247,17 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                         if(!hasPrinted){
                             int oldId = game.getCurrentRoomId();
-                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
                             hasPrinted = true;
                             if(game.getCurrentRoomId() != oldId){
-                                //remove the input
-                                input.remove("UP");
+                                //remove all the inputs
+                                input.removeAll(input);
                                 //stop this AnimationTimer
                                 this.stop();
+                                //clear the textarea
+                                infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
                             }
@@ -260,13 +288,17 @@ public class Cellar extends Map{
                         player.setVelocity(0, 0);
                         if(!hasPrinted){
                             int oldId = game.getCurrentRoomId();
-                            System.out.println(game.goTo(new Command(CommandWord.GO, "door")).toString());
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
                             hasPrinted = true;
                             if(game.getCurrentRoomId() != oldId){
-                                //remove the input
-                                input.remove("DOWN");
+                                //remove all the inputs
+                                input.removeAll(input);
                                 //stop this AnimationTimer
                                 this.stop();
+                                //clear the textarea
+                                infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
                             }
@@ -281,7 +313,9 @@ public class Cellar extends Map{
                 
                 if(menu_input.contains("E")){
                     if(player.intersect(sprites_still.get(1))){
-                        System.out.println(game.goTo(new Command(CommandWord.GO, "haystack")).toString());
+                        for(String s: game.goTo(new Command(CommandWord.GO, "haystack"))){
+                            infobox.appendText("\n" + s + "\n");
+                        }
                         hasPrinted = false;
                     }
                     menu_input.remove("E");
