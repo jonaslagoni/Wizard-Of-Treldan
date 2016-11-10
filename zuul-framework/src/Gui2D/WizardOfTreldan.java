@@ -139,6 +139,10 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(gruulslair.getScene());
     }
     
+    public static void setClearingScene(){
+        primaryStage.setScene(clearing.getScene());
+    }
+    
     public static void resetGame(){
         game = new TWoT();
     }
