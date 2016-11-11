@@ -104,9 +104,34 @@ public class Forest_sprites{
         bushRow2.setPosition(270, 290);
         spriteList.add(bushRow2);
         
+        // CAVE ENTRANCE START
+        
+        Sprite bushCaveEntrance5 = world.getMisc_sprites().getBush();
+        bushCaveEntrance5.setPosition(678, -36);
+        spriteList.add(bushCaveEntrance5);
+        
+        Sprite bushCaveEntrance4 = world.getMisc_sprites().getBush();
+        bushCaveEntrance4.setPosition(678, -6);
+        spriteList.add(bushCaveEntrance4);
+        
+        Sprite bushCaveEntrance3 = world.getMisc_sprites().getBush();
+        bushCaveEntrance3.setPosition(678, 24);
+        spriteList.add(bushCaveEntrance3);
+        
+        
+        Sprite bushCaveEntrance2 = world.getMisc_sprites().getBush();
+        bushCaveEntrance2.setPosition(678, 54);
+        spriteList.add(bushCaveEntrance2);
+        
+        Sprite bushCaveEntrance1 = world.getMisc_sprites().getBush();
+        bushCaveEntrance1.setPosition(678, 84);
+        spriteList.add(bushCaveEntrance1);
+        
         Sprite caveEntrance = world.getMisc_sprites().getBushExit();
         caveEntrance.setPosition(678, 114);
         spriteList.add(caveEntrance);
+        
+        // CAVE ENTRANCE END
         
         List<SingleSprite> forestBigTreeStumpList = new ArrayList();
         forestBigTreeStumpList.add(world.getMisc_sprites().getBig_Tree_Stump());

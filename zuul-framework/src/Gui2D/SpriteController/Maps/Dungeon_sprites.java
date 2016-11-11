@@ -29,18 +29,98 @@ public class Dungeon_sprites {
     
     public void setDungeon_background_SingleSprites(){
         
+        // START OF TILESET
+        
+        List<SingleSprite> dungeonTilesetList = new ArrayList();
+        dungeonTilesetList.add(world.getGround_sprite().getStone_floor_1());
+        dungeonTilesetList.add(world.getGround_sprite().getStone_floor_2());
+        dungeonTilesetList.add(world.getGround_sprite().getStone_floor_3());
+        
+        Sprite dungeonTileset = new Groupsprite_random(dungeonTilesetList);
+        dungeonTileset.setPosition(120,157);
+        dungeonTileset.setSize(710, 304);
+        spriteList.add(dungeonTileset);
+        
+        // END OF TILESET
+        
         // START OF WALL
 
-        List<SingleSprite> dungeonNORTHWALLList = new ArrayList();
-        dungeonNORTHWALLList.add(world.getStructure_sprites().getStone_wall_N());
-        
-        Sprite dungeonNORTHWALL = new Groupsprite_random(dungeonNORTHWALLList);
-        
-        dungeonNORTHWALL.setSize(250, 125);
-        dungeonNORTHWALL.setPosition(175, 500);
-        spriteList.add(dungeonNORTHWALL);
+        List<SingleSprite> dungeonWALLList = new ArrayList();
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_NW());
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_N());
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_NE());
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_E());
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_SE());
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_S());
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_SW());
+        dungeonWALLList.add(world.getStructure_sprites().getStone_wall_W());
+        Sprite dungeonWALLCircle = new Groupsprite_circle(dungeonWALLList);
+        dungeonWALLCircle.setPosition(125, 60);
+        dungeonWALLCircle.setSize(768, 384);
+        spriteList.add(dungeonWALLCircle);
         
         // END OF WALL
+        
+        // START OF LIBARY ENTRANCE
+        
+        Sprite libaryDoor = world.getMisc_sprites().getDoor_metal();
+        libaryDoor.setPosition(700, 75);
+        libaryDoor.setSize(32, 48);
+        spriteList.add(libaryDoor);
+        
+        // END OF LIBARY ENTRANCE
+        
+        // START OF MISC
+        
+        Sprite torch1 = world.getMisc_sprites().getTorch_wall();
+        torch1.setPosition(670, 80);
+        torch1.setSize(16, 38);
+        spriteList.add(torch1);
+        
+        Sprite torch2 = world.getMisc_sprites().getTorch_wall();
+        torch2.setPosition(746, 80);
+        torch2.setSize(16, 38);
+        spriteList.add(torch2);
+        
+        Sprite hangingSkeleton1 = world.getMisc_sprites().getSkeleton_hanging();
+        hangingSkeleton1.setPosition(500, 80);
+        hangingSkeleton1.setSize(32, 45);
+        spriteList.add(hangingSkeleton1);
+        
+        Sprite hangingSkeleton2 = world.getMisc_sprites().getSkeleton_hanging();
+        hangingSkeleton2.setPosition(400, 80);
+        hangingSkeleton2.setSize(32, 45);
+        spriteList.add(hangingSkeleton2);
+        
+        Sprite hangingSkeleton3 = world.getMisc_sprites().getSkeleton_hanging();
+        hangingSkeleton3.setPosition(300, 80);
+        hangingSkeleton3.setSize(32, 45);
+        spriteList.add(hangingSkeleton3);
+        
+        Sprite hangingSkeleton4 = world.getMisc_sprites().getSkeleton_hanging();
+        hangingSkeleton4.setPosition(200, 80);
+        hangingSkeleton4.setSize(32, 45);
+        spriteList.add(hangingSkeleton4);
+        
+        List<SingleSprite> bonePileList1 = new ArrayList();
+        bonePileList1.add(world.getMisc_sprites().getSkeleton_bones_pile());
+        
+        Sprite bonePileRow = new Groupsprite_random(bonePileList1);
+        bonePileRow.setSize(128, 128);
+        bonePileRow.setPosition(290, 160);
+        spriteList.add(bonePileRow);
+        
+        Sprite SpiderWebUPPERLEFT1 = world.getMisc_sprites().getSpiderWeb_UPPER_LEFT();
+        SpiderWebUPPERLEFT1.setSize(32, 23);
+        SpiderWebUPPERLEFT1.setPosition(156, 122);
+        spriteList.add(SpiderWebUPPERLEFT1);
+        
+        Sprite SpiderWebLOWERRIGHT1 = world.getMisc_sprites().getSpiderWeb_LOWER_RIGHT();
+        SpiderWebLOWERRIGHT1.setSize(24, 32);
+        SpiderWebLOWERRIGHT1.setPosition(838, 389);
+        spriteList.add(SpiderWebLOWERRIGHT1);
+        
+        // END OF MISC
         
     }
 

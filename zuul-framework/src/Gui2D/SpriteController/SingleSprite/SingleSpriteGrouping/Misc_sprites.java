@@ -139,5 +139,12 @@ public class Misc_sprites {
         return new Cell_ironbar_front().getSprite();
     }
     
+    public SingleSprite getSpiderWeb_UPPER_LEFT() {
+        return new SpiderWeb_UPPER_LEFT().getSprite();
+    }
+    
+    public SingleSprite getSpiderWeb_LOWER_RIGHT() {
+        return new SpiderWeb_LOWER_RIGHT().getSprite();
+    }
 }
 
