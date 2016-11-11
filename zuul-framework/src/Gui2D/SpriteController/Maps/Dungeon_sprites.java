@@ -37,7 +37,7 @@ public class Dungeon_sprites {
         dungeonTilesetList.add(world.getGround_sprite().getStone_floor_3());
         
         Sprite dungeonTileset = new Groupsprite_random(dungeonTilesetList);
-        dungeonTileset.setPosition(120,157);
+        dungeonTileset.setPosition(157,120);
         dungeonTileset.setSize(710, 304);
         spriteList.add(dungeonTileset);
         
@@ -107,7 +107,7 @@ public class Dungeon_sprites {
         
         Sprite bonePileRow = new Groupsprite_random(bonePileList1);
         bonePileRow.setSize(128, 128);
-        bonePileRow.setPosition(290, 160);
+        bonePileRow.setPosition(160, 290);
         spriteList.add(bonePileRow);
         
         Sprite SpiderWebUPPERLEFT1 = world.getMisc_sprites().getSpiderWeb_UPPER_LEFT();
