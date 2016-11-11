@@ -48,13 +48,6 @@ public class Clearing extends Map{
         s = new Clearing_sprites(world);
         s.setClearing();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
     }
     
     public Scene getScene(){
@@ -63,8 +56,8 @@ public class Clearing extends Map{
         theScene.setFill(Color.rgb(83, 83, 83));
         
         
-        Canvas canvas_background = new Canvas(770,400);
-        canvas_background.relocate(120,60);
+        Canvas canvas_background = new Canvas(730,370);
+        canvas_background.relocate(126,66);
         root.getChildren().add(canvas_background);
         
         

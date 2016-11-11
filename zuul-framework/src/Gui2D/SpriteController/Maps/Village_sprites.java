@@ -20,15 +20,15 @@ import java.util.List;
 public class Village_sprites{
     private SpriteController world;
     private List<Sprite> village_background_sprites;
+    
     private List<SingleSprite> village_background_ground;
-    private List<SingleSprite> village_background_pathway;
     
     
     public Village_sprites(SpriteController world){
         this.world = world;
     }
     
-    public void setCellar_background_SingleSprites(){
+    public void setVillage_background_SingleSprites(){
         
     }
 

@@ -5,6 +5,7 @@
  */
 package Gui2D.SpriteController.Maps;
 
+import Gui2D.SpriteController.GroupSprites.Groupsprite_GroupRender;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
@@ -16,7 +17,9 @@ import java.util.List;
 
 public class Clearing_sprites{
 private SpriteController world;
+//list containing all sprites for the room
 private List<Sprite> clearing_background_sprites;
+//list of diffrent sprites
 private List<SingleSprite> clearing_tree_walls;
 private List<SingleSprite> clearing_grass_singlesprites;
 private List<SingleSprite> clearing_pathway_sprites;
@@ -24,6 +27,7 @@ private List<SingleSprite> clearing_pathway_sprites;
     
     public Clearing_sprites(SpriteController world){
         this.world = world;
+        
         clearing_background_sprites = new ArrayList();
         clearing_tree_walls = new ArrayList();
         clearing_grass_singlesprites = new ArrayList();
@@ -42,6 +46,12 @@ private List<SingleSprite> clearing_pathway_sprites;
             clearing_group_grass.setSize(800, 400);
             clearing_background_sprites.add(clearing_group_grass);
             
+            clearing_tree_walls.add(world.getMisc_sprites().getChair_tree_facing_down());
+            Sprite clearing_wall_tree_random = new Groupsprite_GroupRender(clearing_tree_walls);
+            clearing_wall_tree_random.setPosition(0, 0);
+            clearing_wall_tree_random.setSize(300,300);
+            clearing_background_sprites.add(clearing_wall_tree_random);
+            
             clearing_pathway_sprites.add(world.getGround_sprite().getCobbleStone_dark());
             Sprite clearing_group_pathway = new Groupsprite_random(clearing_pathway_sprites);
             clearing_group_pathway.setPosition(205, 60);
@@ -52,26 +62,14 @@ private List<SingleSprite> clearing_pathway_sprites;
             boulder.setPosition(350,203);
             clearing_background_sprites.add(boulder);
             
-         
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            clearing_tree_walls.add(world.getMisc_sprites().getBush());
-            Sprite tree_walls = new Groupsprite_circle(clearing_tree_walls);
-            tree_walls.setPosition(0,0);
-            tree_walls.setSize(800, 400);
-            clearing_background_sprites.add(tree_walls);
+       
             
             Sprite exit = world.getMisc_sprites().getBushExit();
             exit.setPosition(0, 189);
             clearing_background_sprites.add(exit);
             
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
-            unicorn.setPosition(100,500);
+            unicorn.setPosition(500,240);
             clearing_background_sprites.add(unicorn);
             
             

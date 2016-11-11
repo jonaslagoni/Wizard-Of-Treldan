@@ -5,7 +5,8 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Cellar_sprites;
+import Gui2D.SpriteController.Maps.Clearing_sprites;
+import Gui2D.SpriteController.Maps.Village_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
@@ -32,7 +33,7 @@ public class Village extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    
+
     private TWoT game;
     
     /**
@@ -54,6 +55,8 @@ public class Village extends Map{
         //set the world constructor
         super.setWorld(world);
         
+
+        
        
     }
     
@@ -69,21 +72,9 @@ public class Village extends Map{
         Canvas village_background = new Canvas();
         //add the canvas to the group
         root.getChildren().add(village_background);
+        GraphicsContext background_gc = village_background.getGraphicsContext2D();
         
-        
-        //add a canvas only for the player
-        Canvas player_canvas = new Canvas(512, 256 );
-        //relocate the canvas so its centered.
-        player_canvas.relocate(256, 128);
-        //add the canvas to the group
-        root.getChildren().add( player_canvas );
-        
-        //add a canvas only for the menu
-        Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
-        canvas_menu_sprites.relocate(0, 0);
-        //add the canvas to the group
-        root.getChildren().add( canvas_menu_sprites );
-        
+       
         
         
         

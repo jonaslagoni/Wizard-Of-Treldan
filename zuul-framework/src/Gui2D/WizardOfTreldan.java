@@ -6,6 +6,7 @@
 package Gui2D;
 
 import Gui2D.Maps.Cellar;
+import Gui2D.Maps.Clearing;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
@@ -76,6 +77,7 @@ public class WizardOfTreldan extends Application {
         playerSelection = new PlayerSelection(world);
         house2 = new House2(world);
         gruulslair = new GruulsLair(world);
+        clearing = new Clearing(world);
         unicorn = new Unicorn(world);
         forest = new Forest(world);
         village = new Village(world);
