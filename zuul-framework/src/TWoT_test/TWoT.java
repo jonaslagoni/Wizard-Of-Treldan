@@ -34,6 +34,9 @@ public class TWoT implements Serializable{
         player = new Player("StartName", 1.0, 1.0, 100, new Inventory());
         startTime = (long)(System.currentTimeMillis() / 1000L);
         player.addItemToInventory(new UseableItem("Cheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501, FOOD, 50));
+        player.setDamage(30);
+        player.addItemToInventory(new EquippableItem("Handaxe2", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55504));
+        player.addItemToInventory(new EquippableItem("Handaxe1", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55999));
     }   
     
     /**
@@ -520,6 +523,24 @@ public class TWoT implements Serializable{
         }
     }
     
+    public List<String> equipItem(Command command){
+        List<String> equip = new ArrayList();
+        Item usedItem = null;
+        //for (Item i : player.getInventoryItems()) {
+        for(int i = 0; i < player.getInventoryItems().size(); i++){
+            Item item = player.getInventoryItems().get(i);
+            if (item instanceof EquippableItem) {
+                if (item.getItemName().equals(command.getSecondWord())) {
+                    player.equipItem((EquippableItem)item, player);
+                    equip.add(item.getItemName() + " was added to your equippable items");
+                }
+            }
+        }
+        if(equip.isEmpty()){
+            equip.add("This item is not equippable");
+        }
+        return equip;
+    }
     public List<String> useItem(Command command){
         List<String> use = new ArrayList();
         boolean check = false;

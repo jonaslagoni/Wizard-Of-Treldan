@@ -57,9 +57,11 @@ public class Player{
     public void addItemToInventory(Item i){
         playersInventory.addInventoryItem(i);
     }
-    
     public void addItemToEquippableInventory(EquippableItem i, Player p){
         playersInventory.addEquipItem(i, p);
+    }
+    public void equipItem(EquippableItem i, Player p){
+        playersInventory.equipItem(i, p);
     }
     public void removeItemToEquippableInventory(EquippableItem i){
         playersInventory.removeEquipItem(i);

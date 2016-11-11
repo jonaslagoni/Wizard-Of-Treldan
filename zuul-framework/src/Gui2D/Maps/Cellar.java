@@ -12,27 +12,23 @@ import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
 import TWoT_test.Command;
 import TWoT_test.CommandWord;
-import TWoT_test.EquippableItem;
-import TWoT_test.Item;
 import TWoT_test.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -106,12 +102,6 @@ public class Cellar extends Map{
         //add the canvas to the group
         root.getChildren().add( canvas_menu_sprites );
         
-        
-//Menu testing start
-        PlayerInventory playerinventory = new PlayerInventory(game);
-        AnchorPane menu = playerinventory.getMenu();
-//menu testing done
-        
         TextArea infobox = Infobox.getInfoBox();
         StackPane s = new StackPane(infobox);
         s.setPrefSize(300, 150);
@@ -120,6 +110,43 @@ public class Cellar extends Map{
         HashMap<String, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get("getRooms") + "\n");
         
+        
+//Menu testing start
+        PlayerInventory playerinventory = new PlayerInventory(game);
+        AnchorPane menu = playerinventory.getMenu();
+        Button use = new Button("Use");
+        use.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                AnchorPane t = playerinventory.getSelected();
+                if(t != null){
+                    Text text = (Text)t.getChildren().get(0);
+                    for(String s : game.useItem(new Command(CommandWord.USE, text.getText()))){
+                        infobox.appendText(s + "\n");
+                    }
+                    playerinventory.update(game);
+                }
+            }
+        });
+        use.relocate(10, 470);
+        menu.getChildren().add(use);
+        
+        
+        Button equip = new Button("equip");
+        equip.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                AnchorPane t = playerinventory.getSelected();
+                if(t != null){
+                    Text text = (Text)t.getChildren().get(0);
+                    for(String s : game.equipItem(new Command(CommandWord.USE, text.getText()))){
+                        infobox.appendText(s + "\n");
+                    }
+                    playerinventory.update(game);
+                }
+            }
+        });
+        equip.relocate(90, 470);
+        menu.getChildren().add(equip);
+//menu testing done
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();

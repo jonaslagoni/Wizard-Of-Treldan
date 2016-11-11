@@ -78,11 +78,37 @@ public class Inventory{
                 p.addDef(i.getDefenseBuff());
             }
             equippedInventory.put(i.geteItem(), i);
+            itemInventory.remove(i);
         }
     }
-    
+    public void equipItem(EquippableItem i, Player p){
+        if(equippedInventory.containsKey(i.geteItem())){
+            EquippableItem currentEItem = equippedInventory.get(i.geteItem());
+            if(currentEItem.geteItem() == EquippableItem.EItem.WEAPON_SLOT && i.geteItem() == EquippableItem.EItem.WEAPON_SLOT){
+                addInventoryItem(currentEItem);
+                equippedInventory.remove(i.geteItem());
+                equippedInventory.put(i.geteItem(), i);
+                p.removeAtt(currentEItem.getAttackBuff());
+                p.addAtt(i.getAttackBuff());
+            }else{
+                addInventoryItem(currentEItem);
+                equippedInventory.remove(i.geteItem());
+                equippedInventory.put(i.geteItem(), i);
+                p.removeDef(currentEItem.getDefenseBuff());
+                p.addDef(i.getDefenseBuff());
+            }
+            itemInventory.remove(i);
+        }else{
+            if(i.geteItem() == EquippableItem.EItem.WEAPON_SLOT){
+                p.addAtt(i.getAttackBuff());
+            }else{
+                p.addDef(i.getDefenseBuff());
+            }
+            equippedInventory.put(i.geteItem(), i);
+            itemInventory.remove(i);
+        }
+    }
     public void removeEquipItem(EquippableItem i){
         equippedInventory.remove(i);
-        
     }
 }

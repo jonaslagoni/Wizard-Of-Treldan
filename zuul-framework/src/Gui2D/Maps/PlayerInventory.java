@@ -7,7 +7,9 @@ package Gui2D.Maps;
 
 import TWoT_test.EquippableItem;
 import TWoT_test.Item;
+import TWoT_test.QuestItem;
 import TWoT_test.TWoT;
+import TWoT_test.UseableItem;
 import java.util.HashMap;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -34,7 +36,11 @@ public class PlayerInventory {
     private Text headValue;
     private Text amuletValue;
     private ObservableList<AnchorPane> items;
+    private ProgressBar pb;
     private boolean shown;
+    private ListView<AnchorPane> list;
+    private Text deffv;
+    private Text attv;
     public PlayerInventory(TWoT game){
         shown = false;
         menu = new AnchorPane();
@@ -48,24 +54,24 @@ public class PlayerInventory {
         health.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         menu.getChildren().add(health);
         
-        ProgressBar pb = new ProgressBar(game.getPlayerHealth()/100);
+        pb = new ProgressBar(game.getPlayerHealth()/100);
         pb.setPrefSize(292, 10);
         pb.relocate(4, 25);
         menu.getChildren().add(pb);
         
-        Text attv = new Text("" + game.getPlayerAtt());
+        attv = new Text("" + game.getPlayerAtt());
         attv.relocate(60, 64);
         attv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         attv.setFill(Color.WHITE);
         menu.getChildren().add(attv);
         
-        Text deffv = new Text("" + game.getPlayerDeff());
+        deffv = new Text("" + game.getPlayerDeff());
         deffv.relocate(216, 64);
         deffv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         deffv.setFill(Color.WHITE);
         menu.getChildren().add(deffv);
         
-        ListView<AnchorPane> list = new ListView<AnchorPane>();
+        list = new ListView<AnchorPane>();
         list.getStyleClass().add("inventoryList");
         list.relocate(4, 245);
         list.setPrefWidth(300-8);
@@ -75,12 +81,28 @@ public class PlayerInventory {
         for(Item i: items_ingame){
             AnchorPane t = new AnchorPane();
             Text itemName = new Text(i.getItemName());
-            itemName.relocate(0, 5);
+            itemName.setFill(Color.ORANGERED);
+            itemName.relocate(0, 3);
             t.getChildren().add(itemName);
+            Text itemType;
+            if(i instanceof EquippableItem){
+                itemType = new Text("EI");
+            }else if(i instanceof UseableItem){
+                itemType = new Text("UI");
+            }else if(i instanceof QuestItem){
+                itemType = new Text("QI");
+            }else{
+                itemType = new Text("I");
+            }
+            itemType.setFill(Color.ORANGERED);
+            itemType.relocate(250, 3);
+            t.getChildren().add(itemType);
+            
             items.add(t);
         }
         list.setItems(items);
         menu.getChildren().add(list);
+        
         
         weaponValue = new Text("0");
         weaponValue.relocate(110, 117);
@@ -213,10 +235,29 @@ public class PlayerInventory {
         for(Item i: items_ingame){
             AnchorPane t = new AnchorPane();
             Text itemName = new Text(i.getItemName());
-            itemName.relocate(0, 5);
+            itemName.setFill(Color.ORANGERED);
+            itemName.relocate(0, 3);
             t.getChildren().add(itemName);
+            Text itemType;
+            if(i instanceof EquippableItem){
+                itemType = new Text("EI");
+            }else if(i instanceof UseableItem){
+                itemType = new Text("UI");
+            }else if(i instanceof QuestItem){
+                itemType = new Text("QI");
+            }else{
+                itemType = new Text("I");
+            }
+            itemType.setFill(Color.ORANGERED);
+            itemType.relocate(250, 3);
+            t.getChildren().add(itemType);
             items.add(t);
         }
+        
+        pb.setProgress(game.getPlayerHealth()/100);
+        
+        attv.setText(""+game.getPlayerAtt());
+        deffv.setText(""+game.getPlayerDeff());
     }
 
     /**
@@ -231,5 +272,9 @@ public class PlayerInventory {
      */
     public void setShown(boolean shown) {
         this.shown = shown;
+    }
+    
+    public AnchorPane getSelected(){
+        return list.getSelectionModel().getSelectedItem();
     }
 }
