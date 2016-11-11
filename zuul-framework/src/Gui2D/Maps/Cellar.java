@@ -12,6 +12,7 @@ import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
 import TWoT_test.Command;
 import TWoT_test.CommandWord;
+import TWoT_test.EquippableItem;
 import TWoT_test.Item;
 import TWoT_test.TWoT;
 import java.util.ArrayList;
@@ -106,55 +107,10 @@ public class Cellar extends Map{
         root.getChildren().add( canvas_menu_sprites );
         
         
-        
-        AnchorPane menu = new AnchorPane();
-        menu.getStyleClass().add("inventory");
-        menu.relocate(724, 0);
-        menu.setPrefSize(300, 512);
-        
-        
-        Text health = new Text("Health: " + game.getPlayerHealth());
-        health.relocate(5, 28);
-        health.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
-        menu.getChildren().add(health);
-        
-        ProgressBar pb = new ProgressBar(game.getPlayerHealth()/100);
-        pb.setPrefSize(292, 10);
-        pb.relocate(4, 25);
-        menu.getChildren().add(pb);
-        
-        Text attv = new Text("" + game.getPlayerAtt());
-        attv.relocate(60, 64);
-        attv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
-        attv.setFill(Color.WHITE);
-        menu.getChildren().add(attv);
-        
-        Text deffv = new Text("" + game.getPlayerDeff());
-        deffv.relocate(216, 64);
-        deffv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
-        deffv.setFill(Color.WHITE);
-        menu.getChildren().add(deffv);
-        
-        ListView<AnchorPane> list = new ListView<AnchorPane>();
-        list.getStyleClass().add("inventoryList");
-        list.relocate(4, 245);
-        list.setPrefWidth(300-8);
-        list.setPrefHeight(210);
-        ObservableList<AnchorPane> items = FXCollections.observableArrayList ();
-        List<Item> items_ingame = game.getInventoryItems();
-        for(Item i: items_ingame){
-            AnchorPane t = new AnchorPane();
-            Text itemName = new Text(i.getItemName());
-            itemName.relocate(0, 5);
-            t.getChildren().add(itemName);
-            
-            items.add(t);
-        }
-        list.setItems(items);
-        menu.getChildren().add(list);
-        root.getChildren().add(menu);
-        
-        
+//Menu testing start
+        PlayerInventory playerinventory = new PlayerInventory(game);
+        AnchorPane menu = playerinventory.getMenu();
+//menu testing done
         
         TextArea infobox = Infobox.getInfoBox();
         StackPane s = new StackPane(infobox);
@@ -401,6 +357,7 @@ public class Cellar extends Map{
                         for(String s: game.goTo(new Command(CommandWord.GO, "haystack"))){
                             infobox.appendText("\n" + s + "\n");
                         }
+                        playerinventory.update(game);
                         hasPrinted = false;
                     }
                     menu_input.remove("E");
@@ -415,10 +372,15 @@ public class Cellar extends Map{
                 
                 //check if the user wants to see a menu.
                 if(menu_input.contains("I")){
-                    menu_gc.setFill(Color.CADETBLUE);
-                    menu_gc.fillRect(1024-250, 0, 250, 512);
+                    if(!playerinventory.isShown()){
+                        root.getChildren().add(menu);
+                        playerinventory.setShown(true);
+                    }
                 }else{
-                    menu_gc.clearRect(0, 0, 1024,512);
+                    if(playerinventory.isShown()){
+                        root.getChildren().remove(menu);
+                        playerinventory.setShown(false);
+                    }
                 }
             }
             public void setNewScene(){

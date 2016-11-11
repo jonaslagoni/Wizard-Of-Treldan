@@ -99,7 +99,7 @@ public class Cellar_sprites{
             Sprite chair1 = world.getMisc_sprites().getChair_tree_facing_east();
             chair1.setPosition(130, 170);
             cellar_background_sprites.add(chair1);
-            
+           
             
             Sprite chair3 = world.getMisc_sprites().getChair_tree_facing_down();
             chair3.setPosition(130+25+4, 170-30);
@@ -112,6 +112,7 @@ public class Cellar_sprites{
             Sprite chair2 = world.getMisc_sprites().getChair_tree_facing_west();
             chair2.setPosition(130+25+35, 170);
             cellar_background_sprites.add(chair2);
+            
     }
 
     /**
