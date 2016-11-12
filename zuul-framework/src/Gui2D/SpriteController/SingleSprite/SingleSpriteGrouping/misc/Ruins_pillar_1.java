@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Ground;
+package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc;
 
 import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
 
@@ -11,17 +11,17 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Cobblestone_dark  extends Abstract_sprite{
+public class Ruins_pillar_1  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(112);
-        super.getSprite().setSpritePosY(42);
+        super.getSprite().setSpritePosX(1305);
+        super.getSprite().setSpritePosY(892);
         super.getSprite().setSprite_width(32);
-        super.getSprite().setSprite_height(32);
+        super.getSprite().setSprite_height(93);
         super.getSprite().setWidth(32);
-        super.getSprite().setHeight(32);
+        super.getSprite().setHeight(93);
     }
 }

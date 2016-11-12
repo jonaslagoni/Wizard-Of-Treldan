@@ -11,13 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Cobblestone_dark  extends Abstract_sprite{
+public class Cobblestone_light  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(112);
+        super.getSprite().setSpritePosX(8);
         super.getSprite().setSpritePosY(42);
         super.getSprite().setSprite_width(32);
         super.getSprite().setSprite_height(32);

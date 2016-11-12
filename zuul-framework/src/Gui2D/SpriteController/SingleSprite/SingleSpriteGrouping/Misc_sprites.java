@@ -146,5 +146,23 @@ public class Misc_sprites {
     public SingleSprite getSpiderWeb_LOWER_RIGHT() {
         return new SpiderWeb_LOWER_RIGHT().getSprite();
     }
+    public SingleSprite getTree2() {
+        return new Tree2().getSprite();
+    }
+    public SingleSprite getClearingExit(){
+        return new Clearing_exit().getSprite();
+    }
+    public SingleSprite getRuins_pillar_1(){
+        return new Ruins_pillar_1().getSprite();
+    }
+    public SingleSprite getRuins_pillar_2(){
+        return new Ruins_pillar_2().getSprite();
+    }
+    public SingleSprite getRuins_pillar_3(){
+        return new Ruins_pillar_3().getSprite();
+    }
+  public SingleSprite getBoulder_dark_large(){
+        return new Boulder_dark_large().getSprite();
+    }
 }
 

@@ -142,8 +142,22 @@ public class Ground_sprites {
         return new Stone_floor_3().getSprite();
     }
     
-    public SingleSprite getCobbleStone_dark(){
+    public SingleSprite getCobblestone_dark(){
         return new Cobblestone_dark().getSprite();
+    }
+    
+    public SingleSprite getCobblestone_light(){
+        return new Cobblestone_light().getSprite();
+    }
+    
+    public SingleSprite getStone_ruins_floor_1(){
+        return new Stone_ruins_1().getSprite();
+    }
+    public SingleSprite getStone_ruins_floor_2(){
+        return new Stone_ruins_2().getSprite();
+    }
+    public SingleSprite getStone_ruins_floor_3(){
+        return new Stone_ruins_3().getSprite();
     }
 }
 

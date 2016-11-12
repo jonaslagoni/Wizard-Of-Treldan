@@ -63,9 +63,8 @@ public class Clearing extends Map{
         
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
        
+        
        
-       
-
         List<Sprite> sprites_still = s.getClearing();
         for(Sprite sprite : sprites_still){
             sprite.render(background_gc);
