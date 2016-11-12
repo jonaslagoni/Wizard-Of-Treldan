@@ -35,6 +35,7 @@ public class Village extends Map{
     
 
     private TWoT game;
+    private Village_sprites s;
     
     /**
      * Constructor for Cellar
@@ -44,18 +45,12 @@ public class Village extends Map{
         //init our super constructor
         super();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
-        //set the world constructor
         super.setWorld(world);
         
-
+        s = new Village_sprites(world);
+        s.setVillage_background_SingleSprites();
+        
+        
         
        
     }
@@ -69,13 +64,16 @@ public class Village extends Map{
         //set background color
         theScene.setFill(Color.rgb(83, 83, 83));
         //set canvas of our background
-        Canvas village_background = new Canvas();
+        Canvas village_background = new Canvas(1024,512);
         //add the canvas to the group
         root.getChildren().add(village_background);
         GraphicsContext background_gc = village_background.getGraphicsContext2D();
         
        
-        
+        List<Sprite> sprites_still = s.getVillage_background_sprites();
+        for(Sprite sprite : sprites_still){
+            sprite.render(background_gc);
+        }
         
         
         

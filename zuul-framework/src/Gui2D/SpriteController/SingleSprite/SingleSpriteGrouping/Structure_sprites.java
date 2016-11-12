@@ -74,4 +74,30 @@ public class Structure_sprites {
     public SingleSprite getStone_wall_W(){
         return new Stone_wall_W().getSprite();
     }
+    
+    //wood fence
+    public SingleSprite getWood_fence_W(){
+        return new Wood_fence_W().getSprite();
+    }
+    public SingleSprite getWood_fence_N(){
+        return new Wood_fence_N().getSprite();
+    }
+    public SingleSprite getWood_fence_E(){
+        return new Wood_fence_E().getSprite();
+    }
+    public SingleSprite getWood_fence_S(){
+        return new Wood_fence_S().getSprite();
+    }
+    public SingleSprite getWood_fence_NW(){
+        return new Wood_fence_NW().getSprite();
+    }
+    public SingleSprite getWood_fence_NE(){
+        return new Wood_fence_NE().getSprite();
+    }
+    public SingleSprite getWood_fence_SW(){
+        return new Wood_fence_SW().getSprite();
+    }
+    public SingleSprite getWood_fence_SE(){
+        return new Wood_fence_SE().getSprite();
+    }
 }

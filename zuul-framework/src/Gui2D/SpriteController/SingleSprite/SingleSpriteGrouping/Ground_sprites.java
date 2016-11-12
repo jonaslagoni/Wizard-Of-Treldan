@@ -159,5 +159,19 @@ public class Ground_sprites {
     public SingleSprite getStone_ruins_floor_3(){
         return new Stone_ruins_3().getSprite();
     }
+    //tiles
+    public SingleSprite getTile_light_1(){
+        return new Tile_light_1().getSprite();
+    }
+    public SingleSprite getTile_light_2(){
+        return new Tile_light_2().getSprite();
+    }
+    public SingleSprite getTile_light_3(){
+        return new Tile_light_3().getSprite();
+    }
+    public SingleSprite getTile_broken_1(){
+        return new Tile_light_broken_1().getSprite();
+    }
+ 
 }
 

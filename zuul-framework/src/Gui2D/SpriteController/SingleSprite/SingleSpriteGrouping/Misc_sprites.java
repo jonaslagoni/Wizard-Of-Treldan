@@ -152,6 +152,7 @@ public class Misc_sprites {
     public SingleSprite getClearingExit(){
         return new Clearing_exit().getSprite();
     }
+    //ruins pillars
     public SingleSprite getRuins_pillar_1(){
         return new Ruins_pillar_1().getSprite();
     }
@@ -161,8 +162,26 @@ public class Misc_sprites {
     public SingleSprite getRuins_pillar_3(){
         return new Ruins_pillar_3().getSprite();
     }
-  public SingleSprite getBoulder_dark_large(){
+    public SingleSprite getBoulder_dark_large(){
         return new Boulder_dark_large().getSprite();
+    }
+    //village houses
+    public SingleSprite getHouse1(){
+        return new House1().getSprite();
+    }
+    public SingleSprite getHouse2(){
+        return new House2().getSprite();
+    }
+    public SingleSprite getHouse3(){
+        return new House3().getSprite();
+    }
+    //well
+    public SingleSprite getWell(){
+        return new Well().getSprite();
+    }
+    //borken light tile
+    public SingleSprite getTile_light_broken_large(){
+        return new Tile_light_broken_large().getSprite();
     }
 }
 

@@ -32,6 +32,7 @@ public class WizardOfTreldan extends Application {
     private static Map menu;
     private static Map unicorn;
     private static Map clearing;
+    private static Map house1;
     private static Map house2;
     private static Map forest;
     private static Map playerSelection;
@@ -73,6 +74,8 @@ public class WizardOfTreldan extends Application {
         
         //Init all world maps
         cellar = new Cellar(world);
+        village = new Village(world);
+        house2 = new House2(world);
         menu = new Menu(world);
         playerSelection = new PlayerSelection(world);
         house2 = new House2(world);
@@ -80,10 +83,10 @@ public class WizardOfTreldan extends Application {
         clearing = new Clearing(world);
         unicorn = new Unicorn(world);
         forest = new Forest(world);
-        village = new Village(world);
+        
         gruulslair = new GruulsLair(world);
         
-        setClearingScene();
+        setVillageScene();
         primaryStage.show();
     }
     
@@ -150,6 +153,8 @@ public class WizardOfTreldan extends Application {
     public static void setClearingScene(){
         primaryStage.setScene(clearing.getScene());
     }
+    
+
     
     
     public static void resetGame(){
