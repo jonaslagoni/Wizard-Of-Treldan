@@ -187,5 +187,17 @@ public class Misc_sprites {
     public SingleSprite getHayCart(){
         return new Haycart().getSprite();
     }
+    //guard
+    public SingleSprite getGuard(){
+        return new Village_guard().getSprite();
+    }
+    //axe
+    public SingleSprite getAxe(){
+        return new Axe().getSprite();
+    }
+    //wood door
+    public SingleSprite getDoor_wood(){
+        return new Door_wood().getSprite();
+    }
 }
 

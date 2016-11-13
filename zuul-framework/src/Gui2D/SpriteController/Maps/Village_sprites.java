@@ -112,7 +112,6 @@ public class Village_sprites{
         village_walls_circle.setSize(1024, 512);
         village_background_sprites.add(village_walls_circle);
         
-
         //fence
         village_background_fence.add(world.getStructure_sprites().getWood_fence_NW());
         village_background_fence.add(world.getStructure_sprites().getWood_fence_N());
@@ -149,10 +148,31 @@ public class Village_sprites{
         
         
         //axe
+        Sprite axe = world.getMisc_sprites().getAxe();
+        axe.setPosition(100, 400);
+        village_background_sprites.add(axe);
         
         //guard
+        Sprite guard = world.getMisc_sprites().getGuard();
+        guard.setPosition(464, 30);
+        village_background_sprites.add(guard);
+        
         
         //entrance to house 1,2,3
+        Sprite house1_exit = world.getMisc_sprites().getDoor_wood();
+        house1_exit.setPosition(127,175);
+        village_background_sprites.add(house1_exit);
+        Sprite house2_exit = world.getMisc_sprites().getDoor_wood();
+        house2_exit.setPosition(300,147);
+        village_background_sprites.add(house2_exit);
+        Sprite house3_exit = world.getMisc_sprites().getDoor_metal();
+        house3_exit.setPosition(950,185);
+        village_background_sprites.add(house3_exit);
+        
+        //exit to forest
+        Sprite village_exit = world.getMisc_sprites().getDoor_metal();
+        village_exit.setPosition(500,20);
+        village_background_sprites.add(village_exit);
         
         
         
