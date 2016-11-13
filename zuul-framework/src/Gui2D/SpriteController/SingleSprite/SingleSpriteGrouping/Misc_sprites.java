@@ -183,5 +183,9 @@ public class Misc_sprites {
     public SingleSprite getTile_light_broken_large(){
         return new Tile_light_broken_large().getSprite();
     }
+    //haycart
+    public SingleSprite getHayCart(){
+        return new Haycart().getSprite();
+    }
 }
 

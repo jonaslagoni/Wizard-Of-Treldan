@@ -26,6 +26,7 @@ public class Village_sprites{
     private List<SingleSprite> village_background_ground;
     private final List<SingleSprite> village_background_grass;
     private final List<SingleSprite> village_background_fence;
+    private final List<SingleSprite> village_walls;
     
     
     
@@ -36,6 +37,7 @@ public class Village_sprites{
         village_background_ground = new ArrayList();
         village_background_grass = new ArrayList();
         village_background_fence = new ArrayList();
+        village_walls = new ArrayList();
  
     }
     
@@ -60,7 +62,7 @@ public class Village_sprites{
         village_grass_background_random.setSize(1024,300);
         village_background_sprites.add(village_grass_background_random);
         
-        //patwhay
+        //pathway
         village_background_ground.add(world.getGround_sprite().getTile_light_1());
         village_background_ground.add(world.getGround_sprite().getTile_light_2());
         village_background_ground.add(world.getGround_sprite().getTile_light_3());
@@ -70,7 +72,47 @@ public class Village_sprites{
         village_background_sprites.add(village_background_random_pathway);
         
         
+       
+        //pathway to house1
+        village_background_ground.add(world.getGround_sprite().getTile_light_1());
+        village_background_ground.add(world.getGround_sprite().getTile_light_2());
+        village_background_ground.add(world.getGround_sprite().getTile_light_3());
+        Sprite village_background_random_house1 = new Groupsprite_random(village_background_ground);
+        village_background_random_house1.setPosition(100,160 );
+        village_background_random_house1.setSize(64,130);
+        village_background_sprites.add(village_background_random_house1);
+        //pathway to house2
+        village_background_ground.add(world.getGround_sprite().getTile_light_1());
+        village_background_ground.add(world.getGround_sprite().getTile_light_2());
+        village_background_ground.add(world.getGround_sprite().getTile_light_3());
+        Sprite village_background_random_house2 = new Groupsprite_random(village_background_ground);
+        village_background_random_house2.setPosition(280,160 );
+        village_background_random_house2.setSize(64,130);
+        village_background_sprites.add(village_background_random_house2);
+        //pathway to house3
+        village_background_ground.add(world.getGround_sprite().getTile_light_1());
+        village_background_ground.add(world.getGround_sprite().getTile_light_2());
+        village_background_ground.add(world.getGround_sprite().getTile_light_3());
+        Sprite village_background_random_house3 = new Groupsprite_random(village_background_ground);
+        village_background_random_house3.setPosition(930,160 );
+        village_background_random_house3.setSize(64,130);
+        village_background_sprites.add(village_background_random_house3);
         
+        //walls
+        village_walls.add(world.getStructure_sprites().getStone_wall_NW());
+        village_walls.add(world.getStructure_sprites().getStone_wall_N());
+        village_walls.add(world.getStructure_sprites().getStone_wall_NE());
+        village_walls.add(world.getStructure_sprites().getStone_wall_E());
+        village_walls.add(world.getStructure_sprites().getStone_wall_SE());
+        village_walls.add(world.getStructure_sprites().getStone_wall_S());
+        village_walls.add(world.getStructure_sprites().getStone_wall_SW());
+        village_walls.add(world.getStructure_sprites().getStone_wall_W());
+        Sprite village_walls_circle = new Groupsprite_circle(village_walls);
+        village_walls_circle.setPosition(0, 0);
+        village_walls_circle.setSize(1024, 512);
+        village_background_sprites.add(village_walls_circle);
+        
+
         //fence
         village_background_fence.add(world.getStructure_sprites().getWood_fence_NW());
         village_background_fence.add(world.getStructure_sprites().getWood_fence_N());
@@ -78,21 +120,14 @@ public class Village_sprites{
         village_background_fence.add(world.getStructure_sprites().getWood_fence_E());
         village_background_fence.add(world.getStructure_sprites().getWood_fence_SE());
         village_background_fence.add(world.getStructure_sprites().getWood_fence_S());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_SE());
+        village_background_fence.add(world.getStructure_sprites().getWood_fence_SW());
         village_background_fence.add(world.getStructure_sprites().getWood_fence_W());
         Sprite fence1 = new Groupsprite_circle(village_background_fence);
-        fence1.setPosition(550,0 );
-        fence1.setSize(280, 280);
+        fence1.setPosition(550,50 );
+        fence1.setSize(200, 100);
         village_background_sprites.add(fence1);
         
-        
-        
-        
-        
-        
-       
-        
-        
+ 
         //village houses
         //#1
         Sprite house1 = world.getMisc_sprites().getHouse1();
@@ -104,18 +139,14 @@ public class Village_sprites{
         village_background_sprites.add(house2);
         //#3
         Sprite house3 = world.getMisc_sprites().getHouse3();
-        house3.setPosition(850,0);
+        house3.setPosition(832,-5);
         village_background_sprites.add(house3);
         
         //set well
         Sprite well = world.getMisc_sprites().getWell();
-        well.setPosition(256, 300);
+        well.setPosition(400, 350);
         village_background_sprites.add(well);
         
-        
-        //pathway to house1
-        
-        //pathway to house2
         
         //axe
         

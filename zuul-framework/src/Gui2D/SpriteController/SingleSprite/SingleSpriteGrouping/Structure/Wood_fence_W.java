@@ -17,7 +17,7 @@ public class Wood_fence_W  extends Abstract_sprite{
      */
     public void setSprite(){
         super.getSprite().setSpritePosX(312);
-        super.getSprite().setSpritePosY(620);
+        super.getSprite().setSpritePosY(635);
         super.getSprite().setSprite_width(8);
         super.getSprite().setSprite_height(32);
         super.getSprite().setWidth(8);

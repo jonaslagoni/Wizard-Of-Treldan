@@ -16,11 +16,11 @@ public class Wood_fence_SE  extends Abstract_sprite{
      * Sets the Candle sprite
      */
     public void setSprite(){
-        super.getSprite().setSpritePosX(356);
-        super.getSprite().setSpritePosY(661);
-        super.getSprite().setSprite_width(8);
-        super.getSprite().setSprite_height(29);
-        super.getSprite().setWidth(8);
-        super.getSprite().setHeight(29);
+        super.getSprite().setSpritePosX(361);
+        super.getSprite().setSpritePosY(668);
+        super.getSprite().setSprite_width(19);
+        super.getSprite().setSprite_height(26);
+        super.getSprite().setWidth(19);
+        super.getSprite().setHeight(26);
     }
 }
