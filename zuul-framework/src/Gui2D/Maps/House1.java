@@ -6,19 +6,21 @@
 package Gui2D.Maps;
 
 import Gui2D.SpriteController.Maps.House1_sprites;
+import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
+import Gui2D.WizardOfTreldan;
+import TWoT_test.TWoT;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.AnimationTimer;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-/**
- *
- * @author jonas
- */
+
 public class House1 extends Map{
     
     // Arraylist for player movement
@@ -28,21 +30,13 @@ public class House1 extends Map{
     private ArrayList<String> menu_input;
     
     private House1_sprites s;
-        /**
+    /**
      * Constructor for Cellar
      * @param world 
      */
     public House1(SpriteController world){
         //init our super constructor
         super();
-        
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
         
         //set the world constructor
         super.setWorld(world);
@@ -55,16 +49,19 @@ public class House1 extends Map{
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );
-        theScene.setFill(Color.rgb(83, 83, 83));
+        theScene.setFill(Color.rgb(0, 0, 0));
         
-        Canvas canvas= new Canvas(1024, 512);
-        root.getChildren().add(canvas);
-        GraphicsContext woot = canvas.getGraphicsContext2D();
-        List<Sprite> lol = s.getHouse();
-        for (Sprite sprite: lol){
-                sprite.render(woot);
+        Canvas canvas_background = new Canvas( 512, 300);
+        //relocate the canvas so its centered.
+        canvas_background.relocate(250, 50);
+        root.getChildren().add(canvas_background);
+        GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
+        
+        List<Sprite> sprites_still = s.getHouse();
+        for(Sprite sprite : sprites_still){
+            sprite.render(background_gc);
         }
-        
+            
         return theScene;
     }
 }

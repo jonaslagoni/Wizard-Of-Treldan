@@ -18,34 +18,93 @@ import java.util.List;
  * @author jonas
  */
 public class House1_sprites{
+    
     private SpriteController world;
-    private List<Sprite> house;
+    private final List<Sprite> house_background_sprites;
+    
+    private final List<SingleSprite> house_background_walls;
+    private final List<SingleSprite> house_background_floor;
+    
     
     public House1_sprites(SpriteController world){
         this.world = world;
-       house = new ArrayList();
+        house_background_sprites = new ArrayList();
+        house_background_walls = new ArrayList();
+        house_background_floor = new ArrayList();
+        
     }
     public void setHouse1_background_SingleSprites(){
-        house.add(world.getMisc_sprites().getBed_hay());
-        Sprite door = world.getMisc_sprites().getDoor_metal();
-        door.setPosition(343, 89);
-        house.add(door);
+        //floor
+        house_background_floor.add(world.getGround_sprite().getWood_light_2());
+        Sprite house_floor = new Groupsprite_random(house_background_floor);
+        house_floor.setSize(512,250);
+        house_floor.setPosition(0, 0);
+        house_background_sprites.add(house_floor);
         
-        List<Sprite> grrr = new ArrayList();
-        house.add(world.getStructure_sprites().getStone_wall_N());
+        //walls
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_NW());
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_N());
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_NE());
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_E());
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_SE());
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_S());
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_SW());
+        house_background_walls.add(world.getStructure_sprites().getStone_wall_W());
+        Sprite house_walls_circle = new Groupsprite_circle(house_background_walls);
+        house_walls_circle.setPosition(0, 0);
+        house_walls_circle.setSize(512, 300);
+        house_background_sprites.add(house_walls_circle);
         
         
-       List<SingleSprite> woof = new ArrayList();
-       woof.add(world.getGround_sprite().getGrass_dark_1());
-       woof.add(world.getGround_sprite().getGrass_dark_2());
-       Sprite random = new Groupsprite_random(woof);
-       random.setSize(1000, 400);
-       random.setPosition(70, 260);
-       house.add(random);
+        //exit
+        Sprite exit = world.getMisc_sprites().getDoor_wood();
+        exit.setPosition(170,20);
+        house_background_sprites.add(exit);
+        
+        //zombie
+        
+        //woman
+        
+        //health potion
+        
+        //bed
+        Sprite bed = world.getMisc_sprites().getInterior_doublebed();
+        bed.setPosition(430, 45);
+        house_background_sprites.add(bed);
+        
+        //fireplace
+        Sprite fireplace = world.getMisc_sprites().getInterior_fireplace();
+        fireplace.setPosition(360,5);
+        house_background_sprites.add(fireplace);
+        
+        //cupboard
+        Sprite cupboard = world.getMisc_sprites().getInterior_cupboard();
+        cupboard.setPosition(49, 20);
+        house_background_sprites.add(cupboard);
+        
+        //shelf
+        Sprite shelf = world.getMisc_sprites().getInterior_shelf_1();
+        shelf.setPosition(280,15);
+        house_background_sprites.add(shelf);
+        
+        //table
+        Sprite table = world.getMisc_sprites().getInterior_table();
+        table.setPosition(250,175);
+         house_background_sprites.add(table);
+        
+         //sacks
+         Sprite sacks = world.getMisc_sprites().getSacks_1();
+         sacks.setPosition(32, 170);
+         house_background_sprites.add(sacks);
+         
+        
+        
+        
+        
     }
     
         public List getHouse(){
-        return house;
+        return house_background_sprites;
     }
             
 

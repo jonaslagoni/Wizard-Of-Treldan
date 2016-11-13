@@ -5,6 +5,7 @@
  */
 package Gui2D.SpriteController.Maps;
 
+import Gui2D.SpriteController.GroupSprites.Groupsprite_GroupRender;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
@@ -25,7 +26,7 @@ public class Village_sprites{
     //lists of sprites
     private List<SingleSprite> village_background_ground;
     private final List<SingleSprite> village_background_grass;
-    private final List<SingleSprite> village_background_fence;
+    private final List<SingleSprite> village_background_trees;
     private final List<SingleSprite> village_walls;
     
     
@@ -36,7 +37,7 @@ public class Village_sprites{
         village_background_sprites = new ArrayList();
         village_background_ground = new ArrayList();
         village_background_grass = new ArrayList();
-        village_background_fence = new ArrayList();
+        village_background_trees = new ArrayList();
         village_walls = new ArrayList();
  
     }
@@ -53,10 +54,9 @@ public class Village_sprites{
         village_background_sprites.add(village_background_random);
         
         //grass
-        village_background_grass.add(world.getGround_sprite().getGrass_light_1());
-        village_background_grass.add(world.getGround_sprite().getGrass_light_2());
-        village_background_grass.add(world.getGround_sprite().getGrass_flower_1());
-        village_background_grass.add(world.getGround_sprite().getGrass_flower_2());
+        village_background_grass.add(world.getGround_sprite().getGrass_dark_1());
+        village_background_grass.add(world.getGround_sprite().getGrass_dark_2());
+        village_background_grass.add(world.getGround_sprite().getGrass_dark_3());
         Sprite village_grass_background_random = new Groupsprite_random(village_background_grass);
         village_grass_background_random.setPosition(0,0);
         village_grass_background_random.setSize(1024,300);
@@ -71,8 +71,6 @@ public class Village_sprites{
         village_background_random_pathway.setSize(64,300);
         village_background_sprites.add(village_background_random_pathway);
         
-        
-       
         //pathway to house1
         village_background_ground.add(world.getGround_sprite().getTile_light_1());
         village_background_ground.add(world.getGround_sprite().getTile_light_2());
@@ -112,19 +110,22 @@ public class Village_sprites{
         village_walls_circle.setSize(1024, 512);
         village_background_sprites.add(village_walls_circle);
         
-        //fence
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_NW());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_N());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_NE());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_E());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_SE());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_S());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_SW());
-        village_background_fence.add(world.getStructure_sprites().getWood_fence_W());
-        Sprite fence1 = new Groupsprite_circle(village_background_fence);
-        fence1.setPosition(550,50 );
-        fence1.setSize(200, 100);
-        village_background_sprites.add(fence1);
+        //animals
+        Sprite animals = world.getMisc_sprites().getVillageAnimals();
+        animals.setPosition(550, 64);
+        village_background_sprites.add(animals);
+        
+        village_background_trees.add(world.getMisc_sprites().getTree1());
+        Sprite village_tree_random = new Groupsprite_GroupRender(village_background_trees);
+        village_tree_random.setSize(100,100);
+        village_tree_random.setPosition(720, 10);
+        village_background_sprites.add(village_tree_random);
+        
+        village_background_trees.add(world.getMisc_sprites().getTree1());
+        Sprite village_tree_random2 = new Groupsprite_GroupRender(village_background_trees);
+        village_tree_random2.setSize(100,100);
+        village_tree_random2.setPosition(150, 10);
+        village_background_sprites.add(village_tree_random2);
         
  
         //village houses
@@ -143,13 +144,13 @@ public class Village_sprites{
         
         //set well
         Sprite well = world.getMisc_sprites().getWell();
-        well.setPosition(400, 350);
+        well.setPosition(300, 350);
         village_background_sprites.add(well);
         
         
         //axe
         Sprite axe = world.getMisc_sprites().getAxe();
-        axe.setPosition(100, 400);
+        axe.setPosition(600, 220);
         village_background_sprites.add(axe);
         
         //guard
@@ -173,6 +174,34 @@ public class Village_sprites{
         Sprite village_exit = world.getMisc_sprites().getDoor_metal();
         village_exit.setPosition(500,20);
         village_background_sprites.add(village_exit);
+        
+        //lampposts
+        //#1
+        Sprite lamp1 = world.getMisc_sprites().getLamppost();
+        lamp1.setPosition(250, 200);
+        village_background_sprites.add(lamp1);
+        //#2
+        Sprite lamp2 = world.getMisc_sprites().getLamppost();
+        lamp2.setPosition(45, 190);
+        village_background_sprites.add(lamp2);
+        //#3
+        Sprite lamp3 = world.getMisc_sprites().getLamppost();
+        lamp3.setPosition(460, 200);
+        village_background_sprites.add(lamp3);
+        //#4
+        Sprite lamp4 = world.getMisc_sprites().getLamppost();
+        lamp4.setPosition(550, 200);
+        village_background_sprites.add(lamp4);
+        //#5
+        Sprite lamp5 = world.getMisc_sprites().getLamppost();
+        lamp5.setPosition(750, 200);
+        village_background_sprites.add(lamp5);
+        
+        //messageboard
+        Sprite board = world.getMisc_sprites().getVillage_MessageBoard();
+        board.setPosition(400, 250);
+        village_background_sprites.add(board);
+        
         
         
         

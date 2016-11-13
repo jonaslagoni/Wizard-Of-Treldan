@@ -199,5 +199,45 @@ public class Misc_sprites {
     public SingleSprite getDoor_wood(){
         return new Door_wood().getSprite();
     }
+    public SingleSprite getLamppost(){
+        return new Lamppost().getSprite();
+    }
+    public SingleSprite getVillageAnimals(){
+        return new Village_animals().getSprite();
+    }
+    public SingleSprite getVillage_MessageBoard(){
+        return new Village_messageboard().getSprite();
+    }
+    
+    public SingleSprite getInterior_singlebed(){
+        return new Interior_singlebed().getSprite();
+    }
+    public SingleSprite getInterior_doublebed(){
+        return new Interior_doublebed().getSprite();
+    }
+    public SingleSprite getInterior_fireplace(){
+        return new Interior_fireplace().getSprite();
+    }
+    public SingleSprite getInterior_bookshelf(){
+        return new Interior_bookshelf().getSprite();
+    }
+    public SingleSprite getInterior_cupboard(){
+        return new Interior_cupboard().getSprite();
+    }
+    public SingleSprite getInterior_shelf_1(){
+        return new Interior_shelf_1().getSprite();
+    }
+     public SingleSprite getInterior_table(){
+        return new Interior_table().getSprite();
+    }
+     public SingleSprite getSacks_1(){
+        return new Sacks_1().getSprite();
+    }
+     
+    
+    
+    
+    
+    
 }
 

@@ -8,6 +8,7 @@ package Gui2D;
 import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Clearing;
 import Gui2D.Maps.House2;
+import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
 import Gui2D.Maps.Map;
@@ -75,7 +76,7 @@ public class WizardOfTreldan extends Application {
         //Init all world maps
         cellar = new Cellar(world);
         village = new Village(world);
-        house2 = new House2(world);
+        house1 = new House1(world);
         menu = new Menu(world);
         playerSelection = new PlayerSelection(world);
         house2 = new House2(world);
@@ -86,7 +87,7 @@ public class WizardOfTreldan extends Application {
         
         gruulslair = new GruulsLair(world);
         
-        setVillageScene();
+        setHouse1Scene();
         primaryStage.show();
     }
     
@@ -117,11 +118,20 @@ public class WizardOfTreldan extends Application {
     public static void setCellarScene(){
         primaryStage.setScene(cellar.getScene());
     }
-    
+     /**
+     *  Force the game to load VillageScene
+     */
     public static void setVillageScene(){
         primaryStage.setScene(village.getScene());
     }
+     /**
+     *  Force the game to load House1Scene
+     */
+    public static void setHouse1Scene(){
+        primaryStage.setScene(house1.getScene());
+    }
 
+        
     /**
      *  Force the game to load UnicornScene
      */
