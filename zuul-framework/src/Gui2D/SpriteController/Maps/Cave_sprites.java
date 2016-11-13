@@ -34,36 +34,68 @@ public class Cave_sprites{
         caveGroundList.add(world.getGround_sprite().getStone_dark_2());
         
         Sprite caveGround1 = new Groupsprite_random(caveGroundList);
-        caveGround1.setSize(600,340);
-        caveGround1.setPosition(80,200);
+        caveGround1.setSize(1024,512);
+        caveGround1.setPosition(0,0);
         spriteList.add(caveGround1);
         
-        Sprite chest = world.getMisc_sprites().getChestClosed();
-        chest.setPosition(544, 128);
-        spriteList.add(chest);
-        
-        Sprite bmushroom = world.getMisc_sprites().getBrownMushroom();
-        bmushroom.setPosition(544, 222);
-        spriteList.add(bmushroom);
-        
         Sprite cave_exit = world.getMisc_sprites().getCaveExit();
-        cave_exit.setPosition(720, 389);
+        cave_exit.setPosition(692, 340);
         spriteList.add(cave_exit);
         
         Sprite gruuls_Lair_Entrance = world.getMisc_sprites().getCaveExit();
-        gruuls_Lair_Entrance.setPosition(500, 79);
+        gruuls_Lair_Entrance.setPosition(527, 125);
         spriteList.add(gruuls_Lair_Entrance);
         
-        // START OF MISC ITEMS
-        
+        // START OF WALL
+
         List<SingleSprite> cave_HoleWESTWALLList = new ArrayList();
         
         cave_HoleWESTWALLList.add(world.getMisc_sprites().getCave_Hole());
         
         Sprite cave_HoleWESTWALL = new Groupsprite_random(cave_HoleWESTWALLList);
         cave_HoleWESTWALL.setSize(81, 316);
-        cave_HoleWESTWALL.setPosition(100, 200);
+        cave_HoleWESTWALL.setPosition(200, 100);
         spriteList.add(cave_HoleWESTWALL);
+        
+        List<SingleSprite> cave_HoleNORTHWALLList1 = new ArrayList();
+        
+        cave_HoleNORTHWALLList1.add(world.getMisc_sprites().getCave_Hole());
+        
+        Sprite cave_HoleNORTHWALL1 = new Groupsprite_random(cave_HoleNORTHWALLList1);
+        cave_HoleNORTHWALL1.setSize(324, 79);
+        cave_HoleNORTHWALL1.setPosition(200, 100);
+        spriteList.add(cave_HoleNORTHWALL1);
+        
+        List<SingleSprite> cave_HoleNORTHWALLList2 = new ArrayList();
+        
+        cave_HoleNORTHWALLList2.add(world.getMisc_sprites().getCave_Hole());
+        
+        Sprite cave_HoleNORTHWALL2 = new Groupsprite_random(cave_HoleNORTHWALLList2);
+        cave_HoleNORTHWALL2.setSize(162, 79);
+        cave_HoleNORTHWALL2.setPosition(566, 100);
+        spriteList.add(cave_HoleNORTHWALL2);
+        
+        List<SingleSprite> cave_HoleSOUTHWALLList = new ArrayList();
+        
+        cave_HoleSOUTHWALLList.add(world.getMisc_sprites().getCave_Hole());
+        
+        Sprite cave_HoleSOUTHWALL = new Groupsprite_random(cave_HoleSOUTHWALLList);
+        cave_HoleSOUTHWALL.setSize(567, 79);
+        cave_HoleSOUTHWALL.setPosition(200, 415);
+        spriteList.add(cave_HoleSOUTHWALL);
+        
+        List<SingleSprite> cave_HoleEASTWALLList = new ArrayList();
+        
+        cave_HoleEASTWALLList.add(world.getMisc_sprites().getCave_Hole());
+        
+        Sprite cave_HoleEASTWALL = new Groupsprite_random(cave_HoleEASTWALLList);
+        cave_HoleEASTWALL.setSize(81, 395);
+        cave_HoleEASTWALL.setPosition(730, 100);
+        spriteList.add(cave_HoleEASTWALL);
+        
+        
+        // START OF MISC ITEMS
+
         
     }
 
