@@ -87,7 +87,7 @@ public class WizardOfTreldan extends Application {
         
         gruulslair = new GruulsLair(world);
         
-        setHouse1Scene();
+        setClearingScene();
         primaryStage.show();
     }
     
