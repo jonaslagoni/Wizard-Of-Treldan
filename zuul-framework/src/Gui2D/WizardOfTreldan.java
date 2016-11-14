@@ -5,8 +5,10 @@
  */
 package Gui2D;
 
+import Gui2D.Maps.Cave;
 import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Clearing;
+import Gui2D.Maps.Dungeon;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
@@ -16,9 +18,11 @@ import Gui2D.Maps.Menu;
 import Gui2D.Maps.PlayerSelection;
 import Gui2D.Maps.Unicorn;
 import Gui2D.Maps.Village;
+import Gui2D.Maps.WizardHouse;
 import Gui2D.SpriteController.SpriteController;
 import TWoT_test.TWoT;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -38,6 +42,9 @@ public class WizardOfTreldan extends Application {
     private static Map forest;
     private static Map playerSelection;
     private static Map village;
+    private static Map cave;
+    private static Map dungeon;
+    private static Map wizardHouse;
 
     /**
      * @return the game
@@ -84,10 +91,11 @@ public class WizardOfTreldan extends Application {
         clearing = new Clearing(world);
         unicorn = new Unicorn(world);
         forest = new Forest(world);
+        cave = new Cave(world);
+        dungeon = new Dungeon(world);
+        wizardHouse = new WizardHouse(world);
         
-        gruulslair = new GruulsLair(world);
-        
-        setClearingScene();
+        setForestScene();
         primaryStage.show();
     }
     
@@ -164,8 +172,17 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(clearing.getScene());
     }
     
+    public static void setCaveScene() {
+        primaryStage.setScene(cave.getScene());
+    }
 
+    public static void setDungeonScene() {
+        primaryStage.setScene(dungeon.getScene());
+    }
     
+    public static void setWizardHouseScene() {
+        primaryStage.setScene(wizardHouse.getScene());
+    }
     
     public static void resetGame(){
         game = new TWoT();
