@@ -5,11 +5,11 @@
  */
 package Gui2D.Maps;
 
-import TWoT_test.EquippableItem;
-import TWoT_test.Item;
-import TWoT_test.QuestItem;
-import TWoT_test.TWoT;
-import TWoT_test.UseableItem;
+import TWoT_A1.EquippableItem;
+import TWoT_A1.Item;
+import TWoT_A1.QuestItem;
+import TWoT_A1.TWoT;
+import TWoT_A1.UseableItem;
 import java.util.HashMap;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -36,9 +36,9 @@ public class PlayerInventory {
     private Text headValue;
     private Text amuletValue;
     private ObservableList<AnchorPane> items;
+    private ListView<AnchorPane> list;
     private ProgressBar pb;
     private boolean shown;
-    private ListView<AnchorPane> list;
     private Text deffv;
     private Text attv;
     public PlayerInventory(TWoT game){
@@ -71,7 +71,7 @@ public class PlayerInventory {
         deffv.setFill(Color.WHITE);
         menu.getChildren().add(deffv);
         
-        list = new ListView<AnchorPane>();
+        list = new ListView();
         list.getStyleClass().add("inventoryList");
         list.relocate(4, 245);
         list.setPrefWidth(300-8);

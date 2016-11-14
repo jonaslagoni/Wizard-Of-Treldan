@@ -7,7 +7,7 @@ package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
 import Gui2D.SpriteController.SpriteController;
-import TWoT_test.TWoT;
+import TWoT_A1.TWoT;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

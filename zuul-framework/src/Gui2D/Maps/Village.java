@@ -5,17 +5,13 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Clearing_sprites;
 import Gui2D.SpriteController.Maps.Village_sprites;
-import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
-import TWoT_test.TWoT;
+import TWoT_A1.TWoT;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.AnimationTimer;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

@@ -9,3 +9,5 @@
 /zuul-framework/dist/
 *.properties
 zuul-framework/src/Gui2D/WizardOfTreldan.java
+/TWoT/Storage/nbproject/private/
+/TWoT/Storage/build/
