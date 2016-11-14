@@ -39,6 +39,17 @@ public class WizardHouse_sprites{
         wizardHouseFloor.setPosition(256, 128);
         spriteList.add(wizardHouseFloor);
         
+        // END OF WIZARDHOUSE BACKGROUND
+        
+        // START OF MISC ITEMS
+        
+        Sprite wizardBed = world.getMisc_sprites().getNice_Bed();
+        wizardBed.setSize(48, 81);
+        wizardBed.setPosition(250, 200);
+        spriteList.add(wizardBed);
+        
+        // END OF MISC ITEMS
+        
     }
 
     public List<Sprite> getSpriteList() {

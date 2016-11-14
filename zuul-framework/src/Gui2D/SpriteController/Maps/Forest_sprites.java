@@ -69,7 +69,7 @@ public class Forest_sprites{
         
         Sprite roadWizardHouse2 = new Groupsprite_random(roadWizardHouseList2);
         
-        roadWizardHouse2.setSize(192, 64);
+        roadWizardHouse2.setSize(224, 64);
         roadWizardHouse2.setPosition(285, 450);
         spriteList.add(roadWizardHouse2);
         
@@ -132,6 +132,11 @@ public class Forest_sprites{
         tree1.setSize(190, 234);
         tree1.setPosition(0, 265);
         spriteList.add(tree1);
+        
+        Sprite wizardHouse = world.getMisc_sprites().getWizardHouse();
+        wizardHouse.setSize(239, 289);
+        wizardHouse.setPosition(297, 163);
+        spriteList.add(wizardHouse);
         
         // START OF INTERACTABLE ITEMS
         
