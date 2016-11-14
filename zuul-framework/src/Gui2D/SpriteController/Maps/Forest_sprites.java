@@ -60,7 +60,7 @@ public class Forest_sprites{
         
         Sprite roadWizardHouse = new Groupsprite_random(roadWizardHouseList);
         
-        roadWizardHouse.setSize(96, 160);
+        roadWizardHouse.setSize(96, 256);
         roadWizardHouse.setPosition(190, 286);
         spriteList.add(roadWizardHouse);
         
@@ -69,8 +69,8 @@ public class Forest_sprites{
         
         Sprite roadWizardHouse2 = new Groupsprite_random(roadWizardHouseList2);
         
-        roadWizardHouse2.setSize(64, 64);
-        roadWizardHouse2.setPosition(285, 382);
+        roadWizardHouse2.setSize(224, 64);
+        roadWizardHouse2.setPosition(285, 450);
         spriteList.add(roadWizardHouse2);
         
         List<SingleSprite> roadClearingList = new ArrayList();
@@ -84,63 +84,34 @@ public class Forest_sprites{
         
         // END OF ROADS
         
-        // START OF MISC ITEMS
-        
-        List<SingleSprite> bushRow1List = new ArrayList();
-        bushRow1List.add(world.getMisc_sprites().getBush());
-        
-        Sprite bushRow1 = new Groupsprite_random(bushRow1List);
-        
-        bushRow1.setSize(188, 80);
-        bushRow1.setPosition(0, 270);
-        spriteList.add(bushRow1);
-        
-        List<SingleSprite> bushRow2List = new ArrayList();
-        bushRow2List.add(world.getMisc_sprites().getBush());
-        
-        Sprite bushRow2 = new Groupsprite_random(bushRow2List);
-        
-        bushRow2.setSize(376, 80);
-        bushRow2.setPosition(290, 270);
-        spriteList.add(bushRow2);
-        
         // CAVE ENTRANCE START
         
-        Sprite bushCaveEntrance5 = world.getMisc_sprites().getBush();
-        bushCaveEntrance5.setPosition(678, -36);
-        spriteList.add(bushCaveEntrance5);
-        
-        Sprite bushCaveEntrance4 = world.getMisc_sprites().getBush();
-        bushCaveEntrance4.setPosition(678, -6);
-        spriteList.add(bushCaveEntrance4);
-        
-        Sprite bushCaveEntrance3 = world.getMisc_sprites().getBush();
-        bushCaveEntrance3.setPosition(678, 24);
-        spriteList.add(bushCaveEntrance3);
-        
-        
-        Sprite bushCaveEntrance2 = world.getMisc_sprites().getBush();
-        bushCaveEntrance2.setPosition(678, 54);
-        spriteList.add(bushCaveEntrance2);
-        
-        Sprite bushCaveEntrance1 = world.getMisc_sprites().getBush();
-        bushCaveEntrance1.setPosition(678, 84);
-        spriteList.add(bushCaveEntrance1);
-        
-        Sprite caveEntrance = world.getMisc_sprites().getBushExit();
-        caveEntrance.setPosition(678, 114);
-        spriteList.add(caveEntrance);
+//        Sprite bushCaveEntrance5 = world.getMisc_sprites().getBush();
+//        bushCaveEntrance5.setPosition(678, -36);
+//        spriteList.add(bushCaveEntrance5);
+//        
+//        Sprite bushCaveEntrance4 = world.getMisc_sprites().getBush();
+//        bushCaveEntrance4.setPosition(678, -6);
+//        spriteList.add(bushCaveEntrance4);
+//        
+//        Sprite bushCaveEntrance3 = world.getMisc_sprites().getBush();
+//        bushCaveEntrance3.setPosition(678, 24);
+//        spriteList.add(bushCaveEntrance3);
+//        
+//        
+//        Sprite bushCaveEntrance2 = world.getMisc_sprites().getBush();
+//        bushCaveEntrance2.setPosition(678, 54);
+//        spriteList.add(bushCaveEntrance2);
+//        
+//        Sprite bushCaveEntrance1 = world.getMisc_sprites().getBush();
+//        bushCaveEntrance1.setPosition(678, 84);
+//        spriteList.add(bushCaveEntrance1);
+//        
+//        Sprite caveEntrance = world.getMisc_sprites().getBushExit();
+//        caveEntrance.setPosition(678, 114);
+//        spriteList.add(caveEntrance);
         
         // CAVE ENTRANCE END
-        
-        List<SingleSprite> forestBigTreeStumpList = new ArrayList();
-        forestBigTreeStumpList.add(world.getMisc_sprites().getBig_Tree_Stump());
-        
-        Sprite forestBigTreeStump = new Groupsprite_random(forestBigTreeStumpList);
-        
-        forestBigTreeStump.setSize(150, 41);
-        forestBigTreeStump.setPosition(190, 445);
-        spriteList.add(forestBigTreeStump);
         
         Sprite forest1 = new Groupsprite_GroupRender(world.getMisc_sprites().getTree1());
         forest1.setPosition(-60, -155);
@@ -153,6 +124,19 @@ public class Forest_sprites{
         spriteList.add(forest2);
         
         // END OF MISC ITEMS
+        
+        List<SingleSprite> treeList = new ArrayList();
+        treeList.add(world.getMisc_sprites().getTree2());
+        
+        Sprite tree1 = new Groupsprite_random(treeList);
+        tree1.setSize(190, 234);
+        tree1.setPosition(0, 265);
+        spriteList.add(tree1);
+        
+        Sprite wizardHouse = world.getMisc_sprites().getWizardHouse();
+        wizardHouse.setSize(239, 289);
+        wizardHouse.setPosition(297, 163);
+        spriteList.add(wizardHouse);
         
         // START OF INTERACTABLE ITEMS
         

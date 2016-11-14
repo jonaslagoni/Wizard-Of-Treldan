@@ -233,10 +233,21 @@ public class Misc_sprites {
      public SingleSprite getSacks_1(){
         return new Sacks_1().getSprite();
     }
-     
-    
-    
-    
+    public SingleSprite getWizardHouse() {
+        return new WizardHouse().getSprite();
+    }
+    public SingleSprite getRock_Wall_Front() {
+        return  new Rock_Wall_Front().getSprite();
+    }
+    public SingleSprite getRock_Wall_LEFT() {
+        return new Rock_Wall_LEFT().getSprite();
+    }
+    public SingleSprite getRock_Wall_RIGHT() {
+        return new Rock_Wall_RIGHT().getSprite();
+    }
+    public SingleSprite getNice_Bed() {
+        return new Nice_Bed_FacingDown().getSprite();
+    }
     
     
 }

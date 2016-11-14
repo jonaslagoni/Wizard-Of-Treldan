@@ -120,6 +120,21 @@ public class Dungeon_sprites {
         SpiderWebLOWERRIGHT1.setPosition(838, 389);
         spriteList.add(SpiderWebLOWERRIGHT1);
         
+        Sprite cellWall1 = world.getMisc_sprites().getCell_ironbar_straight();
+        cellWall1.setSize(10, 100);
+        cellWall1.setPosition(265, 73);
+        spriteList.add(cellWall1);
+        
+        Sprite cellWall2 = world.getMisc_sprites().getCell_ironbar_straight();
+        cellWall2.setSize(10, 100);
+        cellWall2.setPosition(365, 73);
+        spriteList.add(cellWall2);
+        
+        Sprite cellWall3 = world.getMisc_sprites().getCell_ironbar_straight();
+        cellWall3.setSize(10, 100);
+        cellWall3.setPosition(460, 73);
+        spriteList.add(cellWall3);
+        
         // END OF MISC
         
     }

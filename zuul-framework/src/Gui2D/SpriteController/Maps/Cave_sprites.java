@@ -38,6 +38,47 @@ public class Cave_sprites{
         caveGround1.setPosition(0,0);
         spriteList.add(caveGround1);
         
+        // START OF WALL
+
+        List<SingleSprite> cave_WESTWALLList = new ArrayList();
+        
+        cave_WESTWALLList.add(world.getMisc_sprites().getRock_Wall_LEFT());
+        
+        Sprite cave_WESTWALL = new Groupsprite_random(cave_WESTWALLList);
+        cave_WESTWALL.setSize(13, 316);
+        cave_WESTWALL.setPosition(200, 100);
+        spriteList.add(cave_WESTWALL);
+        
+        List<SingleSprite> cave_NORTHWALLList1 = new ArrayList();
+        
+        cave_NORTHWALLList1.add(world.getMisc_sprites().getRock_Wall_Front());
+        
+        Sprite cave_NORTHWALL1 = new Groupsprite_random(cave_NORTHWALLList1);
+        cave_NORTHWALL1.setSize(559, 65);
+        cave_NORTHWALL1.setPosition(200, 100);
+        spriteList.add(cave_NORTHWALL1);
+        
+        List<SingleSprite> cave_SOUTHWALLList = new ArrayList();
+        
+        cave_SOUTHWALLList.add(world.getMisc_sprites().getRock_Wall_Front());
+        
+        Sprite cave_SOUTHWALL = new Groupsprite_random(cave_SOUTHWALLList);
+        cave_SOUTHWALL.setSize(567, 65);
+        cave_SOUTHWALL.setPosition(200, 415);
+        spriteList.add(cave_SOUTHWALL);
+        
+        List<SingleSprite> cave_EASTWALLList = new ArrayList();
+        
+        cave_EASTWALLList.add(world.getMisc_sprites().getRock_Wall_RIGHT());
+        
+        Sprite cave_EASTWALL = new Groupsprite_random(cave_EASTWALLList);
+        cave_EASTWALL.setSize(13, 395);
+        cave_EASTWALL.setPosition(760, 100);
+        spriteList.add(cave_EASTWALL);
+        
+        
+        // START OF MISC ITEMS
+
         Sprite cave_exit = world.getMisc_sprites().getCaveExit();
         cave_exit.setPosition(692, 340);
         spriteList.add(cave_exit);
@@ -46,56 +87,6 @@ public class Cave_sprites{
         gruuls_Lair_Entrance.setPosition(527, 125);
         spriteList.add(gruuls_Lair_Entrance);
         
-        // START OF WALL
-
-        List<SingleSprite> cave_HoleWESTWALLList = new ArrayList();
-        
-        cave_HoleWESTWALLList.add(world.getMisc_sprites().getCave_Hole());
-        
-        Sprite cave_HoleWESTWALL = new Groupsprite_random(cave_HoleWESTWALLList);
-        cave_HoleWESTWALL.setSize(81, 316);
-        cave_HoleWESTWALL.setPosition(200, 100);
-        spriteList.add(cave_HoleWESTWALL);
-        
-        List<SingleSprite> cave_HoleNORTHWALLList1 = new ArrayList();
-        
-        cave_HoleNORTHWALLList1.add(world.getMisc_sprites().getCave_Hole());
-        
-        Sprite cave_HoleNORTHWALL1 = new Groupsprite_random(cave_HoleNORTHWALLList1);
-        cave_HoleNORTHWALL1.setSize(324, 79);
-        cave_HoleNORTHWALL1.setPosition(200, 100);
-        spriteList.add(cave_HoleNORTHWALL1);
-        
-        List<SingleSprite> cave_HoleNORTHWALLList2 = new ArrayList();
-        
-        cave_HoleNORTHWALLList2.add(world.getMisc_sprites().getCave_Hole());
-        
-        Sprite cave_HoleNORTHWALL2 = new Groupsprite_random(cave_HoleNORTHWALLList2);
-        cave_HoleNORTHWALL2.setSize(162, 79);
-        cave_HoleNORTHWALL2.setPosition(566, 100);
-        spriteList.add(cave_HoleNORTHWALL2);
-        
-        List<SingleSprite> cave_HoleSOUTHWALLList = new ArrayList();
-        
-        cave_HoleSOUTHWALLList.add(world.getMisc_sprites().getCave_Hole());
-        
-        Sprite cave_HoleSOUTHWALL = new Groupsprite_random(cave_HoleSOUTHWALLList);
-        cave_HoleSOUTHWALL.setSize(567, 79);
-        cave_HoleSOUTHWALL.setPosition(200, 415);
-        spriteList.add(cave_HoleSOUTHWALL);
-        
-        List<SingleSprite> cave_HoleEASTWALLList = new ArrayList();
-        
-        cave_HoleEASTWALLList.add(world.getMisc_sprites().getCave_Hole());
-        
-        Sprite cave_HoleEASTWALL = new Groupsprite_random(cave_HoleEASTWALLList);
-        cave_HoleEASTWALL.setSize(81, 395);
-        cave_HoleEASTWALL.setPosition(730, 100);
-        spriteList.add(cave_HoleEASTWALL);
-        
-        
-        // START OF MISC ITEMS
-
         
     }
 

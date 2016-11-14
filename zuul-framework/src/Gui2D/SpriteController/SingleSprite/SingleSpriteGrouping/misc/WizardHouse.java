@@ -11,18 +11,17 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Tree2 extends Abstract_sprite {
+public class WizardHouse extends Abstract_sprite{
     /**
-     * Sets the Tree1 Sprite 
+     * Sets the WizardHouse sprite
      */
     @Override
-    public void setSprite() {
-        super.getSprite().setSpritePosX(1252);
-        super.getSprite().setSpritePosY(279);
-        super.getSprite().setSprite_width(95);
-        super.getSprite().setSprite_height(117);
-        super.getSprite().setWidth(95);
-        super.getSprite().setHeight(117);
+    public void setSprite(){
+        super.getSprite().setSpritePosX(795);
+        super.getSprite().setSpritePosY(693);
+        super.getSprite().setSprite_width(239);
+        super.getSprite().setSprite_height(289);
+        super.getSprite().setWidth(239);
+        super.getSprite().setHeight(289);
     }
-    
 }

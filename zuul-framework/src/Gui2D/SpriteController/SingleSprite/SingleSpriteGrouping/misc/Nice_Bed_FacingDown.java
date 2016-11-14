@@ -11,18 +11,17 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Tree2 extends Abstract_sprite {
+public class Nice_Bed_FacingDown extends Abstract_sprite{
     /**
-     * Sets the Tree1 Sprite 
+     * Sets the Nice_Bed_FacingDown sprite
      */
     @Override
-    public void setSprite() {
-        super.getSprite().setSpritePosX(1252);
-        super.getSprite().setSpritePosY(279);
-        super.getSprite().setSprite_width(95);
-        super.getSprite().setSprite_height(117);
-        super.getSprite().setWidth(95);
-        super.getSprite().setHeight(117);
+    public void setSprite(){
+        super.getSprite().setSpritePosX(729);
+        super.getSprite().setSpritePosY(417);
+        super.getSprite().setSprite_width(48);
+        super.getSprite().setSprite_height(81);
+        super.getSprite().setWidth(48);
+        super.getSprite().setHeight(81);
     }
-    
 }
