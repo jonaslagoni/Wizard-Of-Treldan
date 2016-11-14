@@ -43,7 +43,7 @@ public class WizardHouse_sprites{
         
         // START OF MISC ITEMS
         
-        Sprite wizardBed = world.getMisc_sprites().getNice_Bed();
+        Sprite wizardBed = world.getMisc_sprites().getNice_Bed_FacingDown();
         wizardBed.setSize(48, 81);
         wizardBed.setPosition(250, 200);
         spriteList.add(wizardBed);

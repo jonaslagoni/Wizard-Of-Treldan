@@ -13,7 +13,7 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  */
 public class Nice_Bed_FacingDown extends Abstract_sprite{
     /**
-     * Sets the Nice_Bed sprite
+     * Sets the Nice_Bed_FacingDown sprite
      */
     @Override
     public void setSprite(){
