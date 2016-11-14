@@ -20,9 +20,9 @@ public class Tree2 extends Abstract_sprite {
         super.getSprite().setSpritePosX(1252);
         super.getSprite().setSpritePosY(279);
         super.getSprite().setSprite_width(95);
-        super.getSprite().setSprite_height(11);
+        super.getSprite().setSprite_height(117);
         super.getSprite().setWidth(95);
-        super.getSprite().setHeight(11);
+        super.getSprite().setHeight(117);
     }
     
 }
