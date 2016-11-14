@@ -37,9 +37,7 @@ public class GruulsLair_sprites{
         
         Sprite gruulsLairGround = new Groupsprite_random(gruulsLairGroundList);
         gruulsLairGround.setSize(1024,512);
-//        gruulsLairGround.setSize(256,450);
         gruulsLairGround.setPosition(0,0);
-//        gruulsLairGround.setPosition(375,25);
         spriteList.add(gruulsLairGround);
         
         // BACKGROUND END
@@ -47,51 +45,55 @@ public class GruulsLair_sprites{
         // WALL BEGIN
         
         List<SingleSprite> gruulsLairEASTWALLList = new ArrayList();
-        gruulsLairEASTWALLList.add(world.getMisc_sprites().getCave_Spikes());
+        gruulsLairEASTWALLList.add(world.getMisc_sprites().getBig_Rock());
         
         Sprite gruulsLairEASTWALL = new Groupsprite_random(gruulsLairEASTWALLList);
-        gruulsLairEASTWALL.setSize(32, 448);
-        gruulsLairEASTWALL.setPosition(598, 24);
+        gruulsLairEASTWALL.setSize(61, 475);
+        gruulsLairEASTWALL.setPosition(628, 16);
         spriteList.add(gruulsLairEASTWALL);
         
         List<SingleSprite> gruulsLairWESTWALLList = new ArrayList();
-        gruulsLairWESTWALLList.add(world.getMisc_sprites().getCave_Spikes());
+        gruulsLairWESTWALLList.add(world.getMisc_sprites().getBig_Rock());
         
         Sprite gruulsLairWESTWALL = new Groupsprite_random(gruulsLairWESTWALLList);
-        gruulsLairWESTWALL.setSize(32, 448);
-        gruulsLairWESTWALL.setPosition(375, 24);
+        gruulsLairWESTWALL.setSize(61, 475);
+        gruulsLairWESTWALL.setPosition(322, 16);
         spriteList.add(gruulsLairWESTWALL);
         
         List<SingleSprite> gruulsLairNORTHWALLList = new ArrayList();
-        gruulsLairNORTHWALLList.add(world.getMisc_sprites().getCave_Boulder());
+        gruulsLairNORTHWALLList.add(world.getMisc_sprites().getBig_Rock());
         
         Sprite gruulsLairNORTHWALL = new Groupsprite_random(gruulsLairNORTHWALLList);
-        gruulsLairNORTHWALL.setSize(192, 32);
-        gruulsLairNORTHWALL.setPosition(407, 26);
+        gruulsLairNORTHWALL.setSize(244, 45);
+        gruulsLairNORTHWALL.setPosition(383, 8);
         spriteList.add(gruulsLairNORTHWALL);
-        
-        Sprite gruulsLairSOUTHWALLBoulder1 = world.getMisc_sprites().getCave_Boulder();
-        gruulsLairSOUTHWALLBoulder1.setPosition(409, 440);
-        spriteList.add(gruulsLairSOUTHWALLBoulder1);
-        
-        Sprite gruulsLairSOUTHWALLBoulder2 = world.getMisc_sprites().getCave_Boulder();
-        gruulsLairSOUTHWALLBoulder2.setPosition(535, 440);
-        spriteList.add(gruulsLairSOUTHWALLBoulder2);
-        
-        Sprite gruulsLairSOUTHWALLBoulder3 = world.getMisc_sprites().getCave_Boulder();
-        gruulsLairSOUTHWALLBoulder3.setPosition(470, 440);
-        spriteList.add(gruulsLairSOUTHWALLBoulder3);
         
         // WALL END
         
         // MISC ITEMS START
         
-        Sprite gruulsLair_EXIT = world.getMisc_sprites().getCaveExit();
-        gruulsLair_EXIT.setPosition(450, 350);
-        spriteList.add(gruulsLair_EXIT);
+        List<SingleSprite> randomVanitySpritesList1 = new ArrayList();
+        randomVanitySpritesList1.add(world.getGround_sprite().getStone_dark_1());
+        randomVanitySpritesList1.add(world.getGround_sprite().getStone_dark_2());
+        randomVanitySpritesList1.add(world.getMisc_sprites().getCave_Spikes());
+        
+        Sprite randomVanitySprites1 = new Groupsprite_random(randomVanitySpritesList1);
+        randomVanitySprites1.setSize(300, 375);
+        randomVanitySprites1.setPosition(0, 32);
+        spriteList.add(randomVanitySprites1);
+        
+        List<SingleSprite> randomVanitySpritesList2 = new ArrayList();
+        randomVanitySpritesList2.add(world.getGround_sprite().getStone_dark_1());
+        randomVanitySpritesList2.add(world.getGround_sprite().getStone_dark_2());
+        randomVanitySpritesList2.add(world.getMisc_sprites().getCave_Spikes());
+        
+        Sprite randomVanitySprites2 = new Groupsprite_random(randomVanitySpritesList2);
+        randomVanitySprites2.setSize(300, 375);
+        randomVanitySprites2.setPosition(725, 64);
+        spriteList.add(randomVanitySprites2);
         
         // MISC ITEMS END
-        
+
     }
 
     /**

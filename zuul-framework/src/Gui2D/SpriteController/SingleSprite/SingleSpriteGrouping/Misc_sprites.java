@@ -248,7 +248,15 @@ public class Misc_sprites {
     public SingleSprite getNice_Bed() {
         return new Nice_Bed_FacingDown().getSprite();
     }
-    
+    public SingleSprite getBig_Cave_Entrance() {
+        return new Big_Cave_Entrance().getSprite();
+    }
+    public SingleSprite getBig_Rock() {
+        return new Big_Rock().getSprite();
+    }
+    public SingleSprite getRock_Small() {
+        return new Rock_Small().getSprite();
+    }
     
 }
 
