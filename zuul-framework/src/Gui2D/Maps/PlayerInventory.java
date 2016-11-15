@@ -41,49 +41,64 @@ public class PlayerInventory {
     private boolean shown;
     private Text deffv;
     private Text attv;
+    /**
+     * PlayerInventory object
+     * @param game 
+     */
     public PlayerInventory(TWoT game){
+        //since not shown from start set the boolean to false
         shown = false;
+        
+        //create a new main AnchorPane for the components
         menu = new AnchorPane();
         menu.getStyleClass().add("inventory");
         menu.relocate(724, 0);
         menu.setPrefSize(300, 512);
         
-        
-        Text health = new Text("Health: " + game.getPlayerHealth());
-        health.relocate(5, 28);
-        health.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
-        menu.getChildren().add(health);
-        
+        /**
+         * Create a ProgressBar to indicate the players health.
+         * From start set the bar to playerhealth divided by 100
+         */
         pb = new ProgressBar(game.getPlayerHealth()/100);
         pb.setPrefSize(292, 10);
         pb.relocate(4, 25);
         menu.getChildren().add(pb);
         
+        //Adding a Text component to indicate the player's attack value.
         attv = new Text("" + game.getPlayerAtt());
         attv.relocate(60, 64);
         attv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         attv.setFill(Color.WHITE);
         menu.getChildren().add(attv);
         
+        //Adding a Text component to indicate the player's deffensive value.
         deffv = new Text("" + game.getPlayerDeff());
         deffv.relocate(216, 64);
         deffv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         deffv.setFill(Color.WHITE);
         menu.getChildren().add(deffv);
         
+        //Adding a ListView containting AnchorPane's
         list = new ListView();
+        //adding css style to the ListView
         list.getStyleClass().add("inventoryList");
         list.relocate(4, 245);
-        list.setPrefWidth(300-8);
+        list.setPrefWidth(300);
         list.setPrefHeight(210);
+        //adding the ObservableList which contains an achorpane to each Item in the player's inventory
         items = FXCollections.observableArrayList ();
+        //get the List of Items the player have in the inventory
         List<Item> items_ingame = game.getInventoryItems();
+        //Go through each Item in the List
         for(Item i: items_ingame){
+            //create a new achorpane to each Item
             AnchorPane t = new AnchorPane();
+            //Add a Text component with th name of the item
             Text itemName = new Text(i.getItemName());
             itemName.setFill(Color.ORANGERED);
             itemName.relocate(0, 3);
             t.getChildren().add(itemName);
+            //Add a Text component which indicated the type of item
             Text itemType;
             if(i instanceof EquippableItem){
                 itemType = new Text("EI");
@@ -98,12 +113,15 @@ public class PlayerInventory {
             itemType.relocate(250, 3);
             t.getChildren().add(itemType);
             
+            //add the pane to the ObservableList
             items.add(t);
         }
+        //add the ObservableList to the ListView
         list.setItems(items);
+        //add the ListView to the pane
         menu.getChildren().add(list);
         
-        
+        //create a Text component for each of the enum types of equippable items a player can have
         weaponValue = new Text("0");
         weaponValue.relocate(110, 117);
         weaponValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
@@ -152,9 +170,13 @@ public class PlayerInventory {
         amuletValue.setFill(Color.WHITE);
         menu.getChildren().add(amuletValue);
         
+        //return the HashMap of equipped items
         HashMap<EquippableItem.EItem, EquippableItem> eqItems = game.getEquippableItems();
+        //go through each of the entries in the HashMap
         for(java.util.Map.Entry<EquippableItem.EItem, EquippableItem> entry: eqItems.entrySet()){
+            //check if the entry is not null
             if(null != entry.getKey()){
+                //check the enum type of the equipped item and set the corresponding value.
                 switch (entry.getKey()){
                     case AMULET_SLOT:
                         amuletValue.setText("" + entry.getValue().getDefenseBuff());
@@ -194,7 +216,14 @@ public class PlayerInventory {
         return menu;
     }
     
+    /**
+     * Updates all relevent information.
+     * @param game 
+     */
     public void update(TWoT game){
+        /**
+         * Update the equipped items
+         */
         HashMap<EquippableItem.EItem, EquippableItem> eqItems = game.getEquippableItems();
         for(java.util.Map.Entry<EquippableItem.EItem, EquippableItem> entry: eqItems.entrySet()){
             if(null != entry.getKey()){
@@ -229,7 +258,9 @@ public class PlayerInventory {
             }
         }
         
-        
+        /**
+         * Remove all the items in the ListView and then them again.
+         */
         items.removeAll(items);
         List<Item> items_ingame = game.getInventoryItems();
         for(Item i: items_ingame){
@@ -254,8 +285,10 @@ public class PlayerInventory {
             items.add(t);
         }
         
+        //Update the healthbar
         pb.setProgress(game.getPlayerHealth()/100);
         
+        //update the user's attack and deff values
         attv.setText(""+game.getPlayerAtt());
         deffv.setText(""+game.getPlayerDeff());
     }
@@ -274,6 +307,10 @@ public class PlayerInventory {
         this.shown = shown;
     }
     
+    /**
+     * Returns the selected Pane from the ListView.
+     * @return 
+     */
     public AnchorPane getSelected(){
         return list.getSelectionModel().getSelectedItem();
     }
