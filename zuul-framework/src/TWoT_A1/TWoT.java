@@ -26,7 +26,7 @@ public class TWoT implements Serializable{
     private Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
     private boolean isOver;
-    
+    private static final long serialVersionUID = 1L;
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
 
