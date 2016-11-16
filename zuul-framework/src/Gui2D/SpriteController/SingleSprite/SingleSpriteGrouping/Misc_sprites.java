@@ -265,6 +265,15 @@ public class Misc_sprites {
     public SingleSprite getRock_Small() {
         return new Rock_Small().getSprite();
     }
+    public SingleSprite getTree_Bundle() {
+        return new Tree_Bundle().getSprite();
+    }
+    public SingleSprite getAlchemy_Table() {
+        return new Alchemy_Table().getSprite();
+    }
+    public SingleSprite getBookshelf_1() {
+        return new Bookshelf_1().getSprite();
+    }
     
 }
 

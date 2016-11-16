@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TWoT implements Serializable{
     // Init variabels
@@ -251,12 +252,12 @@ public class TWoT implements Serializable{
      * getRooms
      * @return 
      */
-    public HashMap<String, String> getWelcomeMessages(){
-        HashMap<String, String> welcomeList = new HashMap();
-        welcomeList.put("welcomeMessage1", "Welcome to the World of Zuul!");
-        welcomeList.put("welcomeMessage2", "World of Zuul is a new, incredibly boring adventure game.");
-        welcomeList.put("needHelp", "Type '" + CommandWord.HELP + "' if you need help.");
-        welcomeList.put("getRooms", currentRoom.getDescription());
+    public HashMap<Integer, String> getWelcomeMessages(){
+        HashMap<Integer, String> welcomeList = new HashMap();
+        welcomeList.put(1, "Welcome to the World of Zuul!\n");
+        welcomeList.put(2, "World of Zuul is a new, incredibly boring adventure game.\n");
+        welcomeList.put(3, "Type '" + CommandWord.HELP + "' if you need help.\n\n");
+        welcomeList.put(4, currentRoom.getDescription() + "\n");
         return welcomeList;
     }
 
@@ -723,11 +724,51 @@ public class TWoT implements Serializable{
                 }else if(i instanceof UseableItem){
                     useableitem.add(i);
                 }
-            }
+            }                   
             inventory.add((ArrayList)questitem);
             inventory.add((ArrayList)equippableitem);
             inventory.add((ArrayList)useableitem);
             return inventory;
+    }
+    
+    public String printInventory() {
+        String inventory = "\n";
+        ArrayList<Item> inv = new ArrayList<>();
+        for(Item i : getInventoryItems()){
+            inv.add(i);
+        }
+            if(inv.isEmpty()){
+                    return "Your inventory is empty\n";
+            }
+            else if(inv.size() >= 1){
+                for(Item j : inv){
+                    inventory += j.getItemName() + "\n";
+                }
+            }
+        
+        return inventory;
+}
+    
+    
+    public ArrayList<String> getPlayer(){
+        ArrayList<String> player = new ArrayList();
+            player.add("\n");
+            player.add("******************\n");
+            player.add("Name    : "+getPlayerName() + "\n");
+            player.add("Health  : "+getPlayerHealth() + "\n");
+            player.add("Attack  : "+getPlayerAtt() + "\n");
+            player.add("Defense : "+getPlayerDeff() + "\n");
+            player.add("Gold    : "+getPlayerGold() + "\n");
+            player.add("******************\n");
+            player.add("**EQUIPPED ITEMS**\n");
+            if(!getEquippableItems().isEmpty()){
+                for(Map.Entry<EquippableItem.EItem, EquippableItem> ei: getEquippableItems().entrySet()){
+                    player.add(ei.getKey() + ": " + ei.getValue().getItemName() + " : ATTV " + ei.getValue().getAttackBuff() + " : DEFFV " + ei.getValue().getDefenseBuff());
+                }
+            }else{
+                player.add("No equipped items..");
+            }
+        return player;
     }
     
     /**
@@ -739,7 +780,7 @@ public class TWoT implements Serializable{
         menu.add("NEW GAME ");
         menu.add("LOAD GAME");
         menu.add("HOW TO PLAY");
-        menu.add("EXIT GAME");
+        //menu.add("EXIT GAME");
         return menu;
     }
     

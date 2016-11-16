@@ -16,7 +16,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -29,35 +32,23 @@ import javafx.stage.Stage;
 public class GUIFX extends Application {
 
     private TWoT twot;
+    private Parser parser;
     private TextArea textArea;
+    private TextField inputArea;
     private String help;
-    private String inventory;
+    private String player;
     private int counter;
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
         }
-    private String printInventory() {
     
-        for(ArrayList<Item> list : twot.getInventory()){
-            if(list.isEmpty()){
-                counter++;
-                if(counter==3){
-                    return "Your inventory is empty\n";
-                }
-            }
-            else if(list.size()>=1){
-                for(Item i : list){
-                    inventory += i.getItemName()+"\n";
-                }
-            }
-        }
-        return inventory;
-}
+    
     
     public GUIFX () {
         
         twot = new TWoT();
+        parser = new Parser();
         
     }
     public static void main(String[] args) {
@@ -67,33 +58,66 @@ public class GUIFX extends Application {
     @Override
     public void start (Stage primaryStage) {
         
-        
         primaryStage.setTitle("The Wizard of Treldan");
         textArea = new TextArea();
+        inputArea = new TextField();
         
+        Button button_play = new Button("NEW GAME");
+        Button button_load = new Button("LOAD GAME");
+        Button button_how = new Button("HOW TO PLAY");
+        Button button_exitMenu = new Button("EXIT GAME");
+        
+        button_play.setMinWidth(180);
+        button_load.setMinWidth(180);
+        button_how.setMinWidth(180);
+        button_exitMenu.setMinWidth(180);
+        button_play.setMinHeight(40);
+        button_load.setMinHeight(40);
+        button_how.setMinHeight(40);
+        button_exitMenu.setMinHeight(40);
+        
+        Button button_player = new Button("Player");
         Button button_inventory = new Button("Inventory");
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
         Button button_exit = new Button("Exit");
         
+        button_player.setMaxWidth(90);
         button_inventory.setMaxWidth(90);
         button_help.setMaxWidth(90);
         button_exit.setMaxWidth(90);
         button_clear.setMaxWidth(90);
         
-        VBox root1 = new VBox(20);
-        root1.setLayoutX(422);
-        root1.getChildren().addAll(button_inventory, button_clear, button_help, button_exit);
+        VBox gameButtons = new VBox(20);
+        gameButtons.setLayoutX(422);
+        gameButtons.getChildren().addAll(button_player, button_inventory, button_clear, button_help, button_exit);
         
-        VBox root2 = new VBox(20);
+        VBox menuButtons = new VBox(20);
+        menuButtons.setLayoutX(166);
+        menuButtons.setLayoutY(30);
+        menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
+              
+        
+        VBox outputField = new VBox(20);
         textArea.setMaxWidth(422);
-        textArea.setMinHeight(288);
+        textArea.setMinHeight(258);
+        textArea.setMaxHeight(258);
         textArea.setWrapText(true);
         textArea.setEditable(false);
-        root2.getChildren().addAll(textArea);
+        outputField.getChildren().addAll(textArea);
         
-        Pane root = new Pane(root1, root2);
+        VBox inputField = new VBox(20);
+        inputArea.setMaxWidth(422);
+        inputArea.setMaxHeight(30);
+        inputField.relocate(0, 260);
+        inputField.getChildren().addAll(inputArea);
         
+        Pane root = new Pane(gameButtons, outputField, inputField);
+        Pane root2 = new Pane(menuButtons);
+        
+        Scene scene1 = new Scene(root, 512, 288);
+        Scene menu = new Scene(root2, 512, 288);
+                
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
             root.setEffect(shade);
@@ -102,26 +126,53 @@ public class GUIFX extends Application {
         root.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
             root.setEffect(null);
         });
+        button_play.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            primaryStage.setScene(scene1);
+        });
         button_help.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             help=printHelp();
             textArea.appendText(help);
         });
+        button_player.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            String player = "";
+            for(String s : twot.getPlayer()){
+                player = player + s;
+            }
+            textArea.appendText(player);
+        });
         button_inventory.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            inventory = printInventory();
-            textArea.appendText(inventory);
+           textArea.appendText(twot.printInventory());
         });
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
+        
+        button_exit.setOnAction(actionEvent -> Platform.exit());
+        
+        inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            public void handle(KeyEvent k){
+                if(k.getCode().equals(KeyCode.ENTER)){
+                        CommandWords commandWord = new CommandWords();
+                        Command command = new Command(commandWord.getCommandWord(k.getText()), k.getText());
+                        twot.goTo(command);
+                        parser.getCommand();
+                        textArea.appendText("Hello\n");
+                        inputArea.clear();
+                }
+            }
+        });
                 
         button_exit.setOnAction(actionEvent -> Platform.exit());
- 
+        button_exitMenu.setOnAction(actionEvent -> Platform.exit());       
         
-        Scene scene1 = new Scene(root, 512, 288);
-        
-        primaryStage.setScene(scene1);
+        primaryStage.setScene(menu);
         primaryStage.show();
         
+        String welcome = "";
+        for(HashMap.Entry<Integer, String> entry : twot.getWelcomeMessages().entrySet()){
+            welcome = welcome + entry.getValue();
+        }
+        textArea.appendText(welcome);
         
     }
 }
