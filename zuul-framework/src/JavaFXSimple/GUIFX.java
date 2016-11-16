@@ -16,7 +16,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -30,6 +33,7 @@ public class GUIFX extends Application {
 
     private TWoT twot;
     private TextArea textArea;
+    private TextField inputArea;
     private String help;
     private String inventory;
     private int counter;
@@ -38,20 +42,20 @@ public class GUIFX extends Application {
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
         }
     private String printInventory() {
-    
-        for(ArrayList<Item> list : twot.getInventory()){
-            if(list.isEmpty()){
-                counter++;
-                if(counter==3){
-                    return "Your inventory is empty\n";
-                }
-            }
-            else if(list.size()>=1){
-                for(Item i : list){
-                    inventory += i.getItemName()+"\n";
-                }
-            }
+        inventory = "";
+        ArrayList<Item> inv = new ArrayList<>();
+        for(Item i : twot.getInventoryItems()){
+            inv.add(i);
         }
+            if(inv.isEmpty()){
+                    return "Your inventory is empty\n";
+            }
+            else if(inv.size() >= 1){
+                for(Item j : inv){
+                    inventory += j.getItemName() + "\n";
+                }
+            }
+        
         return inventory;
 }
     
@@ -67,10 +71,20 @@ public class GUIFX extends Application {
     @Override
     public void start (Stage primaryStage) {
         
-        
         primaryStage.setTitle("The Wizard of Treldan");
         textArea = new TextArea();
+        inputArea = new TextField();
         
+        Button button_play = new Button("NEW GAME");
+        Button button_load = new Button("LOAD GAME");
+        Button button_how = new Button("HOW TO PLAY");
+        Button button_exitMenu = new Button("EXIT GAME");
+        
+        button_play.setMaxWidth(180);
+        button_load.setMaxWidth(180);
+        button_how.setMaxWidth(180);
+        button_exitMenu.setMaxWidth(180);
+                
         Button button_inventory = new Button("Inventory");
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
@@ -81,19 +95,32 @@ public class GUIFX extends Application {
         button_exit.setMaxWidth(90);
         button_clear.setMaxWidth(90);
         
-        VBox root1 = new VBox(20);
-        root1.setLayoutX(422);
-        root1.getChildren().addAll(button_inventory, button_clear, button_help, button_exit);
+        VBox gameButtons = new VBox(20);
+        gameButtons.setLayoutX(422);
+        gameButtons.getChildren().addAll(button_inventory, button_clear, button_help, button_exit);
         
-        VBox root2 = new VBox(20);
+        VBox menuButtons = new VBox(40);
+        menuButtons.setLayoutX(256);
+        menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
+              
+        
+        VBox outputField = new VBox(20);
         textArea.setMaxWidth(422);
-        textArea.setMinHeight(288);
+        textArea.setMinHeight(258);
+        textArea.setMaxHeight(258);
         textArea.setWrapText(true);
         textArea.setEditable(false);
-        root2.getChildren().addAll(textArea);
+        outputField.getChildren().addAll(textArea);
         
-        Pane root = new Pane(root1, root2);
+        VBox inputField = new VBox(20);
+        inputArea.setMaxWidth(422);
+        inputArea.setMaxHeight(30);
+        inputField.relocate(0, 260);
+        inputField.getChildren().addAll(inputArea);
         
+        Pane root = new Pane(gameButtons, outputField, inputField);
+        Pane root2 = new Pane(menuButtons);
+                
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
             root.setEffect(shade);
@@ -113,13 +140,22 @@ public class GUIFX extends Application {
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
+        inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            public void handle(KeyEvent k){
+                if(k.getCode().equals(KeyCode.ENTER)){
+                    textArea.appendText("Hello\n");
+                    inputArea.clear();
+                }
+            }
+        });
                 
         button_exit.setOnAction(actionEvent -> Platform.exit());
  
         
         Scene scene1 = new Scene(root, 512, 288);
+        Scene menu = new Scene(root2, 512, 288);
         
-        primaryStage.setScene(scene1);
+        primaryStage.setScene(menu);
         primaryStage.show();
         
         
