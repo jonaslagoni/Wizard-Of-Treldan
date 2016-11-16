@@ -315,7 +315,7 @@ public class Misc_sprites {
         return new Tree_Bundle().getSprite();
     }
     public SingleSprite getBookshelf_1() {
-        return new BookShelf_1().getSprite();
+        return new Bookshelf_1().getSprite();
     }
     
     //enemies
@@ -326,7 +326,7 @@ public class Misc_sprites {
     public SingleSprite getEnemy_Golem() {
         return new Enemy_golem().getSprite();
     }
-<<<<<<< HEAD
+
     public SingleSprite getEnemy_Imp1() {
         return new Enemy_imp1().getSprite();
     }
@@ -336,17 +336,9 @@ public class Misc_sprites {
     public SingleSprite getEnemy_Imp3() {
         return new Enemy_imp3().getSprite();
     }
-    
 
-
-    
-    
-
-    
-=======
     public SingleSprite getDoor_Metal_2() {
         return new Door_Metal_2().getSprite();
     }
->>>>>>> origin/master
 }
 

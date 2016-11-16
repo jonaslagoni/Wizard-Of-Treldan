@@ -26,7 +26,7 @@ public abstract class Map {
     private SpriteController world;
     
     // Our PlayerSprite 
-    private PlayerSprite player;
+    PlayerSprite player;
     
     public abstract javafx.scene.Scene getScene();
     

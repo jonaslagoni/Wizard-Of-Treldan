@@ -72,8 +72,7 @@ public class Village extends Map{
         }
         
         
-<<<<<<< HEAD
-=======
+
         //get all the sprites used in the village
         List<Sprite> sprites_foreground = villageSprites.getVillage_foreground_sprites();
         //render all the sprites
