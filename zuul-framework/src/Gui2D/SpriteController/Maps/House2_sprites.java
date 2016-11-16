@@ -18,47 +18,98 @@ import java.util.List;
  * @author jonas
  */
 public class House2_sprites{
+    
     private SpriteController world;
-    private List<Sprite> kappaDonger;
+    private final List<Sprite> house2_background_sprites;
+    
+    private final List<SingleSprite> house2_background_walls;
+    private final List<SingleSprite> house2_background_floor;
+    
     
     public House2_sprites(SpriteController world){
         this.world = world;
-        kappaDonger = new ArrayList();
+        house2_background_sprites = new ArrayList();
+        house2_background_walls = new ArrayList();
+        house2_background_floor = new ArrayList();
+        
     }
-    
     public void setHouse2_background_SingleSprites(){
-        kappaDonger.add(world.getMisc_sprites().getBed_hay());
-        Sprite door = world.getMisc_sprites().getDoor_metal();
-        door.setPosition(100, 50);
-        kappaDonger.add(door);
+        //floor
+        house2_background_floor.add(world.getGround_sprite().getWood_light_2());
+        Sprite house_floor = new Groupsprite_random(house2_background_floor);
+        house_floor.setSize(512,250);
+        house_floor.setPosition(0, 0);
+        house2_background_sprites.add(house_floor);
         
-        List<SingleSprite> lol_ol = new ArrayList();
-        lol_ol.add(world.getStructure_sprites().getStone_wall_NW());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_N());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_NE());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_E());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_SE());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_S());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_SW());
-        lol_ol.add(world.getStructure_sprites().getStone_wall_W());
-        Sprite calculated = new Groupsprite_circle(lol_ol);
-        calculated.setSize(50, 50);
-        calculated.setPosition(200, 400);
-        kappaDonger.add(calculated);
+        //walls
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_NW());
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_N());
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_NE());
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_E());
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_SE());
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_S());
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_SW());
+        house2_background_walls.add(world.getStructure_sprites().getStone_wall_W());
+        Sprite house_walls_circle = new Groupsprite_circle(house2_background_walls);
+        house_walls_circle.setPosition(0, 0);
+        house_walls_circle.setSize(512, 300);
+        house2_background_sprites.add(house_walls_circle);
         
-        List<SingleSprite> hue_hue = new ArrayList();
-        hue_hue.add(world.getGround_sprite().getGrass_dark_1());
-        hue_hue.add(world.getGround_sprite().getStone_dark_2());
-        Sprite random = new Groupsprite_random(hue_hue);
-        random.setSize(40, 200);
-        random.setPosition(50, 3);
-        kappaDonger.add(random);
+        
+        //exit
+        Sprite exit = world.getMisc_sprites().getDoor_wood();
+        exit.setPosition(170,20);
+        house2_background_sprites.add(exit);
+        
+        //zombie
+        
+        //woman
+        
+        //health potion
+        
+        //bed
+        Sprite bed = world.getMisc_sprites().getInterior_doublebed();
+        bed.setPosition(430, 45);
+        house2_background_sprites.add(bed);
+        
+        //fireplace
+        Sprite fireplace = world.getMisc_sprites().getInterior_fireplace();
+        fireplace.setPosition(360,5);
+        house2_background_sprites.add(fireplace);
+        
+        //cupboard
+        Sprite cupboard = world.getMisc_sprites().getInterior_cupboard();
+        cupboard.setPosition(49, 20);
+        house2_background_sprites.add(cupboard);
+        
+        //shelf
+        Sprite shelf = world.getMisc_sprites().getInterior_shelf_1();
+        shelf.setPosition(280,15);
+        house2_background_sprites.add(shelf);
+        
+        //table
+        Sprite table = world.getMisc_sprites().getInterior_table();
+        table.setPosition(250,175);
+         house2_background_sprites.add(table);
+        
+         //sacks
+         Sprite sacks = world.getMisc_sprites().getSacks_1();
+         sacks.setPosition(32, 170);
+         house2_background_sprites.add(sacks);
+         
+        
+        
+        
+        
     }
     
-    
+        public List getHouse2(){
+        return house2_background_sprites;
+    }
+            
 
-    public List getKappaDonger(){
-        return kappaDonger;
-    }
+    /**
+     * @return the cellar_background_sprites
+     */
     
 }

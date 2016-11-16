@@ -266,5 +266,24 @@ public class Misc_sprites {
     public SingleSprite getBookShelf_1() {
         return new BookShelf_1().getSprite();
     }
+    
+    //enemies
+    public SingleSprite getEnemy_Skeleton() {
+        return new Enemy_skeleton().getSprite();
+    }
+    
+    public SingleSprite getEnemy_Golem() {
+        return new Enemy_golem().getSprite();
+    }
+    public SingleSprite getEnemy_Imp1() {
+        return new Enemy_imp1().getSprite();
+    }
+    public SingleSprite getEnemy_Imp2() {
+        return new Enemy_imp2().getSprite();
+    }
+    public SingleSprite getEnemy_Imp3() {
+        return new Enemy_imp3().getSprite();
+    }
+    
 }
 

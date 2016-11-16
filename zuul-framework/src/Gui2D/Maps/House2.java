@@ -6,19 +6,21 @@
 package Gui2D.Maps;
 
 import Gui2D.SpriteController.Maps.House2_sprites;
+import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
+import Gui2D.WizardOfTreldan;
+import TWoT_test.TWoT;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.AnimationTimer;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-/**
- *
- * @author jonas
- */
+
 public class House2 extends Map{
     
     // Arraylist for player movement
@@ -36,14 +38,6 @@ public class House2 extends Map{
         //init our super constructor
         super();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
         //set the world constructor
         super.setWorld(world);
         
@@ -55,15 +49,17 @@ public class House2 extends Map{
     public Scene getScene(){
         Group root = new Group();
         Scene theScene = new Scene( root );
-        theScene.setFill(Color.rgb(83, 83, 83));
+        theScene.setFill(Color.rgb(0, 0, 0));
         
-        Canvas canvas = new Canvas(1024, 512);
-        root.getChildren().add(canvas);
-        GraphicsContext grphcs = canvas.getGraphicsContext2D();
+        Canvas canvas_background = new Canvas( 512, 300);
+        //relocate the canvas so its centered.
+        canvas_background.relocate(250, 50);
+        root.getChildren().add(canvas_background);
+        GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
         
-        List<Sprite> lista = s.getKappaDonger();
-        for(Sprite sprite : lista){
-            sprite.render(grphcs);
+        List<Sprite> sprites_still = s.getHouse2();
+        for(Sprite sprite : sprites_still){
+            sprite.render(background_gc);
         }
             
         return theScene;
