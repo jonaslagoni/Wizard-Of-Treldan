@@ -83,7 +83,7 @@ public class PlayerInventory {
         //adding css style to the ListView
         list.getStyleClass().add("inventoryList");
         list.relocate(4, 245);
-        list.setPrefWidth(300);
+        list.setPrefWidth(292);
         list.setPrefHeight(210);
         //adding the ObservableList which contains an achorpane to each Item in the player's inventory
         items = FXCollections.observableArrayList ();
@@ -95,13 +95,41 @@ public class PlayerInventory {
             AnchorPane t = new AnchorPane();
             //Add a Text component with th name of the item
             Text itemName = new Text(i.getItemName());
-            itemName.setFill(Color.ORANGERED);
+            itemName.setFill(Color.AZURE);
             itemName.relocate(0, 3);
             t.getChildren().add(itemName);
             //Add a Text component which indicated the type of item
             Text itemType;
             if(i instanceof EquippableItem){
-                itemType = new Text("EI");
+                switch (((EquippableItem) i).geteItem()){
+                    case AMULET_SLOT:
+                        itemType = new Text("Amulet");
+                        break;
+                    case BOOT_SLOT:
+                        itemType = new Text("Boots");
+                        break;
+                    case CHEST_SLOT:
+                        itemType = new Text("Chest");
+                        break;
+                    case GLOVES_SLOT:
+                        itemType = new Text("Gloves");
+                        break;
+                    case HEAD_SLOT:
+                        itemType = new Text("Helmet");
+                        break;
+                    case LEG_SLOT:
+                        itemType = new Text("Leggings");
+                        break;
+                    case RING_SLOT:
+                        itemType = new Text("Ring");
+                        break;
+                    case WEAPON_SLOT:
+                        itemType = new Text("Weapon");
+                        break;
+                    default:
+                        itemType = new Text("Item");
+                        break;
+                }
             }else if(i instanceof UseableItem){
                 itemType = new Text("UI");
             }else if(i instanceof QuestItem){
@@ -109,8 +137,8 @@ public class PlayerInventory {
             }else{
                 itemType = new Text("I");
             }
-            itemType.setFill(Color.ORANGERED);
-            itemType.relocate(250, 3);
+            itemType.setFill(Color.GOLDENROD);
+            itemType.relocate(220, 3);
             t.getChildren().add(itemType);
             
             //add the pane to the ObservableList
@@ -266,7 +294,7 @@ public class PlayerInventory {
         for(Item i: items_ingame){
             AnchorPane t = new AnchorPane();
             Text itemName = new Text(i.getItemName());
-            itemName.setFill(Color.ORANGERED);
+            itemName.setFill(Color.AZURE);
             itemName.relocate(0, 3);
             t.getChildren().add(itemName);
             Text itemType;

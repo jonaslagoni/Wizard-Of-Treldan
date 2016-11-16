@@ -18,10 +18,10 @@
     -fx-background-color: transparent ;
 }
 .list-view .list-cell:focused {
-    -fx-background-color: #00ffff ;
+    -fx-background-color: #6a6a6a;
 }
 .item{
-    -fx-background-color: #00ffff ;
+    -fx-background-color: #6a6a6a ;
 }
 
 .progress-bar > .track {

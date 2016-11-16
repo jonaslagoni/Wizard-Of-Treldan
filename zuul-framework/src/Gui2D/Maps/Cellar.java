@@ -102,11 +102,17 @@ public class Cellar extends Map{
         //add the canvas to the group
         root.getChildren().add( canvas_menu_sprites );
         
+        /**
+         * TextArea used to give the user more information about the game.
+         * What to do and and what happens.
+         */
         TextArea infobox = Infobox.getInfoBox();
+        //adding stackPane with the textarea component.
         StackPane s = new StackPane(infobox);
         s.setPrefSize(300, 150);
         s.relocate(0, 362);
         root.getChildren().add(s);
+        //get some of the games welcome message and add to the infobox
         HashMap<String, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get("getRooms") + "\n");
         
@@ -231,6 +237,8 @@ public class Cellar extends Map{
                                 infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
                             }
                         }
                         //Reset the velocity
@@ -278,6 +286,8 @@ public class Cellar extends Map{
                                 infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
                             }
                         }
                     //if no collission
@@ -322,6 +332,7 @@ public class Cellar extends Map{
                                 infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
+                                //save the game when we walk out
                                 WizardOfTreldan.saveGame();
                             }
                         }
