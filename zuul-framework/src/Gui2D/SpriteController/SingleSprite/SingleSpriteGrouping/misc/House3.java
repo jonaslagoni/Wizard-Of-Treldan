@@ -17,11 +17,11 @@ public class House3  extends Abstract_sprite{
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(614);
+        super.getSprite().setSpritePosX(619);
         super.getSprite().setSpritePosY(705);
-        super.getSprite().setSprite_width(165);
-        super.getSprite().setSprite_height(246);
-        super.getSprite().setWidth(165);
-        super.getSprite().setHeight(246);
+        super.getSprite().setSprite_width(160);
+        super.getSprite().setSprite_height(236);
+        super.getSprite().setWidth(160);
+        super.getSprite().setHeight(236);
     }
 }

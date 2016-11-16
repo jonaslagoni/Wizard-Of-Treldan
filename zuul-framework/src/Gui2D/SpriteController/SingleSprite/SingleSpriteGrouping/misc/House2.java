@@ -19,9 +19,9 @@ public class House2  extends Abstract_sprite{
     public void setSprite(){
         super.getSprite().setSpritePosX(399);
         super.getSprite().setSpritePosY(705);
-        super.getSprite().setSprite_width(208);
-        super.getSprite().setSprite_height(251);
-        super.getSprite().setWidth(205);
-        super.getSprite().setHeight(251);
+        super.getSprite().setSprite_width(160);
+        super.getSprite().setSprite_height(235);
+        super.getSprite().setWidth(160);
+        super.getSprite().setHeight(235);
     }
 }
