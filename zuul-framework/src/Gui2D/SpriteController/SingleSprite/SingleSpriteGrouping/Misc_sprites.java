@@ -209,6 +209,7 @@ public class Misc_sprites {
         return new Village_messageboard().getSprite();
     }
     
+    //village interior
     public SingleSprite getInterior_singlebed(){
         return new Interior_singlebed().getSprite();
     }
@@ -230,30 +231,54 @@ public class Misc_sprites {
      public SingleSprite getInterior_table(){
         return new Interior_table().getSprite();
     }
+    public SingleSprite getInterior_table_long(){
+        return new Interior_table_long().getSprite();
+    }
+    public SingleSprite getInterior_chair_R(){
+        return new Interior_chair_R().getSprite();
+    }
+    public SingleSprite getInterior_chair_L(){
+        return new Interior_chair_L().getSprite();
+    }
+    public SingleSprite getInterior_kitchen(){
+        return new Interior_Kitchen().getSprite();
+    }
+    
+    
+    
      public SingleSprite getSacks_1(){
         return new Sacks_1().getSprite();
     }
+    
+    //smh
     public SingleSprite getWizardHouse() {
         return new WizardHouse().getSprite();
     }
+    
     public SingleSprite getRock_Wall_Front() {
         return  new Rock_Wall_Front().getSprite();
     }
+    
     public SingleSprite getRock_Wall_LEFT() {
         return new Rock_Wall_LEFT().getSprite();
     }
+    
     public SingleSprite getRock_Wall_RIGHT() {
         return new Rock_Wall_RIGHT().getSprite();
     }
+    
     public SingleSprite getNice_Bed() {
         return new Nice_Bed_FacingDown().getSprite();
     }
+    
     public SingleSprite getBig_Cave_Entrance() {
         return new Big_Cave_Entrance().getSprite();
     }
+    
     public SingleSprite getBig_Rock() {
         return new Big_Rock().getSprite();
     }
+    
     public SingleSprite getRock_Small() {
         return new Rock_Small().getSprite();
     }
@@ -264,7 +289,7 @@ public class Misc_sprites {
     public SingleSprite getTree_Bundle(){
         return new Tree_Bundle().getSprite();
     }
-    public SingleSprite getBookShelf_1() {
+    public SingleSprite getBookshelf_1() {
         return new BookShelf_1().getSprite();
     }
     
@@ -285,6 +310,11 @@ public class Misc_sprites {
     public SingleSprite getEnemy_Imp3() {
         return new Enemy_imp3().getSprite();
     }
+    
+
+
+    
+    
 
     
 }

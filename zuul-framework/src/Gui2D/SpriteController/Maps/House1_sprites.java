@@ -88,7 +88,7 @@ public class House1_sprites{
         house_background_sprites.add(shelf);
         
         //table
-        Sprite table = world.getMisc_sprites().getInterior_table();
+        Sprite table = world.getMisc_sprites().getInterior_table_long();
         table.setPosition(250,175);
          house_background_sprites.add(table);
         

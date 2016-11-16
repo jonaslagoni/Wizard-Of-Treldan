@@ -11,18 +11,18 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Alchemy_Table extends Abstract_sprite{
+public class Interior_table_long extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
     @Override
     public void setSprite(){
 
-        super.getSprite().setSpritePosX(580);
-        super.getSprite().setSpritePosY(319);
-        super.getSprite().setSprite_width(64);
-        super.getSprite().setSprite_height(60);
-        super.getSprite().setWidth(64);
-        super.getSprite().setHeight(60);
+        super.getSprite().setSpritePosX(938);
+        super.getSprite().setSpritePosY(544);
+        super.getSprite().setSprite_width(48);
+        super.getSprite().setSprite_height(80);
+        super.getSprite().setWidth(48);
+        super.getSprite().setHeight(80);
     }
 }

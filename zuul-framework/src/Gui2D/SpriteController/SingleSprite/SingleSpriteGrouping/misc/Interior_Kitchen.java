@@ -9,19 +9,20 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
 
 /**
  *
- * @author jonas
+ * @author Mads
  */
-public class BookShelf_1 extends Abstract_sprite{
+public class Interior_Kitchen extends Abstract_sprite{
     /**
-     * Sets the BookShelf_1 sprite
+     * Sets the Candle sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(729);
-        super.getSprite().setSpritePosY(504);
-        super.getSprite().setSprite_width(64);
-        super.getSprite().setSprite_height(69);
-        super.getSprite().setWidth(64);
-        super.getSprite().setHeight(69);
+
+        super.getSprite().setSpritePosX(798);
+        super.getSprite().setSpritePosY(575);
+        super.getSprite().setSprite_width(96);
+        super.getSprite().setSprite_height(51);
+        super.getSprite().setWidth(96);
+        super.getSprite().setHeight(51);
     }
 }

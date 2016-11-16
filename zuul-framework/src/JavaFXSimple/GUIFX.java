@@ -36,29 +36,14 @@ public class GUIFX extends Application {
     private TextArea textArea;
     private TextField inputArea;
     private String help;
-    private String inventory;
+    private String player;
     private int counter;
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
         }
-    private String printInventory() {
-        inventory = "";
-        ArrayList<Item> inv = new ArrayList<>();
-        for(Item i : twot.getInventoryItems()){
-            inv.add(i);
-        }
-            if(inv.isEmpty()){
-                    return "Your inventory is empty\n";
-            }
-            else if(inv.size() >= 1){
-                for(Item j : inv){
-                    inventory += j.getItemName() + "\n";
-                }
-            }
-        
-        return inventory;
-}
+    
+    
     
     public GUIFX () {
         
@@ -90,12 +75,14 @@ public class GUIFX extends Application {
         button_load.setMinHeight(40);
         button_how.setMinHeight(40);
         button_exitMenu.setMinHeight(40);
-                
+        
+        Button button_player = new Button("Player");
         Button button_inventory = new Button("Inventory");
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
         Button button_exit = new Button("Exit");
         
+        button_player.setMaxWidth(90);
         button_inventory.setMaxWidth(90);
         button_help.setMaxWidth(90);
         button_exit.setMaxWidth(90);
@@ -103,7 +90,7 @@ public class GUIFX extends Application {
         
         VBox gameButtons = new VBox(20);
         gameButtons.setLayoutX(422);
-        gameButtons.getChildren().addAll(button_inventory, button_clear, button_help, button_exit);
+        gameButtons.getChildren().addAll(button_player, button_inventory, button_clear, button_help, button_exit);
         
         VBox menuButtons = new VBox(20);
         menuButtons.setLayoutX(166);
@@ -146,9 +133,15 @@ public class GUIFX extends Application {
             help=printHelp();
             textArea.appendText(help);
         });
+        button_player.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            String player = "";
+            for(String s : twot.getPlayer()){
+                player = player + s;
+            }
+            textArea.appendText(player);
+        });
         button_inventory.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            inventory = printInventory();
-            textArea.appendText(inventory);
+           textArea.appendText(twot.printInventory());
         });
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
@@ -170,15 +163,13 @@ public class GUIFX extends Application {
         });
                 
         button_exit.setOnAction(actionEvent -> Platform.exit());
-        button_exitMenu.setOnAction(actionEvent -> Platform.exit());
-
-        
+        button_exitMenu.setOnAction(actionEvent -> Platform.exit());       
         
         primaryStage.setScene(menu);
         primaryStage.show();
         
         String welcome = "";
-        for(HashMap.Entry<String, String> entry : twot.getWelcomeMessages().entrySet()){
+        for(HashMap.Entry<Integer, String> entry : twot.getWelcomeMessages().entrySet()){
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
