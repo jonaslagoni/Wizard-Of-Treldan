@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author jonas
+ * @author Mads B
  */
 public class House2_sprites{
     
@@ -88,9 +88,10 @@ public class House2_sprites{
         house2_background_sprites.add(shelf);
         
         //table
-        Sprite table = world.getMisc_sprites().getInterior_table();
+        Sprite table = world.getMisc_sprites().getInterior_table_long();
         table.setPosition(250,175);
          house2_background_sprites.add(table);
+         
         
          //sacks
          Sprite sacks = world.getMisc_sprites().getSacks_1();

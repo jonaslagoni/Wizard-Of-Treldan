@@ -1,6 +1,7 @@
 package Gui2D.SpriteController.SingleSprite;
 
 import Gui2D.SpriteController.Sprite;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
@@ -22,7 +23,7 @@ public class SingleSprite extends Sprite {
     }
 
     /**
-     * Sets all the necessary variables 
+     * Sets all the necessary variables for a singlesprite
      * @param sPosX
      * @param sPosY
      * @param sW
@@ -39,7 +40,29 @@ public class SingleSprite extends Sprite {
         super.setSize(w, h);
         spritePosX = sPosX;
         spritePosY = sPosY;
-        
+        super.setBoundary(new Rectangle2D(super.getPositionX(), super.getPositionY(), super.getWidth(), super.getHeight()));
+    }
+    
+    /**
+     * Sets all the necessary variables for a singlesprite including custom boundary
+     * @param sPosX
+     * @param sPosY
+     * @param sW
+     * @param sH
+     * @param w
+     * @param h
+     * @param i
+     * @param boundary 
+     */
+    public SingleSprite(double sPosX, double sPosY, double sW, double sH, double w, double h, Image i, Rectangle2D boundary) {
+        super.setImage(i);
+        super.setPosition(0,0);
+        super.setVelocity(0, 0);
+        super.setSpriteSize(sW, sH);
+        super.setSize(w, h);
+        spritePosX = sPosX;
+        spritePosY = sPosY;
+        super.setBoundary(boundary);
     }
     
     /**

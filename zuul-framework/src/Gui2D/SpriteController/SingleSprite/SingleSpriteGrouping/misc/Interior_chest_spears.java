@@ -9,19 +9,19 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
 
 /**
  *
- * @author jonas
+ * @author Mads B
  */
-public class Well extends Abstract_sprite{
+public class Interior_chest_spears  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(8);
-        super.getSprite().setSpritePosY(701);
-        super.getSprite().setSprite_width(105);
-        super.getSprite().setSprite_height(128);
-        super.getSprite().setWidth(105);
-        super.getSprite().setHeight(128);
+        super.getSprite().setSpritePosX(619);
+        super.getSprite().setSpritePosY(383);
+        super.getSprite().setSprite_width(32);
+        super.getSprite().setSprite_height(62);
+        super.getSprite().setWidth(32);
+        super.getSprite().setHeight(62);
     }
 }

@@ -96,11 +96,6 @@ public class Cellar extends Map{
         //add the canvas to the group
         root.getChildren().add( player_canvas );
         
-        //add a canvas only for the menu
-        Canvas canvas_menu_sprites = new Canvas( 1024, 512 );
-        canvas_menu_sprites.relocate(0, 0);
-        //add the canvas to the group
-        root.getChildren().add( canvas_menu_sprites );
         
         /**
          * TextArea used to give the user more information about the game.
@@ -164,8 +159,6 @@ public class Cellar extends Map{
         
         //create GraphicsContext from our player_canvas
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
-        //create GraphicsContext from our canvas_menu_sprites
-        GraphicsContext menu_gc = canvas_menu_sprites.getGraphicsContext2D();
         //create GraphicsContext from our canvas_background
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
        

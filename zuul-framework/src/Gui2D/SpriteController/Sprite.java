@@ -37,6 +37,7 @@ public abstract class Sprite {
     private double sprite_width = 64;
     private double sprite_height = 64;
     
+    private Rectangle2D boundary;
     
     /**
      * Every class extended by Sprite need a render function.
@@ -49,7 +50,7 @@ public abstract class Sprite {
      * @return 
      */
     public Rectangle2D getBoundary(){
-        return new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
+        return boundary;
     }
     
     /**
@@ -263,6 +264,13 @@ public abstract class Sprite {
      */
     public double getSprite_height() {
         return sprite_height;
+    }
+
+    /**
+     * @param boundary the boundary to set
+     */
+    public void setBoundary(Rectangle2D boundary) {
+        this.boundary = boundary;
     }
     
 }
