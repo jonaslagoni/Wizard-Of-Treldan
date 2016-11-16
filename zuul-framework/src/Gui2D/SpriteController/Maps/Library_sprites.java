@@ -33,13 +33,13 @@ public class Library_sprites{
         backgroundLibraryFloorList.add(world.getGround_sprite().getCastle_Stone_Floor());
         
         Sprite backgroundLibraryFloor = new Groupsprite_random(backgroundLibraryFloorList);
-        backgroundLibraryFloor.setSize(512, 256);
-        backgroundLibraryFloor.setPosition(256, 160);
+        backgroundLibraryFloor.setSize(1024, 468);
+        backgroundLibraryFloor.setPosition(0, 48);
         spriteList.add(backgroundLibraryFloor);
         
         Sprite doorToEvilWizard = world.getMisc_sprites().getDoor_Metal_2();
         doorToEvilWizard.setSize(32, 48);
-        doorToEvilWizard.setPosition(496, 112);
+        doorToEvilWizard.setPosition(512, 0);
         spriteList.add(doorToEvilWizard);
         
     }

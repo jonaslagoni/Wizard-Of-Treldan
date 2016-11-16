@@ -33,9 +33,13 @@ public class EvilWizardsLair_sprites{
         backgroundCastleFloorList.add(world.getGround_sprite().getCastle_Stone_Floor());
         
         Sprite backgroundCastleFloor = new Groupsprite_random(backgroundCastleFloorList);
-        backgroundCastleFloor.setSize(512, 256);
-        backgroundCastleFloor.setPosition(256, 160);
+        backgroundCastleFloor.setSize(384, 384);
+        backgroundCastleFloor.setPosition(320, 160);
         spriteList.add(backgroundCastleFloor);
+        
+        // MISC ITEMS START
+        
+        
         
     }
 
