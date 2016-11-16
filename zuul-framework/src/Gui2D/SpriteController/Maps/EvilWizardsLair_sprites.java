@@ -29,10 +29,13 @@ public class EvilWizardsLair_sprites{
     
     public void setEvilWizardsLair_background_SingleSprites(){
         
-        Sprite bob = world.getGround_sprite().getGrass_light_1();
-        bob.setSize(32, 32);
-        bob.setPosition(128, 128);
-        spriteList.add(bob);
+        List<SingleSprite> backgroundCastleFloorList = new ArrayList();
+        backgroundCastleFloorList.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite backgroundCastleFloor = new Groupsprite_random(backgroundCastleFloorList);
+        backgroundCastleFloor.setSize(512, 256);
+        backgroundCastleFloor.setPosition(256, 160);
+        spriteList.add(backgroundCastleFloor);
         
     }
 

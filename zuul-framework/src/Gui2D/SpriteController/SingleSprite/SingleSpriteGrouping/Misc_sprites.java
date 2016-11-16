@@ -274,6 +274,8 @@ public class Misc_sprites {
     public SingleSprite getBookshelf_1() {
         return new Bookshelf_1().getSprite();
     }
-    
+    public SingleSprite getDoor_Metal_2() {
+        return new Door_Metal_2().getSprite();
+    }
 }
 
