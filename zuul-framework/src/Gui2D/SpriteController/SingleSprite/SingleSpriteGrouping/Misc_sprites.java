@@ -7,6 +7,7 @@ package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping;
 
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc.*;
+import javafx.geometry.Rectangle2D;
 
 /**
  *
@@ -175,6 +176,7 @@ public class Misc_sprites {
     public SingleSprite getHouse3(){
         return new House3().getSprite();
     }
+    
     //well
     public SingleSprite getWell(){
         return new Well().getSprite();
@@ -201,6 +203,12 @@ public class Misc_sprites {
     }
     public SingleSprite getLamppost(){
         return new Lamppost().getSprite();
+    }
+    public SingleSprite getLamppost_part1(){
+        return new Lamppost_part1().getSprite();
+    }
+    public SingleSprite getLamppost_part2(){
+        return new Lamppost_part2().getSprite();
     }
     public SingleSprite getVillageAnimals(){
         return new Village_animals().getSprite();
