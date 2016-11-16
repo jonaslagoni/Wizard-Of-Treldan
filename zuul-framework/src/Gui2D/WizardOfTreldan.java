@@ -95,7 +95,7 @@ public class WizardOfTreldan extends Application {
         dungeon = new Dungeon(world);
         wizardHouse = new WizardHouse(world);
         
-        setForestScene();
+        setMenuScene();
         primaryStage.show();
     }
     

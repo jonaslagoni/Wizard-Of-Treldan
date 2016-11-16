@@ -245,7 +245,7 @@ public class Misc_sprites {
     public SingleSprite getRock_Wall_RIGHT() {
         return new Rock_Wall_RIGHT().getSprite();
     }
-    public SingleSprite getNice_Bed() {
+    public SingleSprite getNice_Bed_FacingDown() {
         return new Nice_Bed_FacingDown().getSprite();
     }
     
