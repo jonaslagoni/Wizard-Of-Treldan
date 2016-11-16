@@ -45,63 +45,13 @@ public class WizardHouse_sprites{
         
         Sprite wizardBed = world.getMisc_sprites().getNice_Bed_FacingDown();
         wizardBed.setSize(48, 81);
-        wizardBed.setPosition(720, 300);
+        wizardBed.setPosition(250, 200);
         spriteList.add(wizardBed);
         
-        Sprite alchemyTable = world.getMisc_sprites().getAlchemy_Table();
-        alchemyTable.setSize(64, 60);
-        alchemyTable.setPosition(260, 100);
-        spriteList.add(alchemyTable);
-        
-        Sprite exitWizardHouse = world.getMisc_sprites().getDoor_wood();
-        exitWizardHouse.setSize(32, 48);
-        exitWizardHouse.setPosition(512, 80);
-        spriteList.add(exitWizardHouse);
-        
-        Sprite chest = world.getMisc_sprites().getChestClosed();
-        chest.setSize(32, 32);
-        chest.setPosition(736, 128);
-        spriteList.add(chest);
-        
-        Sprite treeBundle = world.getMisc_sprites().getTree_Bundle();
-        treeBundle.setSize(52, 55);
-        treeBundle.setPosition(260, 325);
-        spriteList.add(treeBundle);
-        
-        Sprite sacks = world.getMisc_sprites().getSacks_1();
-        sacks.setSize(64, 63);
-        sacks.setPosition(320, 320);
-        spriteList.add(sacks);
-        
-        Sprite bookShelf6 = world.getMisc_sprites().getBookShelf_1();
-        bookShelf6.setSize(64, 69);
-        bookShelf6.setPosition(660, 83);
-        spriteList.add(bookShelf6);
-        
-        Sprite bookShelf5 = world.getMisc_sprites().getBookShelf_1();
-        bookShelf5.setSize(64, 69);
-        bookShelf5.setPosition(625, 83);
-        spriteList.add(bookShelf5);
-        
-        Sprite bookShelf4 = world.getMisc_sprites().getBookShelf_1();
-        bookShelf4.setSize(64, 69);
-        bookShelf4.setPosition(590, 83);
-        spriteList.add(bookShelf4);
-        
-        Sprite bookShelf3 = world.getMisc_sprites().getBookShelf_1();
-        bookShelf3.setSize(64, 69);
-        bookShelf3.setPosition(555, 83);
-        spriteList.add(bookShelf3);
-        
-        Sprite bookShelf2 = world.getMisc_sprites().getBookShelf_1();
-        bookShelf2.setSize(64, 69);
-        bookShelf2.setPosition(416, 83);
-        spriteList.add(bookShelf2);
-        
-        Sprite bookShelf1 = world.getMisc_sprites().getBookShelf_1();
-        bookShelf1.setSize(64, 69);
-        bookShelf1.setPosition(352, 83);
-        spriteList.add(bookShelf1);
+        Sprite door = world.getMisc_sprites().getDoor_wood();
+        door.setSize(64, 64);
+        door.setPosition(150, 300);
+        spriteList.add(door);
         
         // END OF MISC ITEMS
         

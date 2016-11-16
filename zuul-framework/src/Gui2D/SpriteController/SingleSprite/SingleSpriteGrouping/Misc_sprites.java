@@ -245,7 +245,7 @@ public class Misc_sprites {
     public SingleSprite getRock_Wall_RIGHT() {
         return new Rock_Wall_RIGHT().getSprite();
     }
-    public SingleSprite getNice_Bed_FacingDown() {
+    public SingleSprite getNice_Bed() {
         return new Nice_Bed_FacingDown().getSprite();
     }
     public SingleSprite getBig_Cave_Entrance() {
@@ -257,6 +257,7 @@ public class Misc_sprites {
     public SingleSprite getRock_Small() {
         return new Rock_Small().getSprite();
     }
+
     public SingleSprite getAlchemy_Table() {
         return new Alchemy_Table().getSprite();
     }
@@ -284,6 +285,7 @@ public class Misc_sprites {
     public SingleSprite getEnemy_Imp3() {
         return new Enemy_imp3().getSprite();
     }
+
     
 }
 

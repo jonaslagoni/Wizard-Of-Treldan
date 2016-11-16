@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 public class GUIFX extends Application {
 
     private TWoT twot;
+    private Parser parser;
     private TextArea textArea;
     private TextField inputArea;
     private String help;
@@ -62,6 +63,7 @@ public class GUIFX extends Application {
     public GUIFX () {
         
         twot = new TWoT();
+        parser = new Parser();
         
     }
     public static void main(String[] args) {
@@ -151,11 +153,18 @@ public class GUIFX extends Application {
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
+        
+        button_exit.setOnAction(actionEvent -> Platform.exit());
+        
         inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
-                    textArea.appendText("Hello\n");
-                    inputArea.clear();
+                        CommandWords commandWord = new CommandWords();
+                        Command command = new Command(commandWord.getCommandWord(k.getText()), k.getText());
+                        twot.goTo(command);
+                        parser.getCommand();
+                        textArea.appendText("Hello\n");
+                        inputArea.clear();
                 }
             }
         });
