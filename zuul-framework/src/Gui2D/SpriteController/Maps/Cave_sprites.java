@@ -42,38 +42,38 @@ public class Cave_sprites{
 
         List<SingleSprite> cave_WESTWALLList = new ArrayList();
         
-        cave_WESTWALLList.add(world.getMisc_sprites().getRock_Wall_LEFT());
+        cave_WESTWALLList.add(world.getMisc_sprites().getBig_Rock());
         
         Sprite cave_WESTWALL = new Groupsprite_random(cave_WESTWALLList);
-        cave_WESTWALL.setSize(13, 316);
-        cave_WESTWALL.setPosition(200, 100);
+        cave_WESTWALL.setSize(13, 350);
+        cave_WESTWALL.setPosition(205, 65);
         spriteList.add(cave_WESTWALL);
         
-        List<SingleSprite> cave_NORTHWALLList1 = new ArrayList();
+        List<SingleSprite> cave_NORTHWALLList = new ArrayList();
         
-        cave_NORTHWALLList1.add(world.getMisc_sprites().getRock_Wall_Front());
+        cave_NORTHWALLList.add(world.getMisc_sprites().getRock_Wall_Front());
         
-        Sprite cave_NORTHWALL1 = new Groupsprite_random(cave_NORTHWALLList1);
-        cave_NORTHWALL1.setSize(559, 65);
-        cave_NORTHWALL1.setPosition(200, 100);
-        spriteList.add(cave_NORTHWALL1);
+        Sprite cave_NORTHWALL = new Groupsprite_random(cave_NORTHWALLList);
+        cave_NORTHWALL.setSize(1100, 65);
+        cave_NORTHWALL.setPosition(0, 0);
+        spriteList.add(cave_NORTHWALL);
         
         List<SingleSprite> cave_SOUTHWALLList = new ArrayList();
         
-        cave_SOUTHWALLList.add(world.getMisc_sprites().getRock_Wall_Front());
+        cave_SOUTHWALLList.add(world.getMisc_sprites().getBig_Rock());
         
         Sprite cave_SOUTHWALL = new Groupsprite_random(cave_SOUTHWALLList);
         cave_SOUTHWALL.setSize(567, 65);
-        cave_SOUTHWALL.setPosition(200, 415);
+        cave_SOUTHWALL.setPosition(205, 420);
         spriteList.add(cave_SOUTHWALL);
         
         List<SingleSprite> cave_EASTWALLList = new ArrayList();
         
-        cave_EASTWALLList.add(world.getMisc_sprites().getRock_Wall_RIGHT());
+        cave_EASTWALLList.add(world.getMisc_sprites().getBig_Rock());
         
         Sprite cave_EASTWALL = new Groupsprite_random(cave_EASTWALLList);
         cave_EASTWALL.setSize(13, 395);
-        cave_EASTWALL.setPosition(760, 100);
+        cave_EASTWALL.setPosition(760, 60);
         spriteList.add(cave_EASTWALL);
         
         
@@ -83,10 +83,39 @@ public class Cave_sprites{
         cave_exit.setPosition(692, 340);
         spriteList.add(cave_exit);
         
-        Sprite gruuls_Lair_Entrance = world.getMisc_sprites().getCaveExit();
-        gruuls_Lair_Entrance.setPosition(527, 125);
+        Sprite gruuls_Lair_Entrance = world.getMisc_sprites().getBig_Cave_Entrance();
+        gruuls_Lair_Entrance.setPosition(420, -10);
         spriteList.add(gruuls_Lair_Entrance);
         
+        List<SingleSprite> randomVanitySpritesList1 = new ArrayList();
+        randomVanitySpritesList1.add(world.getGround_sprite().getStone_dark_1());
+        randomVanitySpritesList1.add(world.getGround_sprite().getStone_dark_2());
+        randomVanitySpritesList1.add(world.getMisc_sprites().getCave_Spikes());
+        
+        Sprite randomVanitySprites1 = new Groupsprite_random(randomVanitySpritesList1);
+        randomVanitySprites1.setSize(200, 375);
+        randomVanitySprites1.setPosition(0, 68);
+        spriteList.add(randomVanitySprites1);
+        
+        List<SingleSprite> randomVanitySpritesList2 = new ArrayList();
+        randomVanitySpritesList2.add(world.getGround_sprite().getStone_dark_1());
+        randomVanitySpritesList2.add(world.getGround_sprite().getStone_dark_2());
+        randomVanitySpritesList2.add(world.getMisc_sprites().getCave_Spikes());
+        
+        Sprite randomVanitySprites2 = new Groupsprite_random(randomVanitySpritesList2);
+        randomVanitySprites2.setSize(182, 375);
+        randomVanitySprites2.setPosition(830, 68);
+        spriteList.add(randomVanitySprites2);
+        
+        List<SingleSprite> randomVanitySpritesList3 = new ArrayList();
+        randomVanitySpritesList3.add(world.getGround_sprite().getStone_dark_1());
+        randomVanitySpritesList3.add(world.getGround_sprite().getStone_dark_2());
+        randomVanitySpritesList3.add(world.getMisc_sprites().getCave_Spikes());
+        
+        Sprite randomVanitySprites3 = new Groupsprite_random(randomVanitySpritesList3);
+        randomVanitySprites3.setSize(1024, 32);
+        randomVanitySprites3.setPosition(0, 478);
+        spriteList.add(randomVanitySprites3);
         
     }
 

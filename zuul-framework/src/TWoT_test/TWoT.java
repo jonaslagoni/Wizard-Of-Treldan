@@ -723,7 +723,7 @@ public class TWoT implements Serializable{
                 }else if(i instanceof UseableItem){
                     useableitem.add(i);
                 }
-            }
+            }                   
             inventory.add((ArrayList)questitem);
             inventory.add((ArrayList)equippableitem);
             inventory.add((ArrayList)useableitem);
@@ -739,7 +739,7 @@ public class TWoT implements Serializable{
         menu.add("NEW GAME ");
         menu.add("LOAD GAME");
         menu.add("HOW TO PLAY");
-        menu.add("EXIT GAME");
+        //menu.add("EXIT GAME");
         return menu;
     }
     

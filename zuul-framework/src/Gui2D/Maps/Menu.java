@@ -73,7 +73,7 @@ public class Menu extends Map{
                 public void handle(MouseEvent e) {
                     Platform.runLater(new Runnable() {
                         @Override public void run() {
-                            WizardOfTreldan.setCellarScene();
+                            WizardOfTreldan.setLoadScene();
                         }
                     });
                 }
@@ -92,7 +92,7 @@ public class Menu extends Map{
                 public void handle(MouseEvent e) {
                     Platform.runLater(new Runnable() {
                         @Override public void run() {
-                            System.exit(1);
+                            System.exit(0);
                         }
                     });
                 }

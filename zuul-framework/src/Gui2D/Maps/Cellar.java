@@ -10,9 +10,9 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
-import TWoT_test.Command;
-import TWoT_test.CommandWord;
-import TWoT_test.TWoT;
+import TWoT_A1.Command;
+import TWoT_A1.CommandWord;
+import TWoT_A1.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -102,11 +102,17 @@ public class Cellar extends Map{
         //add the canvas to the group
         root.getChildren().add( canvas_menu_sprites );
         
+        /**
+         * TextArea used to give the user more information about the game.
+         * What to do and and what happens.
+         */
         TextArea infobox = Infobox.getInfoBox();
+        //adding stackPane with the textarea component.
         StackPane s = new StackPane(infobox);
         s.setPrefSize(300, 150);
         s.relocate(0, 362);
         root.getChildren().add(s);
+        //get some of the games welcome message and add to the infobox
         HashMap<String, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get("getRooms") + "\n");
         
@@ -202,7 +208,7 @@ public class Cellar extends Map{
                     if(player.intersects_left(worldBoundLeft)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //check if the player walks into the bed
+                    //check if the player walks into a sprite
                     }else if(player.intersects_left(sprites_still.get(1)) ||
                              player.intersects_left(sprites_still.get(7)) || 
                              player.intersects_left(sprites_still.get(8)) ||
@@ -231,6 +237,8 @@ public class Cellar extends Map{
                                 infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
                             }
                         }
                         //Reset the velocity
@@ -249,7 +257,7 @@ public class Cellar extends Map{
                     if(player.intersects_right(worldBoundRight)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //check if the player walks into the bed
+                    //check if the player walks a sprite
                     }else if(player.intersects_right(sprites_still.get(1)) ||
                              player.intersects_right(sprites_still.get(7)) || 
                              player.intersects_right(sprites_still.get(8)) ||
@@ -278,6 +286,8 @@ public class Cellar extends Map{
                                 infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
                             }
                         }
                     //if no collission
@@ -293,7 +303,7 @@ public class Cellar extends Map{
                     //check if the user walks into a world boundary
                     if(player.intersects_top(worldBoundTop)){
                         player.setVelocity(0, 0);
-                    //check if the player walks into the bed
+                    //check if the player walks into a sprite
                     }else if(player.intersects_top(sprites_still.get(1)) ||
                              player.intersects_top(sprites_still.get(7)) || 
                              player.intersects_top(sprites_still.get(8)) ||
@@ -322,6 +332,8 @@ public class Cellar extends Map{
                                 infobox.clear();
                                 //set the menu as a scene instead.
                                 setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
                             }
                         }
                     //if no collission
@@ -339,7 +351,7 @@ public class Cellar extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         
-                    //check if the player walks into the bed
+                    //check if the player walks into a sprite
                     }else if(player.intersects_bottom(sprites_still.get(1)) ||
                              player.intersects_bottom(sprites_still.get(7)) || 
                              player.intersects_bottom(sprites_still.get(8)) ||

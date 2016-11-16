@@ -13,6 +13,7 @@ import Gui2D.Maps.House2;
 import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
+import Gui2D.Maps.Load;
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
 import Gui2D.Maps.PlayerSelection;
@@ -20,7 +21,13 @@ import Gui2D.Maps.Unicorn;
 import Gui2D.Maps.Village;
 import Gui2D.Maps.WizardHouse;
 import Gui2D.SpriteController.SpriteController;
-import TWoT_test.TWoT;
+import TWoT_A1.TWoT;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.stage.Stage;
@@ -35,6 +42,7 @@ public class WizardOfTreldan extends Application {
     private static Map cellar;
     private static Map gruulslair;
     private static Map menu;
+    private static Map load;
     private static Map unicorn;
     private static Map clearing;
     private static Map house1;
@@ -56,7 +64,6 @@ public class WizardOfTreldan extends Application {
     //our global world generator
     private SpriteController world;
     
-    
     private static TWoT game;
     
     //set a global stage from the primaryStage
@@ -75,6 +82,7 @@ public class WizardOfTreldan extends Application {
         this.primaryStage.setHeight(512);
         
         game = new TWoT();
+        
         //set the title
         this.primaryStage.setTitle("The Wizard of Treldan");
         //Init our world sprite controller
@@ -85,6 +93,7 @@ public class WizardOfTreldan extends Application {
         village = new Village(world);
         house1 = new House1(world);
         menu = new Menu(world);
+        load = new Load(world);
         playerSelection = new PlayerSelection(world);
         house2 = new House2(world);
         gruulslair = new GruulsLair(world);
@@ -94,6 +103,7 @@ public class WizardOfTreldan extends Application {
         cave = new Cave(world);
         dungeon = new Dungeon(world);
         wizardHouse = new WizardHouse(world);
+        gruulslair = new GruulsLair(world);
         
         setMenuScene();
         primaryStage.show();
@@ -113,6 +123,12 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(menu.getScene());
     }
     
+    /**
+     * Force the game to load loading scene
+     */
+    public static void setLoadScene(){
+        primaryStage.setScene(load.getScene());
+    }
     /**
      * Force the game to load playerSelection scene
      */
@@ -176,6 +192,10 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(cave.getScene());
     }
 
+    public static void setGame(TWoT loaded){
+        game = loaded;
+    }
+    
     public static void setDungeonScene() {
         primaryStage.setScene(dungeon.getScene());
     }
@@ -186,5 +206,37 @@ public class WizardOfTreldan extends Application {
     
     public static void resetGame(){
         game = new TWoT();
+    }
+    
+    
+    public static void saveGame(){
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");//dd/MM/yyyy
+        Date now = new Date();
+        String strDate = sdfDate.format(now);
+        try {
+            // Store Serialized User Object in File
+            FileOutputStream fileOutputStream = new FileOutputStream("loads/" + strDate + ".data");
+            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
+            output.writeObject(game);
+            output.close();
+        } catch (FileNotFoundException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        } 
+    }
+    
+    public static void saveGame(String name){
+        try {
+            // Store Serialized User Object in File
+            FileOutputStream fileOutputStream = new FileOutputStream("loads/" + name);
+            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
+            output.writeObject(game);
+            output.close();
+        } catch (FileNotFoundException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        } 
     }
 }
