@@ -80,10 +80,14 @@ public class GUIFX extends Application {
         Button button_how = new Button("HOW TO PLAY");
         Button button_exitMenu = new Button("EXIT GAME");
         
-        button_play.setMaxWidth(180);
-        button_load.setMaxWidth(180);
-        button_how.setMaxWidth(180);
-        button_exitMenu.setMaxWidth(180);
+        button_play.setMinWidth(180);
+        button_load.setMinWidth(180);
+        button_how.setMinWidth(180);
+        button_exitMenu.setMinWidth(180);
+        button_play.setMinHeight(40);
+        button_load.setMinHeight(40);
+        button_how.setMinHeight(40);
+        button_exitMenu.setMinHeight(40);
                 
         Button button_inventory = new Button("Inventory");
         Button button_clear = new Button("Clear");
@@ -99,8 +103,9 @@ public class GUIFX extends Application {
         gameButtons.setLayoutX(422);
         gameButtons.getChildren().addAll(button_inventory, button_clear, button_help, button_exit);
         
-        VBox menuButtons = new VBox(40);
-        menuButtons.setLayoutX(256);
+        VBox menuButtons = new VBox(20);
+        menuButtons.setLayoutX(166);
+        menuButtons.setLayoutY(30);
         menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
               
         
@@ -120,6 +125,9 @@ public class GUIFX extends Application {
         
         Pane root = new Pane(gameButtons, outputField, inputField);
         Pane root2 = new Pane(menuButtons);
+        
+        Scene scene1 = new Scene(root, 512, 288);
+        Scene menu = new Scene(root2, 512, 288);
                 
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -128,6 +136,9 @@ public class GUIFX extends Application {
         
         root.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
             root.setEffect(null);
+        });
+        button_play.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            primaryStage.setScene(scene1);
         });
         button_help.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             help=printHelp();
@@ -150,14 +161,18 @@ public class GUIFX extends Application {
         });
                 
         button_exit.setOnAction(actionEvent -> Platform.exit());
- 
+        button_exitMenu.setOnAction(actionEvent -> Platform.exit());
+
         
-        Scene scene1 = new Scene(root, 512, 288);
-        Scene menu = new Scene(root2, 512, 288);
         
         primaryStage.setScene(menu);
         primaryStage.show();
         
+        String welcome = "";
+        for(HashMap.Entry<String, String> entry : twot.getWelcomeMessages().entrySet()){
+            welcome = welcome + entry.getValue();
+        }
+        textArea.appendText(welcome);
         
     }
 }
