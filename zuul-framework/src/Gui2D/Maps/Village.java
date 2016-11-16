@@ -71,7 +71,7 @@ public class Village extends Map{
             sprite.render(background_gc);
         }
         
-        
+       /*
 
         //get all the sprites used in the village
         List<Sprite> sprites_foreground = villageSprites.getVillage_foreground_sprites();
@@ -352,7 +352,8 @@ public class Village extends Map{
             }
         }.start();
 >>>>>>> origin/master
-        
+        */
+       
         return theScene;
     }
 }

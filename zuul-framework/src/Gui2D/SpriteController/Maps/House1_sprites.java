@@ -60,12 +60,7 @@ public class House1_sprites{
         Sprite exit = world.getMisc_sprites().getDoor_wood();
         exit.setPosition(170,20);
         house_background_sprites.add(exit);
-        
-        //zombie
-        
-        //woman
-        
-        //health potion
+       
         
         //bed
         Sprite bed = world.getMisc_sprites().getInterior_doublebed();
@@ -74,7 +69,7 @@ public class House1_sprites{
         
         //fireplace
         Sprite fireplace = world.getMisc_sprites().getInterior_fireplace();
-        fireplace.setPosition(360,5);
+        fireplace.setPosition(365,-10);
         house_background_sprites.add(fireplace);
         
         //cupboard
@@ -89,18 +84,48 @@ public class House1_sprites{
         
         //table
         Sprite table = world.getMisc_sprites().getInterior_table_long();
-        table.setPosition(250,175);
+        table.setPosition(250,130);
          house_background_sprites.add(table);
+         
+
+         Sprite chair1 = world.getMisc_sprites().getInterior_chair_R();
+         Sprite chair2 = world.getMisc_sprites().getInterior_chair_L();
+         Sprite chair3 = world.getMisc_sprites().getInterior_chair_R();
+         Sprite chair4 = world.getMisc_sprites().getInterior_chair_L();
+         chair4.setPosition(300,125);
+         chair3.setPosition(225,125);
+         chair2.setPosition(300,165);
+         chair1.setPosition(225, 165);
+         house_background_sprites.add(chair4);
+         house_background_sprites.add(chair3);
+         house_background_sprites.add(chair2);
+         house_background_sprites.add(chair1);
+         
         
          //sacks
          Sprite sacks = world.getMisc_sprites().getSacks_1();
          sacks.setPosition(32, 170);
          house_background_sprites.add(sacks);
          
+         //kitchen
+         Sprite kitchen = world.getMisc_sprites().getInterior_kitchen();
+         kitchen.setPosition(250,45);
+         house_background_sprites.add(kitchen);
+         
+         //chest
+         Sprite chest = world.getMisc_sprites().getInterior_chest__open_swords();
+         chest.setPosition(440,120);
+         house_background_sprites.add(chest);
         
-        
-        
-        
+         //ENEMY
+         Sprite enemy1 = world.getMisc_sprites().getEnemy_Imp1();
+         enemy1.setPosition(50, 75);
+         house_background_sprites.add(enemy1);
+         
+         //woman placeholder
+         Sprite woman = world.getMisc_sprites().getEnemy_Skeleton();
+         woman.setPosition(400, 170);
+         house_background_sprites.add(woman);
     }
     
         public List getHouse(){

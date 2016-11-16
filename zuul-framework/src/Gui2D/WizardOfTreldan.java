@@ -9,6 +9,7 @@ import Gui2D.Maps.Cave;
 import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Clearing;
 import Gui2D.Maps.Dungeon;
+import Gui2D.Maps.House3;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
@@ -94,6 +95,7 @@ public class WizardOfTreldan extends Application {
         village = new Village(world);
         house1 = new House1(world);
         house2 = new House2(world);
+        house3 = new House3(world);
         menu = new Menu(world);
         load = new Load(world);
         playerSelection = new PlayerSelection(world);
@@ -107,7 +109,7 @@ public class WizardOfTreldan extends Application {
         wizardHouse = new WizardHouse(world);
         gruulslair = new GruulsLair(world);
         
-        setHouse1Scene();
+        setHouse3Scene();
         primaryStage.show();
     }
     

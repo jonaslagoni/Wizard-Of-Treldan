@@ -37,9 +37,14 @@ public class House2_sprites{
         //floor
         house2_background_floor.add(world.getGround_sprite().getWood_light_2());
         Sprite house_floor = new Groupsprite_random(house2_background_floor);
-        house_floor.setSize(512,250);
+        house_floor.setSize(300,200);
         house_floor.setPosition(0, 0);
         house2_background_sprites.add(house_floor);
+        
+        //sacks
+        Sprite sacks = world.getMisc_sprites().getSacks_1();
+        sacks.setPosition(250,125);
+        house2_background_sprites.add(sacks);
         
         //walls
         house2_background_walls.add(world.getStructure_sprites().getStone_wall_NW());
@@ -52,52 +57,38 @@ public class House2_sprites{
         house2_background_walls.add(world.getStructure_sprites().getStone_wall_W());
         Sprite house_walls_circle = new Groupsprite_circle(house2_background_walls);
         house_walls_circle.setPosition(0, 0);
-        house_walls_circle.setSize(512, 300);
+        house_walls_circle.setSize(350, 250);
         house2_background_sprites.add(house_walls_circle);
-        
         
         //exit
         Sprite exit = world.getMisc_sprites().getDoor_wood();
-        exit.setPosition(170,20);
+        exit.setPosition(175, 20);
         house2_background_sprites.add(exit);
+       
+        //kids
         
-        //zombie
-        
-        //woman
-        
-        //health potion
         
         //bed
         Sprite bed = world.getMisc_sprites().getInterior_doublebed();
-        bed.setPosition(430, 45);
+        bed.setPosition(30,50);
         house2_background_sprites.add(bed);
         
-        //fireplace
-        Sprite fireplace = world.getMisc_sprites().getInterior_fireplace();
-        fireplace.setPosition(360,5);
-        house2_background_sprites.add(fireplace);
-        
-        //cupboard
-        Sprite cupboard = world.getMisc_sprites().getInterior_cupboard();
-        cupboard.setPosition(49, 20);
-        house2_background_sprites.add(cupboard);
-        
-        //shelf
-        Sprite shelf = world.getMisc_sprites().getInterior_shelf_1();
-        shelf.setPosition(280,15);
-        house2_background_sprites.add(shelf);
-        
         //table
-        Sprite table = world.getMisc_sprites().getInterior_table_long();
-        table.setPosition(250,175);
-         house2_background_sprites.add(table);
-         
+        Sprite table = world.getMisc_sprites().getInterior_table();
+        table.setPosition(175,125);
+        house2_background_sprites.add(table);
         
-         //sacks
-         Sprite sacks = world.getMisc_sprites().getSacks_1();
-         sacks.setPosition(32, 170);
-         house2_background_sprites.add(sacks);
-         
+        //candle on table
+        
+        
+        
+        //wandrobe
+        Sprite wardrobe = world.getMisc_sprites().getInterior_cupboard_facingdown_large();
+        wardrobe.setPosition(258,30);
+        house2_background_sprites.add(wardrobe);
+        
+        
+        
         
         
         

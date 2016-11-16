@@ -53,7 +53,7 @@ public class TWoT implements Serializable{
                 + "village. All houses seem to be empty through the windows.\nYou gasp as you see several "
                 + "people lying dead in the side of the road.", 2);
         roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \nThe house you venture into is dark – very dark. It seems like "
-                + "there is a man in a corner close to you and a woman in the other end of the room.", 3);
+                + "there is an enemy imp in a corner close to you and a woman in the other end of the room.", 3);
         roomHouse2 = new Room("House of Riches", "\n\n***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
                 + "candle on the table.\nThere’s a blood-stained bed in the corner of the room. A bunch of sacks "
                 + "are placed up against a poorly build wardrobe.\nThe other corner is not lit up by the candle and "
