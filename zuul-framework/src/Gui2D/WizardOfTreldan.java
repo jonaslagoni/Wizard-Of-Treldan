@@ -9,10 +9,12 @@ import Gui2D.Maps.Cave;
 import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Clearing;
 import Gui2D.Maps.Dungeon;
+import Gui2D.Maps.EvilWizardsLair;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
+import Gui2D.Maps.Library;
 import Gui2D.Maps.Load;
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
@@ -53,6 +55,8 @@ public class WizardOfTreldan extends Application {
     private static Map cave;
     private static Map dungeon;
     private static Map wizardHouse;
+    private static Map library;
+    private static Map evilWizardLair;
 
     /**
      * @return the game
@@ -104,8 +108,10 @@ public class WizardOfTreldan extends Application {
         dungeon = new Dungeon(world);
         wizardHouse = new WizardHouse(world);
         gruulslair = new GruulsLair(world);
+        library = new Library(world);
+        evilWizardLair = new EvilWizardsLair(world);
         
-        setMenuScene();
+        setEvilWizardLairScene();
         primaryStage.show();
     }
     
@@ -202,6 +208,14 @@ public class WizardOfTreldan extends Application {
     
     public static void setWizardHouseScene() {
         primaryStage.setScene(wizardHouse.getScene());
+    }
+    
+    public static void setLibraryScene() {
+        primaryStage.setScene(library.getScene());
+    }
+    
+    public static void setEvilWizardLairScene() {
+        primaryStage.setScene(evilWizardLair.getScene());
     }
     
     public static void resetGame(){
