@@ -140,12 +140,12 @@ public class Village_sprites{
         //#2
         Sprite house2 = world.getMisc_sprites().getHouse2();
         house2.setPosition(250,-40);
-        house2.setBoundary(new Rectangle2D(house2.getPositionX(), house2.getPositionY(), house2.getWidth(), house2.getHeight()-50));
+        house2.setBoundary(new Rectangle2D(house2.getPositionX(), house2.getPositionY(), house2.getWidth(), house2.getHeight()));
         village_background_sprites.add(house2);
         //#3
         Sprite house3 = world.getMisc_sprites().getHouse3();
         house3.setPosition(832,-5);
-        house3.setBoundary(new Rectangle2D(house3.getPositionX(), house3.getPositionY(), house3.getWidth(), house3.getHeight()-50));
+        house3.setBoundary(new Rectangle2D(house3.getPositionX(), house3.getPositionY(), house3.getWidth(), house3.getHeight()));
         village_background_sprites.add(house3);
         
         //set well
@@ -171,10 +171,10 @@ public class Village_sprites{
         house1_exit.setPosition(127,180);
         village_background_sprites.add(house1_exit);
         Sprite house2_exit = world.getMisc_sprites().getDoor_wood();
-        house2_exit.setPosition(300,147);
+        house2_exit.setPosition(300,150);
         village_background_sprites.add(house2_exit);
         Sprite house3_exit = world.getMisc_sprites().getDoor_metal();
-        house3_exit.setPosition(950,185);
+        house3_exit.setPosition(950,188);
         village_background_sprites.add(house3_exit);
         
         //exit to forest
