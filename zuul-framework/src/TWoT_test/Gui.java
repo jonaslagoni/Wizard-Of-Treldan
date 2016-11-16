@@ -52,7 +52,7 @@ public class Gui{
      */
     private void printWelcome(){
         //get the welcome hashmap from gameclass
-        HashMap<String, String> welcomeList = twot.getWelcomeMessages();
+        HashMap<Integer, String> welcomeList = twot.getWelcomeMessages();
         System.out.println("Welcome " + twot.getPlayerName());
         System.out.println(welcomeList.get("welcomeMessage1"));
         System.out.println(welcomeList.get("welcomeMessage2"));
