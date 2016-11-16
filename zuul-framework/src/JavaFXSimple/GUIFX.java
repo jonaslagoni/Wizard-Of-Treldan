@@ -155,8 +155,9 @@ public class GUIFX extends Application {
                         CommandWords commandWord = new CommandWords();
                         Command command = new Command(commandWord.getCommandWord(k.getText()), k.getText());
                         twot.goTo(command);
-                        parser.getCommand();
-                        textArea.appendText("Hello\n");
+                        for(String s: twot.goTo(command)){
+                            textArea.appendText(s);
+                        }
                         inputArea.clear();
                 }
             }
