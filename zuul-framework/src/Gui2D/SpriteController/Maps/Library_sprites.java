@@ -29,10 +29,18 @@ public class Library_sprites{
     
     public void setLibrary_background_SingleSprites(){
         
-        Sprite bob = world.getGround_sprite().getGrass_light_1();
-        bob.setSize(32, 32);
-        bob.setPosition(128, 128);
-        spriteList.add(bob);
+        List<SingleSprite> backgroundLibraryFloorList = new ArrayList();
+        backgroundLibraryFloorList.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite backgroundLibraryFloor = new Groupsprite_random(backgroundLibraryFloorList);
+        backgroundLibraryFloor.setSize(1024, 468);
+        backgroundLibraryFloor.setPosition(0, 48);
+        spriteList.add(backgroundLibraryFloor);
+        
+        Sprite doorToEvilWizard = world.getMisc_sprites().getDoor_Metal_2();
+        doorToEvilWizard.setSize(32, 48);
+        doorToEvilWizard.setPosition(512, 0);
+        spriteList.add(doorToEvilWizard);
         
     }
 

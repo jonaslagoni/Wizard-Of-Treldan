@@ -4,24 +4,23 @@
  * and open the template in the editor.
  */
 package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc;
-
 import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
 
 /**
  *
- * @author jonas
+ * @author Mads
  */
-public class Lamppost_part1  extends Abstract_sprite{
+public class Door_Metal_2  extends Abstract_sprite{
     /**
-     * Sets the Candle sprite
+     * Sets the Door_Metal_2 sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(155);
-        super.getSprite().setSpritePosY(709+70);
-        super.getSprite().setSprite_width(20);
-        super.getSprite().setSprite_height(111-70);
-        super.getSprite().setWidth(20);
-        super.getSprite().setHeight(111-70);
+        super.getSprite().setSpritePosX(673);
+        super.getSprite().setSpritePosY(58);
+        super.getSprite().setSprite_width(32);
+        super.getSprite().setSprite_height(48);
+        super.getSprite().setWidth(32);
+        super.getSprite().setHeight(48);
     }
 }
