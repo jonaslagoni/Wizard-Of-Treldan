@@ -168,13 +168,10 @@ public class GUIFX extends Application {
                 }
             }
         });
-<<<<<<< HEAD
-=======
                 
         button_exit.setOnAction(actionEvent -> Platform.exit());
         button_exitMenu.setOnAction(actionEvent -> Platform.exit());
 
->>>>>>> origin/master
         
         
         primaryStage.setScene(menu);
