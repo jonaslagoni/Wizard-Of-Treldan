@@ -145,7 +145,7 @@ public class Village extends Map{
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(100, 100);
+        player.setPosition(100, 400);
         
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
@@ -207,7 +207,15 @@ public class Village extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    }else if(player.intersects_left(sprites_foreground.get(0))){
+                    }else if(player.intersects_left(sprites_foreground.get(0)) ||
+                             player.intersects_left(sprites_still.get(10)) ||
+                             player.intersects_left(sprites_still.get(11)) ||
+                             player.intersects_left(sprites_still.get(12)) ||
+                             player.intersects_left(sprites_still.get(19)) ||
+                             player.intersects_left(sprites_still.get(20)) ||
+                             player.intersects_left(sprites_still.get(21)) ||
+                             player.intersects_left(sprites_still.get(22)) ||
+                             player.intersects_left(sprites_still.get(23))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{
@@ -224,7 +232,15 @@ public class Village extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks a sprite
-                    }else if(player.intersects_right(sprites_foreground.get(0))){
+                    }else if(player.intersects_right(sprites_foreground.get(0)) ||
+                             player.intersects_right(sprites_still.get(10)) ||
+                             player.intersects_right(sprites_still.get(11)) ||
+                             player.intersects_right(sprites_still.get(12)) ||
+                             player.intersects_right(sprites_still.get(19)) ||
+                             player.intersects_right(sprites_still.get(20)) ||
+                             player.intersects_right(sprites_still.get(21)) ||
+                             player.intersects_right(sprites_still.get(22)) ||
+                             player.intersects_right(sprites_still.get(23))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{
@@ -240,7 +256,15 @@ public class Village extends Map{
                     if(player.intersects_top(worldBoundTop)){
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    }else if(player.intersects_top(sprites_foreground.get(0))){
+                    }else if(player.intersects_top(sprites_foreground.get(0)) ||
+                             player.intersects_top(sprites_still.get(10)) ||
+                             player.intersects_top(sprites_still.get(11)) ||
+                             player.intersects_top(sprites_still.get(12)) ||
+                             player.intersects_top(sprites_still.get(19)) ||
+                             player.intersects_top(sprites_still.get(20)) ||
+                             player.intersects_top(sprites_still.get(21)) ||
+                             player.intersects_top(sprites_still.get(22)) ||
+                             player.intersects_top(sprites_still.get(23))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{
@@ -258,7 +282,15 @@ public class Village extends Map{
                         player.setVelocity(0, 0);
                         
                     //check if the player walks into a sprite
-                    }else if(player.intersects_bottom(sprites_foreground.get(0))){
+                    }else if(player.intersects_bottom(sprites_foreground.get(0)) ||
+                             player.intersects_bottom(sprites_still.get(10)) ||
+                             player.intersects_bottom(sprites_still.get(11)) ||
+                             player.intersects_bottom(sprites_still.get(12)) ||
+                             player.intersects_bottom(sprites_still.get(19)) ||
+                             player.intersects_bottom(sprites_still.get(20)) ||
+                             player.intersects_bottom(sprites_still.get(21)) ||
+                             player.intersects_bottom(sprites_still.get(22)) ||
+                             player.intersects_bottom(sprites_still.get(23))){
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{

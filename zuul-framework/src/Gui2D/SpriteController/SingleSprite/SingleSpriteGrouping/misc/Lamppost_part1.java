@@ -18,7 +18,7 @@ public class Lamppost_part1  extends Abstract_sprite{
     @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(155);
-        super.getSprite().setSpritePosY(709-70);
+        super.getSprite().setSpritePosY(709+70);
         super.getSprite().setSprite_width(20);
         super.getSprite().setSprite_height(111-70);
         super.getSprite().setWidth(20);
