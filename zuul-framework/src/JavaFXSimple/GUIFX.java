@@ -151,6 +151,7 @@ public class GUIFX extends Application {
  
         table.setItems(data);
         table.getColumns().addAll(itemName, itemType, itemDescription);
+        table.setLayoutX(652);
         
                 
         VBox outputField = new VBox(20);
@@ -169,10 +170,10 @@ public class GUIFX extends Application {
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar);
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table);
         Pane root2 = new Pane(menuButtons);
         
-        Scene scene1 = new Scene(root, 768, 288);
+        Scene scene1 = new Scene(root, 1052, 288);
         Scene menu = new Scene(root2, 512, 288);
                 
         DropShadow shade = new DropShadow();
@@ -247,7 +248,5 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
-                
-        root.getChildren().add(table);
     }
 }
