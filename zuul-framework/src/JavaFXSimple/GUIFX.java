@@ -233,6 +233,7 @@ public class GUIFX extends Application {
                         System.out.println(temp);
                         Command command = new Command(commandWord.getCommandWord(word[0]), word[1]);
                         String commando = word[0];
+                        
                         switch(commando){
                             case "go": commando = "go";{
                             for(String s: twot.goTo(command)){
@@ -245,6 +246,9 @@ public class GUIFX extends Application {
                                 textArea.appendText("\n" + s + "\n");
                                 }
                                 inputArea.clear();
+                            }
+                            case word[1] == null : {
+                                
                             }
                             default:
                                 textArea.appendText("does not compute");
