@@ -94,7 +94,7 @@ public class Default extends Map{
         s.relocate(0, 362);
         root.getChildren().add(s);
         //get some of the games welcome message and add to the infobox
-        HashMap<String, String> welcome = game.getWelcomeMessages();
+        HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get("getRooms") + "\n");
         
         //Menu testing start
