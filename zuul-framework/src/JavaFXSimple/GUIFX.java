@@ -232,7 +232,7 @@ public class GUIFX extends Application {
         });
         button_how.setOnAction(new EventHandler<ActionEvent>(){
             @Override public void handle(ActionEvent e){
-                    PopUps.display("HOW TO PLAY", "Move around with the 'GO' "
+                    PopUps.display("HOW TO PLAY", "Move around with the 'go' "
                             + "command. \nYou automatically pick up items if the "
                             + "interior have any available.\n");
             }
