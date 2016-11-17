@@ -13,12 +13,14 @@ import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Rectangle2D;
 
 
 public class Clearing_sprites{
 private SpriteController world;
 //list containing all sprites for the room
 private List<Sprite> clearing_background_sprites;
+private List<Sprite> clearing_foreground_sprites;
 
 //lists of treeline
 private final List<SingleSprite> clearing_tree_walls_RIGHT;
@@ -35,6 +37,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
         //initialize world + list of spritess
         this.world = world;
         clearing_background_sprites = new ArrayList();
+        clearing_foreground_sprites = new ArrayList();
         
         //initialize treeline
         clearing_tree_walls_RIGHT = new ArrayList();
@@ -50,7 +53,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
         
     }
     
-    public void setClearing(){
+    public void setClearing_background_sprites(){
  
             //BACKGROUND GRASS
             clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_light_1());
@@ -119,6 +122,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
             //#1
             Sprite ruins1 = world.getMisc_sprites().getRuins_pillar_1();
             ruins1.setPosition(450,40);
+            ruins1.setBoundary(new Rectangle2D(ruins1.getPositionX()+126,ruins1.getPositionY()+66,ruins1.getWidth(),ruins1.getHeight()));
             clearing_background_sprites.add(ruins1);
             //#2
             Sprite ruins2 = world.getMisc_sprites().getBoulder_dark_large();
@@ -132,12 +136,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
             Sprite ruins4 = world.getMisc_sprites().getRuins_pillar_2();
             ruins4.setPosition(610,40);
             clearing_background_sprites.add(ruins4);
-            
-            
-           
-            
-            
-            
+       
             //ENEMY
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
             unicorn.setPosition(500,100);
@@ -158,8 +157,11 @@ private final List<SingleSprite> clearing_pathway_sprites;
             */
     }
 
-    public List<Sprite> getClearing(){
+    public List<Sprite> getClearing_background_sprites(){
        return clearing_background_sprites; 
+    }
+    public List<Sprite> getClearing_foreground_sprites(){
+        return clearing_foreground_sprites;
     }
 
 }
