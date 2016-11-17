@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class InventoryItems {
  
+        int lul;
         private final SimpleStringProperty itemName;
         private final SimpleStringProperty itemType;
         private final SimpleStringProperty itemDesc;
