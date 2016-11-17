@@ -254,6 +254,21 @@ public class Cave extends Map{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
+                    } else if (player.intersects_top(sprites_background.get(6))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "gruulsLair"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     } else {
                         player.setVelocity(0, -100);
                     }
