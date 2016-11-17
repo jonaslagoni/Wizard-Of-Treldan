@@ -861,7 +861,7 @@ public class TWoT implements Serializable{
      * 
      * @return 
      */
-    public int getPlayerHealth(){
+    public double getPlayerHealth(){
         return player.getHealth();
     }
     /**

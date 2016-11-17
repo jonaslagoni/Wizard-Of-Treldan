@@ -122,6 +122,11 @@ public class GUIFX extends Application {
         Label label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("RED"));
         label1.relocate(270, 265);
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> origin/master
         
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
