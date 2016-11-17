@@ -121,12 +121,14 @@ public class GUIFX extends Application {
         healthbar.relocate(264, 260);
         
         HBox hbox = new HBox();
-        Label label1 = new Label("Health");
+        Label label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("RED"));
         label1.relocate(270, 265);
         hbox.setSpacing(10);
         hbox.getChildren().add((label1));
         ((Group) scene.getRoot()).getChildren().add(hbox);
+        
+        
         
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
