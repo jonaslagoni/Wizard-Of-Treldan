@@ -24,6 +24,7 @@ public class Village_sprites{
     //list of sprites
     private List<Sprite> village_background_sprites;
     private List<Sprite> village_foreground_sprites;
+    private List<Sprite> village_items;
     
     //lists of sprites
     private List<SingleSprite> village_background_ground;
@@ -38,6 +39,7 @@ public class Village_sprites{
         //initialize the arraylists();
         village_background_sprites = new ArrayList();
         village_foreground_sprites = new ArrayList();
+        village_items = new ArrayList();
         village_background_ground = new ArrayList();
         village_background_grass = new ArrayList();
         village_background_trees = new ArrayList();
@@ -158,7 +160,7 @@ public class Village_sprites{
         //axe
         Sprite axe = world.getMisc_sprites().getAxe();
         axe.setPosition(600, 220);
-        village_background_sprites.add(axe);
+        getVillage_items().add(axe);
         
         //guard
         Sprite guard = world.getMisc_sprites().getGuard();
@@ -253,6 +255,13 @@ public class Village_sprites{
      */
     public void setVillage_foreground_sprites(List<Sprite> village_foreground_sprites) {
         this.village_foreground_sprites = village_foreground_sprites;
+    }
+
+    /**
+     * @return the village_items
+     */
+    public List<Sprite> getVillage_items() {
+        return village_items;
     }
     
 }
