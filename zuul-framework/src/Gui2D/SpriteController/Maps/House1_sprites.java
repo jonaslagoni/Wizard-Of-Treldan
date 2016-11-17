@@ -21,6 +21,7 @@ public class House1_sprites{
     
     private SpriteController world;
     private final List<Sprite> house_background_sprites;
+    private final List<Sprite> house_monster_sprites;
     
     private final List<SingleSprite> house_background_walls;
     private final List<SingleSprite> house_background_floor;
@@ -29,6 +30,7 @@ public class House1_sprites{
     public House1_sprites(SpriteController world){
         this.world = world;
         house_background_sprites = new ArrayList();
+        house_monster_sprites = new ArrayList();
         house_background_walls = new ArrayList();
         house_background_floor = new ArrayList();
         
@@ -120,16 +122,23 @@ public class House1_sprites{
          //ENEMY
          Sprite enemy1 = world.getMisc_sprites().getEnemy_Imp1();
          enemy1.setPosition(50, 75);
-         house_background_sprites.add(enemy1);
+         getHouse_monster_sprites().add(enemy1);
          
          //woman placeholder
          Sprite woman = world.getMisc_sprites().getVillage_woman();
          woman.setPosition(400, 170);
-         house_background_sprites.add(woman);
+         getHouse_monster_sprites().add(woman);
     }
     
-        public List getHouse(){
+    public List<Sprite> getHouse(){
         return house_background_sprites;
+    }
+
+    /**
+     * @return the house_monster_sprites
+     */
+    public List<Sprite> getHouse_monster_sprites() {
+        return house_monster_sprites;
     }
             
 
