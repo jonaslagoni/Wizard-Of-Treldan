@@ -5,7 +5,9 @@
  */
 package JavaFXSimple;
 
+import static TWoT_test.CommandWord.USE;
 import TWoT_test.*;
+import static TWoT_test.CommandWord.GO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,8 @@ public class GUIFX extends Application {
     private TextField inputArea;
     private ProgressBar healthbar;
     private String help;
+    private int health;
+    
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
@@ -53,7 +57,7 @@ public class GUIFX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
     @Override
     public void start (Stage primaryStage) {
         
@@ -161,14 +165,24 @@ public class GUIFX extends Application {
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
                         CommandWords commandWord = new CommandWords();
-                        String temp = inputArea.getText();
+                        String temp = inputArea.getText().toLowerCase();
                         String[] word = temp.split(" ");
                         System.out.println(temp);
                         Command command = new Command(commandWord.getCommandWord(word[0]), word[1]);
-                        for(String s: twot.goTo(command)){
+                        String commando = word[0];
+                        switch(commando){
+                            case "go": commando = "go";{
+                            for(String s: twot.goTo(command)){
                             textArea.appendText("\n" + s + "\n");
-                        }
+                            }
                         inputArea.clear();
+                            }
+                            case "use": commando = "use";{
+                                for(String s: twot.useItem(command)){
+                                textArea.appendText("\n" + s + "\n");
+                                }
+                            }
+                        }
                 }
             }
         });
