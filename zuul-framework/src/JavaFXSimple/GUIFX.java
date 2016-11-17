@@ -79,7 +79,6 @@ public class GUIFX extends Application {
         textArea = new TextArea();
         inputArea = new TextField();
         label = new Label();
-        Scene scene = new Scene(new Group());
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -126,7 +125,6 @@ public class GUIFX extends Application {
         label1.relocate(270, 265);
         hbox.setSpacing(10);
         hbox.getChildren().add((label1));
-        ((Group) scene.getRoot()).getChildren().add(hbox);
         
         
         
@@ -177,7 +175,7 @@ public class GUIFX extends Application {
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, hbox);
         Pane root2 = new Pane(menuButtons);
         
         Scene scene1 = new Scene(root, 1052, 288);
@@ -225,21 +223,21 @@ public class GUIFX extends Application {
                         String[] word = temp.split(" ");
                         System.out.println(temp);
                         CommandWords commandWordd = new CommandWords();
-                        if(word.length == 2){
+                        if(word.length >= 2){
                         Command command = new Command(commandWordd.getCommandWord(word[0]), word[1]);
                         CommandWord commandWord = command.getCommandWord();
                         
                             switch(commandWord){
                                 case GO:
                                     for(String s: twot.goTo(command)){
-                                    textArea.appendText("\n" + s + "\n");
+                                        textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
                                     break;
                                 
                                 case USE:
                                     for(String s: twot.useItem(command)){
-                                    textArea.appendText("\n" + s + "\n");
+                                        textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
                                     break;
