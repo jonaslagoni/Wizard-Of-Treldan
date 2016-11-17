@@ -53,6 +53,7 @@ public class GUIFX extends Application {
     private Label label;
     private String help;
     private TextField nameArea;
+    private VBox statsField = new VBox(20);
     
     private TableView<InventoryItems> table = new TableView();
     private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
@@ -159,7 +160,6 @@ public class GUIFX extends Application {
         textArea.setEditable(false);
         outputField.getChildren().addAll(textArea);
         
-        VBox statsField = new VBox(20);
         statsArea.appendText("****************************\n");
         statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
         statsArea.appendText("** Attack value: " + twot.getPlayerAtt() + "\n");
@@ -181,7 +181,7 @@ public class GUIFX extends Application {
         
         VBox inputField = new VBox(20);
         inputField.setPrefSize(308, 28);
-        inputField.relocate(264, 260);
+        inputField.relocate(264, 265);
         inputField.getChildren().addAll(inputArea);
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
@@ -240,6 +240,7 @@ public class GUIFX extends Application {
                 if(k.getCode().equals(KeyCode.ENTER)){
                     twot.setPlayerName(nameArea.getText());
                     primaryStage.setScene(scene1);
+                    updatePlayer();
                 }
             }
         });
@@ -262,6 +263,7 @@ public class GUIFX extends Application {
                                     }
                                     inputArea.clear();
                                     updateInventory();
+                                    updatePlayer();
                                     break;
                                 
                                 case USE:
@@ -269,6 +271,8 @@ public class GUIFX extends Application {
                                         textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
+                                    updateInventory();
+                                    updatePlayer();
                                     break;
                                 
                                 default:
@@ -297,6 +301,17 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
+    }
+    
+    public void updatePlayer(){
+        
+        statsArea.clear();
+        statsArea.appendText("****************************\n");
+        statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
+        statsArea.appendText("** Attack value: " + twot.getPlayerAtt() + "\n");
+        statsArea.appendText("** Defense value: " + twot.getPlayerDeff() + "\n");
+        statsArea.appendText("** Gold: " + twot.getPlayerGold() + "\n");
+        statsArea.appendText("****************************");
     }
     
     public void updateInventory(){
