@@ -123,8 +123,6 @@ public class GUIFX extends Application {
         Label label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("RED"));
         label1.relocate(270, 265);
-        hbox.setSpacing(10);
-        hbox.getChildren().add((label1));
         
         
         
