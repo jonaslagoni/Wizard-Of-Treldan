@@ -122,12 +122,9 @@ public class GUIFX extends Application {
         healthbar.setPrefSize(308, 28);
         healthbar.relocate(264, 260);
         
-        HBox hbox = new HBox();
         Label label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("RED"));
         label1.relocate(270, 265);
-        
-        
         
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
@@ -176,6 +173,7 @@ public class GUIFX extends Application {
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
         
+<<<<<<< HEAD
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
         
@@ -189,6 +187,9 @@ public class GUIFX extends Application {
         
         
         Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, hbox);
+=======
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
+>>>>>>> origin/master
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         
@@ -256,6 +257,7 @@ public class GUIFX extends Application {
                                         textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
+                                    updateInventory();
                                     break;
                                 
                                 case USE:
@@ -291,5 +293,19 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
+    }
+    
+    public void updateInventory(){
+        List<Item> l = twot.getInventoryItems();
+        data.removeAll(data);
+        for(Item i: l){
+            if(i instanceof UseableItem){
+                data.add(new InventoryItems(i.getItemName(), "Usable Item", i.getItemDescription()));
+            } else if (i instanceof QuestItem) {
+                data.add(new InventoryItems(i.getItemName(), "Quest Item", i.getItemDescription()));
+            } else if(i instanceof EquippableItem) {
+                data.add(new InventoryItems(i.getItemName(), "Equippable Item", i.getItemDescription()));
+            }
+        }
     }
 }
