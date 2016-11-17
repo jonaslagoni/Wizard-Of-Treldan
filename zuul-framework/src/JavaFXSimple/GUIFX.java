@@ -13,6 +13,7 @@ import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -242,6 +243,13 @@ public class GUIFX extends Application {
                     primaryStage.setScene(scene1);
                     updatePlayer();
                 }
+            }
+        });
+        button_how.setOnAction(new EventHandler<ActionEvent>(){
+            @Override public void handle(ActionEvent e){
+                    PopUps.display("HOW TO PLAY", "Move around with the 'GO' "
+                            + "command. \nYou automatically pick up items if the "
+                            + "interior have any available.\n");
             }
         });
         button_exit.setOnAction(actionEvent -> Platform.exit());
