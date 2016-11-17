@@ -34,8 +34,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -221,35 +219,38 @@ public class GUIFX extends Application {
         inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
-                        CommandWords commandWord = new CommandWords();
                         String temp = inputArea.getText().toLowerCase();
                         String[] word = temp.split(" ");
                         System.out.println(temp);
-                        Command command = new Command(commandWord.getCommandWord(word[0]), word[1]);
+                        CommandWords commandWordd = new CommandWords();
+                        if(word.length == 2){
+                        Command command = new Command(commandWordd.getCommandWord(word[0]), word[1]);
+                        CommandWord commandWord = command.getCommandWord();
                         
-                        if(word[1] != null){
-                            String commando = word[0];
-                            switch(commando){
-                                case "go": commando = "go";{
+                            switch(commandWord){
+                                case GO:
                                     for(String s: twot.goTo(command)){
                                     textArea.appendText("\n" + s + "\n");
-                                }
+                                    }
                                     inputArea.clear();
-                                }
-                                case "use": commando = "use";{
+                                    break;
+                                
+                                case USE:
                                     for(String s: twot.useItem(command)){
                                     textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
-                                }
-                                default:{
-                                    textArea.appendText("does not compute");
+                                    break;
+                                
+                                default:
+                                    textArea.appendText("\ndoes not compute ");
                                     inputArea.clear();
-                                }
+                                    break;
+                                
                             }
                         }
-                        else if (word[1] == null){
-                            textArea.appendText("You must enter the commandword, and direction!");
+                        else{
+                            textArea.appendText("\nYou must enter the commandword, and direction!");
                             inputArea.clear();
                         }
                 }     
