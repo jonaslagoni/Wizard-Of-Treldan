@@ -224,29 +224,33 @@ public class GUIFX extends Application {
                         String[] word = temp.split(" ");
                         System.out.println(temp);
                         Command command = new Command(commandWord.getCommandWord(word[0]), word[1]);
-                        String commando = word[0];
                         
-                        switch(commando){
-                            case "go": commando = "go";{
-                            for(String s: twot.goTo(command)){
-                            textArea.appendText("\n" + s + "\n");
-                            }
-                                inputArea.clear();
-                            }
-                            case "use": commando = "use";{
-                                for(String s: twot.useItem(command)){
-                                textArea.appendText("\n" + s + "\n");
+                        if(word[1] != null){
+                            String commando = word[0];
+                            switch(commando){
+                                case "go": commando = "go";{
+                                    for(String s: twot.goTo(command)){
+                                    textArea.appendText("\n" + s + "\n");
                                 }
-                                inputArea.clear();
+                                    inputArea.clear();
+                                }
+                                case "use": commando = "use";{
+                                    for(String s: twot.useItem(command)){
+                                    textArea.appendText("\n" + s + "\n");
+                                    }
+                                    inputArea.clear();
+                                }
+                                default:{
+                                    textArea.appendText("does not compute");
+                                    inputArea.clear();
+                                }
                             }
-                            case word[1] == null : {
-                                
-                            }
-                            default:
-                                textArea.appendText("does not compute");
-                                inputArea.clear();
                         }
-                }
+                        else if (word[1] == null){
+                            textArea.appendText("You must enter the commandword, and direction!");
+                            inputArea.clear();
+                        }
+                }     
             }
         });
                 
