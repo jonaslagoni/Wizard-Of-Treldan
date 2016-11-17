@@ -82,11 +82,8 @@ public class GUIFX extends Application {
         textArea = new TextArea();
         inputArea = new TextField();
         label = new Label();
-<<<<<<< HEAD
         statsArea = new TextArea();
-=======
         nameArea = new TextField();
->>>>>>> origin/master
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -180,16 +177,12 @@ public class GUIFX extends Application {
                        
         Label label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("RED"));
-        label1.relocate(10, 270);
+        label1.relocate(10, 269);
         
         VBox inputField = new VBox(20);
         inputField.setPrefSize(308, 28);
         inputField.relocate(264, 260);
         inputField.getChildren().addAll(inputArea);
-        
-<<<<<<< HEAD
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, statsField);
-=======
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
         
@@ -201,9 +194,7 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
-        
->>>>>>> origin/master
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, statsField);
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         
