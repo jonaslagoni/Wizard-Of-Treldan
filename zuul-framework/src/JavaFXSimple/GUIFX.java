@@ -34,6 +34,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -45,15 +46,15 @@ public class GUIFX extends Application {
     private TWoT twot;
     
     private TextArea textArea;
+    private TextArea statsArea;
     private TextField inputArea;
     private ProgressBar healthbar;
     private Label label;
-    private ListView<AnchorPane> inventoryListView;
-    private ObservableList<AnchorPane> inventory;
     private String help;
     
     private TableView<InventoryItems> table = new TableView();
     private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
+    
     private int health;
     
     private String printHelp() {
@@ -79,6 +80,7 @@ public class GUIFX extends Application {
         textArea = new TextArea();
         inputArea = new TextField();
         label = new Label();
+        statsArea = new TextArea();
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -114,15 +116,7 @@ public class GUIFX extends Application {
         menuButtons.setLayoutX(166);
         menuButtons.setLayoutY(30);
         menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
-              
-        healthbar = new ProgressBar(twot.getPlayerHealth()/100);
-        healthbar.setPrefSize(308, 28);
-        healthbar.relocate(264, 260);
-        
-        Label label1 = new Label("Health "+ twot.getPlayerHealth());
-        label1.setTextFill(Color.web("RED"));
-        label1.relocate(270, 265);
-        
+                      
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
         for(Item i: l){
@@ -153,7 +147,6 @@ public class GUIFX extends Application {
         table.getColumns().addAll(itemName, itemType, itemDescription);
         table.setLayoutX(652);
         
-                
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
         textArea.setMinWidth(572);
@@ -163,17 +156,35 @@ public class GUIFX extends Application {
         textArea.setEditable(false);
         outputField.getChildren().addAll(textArea);
         
+        VBox statsField = new VBox(20);
+        statsArea.appendText("****************************\n");
+        statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
+        statsArea.appendText("** Attack value: " + twot.getPlayerAtt() + "\n");
+        statsArea.appendText("** Defense value: " + twot.getPlayerDeff() + "\n");
+        statsArea.appendText("** Gold: " + twot.getPlayerGold() + "\n");
+        statsArea.appendText("****************************");
+        statsField.setMaxWidth(256);
+        statsField.setMaxHeight(110);
+        statsField.relocate(0, 300);
+        statsField.getChildren().addAll(statsArea);
+        
+        healthbar = new ProgressBar(twot.getPlayerHealth()/100);
+        healthbar.setPrefSize(256, 26);
+        healthbar.relocate(0, 265);
+                       
+        Label label1 = new Label("Health "+ twot.getPlayerHealth());
+        label1.setTextFill(Color.web("RED"));
+        label1.relocate(10, 270);
+        
         VBox inputField = new VBox(20);
-        inputArea.setMaxWidth(256);
-        inputArea.setMinWidth(256);
-        inputArea.setMaxHeight(30);
-        inputField.relocate(0, 260);
+        inputField.setPrefSize(308, 28);
+        inputField.relocate(264, 260);
         inputField.getChildren().addAll(inputArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, statsField);
         Pane root2 = new Pane(menuButtons);
         
-        Scene scene1 = new Scene(root, 1052, 288);
+        Scene scene1 = new Scene(root, 1052, 512);
         Scene menu = new Scene(root2, 512, 288);
                 
         DropShadow shade = new DropShadow();
