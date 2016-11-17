@@ -57,12 +57,10 @@ public class WizardOfTreldan extends Application {
     private static Map cave;
     private static Map dungeon;
     private static Map wizardHouse;
-<<<<<<< HEAD
     private static Map evilwizardslair;
-=======
     private static Map library;
     private static Map evilWizardsLair;
->>>>>>> origin/master
+
 
     /**
      * @return the game
@@ -122,7 +120,7 @@ public class WizardOfTreldan extends Application {
         
 
         
-        setMenuScene();
+        setEvilWizardLairScene();
         primaryStage.show();
     }
     
@@ -232,7 +230,7 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(library.getScene());
     } 
     
-    public static void setEvilWizardLair() {
+    public static void setEvilWizardLairScene() {
         primaryStage.setScene(evilWizardsLair.getScene());
     }
     

@@ -48,25 +48,95 @@ public class EvilWizardsLair_sprites{
         backgroundCastleFloor.setPosition(478, 200);
         spriteList.add(backgroundCastleFloor);
         
-        //STAGE
+        List<SingleSprite> backgroundCastleFloorList2 = new ArrayList();
+        backgroundCastleFloorList2.add(world.getGround_sprite().getStone_floor_1());
+        backgroundCastleFloorList2.add(world.getGround_sprite().getStone_floor_2());
+        backgroundCastleFloorList2.add(world.getGround_sprite().getStone_floor_3());
+        Sprite backgroundCastleFloor2 = new Groupsprite_random(backgroundCastleFloorList2);
+        backgroundCastleFloor2.setSize(400,70);
+        backgroundCastleFloor2.setPosition(100, 105);
+        spriteList.add(backgroundCastleFloor2);
+        
+        List<SingleSprite> backgroundCastleFloorList3 = new ArrayList();
+        backgroundCastleFloorList3.add(world.getGround_sprite().getStone_floor_1());
+        backgroundCastleFloorList3.add(world.getGround_sprite().getStone_floor_2());
+        backgroundCastleFloorList3.add(world.getGround_sprite().getStone_floor_3());
+        Sprite backgroundCastleFloor3 = new Groupsprite_random(backgroundCastleFloorList3);
+        backgroundCastleFloor3.setSize(300,70);
+        backgroundCastleFloor3.setPosition(600, 105);
+        spriteList.add(backgroundCastleFloor3);
+        
+        //STAGE 1
         Sprite stage = world.getMisc_sprites().getEvilWizardsLair_Stage();
-        stage.setPosition(430,50);
+        stage.setPosition(435,50);
         spriteList_foreground.add(stage);
+        
+        //STAGE 2
+        Sprite stage2 = world.getMisc_sprites().getEvilWizardsLair_Stage();
+        stage2.setPosition(50, 50);
+        spriteList_foreground.add(stage2);
+        
+        //STAGE 3
+        Sprite stage3 = world.getMisc_sprites().getEvilWizardsLair_Stage();
+        stage3.setPosition(800,50);
+        spriteList_foreground.add(stage3);
         
         //STAIRS
         Sprite stair = world.getMisc_sprites().getStairs_stone();
         stair.setPosition(480,190);
         spriteList_foreground.add(stair);
         
-        //ENEMY DUDE
-        Sprite enemy = world.getMisc_sprites().getWizard_evil_battle();
-        enemy.setPosition(450,25);
+        //ENEMY DUDE 1
+        Sprite enemy = world.getMisc_sprites().getWizard_evil();
+        enemy.setPosition(485,25);
         spriteList_foreground.add(enemy);
         
+        //abbaration 1
+        Sprite minion1 = world.getMisc_sprites().getEnemy_abbaration();
+        minion1.setPosition(115,25);
+        spriteList_foreground.add(minion1);
+        
+        //abbaration 2
+        Sprite minion2 = world.getMisc_sprites().getEnemy_abbaration();
+        minion2.setPosition(865, 25);
+        spriteList_foreground.add(minion2);
         
         // MISC ITEMS START
+        Sprite pillar1 = world.getMisc_sprites().getLava_pillar_3();
+        pillar1.setPosition(300,15);
+        spriteList.add(pillar1);
+
+        Sprite pillar2 = world.getMisc_sprites().getLava_pillar_3();
+        pillar2.setPosition(100,300);
+        spriteList.add(pillar2);
+
+        Sprite pillar3 = world.getMisc_sprites().getLava_pillar_3();
+        pillar3.setPosition(600,400);
+        spriteList.add(pillar3);
+
+        Sprite pillar4 = world.getMisc_sprites().getLava_pillar_3();
+        pillar4.setPosition(200,400);
+        spriteList.add(pillar4);
+
+        Sprite pillar5 = world.getMisc_sprites().getLava_pillar_3();
+        pillar5.setPosition(300,240);
+        spriteList.add(pillar5);
+
+        Sprite pillar6 = world.getMisc_sprites().getLava_pillar_3();
+        pillar6.setPosition(760,200);
+        spriteList.add(pillar6);
+
+        Sprite pillar7 = world.getMisc_sprites().getLava_pillar_3();
+        pillar7.setPosition(900,400);
+        spriteList.add(pillar7);
+
+        Sprite pillar8 = world.getMisc_sprites().getLava_pillar_2();
+        pillar8.setPosition(850,250);
+        spriteList.add(pillar8);
+       
+      
         
-        
+       
         
     }
 
