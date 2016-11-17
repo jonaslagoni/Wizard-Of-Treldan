@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -229,4 +230,5 @@ public class Player{
     public void removeInventoryItem(Item i){
         playersInventory.removeInventoryItem(i);
     }
+    
 }
