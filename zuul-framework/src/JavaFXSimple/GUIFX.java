@@ -28,8 +28,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -43,6 +47,7 @@ public class GUIFX extends Application {
     private TextArea textArea;
     private TextField inputArea;
     private ProgressBar healthbar;
+    private Label label;
     private ListView<AnchorPane> inventoryListView;
     private ObservableList<AnchorPane> inventory;
     private String help;
@@ -73,6 +78,8 @@ public class GUIFX extends Application {
         primaryStage.setTitle("The Wizard of Treldan");
         textArea = new TextArea();
         inputArea = new TextField();
+        label = new Label();
+        Scene scene = new Scene(new Group());
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -112,6 +119,14 @@ public class GUIFX extends Application {
         healthbar = new ProgressBar(twot.getPlayerHealth()/100);
         healthbar.setPrefSize(308, 28);
         healthbar.relocate(264, 260);
+        
+        HBox hbox = new HBox();
+        Label label1 = new Label("Health");
+        label1.setTextFill(Color.web("RED"));
+        label1.relocate(270, 266);
+        hbox.setSpacing(10);
+        hbox.getChildren().add((label1));
+        ((Group) scene.getRoot()).getChildren().add(hbox);
         
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
@@ -160,7 +175,7 @@ public class GUIFX extends Application {
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table);
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
         Pane root2 = new Pane(menuButtons);
         
         Scene scene1 = new Scene(root, 1052, 288);
@@ -215,13 +230,17 @@ public class GUIFX extends Application {
                             for(String s: twot.goTo(command)){
                             textArea.appendText("\n" + s + "\n");
                             }
-                        inputArea.clear();
+                                inputArea.clear();
                             }
                             case "use": commando = "use";{
                                 for(String s: twot.useItem(command)){
                                 textArea.appendText("\n" + s + "\n");
                                 }
+                                inputArea.clear();
                             }
+                            default:
+                                textArea.appendText("does not compute");
+                                inputArea.clear();
                         }
                 }
             }
