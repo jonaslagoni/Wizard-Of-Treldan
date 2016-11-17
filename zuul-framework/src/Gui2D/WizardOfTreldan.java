@@ -9,11 +9,13 @@ import Gui2D.Maps.Cave;
 import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Clearing;
 import Gui2D.Maps.Dungeon;
+import Gui2D.Maps.EvilWizardsLair;
 import Gui2D.Maps.House3;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
+import Gui2D.Maps.Library;
 import Gui2D.Maps.Load;
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
@@ -55,6 +57,8 @@ public class WizardOfTreldan extends Application {
     private static Map cave;
     private static Map dungeon;
     private static Map wizardHouse;
+    private static Map library;
+    private static Map evilWizardsLair;
 
     /**
      * @return the game
@@ -108,6 +112,9 @@ public class WizardOfTreldan extends Application {
         dungeon = new Dungeon(world);
         wizardHouse = new WizardHouse(world);
         gruulslair = new GruulsLair(world);
+        library = new Library(world);
+        evilWizardsLair = new EvilWizardsLair(world);
+        
         
         setMenuScene();
         primaryStage.show();
@@ -158,7 +165,16 @@ public class WizardOfTreldan extends Application {
     public static void setHouse1Scene(){
         primaryStage.setScene(house1.getScene());
     }
-
+    /**
+     * Force the game to load House2Scene
+     */
+    public static void setHouse2Scene(){
+        primaryStage.setScene(house2.getScene());
+    }
+    
+    public static void setHouse3Scene(){
+        primaryStage.setScene(house3.getScene());
+    }
         
     /**
      *  Force the game to load UnicornScene
@@ -174,16 +190,7 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(forest.getScene());
     }
     
-    /**
-     * Force the game to load House2Scene
-     */
-    public static void setHouse2Scene(){
-        primaryStage.setScene(house2.getScene());
-    }
     
-    public static void setHouse3Scene(){
-        primaryStage.setScene(house3.getScene());
-    }
     
     /**
      * Force the game to load GruulsLairScene
@@ -212,6 +219,14 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(wizardHouse.getScene());
     }
     
+    public static void setLibraryScene() {
+        primaryStage.setScene(library.getScene());
+    } 
+    
+    public static void setEvilWizardLair() {
+        primaryStage.setScene(evilWizardsLair.getScene());
+    }
+    
     public static void resetGame(){
         game = new TWoT();
     }
@@ -223,7 +238,7 @@ public class WizardOfTreldan extends Application {
         String strDate = sdfDate.format(now);
         try {
             // Store Serialized User Object in File
-            FileOutputStream fileOutputStream = new FileOutputStream("loads/" + strDate + ".data");
+            FileOutputStream fileOutputStream = new FileOutputStream("loads/" + game.getCurrentRoomName() + " - " + strDate + ".data");
             ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
             output.writeObject(game);
             output.close();

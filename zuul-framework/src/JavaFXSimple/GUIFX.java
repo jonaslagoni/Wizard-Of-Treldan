@@ -5,7 +5,9 @@
  */
 package JavaFXSimple;
 
+import static TWoT_test.CommandWord.USE;
 import TWoT_test.*;
+import static TWoT_test.CommandWord.GO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +59,7 @@ public class GUIFX extends Application {
     
     private TableView<InventoryItems> table = new TableView();
     private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
+    private int health;
     
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
@@ -73,7 +76,7 @@ public class GUIFX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
     @Override
     public void start (Stage primaryStage) {
         
@@ -117,8 +120,8 @@ public class GUIFX extends Application {
         menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
               
         healthbar = new ProgressBar(twot.getPlayerHealth()/100);
-        healthbar.setPrefSize(292, 10);
-        healthbar.relocate(4, 25);
+        healthbar.setPrefSize(308, 28);
+        healthbar.relocate(264, 260);
         
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
@@ -160,7 +163,8 @@ public class GUIFX extends Application {
         outputField.getChildren().addAll(textArea);
         
         VBox inputField = new VBox(20);
-        inputArea.setMaxWidth(422);
+        inputArea.setMaxWidth(256);
+        inputArea.setMinWidth(256);
         inputArea.setMaxHeight(30);
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
@@ -210,14 +214,24 @@ public class GUIFX extends Application {
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
                         CommandWords commandWord = new CommandWords();
-                        String temp = inputArea.getText();
+                        String temp = inputArea.getText().toLowerCase();
                         String[] word = temp.split(" ");
                         System.out.println(temp);
                         Command command = new Command(commandWord.getCommandWord(word[0]), word[1]);
-                        for(String s: twot.goTo(command)){
+                        String commando = word[0];
+                        switch(commando){
+                            case "go": commando = "go";{
+                            for(String s: twot.goTo(command)){
                             textArea.appendText("\n" + s + "\n");
-                        }
+                            }
                         inputArea.clear();
+                            }
+                            case "use": commando = "use";{
+                                for(String s: twot.useItem(command)){
+                                textArea.appendText("\n" + s + "\n");
+                                }
+                            }
+                        }
                 }
             }
         });

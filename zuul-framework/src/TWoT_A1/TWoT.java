@@ -829,4 +829,7 @@ public class TWoT implements Serializable{
         return currentRoom.getRoomId();
     }
     
+    public String getCurrentRoomName(){
+        return currentRoom.getName();
+    }
 }

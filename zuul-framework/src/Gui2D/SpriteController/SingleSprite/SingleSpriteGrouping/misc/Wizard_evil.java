@@ -11,17 +11,17 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Village_guard  extends Abstract_sprite{
+public class Wizard_evil  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
     @Override
     public void setSprite(){
-        super.getSprite().setSpritePosX(158);
-        super.getSprite().setSpritePosY(877);
-        super.getSprite().setSprite_width(51);
-        super.getSprite().setSprite_height(49);
-        super.getSprite().setWidth(51);
-        super.getSprite().setHeight(49);
+        super.getSprite().setSpritePosX(203);
+        super.getSprite().setSpritePosY(451);
+        super.getSprite().setSprite_width(79);
+        super.getSprite().setSprite_height(94);
+        super.getSprite().setWidth(79);
+        super.getSprite().setHeight(94);
     }
 }
