@@ -165,11 +165,7 @@ public class Cave extends Map{
         for (Sprite sprite : sprites_foreground) {
             sprite.render(foreground_canvas_gc);
         }
-            
-        Sprite cave_exit = sprites_foreground.get(0);
-        cave_background.setGlobalBlendMode(BlendMode.SOFT_LIGHT);
-        cave_background.fillRect(cave_exit.getPositionX(), cave_exit.getPositionY(), cave_exit.getWidth(), cave_exit.getHeight());
-        
+           
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(230, 0, 1, 512);
@@ -200,13 +196,13 @@ public class Cave extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_left(sprites_foreground.get(0))
+                    } else if (player.intersects_left(sprites_background.get(5))
                             
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     
-                    }
+                    } 
                     else {
                         player.setVelocity(-100, 0);
                     }
@@ -221,7 +217,7 @@ public class Cave extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    } else if (player.intersects_right(sprites_foreground.get(0))
+                    } else if (player.intersects_right(sprites_background.get(5))
                             
                               ) {
                         //Reset the velocity
@@ -242,14 +238,23 @@ public class Cave extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_top(sprites_foreground.get(0))
-                            
-                              ) {
+                    }
+                    else if (player.intersects_top(sprites_background.get(5))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    
-                    }
-                    else {
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "forest"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
+                    } else {
                         player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
@@ -263,7 +268,7 @@ public class Cave extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_bottom(sprites_foreground.get(0))
+                    } else if (player.intersects_bottom(sprites_background.get(5))
                             
                               ) {
                         //Reset the velocity
