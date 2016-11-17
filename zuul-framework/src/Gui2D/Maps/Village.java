@@ -106,8 +106,8 @@ public class Village extends Map {
         s.relocate(0, 362);
         root.getChildren().add(s);
         //get some of the games welcome message and add to the infobox
-        HashMap<String, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get("getRooms") + "\n");
+        HashMap<Integer, String> welcome = game.getWelcomeMessages();
+        infobox.appendText(welcome.get(4) + "\n");
 
 //Menu testing start
         PlayerInventory playerinventory = new PlayerInventory(game);
