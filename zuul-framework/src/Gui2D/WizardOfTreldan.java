@@ -223,7 +223,7 @@ public class WizardOfTreldan extends Application {
         String strDate = sdfDate.format(now);
         try {
             // Store Serialized User Object in File
-            FileOutputStream fileOutputStream = new FileOutputStream("loads/" + strDate + ".data");
+            FileOutputStream fileOutputStream = new FileOutputStream("loads/" + game.getCurrentRoomName() + " - " + strDate + ".data");
             ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
             output.writeObject(game);
             output.close();

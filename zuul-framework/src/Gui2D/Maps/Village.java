@@ -184,6 +184,7 @@ public class Village extends Map {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
             private boolean hasPrinted_door2 = false;
+            private boolean hasPrinted_door3= false;
 
             //what to do each cycle
             @Override
@@ -236,9 +237,7 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //if no collission
+                    //if collission with house2
                     } else if (player.intersects_left(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -261,8 +260,23 @@ public class Village extends Map {
                                 WizardOfTreldan.saveGame();
                             }
                         }
+                    //if colission with house 3
+                    }else if (player.intersects_left(sprites_still.get(17))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     //if no collission
                     }else{
                         player.setVelocity(-100,0);
@@ -277,7 +291,7 @@ public class Village extends Map {
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //check if the player walks into a sprite
+                    //check if the player walks into a sprite
                     } else if (player.intersects_right(sprites_foreground.get(0))
                             || player.intersects_right(sprites_still.get(10))
                             || player.intersects_right(sprites_still.get(11))
@@ -309,9 +323,7 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //if no collission
+                    //if collission with house2
                     } else if (player.intersects_right(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -334,8 +346,23 @@ public class Village extends Map {
                                 WizardOfTreldan.saveGame();
                             }
                         }
+                    //if colission with house 3
+                    }else if (player.intersects_right(sprites_still.get(17))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     //if no collission
                     }else{
                         player.setVelocity(100,0);
@@ -382,9 +409,7 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //if no collission
+                    //if collission to house2
                     } else if (player.intersects_top(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -407,8 +432,23 @@ public class Village extends Map {
                                 WizardOfTreldan.saveGame();
                             }
                         }
+                    //if colission with house 3
+                    }else if (player.intersects_top(sprites_still.get(17))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     //if no collission
                     }else{
                         player.setVelocity(0,-100);
@@ -438,7 +478,7 @@ public class Village extends Map {
                     } else if (player.intersects_bottom(sprites_foreground.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //check if the player walks into house1
+                    //check if the player walks into house1
                     } else if (player.intersects_bottom(sprites_still.get(15))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -455,8 +495,6 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
                         //if no collission
                     } else if (player.intersects_bottom(sprites_still.get(16))) {
                         //Reset the velocity
@@ -482,6 +520,23 @@ public class Village extends Map {
                         }
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    //if colission with house 3
+                    }else if (player.intersects_bottom(sprites_still.get(17))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     //if no collission
                     }else {
                         player.setVelocity(0, 100);

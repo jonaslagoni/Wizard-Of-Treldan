@@ -115,7 +115,32 @@ public class Load extends Map{
                             switch(loadedGame.getCurrentRoomId()){
                                 case 1: WizardOfTreldan.setCellarScene();
                                     break;
-                                default: WizardOfTreldan.setVillageScene();
+                                case 2: WizardOfTreldan.setVillageScene();
+                                    break;
+                                case 3: WizardOfTreldan.setHouse1Scene();
+                                    break;
+                                case 4: WizardOfTreldan.setHouse2Scene();
+                                    break;
+                                case 5: WizardOfTreldan.setHouse3Scene();
+                                    break;
+                                case 6: WizardOfTreldan.setForestScene();
+                                    break;
+                                case 7: WizardOfTreldan.setWizardHouseScene();
+                                    break;
+                                case 8: WizardOfTreldan.setCaveScene();
+                                    break;
+                                case 9: WizardOfTreldan.setGruulsLairScene();
+                                    break;
+                                case 10: WizardOfTreldan.setClearingScene();
+                                    break;
+                                case 11: WizardOfTreldan.setDungeonScene();
+                                    break;
+                                //SET THESE TWO !
+                                case 12: WizardOfTreldan.setMenuScene();
+                                    break;
+                                case 13: WizardOfTreldan.setMenuScene();
+                                    break;
+                                default: WizardOfTreldan.setMenuScene();
                                     break; 
                             }
                         }
