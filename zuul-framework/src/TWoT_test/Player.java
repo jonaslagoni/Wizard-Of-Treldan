@@ -112,18 +112,19 @@ public class Player{
         this.defValue = defValue;
     }
 
-    /**
-     * @return the health
-     */
-    public int getHealth() {
-        return health;
-    }
 
     /**
      * @param health the health to set
      */
     public void setHealth(int health) {
         this.health = health;
+    }
+    
+    /**
+     * @return the health
+     */
+    public int getHealth() {
+        return health;
     }
     
     public void regenHealth(int healthToRegen){
