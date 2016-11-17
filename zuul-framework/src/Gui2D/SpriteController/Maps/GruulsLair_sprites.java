@@ -70,6 +70,18 @@ public class GruulsLair_sprites{
         
         // WALL END
         
+        // EXIT START
+        
+        List<SingleSprite> exit_gruulsLairList = new ArrayList();
+        exit_gruulsLairList.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite exit_gruulsLair = new Groupsprite_random(exit_gruulsLairList);
+        exit_gruulsLair.setSize(256, 32);
+        exit_gruulsLair.setPosition(377, 512);
+        spriteList.add(exit_gruulsLair);
+        
+        // EXIT END
+        
         // MISC ITEMS START
         
         List<SingleSprite> randomVanitySpritesList1 = new ArrayList();
