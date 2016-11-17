@@ -94,6 +94,21 @@ public class GruulsLair_sprites{
         
         // MISC ITEMS END
 
+        // Enemies START
+        
+        List<SingleSprite> enemies = new ArrayList();
+        
+        Sprite gruul = world.getMisc_sprites().getEnemy_Golem();
+        
+        gruul.setSize(43, 59);
+        gruul.setPosition(250, 250);
+        
+        spriteList.add(gruul);
+        
+        enemies.add((SingleSprite)gruul);
+        
+        // Enemies END
+        
     }
 
     /**

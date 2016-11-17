@@ -137,6 +137,33 @@ public class Dungeon_sprites {
         
         // END OF MISC
         
+        // Enemies START
+        
+        List<SingleSprite> enemies = new ArrayList();
+        
+        Sprite skeleton1 = world.getMisc_sprites().getEnemy_Skeleton();
+        Sprite skeleton2 = world.getMisc_sprites().getEnemy_Skeleton();
+        Sprite skeleton3 = world.getMisc_sprites().getEnemy_Skeleton();
+        
+        skeleton1.setSize(30, 47);
+        skeleton1.setPosition(250, 250);
+        
+        skeleton2.setSize(30, 47);
+        skeleton2.setPosition(350, 250);
+        
+        skeleton3.setSize(30, 47);
+        skeleton3.setPosition(450, 250);
+        
+        spriteList.add(skeleton1);
+        spriteList.add(skeleton2);
+        spriteList.add(skeleton3);
+        
+        enemies.add((SingleSprite)skeleton1);
+        enemies.add((SingleSprite)skeleton2);
+        enemies.add((SingleSprite)skeleton3);
+        
+        // Enemies END
+        
     }
 
     /**

@@ -5,21 +5,15 @@
  */
 package JavaFXSimple;
 
-import static TWoT_test.CommandWord.USE;
-import TWoT_test.*;
-import static TWoT_test.CommandWord.GO;
-import java.util.ArrayList;
+import TWoT_A1.*;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -40,9 +34,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.swing.event.HyperlinkEvent;
 
 /**
  *
@@ -59,6 +52,7 @@ public class GUIFX extends Application {
     private ListView<AnchorPane> inventoryListView;
     private ObservableList<AnchorPane> inventory;
     private String help;
+    private TextField nameArea;
     
     private TableView<InventoryItems> table = new TableView();
     private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
@@ -87,7 +81,7 @@ public class GUIFX extends Application {
         textArea = new TextArea();
         inputArea = new TextField();
         label = new Label();
-        Scene scene = new Scene(new Group());
+        nameArea = new TextField();
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -128,13 +122,9 @@ public class GUIFX extends Application {
         healthbar.setPrefSize(308, 28);
         healthbar.relocate(264, 260);
         
-        HBox hbox = new HBox();
-        Label label1 = new Label("Health");
+        Label label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("RED"));
-        label1.relocate(270, 266);
-        hbox.setSpacing(10);
-        hbox.getChildren().add((label1));
-        ((Group) scene.getRoot()).getChildren().add(hbox);
+        label1.relocate(270, 265);
         
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
@@ -183,11 +173,25 @@ public class GUIFX extends Application {
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
         
+        
+        Label setNamePls = new Label("ENTER YOUR NAME: ");
+        
+        VBox nameField = new VBox();
+        nameField.setMaxWidth(300);
+        nameField.setMinWidth(300);
+        nameField.setMaxHeight(50);
+        nameField.setMinHeight(50);
+        nameField.relocate(106, 119);
+        nameField.getChildren().addAll(setNamePls, nameArea);
+        
         Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
+        
         Pane root2 = new Pane(menuButtons);
+        Pane root3 = new Pane(nameField);
         
         Scene scene1 = new Scene(root, 1052, 288);
         Scene menu = new Scene(root2, 512, 288);
+        Scene nameScene = new Scene(root3, 512, 288);
                 
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -198,7 +202,7 @@ public class GUIFX extends Application {
             root.setEffect(null);
         });
         button_play.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            primaryStage.setScene(scene1);
+            primaryStage.setScene(nameScene);
         });
         button_help.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             help=printHelp();
@@ -221,40 +225,55 @@ public class GUIFX extends Application {
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
-        
+        nameField.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent k){
+                if(k.getCode().equals(KeyCode.ENTER)){
+                    twot.setPlayerName(nameArea.getText());
+                    primaryStage.setScene(scene1);
+                }
+            }
+        });
         button_exit.setOnAction(actionEvent -> Platform.exit());
         
         inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
-                        CommandWords commandWord = new CommandWords();
                         String temp = inputArea.getText().toLowerCase();
                         String[] word = temp.split(" ");
-                        System.out.println(temp);
-                        Command command = new Command(commandWord.getCommandWord(word[0]), word[1]);
-                        String commando = word[0];
+                        CommandWords commandWordd = new CommandWords();
+                        if(word.length >= 2){
+                        Command command = new Command(commandWordd.getCommandWord(word[0]), word[1]);
+                        CommandWord commandWord = command.getCommandWord();
                         
-                        switch(commando){
-                            case "go": commando = "go";{
-                            for(String s: twot.goTo(command)){
-                            textArea.appendText("\n" + s + "\n");
-                            }
-                                inputArea.clear();
-                            }
-                            case "use": commando = "use";{
-                                for(String s: twot.useItem(command)){
-                                textArea.appendText("\n" + s + "\n");
-                                }
-                                inputArea.clear();
-                            }
-                            case word[1] == null : {
+                            switch(commandWord){
+                                case GO:
+                                    for(String s: twot.goTo(command)){
+                                        textArea.appendText("\n" + s + "\n");
+                                    }
+                                    inputArea.clear();
+                                    updateInventory();
+                                    break;
+                                
+                                case USE:
+                                    for(String s: twot.useItem(command)){
+                                        textArea.appendText("\n" + s + "\n");
+                                    }
+                                    inputArea.clear();
+                                    break;
+                                
+                                default:
+                                    textArea.appendText("\ndoes not compute ");
+                                    inputArea.clear();
+                                    break;
                                 
                             }
-                            default:
-                                textArea.appendText("does not compute");
-                                inputArea.clear();
                         }
-                }
+                        else{
+                            textArea.appendText("\nYou must enter the commandword, and direction!");
+                            inputArea.clear();
+                        }
+                }     
             }
         });
                 
@@ -269,5 +288,19 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
+    }
+    
+    public void updateInventory(){
+        List<Item> l = twot.getInventoryItems();
+        data.removeAll(data);
+        for(Item i: l){
+            if(i instanceof UseableItem){
+                data.add(new InventoryItems(i.getItemName(), "Usable Item", i.getItemDescription()));
+            } else if (i instanceof QuestItem) {
+                data.add(new InventoryItems(i.getItemName(), "Quest Item", i.getItemDescription()));
+            } else if(i instanceof EquippableItem) {
+                data.add(new InventoryItems(i.getItemName(), "Equippable Item", i.getItemDescription()));
+            }
+        }
     }
 }
