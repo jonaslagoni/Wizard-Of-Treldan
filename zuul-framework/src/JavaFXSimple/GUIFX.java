@@ -36,6 +36,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.swing.event.HyperlinkEvent;
 
 /**
  *
@@ -51,6 +52,7 @@ public class GUIFX extends Application {
     private ProgressBar healthbar;
     private Label label;
     private String help;
+    private TextField nameArea;
     
     private TableView<InventoryItems> table = new TableView();
     private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
@@ -80,7 +82,11 @@ public class GUIFX extends Application {
         textArea = new TextArea();
         inputArea = new TextField();
         label = new Label();
+<<<<<<< HEAD
         statsArea = new TextArea();
+=======
+        nameArea = new TextField();
+>>>>>>> origin/master
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -181,11 +187,29 @@ public class GUIFX extends Application {
         inputField.relocate(264, 260);
         inputField.getChildren().addAll(inputArea);
         
+<<<<<<< HEAD
         Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, statsField);
+=======
+        
+        Label setNamePls = new Label("ENTER YOUR NAME: ");
+        
+        VBox nameField = new VBox();
+        nameField.setMaxWidth(300);
+        nameField.setMinWidth(300);
+        nameField.setMaxHeight(50);
+        nameField.setMinHeight(50);
+        nameField.relocate(106, 119);
+        nameField.getChildren().addAll(setNamePls, nameArea);
+        
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
+        
+>>>>>>> origin/master
         Pane root2 = new Pane(menuButtons);
+        Pane root3 = new Pane(nameField);
         
         Scene scene1 = new Scene(root, 1052, 512);
         Scene menu = new Scene(root2, 512, 288);
+        Scene nameScene = new Scene(root3, 512, 288);
                 
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -196,7 +220,7 @@ public class GUIFX extends Application {
             root.setEffect(null);
         });
         button_play.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            primaryStage.setScene(scene1);
+            primaryStage.setScene(nameScene);
         });
         button_help.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             help=printHelp();
@@ -219,7 +243,15 @@ public class GUIFX extends Application {
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
-        
+        nameField.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent k){
+                if(k.getCode().equals(KeyCode.ENTER)){
+                    twot.setPlayerName(nameArea.getText());
+                    primaryStage.setScene(scene1);
+                }
+            }
+        });
         button_exit.setOnAction(actionEvent -> Platform.exit());
         
         inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
@@ -227,7 +259,6 @@ public class GUIFX extends Application {
                 if(k.getCode().equals(KeyCode.ENTER)){
                         String temp = inputArea.getText().toLowerCase();
                         String[] word = temp.split(" ");
-                        System.out.println(temp);
                         CommandWords commandWordd = new CommandWords();
                         if(word.length >= 2){
                         Command command = new Command(commandWordd.getCommandWord(word[0]), word[1]);

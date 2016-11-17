@@ -41,6 +41,7 @@ public class TWoT implements Serializable{
         player.setDamage(30);
         player.addItemToInventory(new EquippableItem("Handaxe2", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55504));
         player.addItemToInventory(new EquippableItem("Handaxe1", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55999));
+        player.addItemToInventory(new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. "));
     }   
     
     /**
@@ -429,11 +430,10 @@ public class TWoT implements Serializable{
                     for(Item i: getInventoryItems()){
                         if(i instanceof QuestItem){
                             if(((QuestItem)i).getItemId() == 99902){
-                                description.add("Thank you, thank you so much, i dont know what I would do without them \"Please, leave the village with us, this place is lost to 	the undead anyway, nothing is left for the living\" You exit the village through the back gate and 'aquire' a horse from the stables nearby and ride it to the forest of Treldan where your hideout is.");
+                                description.add("Thank you, thank you so much, i dont know what I would do without them \"Please, leave the village through the gate.");
                                 player.removeInventoryItem(i);
                                 Interior roomVillageExit4 = new Exit(roomForest);
                                 roomVillage.addMapInterior("forest", roomVillageExit4);
-                                roomVillage.removeInterior("guard");
                                 return description;
                             }
                         }

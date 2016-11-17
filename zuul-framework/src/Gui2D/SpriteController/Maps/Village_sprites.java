@@ -124,12 +124,14 @@ public class Village_sprites{
         Sprite village_tree_random = new Groupsprite_GroupRender(village_background_trees);
         village_tree_random.setSize(100,100);
         village_tree_random.setPosition(720, 10);
+        village_tree_random.setBoundary(new Rectangle2D(village_tree_random.getPositionX(), village_tree_random.getPositionY(), village_tree_random.getWidth()+20, village_tree_random.getHeight()+130));
         village_background_sprites.add(village_tree_random);
         
         village_background_trees.add(world.getMisc_sprites().getTree1());
         Sprite village_tree_random2 = new Groupsprite_GroupRender(village_background_trees);
         village_tree_random2.setSize(100,100);
         village_tree_random2.setPosition(150, 10);
+        village_tree_random2.setBoundary(new Rectangle2D(village_tree_random2.getPositionX(), village_tree_random2.getPositionY(), village_tree_random2.getWidth()+20, village_tree_random2.getHeight()+130));
         village_background_sprites.add(village_tree_random2);
         
  
