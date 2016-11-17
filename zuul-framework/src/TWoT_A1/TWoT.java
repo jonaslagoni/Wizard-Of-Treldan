@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TWoT implements Serializable{
     // Init variabels
@@ -254,12 +255,12 @@ public class TWoT implements Serializable{
      * getRooms
      * @return 
      */
-    public HashMap<String, String> getWelcomeMessages(){
-        HashMap<String, String> welcomeList = new HashMap();
-        welcomeList.put("welcomeMessage1", "Welcome to the World of Zuul!");
-        welcomeList.put("welcomeMessage2", "World of Zuul is a new, incredibly boring adventure game.");
-        welcomeList.put("needHelp", "Type '" + CommandWord.HELP + "' if you need help.");
-        welcomeList.put("getRooms", currentRoom.getDescription());
+    public HashMap<Integer, String> getWelcomeMessages(){
+        HashMap<Integer, String> welcomeList = new HashMap();
+        welcomeList.put(1, "Welcome to the World of Zuul!\n");
+        welcomeList.put(2, "World of Zuul is a new, incredibly boring adventure game.\n");
+        welcomeList.put(3, "Type '" + TWoT_test.CommandWord.HELP + "' if you need help.\n\n");
+        welcomeList.put(4, currentRoom.getDescription() + "\n");
         return welcomeList;
     }
 
@@ -712,24 +713,48 @@ public class TWoT implements Serializable{
         return scoreList;
     }
     
-    public ArrayList<ArrayList<Item>> getInventory() {
-        ArrayList<ArrayList<Item>> inventory = new ArrayList();
-        ArrayList<Item> questitem = new ArrayList();
-        ArrayList<Item> equippableitem = new ArrayList();
-        ArrayList<Item> useableitem = new ArrayList();
-       
-            for(Item i: player.getInventoryItems()) {
-                if(i instanceof QuestItem){
-                    questitem.add(i);
-                }else if(i instanceof EquippableItem){
-                    equippableitem.add(i);
-                }else if(i instanceof UseableItem){
-                    useableitem.add(i);
+    public ArrayList<String> getInventory() {
+        ArrayList<String> inventory = new ArrayList();
+        List<TWoT_A1.Item> usableItems = new ArrayList();
+        List<TWoT_A1.Item> equippableItems = new ArrayList();
+        List<TWoT_A1.Item> questItems = new ArrayList();
+            inventory.add("\n|--INVENTORY---\n");
+            for(TWoT_A1.Item i: getInventoryItems()){
+                if(i instanceof TWoT_A1.QuestItem){
+                    questItems.add(i);
+                } else if (i instanceof TWoT_A1.UseableItem){
+                    usableItems.add(i);
+                } else if (i instanceof TWoT_A1.EquippableItem){
+                    equippableItems.add(i);
                 }
             }
-            inventory.add((ArrayList)questitem);
-            inventory.add((ArrayList)equippableitem);
-            inventory.add((ArrayList)useableitem);
+            inventory.add("|QUEST ITEMS|\n");
+            if(!questItems.isEmpty()){
+                for(TWoT_A1.Item q: questItems){
+                    inventory.add(q.getItemName() + " - " + q.getItemDescription() + "\n");
+                }
+            }else{
+                inventory.add("No items\n");
+            }
+            
+            inventory.add("|USABLE ITEMS|\n");
+            
+            if(!usableItems.isEmpty()){
+                for(TWoT_A1.Item u: usableItems){
+                    inventory.add(u.getItemName() + " - " + u.getItemDescription() + "\n");
+                }
+            }else{
+                inventory.add("No items\n");
+            }
+            
+            inventory.add("|EQUIPPABLE ITEMS|\n");
+            if(!equippableItems.isEmpty()){
+                for(TWoT_A1.Item e: equippableItems){
+                    inventory.add(e.getItemName() + " - " + e.getItemDescription() + "\n");
+                }
+            }else{
+                inventory.add("No items\n");
+            }
             return inventory;
     }
     
@@ -782,6 +807,28 @@ public class TWoT implements Serializable{
      * 
      * @return 
      */
+    
+    public ArrayList<String> getPlayer(){
+        ArrayList<String> player = new ArrayList();
+            player.add("\n");
+            player.add("******************\n");
+            player.add("Name    : "+getPlayerName() + "\n");
+            player.add("Health  : "+getPlayerHealth() + "\n");
+            player.add("Attack  : "+getPlayerAtt() + "\n");
+            player.add("Defense : "+getPlayerDeff() + "\n");
+            player.add("Gold    : "+getPlayerGold() + "\n");
+            player.add("******************\n");
+            player.add("**EQUIPPED ITEMS**\n");
+            if(!getEquippableItems().isEmpty()){
+                for(Map.Entry<TWoT_A1.EquippableItem.EItem, TWoT_A1.EquippableItem> ei: getEquippableItems().entrySet()){
+                    player.add(ei.getKey() + ": " + ei.getValue().getItemName() + " : ATTV " + ei.getValue().getAttackBuff() + " : DEFFV " + ei.getValue().getDefenseBuff());
+                }
+            }else{
+                player.add("No equipped items..");
+            }
+        return player;
+    }
+    
     public double getPlayerAtt(){
         return player.getAttValue();
     }
