@@ -312,9 +312,8 @@ public class TWoT implements Serializable{
                         }
                     }
                 }
-                description.add("A giant lock is on the door and it seems indestructible.");
-                description.add("Some sort of lockpick would come in handy.");
-                return description;
+                description.add("A giant lock is on the door and it seems indestructible.\nSome sort of lockpick would come in handy.");
+         return description;
             }else if(currentRoom == roomCave){
                 currentRoom.setDescription("***Troll Cave***\nThe place is still dark.");
                 if(roomCave.getMapInterior("troll1") == null && roomCave.getMapInterior("troll2") == null && roomCave.getMapInterior("troll3") == null){
@@ -710,24 +709,48 @@ public class TWoT implements Serializable{
         return scoreList;
     }
     
-    public ArrayList<ArrayList<Item>> getInventory() {
-        ArrayList<ArrayList<Item>> inventory = new ArrayList();
-        ArrayList<Item> questitem = new ArrayList();
-        ArrayList<Item> equippableitem = new ArrayList();
-        ArrayList<Item> useableitem = new ArrayList();
-       
-            for(Item i: player.getInventoryItems()) {
+    public ArrayList<String> getInventory() {
+        ArrayList<String> inventory = new ArrayList();
+        List<Item> usableItems = new ArrayList();
+        List<Item> equippableItems = new ArrayList();
+        List<Item> questItems = new ArrayList();
+            inventory.add("\n|--INVENTORY---\n");
+            for(Item i: getInventoryItems()){
                 if(i instanceof QuestItem){
-                    questitem.add(i);
-                }else if(i instanceof EquippableItem){
-                    equippableitem.add(i);
-                }else if(i instanceof UseableItem){
-                    useableitem.add(i);
+                    questItems.add(i);
+                } else if (i instanceof UseableItem){
+                    usableItems.add(i);
+                } else if (i instanceof EquippableItem){
+                    equippableItems.add(i);
                 }
-            }                   
-            inventory.add((ArrayList)questitem);
-            inventory.add((ArrayList)equippableitem);
-            inventory.add((ArrayList)useableitem);
+            }
+            inventory.add("|QUEST ITEMS|\n");
+            if(!questItems.isEmpty()){
+                for(Item q: questItems){
+                    inventory.add(q.getItemName() + " - " + q.getItemDescription() + "\n");
+                }
+            }else{
+                inventory.add("No items\n");
+            }
+            
+            inventory.add("|USABLE ITEMS|\n");
+            
+            if(!usableItems.isEmpty()){
+                for(Item u: usableItems){
+                    inventory.add(u.getItemName() + " - " + u.getItemDescription() + "\n");
+                }
+            }else{
+                inventory.add("No items\n");
+            }
+            
+            inventory.add("|EQUIPPABLE ITEMS|\n");
+            if(!equippableItems.isEmpty()){
+                for(Item e: equippableItems){
+                    inventory.add(e.getItemName() + " - " + e.getItemDescription() + "\n");
+                }
+            }else{
+                inventory.add("No items\n");
+            }
             return inventory;
     }
     

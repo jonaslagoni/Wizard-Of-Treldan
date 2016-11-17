@@ -32,12 +32,10 @@ import javafx.stage.Stage;
 public class GUIFX extends Application {
 
     private TWoT twot;
-    private Parser parser;
+    
     private TextArea textArea;
     private TextField inputArea;
     private String help;
-    private String player;
-    private int counter;
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
@@ -48,8 +46,7 @@ public class GUIFX extends Application {
     public GUIFX () {
         
         twot = new TWoT();
-        parser = new Parser();
-        
+               
     }
     public static void main(String[] args) {
         launch(args);
@@ -89,7 +86,7 @@ public class GUIFX extends Application {
         button_clear.setMaxWidth(90);
         
         VBox gameButtons = new VBox(20);
-        gameButtons.setLayoutX(422);
+        gameButtons.setLayoutX(572);
         gameButtons.getChildren().addAll(button_player, button_inventory, button_clear, button_help, button_exit);
         
         VBox menuButtons = new VBox(20);
@@ -99,7 +96,8 @@ public class GUIFX extends Application {
               
         
         VBox outputField = new VBox(20);
-        textArea.setMaxWidth(422);
+        textArea.setMaxWidth(572);
+        textArea.setMinWidth(572);
         textArea.setMinHeight(258);
         textArea.setMaxHeight(258);
         textArea.setWrapText(true);
@@ -115,7 +113,7 @@ public class GUIFX extends Application {
         Pane root = new Pane(gameButtons, outputField, inputField);
         Pane root2 = new Pane(menuButtons);
         
-        Scene scene1 = new Scene(root, 512, 288);
+        Scene scene1 = new Scene(root, 768, 288);
         Scene menu = new Scene(root2, 512, 288);
                 
         DropShadow shade = new DropShadow();
@@ -141,7 +139,11 @@ public class GUIFX extends Application {
             textArea.appendText(player);
         });
         button_inventory.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-           textArea.appendText(twot.printInventory());
+            String inventory = "";
+            for(String s : twot.getInventory()){
+               inventory += s;
+           }
+            textArea.appendText(inventory);
         });
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
@@ -153,10 +155,12 @@ public class GUIFX extends Application {
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
                         CommandWords commandWord = new CommandWords();
-                        Command command = new Command(commandWord.getCommandWord(k.getText()), k.getText());
-                        twot.goTo(command);
+                        String temp = inputArea.getText();
+                        String[] word = temp.split(" ");
+                        System.out.println(temp);
+                        Command command = new Command(commandWord.getCommandWord(word[0]), word[1]);
                         for(String s: twot.goTo(command)){
-                            textArea.appendText(s);
+                            textArea.appendText("\n" + s + "\n");
                         }
                         inputArea.clear();
                 }
