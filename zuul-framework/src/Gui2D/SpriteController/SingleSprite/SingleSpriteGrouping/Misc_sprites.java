@@ -362,9 +362,23 @@ public class Misc_sprites {
     public SingleSprite getEnemy_Imp3() {
         return new Enemy_imp3().getSprite();
     }
+    public SingleSprite getEnemy_abbaration() {
+        return new Enemy_abbaration().getSprite();
+    }
 
     public SingleSprite getDoor_Metal_2() {
         return new Door_Metal_2().getSprite();
     }
+    
+    
+    //evil wizard room
+    public SingleSprite getLava_pillar_2(){
+        return new Lava_pillar_2().getSprite();
+    }
+    
+    public SingleSprite getLava_pillar_3() {
+        return new Lava_pillar_3().getSprite();
+    }
+
 }
 
