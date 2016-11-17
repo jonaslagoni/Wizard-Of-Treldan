@@ -12,6 +12,10 @@ import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
 import TWoT_A1.Command;
 import TWoT_A1.CommandWord;
+import TWoT_A1.Exit;
+import TWoT_A1.Interior;
+import TWoT_A1.Item;
+import TWoT_A1.QuestItem;
 import TWoT_A1.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,6 +83,11 @@ public class Village extends Map {
         Canvas village_background = new Canvas(1024, 512);
         //add the canvas to the group
         root.getChildren().add(village_background);
+        
+        //set canvas of our items
+        Canvas village_items = new Canvas(1024, 512);
+        //add the canvas to the group
+        root.getChildren().add(village_items);
 
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
@@ -90,10 +99,6 @@ public class Village extends Map {
         //add the canvas to the group
         root.getChildren().add(village_foreground);
 
-        //set canvas of our items
-        Canvas village_items = new Canvas(1024, 512);
-        //add the canvas to the group
-        root.getChildren().add(village_items);
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -184,6 +189,10 @@ public class Village extends Map {
             sprite.render(foreground_gc);
         }
 
+        //add a color overlay to the foreground canvas
+        foreground_gc.setFill(Color.rgb(0, 0, 0, 0.5));
+        foreground_gc.fillRect(0, 0, 1024, 512);
+        
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(995, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(-2, 0, 1, 512);
@@ -195,6 +204,7 @@ public class Village extends Map {
             private long lastNanoTime = System.nanoTime();
             private boolean hasPrinted_door2 = false;
             private boolean hasPrinted_door3= false;
+            private boolean hasItem= false;
 
             //what to do each cycle
             @Override
@@ -217,14 +227,19 @@ public class Village extends Map {
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_left(sprites_foreground.get(0))
+                            || player.intersects_left(sprites_still.get(7))
+                            || player.intersects_left(sprites_still.get(8))
+                            || player.intersects_left(sprites_still.get(9))
                             || player.intersects_left(sprites_still.get(10))
                             || player.intersects_left(sprites_still.get(11))
                             || player.intersects_left(sprites_still.get(12))
+                            || player.intersects_left(sprites_still.get(13))
                             || player.intersects_left(sprites_still.get(19))
                             || player.intersects_left(sprites_still.get(20))
                             || player.intersects_left(sprites_still.get(21))
                             || player.intersects_left(sprites_still.get(22))
-                            || player.intersects_left(sprites_still.get(18))) {
+                            || player.intersects_left(sprites_still.get(18))
+                            || player.intersects_left(sprites_still.get(23))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     } else if (player.intersects_left(sprites_foreground.get(0))) {
@@ -234,9 +249,8 @@ public class Village extends Map {
                     } else if (player.intersects_left(sprites_still.get(14))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house1"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "house1"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -274,9 +288,7 @@ public class Village extends Map {
                     }else if (player.intersects_left(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
+                        game.goTo(new Command(CommandWord.GO, "house3"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -287,7 +299,24 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    //if no collission
+                    //check collision with forrest door
+                    }else if (player.intersects_left(sprites_still.get(17))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        if (hasItem) {
+                            game.goTo(new Command(CommandWord.GO, "forest"));
+                            //remove all the inputs
+                            input.removeAll(input);
+                            //stop this AnimationTimer
+                            this.stop();
+                            //clear the textarea
+                            infobox.clear();
+                            //set the menu as a scene instead.
+                            setNewScene();
+                            //save the game when we walk out
+                            WizardOfTreldan.saveGame();
+                        }
+                    //if no colission
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -303,14 +332,19 @@ public class Village extends Map {
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
                     } else if (player.intersects_right(sprites_foreground.get(0))
+                            || player.intersects_right(sprites_still.get(7))
+                            || player.intersects_right(sprites_still.get(8))
+                            || player.intersects_right(sprites_still.get(9))
                             || player.intersects_right(sprites_still.get(10))
                             || player.intersects_right(sprites_still.get(11))
                             || player.intersects_right(sprites_still.get(12))
+                            || player.intersects_right(sprites_still.get(13))
                             || player.intersects_right(sprites_still.get(19))
                             || player.intersects_right(sprites_still.get(20))
                             || player.intersects_right(sprites_still.get(21))
                             || player.intersects_right(sprites_still.get(22))
-                            || player.intersects_right(sprites_still.get(18))) {
+                            || player.intersects_right(sprites_still.get(18))
+                            || player.intersects_right(sprites_still.get(23))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     } else if (player.intersects_right(sprites_foreground.get(0))) {
@@ -360,9 +394,8 @@ public class Village extends Map {
                     }else if (player.intersects_right(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "house1"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -373,7 +406,24 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    //if no collission
+                    //check collision with forrest door
+                    }else if (player.intersects_right(sprites_still.get(17))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        if (hasItem) {
+                            game.goTo(new Command(CommandWord.GO, "forest"));
+                            //remove all the inputs
+                            input.removeAll(input);
+                            //stop this AnimationTimer
+                            this.stop();
+                            //clear the textarea
+                            infobox.clear();
+                            //set the menu as a scene instead.
+                            setNewScene();
+                            //save the game when we walk out
+                            WizardOfTreldan.saveGame();
+                        }
+                    //if no colission
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -389,14 +439,19 @@ public class Village extends Map {
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_top(sprites_foreground.get(0))
+                            || player.intersects_top(sprites_still.get(7))
+                            || player.intersects_top(sprites_still.get(8))
+                            || player.intersects_top(sprites_still.get(9))
                             || player.intersects_top(sprites_still.get(10))
                             || player.intersects_top(sprites_still.get(11))
                             || player.intersects_top(sprites_still.get(12))
+                            || player.intersects_top(sprites_still.get(13))
                             || player.intersects_top(sprites_still.get(19))
                             || player.intersects_top(sprites_still.get(20))
                             || player.intersects_top(sprites_still.get(21))
                             || player.intersects_top(sprites_still.get(22))
-                            || player.intersects_top(sprites_still.get(18))) {
+                            || player.intersects_top(sprites_still.get(18))
+                            || player.intersects_top(sprites_still.get(23))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     } else if (player.intersects_top(sprites_foreground.get(0))) {
@@ -406,9 +461,8 @@ public class Village extends Map {
                     } else if (player.intersects_top(sprites_still.get(14))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house1"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "house1"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -446,9 +500,7 @@ public class Village extends Map {
                     }else if (player.intersects_top(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
+                        game.goTo(new Command(CommandWord.GO, "house3"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -459,7 +511,24 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    //if no collission
+                    //check collision with forrest door
+                    }else if (player.intersects_top(sprites_still.get(17))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        if (hasItem) {
+                            game.goTo(new Command(CommandWord.GO, "forest"));
+                            //remove all the inputs
+                            input.removeAll(input);
+                            //stop this AnimationTimer
+                            this.stop();
+                            //clear the textarea
+                            infobox.clear();
+                            //set the menu as a scene instead.
+                            setNewScene();
+                            //save the game when we walk out
+                            WizardOfTreldan.saveGame();
+                        }
+                    //if no colission
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -475,14 +544,19 @@ public class Village extends Map {
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_bottom(sprites_foreground.get(0))
+                            || player.intersects_bottom(sprites_still.get(7))
+                            || player.intersects_bottom(sprites_still.get(8))
+                            || player.intersects_bottom(sprites_still.get(9))
                             || player.intersects_bottom(sprites_still.get(10))
                             || player.intersects_bottom(sprites_still.get(11))
                             || player.intersects_bottom(sprites_still.get(12))
+                            || player.intersects_bottom(sprites_still.get(13))
                             || player.intersects_bottom(sprites_still.get(19))
                             || player.intersects_bottom(sprites_still.get(20))
                             || player.intersects_bottom(sprites_still.get(21))
                             || player.intersects_bottom(sprites_still.get(22))
-                            || player.intersects_bottom(sprites_still.get(18))) {
+                            || player.intersects_bottom(sprites_still.get(18))
+                            || player.intersects_bottom(sprites_still.get(23))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     } else if (player.intersects_bottom(sprites_foreground.get(0))) {
@@ -492,9 +566,8 @@ public class Village extends Map {
                     } else if (player.intersects_bottom(sprites_still.get(14))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house1"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "house1"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -534,9 +607,7 @@ public class Village extends Map {
                     }else if (player.intersects_bottom(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house3"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
+                        game.goTo(new Command(CommandWord.GO, "house3"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -547,7 +618,24 @@ public class Village extends Map {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    //if no collission
+                    //check collision with forrest door
+                    }else if (player.intersects_bottom(sprites_still.get(17))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        if (hasItem) {
+                            game.goTo(new Command(CommandWord.GO, "forest"));
+                            //remove all the inputs
+                            input.removeAll(input);
+                            //stop this AnimationTimer
+                            this.stop();
+                            //clear the textarea
+                            infobox.clear();
+                            //set the menu as a scene instead.
+                            setNewScene();
+                            //save the game when we walk out
+                            WizardOfTreldan.saveGame();
+                        }
+                    //if no colission
                     }else {
                         player.setVelocity(0, 100);
                     }
@@ -560,11 +648,23 @@ public class Village extends Map {
                         if (player.intersect(sprites_interact.get(0))) {
                             for (String s : game.goTo(new Command(CommandWord.GO, "axe"))) {
                                 infobox.appendText("\n" + s + "\n");
-                                System.out.println(s);
                             }
                             sprites_interact.remove(0);
                             playerinventory.update(game);
                         }
+                    }
+                    if (player.intersect(sprites_still.get(13))) {
+                        for(Item i: game.getInventoryItems()){
+                            if(i instanceof QuestItem){
+                                if(((QuestItem)i).getItemId() == 99902){
+                                    hasItem = true;
+                                }
+                            }
+                        }
+                        for (String s : game.goTo(new Command(CommandWord.GO, "guard"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
                     }
                     menu_input.remove("E");
                 }
@@ -604,6 +704,9 @@ public class Village extends Map {
                         break;
                     case 5:
                         WizardOfTreldan.setHouse3Scene();
+                        break;
+                    case 6:
+                        WizardOfTreldan.setForestScene();
                         break;
                 }
             }
