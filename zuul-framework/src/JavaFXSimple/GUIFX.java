@@ -178,6 +178,7 @@ public class GUIFX extends Application {
         label1.setTextFill(Color.web("BLACK"));
         label1.relocate(10, 269);
         
+        inputArea.setPromptText("Write here: ");
         VBox inputField = new VBox(20);
         inputField.setPrefSize(308, 28);
         inputField.relocate(264, 265);
