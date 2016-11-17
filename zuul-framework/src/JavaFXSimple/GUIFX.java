@@ -175,7 +175,7 @@ public class GUIFX extends Application {
         healthbar.relocate(0, 265);
                        
         label1 = new Label("Health "+ twot.getPlayerHealth());
-        label1.setTextFill(Color.web("RED"));
+        label1.setTextFill(Color.web("BLACK"));
         label1.relocate(10, 269);
         
         VBox inputField = new VBox(20);
