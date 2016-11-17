@@ -32,6 +32,18 @@ public class Forest_sprites{
     
     public void setForest_background_SingleSprites(){
         
+        // BOUNDRIES FOR HOUSE START
+        
+        List<SingleSprite> boundriesWizardHouseList = new ArrayList();
+        boundriesWizardHouseList.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite boundWizardHouse = new Groupsprite_random(boundriesWizardHouseList);
+        boundWizardHouse.setSize(192, 128);
+        boundWizardHouse.setPosition(316, 305);
+        background_sprites.add(boundWizardHouse);
+        
+        // BOUNDRIES FOR HOUSE END
+        
         // START OF FOREST BACKGROUND
         
         List<SingleSprite> forestBackground1List = new ArrayList();
@@ -195,7 +207,6 @@ public class Forest_sprites{
         
         Sprite wizardHouse_1 = world.getMisc_sprites().getWizardHouse();
         wizardHouse_1.setPosition(297, 163);
-        wizardHouse_1.setBoundary(new Rectangle2D(wizardHouse_1.getPositionX(), wizardHouse_1.getPositionY(), wizardHouse_1.getWidth()-30, wizardHouse_1.getHeight()-10));
         background_sprites.add(wizardHouse_1);
         Sprite wizardHouse_2 = world.getMisc_sprites().getWizardHouse();
         wizardHouse_2.setPosition(297, 163);

@@ -198,11 +198,11 @@ public class Forest extends Map{
                         //check if the player walks into a sprite
                     } else if (player.intersects_left(sprites_background.get(13))
                               || player.intersects_left(sprites_background.get(14))
-                              || player.intersects_left(sprites_foreground.get(2))
+                              || player.intersects_left(sprites_background.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    } else if (player.intersects_left(sprites_background.get(6))) {
+                    } else if (player.intersects_left(sprites_background.get(7))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
@@ -231,9 +231,9 @@ public class Forest extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    } else if (player.intersects_right(sprites_background.get(13))
-                              || player.intersects_right(sprites_background.get(14))
-                              || player.intersects_right(sprites_foreground.get(2))
+                    } else if (player.intersects_right(sprites_background.get(14))
+                              || player.intersects_right(sprites_background.get(15))
+                              || player.intersects_right(sprites_background.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -251,14 +251,14 @@ public class Forest extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_top(sprites_background.get(13))
-                              || player.intersects_top(sprites_background.get(14))
-                              || player.intersects_top(sprites_background.get(7))
-                              || player.intersects_top(sprites_foreground.get(2))
+                    } else if (player.intersects_top(sprites_background.get(14))
+                              || player.intersects_top(sprites_background.get(15))
+                              || player.intersects_top(sprites_background.get(8))
+                              || player.intersects_top(sprites_background.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    } else if (player.intersects_top(sprites_background.get(8))) {
+                    } else if (player.intersects_top(sprites_background.get(9))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
@@ -273,7 +273,7 @@ public class Forest extends Map{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    } else if (player.intersects_top(sprites_background.get(9))) {
+                    } else if (player.intersects_top(sprites_background.get(10))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
@@ -302,13 +302,13 @@ public class Forest extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_bottom(sprites_background.get(13))
-                              || player.intersects_bottom(sprites_background.get(14))
-                              || player.intersects_bottom(sprites_foreground.get(2))
+                    } else if (player.intersects_bottom(sprites_background.get(14))
+                              || player.intersects_bottom(sprites_background.get(15))
+                              || player.intersects_bottom(sprites_background.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    } else if (player.intersects_bottom(sprites_background.get(10))) {
+                    } else if (player.intersects_bottom(sprites_background.get(11))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
