@@ -843,7 +843,7 @@ public class TWoT implements Serializable{
      * 
      * @return 
      */
-    public double getPlayerHealth(){
+    public int getPlayerHealth(){
         return player.getHealth();
     }
     /**
