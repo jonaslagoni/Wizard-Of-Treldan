@@ -15,6 +15,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -35,6 +36,7 @@ public class GUIFX extends Application {
     
     private TextArea textArea;
     private TextField inputArea;
+    private ProgressBar healthbar;
     private String help;
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
@@ -94,6 +96,9 @@ public class GUIFX extends Application {
         menuButtons.setLayoutY(30);
         menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
               
+        healthbar = new ProgressBar(twot.getPlayerHealth()/100);
+        healthbar.setPrefSize(292, 10);
+        healthbar.relocate(4, 25);
         
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
@@ -110,7 +115,7 @@ public class GUIFX extends Application {
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField);
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar);
         Pane root2 = new Pane(menuButtons);
         
         Scene scene1 = new Scene(root, 768, 288);
