@@ -173,7 +173,6 @@ public class GUIFX extends Application {
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
         
-<<<<<<< HEAD
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
         
@@ -185,11 +184,8 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, hbox);
-=======
         Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
->>>>>>> origin/master
+        
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         
