@@ -77,6 +77,7 @@ public abstract class Sprite {
     public void setSpriteSize(double sprite_width, double sprite_height){
         this.setSprite_height(sprite_height);
         this.setSprite_width(sprite_width);
+        updateBoundary();
     }
     
     /**
@@ -87,6 +88,7 @@ public abstract class Sprite {
     public void setPosition(double x, double y) {
         setPositionX(x);
         setPositionY(y);
+        updateBoundary();
     }
 
     /**
@@ -129,6 +131,7 @@ public abstract class Sprite {
     public void setSize(double width, double height){
         this.setWidth(width);
         this.setHeight(height);
+        updateBoundary();
     }
     
     /**
@@ -137,6 +140,7 @@ public abstract class Sprite {
      */
     public void addPositionX(double add){
         setPositionX(getPositionX() + add);
+        updateBoundary();
     }
     
     /**
@@ -145,6 +149,7 @@ public abstract class Sprite {
      */
     public void addPositionY(double add){
         setPositionY(getPositionY() + add);
+        updateBoundary();
     }
     
     /**
@@ -166,6 +171,7 @@ public abstract class Sprite {
      */
     public void setPositionX(double positionX) {
         this.positionX = positionX;
+        updateBoundary();
     }
 
     /**
@@ -180,6 +186,7 @@ public abstract class Sprite {
      */
     public void setPositionY(double positionY) {
         this.positionY = positionY;
+        updateBoundary();
     }
 
     /**
@@ -222,6 +229,7 @@ public abstract class Sprite {
      */
     public void setWidth(double width) {
         this.width = width;
+        updateBoundary();
     }
 
     /**
@@ -236,6 +244,7 @@ public abstract class Sprite {
      */
     public void setHeight(double height) {
         this.height = height;
+        updateBoundary();
     }
 
     /**
@@ -273,4 +282,10 @@ public abstract class Sprite {
         this.boundary = boundary;
     }
     
+    /**
+     * 
+     */
+    public void updateBoundary(){
+        setBoundary(new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight()));
+    }
 }
