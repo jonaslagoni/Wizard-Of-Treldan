@@ -11,19 +11,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -37,7 +51,13 @@ public class GUIFX extends Application {
     private TextArea textArea;
     private TextField inputArea;
     private ProgressBar healthbar;
+    private ListView<AnchorPane> inventoryListView;
+    private ObservableList<AnchorPane> inventory;
     private String help;
+    
+    private TableView<InventoryItems> table = new TableView();
+    private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
+    
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
@@ -100,6 +120,36 @@ public class GUIFX extends Application {
         healthbar.setPrefSize(292, 10);
         healthbar.relocate(4, 25);
         
+        table.setEditable(true);
+        List<Item> l = twot.getInventoryItems();
+        for(Item i: l){
+            if(i instanceof UseableItem){
+                data.add(new InventoryItems(i.getItemName(), "Usable Item", i.getItemDescription()));
+            } else if (i instanceof QuestItem) {
+                data.add(new InventoryItems(i.getItemName(), "Quest Item", i.getItemDescription()));
+            } else if(i instanceof EquippableItem) {
+                data.add(new InventoryItems(i.getItemName(), "Equippable Item", i.getItemDescription()));
+            }
+        }
+        TableColumn itemName = new TableColumn("Item Name");
+        itemName.setMinWidth(100);
+        itemName.setCellValueFactory(
+                new PropertyValueFactory<InventoryItems, String>("itemName"));
+ 
+        TableColumn itemType = new TableColumn("Item Type");
+        itemType.setMinWidth(100);
+        itemType.setCellValueFactory(
+                new PropertyValueFactory<InventoryItems, String>("itemType"));
+ 
+        TableColumn itemDescription = new TableColumn("Description");
+        itemDescription.setMinWidth(200);
+        itemDescription.setCellValueFactory(
+                new PropertyValueFactory<InventoryItems, String>("itemDesc"));
+ 
+        table.setItems(data);
+        table.getColumns().addAll(itemName, itemType, itemDescription);
+        
+                
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
         textArea.setMinWidth(572);
@@ -183,7 +233,7 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
-        
+                
+        root.getChildren().add(table);
     }
 }
-

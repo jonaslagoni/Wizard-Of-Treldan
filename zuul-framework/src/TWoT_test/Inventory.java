@@ -8,6 +8,8 @@ package TWoT_test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -30,7 +32,7 @@ public class Inventory{
     public List<Item> getInventoryItems() {
         return itemInventory;
     }
-    
+        
     /**
      * 
      * @param i 

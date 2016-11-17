@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.collections.ObservableList;
 
 public class TWoT implements Serializable{
     // Init variabels
@@ -38,6 +39,9 @@ public class TWoT implements Serializable{
         player.setDamage(30);
         player.addItemToInventory(new EquippableItem("Handaxe2", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55504));
         player.addItemToInventory(new EquippableItem("Handaxe1", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55999));
+        player.addItemToInventory(new UseableItem("Yheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501, FOOD, 50));
+        player.addItemToInventory(new EquippableItem("lgnekjrandaxe1", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55999));
+
     }   
     
     /**

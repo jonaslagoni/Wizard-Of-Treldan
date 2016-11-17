@@ -5,6 +5,8 @@
  */
 package TWoT_test;
 
+import javafx.beans.property.SimpleStringProperty;
+
 
 /**
  *
