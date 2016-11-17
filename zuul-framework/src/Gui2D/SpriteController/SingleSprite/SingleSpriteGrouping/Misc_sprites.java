@@ -318,6 +318,24 @@ public class Misc_sprites {
         return new Bookshelf_1().getSprite();
     }
     
+    //npcs
+    public SingleSprite getVillage_woman() {
+        return new Village_woman().getSprite();
+    }
+    public SingleSprite getWizard_good_hood() {
+        return new Wizard_good_hood().getSprite();
+    }
+    public SingleSprite getWizard_good_beard() {
+        return new Wizard_good_beard().getSprite();
+    }
+    public SingleSprite getWizard_evil_battle() {
+        return new Wizard_evil_battle().getSprite();
+    }
+    public SingleSprite getWizard_evil() {
+        return new Wizard_evil().getSprite();
+    }
+    
+    
     //enemies
     public SingleSprite getEnemy_Skeleton() {
         return new Enemy_skeleton().getSprite();

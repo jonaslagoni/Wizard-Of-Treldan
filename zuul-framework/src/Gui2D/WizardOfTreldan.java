@@ -158,7 +158,16 @@ public class WizardOfTreldan extends Application {
     public static void setHouse1Scene(){
         primaryStage.setScene(house1.getScene());
     }
-
+    /**
+     * Force the game to load House2Scene
+     */
+    public static void setHouse2Scene(){
+        primaryStage.setScene(house2.getScene());
+    }
+    
+    public static void setHouse3Scene(){
+        primaryStage.setScene(house3.getScene());
+    }
         
     /**
      *  Force the game to load UnicornScene
@@ -174,16 +183,7 @@ public class WizardOfTreldan extends Application {
         primaryStage.setScene(forest.getScene());
     }
     
-    /**
-     * Force the game to load House2Scene
-     */
-    public static void setHouse2Scene(){
-        primaryStage.setScene(house2.getScene());
-    }
     
-    public static void setHouse3Scene(){
-        primaryStage.setScene(house3.getScene());
-    }
     
     /**
      * Force the game to load GruulsLairScene
