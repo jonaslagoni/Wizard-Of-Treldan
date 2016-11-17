@@ -123,7 +123,7 @@ public class GUIFX extends Application {
         HBox hbox = new HBox();
         Label label1 = new Label("Health");
         label1.setTextFill(Color.web("RED"));
-        label1.relocate(270, 266);
+        label1.relocate(270, 265);
         hbox.setSpacing(10);
         hbox.getChildren().add((label1));
         ((Group) scene.getRoot()).getChildren().add(hbox);
