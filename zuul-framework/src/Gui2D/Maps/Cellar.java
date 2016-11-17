@@ -418,7 +418,7 @@ public class Cellar extends Map{
             public void setNewScene(){
                 switch(game.getCurrentRoomId()){
                     case 2: 
-                        WizardOfTreldan.setMenuScene();
+                        WizardOfTreldan.setVillageScene();
                         break;
                 }
             }
