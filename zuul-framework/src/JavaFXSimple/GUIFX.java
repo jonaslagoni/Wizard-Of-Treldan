@@ -97,8 +97,8 @@ public class GUIFX extends Application {
         menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
               
         healthbar = new ProgressBar(twot.getPlayerHealth()/100);
-        healthbar.setPrefSize(292, 10);
-        healthbar.relocate(4, 25);
+        healthbar.setPrefSize(308, 28);
+        healthbar.relocate(264, 260);
         
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
@@ -110,7 +110,8 @@ public class GUIFX extends Application {
         outputField.getChildren().addAll(textArea);
         
         VBox inputField = new VBox(20);
-        inputArea.setMaxWidth(422);
+        inputArea.setMaxWidth(256);
+        inputArea.setMinWidth(256);
         inputArea.setMaxHeight(30);
         inputField.relocate(0, 260);
         inputField.getChildren().addAll(inputArea);
