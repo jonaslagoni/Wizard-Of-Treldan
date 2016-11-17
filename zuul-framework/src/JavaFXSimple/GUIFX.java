@@ -241,7 +241,6 @@ public class GUIFX extends Application {
                 if(k.getCode().equals(KeyCode.ENTER)){
                         String temp = inputArea.getText().toLowerCase();
                         String[] word = temp.split(" ");
-                        System.out.println(temp);
                         CommandWords commandWordd = new CommandWords();
                         if(word.length >= 2){
                         Command command = new Command(commandWordd.getCommandWord(word[0]), word[1]);
