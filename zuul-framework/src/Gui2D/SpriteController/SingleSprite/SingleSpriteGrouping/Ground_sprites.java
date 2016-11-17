@@ -46,6 +46,18 @@ public class Ground_sprites {
     public SingleSprite getEvilWizardsLair_2() {
         return new EvilWizardsLair_2().getSprite();
     }
+    /**
+     * @return Lava_1 texture
+     */
+    public SingleSprite getLava_1() {
+        return new Lava_1().getSprite();
+    }
+     /**
+     * @return Lava_2 texture
+     */
+    public SingleSprite getLava_2() {
+        return new Lava_2().getSprite();
+    }
     
 
     /**

@@ -21,6 +21,11 @@ public class Misc_sprites {
         return new Candle().getSprite();
     }
     
+    public SingleSprite getStairs_stone() {
+        return new Stairs_stone().getSprite();
+    }
+    
+    
     public SingleSprite getChestClosed(){
         return new Chest_closed().getSprite();
     }
