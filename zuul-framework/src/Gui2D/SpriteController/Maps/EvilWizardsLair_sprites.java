@@ -21,21 +21,35 @@ public class EvilWizardsLair_sprites{
     private SpriteController world;
     
     private List<Sprite> spriteList;
+    private List<Sprite> spriteList_foreground;
     
     public EvilWizardsLair_sprites(SpriteController world){
         this.world = world;
         this.spriteList = new ArrayList();
+        this.spriteList_foreground = new ArrayList();
     }
     
     public void setEvilWizardsLair_background_SingleSprites(){
         
         List<SingleSprite> backgroundCastleFloorList = new ArrayList();
-        backgroundCastleFloorList.add(world.getGround_sprite().getCastle_Stone_Floor());
+        backgroundCastleFloorList.add(world.getGround_sprite().getEvilWizardsLair_1());
+        backgroundCastleFloorList.add(world.getGround_sprite().getEvilWizardsLair_2());
         
         Sprite backgroundCastleFloor = new Groupsprite_random(backgroundCastleFloorList);
-        backgroundCastleFloor.setSize(384, 384);
-        backgroundCastleFloor.setPosition(320, 144);
+        backgroundCastleFloor.setSize(1024, 512);
+        backgroundCastleFloor.setPosition(0, 0);
         spriteList.add(backgroundCastleFloor);
+        
+        //STAGE
+        Sprite stage = world.getMisc_sprites().getEvilWizardsLair_Stage();
+        stage.setPosition(430,156);
+        spriteList_foreground.add(stage);
+        
+        //ENEMY DUDE
+        Sprite enemy = world.getMisc_sprites().getWizard_evil_battle();
+        enemy.setPosition(450,110);
+        spriteList_foreground.add(enemy);
+        
         
         // MISC ITEMS START
         
@@ -46,5 +60,10 @@ public class EvilWizardsLair_sprites{
     public List<Sprite> getSpriteList() {
         return spriteList;
     }
+    
+    public List<Sprite> getSpriteList_Foreground(){
+        return spriteList_foreground;
+    }
+    
     
 }

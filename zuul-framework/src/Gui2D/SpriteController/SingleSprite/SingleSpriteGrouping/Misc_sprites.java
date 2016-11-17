@@ -334,6 +334,9 @@ public class Misc_sprites {
     public SingleSprite getWizard_evil() {
         return new Wizard_evil().getSprite();
     }
+    public SingleSprite getEvilWizardsLair_Stage() {
+        return new EvilWizardsLair_Stage().getSprite();
+    }
     
     
     //enemies

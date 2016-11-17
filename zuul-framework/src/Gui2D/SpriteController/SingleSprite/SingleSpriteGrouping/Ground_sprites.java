@@ -33,6 +33,20 @@ public class Ground_sprites {
     public SingleSprite getStone_light_3() {
         return new Stone_light_3().getSprite();
     }
+    /**
+     * @return EvilWizardsLair_1 texture
+     */
+    public SingleSprite getEvilWizardsLair_1() {
+        return new EvilWizardsLair_1().getSprite();
+    }
+    /**
+     * 
+     * @return EvilWizardsLair_2 texture
+     */
+    public SingleSprite getEvilWizardsLair_2() {
+        return new EvilWizardsLair_2().getSprite();
+    }
+    
 
     /**
      * @return the stone_dark_1

@@ -64,9 +64,14 @@ public class EvilWizardsLair extends Map{
         root.getChildren().add(background);
         GraphicsContext backgroundContext = background.getGraphicsContext2D();
         List<Sprite> spriteList = evilWizardsLair_sprites.getSpriteList();
+        List<Sprite > spriteList_foreground = evilWizardsLair_sprites.getSpriteList_Foreground();
         
         for (Sprite s : spriteList) {
             s.render(backgroundContext);
+        }
+        
+        for (Sprite i : spriteList_foreground) {
+            i.render(backgroundContext);
         }
         
         return theScene;
