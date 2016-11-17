@@ -123,7 +123,7 @@ public class House1_sprites{
          house_background_sprites.add(enemy1);
          
          //woman placeholder
-         Sprite woman = world.getMisc_sprites().getEnemy_Skeleton();
+         Sprite woman = world.getMisc_sprites().getVillage_woman();
          woman.setPosition(400, 170);
          house_background_sprites.add(woman);
     }

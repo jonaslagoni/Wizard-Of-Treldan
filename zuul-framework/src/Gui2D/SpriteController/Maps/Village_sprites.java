@@ -162,7 +162,7 @@ public class Village_sprites{
         
         //guard
         Sprite guard = world.getMisc_sprites().getGuard();
-        guard.setPosition(464, 30);
+        guard.setPosition(450, 30);
         village_background_sprites.add(guard);
         
         
