@@ -85,11 +85,11 @@ public class Cave_sprites{
         Sprite cave_exit = world.getMisc_sprites().getCaveExit();
         cave_exit.setPosition(692, 340);
         cave_exit.setBoundary(new Rectangle2D(cave_exit.getPositionX(), cave_exit.getPositionY(), cave_exit.getWidth(), cave_exit.getHeight()));
-        foreground_sprites.add(cave_exit);
+        background_sprites.add(cave_exit);
         
         Sprite gruuls_Lair_Entrance = world.getMisc_sprites().getBig_Cave_Entrance();
         gruuls_Lair_Entrance.setPosition(420, -10);
-        foreground_sprites.add(gruuls_Lair_Entrance);
+        background_sprites.add(gruuls_Lair_Entrance);
         
         List<SingleSprite> randomVanitySpritesList1 = new ArrayList();
         randomVanitySpritesList1.add(world.getGround_sprite().getStone_dark_1());

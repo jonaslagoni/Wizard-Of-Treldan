@@ -179,7 +179,7 @@ public class TWoT implements Serializable{
         roomWizardHouse.addMapInterior("box", roomWizardHouseBox);
         roomWizardHouse.addMapInterior("lab", roomWizardHouseLab);
         roomWizardHouse.addMapInterior("wizard", roomWizardHouseNPC);
-        roomWizardHouse.addMapInterior("forest", roomWizardHouseExit);
+        roomWizardHouse.addMapInterior("door", roomWizardHouseExit);
         
         //roomCave
         Interior roomCaveExit1 = new Exit(roomForest);

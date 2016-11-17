@@ -13,6 +13,7 @@ import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -34,6 +35,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.event.HyperlinkEvent;
 
@@ -46,16 +48,18 @@ public class GUIFX extends Application {
     private TWoT twot;
     
     private TextArea textArea;
+    private TextArea statsArea;
     private TextField inputArea;
     private ProgressBar healthbar;
     private Label label;
-    private ListView<AnchorPane> inventoryListView;
-    private ObservableList<AnchorPane> inventory;
     private String help;
     private TextField nameArea;
+    private VBox statsField = new VBox(20);
+    private Label label1;
     
     private TableView<InventoryItems> table = new TableView();
     private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
+    
     private int health;
     
     private String printHelp() {
@@ -81,6 +85,7 @@ public class GUIFX extends Application {
         textArea = new TextArea();
         inputArea = new TextField();
         label = new Label();
+        statsArea = new TextArea();
         nameArea = new TextField();
         
         Button button_play = new Button("NEW GAME");
@@ -97,35 +102,24 @@ public class GUIFX extends Application {
         button_how.setMinHeight(40);
         button_exitMenu.setMinHeight(40);
         
-        Button button_player = new Button("Player");
-        Button button_inventory = new Button("Inventory");
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
         Button button_exit = new Button("Exit");
         
-        button_player.setMaxWidth(90);
-        button_inventory.setMaxWidth(90);
         button_help.setMaxWidth(90);
         button_exit.setMaxWidth(90);
         button_clear.setMaxWidth(90);
         
         VBox gameButtons = new VBox(20);
-        gameButtons.setLayoutX(572);
-        gameButtons.getChildren().addAll(button_player, button_inventory, button_clear, button_help, button_exit);
+        gameButtons.setLayoutX(591);
+        gameButtons.setLayoutY(5);
+        gameButtons.getChildren().addAll(button_clear, button_help, button_exit);
         
         VBox menuButtons = new VBox(20);
         menuButtons.setLayoutX(166);
         menuButtons.setLayoutY(30);
         menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
-              
-        healthbar = new ProgressBar(twot.getPlayerHealth()/100);
-        healthbar.setPrefSize(308, 28);
-        healthbar.relocate(264, 260);
-        
-        Label label1 = new Label("Health "+ twot.getPlayerHealth());
-        label1.setTextFill(Color.web("RED"));
-        label1.relocate(270, 265);
-        
+                      
         table.setEditable(true);
         List<Item> l = twot.getInventoryItems();
         for(Item i: l){
@@ -156,7 +150,6 @@ public class GUIFX extends Application {
         table.getColumns().addAll(itemName, itemType, itemDescription);
         table.setLayoutX(652);
         
-                
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
         textArea.setMinWidth(572);
@@ -166,13 +159,30 @@ public class GUIFX extends Application {
         textArea.setEditable(false);
         outputField.getChildren().addAll(textArea);
         
-        VBox inputField = new VBox(20);
-        inputArea.setMaxWidth(256);
-        inputArea.setMinWidth(256);
-        inputArea.setMaxHeight(30);
-        inputField.relocate(0, 260);
-        inputField.getChildren().addAll(inputArea);
+        statsArea.appendText("****************************\n");
+        statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
+        statsArea.appendText("** Attack value: " + twot.getPlayerAtt() + "\n");
+        statsArea.appendText("** Defense value: " + twot.getPlayerDeff() + "\n");
+        statsArea.appendText("** Gold: " + twot.getPlayerGold() + "\n");
+        statsArea.appendText("****************************");
+        statsField.setMaxWidth(256);
+        statsField.setMaxHeight(110);
+        statsField.relocate(0, 300);
+        statsField.getChildren().addAll(statsArea);
         
+        healthbar = new ProgressBar(twot.getPlayerHealth()/100);
+        healthbar.setPrefSize(256, 26);
+        healthbar.relocate(0, 265);
+                       
+        label1 = new Label("Health "+ twot.getPlayerHealth());
+        label1.setTextFill(Color.web("BLACK"));
+        label1.relocate(10, 269);
+        
+        inputArea.setPromptText("Write here: ");
+        VBox inputField = new VBox(20);
+        inputField.setPrefSize(308, 28);
+        inputField.relocate(264, 265);
+        inputField.getChildren().addAll(inputArea);
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
         
@@ -184,12 +194,11 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1);
-        
+        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, statsField);
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         
-        Scene scene1 = new Scene(root, 1052, 288);
+        Scene scene1 = new Scene(root, 1052, 512);
         Scene menu = new Scene(root2, 512, 288);
         Scene nameScene = new Scene(root3, 512, 288);
                 
@@ -208,20 +217,6 @@ public class GUIFX extends Application {
             help=printHelp();
             textArea.appendText(help);
         });
-        button_player.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            String player = "";
-            for(String s : twot.getPlayer()){
-                player = player + s;
-            }
-            textArea.appendText(player);
-        });
-        button_inventory.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            String inventory = "";
-            for(String s : twot.getInventory()){
-               inventory += s;
-           }
-            textArea.appendText(inventory);
-        });
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
@@ -231,7 +226,16 @@ public class GUIFX extends Application {
                 if(k.getCode().equals(KeyCode.ENTER)){
                     twot.setPlayerName(nameArea.getText());
                     primaryStage.setScene(scene1);
+                    primaryStage.centerOnScreen();
+                    updatePlayer();
                 }
+            }
+        });
+        button_how.setOnAction(new EventHandler<ActionEvent>(){
+            @Override public void handle(ActionEvent e){
+                    PopUps.display("HOW TO PLAY", "Move around with the 'go' "
+                            + "command. \nYou automatically pick up items if the "
+                            + "interior have any available.\n");
             }
         });
         button_exit.setOnAction(actionEvent -> Platform.exit());
@@ -253,6 +257,8 @@ public class GUIFX extends Application {
                                     }
                                     inputArea.clear();
                                     updateInventory();
+                                    updatePlayer();
+                                    updateHealth();
                                     break;
                                 
                                 case USE:
@@ -260,6 +266,9 @@ public class GUIFX extends Application {
                                         textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
+                                    updateInventory();
+                                    updatePlayer();
+                                    updateHealth();
                                     break;
                                 
                                 default:
@@ -281,6 +290,7 @@ public class GUIFX extends Application {
         button_exitMenu.setOnAction(actionEvent -> Platform.exit());       
         
         primaryStage.setScene(menu);
+        primaryStage.centerOnScreen();
         primaryStage.show();
         
         String welcome = "";
@@ -288,6 +298,21 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
+    }
+    
+    public void updatePlayer(){
+        statsArea.clear();
+        statsArea.appendText("****************************\n");
+        statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
+        statsArea.appendText("** Attack value: " + twot.getPlayerAtt() + "\n");
+        statsArea.appendText("** Defense value: " + twot.getPlayerDeff() + "\n");
+        statsArea.appendText("** Gold: " + twot.getPlayerGold() + "\n");
+        statsArea.appendText("****************************");
+    }
+    
+    public void updateHealth(){
+        label1.setText("Health "+ twot.getPlayerHealth());
+        healthbar.setProgress(twot.getPlayerHealth()/100);
     }
     
     public void updateInventory(){
