@@ -225,13 +225,17 @@ public class GUIFX extends Application {
                             for(String s: twot.goTo(command)){
                             textArea.appendText("\n" + s + "\n");
                             }
-                        inputArea.clear();
+                                inputArea.clear();
                             }
                             case "use": commando = "use";{
                                 for(String s: twot.useItem(command)){
                                 textArea.appendText("\n" + s + "\n");
                                 }
+                                inputArea.clear();
                             }
+                            default:
+                                textArea.appendText("does not compute");
+                                inputArea.clear();
                         }
                 }
             }
