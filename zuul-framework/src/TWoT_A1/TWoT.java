@@ -277,9 +277,9 @@ public class TWoT implements Serializable{
     public HashMap<String, String> getHelpMessages(){
         //init a new object of type hashmap
         HashMap<String, String> helpList = new HashMap();
-        helpList.put("helpMessage1",  "\nYou are at " + currentRoom.getName());
-        helpList.put("helpMessage2", "Here is where you can go: " + currentRoom.getMapInterior());
-        helpList.put("helpMessage3", "Your command words are:");
+        helpList.put("helpMessage1",  "\nYou are at " + currentRoom.getName() + "\n");
+        helpList.put("helpMessage2", currentRoom.getMapInterior() + "\n");
+        helpList.put("helpMessage3", "You can type 'go [interactable object]' to move around in rooms.");
         
         //return the helplist when done.
         return helpList;
