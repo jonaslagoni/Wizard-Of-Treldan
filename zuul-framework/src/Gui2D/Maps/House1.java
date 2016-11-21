@@ -10,28 +10,20 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.Command;
-import TWoT_A1.CommandWord;
-import TWoT_A1.Item;
-import TWoT_A1.QuestItem;
 import TWoT_A1.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class House1 extends Map{
     
@@ -197,7 +189,20 @@ public class House1 extends Map{
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //if no colission
+                    } else if (player.intersects_right(sprites_still.get(3))
+                            || player.intersects_right(sprites_still.get(4))
+                            || player.intersects_right(sprites_still.get(5))
+                            || player.intersects_right(sprites_still.get(6))
+                            || player.intersects_right(sprites_still.get(7))
+                            || player.intersects_right(sprites_still.get(8))
+                            || player.intersects_right(sprites_still.get(9))
+                            || player.intersects_right(sprites_still.get(10))
+                            || player.intersects_right(sprites_still.get(11))
+                            || player.intersects_right(sprites_still.get(12))
+                            || player.intersects_right(sprites_still.get(13))
+                            || player.intersects_right(sprites_still.get(14))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -211,7 +216,20 @@ public class House1 extends Map{
                     if (player.intersects_top(worldBoundTop)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //if no colission
+                    }else if (player.intersects_right(sprites_still.get(3))
+                            || player.intersects_right(sprites_still.get(4))
+                            || player.intersects_right(sprites_still.get(5))
+                            || player.intersects_right(sprites_still.get(6))
+                            || player.intersects_right(sprites_still.get(7))
+                            || player.intersects_right(sprites_still.get(8))
+                            || player.intersects_right(sprites_still.get(9))
+                            || player.intersects_right(sprites_still.get(10))
+                            || player.intersects_right(sprites_still.get(11))
+                            || player.intersects_right(sprites_still.get(12))
+                            || player.intersects_right(sprites_still.get(13))
+                            || player.intersects_right(sprites_still.get(14))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
                     }
