@@ -55,7 +55,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
     
     public void setClearing_background_sprites(){
  
-            //BACKGROUND GRASS
+            //BACKGROUND GRASS 0
             clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_light_1());
             clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_light_2()); 
             clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_flower_2());
@@ -64,7 +64,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
             clearing_group_grass.setSize(800, 400);
             clearing_background_sprites.add(clearing_group_grass);
             
-            //RUINS FLOOR
+            //RUINS FLOOR 1
             clearing_ruins_singlesprites.add(world.getGround_sprite().getStone_ruins_floor_1());
             clearing_ruins_singlesprites.add(world.getGround_sprite().getStone_ruins_floor_2());
             clearing_ruins_singlesprites.add(world.getGround_sprite().getStone_ruins_floor_3());
@@ -73,28 +73,28 @@ private final List<SingleSprite> clearing_pathway_sprites;
             clearing_group_ruins.setSize(200, 200);
             clearing_background_sprites.add(clearing_group_ruins);
             
-            //TREELINE TOP
+            //TREELINE TOP 2
             clearing_tree_walls_TOP.add(world.getMisc_sprites().getTree1());
             Sprite clearing_wall_tree_random_TOP = new Groupsprite_GroupRender(clearing_tree_walls_TOP);
             clearing_wall_tree_random_TOP.setPosition(0,-80);
             clearing_wall_tree_random_TOP.setSize(800,30);
             clearing_background_sprites.add(clearing_wall_tree_random_TOP);
             
-             //TREELINE RIGHT
+             //TREELINE RIGHT 3
             clearing_tree_walls_RIGHT.add(world.getMisc_sprites().getTree1());
             Sprite clearing_wall_tree_random_RIGHT = new Groupsprite_GroupRender(clearing_tree_walls_RIGHT);
             clearing_wall_tree_random_RIGHT.setPosition(650,-50);
             clearing_wall_tree_random_RIGHT.setSize(100,400);
             clearing_background_sprites.add(clearing_wall_tree_random_RIGHT);
             
-            //TREELINE LEFT
+            //TREELINE LEFT 4
             clearing_tree_walls_LEFT.add(world.getMisc_sprites().getTree1());
             Sprite clearing_wall_tree_random_LEFT = new Groupsprite_GroupRender(clearing_tree_walls_LEFT);
             clearing_wall_tree_random_LEFT.setPosition(-100, -100);
             clearing_wall_tree_random_LEFT.setSize(150,400);
             clearing_background_sprites.add(clearing_wall_tree_random_LEFT);
             
-            //TREELINE BOTTOM
+            //TREELINE BOTTOM 5
             clearing_tree_walls_BOTTOM.add(world.getMisc_sprites().getTree1());
             Sprite clearing_wall_tree_random_BOTTOM = new Groupsprite_GroupRender(clearing_tree_walls_BOTTOM);
             clearing_wall_tree_random_BOTTOM.setPosition(0,300);
@@ -105,7 +105,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| MISC |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           
-            //PATHWAY
+            //PATHWAY 6
             clearing_pathway_sprites.add(world.getGround_sprite().getCobblestone_light());
             Sprite clearing_group_pathway = new Groupsprite_random(clearing_pathway_sprites);
             clearing_group_pathway.setPosition(205, 86);
@@ -113,40 +113,45 @@ private final List<SingleSprite> clearing_pathway_sprites;
             clearing_background_sprites.add(clearing_group_pathway);
             
         
-            //EXIT
+            //EXIT 7
             Sprite exit = world.getMisc_sprites().getClearingExit();
             exit.setPosition(222,50);
             exit.setBoundary(new Rectangle2D(exit.getPositionX()+126,exit.getPositionY()+66,exit.getWidth(),exit.getHeight()));
             clearing_background_sprites.add(exit);
             
-            //RUIN PILLARS
-            //#1
+            //RUIN PILLARS 
+            //#1 8
             Sprite ruins1 = world.getMisc_sprites().getRuins_pillar_1();
             ruins1.setPosition(450,40);
             ruins1.setBoundary(new Rectangle2D(ruins1.getPositionX()+126,ruins1.getPositionY()+66,ruins1.getWidth(),ruins1.getHeight()));
             clearing_background_sprites.add(ruins1);
-            //#2
+            //#2 9
             Sprite ruins2 = world.getMisc_sprites().getBoulder_dark_large();
             ruins2.setPosition(440,250);
             ruins2.setBoundary(new Rectangle2D(ruins2.getPositionX()+126,ruins2.getPositionY()+66,ruins2.getWidth(),ruins2.getHeight()));
             clearing_background_sprites.add(ruins2);
-            //#3
+            //#3 10
             Sprite ruins3 = world.getMisc_sprites().getRuins_pillar_3();
             ruins3.setPosition(610,200);
             ruins3.setBoundary(new Rectangle2D(ruins3.getPositionX()+126,ruins3.getPositionY()+66,ruins3.getWidth(),ruins3.getHeight()));
             clearing_background_sprites.add(ruins3);
-            //#4
+            //#4 11
             Sprite ruins4 = world.getMisc_sprites().getRuins_pillar_2();
             ruins4.setPosition(610,40);
             ruins4.setBoundary(new Rectangle2D(ruins4.getPositionX()+126,ruins4.getPositionY()+66,ruins4.getWidth(),ruins4.getHeight()));
             clearing_background_sprites.add(ruins4);
        
-            //ENEMY
+            //ENEMY 12
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
             unicorn.setPosition(500,100);
             unicorn.setBoundary(new Rectangle2D(unicorn.getPositionX()+126,unicorn.getPositionY()+66,unicorn.getWidth(),unicorn.getHeight()));
             clearing_background_sprites.add(unicorn);
             
+            //tree 13
+            Sprite tree = world.getMisc_sprites().getTree2();
+            tree.setPosition(100,150);
+            tree.setBoundary(new Rectangle2D(tree.getPositionX()+126,tree.getPositionY()+66,tree.getWidth(),tree.getHeight()));
+            clearing_background_sprites.add(tree);
             
             
                  
