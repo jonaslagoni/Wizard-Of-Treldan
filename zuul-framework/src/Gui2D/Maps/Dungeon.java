@@ -159,8 +159,13 @@ public class Dungeon extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_left(dungeon_background_sprites.get(13))
+                              || player.intersects_left(dungeon_background_sprites.get(14))
+                              || player.intersects_left(dungeon_background_sprites.get(15))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else {
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
@@ -174,8 +179,13 @@ public class Dungeon extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_right(dungeon_background_sprites.get(13))
+                              || player.intersects_right(dungeon_background_sprites.get(14))
+                              || player.intersects_right(dungeon_background_sprites.get(15))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
@@ -189,8 +199,28 @@ public class Dungeon extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_top(dungeon_background_sprites.get(13))
+                              || player.intersects_top(dungeon_background_sprites.get(14))
+                              || player.intersects_top(dungeon_background_sprites.get(15))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else if (player.intersects_top(dungeon_background_sprites.get(2))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "library"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
+                    } else {
                         player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
