@@ -135,8 +135,8 @@ public class Village extends Map {
 
         //get all the sprites which can be picked up
         List<Sprite> sprites_interact = villageSprites.getVillage_items();
-        for(Sprite sprite : sprites_interact) {
-            sprite.render(interact_gc);
+        if(game.checkExisting("axe")){
+            sprites_interact.get(0).render(interact_gc);
         }
         
         //get all the sprites used in the village
@@ -609,12 +609,14 @@ public class Village extends Map {
 
                 if (menu_input.contains("E")) {
                     if(sprites_interact.size() > 0){
-                        if (player.intersect(sprites_interact.get(0))) {
-                            for (String s : game.goTo(new Command(CommandWord.GO, "axe"))) {
-                                infobox.appendText("\n" + s + "\n");
+                        if(game.checkExisting("axe")){
+                            if (player.intersect(sprites_interact.get(0))) {
+                                for (String s : game.goTo(new Command(CommandWord.GO, "axe"))) {
+                                    infobox.appendText("\n" + s + "\n");
+                                }
+                                sprites_interact.remove(0);
+                                playerinventory.update(game);
                             }
-                            sprites_interact.remove(0);
-                            playerinventory.update(game);
                         }
                     }
                     if (player.intersect(sprites_still.get(13))) {
@@ -641,8 +643,8 @@ public class Village extends Map {
 
                 interact_gc.clearRect(0, 0, 1024, 512);
                 //render pickup items
-                for(Sprite sprite : sprites_interact) {
-                    sprite.render(interact_gc);
+                if(game.checkExisting("axe")){
+                    sprites_interact.get(0).render(interact_gc);
                 }
                 
                 

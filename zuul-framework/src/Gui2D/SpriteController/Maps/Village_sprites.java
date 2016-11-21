@@ -162,7 +162,7 @@ public class Village_sprites{
         //axe
         Sprite axe = world.getMisc_sprites().getAxe();
         axe.setPosition(600, 220);
-        getVillage_items().add(axe);
+        village_items.add(axe);
         
         //guard
         Sprite guard = world.getMisc_sprites().getGuard();
@@ -232,9 +232,6 @@ public class Village_sprites{
         Sprite board = world.getMisc_sprites().getVillage_MessageBoard();
         board.setPosition(400, 250);
         village_background_sprites.add(board);
-        
-        
-        
         
     }
 

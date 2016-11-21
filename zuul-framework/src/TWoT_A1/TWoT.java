@@ -286,6 +286,22 @@ public class TWoT implements Serializable{
     }
     
     /**
+     * checks if there is something at a direction
+     * @param direction
+     * @return 
+     */
+    public boolean checkExisting(String direction){
+        // Create an object of klass Room and return if the exit is correct.
+        Interior interior = currentRoom.getMapInterior(direction);
+        // If the nextroom is null it means that there was no next room in that direction.
+        if(interior == null) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    /**
      * Go to the desired room defined from the command param.
      * @param command
      * @return String
@@ -639,9 +655,8 @@ public class TWoT implements Serializable{
         if(!check){
             use.add("You carry no item with that name");
         }
-    
-    return use;
-}
+        return use;
+    }
     
     
     
@@ -655,6 +670,10 @@ public class TWoT implements Serializable{
         return player.getInventoryItems();
     }
     
+    /**
+     * 
+     * @param i 
+     */
     public void removeItemFromInventory(Item i){
         player.removeInventoryItem(i);
     }
@@ -681,6 +700,9 @@ public class TWoT implements Serializable{
         }
     }
     
+    /**
+     * 
+     */
     public void writeHighScore() {
         long endTime = (System.currentTimeMillis() / 1000L);
         
@@ -694,7 +716,10 @@ public class TWoT implements Serializable{
                 System.out.println("Error at writing to Highscore.txt" + e);
         } 
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public List<Score> readHighScore() {
         List <Score> scoreList = new ArrayList();
         try  {
@@ -713,6 +738,10 @@ public class TWoT implements Serializable{
         return scoreList;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<String> getInventory() {
         ArrayList<String> inventory = new ArrayList();
         List<TWoT_A1.Item> usableItems = new ArrayList();
@@ -807,7 +836,6 @@ public class TWoT implements Serializable{
      * 
      * @return 
      */
-    
     public ArrayList<String> getPlayer(){
         ArrayList<String> player = new ArrayList();
             player.add("\n");
@@ -829,6 +857,10 @@ public class TWoT implements Serializable{
         return player;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public double getPlayerAtt(){
         return player.getAttValue();
     }
@@ -839,6 +871,7 @@ public class TWoT implements Serializable{
     public double getPlayerDeff(){
         return player.getDefValue();
     }
+    
     /**
      * 
      * @return 
@@ -853,6 +886,11 @@ public class TWoT implements Serializable{
     public double getPlayerGold(){
         return player.getGold();
     }
+    
+    /**
+     * 
+     * @param healthToRegen 
+     */
     public void playerRegenHealth(int healthToRegen){
         if(player.getHealth()==100){
             System.out.println("You're already at max health");
@@ -872,10 +910,18 @@ public class TWoT implements Serializable{
         return isOver;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public int getCurrentRoomId(){
         return currentRoom.getRoomId();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String getCurrentRoomName(){
         return currentRoom.getName();
     }

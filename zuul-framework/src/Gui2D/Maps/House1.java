@@ -123,8 +123,8 @@ public class House1 extends Map{
         
         //get all the sprites of monsters
         List<Sprite> sprites_interact = house_sprites.getHouse_monster_sprites();
-        for(Sprite sprite : sprites_interact) {
-            sprite.render(monster_gc);
+        if(game.checkExisting("woman")){
+            sprites_interact.get(0).render(monster_gc);
         }
         
         //generate all the background sprites
@@ -173,7 +173,8 @@ public class House1 extends Map{
                             || player.intersects_left(sprites_still.get(11))
                             || player.intersects_left(sprites_still.get(12))
                             || player.intersects_left(sprites_still.get(13))
-                            || player.intersects_left(sprites_still.get(14))) {
+                            || player.intersects_left(sprites_still.get(14))
+                            || player.intersects_left(sprites_interact.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{
@@ -200,7 +201,8 @@ public class House1 extends Map{
                             || player.intersects_right(sprites_still.get(11))
                             || player.intersects_right(sprites_still.get(12))
                             || player.intersects_right(sprites_still.get(13))
-                            || player.intersects_right(sprites_still.get(14))) {
+                            || player.intersects_right(sprites_still.get(14))
+                            || player.intersects_right(sprites_interact.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{
@@ -227,7 +229,8 @@ public class House1 extends Map{
                             || player.intersects_top(sprites_still.get(11))
                             || player.intersects_top(sprites_still.get(12))
                             || player.intersects_top(sprites_still.get(13))
-                            || player.intersects_top(sprites_still.get(14))) {
+                            || player.intersects_top(sprites_still.get(14))
+                            || player.intersects_top(sprites_interact.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{
@@ -254,7 +257,7 @@ public class House1 extends Map{
                             || player.intersects_bottom(sprites_still.get(12))
                             || player.intersects_bottom(sprites_still.get(13))
                             || player.intersects_bottom(sprites_still.get(14))
-                            || player.intersects_bottom(sprites_still.get(14))) {
+                            || player.intersects_bottom(sprites_interact.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else {
