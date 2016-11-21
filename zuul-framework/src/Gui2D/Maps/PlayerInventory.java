@@ -5,6 +5,8 @@
  */
 package Gui2D.Maps;
 
+import TWoT_A1.Command;
+import TWoT_A1.CommandWord;
 import TWoT_A1.EquippableItem;
 import TWoT_A1.Item;
 import TWoT_A1.QuestItem;
@@ -14,8 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -45,7 +51,7 @@ public class PlayerInventory {
      * PlayerInventory object
      * @param game 
      */
-    public PlayerInventory(TWoT game){
+    public PlayerInventory(TWoT game, TextArea infobox){
         //since not shown from start set the boolean to false
         shown = false;
         
@@ -235,6 +241,41 @@ public class PlayerInventory {
                 }
             }
         }
+        
+        Button use = new Button("Use");
+        use.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                AnchorPane t = getSelected();
+                if (t != null) {
+                    Text text = (Text) t.getChildren().get(0);
+                    for (String s : game.useItem(new Command(CommandWord.USE, text.getText()))) {
+                        infobox.appendText(s + "\n");
+                    }
+                    update(game);
+                }
+            }
+        });
+        use.relocate(10, 470);
+        menu.getChildren().add(use);
+
+        Button equip = new Button("equip");
+        equip.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                AnchorPane t = getSelected();
+                if (t != null) {
+                    Text text = (Text) t.getChildren().get(0);
+                    for (String s : game.equipItem(new Command(CommandWord.USE, text.getText()))) {
+                        infobox.appendText(s + "\n");
+                    }
+                    update(game);
+                }
+            }
+        });
+        equip.relocate(90, 470);
+        menu.getChildren().add(equip);
+        
     }
 
     /**
@@ -370,4 +411,5 @@ public class PlayerInventory {
     public AnchorPane getSelected(){
         return list.getSelectionModel().getSelectedItem();
     }
+    
 }

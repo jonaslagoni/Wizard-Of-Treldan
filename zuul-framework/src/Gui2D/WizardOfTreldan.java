@@ -169,6 +169,7 @@ public class WizardOfTreldan extends Application {
     public static void setHouse1Scene(){
         primaryStage.setScene(house1.getScene());
     }
+    
     /**
      * Force the game to load House2Scene
      */

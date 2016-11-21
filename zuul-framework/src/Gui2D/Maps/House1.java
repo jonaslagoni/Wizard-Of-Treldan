@@ -66,6 +66,8 @@ public class House1 extends Map{
         Scene theScene = new Scene( root );
         //set background color
         theScene.setFill(Color.rgb(83, 83, 83));
+        //set the styleScheet
+        theScene.getStylesheets().add("TextAreaStyle.css");
         
         //canvas for backgrounds
         Canvas canvas_background = new Canvas( 512, 300);
@@ -106,41 +108,9 @@ public class House1 extends Map{
         infobox.appendText(welcome.get(4) + "\n");
 
 //Menu testing start
-        PlayerInventory playerinventory = new PlayerInventory(game);
+        PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-        Button use = new Button("Use");
-        use.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                AnchorPane t = playerinventory.getSelected();
-                if (t != null) {
-                    Text text = (Text) t.getChildren().get(0);
-                    for (String s : game.useItem(new Command(CommandWord.USE, text.getText()))) {
-                        infobox.appendText(s + "\n");
-                    }
-                    playerinventory.update(game);
-                }
-            }
-        });
-        use.relocate(10, 470);
-        menu.getChildren().add(use);
-
-        Button equip = new Button("equip");
-        equip.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                AnchorPane t = playerinventory.getSelected();
-                if (t != null) {
-                    Text text = (Text) t.getChildren().get(0);
-                    for (String s : game.equipItem(new Command(CommandWord.USE, text.getText()))) {
-                        infobox.appendText(s + "\n");
-                    }
-                    playerinventory.update(game);
-                }
-            }
-        });
-        equip.relocate(90, 470);
-        menu.getChildren().add(equip);
+       
 //menu testing done
 
         //get our player from super class since no inheritence in AnimationTimer
@@ -200,6 +170,20 @@ public class House1 extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //no collission continue
+                    } else if (player.intersects_left(sprites_still.get(3))
+                            || player.intersects_left(sprites_still.get(4))
+                            || player.intersects_left(sprites_still.get(5))
+                            || player.intersects_left(sprites_still.get(6))
+                            || player.intersects_left(sprites_still.get(7))
+                            || player.intersects_left(sprites_still.get(8))
+                            || player.intersects_left(sprites_still.get(9))
+                            || player.intersects_left(sprites_still.get(10))
+                            || player.intersects_left(sprites_still.get(11))
+                            || player.intersects_left(sprites_still.get(12))
+                            || player.intersects_left(sprites_still.get(13))
+                            || player.intersects_left(sprites_still.get(14))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
                     }

@@ -112,46 +112,13 @@ public class Village extends Map {
         infobox.appendText(welcome.get(4) + "\n");
 
 //Menu testing start
-        PlayerInventory playerinventory = new PlayerInventory(game);
+        PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-        Button use = new Button("Use");
-        use.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                AnchorPane t = playerinventory.getSelected();
-                if (t != null) {
-                    Text text = (Text) t.getChildren().get(0);
-                    for (String s : game.useItem(new Command(CommandWord.USE, text.getText()))) {
-                        infobox.appendText(s + "\n");
-                    }
-                    playerinventory.update(game);
-                }
-            }
-        });
-        use.relocate(10, 470);
-        menu.getChildren().add(use);
-
-        Button equip = new Button("equip");
-        equip.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                AnchorPane t = playerinventory.getSelected();
-                if (t != null) {
-                    Text text = (Text) t.getChildren().get(0);
-                    for (String s : game.equipItem(new Command(CommandWord.USE, text.getText()))) {
-                        infobox.appendText(s + "\n");
-                    }
-                    playerinventory.update(game);
-                }
-            }
-        });
-        equip.relocate(90, 470);
-        menu.getChildren().add(equip);
 //menu testing done
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(100, 400);
+        player.setPosition(700, 400);
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
