@@ -133,7 +133,7 @@ public class Forest_sprites{
         
         Sprite caveEntrance = world.getMisc_sprites().getCaveExit();
         caveEntrance.setSize(32, 43);
-        caveEntrance.setPosition(710, 13);
+        caveEntrance.setPosition(710, 15);
         caveEntrance.setBoundary(new Rectangle2D(caveEntrance.getPositionX(), caveEntrance.getPositionY() - 1, caveEntrance.getWidth(), caveEntrance.getHeight() - 1));
         background_sprites.add(caveEntrance);
         
@@ -173,6 +173,7 @@ public class Forest_sprites{
         Sprite forest2 = new Groupsprite_GroupRender(world.getMisc_sprites().getTree1());
         forest2.setPosition(740, -140);
         forest2.setSize(350, 600);
+        forest2.setBoundary(new Rectangle2D(forest2.getPositionX()+15, forest2.getPositionY(),forest2.getWidth(), forest2.getHeight()));
         background_sprites.add(forest2);
         
         // TREE BACKGROUND END
