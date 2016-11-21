@@ -216,18 +216,18 @@ public class House1 extends Map{
                     if (player.intersects_top(worldBoundTop)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if (player.intersects_right(sprites_still.get(3))
-                            || player.intersects_right(sprites_still.get(4))
-                            || player.intersects_right(sprites_still.get(5))
-                            || player.intersects_right(sprites_still.get(6))
-                            || player.intersects_right(sprites_still.get(7))
-                            || player.intersects_right(sprites_still.get(8))
-                            || player.intersects_right(sprites_still.get(9))
-                            || player.intersects_right(sprites_still.get(10))
-                            || player.intersects_right(sprites_still.get(11))
-                            || player.intersects_right(sprites_still.get(12))
-                            || player.intersects_right(sprites_still.get(13))
-                            || player.intersects_right(sprites_still.get(14))) {
+                    }else if (player.intersects_top(sprites_still.get(3))
+                            || player.intersects_top(sprites_still.get(4))
+                            || player.intersects_top(sprites_still.get(5))
+                            || player.intersects_top(sprites_still.get(6))
+                            || player.intersects_top(sprites_still.get(7))
+                            || player.intersects_top(sprites_still.get(8))
+                            || player.intersects_top(sprites_still.get(9))
+                            || player.intersects_top(sprites_still.get(10))
+                            || player.intersects_top(sprites_still.get(11))
+                            || player.intersects_top(sprites_still.get(12))
+                            || player.intersects_top(sprites_still.get(13))
+                            || player.intersects_top(sprites_still.get(14))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else{
@@ -242,7 +242,21 @@ public class House1 extends Map{
                     if (player.intersects_bottom(worldBoundBottom)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //if no colission
+                    }else if (player.intersects_bottom(sprites_still.get(3))
+                            || player.intersects_bottom(sprites_still.get(4))
+                            || player.intersects_bottom(sprites_still.get(5))
+                            || player.intersects_bottom(sprites_still.get(6))
+                            || player.intersects_bottom(sprites_still.get(7))
+                            || player.intersects_bottom(sprites_still.get(8))
+                            || player.intersects_bottom(sprites_still.get(9))
+                            || player.intersects_bottom(sprites_still.get(10))
+                            || player.intersects_bottom(sprites_still.get(11))
+                            || player.intersects_bottom(sprites_still.get(12))
+                            || player.intersects_bottom(sprites_still.get(13))
+                            || player.intersects_bottom(sprites_still.get(14))
+                            || player.intersects_bottom(sprites_still.get(14))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     }else {
                         player.setVelocity(0, 100);
                     }
