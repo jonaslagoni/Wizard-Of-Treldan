@@ -38,6 +38,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import static javafx.scene.paint.Color.RED;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.event.HyperlinkEvent;
@@ -54,7 +55,6 @@ public class GUIFX extends Application {
     private TextArea statsArea;
     private TextField inputArea;
     private ProgressBar healthbar;
-    private Label label;
     private String help;
     private TextField nameArea;
     private VBox statsField = new VBox(20);
@@ -88,7 +88,6 @@ public class GUIFX extends Application {
         primaryStage.setTitle("The Wizard of Treldan");
         textArea = new TextArea();
         inputArea = new TextField();
-        label = new Label();
         statsArea = new TextArea();
         nameArea = new TextField();
         
@@ -162,10 +161,8 @@ public class GUIFX extends Application {
         invTable.setItems(invData);
         invTable.getColumns().addAll(itemName, itemType, itemDescription);
         invTable.setLayoutX(652);
-        
         equipTable.setEditable(false);
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
-        equipData.removeAll(equipData);
         for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
             if(k.containsKey(AMULET_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Amulet Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
@@ -193,7 +190,6 @@ public class GUIFX extends Application {
  
         TableColumn itemSlot = new TableColumn("Item Slot");
         itemSlot.setMinWidth(90);
-        itemSlot.setMinWidth(90);
         itemSlot.setCellValueFactory(
                 new PropertyValueFactory<EquippedItems, String>("itemSlots"));
  
@@ -218,7 +214,6 @@ public class GUIFX extends Application {
         equipTable.setMinHeight(150);
         equipTable.setMaxHeight(200);
         
-        
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
         textArea.setMinWidth(572);
@@ -240,6 +235,7 @@ public class GUIFX extends Application {
         statsField.getChildren().addAll(statsArea);
         
         healthbar = new ProgressBar(twot.getPlayerHealth()/100);
+        healthbar.setStyle("-fx-accent: red;");
         healthbar.setPrefSize(256, 26);
         healthbar.relocate(0, 265);
                        
@@ -275,7 +271,6 @@ public class GUIFX extends Application {
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
             root.setEffect(shade);
         });
-        
         root.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
             root.setEffect(null);
         });
@@ -284,7 +279,6 @@ public class GUIFX extends Application {
                 if(invTable.getSelectionModel().getSelectedItem().getItemType() == "Equippable Item"){
                 textArea.appendText("\n" + s);
                 updateGUI();
-                
                 } else {
                     textArea.appendText("\nThis item cannot be equipped.");
                 }
@@ -323,7 +317,7 @@ public class GUIFX extends Application {
         });
         button_how.setOnAction(new EventHandler<ActionEvent>(){
             @Override public void handle(ActionEvent e){
-                    PopUps.display("HOW TO PLAY", "Move around with the 'go' "
+                    PopUps.display("HOW TO PLAY", "Move around with the 'go [interactable object]' "
                             + "command. \nYou automatically pick up items if the "
                             + "interior have any available.\n");
             }
@@ -349,14 +343,6 @@ public class GUIFX extends Application {
                                     updateGUI();
                                     break;
                                 
-                                case USE:
-                                    for(String s: twot.useItem(command)){
-                                        textArea.appendText("\n" + s + "\n");
-                                    }
-                                    inputArea.clear();
-                                    updateGUI();
-                                    break;
-                                
                                 default:
                                     textArea.appendText("\ndoes not compute ");
                                     inputArea.clear();
@@ -365,7 +351,7 @@ public class GUIFX extends Application {
                             }
                         }
                         else{
-                            textArea.appendText("\nYou must enter the commandword, and direction!");
+                            textArea.appendText("\nYou must enter the command word and a direction!");
                             inputArea.clear();
                         }
                 }     
@@ -406,6 +392,13 @@ public class GUIFX extends Application {
     public void updateHealth(){
         label1.setText("Health "+ twot.getPlayerHealth());
         healthbar.setProgress(twot.getPlayerHealth()/100);
+        if(twot.getPlayerHealth() <= 100 && twot.getPlayerHealth() > 66){
+            healthbar.setStyle("-fx-accent: green;");
+        } else if (twot.getPlayerHealth() <= 66 && twot.getPlayerHealth() > 33){
+            healthbar.setStyle("-fx-accent: yellow;");
+        } else if (twot.getPlayerHealth() <= 33 && twot.getPlayerHealth() > 0){
+            healthbar.setStyle("-fx-accent: red;");
+        }
     }
     
     public void updateInventory(){
@@ -421,6 +414,7 @@ public class GUIFX extends Application {
             }
         }
     }
+    
     public void updateEquipInventory(){
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
         equipData.removeAll(equipData);

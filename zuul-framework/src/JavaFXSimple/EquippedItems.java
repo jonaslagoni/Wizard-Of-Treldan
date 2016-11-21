@@ -23,22 +23,22 @@ public class EquippedItems {
             this.itemNames = new SimpleStringProperty(iNames);
             this.itemSlots = new SimpleStringProperty(iSlots);
             this.itemAttack = new SimpleDoubleProperty(attackValue);
-            this.itemDefence = new SimpleDoubleProperty(attackValue);
+            this.itemDefence = new SimpleDoubleProperty(defenceValue);
         }
  
-        public String getItemName() {
+        public String getItemNames() {
             return itemNames.get();
         }
  
-        public void setItemName(String iName) {
+        public void setItemNames(String iName) {
             itemNames.set(iName);
         }
  
-        public String getItemType() {
+        public String getItemSlots() {
             return itemSlots.get();
         }
  
-        public void setItemType(String iType) {
+        public void setItemSlots(String iType) {
             itemSlots.set(iType);
         }
  
@@ -50,7 +50,7 @@ public class EquippedItems {
             itemAttack.set(iAttV);
         }
         
-        public double getDefenceAttack() {
+        public double getItemDefence() {
             return itemAttack.get();
         }
  
