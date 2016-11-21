@@ -20,11 +20,13 @@ public class GruulsLair_sprites{
     private SpriteController world;
     
     
-    private List<Sprite> spriteList;
+    private List<Sprite> background_sprites;
+    private List<Sprite> foreground_sprites;
     
     public GruulsLair_sprites(SpriteController world){
         this.world = world;
-        this.spriteList = new ArrayList();
+        this.background_sprites = new ArrayList();
+        this.foreground_sprites = new ArrayList();
     }
     
     public void setGruulsLair_background_SingleSprites(){
@@ -38,7 +40,7 @@ public class GruulsLair_sprites{
         Sprite gruulsLairGround = new Groupsprite_random(gruulsLairGroundList);
         gruulsLairGround.setSize(1024,512);
         gruulsLairGround.setPosition(0,0);
-        spriteList.add(gruulsLairGround);
+        background_sprites.add(gruulsLairGround);
         
         // BACKGROUND END
         
@@ -50,7 +52,7 @@ public class GruulsLair_sprites{
         Sprite gruulsLairEASTWALL = new Groupsprite_random(gruulsLairEASTWALLList);
         gruulsLairEASTWALL.setSize(61, 475);
         gruulsLairEASTWALL.setPosition(628, 16);
-        spriteList.add(gruulsLairEASTWALL);
+        background_sprites.add(gruulsLairEASTWALL);
         
         List<SingleSprite> gruulsLairWESTWALLList = new ArrayList();
         gruulsLairWESTWALLList.add(world.getMisc_sprites().getBig_Rock());
@@ -58,7 +60,7 @@ public class GruulsLair_sprites{
         Sprite gruulsLairWESTWALL = new Groupsprite_random(gruulsLairWESTWALLList);
         gruulsLairWESTWALL.setSize(61, 475);
         gruulsLairWESTWALL.setPosition(322, 16);
-        spriteList.add(gruulsLairWESTWALL);
+        background_sprites.add(gruulsLairWESTWALL);
         
         List<SingleSprite> gruulsLairNORTHWALLList = new ArrayList();
         gruulsLairNORTHWALLList.add(world.getMisc_sprites().getBig_Rock());
@@ -66,7 +68,7 @@ public class GruulsLair_sprites{
         Sprite gruulsLairNORTHWALL = new Groupsprite_random(gruulsLairNORTHWALLList);
         gruulsLairNORTHWALL.setSize(244, 45);
         gruulsLairNORTHWALL.setPosition(383, 8);
-        spriteList.add(gruulsLairNORTHWALL);
+        background_sprites.add(gruulsLairNORTHWALL);
         
         // WALL END
         
@@ -77,8 +79,8 @@ public class GruulsLair_sprites{
         
         Sprite exit_gruulsLair = new Groupsprite_random(exit_gruulsLairList);
         exit_gruulsLair.setSize(256, 32);
-        exit_gruulsLair.setPosition(377, 512);
-        spriteList.add(exit_gruulsLair);
+        exit_gruulsLair.setPosition(377, 520);
+        background_sprites.add(exit_gruulsLair);
         
         // EXIT END
         
@@ -92,7 +94,7 @@ public class GruulsLair_sprites{
         Sprite randomVanitySprites1 = new Groupsprite_random(randomVanitySpritesList1);
         randomVanitySprites1.setSize(300, 375);
         randomVanitySprites1.setPosition(0, 32);
-        spriteList.add(randomVanitySprites1);
+        background_sprites.add(randomVanitySprites1);
         
         List<SingleSprite> randomVanitySpritesList2 = new ArrayList();
         randomVanitySpritesList2.add(world.getGround_sprite().getStone_dark_1());
@@ -102,7 +104,7 @@ public class GruulsLair_sprites{
         Sprite randomVanitySprites2 = new Groupsprite_random(randomVanitySpritesList2);
         randomVanitySprites2.setSize(300, 375);
         randomVanitySprites2.setPosition(725, 64);
-        spriteList.add(randomVanitySprites2);
+        background_sprites.add(randomVanitySprites2);
         
         // MISC ITEMS END
 
@@ -113,9 +115,9 @@ public class GruulsLair_sprites{
         Sprite gruul = world.getMisc_sprites().getEnemy_Golem();
         
         gruul.setSize(43, 59);
-        gruul.setPosition(250, 250);
+        gruul.setPosition(492, 75);
         
-        spriteList.add(gruul);
+        background_sprites.add(gruul);
         
         enemies.add((SingleSprite)gruul);
         
@@ -127,7 +129,7 @@ public class GruulsLair_sprites{
      * @return the gruulslair_background_sprites
      */
     public List<Sprite> getGruulsLair_background_sprites() {
-        return spriteList;
+        return background_sprites;
     }
 
    

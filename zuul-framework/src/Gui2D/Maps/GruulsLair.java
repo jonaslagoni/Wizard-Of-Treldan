@@ -159,7 +159,7 @@ public class GruulsLair extends Map{
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(628, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(345, 0, 1, 512);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 500, 1024, 1);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 520, 1024, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
         
         new AnimationTimer() {
@@ -231,7 +231,7 @@ public class GruulsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_top(sprites_background.get(6))) {
+                    } else if (player.intersects_top(sprites_background.get(4))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
@@ -284,10 +284,7 @@ public class GruulsLair extends Map{
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 3:
-                        WizardOfTreldan.setGruulsLairScene();
-                        break;
-                    case 4:
-                        WizardOfTreldan.setForestScene();
+                        WizardOfTreldan.setCaveScene();
                         break;
                 }
             }

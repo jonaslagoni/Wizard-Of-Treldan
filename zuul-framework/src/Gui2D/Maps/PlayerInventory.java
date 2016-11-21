@@ -299,7 +299,35 @@ public class PlayerInventory {
             t.getChildren().add(itemName);
             Text itemType;
             if(i instanceof EquippableItem){
-                itemType = new Text("EI");
+                switch (((EquippableItem) i).geteItem()){
+                    case AMULET_SLOT:
+                        itemType = new Text("Amulet");
+                        break;
+                    case BOOT_SLOT:
+                        itemType = new Text("Boots");
+                        break;
+                    case CHEST_SLOT:
+                        itemType = new Text("Chest");
+                        break;
+                    case GLOVES_SLOT:
+                        itemType = new Text("Gloves");
+                        break;
+                    case HEAD_SLOT:
+                        itemType = new Text("Helmet");
+                        break;
+                    case LEG_SLOT:
+                        itemType = new Text("Leggings");
+                        break;
+                    case RING_SLOT:
+                        itemType = new Text("Ring");
+                        break;
+                    case WEAPON_SLOT:
+                        itemType = new Text("Weapon");
+                        break;
+                    default:
+                        itemType = new Text("Item");
+                        break;
+                }
             }else if(i instanceof UseableItem){
                 itemType = new Text("UI");
             }else if(i instanceof QuestItem){
@@ -307,8 +335,8 @@ public class PlayerInventory {
             }else{
                 itemType = new Text("I");
             }
-            itemType.setFill(Color.ORANGERED);
-            itemType.relocate(250, 3);
+            itemType.setFill(Color.GOLDENROD);
+            itemType.relocate(220, 3);
             t.getChildren().add(itemType);
             items.add(t);
         }
