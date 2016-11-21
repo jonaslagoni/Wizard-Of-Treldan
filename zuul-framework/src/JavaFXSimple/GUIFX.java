@@ -6,8 +6,11 @@
 package JavaFXSimple;
 
 import TWoT_A1.*;
+import java.util.ArrayList;
+import static TWoT_A1.EquippableItem.EItem.*;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
@@ -57,10 +60,11 @@ public class GUIFX extends Application {
     private VBox statsField = new VBox(20);
     private Label label1;
     
-    private TableView<InventoryItems> table = new TableView();
-    private final ObservableList<InventoryItems> data = FXCollections.observableArrayList();
-    
-    private int health;
+    private TableView<InventoryItems> invTable = new TableView();
+    private final ObservableList<InventoryItems> invData = FXCollections.observableArrayList();
+        
+    private TableView<EquippedItems> equipTable = new TableView();
+    private final ObservableList<EquippedItems> equipData = FXCollections.observableArrayList();
     
     private String printHelp() {
         HashMap<String, String> printHelpMSG = twot.getHelpMessages();
@@ -105,30 +109,39 @@ public class GUIFX extends Application {
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
         Button button_exit = new Button("Exit");
+        Button button_use = new Button("Use Item");
+        Button button_equip = new Button("Equip Item");
         
         button_help.setMaxWidth(90);
         button_exit.setMaxWidth(90);
         button_clear.setMaxWidth(90);
+        button_use.setMaxWidth(90);
+        button_equip.setMaxWidth(90);
         
         VBox gameButtons = new VBox(20);
         gameButtons.setLayoutX(591);
         gameButtons.setLayoutY(5);
         gameButtons.getChildren().addAll(button_clear, button_help, button_exit);
         
+        HBox invButtons = new HBox(20);
+        invButtons.setLayoutX(770);
+        invButtons.setLayoutY(420);
+        invButtons.getChildren().addAll(button_use, button_equip);
+
         VBox menuButtons = new VBox(20);
         menuButtons.setLayoutX(166);
         menuButtons.setLayoutY(30);
         menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
                       
-        table.setEditable(true);
+        invTable.setEditable(true);
         List<Item> l = twot.getInventoryItems();
         for(Item i: l){
             if(i instanceof UseableItem){
-                data.add(new InventoryItems(i.getItemName(), "Usable Item", i.getItemDescription()));
+                invData.add(new InventoryItems(i.getItemName(), "Usable Item", i.getItemDescription()));
             } else if (i instanceof QuestItem) {
-                data.add(new InventoryItems(i.getItemName(), "Quest Item", i.getItemDescription()));
+                invData.add(new InventoryItems(i.getItemName(), "Quest Item", i.getItemDescription()));
             } else if(i instanceof EquippableItem) {
-                data.add(new InventoryItems(i.getItemName(), "Equippable Item", i.getItemDescription()));
+                invData.add(new InventoryItems(i.getItemName(), "Equippable Item", i.getItemDescription()));
             }
         }
         TableColumn itemName = new TableColumn("Item Name");
@@ -146,9 +159,65 @@ public class GUIFX extends Application {
         itemDescription.setCellValueFactory(
                 new PropertyValueFactory<InventoryItems, String>("itemDesc"));
  
-        table.setItems(data);
-        table.getColumns().addAll(itemName, itemType, itemDescription);
-        table.setLayoutX(652);
+        invTable.setItems(invData);
+        invTable.getColumns().addAll(itemName, itemType, itemDescription);
+        invTable.setLayoutX(652);
+        
+        equipTable.setEditable(false);
+        HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
+        equipData.removeAll(equipData);
+        for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
+            if(k.containsKey(AMULET_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Amulet Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(HEAD_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Head slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(WEAPON_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Weapon Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(CHEST_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Chest Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(LEG_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Leg Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(BOOT_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Boot Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(GLOVES_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Glove Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(RING_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Ring Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }
+        }
+        
+        TableColumn itemNames = new TableColumn("Item Name");
+        itemNames.setMinWidth(100);
+        itemNames.setCellValueFactory(
+                new PropertyValueFactory<EquippedItems, String>("itemNames"));
+ 
+        TableColumn itemSlot = new TableColumn("Item Slot");
+        itemSlot.setMinWidth(90);
+        itemSlot.setMinWidth(90);
+        itemSlot.setCellValueFactory(
+                new PropertyValueFactory<EquippedItems, String>("itemSlots"));
+ 
+        TableColumn itemAttack = new TableColumn("Attack");
+        itemAttack.setMaxWidth(90);
+        itemAttack.setMinWidth(90);
+        itemAttack.setCellValueFactory(
+                new PropertyValueFactory<EquippedItems, String>("itemAttack"));
+        
+        TableColumn itemDefence = new TableColumn("Defence");
+        itemDefence.setMaxWidth(90);
+        itemDefence.setMinWidth(90);
+        itemDefence.setCellValueFactory(
+                new PropertyValueFactory<EquippedItems, String>("itemDefence"));
+        
+        equipTable.setItems(equipData);
+        equipTable.getColumns().addAll(itemNames, itemSlot, itemAttack, itemDefence);
+        equipTable.setLayoutX(264);
+        equipTable.setLayoutY(300);
+        equipTable.setMinWidth(370);
+        equipTable.setMaxWidth(370);
+        equipTable.setMinHeight(150);
+        equipTable.setMaxHeight(200);
+        
         
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
@@ -194,7 +263,7 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        Pane root = new Pane(gameButtons, outputField, inputField, healthbar, table, label1, statsField);
+        Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, inputField, healthbar, invTable, label1, statsField);
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         
@@ -209,6 +278,27 @@ public class GUIFX extends Application {
         
         root.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
             root.setEffect(null);
+        });
+        button_equip.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            for(String s: twot.equipItem(new Command(CommandWord.USE, invTable.getSelectionModel().getSelectedItem().getItemName()))){
+                if(invTable.getSelectionModel().getSelectedItem().getItemType() == "Equippable Item"){
+                textArea.appendText("\n" + s);
+                updateGUI();
+                
+                } else {
+                    textArea.appendText("\nThis item cannot be equipped.");
+                }
+            }
+        });
+        button_use.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            for(String s: twot.useItem(new Command(CommandWord.USE, invTable.getSelectionModel().getSelectedItem().getItemName()))){
+                if(invTable.getSelectionModel().getSelectedItem().getItemType() == "Usable Item"){
+                textArea.appendText("\n" + s);
+                updateGUI();
+                } else {
+                    textArea.appendText("\nThis item cannot be used.");
+                }
+            }
         });
         button_play.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             primaryStage.setScene(nameScene);
@@ -227,7 +317,7 @@ public class GUIFX extends Application {
                     twot.setPlayerName(nameArea.getText());
                     primaryStage.setScene(scene1);
                     primaryStage.centerOnScreen();
-                    updatePlayer();
+                    updateGUI();
                 }
             }
         });
@@ -243,7 +333,7 @@ public class GUIFX extends Application {
         inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
-                        String temp = inputArea.getText().toLowerCase();
+                        String temp = inputArea.getText();
                         String[] word = temp.split(" ");
                         CommandWords commandWordd = new CommandWords();
                         if(word.length >= 2){
@@ -256,9 +346,7 @@ public class GUIFX extends Application {
                                         textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
-                                    updateInventory();
-                                    updatePlayer();
-                                    updateHealth();
+                                    updateGUI();
                                     break;
                                 
                                 case USE:
@@ -266,9 +354,7 @@ public class GUIFX extends Application {
                                         textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
-                                    updateInventory();
-                                    updatePlayer();
-                                    updateHealth();
+                                    updateGUI();
                                     break;
                                 
                                 default:
@@ -300,6 +386,13 @@ public class GUIFX extends Application {
         textArea.appendText(welcome);
     }
     
+    public void updateGUI(){
+        updatePlayer();
+        updateHealth();
+        updateInventory();
+        updateEquipInventory();
+    }
+    
     public void updatePlayer(){
         statsArea.clear();
         statsArea.appendText("****************************\n");
@@ -317,14 +410,37 @@ public class GUIFX extends Application {
     
     public void updateInventory(){
         List<Item> l = twot.getInventoryItems();
-        data.removeAll(data);
+        invData.removeAll(invData);
         for(Item i: l){
             if(i instanceof UseableItem){
-                data.add(new InventoryItems(i.getItemName(), "Usable Item", i.getItemDescription()));
+                invData.add(new InventoryItems(i.getItemName(), "Usable Item", i.getItemDescription()));
             } else if (i instanceof QuestItem) {
-                data.add(new InventoryItems(i.getItemName(), "Quest Item", i.getItemDescription()));
+                invData.add(new InventoryItems(i.getItemName(), "Quest Item", i.getItemDescription()));
             } else if(i instanceof EquippableItem) {
-                data.add(new InventoryItems(i.getItemName(), "Equippable Item", i.getItemDescription()));
+                invData.add(new InventoryItems(i.getItemName(), "Equippable Item", i.getItemDescription()));
+            }
+        }
+    }
+    public void updateEquipInventory(){
+        HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
+        equipData.removeAll(equipData);
+        for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
+            if(k.containsKey(AMULET_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Amulet Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(HEAD_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Head slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(WEAPON_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Weapon Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(CHEST_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Chest Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(LEG_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Leg Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(BOOT_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Boot Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(GLOVES_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Glove Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
+            }else if(k.containsKey(RING_SLOT)) {
+                equipData.add(new EquippedItems(entry.getValue().getItemName(), "Ring Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
             }
         }
     }

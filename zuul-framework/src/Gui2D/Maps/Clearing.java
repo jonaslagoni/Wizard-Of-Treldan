@@ -107,11 +107,11 @@ public class Clearing extends Map{
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get("getRooms") + "\n");
         
-        //Menu testing start
-        PlayerInventory playerinventory = new PlayerInventory(game,infobox);
+        
+
+        PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-        
-        
+
         
         //menu testing done
         

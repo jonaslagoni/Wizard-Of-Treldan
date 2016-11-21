@@ -118,16 +118,11 @@ public class House1_sprites{
          Sprite chest = world.getMisc_sprites().getInterior_chest__open_swords();
          chest.setPosition(440,120);
          house_background_sprites.add(chest);
-        
-         //ENEMY
-         Sprite enemy1 = world.getMisc_sprites().getEnemy_Imp1();
-         enemy1.setPosition(50, 75);
-         getHouse_monster_sprites().add(enemy1);
          
          //woman placeholder
          Sprite woman = world.getMisc_sprites().getVillage_woman();
          woman.setPosition(400, 170);
-         getHouse_monster_sprites().add(woman);
+         house_background_sprites.add(woman);
     }
     
     public List<Sprite> getHouse(){

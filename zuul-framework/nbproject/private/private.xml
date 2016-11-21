@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Mads%20Bach/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/SpriteController/Maps/Clearing_sprites.java</file>
-            <file>file:/C:/Users/Mads%20Bach/Documents/GitHub/SemesterProjekt/zuul-framework/src/TWoT_test/TWoT.java</file>
-            <file>file:/C:/Users/Mads%20Bach/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/WizardOfTreldan.java</file>
-            <file>file:/C:/Users/Mads%20Bach/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Default.java</file>
-            <file>file:/C:/Users/Mads%20Bach/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Clearing.java</file>
-            <file>file:/C:/Users/Mads%20Bach/Documents/GitHub/SemesterProjekt/zuul-framework/src/Gui2D/Maps/Cellar.java</file>
+            <file>file:/Users/Mathias/Desktop/SemesterProjekt/zuul-framework/src/TWoT_A1/TWoT.java</file>
+            <file>file:/Users/Mathias/Desktop/SemesterProjekt/zuul-framework/src/JavaFXSimple/EquippedItems.java</file>
+            <file>file:/Users/Mathias/Desktop/SemesterProjekt/zuul-framework/src/TWoT_A1/EquippableItem.java</file>
+            <file>file:/Users/Mathias/Desktop/SemesterProjekt/zuul-framework/src/JavaFXSimple/InventoryItems.java</file>
+            <file>file:/Users/Mathias/Desktop/SemesterProjekt/zuul-framework/src/TWoT_A1/Inventory.java</file>
+            <file>file:/Users/Mathias/Desktop/SemesterProjekt/zuul-framework/src/TWoT_A1/Item.java</file>
+            <file>file:/Users/Mathias/Desktop/SemesterProjekt/zuul-framework/src/JavaFXSimple/GUIFX.java</file>
         </group>
     </open-files>
 </project-private>
