@@ -116,6 +116,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
             //EXIT
             Sprite exit = world.getMisc_sprites().getClearingExit();
             exit.setPosition(222,50);
+            exit.setBoundary(new Rectangle2D(exit.getPositionX()+126,exit.getPositionY()+66,exit.getWidth(),exit.getHeight()));
             clearing_background_sprites.add(exit);
             
             //RUIN PILLARS
@@ -127,19 +128,23 @@ private final List<SingleSprite> clearing_pathway_sprites;
             //#2
             Sprite ruins2 = world.getMisc_sprites().getBoulder_dark_large();
             ruins2.setPosition(440,250);
+            ruins2.setBoundary(new Rectangle2D(ruins2.getPositionX()+126,ruins2.getPositionY()+66,ruins2.getWidth(),ruins2.getHeight()));
             clearing_background_sprites.add(ruins2);
             //#3
             Sprite ruins3 = world.getMisc_sprites().getRuins_pillar_3();
             ruins3.setPosition(610,200);
+            ruins3.setBoundary(new Rectangle2D(ruins3.getPositionX()+126,ruins3.getPositionY()+66,ruins3.getWidth(),ruins3.getHeight()));
             clearing_background_sprites.add(ruins3);
             //#4
             Sprite ruins4 = world.getMisc_sprites().getRuins_pillar_2();
             ruins4.setPosition(610,40);
+            ruins4.setBoundary(new Rectangle2D(ruins4.getPositionX()+126,ruins4.getPositionY()+66,ruins4.getWidth(),ruins4.getHeight()));
             clearing_background_sprites.add(ruins4);
        
             //ENEMY
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
             unicorn.setPosition(500,100);
+            unicorn.setBoundary(new Rectangle2D(unicorn.getPositionX()+126,unicorn.getPositionY()+66,unicorn.getWidth(),unicorn.getHeight()));
             clearing_background_sprites.add(unicorn);
             
             
