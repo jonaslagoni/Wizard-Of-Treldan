@@ -67,7 +67,6 @@ public class Clearing extends Map{
         //set the rooms sprites
         clearing_sprites = new Clearing_sprites(world);
         clearing_sprites.setClearing_background_sprites();
-        PlayerInventory playerinventory = new PlayerInventory(game);
     }
     
     public Scene getScene(){
@@ -108,23 +107,8 @@ public class Clearing extends Map{
         infobox.appendText(welcome.get("getRooms") + "\n");
         
         //Menu testing start
-        PlayerInventory playerinventory = new PlayerInventory(game);
+        PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-        Button use = new Button("Use");
-        use.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                AnchorPane t = playerinventory.getSelected();
-                if (t != null) {
-                    Text text = (Text) t.getChildren().get(0);
-                    for (String s : game.useItem(new Command(CommandWord.USE, text.getText()))) {
-                        infobox.appendText(s + "\n");
-                    }
-                    playerinventory.update(game);
-                }
-            }
-        });
-        
         
         //menu testing done
         
