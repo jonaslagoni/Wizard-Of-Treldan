@@ -67,7 +67,7 @@ public class Clearing extends Map{
         //set the rooms sprites
         clearing_sprites = new Clearing_sprites(world);
         clearing_sprites.setClearing_background_sprites();
-        PlayerInventory playerinventory = new PlayerInventory(game);
+
     }
     
     public Scene getScene(){
@@ -108,22 +108,9 @@ public class Clearing extends Map{
         infobox.appendText(welcome.get("getRooms") + "\n");
         
         //Menu testing start
-        PlayerInventory playerinventory = new PlayerInventory(game);
+        PlayerInventory playerinventory = new PlayerInventory(game,infobox);
         AnchorPane menu = playerinventory.getMenu();
-        Button use = new Button("Use");
-        use.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                AnchorPane t = playerinventory.getSelected();
-                if (t != null) {
-                    Text text = (Text) t.getChildren().get(0);
-                    for (String s : game.useItem(new Command(CommandWord.USE, text.getText()))) {
-                        infobox.appendText(s + "\n");
-                    }
-                    playerinventory.update(game);
-                }
-            }
-        });
+        
         
         
         //menu testing done
@@ -155,6 +142,7 @@ public class Clearing extends Map{
          new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
+            private boolean hasPrinted = false;
             
             //what to do each cycle
             @Override
@@ -177,7 +165,25 @@ public class Clearing extends Map{
                         player.setVelocity(0, 0);
                      //check if the player walks into the exit
                     }else if(player.intersects_left(sprites_still.get(7))){
-                        setNewScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                        }
                         //check if the player walks into a sprite
                     }else if(player.intersects_left(sprites_still.get(8))  ||
                              player.intersects_left(sprites_still.get(9))  ||
@@ -203,7 +209,25 @@ public class Clearing extends Map{
                      //check if the player walks into the exit
                     }else if(player.intersects_right(sprites_still.get(7))){
                            
-                        setNewScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                        }
                     //check if the player walks into a sprite
                     }else if(player.intersects_right(sprites_still.get(8))  ||
                              player.intersects_right(sprites_still.get(9))  ||
@@ -228,7 +252,25 @@ public class Clearing extends Map{
                         player.setVelocity(0, 0);
                             //check if the player walks into the exit
                     }else if(player.intersects_top(sprites_still.get(7))){ 
-                        setNewScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            for(String s: game.goTo(new Command(CommandWord.GO, "exit"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                        }
                         
                         //check if the player walks into a sprite
                     }else if(player.intersects_top(sprites_still.get(8))  ||
@@ -255,7 +297,25 @@ public class Clearing extends Map{
                         
                      //check if the player walks into the exit
                     }else if(player.intersects_bottom(sprites_still.get(7))){
-                        setNewScene();
+                        if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                        }
                             
                         //check if the player walks into a sprite
                     }else if(player.intersects_bottom(sprites_still.get(8))  ||

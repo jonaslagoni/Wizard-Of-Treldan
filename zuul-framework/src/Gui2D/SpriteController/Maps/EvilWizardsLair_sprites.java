@@ -12,6 +12,7 @@ import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Rectangle2D;
 
 /**
  *
@@ -30,7 +31,8 @@ public class EvilWizardsLair_sprites{
     }
     
     public void setEvilWizardsLair_background_SingleSprites(){
-        
+            
+        //lava floor 0 
         List<SingleSprite> backgroundLava = new ArrayList();
         backgroundLava.add(world.getGround_sprite().getLava_1());
         backgroundLava.add(world.getGround_sprite().getLava_2());
@@ -39,6 +41,7 @@ public class EvilWizardsLair_sprites{
         backgroundCastleLava.setPosition(0, 0);
         spriteList.add(backgroundCastleLava);
         
+        //floor 1
         List<SingleSprite> backgroundCastleFloorList = new ArrayList();
         backgroundCastleFloorList.add(world.getGround_sprite().getStone_floor_1());
         backgroundCastleFloorList.add(world.getGround_sprite().getStone_floor_2());
@@ -48,6 +51,7 @@ public class EvilWizardsLair_sprites{
         backgroundCastleFloor.setPosition(478, 200);
         spriteList.add(backgroundCastleFloor);
         
+        //floor 2
         List<SingleSprite> backgroundCastleFloorList2 = new ArrayList();
         backgroundCastleFloorList2.add(world.getGround_sprite().getStone_floor_1());
         backgroundCastleFloorList2.add(world.getGround_sprite().getStone_floor_2());
@@ -57,6 +61,7 @@ public class EvilWizardsLair_sprites{
         backgroundCastleFloor2.setPosition(100, 105);
         spriteList.add(backgroundCastleFloor2);
         
+        //floor 3
         List<SingleSprite> backgroundCastleFloorList3 = new ArrayList();
         backgroundCastleFloorList3.add(world.getGround_sprite().getStone_floor_1());
         backgroundCastleFloorList3.add(world.getGround_sprite().getStone_floor_2());
@@ -68,6 +73,7 @@ public class EvilWizardsLair_sprites{
         
         //STAGE 1
         Sprite stage = world.getMisc_sprites().getEvilWizardsLair_Stage();
+        
         stage.setPosition(435,50);
         spriteList_foreground.add(stage);
         
@@ -89,23 +95,26 @@ public class EvilWizardsLair_sprites{
         //ENEMY DUDE 1
         Sprite enemy = world.getMisc_sprites().getWizard_evil();
         enemy.setPosition(485,25);
+        enemy.setBoundary(new Rectangle2D(enemy.getPositionX(),enemy.getPositionY(),enemy.getWidth(),enemy.getHeight()));
         spriteList_foreground.add(enemy);
         
         //abbaration 1
         Sprite minion1 = world.getMisc_sprites().getEnemy_abbaration();
-        minion1.setPosition(115,25);
+        minion1.setPosition(115,40);
+        minion1.setBoundary(new Rectangle2D(minion1.getPositionX(),minion1.getPositionY(),minion1.getWidth(),minion1.getHeight()));
         spriteList_foreground.add(minion1);
         
         //abbaration 2
         Sprite minion2 = world.getMisc_sprites().getEnemy_abbaration();
-        minion2.setPosition(865, 25);
+        minion2.setPosition(865, 40);
+         minion2.setBoundary(new Rectangle2D(minion2.getPositionX(),minion2.getPositionY(),minion2.getWidth(),minion2.getHeight()));
         spriteList_foreground.add(minion2);
         
         // MISC ITEMS START
         Sprite pillar1 = world.getMisc_sprites().getLava_pillar_3();
         pillar1.setPosition(300,15);
         spriteList.add(pillar1);
-
+        
         Sprite pillar2 = world.getMisc_sprites().getLava_pillar_3();
         pillar2.setPosition(100,300);
         spriteList.add(pillar2);
