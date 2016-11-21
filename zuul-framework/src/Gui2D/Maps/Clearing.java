@@ -67,6 +67,7 @@ public class Clearing extends Map{
         //set the rooms sprites
         clearing_sprites = new Clearing_sprites(world);
         clearing_sprites.setClearing_background_sprites();
+        PlayerInventory playerinventory = new PlayerInventory(game);
     }
     
     public Scene getScene(){
@@ -124,30 +125,12 @@ public class Clearing extends Map{
             }
         });
         
-        use.relocate(10, 470);
-        menu.getChildren().add(use);
-
-        Button equip = new Button("equip");
-        equip.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                AnchorPane t = playerinventory.getSelected();
-                if (t != null) {
-                    Text text = (Text) t.getChildren().get(0);
-                    for (String s : game.equipItem(new Command(CommandWord.USE, text.getText()))) {
-                        infobox.appendText(s + "\n");
-                    }
-                    playerinventory.update(game);
-                }
-            }
-        });
-        equip.relocate(90, 470);
-        menu.getChildren().add(equip);
+        
         //menu testing done
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(150,270 );
+        player.setPosition(322,125 );
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
@@ -192,12 +175,17 @@ public class Clearing extends Map{
                     if (player.intersects_left(worldBoundLeft)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                     //check if the player walks into the exit
+                    }else if(player.intersects_left(sprites_still.get(7))){
+                        setNewScene();
                         //check if the player walks into a sprite
-                    }else if(player.intersects_left(sprites_still.get(9)) ||
+                    }else if(player.intersects_left(sprites_still.get(8))  ||
+                             player.intersects_left(sprites_still.get(9))  ||
                              player.intersects_left(sprites_still.get(10)) ||
                              player.intersects_left(sprites_still.get(11)) ||
                              player.intersects_left(sprites_still.get(12)) ||
-                             player.intersects_left(sprites_still.get(13)) ){
+                             player.intersects_left(sprites_still.get(13)) 
+                             ){
                          player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100, 0);
@@ -212,12 +200,18 @@ public class Clearing extends Map{
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                     //check if the player walks into the exit
+                    }else if(player.intersects_right(sprites_still.get(7))){
+                           
+                        setNewScene();
                     //check if the player walks into a sprite
-                    }else if(player.intersects_right(sprites_still.get(9)) ||
+                    }else if(player.intersects_right(sprites_still.get(8))  ||
+                             player.intersects_right(sprites_still.get(9))  ||
                              player.intersects_right(sprites_still.get(10)) ||
                              player.intersects_right(sprites_still.get(11)) ||
                              player.intersects_right(sprites_still.get(12)) ||
-                             player.intersects_right(sprites_still.get(13)) ){
+                             player.intersects_right(sprites_still.get(13)) 
+                             ){
                          player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100, 0);
@@ -233,16 +227,17 @@ public class Clearing extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                             //check if the player walks into the exit
-                    }else if(player.intersects_top(sprites_still.get(8))){
-                           
+                    }else if(player.intersects_top(sprites_still.get(7))){ 
                         setNewScene();
                         
                         //check if the player walks into a sprite
-                    }else if(player.intersects_top(sprites_still.get(9)) ||
+                    }else if(player.intersects_top(sprites_still.get(8))  ||
+                             player.intersects_top(sprites_still.get(9))  ||
                              player.intersects_top(sprites_still.get(10)) ||
                              player.intersects_top(sprites_still.get(11)) ||
                              player.intersects_top(sprites_still.get(12)) ||
-                             player.intersects_top(sprites_still.get(13)) ){
+                             player.intersects_top(sprites_still.get(13)) 
+                             ){
                          player.setVelocity(0, 0);
                     }else {
                         player.setVelocity(0, -100);
@@ -257,12 +252,19 @@ public class Clearing extends Map{
                     if (player.intersects_bottom(worldBoundBottom)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                        
+                     //check if the player walks into the exit
+                    }else if(player.intersects_bottom(sprites_still.get(7))){
+                        setNewScene();
+                            
                         //check if the player walks into a sprite
-                    }else if(player.intersects_bottom(sprites_still.get(9)) ||
+                    }else if(player.intersects_bottom(sprites_still.get(8))  ||
+                             player.intersects_bottom(sprites_still.get(9))  ||
                              player.intersects_bottom(sprites_still.get(10)) ||
                              player.intersects_bottom(sprites_still.get(11)) ||
                              player.intersects_bottom(sprites_still.get(12)) ||
-                             player.intersects_bottom(sprites_still.get(13)) ){
+                             player.intersects_bottom(sprites_still.get(13)) 
+                             ){
                          player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0, 100);
@@ -273,14 +275,23 @@ public class Clearing extends Map{
             
                 //interact with the world around the player
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_still.get(13))) {
+                    if (player.intersect(sprites_still.get(12))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "unicorn"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
+                    
+                  
+                    }
+                    if (player.intersect(sprites_still.get(13))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "tree"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                    
                   
                     }
                     menu_input.remove("E");
                 }
+                
                 //update the players velocity
                 player.update(elapsedTime);
                 //clear our player
