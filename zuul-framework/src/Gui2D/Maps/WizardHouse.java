@@ -105,7 +105,7 @@ public class WizardHouse extends Map{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(500, 400);
+        player.setPosition(500, 200);
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
@@ -132,9 +132,9 @@ public class WizardHouse extends Map{
         
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
-        Rectangle2D worldBoundLeft = new Rectangle2D(230, 0, 1, 512);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 410, 1024, 1);
-        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
+        Rectangle2D worldBoundLeft = new Rectangle2D(222, 0, 1, 512);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 370, 1024, 1);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 63, 1024, 1);
         
         new AnimationTimer() {
             //set the current time we started.
@@ -160,8 +160,20 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_left(sprites_background.get(6))
+                            || player.intersects_left(sprites_background.get(4))
+                            || player.intersects_left(sprites_background.get(7))
+                            || player.intersects_left(sprites_background.get(8))
+                            || player.intersects_left(sprites_background.get(9))
+                            || player.intersects_left(sprites_background.get(10))
+                            || player.intersects_left(sprites_background.get(11))
+                            || player.intersects_left(sprites_background.get(12))
+                            || player.intersects_left(sprites_background.get(13))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    
+                    } else {
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
@@ -175,8 +187,20 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_right(sprites_background.get(7))
+                            || player.intersects_right(sprites_background.get(8))
+                            || player.intersects_right(sprites_background.get(9))
+                            || player.intersects_right(sprites_background.get(10))
+                            || player.intersects_right(sprites_background.get(11))
+                            || player.intersects_right(sprites_background.get(12))
+                            || player.intersects_right(sprites_background.get(13))
+                            || player.intersects_right(sprites_background.get(3))
+                            || player.intersects_bottom(sprites_background.get(1))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    
+                    } else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
@@ -190,8 +214,35 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_top(sprites_background.get(4))
+                            || player.intersects_top(sprites_background.get(7))
+                            || player.intersects_top(sprites_background.get(8))
+                            || player.intersects_top(sprites_background.get(9))
+                            || player.intersects_top(sprites_background.get(10))
+                            || player.intersects_top(sprites_background.get(11))
+                            || player.intersects_top(sprites_background.get(12))
+                            || player.intersects_top(sprites_background.get(13))
+                            || player.intersects_right(sprites_background.get(3))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    
+                    } else if (player.intersects_top(sprites_background.get(2))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "door"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
+                    } else {
                         player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
@@ -205,8 +256,14 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_bottom(sprites_background.get(6))
+                            || player.intersects_bottom(sprites_background.get(5))
+                            || player.intersects_bottom(sprites_background.get(1))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    
+                    } else {
                         player.setVelocity(0, 100);
                     }
                     //set the direction the player walks
@@ -243,7 +300,7 @@ public class WizardHouse extends Map{
                     
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
-                    case 3:
+                    case 6:
                         WizardOfTreldan.setForestScene();
                         break;
                 }

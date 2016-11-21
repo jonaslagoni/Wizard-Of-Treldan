@@ -275,7 +275,7 @@ public class Forest extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
-                        game.goTo(new Command(CommandWord.GO, "wizardhouse"));
+                        game.goTo(new Command(CommandWord.GO, "house"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -358,14 +358,20 @@ public class Forest extends Map{
                     
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
-                    case 3:
+                    case 2:
                         WizardOfTreldan.setVillageScene();
                         break;
-                    case 4:
+                    case 8:
                         WizardOfTreldan.setCaveScene();
                         break;
-                    case 5:
+                    case 10:
                         WizardOfTreldan.setClearingScene();
+                        break;
+                    case 7:
+                        WizardOfTreldan.setWizardHouseScene();
+                        break;
+                    default:
+                        WizardOfTreldan.setMenuScene();
                         break;
                 }
             }

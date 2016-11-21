@@ -97,17 +97,17 @@ public class WizardHouse_sprites{
         
         Sprite bookshelf3 = world.getMisc_sprites().getBookshelf_1();
         bookshelf3.setSize(64, 69);
-        bookshelf3.setPosition(425, 80);
+        bookshelf3.setPosition(430, 80);
         background_sprites.add(bookshelf3);
         
         Sprite bookshelf2 = world.getMisc_sprites().getBookshelf_1();
         bookshelf2.setSize(64, 69);
-        bookshelf2.setPosition(390, 80);
+        bookshelf2.setPosition(395, 80);
         background_sprites.add(bookshelf2);
         
         Sprite bookshelf1 = world.getMisc_sprites().getBookshelf_1();
         bookshelf1.setSize(64, 69);
-        bookshelf1.setPosition(355, 80);
+        bookshelf1.setPosition(360, 80);
         background_sprites.add(bookshelf1);
         
         // END OF MISC ITEMS
