@@ -91,19 +91,19 @@ public class EvilWizardsLair_sprites{
         stair.setPosition(480,190);
         spriteList_foreground.add(stair);
         
-        //ENEMY DUDE 1   #8
+        //ENEMY DUDE 1   #4
         Sprite enemy = world.getMisc_sprites().getWizard_evil();
         enemy.setPosition(485,25);
         enemy.setBoundary(new Rectangle2D(enemy.getPositionX(),enemy.getPositionY(),enemy.getWidth(),enemy.getHeight()));
         spriteList_foreground.add(enemy);
         
-        //abbaration 1   #9
+        //abbaration 1   #5
         Sprite minion1 = world.getMisc_sprites().getEnemy_abbaration();
         minion1.setPosition(115,40);
         minion1.setBoundary(new Rectangle2D(minion1.getPositionX(),minion1.getPositionY(),minion1.getWidth(),minion1.getHeight()));
         spriteList_foreground.add(minion1);
         
-        //abbaration 2   #10
+        //abbaration 2   #6
         Sprite minion2 = world.getMisc_sprites().getEnemy_abbaration();
         minion2.setPosition(865, 40);
          minion2.setBoundary(new Rectangle2D(minion2.getPositionX(),minion2.getPositionY(),minion2.getWidth(),minion2.getHeight()));

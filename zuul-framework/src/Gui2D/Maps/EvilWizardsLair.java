@@ -121,8 +121,8 @@ public class EvilWizardsLair extends Map{
         Rectangle2D worldBoundLeft = new Rectangle2D(35,0,1,512);
         Rectangle2D worldBoundRight = new Rectangle2D(965,0,1,512);
         
-        Rectangle2D worldBoundTopLeft = new Rectangle2D(35,120,200,300);
-        Rectangle2D worldBoundTopRight = new Rectangle2D(0,0,0,0);
+        Rectangle2D worldBoundLeft2 = new Rectangle2D(0,160,440,512);    
+        Rectangle2D worldBoundRight2 = new Rectangle2D(580,160,500,512);    
         
         
          //spritelist of background sprites
@@ -154,15 +154,17 @@ public class EvilWizardsLair extends Map{
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_left(worldBoundLeft)){
+                    if (player.intersects_left(worldBoundLeft) ||
+                        player.intersects_left(worldBoundLeft2)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     }
-                    if (player.intersects_left(worldBoundTopLeft)){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //check if the player walks into a sprite
+                    else if(player.intersects_left(spriteList_foreground.get(4)) ||
+                              player.intersects_left(spriteList_foreground.get(5)) ||
+                              player.intersects_left(spriteList_foreground.get(6))
+                            ){
+                        player.setVelocity(0,0);
                     }
                    
                     else {
@@ -175,11 +177,20 @@ public class EvilWizardsLair extends Map{
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_right(worldBoundRight)) {
+                    if (player.intersects_right(worldBoundRight) ||
+                        player.intersects_right(worldBoundRight2))
+                            {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
                     }
+                    else if(player.intersects_right(spriteList_foreground.get(4)) ||
+                              player.intersects_right(spriteList_foreground.get(5)) ||
+                              player.intersects_right(spriteList_foreground.get(6))
+                            ){
+                        player.setVelocity(0,0);
+                    }
+                    
                     else {
                         player.setVelocity(100, 0);
                     }
@@ -195,6 +206,12 @@ public class EvilWizardsLair extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     }
+                    else if(player.intersects_top(spriteList_foreground.get(4)) ||
+                              player.intersects_top(spriteList_foreground.get(5)) ||
+                              player.intersects_top(spriteList_foreground.get(6))
+                            ){
+                        player.setVelocity(0,0);
+                    }
                     
                     else {
                         player.setVelocity(0, -100);
@@ -206,17 +223,21 @@ public class EvilWizardsLair extends Map{
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_bottom(worldBoundBottom)) {
+                    if (player.intersects_bottom(worldBoundBottom)||
+                        player.intersects_bottom(worldBoundRight2)||
+                        player.intersects_bottom(worldBoundLeft2)
+                            
+                            ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //check if the player walks into a sprite
+                        
+                        //check if the player walks into a sprite from the spriteList_foreground array
+                    }else if(player.intersects_bottom(spriteList_foreground.get(4)) ||
+                              player.intersects_bottom(spriteList_foreground.get(5)) ||
+                              player.intersects_bottom(spriteList_foreground.get(6))
+                            ){
+                        player.setVelocity(0,0);
                     }
-                    if (player.intersects_bottom(worldBoundTopLeft)){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //check if the player walks into a sprite
-                    }
-                    
                    
                     else {
                         player.setVelocity(0, 100);
@@ -226,7 +247,20 @@ public class EvilWizardsLair extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(spriteList_foreground.get(8))) {
+                    if (player.intersect(spriteList_foreground.get(4))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "enemy"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(spriteList_foreground.get(5))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "enemy"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                        
+                    }
+                    if (player.intersect(spriteList_foreground.get(6))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "enemy"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
