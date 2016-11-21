@@ -16,12 +16,14 @@ public class EquippedItems {
     
         private final SimpleStringProperty itemNames;
         private final SimpleStringProperty itemSlots;
-        private final SimpleDoubleProperty itemStats;
+        private final SimpleDoubleProperty itemAttack;
+        private final SimpleDoubleProperty itemDefence;
  
-        public EquippedItems(String iNames, String iSlots, double itemStats) {
+        public EquippedItems(String iNames, String iSlots, double attackValue, double defenceValue) {
             this.itemNames = new SimpleStringProperty(iNames);
             this.itemSlots = new SimpleStringProperty(iSlots);
-            this.itemStats = new SimpleDoubleProperty(itemStats);
+            this.itemAttack = new SimpleDoubleProperty(attackValue);
+            this.itemDefence = new SimpleDoubleProperty(attackValue);
         }
  
         public String getItemName() {
@@ -40,12 +42,20 @@ public class EquippedItems {
             itemSlots.set(iType);
         }
  
-        public double getItemStats() {
-            return itemStats.get();
+        public double getItemAttack() {
+            return itemAttack.get();
         }
  
-        public void setItemStats(double iAttV, double iDefV) {
-            itemStats.set(iAttV + iDefV);
+        public void setItemAttack(double iAttV) {
+            itemAttack.set(iAttV);
+        }
+        
+        public double getDefenceAttack() {
+            return itemAttack.get();
+        }
+ 
+        public void setItemDefence(double iDefV) {
+            itemDefence.set(iDefV);
         }
     
 }
