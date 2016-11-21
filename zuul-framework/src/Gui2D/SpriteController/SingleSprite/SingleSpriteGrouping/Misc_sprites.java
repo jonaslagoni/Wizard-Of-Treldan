@@ -380,5 +380,9 @@ public class Misc_sprites {
         return new Lava_pillar_3().getSprite();
     }
 
+    public SingleSprite getWizardHouse_2() {
+        return new WizardHouse_2().getSprite();
+    }
+    
 }
 

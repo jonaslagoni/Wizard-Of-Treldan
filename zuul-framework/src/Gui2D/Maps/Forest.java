@@ -202,6 +202,21 @@ public class Forest extends Map{
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    } else if (player.intersects_left(sprites_background.get(10))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "wizardhouse"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     } else if (player.intersects_left(sprites_background.get(7))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -237,6 +252,21 @@ public class Forest extends Map{
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    } else if (player.intersects_right(sprites_background.get(10))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        //go to house1
+                        game.goTo(new Command(CommandWord.GO, "wizardhouse"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     } else {
                         player.setVelocity(100, 0);
                     }

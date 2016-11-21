@@ -208,7 +208,7 @@ public class Forest_sprites{
         Sprite wizardHouse_1 = world.getMisc_sprites().getWizardHouse();
         wizardHouse_1.setPosition(297, 163);
         background_sprites.add(wizardHouse_1);
-        Sprite wizardHouse_2 = world.getMisc_sprites().getWizardHouse();
+        Sprite wizardHouse_2 = world.getMisc_sprites().getWizardHouse_2();
         wizardHouse_2.setPosition(297, 163);
         foreground_sprites.add(wizardHouse_2);
         
