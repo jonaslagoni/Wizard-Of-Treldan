@@ -118,13 +118,12 @@ public class EvilWizardsLair extends Map{
         //world boundaries
         Rectangle2D worldBoundTop = new Rectangle2D(0, 40, 1024, 1);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 500, 1024, 1);
-        Rectangle2D worldBoundLeft = new Rectangle2D(20, 0, 1, 512);
-        Rectangle2D worldBoundRight = new Rectangle2D(980, 0, 1, 512);
-        Rectangle2D worldBoundTopLeft = new Rectangle2D(0,0,0,0);
+        Rectangle2D worldBoundLeft = new Rectangle2D(35,0,1,512);
+        Rectangle2D worldBoundRight = new Rectangle2D(965,0,1,512);
+        
+        Rectangle2D worldBoundTopLeft = new Rectangle2D(35,120,200,300);
         Rectangle2D worldBoundTopRight = new Rectangle2D(0,0,0,0);
-        Rectangle2D worldBoundBotLeft = new Rectangle2D(450,0,1,512);
-        Rectangle2D worldBoundBotRight = new Rectangle2D(580,0,1,512);
-
+        
         
          //spritelist of background sprites
         List<Sprite> spriteList = evilWizardsLair_sprites.getSpriteList();
@@ -155,14 +154,15 @@ public class EvilWizardsLair extends Map{
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_left(worldBoundLeft)) {
+                    if (player.intersects_left(worldBoundLeft)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     }
-                    else if(player.intersects_left(worldBoundBotLeft)){
+                    if (player.intersects_left(worldBoundTopLeft)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                        //check if the player walks into a sprite
                     }
                    
                     else {
@@ -180,10 +180,6 @@ public class EvilWizardsLair extends Map{
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
                     }
-                     else if(player.intersects_right(worldBoundBotRight)){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                    }
                     else {
                         player.setVelocity(100, 0);
                     }
@@ -199,6 +195,7 @@ public class EvilWizardsLair extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     }
+                    
                     else {
                         player.setVelocity(0, -100);
                     }
@@ -214,15 +211,13 @@ public class EvilWizardsLair extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     }
-                    else if(player.intersects_bottom(worldBoundBotLeft)){
+                    if (player.intersects_bottom(worldBoundTopLeft)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }
-                    else if(player.intersects_bottom(worldBoundBotRight)){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
+                        //check if the player walks into a sprite
                     }
                     
+                   
                     else {
                         player.setVelocity(0, 100);
                     }
@@ -231,12 +226,13 @@ public class EvilWizardsLair extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(spriteList_foreground.get(1))) {
+                    if (player.intersect(spriteList_foreground.get(8))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "enemy"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
+                    
                     menu_input.remove("E");
                 }
                 //update the players velocity
