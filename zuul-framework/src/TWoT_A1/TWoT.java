@@ -25,7 +25,7 @@ public class TWoT implements Serializable{
     private Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
     private boolean isOver;
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
 
@@ -232,14 +232,22 @@ public class TWoT implements Serializable{
         Interior roomLibraryDoor = new Exit(roomEvilWizardsLair);
         Monster librarian = new Monster("Evil Librarian", 2.2, 2.0, 250, 500, "A librarian gets up from his seat - \"Hey, leave this place immdiately! You book is due!\".\nThe librarian starts throwing books at you. ");
         librarian.addDropItem(new EquippableItem("Fancy librarian-hotpants", 677, "These pants are pretty tight.", 0.0, 1.2, LEG_SLOT, "", 33304));
+        Interior roomLibraryChest = new UseableItem("Health Potion",20,"Regenerates health points", "You search the chest and find a health potion", 55507, FOOD, 50);
         roomLibrary.addMapInterior("librarian", librarian);
         roomLibrary.addMapInterior("door", roomLibraryDoor);
+        roomLibrary.addMapInterior("chest",roomLibraryChest);
         
         //roomEvilWizardsLair
         
         Monster roomEvilWizardsLairWizard = new Monster("Evil Wizard of Doom", 2.5, 2.5, 800, 3500, "There's no turning back now, thief!\n Face me in a final battle!");
+        Monster roomEvilWizardsLairMinion1 = new Monster("Minion of the evil Wizard", 1.5, 1.5, 400, 1500, "*horrible noises*");
+        Monster roomEvilWizardsLairMinion2 = new Monster("Minion of the evil Wizard", 1.5, 1.5, 400, 1500, "*horrible screams*");
         roomEvilWizardsLairWizard.setMobId(1);
+        roomEvilWizardsLairMinion1.setMobId(2);
+        roomEvilWizardsLairMinion2.setMobId(3);
         roomEvilWizardsLair.addMapInterior("wizard", roomEvilWizardsLairWizard);
+        roomEvilWizardsLair.addMapInterior("minion1", roomEvilWizardsLairMinion1);
+        roomEvilWizardsLair.addMapInterior("minion2", roomEvilWizardsLairMinion2);
         
         
         //set which room you start in.
