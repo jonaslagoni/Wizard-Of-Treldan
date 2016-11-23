@@ -88,6 +88,8 @@ public class Cave extends Map{
         Canvas foreground_canvas = new Canvas(1024, 512);
         root.getChildren().add(foreground_canvas);
         
+        root.getChildren().add(enemy_canvas);
+        
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
@@ -129,20 +131,18 @@ public class Cave extends Map{
         //render all the sprites
 
         
-        if (game.checkExisting("troll1")) {
-            enemy_sprites.get(0).render(enemiesGC);
-        }
-        
-        if (game.checkExisting("troll2")) {
-            enemy_sprites.get(1).render(enemiesGC);
-        }
-        
-        if (game.checkExisting("troll3")) {
-            enemy_sprites.get(2).render(enemiesGC);
-        }
-        
         for (Sprite sprite : sprites_background) {
             sprite.render(cave_background);
+        }
+        
+        if(game.checkExisting("troll1")){
+                    enemy_sprites.get(0).render(enemiesGC);
+        }
+        if(game.checkExisting("troll2")){
+                    enemy_sprites.get(1).render(enemiesGC);
+        }
+        if(game.checkExisting("troll3")){
+            enemy_sprites.get(2).render(enemiesGC);
         }
         
 //        GraphicsContext foreground_canvas_gc = foreground_canvas.getGraphicsContext2D();
@@ -184,7 +184,9 @@ public class Cave extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_left(sprites_background.get(5))
-                            
+                            ||(player.intersects_left(enemy_sprites.get(0)))
+                            ||(player.intersects_left(enemy_sprites.get(1)))
+                            ||(player.intersects_left(enemy_sprites.get(2)))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -205,7 +207,9 @@ public class Cave extends Map{
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
                     } else if (player.intersects_right(sprites_background.get(5))
-                            
+                            ||(player.intersects_right(enemy_sprites.get(0)))
+                            ||(player.intersects_right(enemy_sprites.get(1)))
+                            ||(player.intersects_right(enemy_sprites.get(2)))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -225,8 +229,15 @@ public class Cave extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
+                    } else if ((player.intersects_top(enemy_sprites.get(0)))
+                            ||(player.intersects_top(enemy_sprites.get(1)))
+                            ||(player.intersects_top(enemy_sprites.get(2)))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     }
-                    else if (player.intersects_top(sprites_background.get(5))) {
+                    
+                    else if (player.intersects_top(sprites_background.get(5))
+                            ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         if (!trollsDead) {
@@ -287,7 +298,9 @@ public class Cave extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_bottom(sprites_background.get(5))
-                            
+                            ||(player.intersects_bottom(enemy_sprites.get(0)))
+                            ||(player.intersects_bottom(enemy_sprites.get(1)))
+                            ||(player.intersects_bottom(enemy_sprites.get(2)))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -301,19 +314,19 @@ public class Cave extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_background.get(1))) {
+                    if (player.intersect(enemy_sprites.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll1"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(sprites_background.get(1))) {
+                    if (player.intersect(enemy_sprites.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll2"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(sprites_background.get(1))) {
+                    if (player.intersect(enemy_sprites.get(2))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll3"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -327,17 +340,16 @@ public class Cave extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
-
+                
+                enemiesGC.clearRect(0, 0, 1024, 512);
                 if(game.checkExisting("troll1")){
                     enemy_sprites.get(0).render(enemiesGC);
                 }
                 if(game.checkExisting("troll2")){
-                    enemy_sprites.get(0).render(enemiesGC);
+                    enemy_sprites.get(1).render(enemiesGC);
                 }
                 if(game.checkExisting("troll3")){
-                    enemy_sprites.get(0).render(enemiesGC);
-                } else {
-                    trollsDead = true;
+                    enemy_sprites.get(2).render(enemiesGC);
                 }
                 
                 //check if the user wants to see a menu.
@@ -353,7 +365,6 @@ public class Cave extends Map{
             }
                     
             public void setNewScene() {
-                System.out.println(game.getCurrentRoomId());
                 switch (game.getCurrentRoomId()) {
                     case 9:
                         WizardOfTreldan.setGruulsLairScene();

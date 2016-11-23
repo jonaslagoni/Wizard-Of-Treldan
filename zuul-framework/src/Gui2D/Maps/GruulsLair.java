@@ -85,6 +85,7 @@ public class GruulsLair extends Map{
         //add the canvas to the group
         root.getChildren().add(player_canvas);
 
+        root.getChildren().add(enemy_canvas);
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
@@ -258,6 +259,11 @@ public class GruulsLair extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                enemiesGC.clearRect(0, 0, 1024, 512);
+                if (game.checkExisting("gruul")) {
+                    enemy_sprites.get(0).render(enemiesGC);
+                }
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
