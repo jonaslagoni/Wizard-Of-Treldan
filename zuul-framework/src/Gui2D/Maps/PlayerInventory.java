@@ -12,6 +12,7 @@ import TWoT_A1.Item;
 import TWoT_A1.QuestItem;
 import TWoT_A1.TWoT;
 import TWoT_A1.UseableItem;
+import static java.lang.Math.round;
 import java.util.HashMap;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -71,14 +72,14 @@ public class PlayerInventory {
         menu.getChildren().add(pb);
         
         //Adding a Text component to indicate the player's attack value.
-        attv = new Text("" + game.getPlayerAtt());
+        attv = new Text(""+round(game.getPlayerAtt()*100.0)/100.0);
         attv.relocate(60, 64);
         attv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         attv.setFill(Color.WHITE);
         menu.getChildren().add(attv);
         
         //Adding a Text component to indicate the player's deffensive value.
-        deffv = new Text("" + game.getPlayerDeff());
+        deffv = new Text(""+round(game.getPlayerDeff()*100.0)/100.0);
         deffv.relocate(216, 64);
         deffv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         deffv.setFill(Color.WHITE);
@@ -386,8 +387,8 @@ public class PlayerInventory {
         pb.setProgress(game.getPlayerHealth()/100);
         
         //update the user's attack and deff values
-        attv.setText(""+game.getPlayerAtt());
-        deffv.setText(""+game.getPlayerDeff());
+        attv.setText(""+Math.round(game.getPlayerAtt()*100.0)/100.0);
+        deffv.setText(""+Math.round(game.getPlayerDeff()*100.0)/100.0);
     }
 
     /**

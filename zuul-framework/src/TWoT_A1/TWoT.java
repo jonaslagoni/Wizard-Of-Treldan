@@ -35,8 +35,6 @@ public class TWoT implements Serializable{
         createRooms();
         player = new Player("StartName", 1.0, 1.0, 100, new Inventory());
         startTime = (long)(System.currentTimeMillis() / 1000L);
-        player.addItemToInventory(new UseableItem("Cheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501, FOOD, 50));
-        player.setDamage(30);
         player.addItemToEquippableInventory(new EquippableItem("Dagger", 291, "Small dagger.", 0.2, 0.0, WEAPON_SLOT, "", 33305), player);
         player.addItemToEquippableInventory(new EquippableItem("Tattered Shirt", 291, "Smells awful.", 0.0, 0.2, CHEST_SLOT, "", 33306), player);
         player.addItemToEquippableInventory(new EquippableItem("Tattered Pants", 291, "Uncomfortable to wear.", 0.0, 0.1, LEG_SLOT, "", 33307), player);
