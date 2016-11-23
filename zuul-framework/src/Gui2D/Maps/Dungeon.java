@@ -72,6 +72,7 @@ public class Dungeon extends Map{
         Scene theScene = new Scene( root );
         Canvas canvas_background = new Canvas(1024, 512);
         Canvas canvas_foreground = new Canvas(1024, 512);
+        Canvas canvas_enemies = new Canvas (1024,512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
@@ -116,11 +117,26 @@ public class Dungeon extends Map{
         //create GraphicsContext from our canvas_background
         GraphicsContext dungeon_background = canvas_background.getGraphicsContext2D();
         GraphicsContext dungeon_foreground = canvas_foreground.getGraphicsContext2D();
+        GraphicsContext enemiesGC = canvas_enemies.getGraphicsContext2D();
         
         //get all the sprites used in the dungeon
         List<Sprite> dungeon_background_sprites = dungeon_sprites.getDungeon_background_sprites();
         List<Sprite> dungeon_foreground_sprites = dungeon_sprites.getDungeon_foreground_sprites();
+        List<Sprite> enemy_sprites = dungeon_sprites.getDungeon_enemy_sprite();
         //render all the sprites
+        
+        if (game.checkExisting("skeleton1")) {
+            enemy_sprites.get(0).render(enemiesGC);
+        }
+        
+        if (game.checkExisting("skeleton2")) {
+            enemy_sprites.get(1).render(enemiesGC);
+        }
+        
+        if (game.checkExisting("skeleton3")) {
+            enemy_sprites.get(2).render(enemiesGC);
+        }
+        
         for (Sprite sprite : dungeon_background_sprites) {
             sprite.render(dungeon_background);
         }
@@ -244,7 +260,19 @@ public class Dungeon extends Map{
                 
                 if (menu_input.contains("E")) {
                     if (player.intersect(dungeon_background_sprites.get(1))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "haystack"))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "skeleton1"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(dungeon_background_sprites.get(1))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "skeleton2"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(dungeon_background_sprites.get(1))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "skeleton3"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
@@ -258,6 +286,16 @@ public class Dungeon extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                if(game.checkExisting("skeleton1")){
+                    enemy_sprites.get(0).render(enemiesGC);
+                }
+                if(game.checkExisting("skeleton2")){
+                    enemy_sprites.get(1).render(enemiesGC);
+                }
+                if(game.checkExisting("skeleton3")){
+                    enemy_sprites.get(2).render(enemiesGC);
+                }
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {

@@ -72,6 +72,7 @@ public class GruulsLair extends Map{
         Group root = new Group();
         Scene theScene = new Scene( root );
         Canvas canvas_background = new Canvas(1024, 512);
+        Canvas enemy_canvas = new Canvas(1024, 512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
@@ -115,10 +116,18 @@ public class GruulsLair extends Map{
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         //create GraphicsContext from our canvas_background
         GraphicsContext cave_background = canvas_background.getGraphicsContext2D();
+        // create GraphicsContext for our monsters in gruulsLair
+        GraphicsContext enemiesGC = enemy_canvas.getGraphicsContext2D();
         
         //get all the sprites used in the cave
+        List<Sprite> enemy_sprites = gruulsLair_sprites.getGruulsLair_enemy_sprites();
         List<Sprite> sprites_background = gruulsLair_sprites.getGruulsLair_background_sprites();
         //render all the sprites
+        
+        if (game.checkExisting("gruul")) {
+            enemy_sprites.get(0).render(enemiesGC);
+        }
+        
         for (Sprite sprite : sprites_background) {
             sprite.render(cave_background);
         }
@@ -153,8 +162,11 @@ public class GruulsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_left(enemy_sprites.get(0))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else {
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
@@ -168,8 +180,11 @@ public class GruulsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_left(enemy_sprites.get(0))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
@@ -183,8 +198,11 @@ public class GruulsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    } else if (player.intersects_left(enemy_sprites.get(0))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else {
                         player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
@@ -213,6 +231,10 @@ public class GruulsLair extends Map{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
+                    } else if (player.intersects_left(enemy_sprites.get(0))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     } else {
                         player.setVelocity(0, 100);
                     }
@@ -221,8 +243,8 @@ public class GruulsLair extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_background.get(1))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "haystack"))) {
+                    if (game.checkExisting("gruul")) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "gruul"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
@@ -250,7 +272,7 @@ public class GruulsLair extends Map{
                     
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
-                    case 3:
+                    case 8:
                         WizardOfTreldan.setCaveScene();
                         break;
                 }

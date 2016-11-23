@@ -23,11 +23,13 @@ public class Cave_sprites{
     
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
+    private List<Sprite> enemy_sprites;
     
     public Cave_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
         this.foreground_sprites = new ArrayList();
+        this.enemy_sprites = new ArrayList();
     }
     
     public void setCave_background_SingleSprites(){
@@ -123,8 +125,6 @@ public class Cave_sprites{
         
         // Enemies in cave START
         
-        List<SingleSprite> enemies = new ArrayList();
-        
         Sprite enemy1 = world.getMisc_sprites().getEnemy_Golem();
         Sprite enemy2 = world.getMisc_sprites().getEnemy_Golem();
         Sprite enemy3 = world.getMisc_sprites().getEnemy_Golem();
@@ -138,13 +138,9 @@ public class Cave_sprites{
         enemy3.setSize(43, 59);
         enemy3.setPosition(575, 100);
         
-        foreground_sprites.add(enemy1);
-        foreground_sprites.add(enemy2);
-        foreground_sprites.add(enemy3);
-        
-        enemies.add((SingleSprite)enemy1);
-        enemies.add((SingleSprite)enemy2);
-        enemies.add((SingleSprite)enemy3);
+        enemy_sprites.add(enemy1);
+        enemy_sprites.add(enemy2);
+        enemy_sprites.add(enemy3);
         
         // Enemies in cave END
         
@@ -163,6 +159,10 @@ public class Cave_sprites{
      */
     public List<Sprite> getCave_foreground_sprites() {
         return foreground_sprites;
+    }
+    
+    public List<Sprite> getEnemy_sprites() {
+        return enemy_sprites;
     }
    
     

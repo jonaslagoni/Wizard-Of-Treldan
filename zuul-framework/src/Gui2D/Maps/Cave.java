@@ -72,6 +72,7 @@ public class Cave extends Map{
         Group root = new Group();
         Scene theScene = new Scene( root );
         Canvas canvas_background = new Canvas(1024, 512);
+        Canvas enemy_canvas = new Canvas(1024,512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
@@ -118,20 +119,38 @@ public class Cave extends Map{
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         //create GraphicsContext from our canvas_background
         GraphicsContext cave_background = canvas_background.getGraphicsContext2D();
+        //create GraphicsContext for our enemies
+        GraphicsContext enemiesGC = enemy_canvas.getGraphicsContext2D();
         
         //get all the sprites used in the cave
         List<Sprite> sprites_background = cave_sprites.getCave_background_sprites();
+        // get all enemy sprites used in cave
+        List<Sprite> enemy_sprites = cave_sprites.getEnemy_sprites();
         //render all the sprites
+
+        
+        if (game.checkExisting("troll1")) {
+            enemy_sprites.get(0).render(enemiesGC);
+        }
+        
+        if (game.checkExisting("troll2")) {
+            enemy_sprites.get(1).render(enemiesGC);
+        }
+        
+        if (game.checkExisting("troll3")) {
+            enemy_sprites.get(2).render(enemiesGC);
+        }
+        
         for (Sprite sprite : sprites_background) {
             sprite.render(cave_background);
         }
         
-        GraphicsContext foreground_canvas_gc = foreground_canvas.getGraphicsContext2D();
-        
-        List<Sprite> sprites_foreground = cave_sprites.getCave_foreground_sprites();
-        for (Sprite sprite : sprites_foreground) {
-            sprite.render(foreground_canvas_gc);
-        }
+//        GraphicsContext foreground_canvas_gc = foreground_canvas.getGraphicsContext2D();
+//        
+//        List<Sprite> sprites_foreground = cave_sprites.getCave_foreground_sprites();
+//        for (Sprite sprite : sprites_foreground) {
+//            sprite.render(foreground_canvas_gc);
+//        }
            
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
@@ -142,6 +161,7 @@ public class Cave extends Map{
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
+            private boolean trollsDead = false;
 
             //what to do each cycle
             @Override
@@ -209,33 +229,49 @@ public class Cave extends Map{
                     else if (player.intersects_top(sprites_background.get(5))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "forest"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
+                        if (!trollsDead) {
+                            int oldId = game.getCurrentRoomId();
+                            for (String s : game.goTo(new Command(CommandWord.GO, "forest"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            trollsDead = true;
+                            if (game.getCurrentRoomId() != oldId) {
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                        }
+                        
                     } else if (player.intersects_top(sprites_background.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "gruulsLair"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
+                        if (!trollsDead) {
+                            int oldId = game.getCurrentRoomId();
+                            for (String s : game.goTo(new Command(CommandWord.GO, "lair"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            trollsDead = true;
+                            if (game.getCurrentRoomId() != oldId) {
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                        }
+                        
                     } else {
                         player.setVelocity(0, -100);
                     }
@@ -266,7 +302,19 @@ public class Cave extends Map{
                 
                 if (menu_input.contains("E")) {
                     if (player.intersect(sprites_background.get(1))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "haystack"))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "troll1"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(sprites_background.get(1))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "troll2"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(sprites_background.get(1))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "troll3"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
@@ -280,6 +328,18 @@ public class Cave extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                if(game.checkExisting("troll1")){
+                    enemy_sprites.get(0).render(enemiesGC);
+                }
+                if(game.checkExisting("troll2")){
+                    enemy_sprites.get(0).render(enemiesGC);
+                }
+                if(game.checkExisting("troll3")){
+                    enemy_sprites.get(0).render(enemiesGC);
+                } else {
+                    trollsDead = true;
+                }
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
@@ -293,11 +353,12 @@ public class Cave extends Map{
             }
                     
             public void setNewScene() {
+                System.out.println(game.getCurrentRoomId());
                 switch (game.getCurrentRoomId()) {
-                    case 3:
+                    case 9:
                         WizardOfTreldan.setGruulsLairScene();
                         break;
-                    case 4:
+                    case 6:
                         WizardOfTreldan.setForestScene();
                         break;
                 }

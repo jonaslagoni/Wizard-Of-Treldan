@@ -22,11 +22,13 @@ public class Dungeon_sprites {
     
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
+    private List<Sprite> enemy_sprites;
     
     public Dungeon_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
         this.foreground_sprites = new ArrayList();
+        this.enemy_sprites = new ArrayList();
     }
     
     public void setDungeon_background_SingleSprites(){
@@ -141,8 +143,6 @@ public class Dungeon_sprites {
         
         // Enemies START
         
-        List<SingleSprite> enemies = new ArrayList();
-        
         Sprite skeleton1 = world.getMisc_sprites().getEnemy_Skeleton();
         Sprite skeleton2 = world.getMisc_sprites().getEnemy_Skeleton();
         Sprite skeleton3 = world.getMisc_sprites().getEnemy_Skeleton();
@@ -156,13 +156,9 @@ public class Dungeon_sprites {
         skeleton3.setSize(30, 47);
         skeleton3.setPosition(745, 150);
         
-        background_sprites.add(skeleton1);
-        background_sprites.add(skeleton2);
-        background_sprites.add(skeleton3);
-        
-        enemies.add((SingleSprite)skeleton1);
-        enemies.add((SingleSprite)skeleton2);
-        enemies.add((SingleSprite)skeleton3);
+        enemy_sprites.add(skeleton1);
+        enemy_sprites.add(skeleton2);
+        enemy_sprites.add(skeleton3);
         
         // Enemies END
         
@@ -177,5 +173,8 @@ public class Dungeon_sprites {
     }
     public List<Sprite> getDungeon_foreground_sprites() {
         return foreground_sprites;
+    }
+    public List<Sprite> getDungeon_enemy_sprite() {
+        return enemy_sprites;
     }
 }

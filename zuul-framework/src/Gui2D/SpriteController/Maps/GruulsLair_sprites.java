@@ -22,11 +22,13 @@ public class GruulsLair_sprites{
     
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
+    private List<Sprite> enemy_sprites;
     
     public GruulsLair_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
         this.foreground_sprites = new ArrayList();
+        this.enemy_sprites = new ArrayList();
     }
     
     public void setGruulsLair_background_SingleSprites(){
@@ -117,7 +119,7 @@ public class GruulsLair_sprites{
         gruul.setSize(43, 59);
         gruul.setPosition(492, 75);
         
-        background_sprites.add(gruul);
+        enemy_sprites.add(gruul);
         
         enemies.add((SingleSprite)gruul);
         
@@ -130,6 +132,10 @@ public class GruulsLair_sprites{
      */
     public List<Sprite> getGruulsLair_background_sprites() {
         return background_sprites;
+    }
+    
+    public List<Sprite> getGruulsLair_enemy_sprites() {
+        return enemy_sprites;
     }
 
    
