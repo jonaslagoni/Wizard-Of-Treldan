@@ -43,6 +43,7 @@ import javafx.scene.text.Text;
  */
 public class Load extends Map{
     private Text status;
+    private boolean canLoad;
     public Load(SpriteController world){
         super();
         //set the world constructor
@@ -116,7 +117,7 @@ public class Load extends Map{
                             //set the game to the loaded instance
                             WizardOfTreldan.setGame(loadedGame);
                             //check which scene the player is in.
-                            if(status.equals("")){
+                            if(canLoad){
                                 switch(loadedGame.getCurrentRoomId()){
                                     case 1: WizardOfTreldan.setCellarScene();
                                         break;
@@ -231,6 +232,7 @@ public class Load extends Map{
             //close the objects
             input.close();
             fileInputStream.close();
+            canLoad = true;
             //returns the gamefile
             return twot;
         } catch (FileNotFoundException e) {
@@ -240,6 +242,7 @@ public class Load extends Map{
         } catch (ClassNotFoundException e) {
                 status.setText("The game was not found.");
         }
+        canLoad = false;
         return null;
     }
 }
