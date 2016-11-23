@@ -77,11 +77,10 @@ public class Library extends Map{
         GraphicsContext backgroundContext = canvas_background.getGraphicsContext2D();
         
         //create lists of sprite of the foreground / background sprite lists
-        List<Sprite> spriteList_background = library_sprites.getSpriteList_background();
-        List<Sprite> spriteList_foreground = library_sprites.getSpriteList_foreground();
+        List<Sprite> spriteList_still = library_sprites.getSpriteList_background();
         
         //render sprites via a for each loop of the sprites contained in the sprite list
-        for (Sprite s : spriteList_background) {
+        for (Sprite s : spriteList_still) {
             s.render(backgroundContext);
             
         }
@@ -105,7 +104,7 @@ public class Library extends Map{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(140,300 );
+        player.setPosition(600,350 );
         Canvas player_canvas = new Canvas(1024, 512);
         
         root.getChildren().add(player_canvas);
@@ -117,14 +116,10 @@ public class Library extends Map{
         
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         
-        for (Sprite foreground : spriteList_foreground) {
-            foreground.render(backgroundContext);
-        }
-        
         //set our world boundaries
-        Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
-        Rectangle2D worldBoundLeft = new Rectangle2D(75, 0, 1, 512);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 400, 1024, 1);
+        Rectangle2D worldBoundRight = new Rectangle2D(840, 0, 1, 512);
+        Rectangle2D worldBoundLeft = new Rectangle2D(145, 0, 1, 512);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 415, 1024, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 64, 1024, 1);
         
         new AnimationTimer() {
@@ -151,8 +146,25 @@ public class Library extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else {
+                    }else if(
+                            player.intersects_left(spriteList_still.get(3))  ||
+                            player.intersects_left(spriteList_still.get(4))  ||
+                            player.intersects_left(spriteList_still.get(5))  ||
+                            player.intersects_left(spriteList_still.get(6))  ||
+                            player.intersects_left(spriteList_still.get(7))  ||
+                            player.intersects_left(spriteList_still.get(9))  ||
+                            player.intersects_left(spriteList_still.get(10)) ||
+                            player.intersects_left(spriteList_still.get(11)) ||
+                            player.intersects_left(spriteList_still.get(12)) ||
+                            player.intersects_left(spriteList_still.get(13)) ||
+                            player.intersects_left(spriteList_still.get(14)) ||
+                            player.intersects_left(spriteList_still.get(15)) ||
+                            player.intersects_left(spriteList_still.get(16)) ||
+                            player.intersects_left(spriteList_still.get(17)) ||
+                            player.intersects_left(spriteList_still.get(18)) 
+                             ){
+                         player.setVelocity(0, 0);
+                    }else{
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
@@ -166,8 +178,26 @@ public class Library extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
+                    }else if(
+                            player.intersects_right(spriteList_still.get(3))  ||
+                            player.intersects_right(spriteList_still.get(4))  ||
+                            player.intersects_right(spriteList_still.get(5))  ||
+                            player.intersects_right(spriteList_still.get(6))  ||
+                            player.intersects_right(spriteList_still.get(7))  ||
+                            player.intersects_right(spriteList_still.get(9))  ||
+                            player.intersects_right(spriteList_still.get(10)) ||
+                            player.intersects_right(spriteList_still.get(11)) ||
+                            player.intersects_right(spriteList_still.get(12)) ||
+                            player.intersects_right(spriteList_still.get(13)) ||
+                            player.intersects_right(spriteList_still.get(14)) ||
+                            player.intersects_right(spriteList_still.get(15)) ||
+                            player.intersects_right(spriteList_still.get(16)) ||
+                            player.intersects_right(spriteList_still.get(17)) ||
+                            player.intersects_right(spriteList_still.get(18)) 
+                             ){
+                         player.setVelocity(0, 0);
                     }
-                    else {
+                    else{
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
@@ -181,6 +211,26 @@ public class Library extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
+                    }else if(player.intersects_top(spriteList_still.get(2))){
+                            setNewScene();
+                    }else if(
+                            player.intersects_top(spriteList_still.get(3))  ||
+                            player.intersects_top(spriteList_still.get(4))  ||
+                            player.intersects_top(spriteList_still.get(5))  ||
+                            player.intersects_top(spriteList_still.get(6))  ||
+                            player.intersects_top(spriteList_still.get(7))  ||
+                            player.intersects_top(spriteList_still.get(9))  ||
+                            player.intersects_top(spriteList_still.get(10)) ||
+                            player.intersects_top(spriteList_still.get(11)) ||
+                            player.intersects_top(spriteList_still.get(12)) ||
+                            player.intersects_top(spriteList_still.get(13)) ||
+                            player.intersects_top(spriteList_still.get(14)) ||
+                            player.intersects_top(spriteList_still.get(15)) ||
+                            player.intersects_top(spriteList_still.get(16)) ||
+                            player.intersects_top(spriteList_still.get(17)) ||
+                            player.intersects_top(spriteList_still.get(18)) 
+                             ){
+                         player.setVelocity(0, 0);
                     }
                     else {
                         player.setVelocity(0, -100);
@@ -196,6 +246,24 @@ public class Library extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
+                    }else if(
+                            player.intersects_bottom(spriteList_still.get(3))  ||
+                            player.intersects_bottom(spriteList_still.get(4))  ||
+                            player.intersects_bottom(spriteList_still.get(5))  ||
+                            player.intersects_bottom(spriteList_still.get(6))  ||
+                            player.intersects_bottom(spriteList_still.get(7))  ||
+                            player.intersects_bottom(spriteList_still.get(9))  ||
+                            player.intersects_bottom(spriteList_still.get(10)) ||
+                            player.intersects_bottom(spriteList_still.get(11)) ||
+                            player.intersects_bottom(spriteList_still.get(12)) ||
+                            player.intersects_bottom(spriteList_still.get(13)) ||
+                            player.intersects_bottom(spriteList_still.get(14)) ||
+                            player.intersects_bottom(spriteList_still.get(15)) ||
+                            player.intersects_bottom(spriteList_still.get(16)) ||
+                            player.intersects_bottom(spriteList_still.get(17)) ||
+                            player.intersects_bottom(spriteList_still.get(18)) 
+                             ){
+                         player.setVelocity(0, 0);
                     }
                     else {
                         player.setVelocity(0, 100);
@@ -205,12 +273,21 @@ public class Library extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(spriteList_background.get(4))) {
+                    if (player.intersect(spriteList_still.get(4))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
+                    if(game.checkExisting("librarian")){
+                        if(player.intersect(spriteList_still.get(3))){
+                            for(String s : game.goTo(new Command(CommandWord.GO, "librarian"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            playerinventory.update(game);
+                        }
+                    }
+                    
                     menu_input.remove("E");
                 }
                 //update the players velocity
@@ -234,12 +311,10 @@ public class Library extends Map{
                     
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
-                    case 3:
-                        WizardOfTreldan.setGruulsLairScene();
+                    case 14:
+                        WizardOfTreldan.setEvilWizardLairScene();
                         break;
-                    case 4:
-                        WizardOfTreldan.setForestScene();
-                        break;
+                    
                 }
             }
         }.start();
