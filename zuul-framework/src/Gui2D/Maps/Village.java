@@ -19,19 +19,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 /**
  *
@@ -167,8 +163,7 @@ public class Village extends Map {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
             private boolean hasPrinted_door2 = false;
-            private boolean hasPrinted_door3= false;
-            private boolean hasItem= false;
+            private boolean hasPrinted_door3 = false;
 
             //what to do each cycle
             @Override
@@ -335,7 +330,7 @@ public class Village extends Map {
                     }else if (player.intersects_top(sprites_still.get(17))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        if (hasItem) {
+                        if (game.checkExisting("forest")) {
                             game.goTo(new Command(CommandWord.GO, "forest"));
                             //remove all the inputs
                             input.removeAll(input);
@@ -400,13 +395,6 @@ public class Village extends Map {
                         }
                     }
                     if (player.intersect(sprites_still.get(13))) {
-                        for(Item i: game.getInventoryItems()){
-                            if(i instanceof QuestItem){
-                                if(((QuestItem)i).getItemId() == 99902){
-                                    hasItem = true;
-                                }
-                            }
-                        }
                         for (String s : game.goTo(new Command(CommandWord.GO, "guard"))) {
                             infobox.appendText("\n" + s + "\n");
                         }

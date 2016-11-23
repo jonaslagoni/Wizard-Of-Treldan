@@ -352,7 +352,6 @@ public class House3 extends Map{
             }
 
             public void setNewScene() {
-                System.out.println(game.getCurrentRoomId());
                 switch (game.getCurrentRoomId()) {
                     case 2:
                         WizardOfTreldan.setVillageScene();

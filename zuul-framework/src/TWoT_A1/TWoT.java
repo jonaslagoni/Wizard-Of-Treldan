@@ -134,12 +134,12 @@ public class TWoT implements Serializable{
         Interior roomHouse2Exit = new Exit(roomVillage);
         Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",2.1,1.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
-        Interior roomHouse2DarkCorner = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
+        Interior roomHouse2Table = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
 
         roomHouse2.addMapInterior("door", roomHouse2Exit);
         roomHouse2.addMapInterior("wardrobe", roomHouse2Wardrobe);
         roomHouse2.addMapInterior("bed", roomHouse2Bed);
-        roomHouse2.addMapInterior("corner", roomHouse2DarkCorner);
+        roomHouse2.addMapInterior("table", roomHouse2Table);
         
         //roomHouse3
         Interior roomHouse3Exit = new Exit(roomVillage);

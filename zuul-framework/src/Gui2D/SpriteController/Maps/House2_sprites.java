@@ -82,7 +82,7 @@ public class House2_sprites{
         
         
         
-        //wandrobe
+        //wardrobe
         Sprite wardrobe = world.getMisc_sprites().getInterior_cupboard_facingdown_large();
         wardrobe.setPosition(258,30);
         house2_background_sprites.add(wardrobe);
