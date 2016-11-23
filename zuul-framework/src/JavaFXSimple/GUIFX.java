@@ -110,17 +110,19 @@ public class GUIFX extends Application {
         Button button_exit = new Button("Exit");
         Button button_use = new Button("Use Item");
         Button button_equip = new Button("Equip Item");
+        Button button_save = new Button("Save game");
         
         button_help.setMaxWidth(90);
         button_exit.setMaxWidth(90);
         button_clear.setMaxWidth(90);
         button_use.setMaxWidth(90);
         button_equip.setMaxWidth(90);
+        button_save.setMaxWidth(90);
         
         VBox gameButtons = new VBox(20);
         gameButtons.setLayoutX(591);
         gameButtons.setLayoutY(5);
-        gameButtons.getChildren().addAll(button_clear, button_help, button_exit);
+        gameButtons.getChildren().addAll(button_clear, button_help, button_save, button_exit);
         
         HBox invButtons = new HBox(20);
         invButtons.setLayoutX(770);
