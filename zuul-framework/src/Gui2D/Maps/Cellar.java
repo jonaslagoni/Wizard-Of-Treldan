@@ -286,6 +286,13 @@ public class Cellar extends Map{
                         playerinventory.update(game);
                         hasPrinted = false;
                     }
+                    if(player.intersect(sprites_still.get(12))){
+                        for(String s: game.goTo(new Command(CommandWord.GO, "table"))){
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                        hasPrinted = false;
+                    }
                     menu_input.remove("E");
                 }
                 //update the players velocity
