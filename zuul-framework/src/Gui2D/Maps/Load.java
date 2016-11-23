@@ -18,8 +18,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -35,6 +33,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -43,6 +42,7 @@ import javafx.scene.text.Text;
  * @author jonas
  */
 public class Load extends Map{
+    private Text status;
     public Load(SpriteController world){
         super();
         //set the world constructor
@@ -64,6 +64,10 @@ public class Load extends Map{
         Pane anchorpane = new Pane();
         anchorpane.setPrefSize(1024, 512);
         
+        status = new Text();
+        status.relocate(50, 350);
+        status.setFill(Color.RED);
+        anchorpane.getChildren().add(status);
         /**
          * add listView with anchorpanels 
          * Adding Text component and using it for name of the file.
@@ -112,36 +116,38 @@ public class Load extends Map{
                             //set the game to the loaded instance
                             WizardOfTreldan.setGame(loadedGame);
                             //check which scene the player is in.
-                            switch(loadedGame.getCurrentRoomId()){
-                                case 1: WizardOfTreldan.setCellarScene();
-                                    break;
-                                case 2: WizardOfTreldan.setVillageScene();
-                                    break;
-                                case 3: WizardOfTreldan.setHouse1Scene();
-                                    break;
-                                case 4: WizardOfTreldan.setHouse2Scene();
-                                    break;
-                                case 5: WizardOfTreldan.setHouse3Scene();
-                                    break;
-                                case 6: WizardOfTreldan.setForestScene();
-                                    break;
-                                case 7: WizardOfTreldan.setWizardHouseScene();
-                                    break;
-                                case 8: WizardOfTreldan.setCaveScene();
-                                    break;
-                                case 9: WizardOfTreldan.setGruulsLairScene();
-                                    break;
-                                case 10: WizardOfTreldan.setClearingScene();
-                                    break;
-                                case 11: WizardOfTreldan.setDungeonScene();
-                                    break;
-                                //SET THESE TWO !
-                                case 12: WizardOfTreldan.setMenuScene();
-                                    break;
-                                case 13: WizardOfTreldan.setMenuScene();
-                                    break;
-                                default: WizardOfTreldan.setMenuScene();
-                                    break; 
+                            if(status.equals("")){
+                                switch(loadedGame.getCurrentRoomId()){
+                                    case 1: WizardOfTreldan.setCellarScene();
+                                        break;
+                                    case 2: WizardOfTreldan.setVillageScene();
+                                        break;
+                                    case 3: WizardOfTreldan.setHouse1Scene();
+                                        break;
+                                    case 4: WizardOfTreldan.setHouse2Scene();
+                                        break;
+                                    case 5: WizardOfTreldan.setHouse3Scene();
+                                        break;
+                                    case 6: WizardOfTreldan.setForestScene();
+                                        break;
+                                    case 7: WizardOfTreldan.setWizardHouseScene();
+                                        break;
+                                    case 8: WizardOfTreldan.setCaveScene();
+                                        break;
+                                    case 9: WizardOfTreldan.setGruulsLairScene();
+                                        break;
+                                    case 10: WizardOfTreldan.setClearingScene();
+                                        break;
+                                    case 11: WizardOfTreldan.setDungeonScene();
+                                        break;
+                                    //SET THESE TWO !
+                                    case 12: WizardOfTreldan.setMenuScene();
+                                        break;
+                                    case 13: WizardOfTreldan.setMenuScene();
+                                        break;
+                                    default: WizardOfTreldan.setMenuScene();
+                                        break; 
+                                }
                             }
                         }
                     });
@@ -191,8 +197,9 @@ public class Load extends Map{
         //create empty arraylist.
         List<String> loadList = new ArrayList();
         //try to get each file in the directory "loads" by using Files.walk
-        try(Stream<Path> paths = Files.walk(Paths.get("loads/"))) {
+        try{
             //Go through each Path in the Stream.
+            Stream<Path> paths = Files.walk(Paths.get("loads/"));
             paths.forEach(filePath -> {
                 //if the file is a FILE continue
                 if (Files.isRegularFile(filePath)) {
@@ -201,7 +208,7 @@ public class Load extends Map{
                 }
             });
         } catch (IOException ex) {
-            Logger.getLogger(Load.class.getName()).log(Level.SEVERE, null, ex);
+            status.setText("Is the file there?");
         }
         //return the List
         return loadList;
@@ -227,11 +234,11 @@ public class Load extends Map{
             //returns the gamefile
             return twot;
         } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                status.setText("File was not found...");
         } catch (IOException e) {
-                e.printStackTrace();
+                status.setText("This save is a wrong version of the game..");
         } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                status.setText("The game was not found.");
         }
         return null;
     }
