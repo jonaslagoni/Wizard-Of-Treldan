@@ -306,6 +306,9 @@ public class GUIFX extends Application {
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
+        button_save.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            
+        });
         nameField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
             public void handle(KeyEvent k){
