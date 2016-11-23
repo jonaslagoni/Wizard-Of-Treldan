@@ -238,8 +238,15 @@ public class TWoT implements Serializable{
         //roomEvilWizardsLair
         
         Monster roomEvilWizardsLairWizard = new Monster("Evil Wizard of Doom", 2.5, 2.5, 800, 3500, "There's no turning back now, thief!\n Face me in a final battle!");
+        Monster roomEvilWizardsLairMinion1 = new Monster("Minion of the evil Wizard", 1.5, 1.5, 400, 1500, "*horrible noises*");
+        Monster roomEvilWizardsLairMinion2 = new Monster("Minion of the evil Wizard", 1.5, 1.5, 400, 1500, "*horrible screams*");
         roomEvilWizardsLairWizard.setMobId(1);
+        roomEvilWizardsLairMinion1.setMobId(2);
+        roomEvilWizardsLairMinion2.setMobId(3);
         roomEvilWizardsLair.addMapInterior("wizard", roomEvilWizardsLairWizard);
+        roomEvilWizardsLair.addMapInterior("minion1", roomEvilWizardsLairMinion1);
+        roomEvilWizardsLair.addMapInterior("minion2", roomEvilWizardsLairMinion2);
+
         
         
         //set which room you start in.

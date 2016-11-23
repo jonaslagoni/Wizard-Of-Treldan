@@ -246,25 +246,38 @@ public class EvilWizardsLair extends Map{
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
                 
+                boolean minion1Defeated = false;
+                boolean minion2Defeated = false;
+                
                 if (menu_input.contains("E")) {
-                    if (player.intersect(spriteList_foreground.get(4))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "enemy"))) {
-                            infobox.appendText("\n" + s + "\n");
+                    if(game.checkExisting("minion1")){
+                        if(player.intersect(spriteList_foreground.get(4))){
+                            for(String s : game.goTo(new Command(CommandWord.GO, "minion1"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            minion1Defeated = true;
+                            playerinventory.update(game);
                         }
-                        playerinventory.update(game);
                     }
-                    if (player.intersect(spriteList_foreground.get(5))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "enemy"))) {
-                            infobox.appendText("\n" + s + "\n");
+                    if(game.checkExisting("minion2")){
+                        if(player.intersect(spriteList_foreground.get(5))){
+                            for(String s : game.goTo(new Command(CommandWord.GO, "minion2"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            minion2Defeated = true;
+                            playerinventory.update(game);
                         }
-                        playerinventory.update(game);
-                        
                     }
-                    if (player.intersect(spriteList_foreground.get(6))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "enemy"))) {
-                            infobox.appendText("\n" + s + "\n");
+                    
+                    if(game.checkExisting("wizard") && minion2Defeated && minion1Defeated ){
+                        if(player.intersect(spriteList_foreground.get(6))){
+                            for(String s : game.goTo(new Command(CommandWord.GO, "wizard"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            playerinventory.update(game);
                         }
-                        playerinventory.update(game);
+                    }else{
+                        infobox.appendText("\n"+ "Foolish mortal! you need to get rid of my minions first in order to defeat me!");
                     }
                     
                     menu_input.remove("E");
