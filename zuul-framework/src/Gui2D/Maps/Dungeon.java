@@ -130,10 +130,10 @@ public class Dungeon extends Map{
         }
         
         //set our world boundaries
-        Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
-        Rectangle2D worldBoundLeft = new Rectangle2D(230, 0, 1, 512);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 410, 1024, 1);
-        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
+        Rectangle2D worldBoundRight = new Rectangle2D(860, 0, 1, 512);
+        Rectangle2D worldBoundLeft = new Rectangle2D(125, 0, 1, 512);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 405, 1024, 1);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 59, 1024, 1);
         
         new AnimationTimer() {
             //set the current time we started.
@@ -159,9 +159,9 @@ public class Dungeon extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_left(dungeon_background_sprites.get(13))
+                    } else if (player.intersects_left(dungeon_background_sprites.get(12))
+                              || player.intersects_left(dungeon_background_sprites.get(13))
                               || player.intersects_left(dungeon_background_sprites.get(14))
-                              || player.intersects_left(dungeon_background_sprites.get(15))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -179,9 +179,9 @@ public class Dungeon extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    } else if (player.intersects_right(dungeon_background_sprites.get(13))
+                    } else if (player.intersects_right(dungeon_background_sprites.get(12))
+                              || player.intersects_right(dungeon_background_sprites.get(13))
                               || player.intersects_right(dungeon_background_sprites.get(14))
-                              || player.intersects_right(dungeon_background_sprites.get(15))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -199,9 +199,9 @@ public class Dungeon extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_top(dungeon_background_sprites.get(13))
+                    } else if (player.intersects_top(dungeon_background_sprites.get(12))
+                              || player.intersects_top(dungeon_background_sprites.get(13))
                               || player.intersects_top(dungeon_background_sprites.get(14))
-                              || player.intersects_top(dungeon_background_sprites.get(15))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);

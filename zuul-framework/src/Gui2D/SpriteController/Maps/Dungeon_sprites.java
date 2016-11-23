@@ -148,13 +148,13 @@ public class Dungeon_sprites {
         Sprite skeleton3 = world.getMisc_sprites().getEnemy_Skeleton();
         
         skeleton1.setSize(30, 47);
-        skeleton1.setPosition(250, 250);
+        skeleton1.setPosition(545, 150);
         
         skeleton2.setSize(30, 47);
-        skeleton2.setPosition(350, 250);
+        skeleton2.setPosition(645, 150);
         
         skeleton3.setSize(30, 47);
-        skeleton3.setPosition(450, 250);
+        skeleton3.setPosition(745, 150);
         
         background_sprites.add(skeleton1);
         background_sprites.add(skeleton2);
