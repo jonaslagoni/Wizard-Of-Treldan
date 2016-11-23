@@ -120,7 +120,7 @@ public class WizardOfTreldan extends Application {
         
 
         
-        setEvilWizardLairScene();
+        setMenuScene();
         primaryStage.show();
     }
     

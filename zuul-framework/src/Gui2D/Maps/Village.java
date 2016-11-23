@@ -209,77 +209,6 @@ public class Village extends Map {
                     } else if (player.intersects_left(sprites_foreground.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //check if the player walks into house1
-                    } else if (player.intersects_left(sprites_still.get(14))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "house1"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                    //if collission with house2
-                    } else if (player.intersects_left(sprites_still.get(15))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if (!hasPrinted_door2) {
-                            int oldId = game.getCurrentRoomId();
-                            for (String s : game.goTo(new Command(CommandWord.GO, "house2"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted_door2 = true;
-                            if (game.getCurrentRoomId() != oldId) {
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
-                    //if colission with house 3
-                    }else if (player.intersects_left(sprites_still.get(16))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        game.goTo(new Command(CommandWord.GO, "house3"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                    //check collision with forrest door
-                    }else if (player.intersects_left(sprites_still.get(17))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if (hasItem) {
-                            game.goTo(new Command(CommandWord.GO, "forest"));
-                            //remove all the inputs
-                            input.removeAll(input);
-                            //stop this AnimationTimer
-                            this.stop();
-                            //clear the textarea
-                            infobox.clear();
-                            //set the menu as a scene instead.
-                            setNewScene();
-                            //save the game when we walk out
-                            WizardOfTreldan.saveGame();
-                        }
                     //if no colission
                     }else{
                         player.setVelocity(-100,0);
@@ -314,79 +243,6 @@ public class Village extends Map {
                     } else if (player.intersects_right(sprites_foreground.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //check if the player walks into house1
-                    } else if (player.intersects_right(sprites_still.get(14))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        for (String s : game.goTo(new Command(CommandWord.GO, "house1"))) {
-                            infobox.appendText("\n" + s + "\n");
-                        }
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                    //if collission with house2
-                    } else if (player.intersects_right(sprites_still.get(15))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if (!hasPrinted_door2) {
-                            int oldId = game.getCurrentRoomId();
-                            for (String s : game.goTo(new Command(CommandWord.GO, "house2"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted_door2 = true;
-                            if (game.getCurrentRoomId() != oldId) {
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
-                    //if colission with house 3
-                    }else if (player.intersects_right(sprites_still.get(16))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "house1"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                    //check collision with forrest door
-                    }else if (player.intersects_right(sprites_still.get(17))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if (hasItem) {
-                            game.goTo(new Command(CommandWord.GO, "forest"));
-                            //remove all the inputs
-                            input.removeAll(input);
-                            //stop this AnimationTimer
-                            this.stop();
-                            //clear the textarea
-                            infobox.clear();
-                            //set the menu as a scene instead.
-                            setNewScene();
-                            //save the game when we walk out
-                            WizardOfTreldan.saveGame();
-                        }
                     //if no colission
                     }else{
                         player.setVelocity(100,0);
@@ -426,7 +282,7 @@ public class Village extends Map {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
-                        game.goTo(new Command(CommandWord.GO, "house1"));
+                        game.goTo(new Command(CommandWord.GO, "house3"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -464,7 +320,7 @@ public class Village extends Map {
                     }else if (player.intersects_top(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        game.goTo(new Command(CommandWord.GO, "house3"));
+                        game.goTo(new Command(CommandWord.GO, "house1"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer
@@ -526,79 +382,6 @@ public class Village extends Map {
                     } else if (player.intersects_bottom(sprites_foreground.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //check if the player walks into house1
-                    } else if (player.intersects_bottom(sprites_still.get(14))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "house1"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                        //if no collission
-                    } else if (player.intersects_bottom(sprites_still.get(15))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if (!hasPrinted_door2) {
-                            int oldId = game.getCurrentRoomId();
-                            for (String s : game.goTo(new Command(CommandWord.GO, "house2"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted_door2 = true;
-                            if (game.getCurrentRoomId() != oldId) {
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                    //if colission with house 3
-                    }else if (player.intersects_bottom(sprites_still.get(16))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        game.goTo(new Command(CommandWord.GO, "house3"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                    //check collision with forrest door
-                    }else if (player.intersects_bottom(sprites_still.get(17))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if (hasItem) {
-                            game.goTo(new Command(CommandWord.GO, "forest"));
-                            //remove all the inputs
-                            input.removeAll(input);
-                            //stop this AnimationTimer
-                            this.stop();
-                            //clear the textarea
-                            infobox.clear();
-                            //set the menu as a scene instead.
-                            setNewScene();
-                            //save the game when we walk out
-                            WizardOfTreldan.saveGame();
-                        }
                     //if no colission
                     }else {
                         player.setVelocity(0, 100);
@@ -608,15 +391,12 @@ public class Village extends Map {
                 }
 
                 if (menu_input.contains("E")) {
-                    if(sprites_interact.size() > 0){
-                        if(game.checkExisting("axe")){
-                            if (player.intersect(sprites_interact.get(0))) {
-                                for (String s : game.goTo(new Command(CommandWord.GO, "axe"))) {
-                                    infobox.appendText("\n" + s + "\n");
-                                }
-                                sprites_interact.remove(0);
-                                playerinventory.update(game);
+                    if(game.checkExisting("axe")){
+                        if (player.intersect(sprites_interact.get(0))) {
+                            for (String s : game.goTo(new Command(CommandWord.GO, "axe"))) {
+                                infobox.appendText("\n" + s + "\n");
                             }
+                            playerinventory.update(game);
                         }
                     }
                     if (player.intersect(sprites_still.get(13))) {

@@ -17,19 +17,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 /**
  *
@@ -179,31 +175,6 @@ public class Cellar extends Map{
                              player.intersects_left(sprites_still.get(12))||
                              player.intersects_left(sprites_still.get(13))){
                         player.setVelocity(0, 0);
-                    //check if the player walks into the door
-                    }else if(player.intersects_left(sprites_still.get(4))){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
                     //if no collission
                     }else{
                         player.setVelocity(-100,0);
@@ -228,29 +199,6 @@ public class Cellar extends Map{
                              player.intersects_right(sprites_still.get(12))||
                              player.intersects_right(sprites_still.get(13))){
                         player.setVelocity(0, 0);
-                    //check if the player walks into the door
-                    }else if(player.intersects_right(sprites_still.get(4))){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
                     //if no collission
                     }else{
                         player.setVelocity(100,0);
@@ -322,28 +270,6 @@ public class Cellar extends Map{
                              player.intersects_bottom(sprites_still.get(12))||
                              player.intersects_bottom(sprites_still.get(13))){
                         player.setVelocity(0, 0);
-                        
-                    //check if the player walks into the door
-                    }else if(player.intersects_bottom(sprites_still.get(4))){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                            }
-                        }
                     //if no collission
                     }else{
                         player.setVelocity(0,100);

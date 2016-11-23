@@ -27,7 +27,7 @@ public class TWoT implements Serializable{
     private Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
     private boolean isOver;
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
 
@@ -126,9 +126,9 @@ public class TWoT implements Serializable{
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
         Interior roomHouse1Man = new Monster("Zombie man", 0.7, 0.7, 50, 50, "A dead man is half-sitting in a chair. He gets on his feet and attacks you.");
-        Interior roomHouse1LooseStone = new UseableItem("CheezBurga", 20, "Nom nom nom", "You move the loose stone and to your surprise you find a cheezBurga", 55508, FOOD, 50);
+        Interior roomHouse1Chest = new UseableItem("CheezBurga", 20, "Nom nom nom", "You move the loose stone and to your surprise you find a cheezBurga", 55508, FOOD, 50);
         roomHouse1.addMapInterior("man", roomHouse1Man);
-        roomHouse1.addMapInterior("stone", roomHouse1LooseStone);
+        roomHouse1.addMapInterior("chest", roomHouse1Chest);
         roomHouse1.addMapInterior("door", roomHouse1Exit);
         
         //roomHouse2
@@ -284,6 +284,21 @@ public class TWoT implements Serializable{
         //return the helplist when done.
         return helpList;
     }
+    /**
+     * Check if the interior is in the map
+     * @param direction
+     * @return 
+     */
+    public boolean checkExisting(String direction){
+        // Create an object of klass Room and return if the exit is correct.
+        Interior interior = currentRoom.getMapInterior(direction);
+        // If the nextroom is null it means that there was no next room in that direction.
+        if(interior == null) {
+            return false;
+        }else{
+            return true;
+        }
+    }
     
     /**
      * Go to the desired room defined from the command param.
@@ -389,15 +404,7 @@ public class TWoT implements Serializable{
             currentRoom = ((Exit)interior).getNewRoom();
             description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
             return description;
-        }else if(!command.hasSecondWord()){
-            description.add("Inspect what?");
-            return description;
-        }
-        if(interior == null){
-            description.add("This interior doesn't exist");
-            return description;
-        }
-        else if(interior instanceof Item){
+        }else if(interior instanceof Item){
             if(interior instanceof EquippableItem){
                 currentRoom.removeInterior(command.getSecondWord());
                 player.addItemToEquippableInventory((EquippableItem)interior, player);

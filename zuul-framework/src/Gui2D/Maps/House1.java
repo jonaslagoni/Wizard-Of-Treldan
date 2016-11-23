@@ -10,6 +10,8 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
+import TWoT_A1.Command;
+import TWoT_A1.CommandWord;
 import TWoT_A1.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,29 +63,25 @@ public class House1 extends Map{
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
         
-        //canvas for backgrounds
-        Canvas canvas_background = new Canvas( 512, 300);
-        //relocate the canvas
-        canvas_background.relocate(250, 50);
-        //add canvas to the group
-        root.getChildren().add(canvas_background);
-        
+        Canvas canvas_background = new Canvas( 400, 300);
+        //relocate the canvas so its centered.
+        canvas_background.relocate(312, 75);
+        root.getChildren().add(canvas_background);      
         
         //set canvas of our items
-        Canvas house1_monsters = new Canvas(512, 300);
+        Canvas house3_monsters = new Canvas(400, 300);
         //relocate the canvas
-        house1_monsters.relocate(250, 50);
+        house3_monsters.relocate(312, 75);
         //add the canvas to the group
-        root.getChildren().add(house1_monsters);
+        root.getChildren().add(house3_monsters);
         
         
         //add a canvas only for the player
-        Canvas player_canvas = new Canvas(512, 300);
+        Canvas player_canvas = new Canvas(400, 300);
         //relocate the canvas
-        player_canvas.relocate(250, 50);
+        player_canvas.relocate(312, 75);
         //add the canvas to the group
         root.getChildren().add(player_canvas);
-        
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -117,27 +115,29 @@ public class House1 extends Map{
         //add graphicscontext to each canvas
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
         //create GraphicsContext from our monster canvas containing all
-        GraphicsContext monster_gc = house1_monsters.getGraphicsContext2D();
+        GraphicsContext monster_gc = house3_monsters.getGraphicsContext2D();
         //create GraphicsContext from our player_canvas
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         
         //get all the sprites of monsters
-        List<Sprite> sprites_interact = house_sprites.getHouse_monster_sprites();
-        if(game.checkExisting("woman")){
+        List<Sprite> sprites_interact = house_sprites.getHouse1_monster_sprites();
+        if(game.checkExisting("man")){
             sprites_interact.get(0).render(monster_gc);
         }
         
         //generate all the background sprites
-        List<Sprite> sprites_still = house_sprites.getHouse();
+        List<Sprite> sprites_still = house_sprites.getHouse1();
         for(Sprite sprite : sprites_still){
             sprite.render(background_gc);
         }
             
         //set our world boundaries
-        Rectangle2D worldBoundRight = new Rectangle2D(512-33, 0, 1, 250);
-        Rectangle2D worldBoundLeft = new Rectangle2D(0, 0, 1, 250);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 220, 512, 1);
-        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 512, 1);
+        Rectangle2D worldBoundRight = new Rectangle2D(350, 0, 1, 300);
+        Rectangle2D worldBoundLeft = new Rectangle2D(0, 0, 1, 300);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 220, 400, 1);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 400, 1);
+            
+        
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
@@ -165,18 +165,15 @@ public class House1 extends Map{
                     } else if (player.intersects_left(sprites_still.get(3))
                             || player.intersects_left(sprites_still.get(4))
                             || player.intersects_left(sprites_still.get(5))
-                            || player.intersects_left(sprites_still.get(6))
-                            || player.intersects_left(sprites_still.get(7))
-                            || player.intersects_left(sprites_still.get(8))
-                            || player.intersects_left(sprites_still.get(9))
-                            || player.intersects_left(sprites_still.get(10))
-                            || player.intersects_left(sprites_still.get(11))
-                            || player.intersects_left(sprites_still.get(12))
-                            || player.intersects_left(sprites_still.get(13))
-                            || player.intersects_left(sprites_still.get(14))
-                            || player.intersects_left(sprites_interact.get(0))) {
+                            || player.intersects_left(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    }else if(game.checkExisting("man")){
+                        if(player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -193,18 +190,15 @@ public class House1 extends Map{
                     } else if (player.intersects_right(sprites_still.get(3))
                             || player.intersects_right(sprites_still.get(4))
                             || player.intersects_right(sprites_still.get(5))
-                            || player.intersects_right(sprites_still.get(6))
-                            || player.intersects_right(sprites_still.get(7))
-                            || player.intersects_right(sprites_still.get(8))
-                            || player.intersects_right(sprites_still.get(9))
-                            || player.intersects_right(sprites_still.get(10))
-                            || player.intersects_right(sprites_still.get(11))
-                            || player.intersects_right(sprites_still.get(12))
-                            || player.intersects_right(sprites_still.get(13))
-                            || player.intersects_right(sprites_still.get(14))
-                            || player.intersects_right(sprites_interact.get(0))) {
+                            || player.intersects_right(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    }else if(game.checkExisting("man")){
+                        if(player.intersects_right(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(100,0);
+                        }
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -221,18 +215,29 @@ public class House1 extends Map{
                     }else if (player.intersects_top(sprites_still.get(3))
                             || player.intersects_top(sprites_still.get(4))
                             || player.intersects_top(sprites_still.get(5))
-                            || player.intersects_top(sprites_still.get(6))
-                            || player.intersects_top(sprites_still.get(7))
-                            || player.intersects_top(sprites_still.get(8))
-                            || player.intersects_top(sprites_still.get(9))
-                            || player.intersects_top(sprites_still.get(10))
-                            || player.intersects_top(sprites_still.get(11))
-                            || player.intersects_top(sprites_still.get(12))
-                            || player.intersects_top(sprites_still.get(13))
-                            || player.intersects_top(sprites_still.get(14))
-                            || player.intersects_top(sprites_interact.get(0))) {
+                            || player.intersects_top(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    }else if(player.intersects_top(sprites_still.get(2))){
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        game.goTo(new Command(CommandWord.GO, "door"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
+                    }else if(game.checkExisting("man")){
+                        if(player.intersects_top(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(0,-100);
+                        }
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -248,18 +253,15 @@ public class House1 extends Map{
                     }else if (player.intersects_bottom(sprites_still.get(3))
                             || player.intersects_bottom(sprites_still.get(4))
                             || player.intersects_bottom(sprites_still.get(5))
-                            || player.intersects_bottom(sprites_still.get(6))
-                            || player.intersects_bottom(sprites_still.get(7))
-                            || player.intersects_bottom(sprites_still.get(8))
-                            || player.intersects_bottom(sprites_still.get(9))
-                            || player.intersects_bottom(sprites_still.get(10))
-                            || player.intersects_bottom(sprites_still.get(11))
-                            || player.intersects_bottom(sprites_still.get(12))
-                            || player.intersects_bottom(sprites_still.get(13))
-                            || player.intersects_bottom(sprites_still.get(14))
-                            || player.intersects_bottom(sprites_interact.get(0))) {
+                            || player.intersects_bottom(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    }else if(game.checkExisting("man")){
+                        if(player.intersects_bottom(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(0, 100);
+                        }
                     }else {
                         player.setVelocity(0, 100);
                     }
@@ -268,20 +270,33 @@ public class House1 extends Map{
                 }
 
                 if (menu_input.contains("E")) {
-                    
+                    if(player.intersect(sprites_still.get(4))){
+                        for(String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if(game.checkExisting("man")){
+                        if(player.intersect(sprites_interact.get(0))){
+                            for(String s : game.goTo(new Command(CommandWord.GO, "man"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            playerinventory.update(game);
+                        }
+                    }
                     menu_input.remove("E");
                 }
                 //update the players velocity
                 player.update(elapsedTime);
                 //clear our player
-                moveable_gc.clearRect(0, 0, 512, 300);
+                moveable_gc.clearRect(0, 0, 400, 300);
                 //render our new player
                 player.render(moveable_gc);
 
-                monster_gc.clearRect(0, 0, 1024, 512);
+                monster_gc.clearRect(0, 0, 400, 300);
                 //render pickup items
-                for(Sprite sprite : sprites_interact) {
-                    sprite.render(monster_gc);
+                if(game.checkExisting("man")){
+                    sprites_interact.get(0).render(monster_gc);
                 }
                 
                 //check if the user wants to see a menu.
@@ -297,6 +312,7 @@ public class House1 extends Map{
             }
 
             public void setNewScene() {
+                System.out.println(game.getCurrentRoomId());
                 switch (game.getCurrentRoomId()) {
                     case 2:
                         WizardOfTreldan.setVillageScene();
@@ -304,7 +320,6 @@ public class House1 extends Map{
                 }
             }
         }.start();
-        
         return theScene;
     }
 }
