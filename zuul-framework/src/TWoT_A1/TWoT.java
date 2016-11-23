@@ -469,6 +469,7 @@ public class TWoT implements Serializable{
                         description.add("Thank you for bringing me the items the I asked for! Go find the stranger in the village. He is known for hiding in the houses or the village. He may move his position.");
                         player.removeInventoryItem(item1);
                         player.removeInventoryItem(item2);
+                        roomWizardHouse.removeInterior("wizard");
                         roomVillage.addMapInterior("stranger", stranger);
                     }else{
                         description.add("zzzzzzzzzzzzzzzz\" You wake up the wizard \"zzz..oo.ahwhat? who? oh it's you traveler, thank you for coming to see me. As i mentioned i have need of help to defeat the evil Wizard, first of all i can't get inside his evil castle, buta stranger in the village will be able to teleport you inside if you want to help me, but the evil troll Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
