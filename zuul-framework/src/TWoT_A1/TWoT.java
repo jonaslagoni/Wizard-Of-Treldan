@@ -265,10 +265,9 @@ public class TWoT implements Serializable{
      */
     public HashMap<Integer, String> getWelcomeMessages(){
         HashMap<Integer, String> welcomeList = new HashMap();
-        welcomeList.put(1, "Welcome to the World of Zuul!\n");
-        welcomeList.put(2, "World of Zuul is a new, incredibly boring adventure game.\n");
-        welcomeList.put(3, "Type '" + TWoT_test.CommandWord.HELP + "' if you need help.\n\n");
-        welcomeList.put(4, currentRoom.getDescription() + "\n");
+        welcomeList.put(1, "Welcome to The Wizard of Treldan!\n");
+        welcomeList.put(2, "The Wizard of Treldan is a new, incredibly boring adventure game.\n\n");
+        welcomeList.put(3, currentRoom.getDescription() + "\n");
         return welcomeList;
     }
 

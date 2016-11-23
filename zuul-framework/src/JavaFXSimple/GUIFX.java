@@ -319,7 +319,8 @@ public class GUIFX extends Application {
             @Override public void handle(ActionEvent e){
                     PopUps.display("HOW TO PLAY", "Move around with the 'go [interactable object]' "
                             + "command. \nYou automatically pick up items if the "
-                            + "interior have any available.\n");
+                            + "interior have any available.\n"
+                            + "You lose score points when you die but you are free to continue the game as if nothing happened.");
             }
         });
         button_exit.setOnAction(actionEvent -> Platform.exit());
