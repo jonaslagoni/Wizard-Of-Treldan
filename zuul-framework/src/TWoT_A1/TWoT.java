@@ -37,10 +37,9 @@ public class TWoT implements Serializable{
         startTime = (long)(System.currentTimeMillis() / 1000L);
         player.addItemToInventory(new UseableItem("Cheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501, FOOD, 50));
         player.setDamage(30);
-        player.addItemToInventory(new EquippableItem("Handaxe2", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55504));
-        player.addItemToInventory(new EquippableItem("Handaxe1", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55999));
-        player.addItemToInventory(new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. "));
-        player.addItemToInventory(new EquippableItem("Jajaja", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, AMULET_SLOT, "You search thore a punch.", 55999));
+        player.addItemToEquippableInventory(new EquippableItem("Dagger", 291, "Small dagger.", 0.2, 0.0, WEAPON_SLOT, "", 33305), player);
+        player.addItemToEquippableInventory(new EquippableItem("Tattered Shirt", 291, "Smells awful.", 0.0, 0.2, CHEST_SLOT, "", 33306), player);
+        player.addItemToEquippableInventory(new EquippableItem("Tattered Pants", 291, "Uncomfortable to wear.", 0.0, 0.1, LEG_SLOT, "", 33307), player);
 
     }   
     
