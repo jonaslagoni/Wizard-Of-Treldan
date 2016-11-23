@@ -384,5 +384,14 @@ public class Misc_sprites {
         return new WizardHouse_2().getSprite();
     }
     
+    public SingleSprite getInterior_Bookshelf_single(){
+        return new Interior_bookshelf_single().getSprite();
+    }
+    public SingleSprite getInterior_Bookshelf_double(){
+        return new Interior_bookshelf_double().getSprite();
+    }
+    public SingleSprite getEnemy_librarian(){
+        return new Enemy_librarian().getSprite();
+    }
 }
 
