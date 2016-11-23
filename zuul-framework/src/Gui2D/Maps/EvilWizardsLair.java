@@ -301,16 +301,7 @@ public class EvilWizardsLair extends Map{
                 }
             }
                     
-            public void setNewScene() {
-                switch (game.getCurrentRoomId()) {
-                    case 3:
-                        WizardOfTreldan.setGruulsLairScene();
-                        break;
-                    case 4:
-                        WizardOfTreldan.setForestScene();
-                        break;
-                }
-            }
+    
         }.start();
         
         

@@ -117,7 +117,7 @@ public class WizardOfTreldan extends Application {
         evilwizardslair = new EvilWizardsLair(world);
         library = new Library(world);
         evilWizardsLair = new EvilWizardsLair(world);
-        
+//            
 
         
         setMenuScene();
