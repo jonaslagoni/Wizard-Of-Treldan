@@ -109,7 +109,7 @@ public class House3 extends Map{
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(100, 50);
+        player.setPosition(160, 50);
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));

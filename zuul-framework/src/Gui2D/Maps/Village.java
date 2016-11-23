@@ -114,7 +114,26 @@ public class Village extends Map {
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(700, 400);
+        switch(game.getLastRoomId()){
+            case 3:
+                player.setPosition(960, 270);
+                break;
+            case 4:
+                player.setPosition(290, 180);
+                break;
+            case 5:
+                player.setPosition(120, 225);
+                break;
+            case 6:
+                player.setPosition(488, 50);
+                break;
+            case 1:
+                player.setPosition(700, 400);
+                break;
+            default:
+                player.setPosition(700, 400);
+                break;
+        }
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));

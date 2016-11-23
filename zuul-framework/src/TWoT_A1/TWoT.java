@@ -21,6 +21,7 @@ import java.util.Map;
 public class TWoT implements Serializable{
     // Init variabels
     private Room currentRoom;
+    private int lastRoomId;
     private Player player;
     private Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
@@ -249,6 +250,7 @@ public class TWoT implements Serializable{
         
         //set which room you start in.
         currentRoom = roomCellar;
+        lastRoomId = currentRoom.getRoomId();
         currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getMapInterior());
     }
     
@@ -265,7 +267,7 @@ public class TWoT implements Serializable{
         HashMap<Integer, String> welcomeList = new HashMap();
         welcomeList.put(1, "Welcome to The Wizard of Treldan!\n");
         welcomeList.put(2, "The Wizard of Treldan is a new, incredibly boring adventure game.\n\n");
-        welcomeList.put(3, currentRoom.getDescription() + "\n");
+        welcomeList.put(4, currentRoom.getDescription() + "\n");
         return welcomeList;
     }
 
@@ -405,6 +407,7 @@ public class TWoT implements Serializable{
                     return description;
                 }
             }
+            lastRoomId = currentRoom.getRoomId();
             currentRoom = ((Exit)interior).getNewRoom();
             description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
             return description;
@@ -890,5 +893,12 @@ public class TWoT implements Serializable{
     
     public String getCurrentRoomName(){
         return currentRoom.getName();
+    }
+
+    /**
+     * @return the lastRoomId
+     */
+    public int getLastRoomId() {
+        return lastRoomId;
     }
 }

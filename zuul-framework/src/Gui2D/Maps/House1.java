@@ -105,7 +105,7 @@ public class House1 extends Map{
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(100, 50);
+        player.setPosition(170, 50);
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
