@@ -19,9 +19,9 @@ public class EquippedItems {
         private final SimpleDoubleProperty itemAttack;
         private final SimpleDoubleProperty itemDefence;
  
-        public EquippedItems(String iNames, String iSlots, double attackValue, double defenceValue) {
-            this.itemNames = new SimpleStringProperty(iNames);
-            this.itemSlots = new SimpleStringProperty(iSlots);
+        public EquippedItems(String iName, String iSlot, double attackValue, double defenceValue) {
+            this.itemNames = new SimpleStringProperty(iName);
+            this.itemSlots = new SimpleStringProperty(iSlot);
             this.itemAttack = new SimpleDoubleProperty(attackValue);
             this.itemDefence = new SimpleDoubleProperty(defenceValue);
         }
@@ -46,16 +46,16 @@ public class EquippedItems {
             return itemAttack.get();
         }
  
-        public void setItemAttack(double iAttV) {
-            itemAttack.set(iAttV);
+        public void setItemAttack(double attackValue) {
+            itemAttack.set(attackValue);
         }
         
         public double getItemDefence() {
-            return itemAttack.get();
+            return itemDefence.get();
         }
  
-        public void setItemDefence(double iDefV) {
-            itemDefence.set(iDefV);
+        public void setItemDefence(double defenceValue) {
+            itemDefence.set(defenceValue);
         }
     
 }

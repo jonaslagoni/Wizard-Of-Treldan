@@ -164,21 +164,21 @@ public class GUIFX extends Application {
         equipTable.setEditable(false);
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
         for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
-            if(k.containsKey(AMULET_SLOT)) {
+            if(entry.getKey() == AMULET_SLOT) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Amulet Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(HEAD_SLOT)) {
+            }else if(entry.getKey() == (HEAD_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Head slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(WEAPON_SLOT)) {
+            }else if(entry.getKey() == (WEAPON_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Weapon Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(CHEST_SLOT)) {
+            }else if(entry.getKey() == (CHEST_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Chest Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(LEG_SLOT)) {
+            }else if(entry.getKey() == (LEG_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Leg Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(BOOT_SLOT)) {
+            }else if(entry.getKey() == (BOOT_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Boot Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(GLOVES_SLOT)) {
+            }else if(entry.getKey() == (GLOVES_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Glove Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(RING_SLOT)) {
+            }else if(entry.getKey() == (RING_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Ring Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
             }
         }
@@ -419,21 +419,21 @@ public class GUIFX extends Application {
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
         equipData.removeAll(equipData);
         for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
-            if(k.containsKey(AMULET_SLOT)) {
+            if(entry.getKey() == AMULET_SLOT) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Amulet Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(HEAD_SLOT)) {
+            }else if(entry.getKey() == (HEAD_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Head slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(WEAPON_SLOT)) {
+            }else if(entry.getKey() == (WEAPON_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Weapon Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(CHEST_SLOT)) {
+            }else if(entry.getKey() == (CHEST_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Chest Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(LEG_SLOT)) {
+            }else if(entry.getKey() == (LEG_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Leg Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(BOOT_SLOT)) {
+            }else if(entry.getKey() == (BOOT_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Boot Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(GLOVES_SLOT)) {
+            }else if(entry.getKey() == (GLOVES_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Glove Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
-            }else if(k.containsKey(RING_SLOT)) {
+            }else if(entry.getKey() == (RING_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Ring Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
             }
         }

@@ -5,10 +5,13 @@
  */
 package TWoT_A1;
 
+import JavaFXSimple.EquippedItems;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *

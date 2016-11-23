@@ -2,9 +2,7 @@
 // Use package zuulframework
 package TWoT_A1;
 
-import static TWoT_A1.EquippableItem.EItem.CHEST_SLOT;
-import static TWoT_A1.EquippableItem.EItem.LEG_SLOT;
-import static TWoT_A1.EquippableItem.EItem.WEAPON_SLOT;
+import static TWoT_A1.EquippableItem.EItem.*;
 import static TWoT_A1.UseableItem.Usables.FOOD;
 import static TWoT_A1.UseableItem.Usables.MAGIC_ITEM;
 import java.io.BufferedWriter;
@@ -42,6 +40,8 @@ public class TWoT implements Serializable{
         player.addItemToInventory(new EquippableItem("Handaxe2", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55504));
         player.addItemToInventory(new EquippableItem("Handaxe1", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, WEAPON_SLOT, "You search thore a punch.", 55999));
         player.addItemToInventory(new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. "));
+        player.addItemToInventory(new EquippableItem("Jajaja", 293811, "Sturdy, and propably packs a punch.", 2.0, 0.0, AMULET_SLOT, "You search thore a punch.", 55999));
+
     }   
     
     /**
@@ -148,7 +148,7 @@ public class TWoT implements Serializable{
         Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
         Interior roomHouse3Woman = woman;
         woman.addDropItem(new QuestItem("Bloody key", 8273, "This key looks bloody", 99907, ""));
-        Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 1.0, 1.3, CHEST_SLOT, "There is a set of leather armor  in the chest, it's old and rusty but durable, you  put it on and it suits you surprisingly well.", 33302);
+        Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 0, 1.3, CHEST_SLOT, "There is a set of leather armor  in the chest, it's old and rusty but durable, you  put it on and it suits you surprisingly well.", 33302);
         roomHouse3.addMapInterior("door", roomHouse3Exit);
         roomHouse3.addMapInterior("woman", roomHouse3Woman);
         roomHouse3.addMapInterior("kitchen", roomHouse3Kitchen);
