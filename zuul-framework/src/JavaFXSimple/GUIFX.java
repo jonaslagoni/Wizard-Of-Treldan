@@ -110,7 +110,7 @@ public class GUIFX extends Application {
         Button button_exit = new Button("Exit");
         Button button_use = new Button("Use Item");
         Button button_equip = new Button("Equip Item");
-        Button button_save = new Button("Save game");
+        Button button_save = new Button("Save");
         
         button_help.setMaxWidth(90);
         button_exit.setMaxWidth(90);
