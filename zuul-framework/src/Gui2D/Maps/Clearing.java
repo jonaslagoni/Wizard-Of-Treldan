@@ -196,6 +196,12 @@ public class Clearing extends Map{
                         }else{
                             player.setVelocity(-100,0);
                         }
+                    }else if(game.checkExisting("tree")){
+                        if(player.intersects_left(sprites_interact.get(1))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else{
                         player.setVelocity(-100, 0);
                     }
@@ -220,6 +226,12 @@ public class Clearing extends Map{
                          player.setVelocity(0, 0);
                     }else if(game.checkExisting("unicorn")){
                         if(player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
+                    }else if(game.checkExisting("tree")){
+                        if(player.intersects_left(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
                         }else{
                             player.setVelocity(-100,0);
@@ -273,6 +285,12 @@ public class Clearing extends Map{
                         }else{
                             player.setVelocity(-100,0);
                         }
+                    }else if(game.checkExisting("tree")){
+                        if(player.intersects_left(sprites_interact.get(1))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else {
                         player.setVelocity(0, -100);
                     }
@@ -303,6 +321,12 @@ public class Clearing extends Map{
                         }else{
                             player.setVelocity(-100,0);
                         }
+                    }else if(game.checkExisting("tree")){
+                        if(player.intersects_left(sprites_interact.get(1))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else{
                         player.setVelocity(0, 100);
                     }
@@ -322,6 +346,8 @@ public class Clearing extends Map{
                     if (player.intersect(sprites_interact.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "tree"))) {
                             infobox.appendText("\n" + s + "\n");
+                            
+                            sprites_interact.get(2).render(interact_gc);
                         }
                     
                   
@@ -335,6 +361,15 @@ public class Clearing extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
+                
+                interact_gc.clearRect(0, 0, 400, 300);
+                //render pickup items
+                if(game.checkExisting("unicorn")){
+                    sprites_interact.get(0).render(interact_gc);
+                }
+                if(game.checkExisting("tree")){
+                    sprites_interact.get(1).render(interact_gc);
+                }
 
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
