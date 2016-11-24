@@ -71,19 +71,19 @@ public class Library extends Map{
         theScene.setFill(Color.rgb(83, 83, 83));
         Canvas canvas_background = new Canvas(770,385);
         canvas_background.relocate(126,66);
-        
-        
         root.getChildren().add(canvas_background);
-        GraphicsContext backgroundContext = canvas_background.getGraphicsContext2D();
+       
+        //get our player from super class since no inheritence in AnimationTimer
+        PlayerSprite player = super.getPlayer();
+        player.setPosition(600,350 );
+        Canvas player_canvas = new Canvas(1024, 512);
+        root.getChildren().add(player_canvas);
         
-        //create lists of sprite of the foreground / background sprite lists
-        List<Sprite> spriteList_still = library_sprites.getSpriteList_background();
-        
-        //render sprites via a for each loop of the sprites contained in the sprite list
-        for (Sprite s : spriteList_still) {
-            s.render(backgroundContext);
-            
-        }
+        //set canvas of our items
+        Canvas library_monsters = new Canvas(1024, 512);
+        //add the canvas to the group
+        library_monsters.relocate(300,350);
+        root.getChildren().add(library_monsters);
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -95,32 +95,54 @@ public class Library extends Map{
         s.setPrefSize(300, 150);
         s.relocate(0, 362);
         root.getChildren().add(s);
+        theScene.getStylesheets().add("TextAreaStyle.css");
+        
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get("getRooms") + "\n");
         
+        //add our player inventory
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
+        //player menu visuals
         AnchorPane menu = playerinventory.getMenu();
         
-        //get our player from super class since no inheritence in AnimationTimer
-        PlayerSprite player = super.getPlayer();
-        player.setPosition(600,350 );
-        Canvas player_canvas = new Canvas(1024, 512);
         
-        root.getChildren().add(player_canvas);
-        theScene.getStylesheets().add("TextAreaStyle.css");
-
+        
+   
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
         theScene.setOnKeyPressed(getOnKeyPress());
         
+        //draw graphicscontext for our diffrent kinds of sprites
+        GraphicsContext backgroundContext = canvas_background.getGraphicsContext2D();
+        //create GraphicsContext from our player canvas 
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        //create GraphicsContext from our monster canvas containing all interactable sprites that needs to be unset
+        GraphicsContext monster_gc = library_monsters.getGraphicsContext2D();
+        
+       
+        
+        
+        List<Sprite> sprites_still = library_sprites.getSpriteList_background();
+        //render sprites via a for each loop of the sprites contained in the sprite list
+        for (Sprite i : sprites_still) {
+            i.render(backgroundContext);
+            
+        }
+        
+        //get all the sprites of monsters
+        List<Sprite> sprites_interact = library_sprites.getSpriteList_monsters();
+        //render them if they exist in the game world
+        if(game.checkExisting("librarian")){
+            sprites_interact.get(0).render(monster_gc);
+        }
         
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(840, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(145, 0, 1, 512);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 415, 1024, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 64, 1024, 1);
+        
         
         new AnimationTimer() {
             //set the current time we started.
@@ -145,63 +167,111 @@ public class Library extends Map{
                     if (player.intersects_left(worldBoundLeft)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //check if the player walks into a sprite
-                    }else if(
-                            player.intersects_left(spriteList_still.get(3))  ||
-                            player.intersects_left(spriteList_still.get(4))  ||
-                            player.intersects_left(spriteList_still.get(5))  ||
-                            player.intersects_left(spriteList_still.get(6))  ||
-                            player.intersects_left(spriteList_still.get(7))  ||
-                            player.intersects_left(spriteList_still.get(9))  ||
-                            player.intersects_left(spriteList_still.get(10)) ||
-                            player.intersects_left(spriteList_still.get(11)) ||
-                            player.intersects_left(spriteList_still.get(12)) ||
-                            player.intersects_left(spriteList_still.get(13)) ||
-                            player.intersects_left(spriteList_still.get(14)) ||
-                            player.intersects_left(spriteList_still.get(15)) ||
-                            player.intersects_left(spriteList_still.get(16)) ||
-                            player.intersects_left(spriteList_still.get(17)) ||
-                            player.intersects_left(spriteList_still.get(18)) 
+                    //no collission continue
+                    } else if (
+                            player.intersects_left(sprites_still.get(3))  ||
+                            player.intersects_left(sprites_still.get(4))  ||
+                            player.intersects_left(sprites_still.get(5))  ||
+                            player.intersects_left(sprites_still.get(6))  ||
+                            player.intersects_left(sprites_still.get(7))  ||
+                            player.intersects_left(sprites_still.get(9))  ||
+                            player.intersects_left(sprites_still.get(10)) ||
+                            player.intersects_left(sprites_still.get(11)) ||
+                            player.intersects_left(sprites_still.get(12)) ||
+                            player.intersects_left(sprites_still.get(13)) ||
+                            player.intersects_left(sprites_still.get(14)) ||
+                            player.intersects_left(sprites_still.get(15)) ||
+                            player.intersects_left(sprites_still.get(16)) ||
+                            player.intersects_left(sprites_still.get(17)) 
                              ){
-                         player.setVelocity(0, 0);
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("librarian")){
+                        if(player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else{
-                        player.setVelocity(-100, 0);
+                        player.setVelocity(-100,0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
-                
+
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //check if the player walks into a sprite
-                    }else if(
-                            player.intersects_right(spriteList_still.get(3))  ||
-                            player.intersects_right(spriteList_still.get(4))  ||
-                            player.intersects_right(spriteList_still.get(5))  ||
-                            player.intersects_right(spriteList_still.get(6))  ||
-                            player.intersects_right(spriteList_still.get(7))  ||
-                            player.intersects_right(spriteList_still.get(9))  ||
-                            player.intersects_right(spriteList_still.get(10)) ||
-                            player.intersects_right(spriteList_still.get(11)) ||
-                            player.intersects_right(spriteList_still.get(12)) ||
-                            player.intersects_right(spriteList_still.get(13)) ||
-                            player.intersects_right(spriteList_still.get(14)) ||
-                            player.intersects_right(spriteList_still.get(15)) ||
-                            player.intersects_right(spriteList_still.get(16)) ||
-                            player.intersects_right(spriteList_still.get(17)) ||
-                            player.intersects_right(spriteList_still.get(18)) 
+                    } else if (
+                            player.intersects_right(sprites_still.get(3))  ||
+                            player.intersects_right(sprites_still.get(4))  ||
+                            player.intersects_right(sprites_still.get(5))  ||
+                            player.intersects_right(sprites_still.get(6))  ||
+                            player.intersects_right(sprites_still.get(7))  ||
+                            player.intersects_right(sprites_still.get(9))  ||
+                            player.intersects_right(sprites_still.get(10)) ||
+                            player.intersects_right(sprites_still.get(11)) ||
+                            player.intersects_right(sprites_still.get(12)) ||
+                            player.intersects_right(sprites_still.get(13)) ||
+                            player.intersects_right(sprites_still.get(14)) ||
+                            player.intersects_right(sprites_still.get(15)) ||
+                            player.intersects_right(sprites_still.get(16)) ||
+                            player.intersects_right(sprites_still.get(17)) 
                              ){
                          player.setVelocity(0, 0);
-                    }
-                    else{
-                        player.setVelocity(100, 0);
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("librarian")){
+                        if(player.intersects_right(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(100,0);
+                        }
+                    }else{
+                        player.setVelocity(100,0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
+                }
+
+               
+                //check if the user wants to walk down.
+                if(input.contains("DOWN")) {
+                    //check if the user walks into a world boundary
+                    if (player.intersects_bottom(worldBoundBottom)) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    }else if (
+                            player.intersects_bottom(sprites_still.get(3))  ||
+                            player.intersects_bottom(sprites_still.get(4))  ||
+                            player.intersects_bottom(sprites_still.get(5))  ||
+                            player.intersects_bottom(sprites_still.get(6))  ||
+                            player.intersects_bottom(sprites_still.get(7))  ||
+                            player.intersects_bottom(sprites_still.get(9))  ||
+                            player.intersects_bottom(sprites_still.get(10)) ||
+                            player.intersects_bottom(sprites_still.get(11)) ||
+                            player.intersects_bottom(sprites_still.get(12)) ||
+                            player.intersects_bottom(sprites_still.get(13)) ||
+                            player.intersects_bottom(sprites_still.get(14)) ||
+                            player.intersects_bottom(sprites_still.get(15)) ||
+                            player.intersects_bottom(sprites_still.get(16)) ||
+                            player.intersects_bottom(sprites_still.get(17)) 
+                             ){
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("librarian")){
+                        if(player.intersects_bottom(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(0, 100);
+                        }
+                    }else {
+                        player.setVelocity(0, 100);
+                    }
+                    //set the direction the player walks
+                    player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
                 
                 //check if the user wants to walk up.
@@ -213,28 +283,45 @@ public class Library extends Map{
                         //check if the player walks into a sprite
                    
                     }else if(
-                            player.intersects_top(spriteList_still.get(3))  ||
-                            player.intersects_top(spriteList_still.get(4))  ||
-                            player.intersects_top(spriteList_still.get(5))  ||
-                            player.intersects_top(spriteList_still.get(6))  ||
-                            player.intersects_top(spriteList_still.get(7))  ||
-                            player.intersects_top(spriteList_still.get(9))  ||
-                            player.intersects_top(spriteList_still.get(10)) ||
-                            player.intersects_top(spriteList_still.get(11)) ||
-                            player.intersects_top(spriteList_still.get(12)) ||
-                            player.intersects_top(spriteList_still.get(13)) ||
-                            player.intersects_top(spriteList_still.get(14)) ||
-                            player.intersects_top(spriteList_still.get(15)) ||
-                            player.intersects_top(spriteList_still.get(16)) ||
-                            player.intersects_top(spriteList_still.get(17)) ||
-                            player.intersects_top(spriteList_still.get(18)) 
+                            player.intersects_top(sprites_still.get(3))  ||
+                            player.intersects_top(sprites_still.get(4))  ||
+                            player.intersects_top(sprites_still.get(5))  ||
+                            player.intersects_top(sprites_still.get(6))  ||
+                            player.intersects_top(sprites_still.get(7))  ||
+                            player.intersects_top(sprites_still.get(9))  ||
+                            player.intersects_top(sprites_still.get(10)) ||
+                            player.intersects_top(sprites_still.get(11)) ||
+                            player.intersects_top(sprites_still.get(12)) ||
+                            player.intersects_top(sprites_still.get(13)) ||
+                            player.intersects_top(sprites_still.get(14)) ||
+                            player.intersects_top(sprites_still.get(15)) ||
+                            player.intersects_top(sprites_still.get(16)) ||
+                            player.intersects_top(sprites_still.get(17)) 
                              ){
                          player.setVelocity(0, 0);
-                    }
-                    else if(player.intersects_top(spriteList_still.get(2))){
-                            setNewScene();
-                    }else {
-                        player.setVelocity(0, -100);
+                         
+                    }else if(game.checkExisting("librarian")){
+                        if(player.intersects_top(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }
+                         
+                    }else if(player.intersects_top(sprites_still.get(2))){
+                    //Reset the velocity
+                    player.setVelocity(0, 0);
+                    game.goTo(new Command(CommandWord.GO, "door"));
+                    //remove all the inputs
+                    input.removeAll(input);
+                    //stop this AnimationTimer
+                    this.stop();
+                    //clear the textarea
+                    infobox.clear();
+                    //set the menu as a scene instead.
+                    setNewScene();
+                    //save the game when we walk out
+                    WizardOfTreldan.saveGame();
+                        
+                    }else{
+                        player.setVelocity(0,-100);  
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
@@ -248,39 +335,42 @@ public class Library extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     }else if(
-                            player.intersects_bottom(spriteList_still.get(3))  ||
-                            player.intersects_bottom(spriteList_still.get(4))  ||
-                            player.intersects_bottom(spriteList_still.get(5))  ||
-                            player.intersects_bottom(spriteList_still.get(6))  ||
-                            player.intersects_bottom(spriteList_still.get(7))  ||
-                            player.intersects_bottom(spriteList_still.get(9))  ||
-                            player.intersects_bottom(spriteList_still.get(10)) ||
-                            player.intersects_bottom(spriteList_still.get(11)) ||
-                            player.intersects_bottom(spriteList_still.get(12)) ||
-                            player.intersects_bottom(spriteList_still.get(13)) ||
-                            player.intersects_bottom(spriteList_still.get(14)) ||
-                            player.intersects_bottom(spriteList_still.get(15)) ||
-                            player.intersects_bottom(spriteList_still.get(16)) ||
-                            player.intersects_bottom(spriteList_still.get(17)) ||
-                            player.intersects_bottom(spriteList_still.get(18)) 
+                            player.intersects_bottom(sprites_still.get(3))  ||
+                            player.intersects_bottom(sprites_still.get(4))  ||
+                            player.intersects_bottom(sprites_still.get(5))  ||
+                            player.intersects_bottom(sprites_still.get(6))  ||
+                            player.intersects_bottom(sprites_still.get(7))  ||
+                            player.intersects_bottom(sprites_still.get(9))  ||
+                            player.intersects_bottom(sprites_still.get(10)) ||
+                            player.intersects_bottom(sprites_still.get(11)) ||
+                            player.intersects_bottom(sprites_still.get(12)) ||
+                            player.intersects_bottom(sprites_still.get(13)) ||
+                            player.intersects_bottom(sprites_still.get(14)) ||
+                            player.intersects_bottom(sprites_still.get(15)) ||
+                            player.intersects_bottom(sprites_still.get(16)) ||
+                            player.intersects_bottom(sprites_still.get(17)) 
                              ){
                          player.setVelocity(0, 0);
-                    }
-                    else {
-                        player.setVelocity(0, 100);
+                     }else if(game.checkExisting("librarian")){
+                            if(player.intersects_bottom(sprites_interact.get(0))){
+                                player.setVelocity(0, 0);
+                            }else{
+                                player.setVelocity(0,100);
+                            }
+                      
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(spriteList_still.get(4))) {
+                    if (player.intersect(sprites_still.get(3))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if(player.intersect(spriteList_still.get(3))){
+                    if(player.intersect(sprites_interact.get(0))){
                            if(game.checkExisting("librarian")){ 
                             for(String s : game.goTo(new Command(CommandWord.GO, "librarian"))) {
                                 infobox.appendText("\n" + s + "\n");
@@ -300,6 +390,13 @@ public class Library extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
+                
+                monster_gc.clearRect(0, 0, 1024, 512);
+                
+                //check if monsters still exist in the game world
+                if(game.checkExisting("librarian")){
+                    sprites_interact.get(0).render(monster_gc);
+                }
 
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
@@ -315,7 +412,7 @@ public class Library extends Map{
                     
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
-                    case 14:
+                    case 13:
                         WizardOfTreldan.setEvilWizardLairScene();
                         break;
                     
