@@ -255,7 +255,7 @@ public class TWoT implements Serializable{
         
         
         //set which room you start in.
-        currentRoom = roomEvilWizardsLair;
+        currentRoom = roomCellar;
         lastRoomId = currentRoom.getRoomId();
         currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getMapInterior());
     }
@@ -318,7 +318,7 @@ public class TWoT implements Serializable{
      * @return String
      */
     public List<String> goTo(Command command){
-        moveNpc();
+        
         List<String> description = new ArrayList<>();
         if(!command.hasSecondWord()) {
             description.add("\"Go where?\"");
@@ -331,6 +331,7 @@ public class TWoT implements Serializable{
             description.add("Nothing here.");
             return description;
         }else if(interior instanceof Exit){
+            moveNpc();
             if(currentRoom == roomCellar){
                 for(Item i: getInventoryItems()){
                     if(i instanceof QuestItem){
