@@ -457,4 +457,8 @@ public class Misc_sprites {
         return new Blood_bodyparts_head().getSprite();
     }
 
+    public SingleSprite getDeadGoblin() {
+        return new DeadGoblin().getSprite();
+    }
+    
 }

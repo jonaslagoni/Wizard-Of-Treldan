@@ -35,6 +35,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import static javafx.scene.input.DataFormat.URL;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -123,9 +126,15 @@ public class WizardOfTreldan extends Application {
         highscore = new Highscore(world);
         finish = new Finish(world);
 //            
+
   
         
         setClearingScene();
+
+        final Media media = new Media("");
+        final MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+        setVillageScene();
         primaryStage.show();
     }
     

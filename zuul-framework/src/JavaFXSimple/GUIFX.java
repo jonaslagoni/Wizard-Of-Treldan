@@ -101,6 +101,7 @@ public class GUIFX extends Application {
         inputArea = new TextField();
         statsArea = new TextArea();
         nameArea = new TextField();
+        Label endScore = new Label();
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -109,6 +110,8 @@ public class GUIFX extends Application {
         
         Button button_loadGame = new Button("Load Game");
         Button button_exitToMenu = new Button("Exit To Menu");
+        
+        Button button_exitGame = new Button("Exit Game");
         
         button_loadGame.setMinWidth(180);
         button_exitToMenu.setMinWidth(180);
@@ -142,6 +145,16 @@ public class GUIFX extends Application {
         gameButtons.setLayoutX(591);
         gameButtons.setLayoutY(5);
         gameButtons.getChildren().addAll(button_clear, button_help, button_save, button_exit);
+        
+        //end menu
+        button_exitGame.setMinWidth(180);
+        button_exitGame.setMinHeight(40);
+                
+        endScore.setLayoutX(110);
+        endScore.setLayoutY(80);
+        
+        button_exitGame.setLayoutX(170);
+        button_exitGame.setLayoutY(150);
         
         //load Menu
         Pane anchorpane = new Pane();
@@ -313,7 +326,7 @@ public class GUIFX extends Application {
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
-        Pane root5 = new Pane();
+        Pane root5 = new Pane(endScore, button_exitGame);
         
         Scene scene1 = new Scene(root, 1052, 512);
         Scene menu = new Scene(root2, 512, 288);
@@ -413,14 +426,16 @@ public class GUIFX extends Application {
                                         textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
-                                    if(twot.endGame() == true){
+                                    if(twot.endGame() == true){endScore.setText("Congratulations! You have beaten The Wizard of Treldan!\n"
+                                                                              + "                        Your final score is: " + twot.getHighscore() +
+                                                                                "\n        It took you " + ((long)(System.currentTimeMillis() / 1000L) - twot.getStartTime()) + " seconds to finish the game.");
                                         primaryStage.setScene(endMenu);
                                     }
                                     updateGUI();
                                     break;
                                 
                                 default:
-                                    textArea.appendText("\ndoes not compute ");
+                                    textArea.appendText("\nThis command does not exist.");
                                     inputArea.clear();
                                     break;
                                 
@@ -434,7 +449,8 @@ public class GUIFX extends Application {
             }
         });
         button_exit.setOnAction(actionEvent -> Platform.exit());        
-        button_exitMenu.setOnAction(actionEvent -> Platform.exit());       
+        button_exitMenu.setOnAction(actionEvent -> Platform.exit());  
+        button_exitGame.setOnAction(actionEvent -> Platform.exit());
         
         primaryStage.setScene(menu);
         primaryStage.centerOnScreen();

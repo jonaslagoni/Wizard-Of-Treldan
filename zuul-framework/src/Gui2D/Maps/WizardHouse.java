@@ -125,14 +125,13 @@ public class WizardHouse extends Map{
         //render all the sprites
 
         
-        for (Sprite sprite : sprites_interactables) {
-            sprite.render(wizardHouse_interactables);
-        }
-        
         for (Sprite sprite : sprites_background) {
             sprite.render(wizardHouse_background);
         }
         
+        for (Sprite sprite : sprites_interactables) {
+            sprite.render(wizardHouse_interactables);
+        }
         
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
@@ -294,6 +293,12 @@ public class WizardHouse extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                wizardHouse_interactables.clearRect(0, 0, 1024, 512);
+                //render pickup items
+                if(game.checkExisting("wizard")){
+                    sprites_interactables.get(0).render(wizardHouse_interactables);
+                }
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
