@@ -20,7 +20,7 @@ public class Clearing_sprites{
 private SpriteController world;
 //list containing all sprites for the room
 private List<Sprite> clearing_background_sprites;
-private List<Sprite> clearing_foreground_sprites;
+private List<Sprite> clearing_interact;
 
 //lists of treeline
 private final List<SingleSprite> clearing_tree_walls_RIGHT;
@@ -37,7 +37,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
         //initialize world + list of spritess
         this.world = world;
         clearing_background_sprites = new ArrayList();
-        clearing_foreground_sprites = new ArrayList();
+        clearing_interact = new ArrayList();
         
         //initialize treeline
         clearing_tree_walls_RIGHT = new ArrayList();
@@ -141,17 +141,23 @@ private final List<SingleSprite> clearing_pathway_sprites;
             ruins4.setBoundary(new Rectangle2D(ruins4.getPositionX()+126,ruins4.getPositionY()+66,ruins4.getWidth(),ruins4.getHeight()));
             clearing_background_sprites.add(ruins4);
        
-            //ENEMY 12
+            //ENEMY 0
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
             unicorn.setPosition(500,100);
             unicorn.setBoundary(new Rectangle2D(unicorn.getPositionX()+126,unicorn.getPositionY()+66,unicorn.getWidth(),unicorn.getHeight()));
-            clearing_background_sprites.add(unicorn);
+            clearing_interact.add(unicorn);
             
-            //tree 13
+            //tree 1
             Sprite tree = world.getMisc_sprites().getTree2();
             tree.setPosition(100,150);
             tree.setBoundary(new Rectangle2D(tree.getPositionX()+126,tree.getPositionY()+66,tree.getWidth(),tree.getHeight()));
-            clearing_background_sprites.add(tree);
+            clearing_interact.add(tree);
+            
+            //tree 2 /cut
+            Sprite tree_cutdown = world.getMisc_sprites().getTree_cutdown();
+            tree_cutdown.setPosition(100,150);
+            tree_cutdown.setBoundary(new Rectangle2D(tree_cutdown.getPositionX()+126,tree_cutdown.getPositionY()+66,tree_cutdown.getWidth(),tree_cutdown.getHeight()));
+            clearing_interact.add(tree);
             
             
                  
@@ -170,8 +176,8 @@ private final List<SingleSprite> clearing_pathway_sprites;
     public List<Sprite> getClearing_background_sprites(){
        return clearing_background_sprites; 
     }
-    public List<Sprite> getClearing_foreground_sprites(){
-        return clearing_foreground_sprites;
+    public List<Sprite> getClearing_interact(){
+        return clearing_interact;
     }
 
 }

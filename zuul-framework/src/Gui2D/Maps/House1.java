@@ -119,6 +119,8 @@ public class House1 extends Map{
         //create GraphicsContext from our player_canvas
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         
+        
+        
         //get all the sprites of monsters
         List<Sprite> sprites_interact = house_sprites.getHouse1_monster_sprites();
         if(game.checkExisting("man")){

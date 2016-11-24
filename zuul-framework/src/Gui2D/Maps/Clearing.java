@@ -72,26 +72,29 @@ public class Clearing extends Map{
     
     public Scene getScene(){
         this.game = WizardOfTreldan.getGame();
-        
         Group root = new Group();
-        
-        Scene theScene = new Scene( root );
-        
+        Scene theScene = new Scene( root ); 
         theScene.setFill(Color.rgb(83, 83, 83));
-        
-        
         Canvas canvas_background = new Canvas(730,370);
-        
         canvas_background.relocate(126,66);
         
         //background canvas
         root.getChildren().add(canvas_background);
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
-        
+        //add canvas to group
         root.getChildren().add(player_canvas);
         
-         theScene.getStylesheets().add("TextAreaStyle.css");
+        //set canvas of our items
+        Canvas clearing_interact = new Canvas(730, 370);
+        //relocate the canvas
+        clearing_interact.relocate(126, 66);
+        //add the canvas to the group
+        root.getChildren().add(clearing_interact);
+        
+        
+        
+        theScene.getStylesheets().add("TextAreaStyle.css");
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -123,7 +126,10 @@ public class Clearing extends Map{
         theScene.setOnKeyReleased(getOnKeyRelease(player));
         theScene.setOnKeyPressed(getOnKeyPress());
         
+        
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        GraphicsContext interact_gc = clearing_interact.getGraphicsContext2D();
+        //create GraphicsContext from our player_canvas
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
         
         
@@ -134,10 +140,22 @@ public class Clearing extends Map{
         Rectangle2D worldBoundLeft = new Rectangle2D(150, 0, 1, 512);
         Rectangle2D worldBoundRight = new Rectangle2D(800, 0, 1, 512);
         
+        //get all the sprites of monsters
+        List<Sprite> sprites_interact = clearing_sprites.getClearing_interact();
+        
+            if(game.checkExisting("unicorn")){
+                sprites_interact.get(0).render(interact_gc);
+            }
+
+            if(game.checkExisting("tree")){
+                sprites_interact.get(1).render(interact_gc);
+            }
         List<Sprite> sprites_still = clearing_sprites.getClearing_background_sprites();
         for(Sprite sprite : sprites_still){
             sprite.render(background_gc);
         }
+        
+        
         
          new AnimationTimer() {
             //set the current time we started.
@@ -163,36 +181,21 @@ public class Clearing extends Map{
                     if (player.intersects_left(worldBoundLeft)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                     //check if the player walks into the exit
-                    }else if(player.intersects_left(sprites_still.get(7))){
-                        if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
+                   
+                
                         //check if the player walks into a sprite
                     }else if(player.intersects_left(sprites_still.get(8))  ||
                              player.intersects_left(sprites_still.get(9))  ||
                              player.intersects_left(sprites_still.get(10)) ||
-                             player.intersects_left(sprites_still.get(11)) ||
-                             player.intersects_left(sprites_still.get(12)) ||
-                             player.intersects_left(sprites_still.get(13)) 
+                             player.intersects_left(sprites_still.get(11)) 
                              ){
                          player.setVelocity(0, 0);
+                    }else if(game.checkExisting("unicorn")){
+                        if(player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else{
                         player.setVelocity(-100, 0);
                     }
@@ -206,37 +209,21 @@ public class Clearing extends Map{
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                     //check if the player walks into the exit
-                    }else if(player.intersects_right(sprites_still.get(7))){
-                           
-                        if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
+                    
+                        
                     //check if the player walks into a sprite
                     }else if(player.intersects_right(sprites_still.get(8))  ||
                              player.intersects_right(sprites_still.get(9))  ||
                              player.intersects_right(sprites_still.get(10)) ||
-                             player.intersects_right(sprites_still.get(11)) ||
-                             player.intersects_right(sprites_still.get(12)) ||
-                             player.intersects_right(sprites_still.get(13)) 
+                             player.intersects_right(sprites_still.get(11)) 
                              ){
                          player.setVelocity(0, 0);
+                    }else if(game.checkExisting("unicorn")){
+                        if(player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else{
                         player.setVelocity(100, 0);
                     }
@@ -276,11 +263,16 @@ public class Clearing extends Map{
                     }else if(player.intersects_top(sprites_still.get(8))  ||
                              player.intersects_top(sprites_still.get(9))  ||
                              player.intersects_top(sprites_still.get(10)) ||
-                             player.intersects_top(sprites_still.get(11)) ||
-                             player.intersects_top(sprites_still.get(12)) ||
-                             player.intersects_top(sprites_still.get(13)) 
+                             player.intersects_top(sprites_still.get(11)) 
+                     
                              ){
                          player.setVelocity(0, 0);
+                    }else if(game.checkExisting("unicorn")){
+                        if(player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else {
                         player.setVelocity(0, -100);
                     }
@@ -295,37 +287,22 @@ public class Clearing extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         
-                     //check if the player walks into the exit
-                    }else if(player.intersects_bottom(sprites_still.get(7))){
-                        if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                        }
-                            
+                      
+                           
                         //check if the player walks into a sprite
                     }else if(player.intersects_bottom(sprites_still.get(8))  ||
                              player.intersects_bottom(sprites_still.get(9))  ||
                              player.intersects_bottom(sprites_still.get(10)) ||
-                             player.intersects_bottom(sprites_still.get(11)) ||
-                             player.intersects_bottom(sprites_still.get(12)) ||
-                             player.intersects_bottom(sprites_still.get(13)) 
+                             player.intersects_bottom(sprites_still.get(11)) 
                              ){
                          player.setVelocity(0, 0);
+                         
+                    }else if(game.checkExisting("unicorn")){
+                        if(player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(-100,0);
+                        }
                     }else{
                         player.setVelocity(0, 100);
                     }
@@ -335,14 +312,14 @@ public class Clearing extends Map{
             
                 //interact with the world around the player
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_still.get(12))) {
+                    if (player.intersect(sprites_interact.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "unicorn"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                     
                   
                     }
-                    if (player.intersect(sprites_still.get(13))) {
+                    if (player.intersect(sprites_interact.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "tree"))) {
                             infobox.appendText("\n" + s + "\n");
                         }

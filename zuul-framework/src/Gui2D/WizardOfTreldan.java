@@ -123,9 +123,9 @@ public class WizardOfTreldan extends Application {
         highscore = new Highscore(world);
         finish = new Finish(world);
 //            
-
+  
         
-        setVillageScene();
+        setClearingScene();
         primaryStage.show();
     }
     
