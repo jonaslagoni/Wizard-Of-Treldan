@@ -5,17 +5,26 @@
  */
 package JavaFXSimple;
 
+import Gui2D.WizardOfTreldan;
 import TWoT_A1.*;
 import static TWoT_A1.EquippableItem.EItem.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
@@ -26,6 +35,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,10 +46,12 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -95,6 +107,14 @@ public class GUIFX extends Application {
         Button button_how = new Button("HOW TO PLAY");
         Button button_exitMenu = new Button("EXIT GAME");
         
+        Button button_loadGame = new Button("Load Game");
+        Button button_exitToMenu = new Button("Exit To Menu");
+        
+        button_loadGame.setMinWidth(180);
+        button_exitToMenu.setMinWidth(180);
+        button_loadGame.setMinHeight(40);
+        button_exitToMenu.setMinHeight(40);
+        
         button_play.setMinWidth(180);
         button_load.setMinWidth(180);
         button_how.setMinWidth(180);
@@ -107,10 +127,9 @@ public class GUIFX extends Application {
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
         Button button_exit = new Button("Exit");
-        Button button_save = new Button("Save game");
+        Button button_save = new Button("Save");
         Button button_use = new Button("Use Item");
         Button button_equip = new Button("Equip Item");
-        Button button_save = new Button("Save");
         
         button_help.setMaxWidth(90);
         button_exit.setMaxWidth(90);
@@ -123,6 +142,35 @@ public class GUIFX extends Application {
         gameButtons.setLayoutX(591);
         gameButtons.setLayoutY(5);
         gameButtons.getChildren().addAll(button_clear, button_help, button_save, button_exit);
+        
+        //load Menu
+        Pane anchorpane = new Pane();
+        
+        ListView<AnchorPane> list = new ListView();
+        ObservableList<AnchorPane> loads = FXCollections.observableArrayList ();
+        List<String> loadList = getLoadList();
+        
+         for(String i: loadList){
+            //add a new anchorpane with a Text component to the ObservableList
+            AnchorPane t = new AnchorPane();
+            Text itemName = new Text(i);
+            itemName.relocate(0, 3);
+            t.getChildren().add(itemName);
+            loads.add(t);
+        }
+        //add the ObservableList to the ListView
+        list.setItems(loads);
+        //add the ListView to the pane.
+        list.setPrefWidth(250);
+        list.setPrefHeight(288);
+        anchorpane.getChildren().add(list);
+                
+        VBox loadMenuButtons = new VBox(20);
+        loadMenuButtons.setLayoutX(295);
+        loadMenuButtons.setLayoutY(70);
+        loadMenuButtons.getChildren().addAll(button_loadGame, button_exitToMenu);
+        
+        //smth else
         
         HBox invButtons = new HBox(20);
         invButtons.setLayoutX(770);
@@ -264,10 +312,12 @@ public class GUIFX extends Application {
         Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, inputField, healthbar, invTable, label1, statsField);
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
+        Pane root4 = new Pane(loadMenuButtons, anchorpane);
         
         Scene scene1 = new Scene(root, 1052, 512);
         Scene menu = new Scene(root2, 512, 288);
         Scene nameScene = new Scene(root3, 512, 288);
+        Scene loadMenu = new Scene(root4, 512, 288);
                 
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -286,8 +336,22 @@ public class GUIFX extends Application {
                 }
             }
         });
+        button_loadGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            TWoT loadedGame = getLoad((((Text)list.getSelectionModel().getSelectedItem().getChildren().get(0)).getText()));
+            //set the game to the loaded instance
+            setGame(loadedGame);
+            primaryStage.setScene(scene1);
+            primaryStage.centerOnScreen();
+            textArea.clear();
+            textArea.appendText(loadedGame.getCurrentRoomDescription());
+            updateGUI();
+        });
+        button_load.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            primaryStage.setScene(loadMenu);
+        });
         button_save.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             saveGame();
+            textArea.appendText("\n\nGame has been saved. It can be loaded from the start menu.\n\n");
         });
         button_use.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             for(String s: twot.useItem(new Command(CommandWord.USE, invTable.getSelectionModel().getSelectedItem().getItemName()))){
@@ -309,9 +373,6 @@ public class GUIFX extends Application {
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
-        button_save.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            
-        });
         nameField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
             public void handle(KeyEvent k){
@@ -331,8 +392,9 @@ public class GUIFX extends Application {
                             + "You lose score points when you die but you are free to continue the game as if nothing happened.");
             }
         });
-        button_exit.setOnAction(actionEvent -> Platform.exit());
-        
+        button_exitToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            primaryStage.setScene(menu);
+        });
         inputField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             public void handle(KeyEvent k){
                 if(k.getCode().equals(KeyCode.ENTER)){
@@ -366,8 +428,7 @@ public class GUIFX extends Application {
                 }     
             }
         });
-                
-        button_exit.setOnAction(actionEvent -> Platform.exit());
+        button_exit.setOnAction(actionEvent -> Platform.exit());        
         button_exitMenu.setOnAction(actionEvent -> Platform.exit());       
         
         primaryStage.setScene(menu);
@@ -448,7 +509,7 @@ public class GUIFX extends Application {
         }
     }
     public void saveGame(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd 'at' HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
         Date date = new Date();
         String strDate = sdf.format(date);
         try {
@@ -475,5 +536,54 @@ public class GUIFX extends Application {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<String> getLoadList(){
+        //create empty arraylist.
+        List<String> loadList = new ArrayList();
+        //try to get each file in the directory "loads" by using Files.walk
+        try{
+            //Go through each Path in the Stream.
+            Stream<Path> paths = Files.walk(Paths.get("loads/"));
+            paths.forEach(filePath -> {
+                //if the file is a FILE continue
+                if (Files.isRegularFile(filePath)) {
+                    //add the filename with extenstion to the List.
+                    loadList.add(filePath.getFileName().toString());
+                }
+            });
+        } catch (IOException ex) {
+            System.out.println("FAIL");
+        }
+        //return the List
+        return loadList;
+    }
+    
+     public TWoT getLoad(String filename){
+        //Try loading the file. 
+        try {
+            //Read from the stored file in folder "loads"
+            FileInputStream fileInputStream = new FileInputStream(new File("loads/" + filename));
+            //Create a ObjectInputStream object from the FileInputStream
+            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            //load the TWoT file into object
+            TWoT twot = (TWoT) input.readObject();
+            //close the objects
+            input.close();
+            fileInputStream.close();
+            //returns the gamefile
+            return twot;
+        } catch (FileNotFoundException e) {
+                System.out.println("File not found");
+        } catch (IOException e) {
+                System.out.println("Wrong version of game");
+        } catch (ClassNotFoundException e) {
+                System.out.println("Game was not found.");
+        }
+        return null;
+    }
+     
+    public void setGame(TWoT loaded){
+        twot = loaded;
     }
 }
