@@ -101,7 +101,7 @@ public class Cave extends Map{
         root.getChildren().add(s);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get("getRooms") + "\n");
+        infobox.appendText(welcome.get(8) + "\n");
         
         //Menu testing start
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);

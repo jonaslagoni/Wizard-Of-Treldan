@@ -82,8 +82,8 @@ public class WizardHouse extends Map{
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
-        root.getChildren().add(player_canvas);
         root.getChildren().add(canvas_interactables);
+        root.getChildren().add(player_canvas);
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -97,7 +97,7 @@ public class WizardHouse extends Map{
         root.getChildren().add(s);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get("getRooms") + "\n");
+        infobox.appendText(welcome.get(7) + "\n");
         
         //Menu testing start
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
@@ -163,16 +163,15 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_left(sprites_background.get(7))
+                    } else if (player.intersects_left(sprites_background.get(4))
+                            || player.intersects_left(sprites_background.get(5))
                             || player.intersects_left(sprites_background.get(6))
                             || player.intersects_left(sprites_background.get(7))
                             || player.intersects_left(sprites_background.get(8))
                             || player.intersects_left(sprites_background.get(9))
                             || player.intersects_left(sprites_background.get(10))
-                            || player.intersects_left(sprites_background.get(11))
-                            || player.intersects_left(sprites_background.get(12))
-                            || player.intersects_left(sprites_background.get(13))
-                            || player.intersects_left(sprites_interactables.get(0))
+                            || player.intersects_left(sprites_interactables.get(2))
+                            || player.intersects_left(sprites_interactables.get(3))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -191,15 +190,14 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    } else if (player.intersects_right(sprites_background.get(7))
+                    } else if (player.intersects_right(sprites_background.get(1))
+                            || player.intersects_right(sprites_background.get(4))
+                            || player.intersects_right(sprites_background.get(5))
+                            || player.intersects_right(sprites_background.get(6))
+                            || player.intersects_right(sprites_background.get(7))
                             || player.intersects_right(sprites_background.get(8))
                             || player.intersects_right(sprites_background.get(9))
                             || player.intersects_right(sprites_background.get(10))
-                            || player.intersects_right(sprites_background.get(11))
-                            || player.intersects_right(sprites_background.get(12))
-                            || player.intersects_right(sprites_background.get(13))
-                            || player.intersects_right(sprites_background.get(3))
-                            || player.intersects_right(sprites_background.get(1))
                             || player.intersects_right(sprites_interactables.get(0))
                               ) {
                         //Reset the velocity
@@ -220,15 +218,15 @@ public class WizardHouse extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_top(sprites_background.get(4))
+                            || player.intersects_top(sprites_background.get(5))
+                            || player.intersects_top(sprites_background.get(6))
                             || player.intersects_top(sprites_background.get(7))
                             || player.intersects_top(sprites_background.get(8))
                             || player.intersects_top(sprites_background.get(9))
                             || player.intersects_top(sprites_background.get(10))
-                            || player.intersects_top(sprites_background.get(11))
-                            || player.intersects_top(sprites_background.get(12))
-                            || player.intersects_top(sprites_background.get(13))
-                            || player.intersects_top(sprites_background.get(3))
                             || player.intersects_top(sprites_interactables.get(0))
+                            || player.intersects_top(sprites_interactables.get(1))
+                            || player.intersects_top(sprites_interactables.get(2))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -262,10 +260,10 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_bottom(sprites_background.get(6))
-                            || player.intersects_bottom(sprites_background.get(5))
-                            || player.intersects_bottom(sprites_background.get(1))
+                    } else if (player.intersects_bottom(sprites_background.get(1))
+                            || player.intersects_bottom(sprites_background.get(3))
                             || player.intersects_bottom(sprites_interactables.get(0))
+                            || player.intersects_bottom(sprites_interactables.get(3))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -276,10 +274,28 @@ public class WizardHouse extends Map{
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
-                
+                // interactable items
                 if (menu_input.contains("E")) {
                     if (player.intersect(sprites_interactables.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "wizard"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(sprites_interactables.get(1))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "box"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(sprites_interactables.get(2))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "lab"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(sprites_interactables.get(3))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "upstairs"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);

@@ -56,25 +56,10 @@ public class WizardHouse_sprites{
         door.setPosition(512, 80);
         background_sprites.add(door);
         
-        Sprite chest = world.getMisc_sprites().getChestClosed();
-        chest.setSize(32, 32);
-        chest.setPosition(736, 120);
-        background_sprites.add(chest);
-        
-        Sprite alchemyTable = world.getMisc_sprites().getAlchemy_Table();
-        alchemyTable.setSize(64, 60);
-        alchemyTable.setPosition(265, 105);
-        background_sprites.add(alchemyTable);
-        
         Sprite treeBundle = world.getMisc_sprites().getTree_Bundle();
         treeBundle.setSize(52, 55);
         treeBundle.setPosition(260, 317);
         background_sprites.add(treeBundle);
-        
-        Sprite sacks = world.getMisc_sprites().getSacks_1();
-        sacks.setSize(64, 63);
-        sacks.setPosition(315, 320);
-        background_sprites.add(sacks);
         
         Sprite bookshelf7 = world.getMisc_sprites().getBookshelf_1();
         bookshelf7.setSize(64, 69);
@@ -119,6 +104,21 @@ public class WizardHouse_sprites{
         wizard.setSize(29, 48);
         wizard.setPosition(689, 310);
         interactable_sprites.add(wizard);
+        
+        Sprite chest = world.getMisc_sprites().getChestClosed();
+        chest.setSize(32, 32);
+        chest.setPosition(736, 120);
+        interactable_sprites.add(chest);
+        
+        Sprite alchemyTable = world.getMisc_sprites().getAlchemy_Table();
+        alchemyTable.setSize(64, 60);
+        alchemyTable.setPosition(265, 105);
+        interactable_sprites.add(alchemyTable);
+        
+        Sprite sacks = world.getMisc_sprites().getSacks_1();
+        sacks.setSize(64, 63);
+        sacks.setPosition(315, 320);
+        interactable_sprites.add(sacks);
         
         // END OF INTERACTABLES
 

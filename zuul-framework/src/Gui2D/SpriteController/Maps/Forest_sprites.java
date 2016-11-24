@@ -40,6 +40,7 @@ public class Forest_sprites{
         Sprite boundWizardHouse = new Groupsprite_random(boundriesWizardHouseList);
         boundWizardHouse.setSize(192, 128);
         boundWizardHouse.setPosition(316, 305);
+        boundWizardHouse.setBoundary(new Rectangle2D(boundWizardHouse.getPositionX(), boundWizardHouse.getPositionY()+5, boundWizardHouse.getWidth(), boundWizardHouse.getHeight()+5));
         background_sprites.add(boundWizardHouse);
         
         // BOUNDRIES FOR HOUSE END
