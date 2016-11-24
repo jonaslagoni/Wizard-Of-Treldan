@@ -80,7 +80,6 @@ public abstract class Map {
             {
                 String code = e.getCode().toString();
                 // only add once... prevent duplicates
-                System.out.println(code);
                 if(code.equals("I") || code.equals("E") || code.equals("ESCAPE")){
                     if(!menu_input.contains(code)){
                         getMenu_input().add(code);
