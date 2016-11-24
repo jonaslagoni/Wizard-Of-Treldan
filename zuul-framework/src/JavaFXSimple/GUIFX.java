@@ -313,11 +313,13 @@ public class GUIFX extends Application {
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
+        Pane root5 = new Pane();
         
         Scene scene1 = new Scene(root, 1052, 512);
         Scene menu = new Scene(root2, 512, 288);
         Scene nameScene = new Scene(root3, 512, 288);
         Scene loadMenu = new Scene(root4, 512, 288);
+        Scene endMenu = new Scene(root5, 512, 288);
                 
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -411,6 +413,9 @@ public class GUIFX extends Application {
                                         textArea.appendText("\n" + s + "\n");
                                     }
                                     inputArea.clear();
+                                    if(twot.endGame() == true){
+                                        primaryStage.setScene(endMenu);
+                                    }
                                     updateGUI();
                                     break;
                                 

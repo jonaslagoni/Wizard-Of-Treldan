@@ -123,7 +123,9 @@ public class TWoT implements Serializable{
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
-        Interior roomHouse1Man = new Monster("Zombie man", 0.7, 0.7, 50, 50, "A dead man is half-sitting in a chair. He gets on his feet and attacks you.");
+        Monster zombie = new Monster("Zombie man", 0.7, 0.7, 50, 50, "A dead man is half-sitting in a chair. He gets on his feet and attacks you.");
+        Interior roomHouse1Man = zombie;
+        zombie.addDropItem(new EquippableItem("Amulet of Pain", 4565, "Painful to wear.", 0.4, 0.4, AMULET_SLOT, "", 33308));
         Interior roomHouse1Chest = new UseableItem("CheezBurga", 20, "Nom nom nom", "You move the loose stone and to your surprise you find a cheezBurga", 55508, FOOD, 50);
         roomHouse1.addMapInterior("man", roomHouse1Man);
         roomHouse1.addMapInterior("chest", roomHouse1Chest);
@@ -131,7 +133,7 @@ public class TWoT implements Serializable{
         
         //roomHouse2
         Interior roomHouse2Exit = new Exit(roomVillage);
-        Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",2.1,1.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
+        Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",1.9,0.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
         Interior roomHouse2Table = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
 
@@ -158,7 +160,7 @@ public class TWoT implements Serializable{
         Interior roomForrestExit3 = new Exit(roomClearing);
         Interior roomForrestExit4 = new Exit(roomVillage);
         Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.", "You go pick up a mushroom, it stinks, but it might come in handy scaring off weaker foes.", 55504, MAGIC_ITEM, 0);
-        Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.0, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
+        Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.9, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
         roomForest.addMapInterior("mushroom", roomForrestMushroom);
         roomForest.addMapInterior("goblin", roomForrestDeadGoblin);
         roomForest.addMapInterior("house", roomForrestExit1);
@@ -188,6 +190,9 @@ public class TWoT implements Serializable{
         Interior roomWizardHouseMonster1 = troll1;
         Interior roomWizardHouseMonster2 = troll2;
         Interior roomWizardHouseMonster3 = troll3;
+        troll1.addDropItem(new EquippableItem("Troll Helmet", 2938, "It's way too big for you.", 0.0, 1.1, HEAD_SLOT,"",33309));
+        troll2.addDropItem(new UseableItem("Health Potion",20,"Regenerates health points", "", 55507, FOOD, 50));
+        troll3.addDropItem(new EquippableItem("Spurs of Speed", 2936, "Fast and furious.", 0.0, 0.6, BOOT_SLOT,"",33310));
         roomCave.addMapInterior("troll1",roomWizardHouseMonster1);
         roomCave.addMapInterior("troll2",roomWizardHouseMonster2);
         roomCave.addMapInterior("troll3",roomWizardHouseMonster3);
@@ -198,6 +203,7 @@ public class TWoT implements Serializable{
         Interior roomCaveGruulExit1 = new Exit(roomCave);
         Interior gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, the giant troll it rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
         ((Monster)gruul).addDropItem(new QuestItem("Magic staff", 700, "Magic staff the wizard told you to get", 99906, ""));
+        ((Monster)gruul).addDropItem(new EquippableItem("Gruul's Giant Club", 7000, "Huge club.", 2.6, 0.0 , WEAPON_SLOT, "", 33311));
         roomCaveGruul.addMapInterior("gruul", gruul);
         roomCaveGruul.addMapInterior("cave", roomCaveGruulExit1);
         
@@ -209,6 +215,7 @@ public class TWoT implements Serializable{
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
         Interior roomClearingBoss = giant_troll_boss;
+        giant_troll_boss.addDropItem(new EquippableItem("Giant's Gloves", 23534, "You could fit two hands in one of these.", 0.0, 0.5 , GLOVES_SLOT, "", 33312));
         roomClearing.addMapInterior("troll", roomClearingBoss);
         roomClearing.addMapInterior("forest", roomClearingExit1);
         roomClearing.addMapInterior("unicorn", roomClearingMonster1);
@@ -248,7 +255,7 @@ public class TWoT implements Serializable{
         
         
         //set which room you start in.
-        currentRoom = roomCellar;
+        currentRoom = roomEvilWizardsLair;
         lastRoomId = currentRoom.getRoomId();
         currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getMapInterior());
     }
@@ -659,8 +666,14 @@ public class TWoT implements Serializable{
     
     
     
-    
-    
+    public boolean endGame(){
+        if(currentRoom == roomEvilWizardsLair){
+            if(currentRoom.getMapInterior("wizard") == null){
+                return true;
+            }
+        }
+        return false;
+    }    
     /**
      * 
      * @return 
