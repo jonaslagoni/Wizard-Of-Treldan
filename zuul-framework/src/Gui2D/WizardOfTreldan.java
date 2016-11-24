@@ -10,11 +10,13 @@ import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Clearing;
 import Gui2D.Maps.Dungeon;
 import Gui2D.Maps.EvilWizardsLair;
+import Gui2D.Maps.Finish;
 import Gui2D.Maps.House3;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
+import Gui2D.Maps.Highscore;
 import Gui2D.Maps.Library;
 import Gui2D.Maps.Load;
 import Gui2D.Maps.Map;
@@ -60,6 +62,8 @@ public class WizardOfTreldan extends Application {
     private static Map evilwizardslair;
     private static Map library;
     private static Map evilWizardsLair;
+    private static Map highscore;
+    private static Map finish;
 
 
     /**
@@ -116,6 +120,8 @@ public class WizardOfTreldan extends Application {
         gruulslair = new GruulsLair(world);
         evilwizardslair = new EvilWizardsLair(world);
         library = new Library(world);
+        highscore = new Highscore(world);
+        finish = new Finish(world);
 //            
 
         
@@ -142,6 +148,20 @@ public class WizardOfTreldan extends Application {
      */
     public static void setLoadScene(){
         primaryStage.setScene(load.getScene());
+    }
+    
+    /**
+     * Force the game to load highscore scene
+     */
+    public static void setHighscoreScene(){
+        primaryStage.setScene(highscore.getScene());
+    }
+    
+    /**
+     * Force the game to load highscore scene
+     */
+    public static void setFinishScene(){
+        primaryStage.setScene(finish.getScene());
     }
     /**
      * Force the game to load playerSelection scene
