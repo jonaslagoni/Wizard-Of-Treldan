@@ -131,7 +131,7 @@ public class WizardOfTreldan extends Application {
         
         setClearingScene();
 
-        final Media media = new Media("");
+        final Media media = new Media("15 - Dungeon.ogg");
         final MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         setVillageScene();
