@@ -6,8 +6,13 @@
 package JavaFXSimple;
 
 import TWoT_A1.*;
-import java.util.ArrayList;
 import static TWoT_A1.EquippableItem.EItem.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +23,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,15 +36,11 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.RED;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.swing.event.HyperlinkEvent;
 
 /**
  *
@@ -108,6 +107,7 @@ public class GUIFX extends Application {
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
         Button button_exit = new Button("Exit");
+        Button button_save = new Button("Save game");
         Button button_use = new Button("Use Item");
         Button button_equip = new Button("Equip Item");
         Button button_save = new Button("Save");
@@ -286,6 +286,9 @@ public class GUIFX extends Application {
                 }
             }
         });
+        button_save.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            saveGame();
+        });
         button_use.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             for(String s: twot.useItem(new Command(CommandWord.USE, invTable.getSelectionModel().getSelectedItem().getItemName()))){
                 if(invTable.getSelectionModel().getSelectedItem().getItemType() == "Usable Item"){
@@ -442,6 +445,35 @@ public class GUIFX extends Application {
             }else if(entry.getKey() == (RING_SLOT)) {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Ring Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
             }
+        }
+    }
+    public void saveGame(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd 'at' HH:mm:ss");
+        Date date = new Date();
+        String strDate = sdf.format(date);
+        try {
+            FileOutputStream fos = new FileOutputStream("loads/" + twot.getCurrentRoomName() + "-" + strDate + ".data");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(twot);
+            oos.close();
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
+    public void saveGame(String name) {
+        try {
+            FileOutputStream fos = new FileOutputStream("loads/" + name +  ".data");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(twot);
+            oos.close();
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
