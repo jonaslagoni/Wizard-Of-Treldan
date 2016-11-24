@@ -110,7 +110,23 @@ public class Forest extends Map{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(400, 430);
+        switch(game.getLastRoomId()){
+            case 2:
+                player.setPosition(25, 200);
+                break;
+            case 7:
+                player.setPosition(410, 420);
+                break;
+            case 8:
+                player.setPosition(25, 200);
+                break;
+            case 10:
+                player.setPosition(750, 420);
+                break;
+            default:
+                player.setPosition(250, 250);
+                break;
+        }
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));

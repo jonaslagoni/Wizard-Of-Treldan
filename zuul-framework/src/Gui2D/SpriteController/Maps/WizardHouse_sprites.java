@@ -12,6 +12,7 @@ import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Rectangle2D;
 
 /**
  *
@@ -21,12 +22,12 @@ public class WizardHouse_sprites{
     private SpriteController world;
     
     private List<Sprite> background_sprites;
-    private List<Sprite> foreground_sprites;
+    private List<Sprite> interactable_sprites;
     
     public WizardHouse_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
-        this.foreground_sprites = new ArrayList();
+        this.interactable_sprites = new ArrayList();
     }
     
     public void setWizardHouse_background_SingleSprites(){
@@ -112,14 +113,24 @@ public class WizardHouse_sprites{
         
         // END OF MISC ITEMS
         
+        // START OF INTERACTABLES
+        
+        Sprite wizard = world.getMisc_sprites().getWizard_good_beard();
+        wizard.setSize(29, 48);
+        wizard.setPosition(689, 310);
+        interactable_sprites.add(wizard);
+        
+        // END OF INTERACTABLES
+
+        
     }
 
     public List<Sprite> getWizardHouse_background_sprites() {
         return background_sprites;
     }
     
-    public List<Sprite> getWizardHouse_foreground_sprites() {
-        return foreground_sprites;
+    public List<Sprite> getWizardHouse_interactable_sprites() {
+        return interactable_sprites;
     }
     
 }

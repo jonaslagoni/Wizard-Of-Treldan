@@ -111,8 +111,17 @@ public class Cave extends Map{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(500, 200);
-
+        switch(game.getLastRoomId()){
+            case 6:
+                player.setPosition(650, 345);
+                break;
+            case 9:
+                player.setPosition(476, 50);
+                break;
+            default:
+                player.setPosition(100, 100);
+                break;
+        }
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
         theScene.setOnKeyPressed(getOnKeyPress());
@@ -130,11 +139,6 @@ public class Cave extends Map{
         List<Sprite> enemy_sprites = cave_sprites.getEnemy_sprites();
         //render all the sprites
 
-        
-        for (Sprite sprite : sprites_background) {
-            sprite.render(cave_background);
-        }
-        
         if(game.checkExisting("troll1")){
                     enemy_sprites.get(0).render(enemiesGC);
         }
@@ -143,6 +147,10 @@ public class Cave extends Map{
         }
         if(game.checkExisting("troll3")){
             enemy_sprites.get(2).render(enemiesGC);
+        }
+        
+        for (Sprite sprite : sprites_background) {
+            sprite.render(cave_background);
         }
         
 //        GraphicsContext foreground_canvas_gc = foreground_canvas.getGraphicsContext2D();
@@ -161,7 +169,9 @@ public class Cave extends Map{
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
-            private boolean trollsDead = false;
+            private boolean troll1Dead = false;
+            private boolean troll2Dead = false;
+            private boolean troll3Dead = false;
 
             //what to do each cycle
             @Override
@@ -184,15 +194,20 @@ public class Cave extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_left(sprites_background.get(5))
-                            ||(player.intersects_left(enemy_sprites.get(0)))
-                            ||(player.intersects_left(enemy_sprites.get(1)))
-                            ||(player.intersects_left(enemy_sprites.get(2)))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     
-                    } 
-                    else {
+                    } else if (game.checkExisting("troll1") && player.intersects_left(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);   
+                            
+                    } else if (game.checkExisting("troll2") && player.intersects_left(enemy_sprites.get(1))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("troll3") && player.intersects_left(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);
+                            
+                    } else {
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
@@ -207,15 +222,20 @@ public class Cave extends Map{
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
                     } else if (player.intersects_right(sprites_background.get(5))
-                            ||(player.intersects_right(enemy_sprites.get(0)))
-                            ||(player.intersects_right(enemy_sprites.get(1)))
-                            ||(player.intersects_right(enemy_sprites.get(2)))
                               ) {
                         //Reset the velocity
-                        player.setVelocity(0, 0);
-                    
-                    }
-                    else {
+                        player.setVelocity(0, 0);           
+                    } else if (game.checkExisting("troll1") && player.intersects_right(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("troll2") && player.intersects_right(enemy_sprites.get(1)) ) {
+                            player.setVelocity(0, 0);
+                        
+                    } else if (game.checkExisting("troll3") && player.intersects_right(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);
+                        
+                                
+                    } else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
@@ -229,23 +249,28 @@ public class Cave extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if ((player.intersects_top(enemy_sprites.get(0)))
-                            ||(player.intersects_top(enemy_sprites.get(1)))
-                            ||(player.intersects_top(enemy_sprites.get(2)))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
+                    } else if (game.checkExisting("troll1") && player.intersects_top(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("troll2") && player.intersects_top(enemy_sprites.get(1))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("troll3") && player.intersects_top(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);       
                     }
                     
                     else if (player.intersects_top(sprites_background.get(5))
                             ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        if (!trollsDead) {
+                        if (!troll1Dead && !troll2Dead && !troll3Dead) {
                             int oldId = game.getCurrentRoomId();
                             for (String s : game.goTo(new Command(CommandWord.GO, "forest"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
-                            trollsDead = true;
+                            troll1Dead = true;
+                            troll2Dead = true;
+                            troll3Dead = true;
                             if (game.getCurrentRoomId() != oldId) {
                                 //remove all the inputs
                                 input.removeAll(input);
@@ -263,12 +288,14 @@ public class Cave extends Map{
                     } else if (player.intersects_top(sprites_background.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        if (!trollsDead) {
+                        if (!troll1Dead && !troll2Dead && !troll3Dead) {
                             int oldId = game.getCurrentRoomId();
                             for (String s : game.goTo(new Command(CommandWord.GO, "lair"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
-                            trollsDead = true;
+                            troll1Dead = true;
+                            troll2Dead = true;
+                            troll3Dead = true;
                             if (game.getCurrentRoomId() != oldId) {
                                 //remove all the inputs
                                 input.removeAll(input);
@@ -298,15 +325,20 @@ public class Cave extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_bottom(sprites_background.get(5))
-                            ||(player.intersects_bottom(enemy_sprites.get(0)))
-                            ||(player.intersects_bottom(enemy_sprites.get(1)))
-                            ||(player.intersects_bottom(enemy_sprites.get(2)))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     
-                    }
-                    else {
+                    }else if (game.checkExisting("troll1") && player.intersects_bottom(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);       
+                    
+                    } else if (game.checkExisting("troll2") && player.intersects_bottom(enemy_sprites.get(1))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("troll3") && player.intersects_bottom(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);
+                    
+                    } else {
                         player.setVelocity(0, 100);
                     }
                     //set the direction the player walks
