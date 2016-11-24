@@ -233,6 +233,57 @@ public class Village_sprites{
         board.setPosition(400, 250);
         village_background_sprites.add(board);
         
+        //dead body
+        Sprite body1 = world.getMisc_sprites().getBlood_bodydead();
+        body1.setPosition(300, 300);
+        village_background_sprites.add(body1);
+        
+        Sprite blood6 = world.getMisc_sprites().getBlood2();
+        blood6.setPosition(700, 240);
+        village_background_sprites.add(blood6);
+        
+        //dead body2
+        Sprite body2 = world.getMisc_sprites().getBlood_bodyparts_leg();
+        body2.setPosition(700, 240);
+        village_background_sprites.add(body2);
+        
+        Sprite blood7 = world.getMisc_sprites().getBlood2();
+        blood7.setPosition(860, 255);
+        village_background_sprites.add(blood7);
+        
+        //dead body2
+        Sprite body3 = world.getMisc_sprites().getBlood_bodyparts_head();
+        body3.setPosition(870, 250);
+        village_background_sprites.add(body3);
+        
+        //blood1
+        Sprite blood1 = world.getMisc_sprites().getBlood3();
+        blood1.setPosition(200, 240);
+        village_background_sprites.add(blood1);
+        
+        //blood2
+        Sprite blood2 = world.getMisc_sprites().getBlood1();
+        blood2.setPosition(100, 350);
+        village_background_sprites.add(blood2);
+        
+        //blood3
+        Sprite blood3 = world.getMisc_sprites().getBlood2();
+        blood3.setPosition(360, 320);
+        village_background_sprites.add(blood3);
+        
+        //blood3
+        Sprite blood4 = world.getMisc_sprites().getBlood3();
+        blood4.setPosition(600, 290);
+        village_background_sprites.add(blood4);
+        
+        //blood2
+        Sprite blood5 = world.getMisc_sprites().getBlood1();
+        blood5.setPosition(800, 400);
+        village_background_sprites.add(blood5);
+        
+        
+        
+        
     }
 
     /**

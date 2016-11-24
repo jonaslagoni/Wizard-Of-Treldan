@@ -19,7 +19,7 @@ public class Blood_bodyparts_head extends Abstract_sprite{
     public void setSprite(){
 
         super.getSprite().setSpritePosX(293);
-        super.getSprite().setSpritePosY(543);
+        super.getSprite().setSpritePosY(453);
         super.getSprite().setSprite_width(23);
         super.getSprite().setSprite_height(25);
         super.getSprite().setWidth(23);

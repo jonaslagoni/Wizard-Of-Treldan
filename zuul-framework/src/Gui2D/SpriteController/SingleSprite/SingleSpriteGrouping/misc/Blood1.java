@@ -18,7 +18,7 @@ public class Blood1 extends Abstract_sprite{
     @Override
     public void setSprite(){
 
-        super.getSprite().setSpritePosX(279);
+        super.getSprite().setSpritePosX(297);
         super.getSprite().setSpritePosY(524);
         super.getSprite().setSprite_width(33);
         super.getSprite().setSprite_height(13);
