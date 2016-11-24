@@ -131,8 +131,7 @@ public class WizardOfTreldan extends Application {
   
         
         setClearingScene();
-        Media media = new Media(new File("assets/test.mp3").toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("assets/test.mp3").toURI().toString()));
         mediaPlayer.setOnEndOfMedia(new Runnable() {
             public void run() {
                 mediaPlayer.seek(Duration.ZERO);
