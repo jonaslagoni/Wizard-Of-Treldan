@@ -219,11 +219,11 @@ public class Forest_sprites{
         
         Sprite mushroom1 = world.getMisc_sprites().getRed_mushroom();
         mushroom1.setPosition(290, 350);
-        foreground_sprites.add(mushroom1);
+        background_sprites.add(mushroom1);
         
         Sprite deadGoblin = world.getMisc_sprites().getDeadGoblin();
         deadGoblin.setPosition(650, 275);
-        foreground_sprites.add(deadGoblin);
+        background_sprites.add(deadGoblin);
         
         // END OF INTERACTABLE ITEMS
        

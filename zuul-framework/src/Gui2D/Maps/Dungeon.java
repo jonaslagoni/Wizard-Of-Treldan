@@ -83,6 +83,7 @@ public class Dungeon extends Map{
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
+        root.getChildren().add(canvas_enemies);
         root.getChildren().add(player_canvas);
 
         /**

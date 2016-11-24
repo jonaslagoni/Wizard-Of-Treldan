@@ -83,9 +83,9 @@ public class GruulsLair extends Map{
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
+        root.getChildren().add(enemy_canvas);
         root.getChildren().add(player_canvas);
 
-        root.getChildren().add(enemy_canvas);
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.

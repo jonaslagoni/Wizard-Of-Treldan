@@ -83,12 +83,11 @@ public class Cave extends Map{
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
+        root.getChildren().add(enemy_canvas);
         root.getChildren().add(player_canvas);
         
         Canvas foreground_canvas = new Canvas(1024, 512);
         root.getChildren().add(foreground_canvas);
-        
-        root.getChildren().add(enemy_canvas);
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -152,13 +151,6 @@ public class Cave extends Map{
         for (Sprite sprite : sprites_background) {
             sprite.render(cave_background);
         }
-        
-//        GraphicsContext foreground_canvas_gc = foreground_canvas.getGraphicsContext2D();
-//        
-//        List<Sprite> sprites_foreground = cave_sprites.getCave_foreground_sprites();
-//        for (Sprite sprite : sprites_foreground) {
-//            sprite.render(foreground_canvas_gc);
-//        }
            
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
@@ -366,6 +358,7 @@ public class Cave extends Map{
                     }
                     menu_input.remove("E");
                 }
+                
                 //update the players velocity
                 player.update(elapsedTime);
                 //clear our player
