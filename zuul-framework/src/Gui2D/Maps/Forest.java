@@ -140,7 +140,17 @@ public class Forest extends Map{
         
         //get all the sprites used in the cave
         List<Sprite> sprites_background = forest_sprites.getForest_background_sprites();
+        List<Sprite> sprites_interactables = forest_sprites.getForest_foreground_sprites();
         //render all the sprites
+        
+        if(game.checkExisting("mushroom")){
+            sprites_interactables.get(3).render(forest_foreground);
+        }
+        
+        if(game.checkExisting("goblin")){
+            sprites_interactables.get(4).render(forest_foreground);
+        }
+        
         for (Sprite sprite : sprites_background) {
             sprite.render(forest_background);
         }
@@ -180,9 +190,11 @@ public class Forest extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_left(sprites_background.get(13))
-                              || player.intersects_left(sprites_background.get(14))
-                              || player.intersects_left(sprites_background.get(0))
+                    } else if (player.intersects_left(sprites_background.get(14))
+                            || player.intersects_left(sprites_background.get(15))
+                            || player.intersects_left(sprites_background.get(0))
+                            || player.intersects_left(sprites_foreground.get(3))
+                            || player.intersects_left(sprites_foreground.get(4))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -231,8 +243,10 @@ public class Forest extends Map{
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
                     } else if (player.intersects_right(sprites_background.get(14))
-                              || player.intersects_right(sprites_background.get(15))
-                              || player.intersects_right(sprites_background.get(0))
+                            || player.intersects_right(sprites_background.get(15))
+                            || player.intersects_right(sprites_background.get(0))
+                            || player.intersects_right(sprites_foreground.get(3))
+                            || player.intersects_right(sprites_foreground.get(4))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -266,9 +280,11 @@ public class Forest extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_top(sprites_background.get(14))
-                              || player.intersects_top(sprites_background.get(15))
-                              || player.intersects_top(sprites_background.get(8))
-                              || player.intersects_top(sprites_background.get(0))
+                            || player.intersects_top(sprites_background.get(15))
+                            || player.intersects_top(sprites_background.get(8))
+                            || player.intersects_top(sprites_background.get(0))
+                            || player.intersects_top(sprites_foreground.get(3))
+                            || player.intersects_top(sprites_foreground.get(4))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -317,8 +333,10 @@ public class Forest extends Map{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_bottom(sprites_background.get(14))
-                              || player.intersects_bottom(sprites_background.get(15))
-                              || player.intersects_bottom(sprites_background.get(0))
+                            || player.intersects_bottom(sprites_background.get(15))
+                            || player.intersects_bottom(sprites_background.get(0))
+                            || player.intersects_bottom(sprites_foreground.get(3))
+                            || player.intersects_bottom(sprites_foreground.get(4))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -366,6 +384,14 @@ public class Forest extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                if(game.checkExisting("mushroom")){
+                    sprites_interactables.get(3).render(forest_foreground);
+                }
+        
+                if(game.checkExisting("goblin")){
+                    sprites_interactables.get(4).render(forest_foreground);
+                }
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {

@@ -292,12 +292,6 @@ public class WizardHouse extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
-
-                wizardHouse_interactables.clearRect(0, 0, 1024, 512);
-                //render pickup items
-                if(game.checkExisting("wizard")){
-                    sprites_interactables.get(0).render(wizardHouse_interactables);
-                }
                 
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {

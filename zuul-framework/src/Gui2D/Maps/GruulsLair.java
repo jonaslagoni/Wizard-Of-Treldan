@@ -163,10 +163,6 @@ public class GruulsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_left(enemy_sprites.get(0))
-                              ) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
                     } else if (game.checkExisting("gruul") && player.intersects_left(enemy_sprites.get(0))) {
                             player.setVelocity(0, 0);
                     
@@ -184,10 +180,6 @@ public class GruulsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    } else if (player.intersects_left(enemy_sprites.get(0))
-                              ) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
                     } else if (game.checkExisting("gruul") && player.intersects_right(enemy_sprites.get(0))) {
                             player.setVelocity(0, 0);
                     
@@ -205,10 +197,6 @@ public class GruulsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_left(enemy_sprites.get(0))
-                              ) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
                     } else if (game.checkExisting("gruul") && player.intersects_top(enemy_sprites.get(0))) {
                             player.setVelocity(0, 0);
                     
@@ -244,10 +232,6 @@ public class GruulsLair extends Map{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    } else if (player.intersects_left(enemy_sprites.get(0))
-                              ) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
                     } else {
                         player.setVelocity(0, 100);
                     }
