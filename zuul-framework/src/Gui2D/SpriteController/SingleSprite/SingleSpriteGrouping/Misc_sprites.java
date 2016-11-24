@@ -390,8 +390,71 @@ public class Misc_sprites {
     public SingleSprite getInterior_Bookshelf_double(){
         return new Interior_bookshelf_double().getSprite();
     }
+    
+    /**
+     * 
+     * @return cut down tree for clearing
+     */
+    public SingleSprite getTree_cutdown(){
+        return new Tree_cutdown().getSprite();
+    }
+    /**
+     * 
+     * @return enemy librarian
+     */
     public SingleSprite getEnemy_librarian(){
         return new Enemy_librarian().getSprite();
     }
-}
+    /**
+     * 
+     * @return enemy dead goblin
+     */
+    public SingleSprite getEnemy_goblin_dead(){
+        return new Enemy_goblin_dead().getSprite();
+    }
+    
+    
+    /**
+     * 
+     * @return Blood1
+     */
+    public SingleSprite getBlood1(){
+        return new Blood1().getSprite();
+    }
+    /**
+     * 
+     * @return Blood2
+     */
+    public SingleSprite getBlood2(){
+        return new Blood2().getSprite();
+    }
+    /**
+     * 
+     * @return Blood3
+     */
+    public SingleSprite getBlood3(){
+        return new Blood3().getSprite();
+    }
+    /**
+    * @return dead body
+    */
+    public SingleSprite getBlood_bodydead(){
+        return new Blood_bodydead().getSprite();
+    }
+    
+    /**
+     * 
+     * @return body part leg
+     */
+    public SingleSprite getBlood_bodyparts_leg(){
+        return new Blood_bodyparts_leg().getSprite();
+    }
+    /**
+     * 
+     * @return body part head
+     */
+    public SingleSprite getBlood_bodyparts_head(){
+        return new Blood_bodyparts_head().getSprite();
+    }
 
+}
