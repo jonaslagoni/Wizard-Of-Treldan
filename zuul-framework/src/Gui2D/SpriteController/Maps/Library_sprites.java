@@ -74,7 +74,7 @@ public class Library_sprites{
         
         //enemy 3
         Sprite enemy_librarian = world.getMisc_sprites().getEnemy_librarian();
-        enemy_librarian.setPosition(150,100);
+        enemy_librarian.setPosition(200,240);
         enemy_librarian.setBoundary(new Rectangle2D(enemy_librarian.getPositionX()+126,enemy_librarian.getPositionY()+66,enemy_librarian.getWidth(),enemy_librarian.getHeight()));
         spriteList_background.add(enemy_librarian);
         

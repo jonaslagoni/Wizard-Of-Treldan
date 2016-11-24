@@ -211,8 +211,7 @@ public class Library extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }else if(player.intersects_top(spriteList_still.get(2))){
-                            setNewScene();
+                   
                     }else if(
                             player.intersects_top(spriteList_still.get(3))  ||
                             player.intersects_top(spriteList_still.get(4))  ||
@@ -232,7 +231,9 @@ public class Library extends Map{
                              ){
                          player.setVelocity(0, 0);
                     }
-                    else {
+                    else if(player.intersects_top(spriteList_still.get(2))){
+                            setNewScene();
+                    }else {
                         player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
@@ -279,13 +280,16 @@ public class Library extends Map{
                         }
                         playerinventory.update(game);
                     }
-                    if(game.checkExisting("librarian")){
-                        if(player.intersect(spriteList_still.get(3))){
+                    if(player.intersect(spriteList_still.get(3))){
+                           if(game.checkExisting("librarian")){ 
                             for(String s : game.goTo(new Command(CommandWord.GO, "librarian"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
                             playerinventory.update(game);
                         }
+                    
+                           
+                           
                     }
                     
                     menu_input.remove("E");
@@ -319,7 +323,7 @@ public class Library extends Map{
             }
         }.start();
         
-        
+        System.out.println(game.getCurrentRoomId());
         
         return theScene;
     }
