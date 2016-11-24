@@ -22,12 +22,12 @@ public class EvilWizardsLair_sprites{
     private SpriteController world;
     
     private List<Sprite> spriteList;
-    private List<Sprite> spriteList_foreground;
+    private List<Sprite> spriteList_monsters;
     
     public EvilWizardsLair_sprites(SpriteController world){
         this.world = world;
         this.spriteList = new ArrayList();
-        this.spriteList_foreground = new ArrayList();
+        this.spriteList_monsters = new ArrayList();
     }
     
     public void setEvilWizardsLair_background_SingleSprites(){
@@ -74,40 +74,40 @@ public class EvilWizardsLair_sprites{
         //STAGE 1
         Sprite stage = world.getMisc_sprites().getEvilWizardsLair_Stage();
         stage.setPosition(435,50);
-        spriteList_foreground.add(stage);
+        spriteList.add(stage);
         
         //STAGE 2
         Sprite stage2 = world.getMisc_sprites().getEvilWizardsLair_Stage();
         stage2.setPosition(50, 50);
-        spriteList_foreground.add(stage2);
+        spriteList.add(stage2);
         
         //STAGE 3
         Sprite stage3 = world.getMisc_sprites().getEvilWizardsLair_Stage();
         stage3.setPosition(800,50);
-        spriteList_foreground.add(stage3);
+        spriteList.add(stage3);
         
         //STAIRS
         Sprite stair = world.getMisc_sprites().getStairs_stone();
         stair.setPosition(480,190);
-        spriteList_foreground.add(stair);
+        spriteList.add(stair);
         
-        //ENEMY DUDE 1   #4
+        //ENEMY DUDE 1   #0
         Sprite enemy = world.getMisc_sprites().getWizard_evil();
         enemy.setPosition(485,25);
         enemy.setBoundary(new Rectangle2D(enemy.getPositionX(),enemy.getPositionY(),enemy.getWidth(),enemy.getHeight()));
-        spriteList_foreground.add(enemy);
+        spriteList_monsters.add(enemy);
         
-        //abbaration 1   #5
+        //abbaration 1   #1
         Sprite minion1 = world.getMisc_sprites().getEnemy_abbaration();
         minion1.setPosition(115,40);
         minion1.setBoundary(new Rectangle2D(minion1.getPositionX(),minion1.getPositionY(),minion1.getWidth(),minion1.getHeight()));
-        spriteList_foreground.add(minion1);
+        spriteList_monsters.add(minion1);
         
-        //abbaration 2   #6
+        //abbaration 2   #2
         Sprite minion2 = world.getMisc_sprites().getEnemy_abbaration();
         minion2.setPosition(865, 40);
          minion2.setBoundary(new Rectangle2D(minion2.getPositionX(),minion2.getPositionY(),minion2.getWidth(),minion2.getHeight()));
-        spriteList_foreground.add(minion2);
+        spriteList_monsters.add(minion2);
         
         // MISC ITEMS START 
         Sprite pillar1 = world.getMisc_sprites().getLava_pillar_3();
@@ -151,9 +151,12 @@ public class EvilWizardsLair_sprites{
     public List<Sprite> getSpriteList() {
         return spriteList;
     }
-    
-    public List<Sprite> getSpriteList_Foreground(){
-        return spriteList_foreground;
+
+    /**
+     * @return the spriteList_monsters
+     */
+    public List<Sprite> getSpriteList_monsters() {
+        return spriteList_monsters;
     }
     
     

@@ -72,7 +72,7 @@ public class WizardHouse extends Map{
         Group root = new Group();
         Scene theScene = new Scene( root );
         Canvas canvas_background = new Canvas(1024, 512);
-        Canvas canvas_foreground = new Canvas(1024, 512);
+        Canvas canvas_interactables = new Canvas(1024, 512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
@@ -83,6 +83,7 @@ public class WizardHouse extends Map{
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
         root.getChildren().add(player_canvas);
+        root.getChildren().add(canvas_interactables);
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -105,7 +106,7 @@ public class WizardHouse extends Map{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(500, 200);
+        player.setPosition(505, 110);
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
@@ -116,19 +117,22 @@ public class WizardHouse extends Map{
         //create GraphicsContext from our canvas_background
         GraphicsContext wizardHouse_background = canvas_background.getGraphicsContext2D();
         
-        GraphicsContext wizardHouse_foreground = canvas_foreground.getGraphicsContext2D();
+        GraphicsContext wizardHouse_interactables = canvas_interactables.getGraphicsContext2D();
         
         //get all the sprites used in the wizardHouse
-        List<Sprite> sprites_foreground = wizardHouse_sprites.getWizardHouse_foreground_sprites();
+        List<Sprite> sprites_interactables = wizardHouse_sprites.getWizardHouse_interactable_sprites();
         List<Sprite> sprites_background = wizardHouse_sprites.getWizardHouse_background_sprites();
         //render all the sprites
+
+        
+        for (Sprite sprite : sprites_interactables) {
+            sprite.render(wizardHouse_interactables);
+        }
+        
         for (Sprite sprite : sprites_background) {
             sprite.render(wizardHouse_background);
         }
         
-        for (Sprite sprite : sprites_foreground) {
-            sprite.render(wizardHouse_foreground);
-        }
         
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(766, 0, 1, 512);
@@ -160,8 +164,8 @@ public class WizardHouse extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    } else if (player.intersects_left(sprites_background.get(6))
-                            || player.intersects_left(sprites_background.get(4))
+                    } else if (player.intersects_left(sprites_background.get(7))
+                            || player.intersects_left(sprites_background.get(6))
                             || player.intersects_left(sprites_background.get(7))
                             || player.intersects_left(sprites_background.get(8))
                             || player.intersects_left(sprites_background.get(9))
@@ -169,6 +173,7 @@ public class WizardHouse extends Map{
                             || player.intersects_left(sprites_background.get(11))
                             || player.intersects_left(sprites_background.get(12))
                             || player.intersects_left(sprites_background.get(13))
+                            || player.intersects_left(sprites_interactables.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -195,7 +200,8 @@ public class WizardHouse extends Map{
                             || player.intersects_right(sprites_background.get(12))
                             || player.intersects_right(sprites_background.get(13))
                             || player.intersects_right(sprites_background.get(3))
-                            || player.intersects_bottom(sprites_background.get(1))
+                            || player.intersects_right(sprites_background.get(1))
+                            || player.intersects_right(sprites_interactables.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -222,7 +228,8 @@ public class WizardHouse extends Map{
                             || player.intersects_top(sprites_background.get(11))
                             || player.intersects_top(sprites_background.get(12))
                             || player.intersects_top(sprites_background.get(13))
-                            || player.intersects_right(sprites_background.get(3))
+                            || player.intersects_top(sprites_background.get(3))
+                            || player.intersects_top(sprites_interactables.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -259,6 +266,7 @@ public class WizardHouse extends Map{
                     } else if (player.intersects_bottom(sprites_background.get(6))
                             || player.intersects_bottom(sprites_background.get(5))
                             || player.intersects_bottom(sprites_background.get(1))
+                            || player.intersects_bottom(sprites_interactables.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -271,8 +279,8 @@ public class WizardHouse extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_background.get(1))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "haystack"))) {
+                    if (player.intersect(sprites_interactables.get(0))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "wizard"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);

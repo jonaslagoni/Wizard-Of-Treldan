@@ -34,10 +34,10 @@ import javafx.scene.paint.Color;
 public class Cellar extends Map{
     
     // Arraylist for player movement
-    private final ArrayList<String> input;
+    private ArrayList<String> input;
     
     // ArrayList for menu key strokes.
-    private final ArrayList<String> menu_input;
+    private ArrayList<String> menu_input;
     
     // Contains all the sprites to this map
     private final Cellar_sprites cellar_sprites;
@@ -52,9 +52,6 @@ public class Cellar extends Map{
     public Cellar(SpriteController world){
         //init our super constructor first
         super();
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
         
         //init our Cellar_sprites
         cellar_sprites = new Cellar_sprites(world);
@@ -69,6 +66,9 @@ public class Cellar extends Map{
     @Override
     public Scene getScene(){
         
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
         //add our group
         Group root = new Group();
@@ -108,10 +108,14 @@ public class Cellar extends Map{
         infobox.appendText(welcome.get(4) + "\n");
         
         
-//Menu testing start
+        //playerinventory start
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-//menu testing done
+        //playerinventory stop
+        //escape menu start
+        GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
+        //escape menu stop
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
@@ -313,6 +317,18 @@ public class Cellar extends Map{
                     if(playerinventory.isShown()){
                         root.getChildren().remove(menu);
                         playerinventory.setShown(false);
+                    }
+                }
+                //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
                     }
                 }
             }
