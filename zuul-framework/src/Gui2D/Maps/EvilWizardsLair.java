@@ -6,7 +6,6 @@
 package Gui2D.Maps;
 
 import Gui2D.SpriteController.Maps.EvilWizardsLair_sprites;
-import Gui2D.SpriteController.Maps.Library_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
@@ -26,7 +25,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 /**
  *
  * @author Mads
@@ -73,19 +71,26 @@ public class EvilWizardsLair extends Map{
         Group root = new Group();
         //set new scene
         Scene theScene = new Scene( root );
-        //create new canvas
+        //add the canvas for backgroundsprites
         Canvas background = new Canvas(1024, 512);
-        //add canvas to root
-        root.getChildren().add(background);
-
+        theScene.getStylesheets().add("TextAreaStyle.css");
+        //add the canvas to the group
+        root.getChildren().add( background );
         
+        //add a canvas only for the player
+        Canvas monster_canvas = new Canvas(1024, 512);
+        //add the canvas to the group
+        root.getChildren().add(monster_canvas);
+        
+        //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
-        
+        //add the canvas to the group
         root.getChildren().add(player_canvas);
         
-        theScene.getStylesheets().add("TextAreaStyle.css");
+        
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
-        GraphicsContext backgroundContext = background.getGraphicsContext2D();
+        GraphicsContext background_gc = background.getGraphicsContext2D();
+        GraphicsContext monster_gc = monster_canvas.getGraphicsContext2D();
         
         
         /**
@@ -100,7 +105,7 @@ public class EvilWizardsLair extends Map{
         root.getChildren().add(s);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get("getRooms") + "\n");
+        infobox.appendText(welcome.get(4) + "\n");
         
         //Menu testing start
         PlayerInventory playerinventory = new PlayerInventory(game,infobox);
@@ -128,13 +133,22 @@ public class EvilWizardsLair extends Map{
          //spritelist of background sprites
         List<Sprite> spriteList = evilWizardsLair_sprites.getSpriteList();
         //spritelist of foreground sprites
-        List<Sprite > spriteList_foreground = evilWizardsLair_sprites.getSpriteList_Foreground();
-        
+        List<Sprite > spriteList_foreground = evilWizardsLair_sprites.getSpriteList_monsters();
         for (Sprite background_sprites : spriteList) {
-            background_sprites.render(backgroundContext);
+            background_sprites.render(background_gc);
+        }
+        //render monsters
+        if(game.checkExisting("wizard")){
+            spriteList_foreground.get(0).render(monster_gc);
+        }
+        if(game.checkExisting("minion1")){
+            spriteList_foreground.get(1).render(monster_gc);
+        }
+        if(game.checkExisting("minion2")){
+            spriteList_foreground.get(2).render(monster_gc);
         }
         
-                new AnimationTimer() {
+        new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
 
@@ -159,15 +173,13 @@ public class EvilWizardsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else if(player.intersects_left(spriteList_foreground.get(4)) ||
-                              player.intersects_left(spriteList_foreground.get(5)) ||
-                              player.intersects_left(spriteList_foreground.get(6))
-                            ){
+                    }else if(game.checkExisting("wizard") && player.intersects_left(spriteList_foreground.get(0))){
                         player.setVelocity(0,0);
-                    }
-                   
-                    else {
+                    }else if(game.checkExisting("minion1") && player.intersects_left(spriteList_foreground.get(1))){
+                        player.setVelocity(0,0);
+                    }else if(game.checkExisting("minion2") && player.intersects_left(spriteList_foreground.get(2))){
+                        player.setVelocity(0,0);
+                    }else {
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
@@ -183,15 +195,13 @@ public class EvilWizardsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //check if the player walks into a sprite
-                    }
-                    else if(player.intersects_right(spriteList_foreground.get(4)) ||
-                              player.intersects_right(spriteList_foreground.get(5)) ||
-                              player.intersects_right(spriteList_foreground.get(6))
-                            ){
+                    }else if(game.checkExisting("wizard") && player.intersects_right(spriteList_foreground.get(0))){
                         player.setVelocity(0,0);
-                    }
-                    
-                    else {
+                    }else if(game.checkExisting("minion1") && player.intersects_right(spriteList_foreground.get(1))){
+                        player.setVelocity(0,0);
+                    }else if(game.checkExisting("minion2") && player.intersects_right(spriteList_foreground.get(2))){
+                        player.setVelocity(0,0);
+                    }else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
@@ -205,15 +215,13 @@ public class EvilWizardsLair extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
-                    }
-                    else if(player.intersects_top(spriteList_foreground.get(4)) ||
-                              player.intersects_top(spriteList_foreground.get(5)) ||
-                              player.intersects_top(spriteList_foreground.get(6))
-                            ){
+                    }else if(game.checkExisting("wizard") && player.intersects_top(spriteList_foreground.get(0))){
                         player.setVelocity(0,0);
-                    }
-                    
-                    else {
+                    }else if(game.checkExisting("minion1") && player.intersects_top(spriteList_foreground.get(1))){
+                        player.setVelocity(0,0);
+                    }else if(game.checkExisting("minion2") && player.intersects_top(spriteList_foreground.get(2))){
+                        player.setVelocity(0,0);
+                    }else {
                         player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
@@ -225,59 +233,66 @@ public class EvilWizardsLair extends Map{
                     //check if the user walks into a world boundary
                     if (player.intersects_bottom(worldBoundBottom)||
                         player.intersects_bottom(worldBoundRight2)||
-                        player.intersects_bottom(worldBoundLeft2)
-                            
-                            ) {
+                        player.intersects_bottom(worldBoundLeft2)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        
-                        //check if the player walks into a sprite from the spriteList_foreground array
-                    }else if(player.intersects_bottom(spriteList_foreground.get(4)) ||
-                              player.intersects_bottom(spriteList_foreground.get(5)) ||
-                              player.intersects_bottom(spriteList_foreground.get(6))
-                            ){
+                    }else if(game.checkExisting("wizard") && player.intersects_bottom(spriteList_foreground.get(0))){
                         player.setVelocity(0,0);
-                    }
-                   
-                    else {
+                    }else if(game.checkExisting("minion1") && player.intersects_bottom(spriteList_foreground.get(1))){
+                        player.setVelocity(0,0);
+                    }else if(game.checkExisting("minion2") && player.intersects_bottom(spriteList_foreground.get(2))){
+                        player.setVelocity(0,0);
+                    }else {
                         player.setVelocity(0, 100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
                 
-                boolean minion1Defeated = false;
-                boolean minion2Defeated = false;
-                
                 if (menu_input.contains("E")) {
                     if(game.checkExisting("minion1")){
-                        if(player.intersect(spriteList_foreground.get(4))){
+                        if(player.intersect(spriteList_foreground.get(1))){
                             for(String s : game.goTo(new Command(CommandWord.GO, "minion1"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
-                            minion1Defeated = true;
                             playerinventory.update(game);
                         }
                     }
                     if(game.checkExisting("minion2")){
-                        if(player.intersect(spriteList_foreground.get(5))){
+                        if(player.intersect(spriteList_foreground.get(2))){
                             for(String s : game.goTo(new Command(CommandWord.GO, "minion2"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
-                            minion2Defeated = true;
                             playerinventory.update(game);
                         }
                     }
-                    
-                    if(game.checkExisting("wizard") && minion2Defeated && minion1Defeated ){
-                        if(player.intersect(spriteList_foreground.get(6))){
-                            for(String s : game.goTo(new Command(CommandWord.GO, "wizard"))) {
-                                infobox.appendText("\n" + s + "\n");
+                    if(game.checkExisting("wizard")){
+                        if(player.intersect(spriteList_foreground.get(0))){
+                            if(!game.checkExisting("minion2") && !game.checkExisting("minion1") ){
+                                for(String s : game.goTo(new Command(CommandWord.GO, "wizard"))) {
+                                    infobox.appendText("\n" + s + "\n");
+                                }
+                                playerinventory.update(game);
+                            }else{
+                                if(player.intersect(spriteList_foreground.get(0))){
+                                    infobox.appendText("\n"+ "Foolish mortal! you need to get rid of my minions first in order to defeat me!");
+                                }
                             }
-                            playerinventory.update(game);
                         }
                     }else{
-                        infobox.appendText("\n"+ "Foolish mortal! you need to get rid of my minions first in order to defeat me!");
+                        //write to highscore
+                        game.writeHighScore();
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //remove the input
+                        menu_input.remove("E");
+                        //set the menu as a scene instead.
+                        WizardOfTreldan.setFinishScene();
+                        
                     }
                     
                     menu_input.remove("E");
@@ -288,7 +303,7 @@ public class EvilWizardsLair extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
-
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
@@ -299,16 +314,25 @@ public class EvilWizardsLair extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                //clear monsters
+                monster_gc.clearRect(0, 0, 1024, 512);
+                //render monsters
+                if(game.checkExisting("wizard")){
+                    spriteList_foreground.get(0).render(monster_gc);
+                }
+                if(game.checkExisting("minion1")){
+                    spriteList_foreground.get(1).render(monster_gc);
+                }
+                if(game.checkExisting("minion2")){
+                    spriteList_foreground.get(2).render(monster_gc);
+                }
             }
                     
     
         }.start();
         
         
-        for (Sprite foreground_sprites : spriteList_foreground) {
-            foreground_sprites.render(backgroundContext);
         
-        }
         
         
         

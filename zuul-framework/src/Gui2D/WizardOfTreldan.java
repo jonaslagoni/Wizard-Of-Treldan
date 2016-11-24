@@ -10,11 +10,13 @@ import Gui2D.Maps.Cellar;
 import Gui2D.Maps.Clearing;
 import Gui2D.Maps.Dungeon;
 import Gui2D.Maps.EvilWizardsLair;
+import Gui2D.Maps.Finish;
 import Gui2D.Maps.House3;
 import Gui2D.Maps.House2;
 import Gui2D.Maps.House1;
 import Gui2D.Maps.Forest;
 import Gui2D.Maps.GruulsLair;
+import Gui2D.Maps.Highscore;
 import Gui2D.Maps.Library;
 import Gui2D.Maps.Load;
 import Gui2D.Maps.Map;
@@ -57,9 +59,10 @@ public class WizardOfTreldan extends Application {
     private static Map cave;
     private static Map dungeon;
     private static Map wizardHouse;
-    private static Map evilwizardslair;
     private static Map library;
     private static Map evilWizardsLair;
+    private static Map finished;
+    private static Map highscore;
 
 
     /**
@@ -114,12 +117,14 @@ public class WizardOfTreldan extends Application {
         dungeon = new Dungeon(world);
         wizardHouse = new WizardHouse(world);
         gruulslair = new GruulsLair(world);
-        evilwizardslair = new EvilWizardsLair(world);
+        evilWizardsLair = new EvilWizardsLair(world);
         library = new Library(world);
+        finished = new Finish(world);
+        highscore = new Highscore(world);
 //            
 
         
-        setLibraryScene();
+        setMenuScene();
         primaryStage.show();
     }
     
@@ -143,6 +148,21 @@ public class WizardOfTreldan extends Application {
     public static void setLoadScene(){
         primaryStage.setScene(load.getScene());
     }
+    
+    /**
+     * Force the game to load loading scene
+     */
+    public static void setFinishScene(){
+        primaryStage.setScene(finished.getScene());
+    }
+    
+    /**
+     * Force the game to load highscore scene
+     */
+    public static void setHighscoreScene(){
+        primaryStage.setScene(highscore.getScene());
+    }
+    
     /**
      * Force the game to load playerSelection scene
      */
@@ -221,9 +241,6 @@ public class WizardOfTreldan extends Application {
     
     public static void setWizardHouseScene() {
         primaryStage.setScene(wizardHouse.getScene());
-    }
-    public static void setEvilWizardsLairScene() {
-        primaryStage.setScene(evilwizardslair.getScene());
     }
     
     public static void setLibraryScene() {

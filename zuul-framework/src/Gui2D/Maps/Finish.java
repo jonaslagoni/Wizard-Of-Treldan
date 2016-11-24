@@ -7,6 +7,7 @@ package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
 import Gui2D.SpriteController.SpriteController;
+import TWoT_A1.TWoT;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -17,21 +18,23 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 /**
  *
  * @author jonas
  */
-public class Menu extends Map{
-    public Menu(SpriteController world){
+public class Finish extends Map{
+    private TWoT game;
+    public Finish(SpriteController world){
         super();
-        //set the world constructor
-        super.setWorld(world);
     }
     
     @Override
     public Scene getScene(){
+        this.game = WizardOfTreldan.getGame();
         Group menuGroup = new Group();
         Scene menuScene = new Scene( menuGroup );
         
@@ -39,15 +42,31 @@ public class Menu extends Map{
         canvas_movealbe_sprites.relocate(0, 0);
         GraphicsContext background_context = canvas_movealbe_sprites.getGraphicsContext2D();
         //set our  menu image
-        background_context.drawImage(new Image("menu_background.png"), 0, 0);
+        background_context.drawImage(new Image("won_scene.png"), 0, 0);
         
         Pane anchorpane = new Pane();
         anchorpane.setPrefSize(768, 512);
+        
+        Long endTime = (long)(System.currentTimeMillis() / 1000L);
+        Long startTime = game.getStartTime();
+        Long timeTaken = endTime-startTime;
+        Text timeTakenText = new Text("Time taken: " + timeTaken.toString() + " sec");
+        timeTakenText.relocate(450, 200);
+        timeTakenText.setFont(new Font("Verdana", 20));
+        timeTakenText.setFill(Color.CHOCOLATE);
+        anchorpane.getChildren().add(timeTakenText);
+        
+        Text totalScore = new Text("Score: " + game.getHighscore());
+        totalScore.relocate(450, 250);
+        totalScore.setFont(new Font("Verdana", 20));
+        totalScore.setFill(Color.CHOCOLATE);
+        anchorpane.getChildren().add(totalScore);
+        
         Button start = new Button();
         start.setText("New Game");
         start.setFont(new Font("Tahoma", 20));
         start.setPrefSize(150, 50);
-        start.relocate(100, 150);
+        start.relocate(450, 430);
         start.addEventHandler(MouseEvent.MOUSE_CLICKED, 
             new EventHandler<MouseEvent>() {
                 @Override 
@@ -63,17 +82,17 @@ public class Menu extends Map{
         anchorpane.getChildren().add(start);
         
         Button load = new Button();
-        load.setText("Load Game");
+        load.setText("Go to menu");
         load.setFont(new Font("Tahoma", 20));
         load.setPrefSize(150, 50);
-        load.relocate(100, 250);
+        load.relocate(620, 430);
         load.addEventHandler(MouseEvent.MOUSE_CLICKED, 
             new EventHandler<MouseEvent>() {
                 @Override 
                 public void handle(MouseEvent e) {
                     Platform.runLater(new Runnable() {
                         @Override public void run() {
-                            WizardOfTreldan.setLoadScene();
+                            WizardOfTreldan.setMenuScene();
                         }
                     });
                 }
@@ -81,31 +100,11 @@ public class Menu extends Map{
         anchorpane.getChildren().add(load);
         
         
-        
-        
-        Button highscore = new Button();
-        highscore.setText("Highscores");
-        highscore.setFont(new Font("Tahoma", 20));
-        highscore.setPrefSize(150, 50);
-        highscore.relocate(100, 350);
-        highscore.addEventHandler(MouseEvent.MOUSE_CLICKED, 
-            new EventHandler<MouseEvent>() {
-                @Override 
-                public void handle(MouseEvent e) {
-                    Platform.runLater(new Runnable() {
-                        @Override public void run() {
-                            WizardOfTreldan.setHighscoreScene();
-                        }
-                    });
-                }
-        });
-        anchorpane.getChildren().add(highscore);
-        
         Button exit = new Button();
         exit.setText("Exit game");
         exit.setFont(new Font("Tahoma", 20));
         exit.setPrefSize(150, 50);
-        exit.relocate(20, 440);
+        exit.relocate(790, 430);
         exit.addEventHandler(MouseEvent.MOUSE_CLICKED, 
             new EventHandler<MouseEvent>() {
                 @Override 
