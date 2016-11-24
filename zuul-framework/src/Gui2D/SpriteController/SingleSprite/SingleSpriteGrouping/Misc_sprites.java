@@ -460,5 +460,13 @@ public class Misc_sprites {
     public SingleSprite getDeadGoblin() {
         return new DeadGoblin().getSprite();
     }
+    /**
+     * 
+     * @return NPC stranger
+     */
+    public SingleSprite getNPC_stranger() {
+        return new NPC_stranger().getSprite();
+    }
+    
     
 }
