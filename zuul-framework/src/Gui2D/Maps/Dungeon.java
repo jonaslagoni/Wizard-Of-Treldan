@@ -181,6 +181,14 @@ public class Dungeon extends Map{
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    }else if (game.checkExisting("skeleton1") && player.intersects_left(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);   
+                            
+                    } else if (game.checkExisting("skeleton2") && player.intersects_left(enemy_sprites.get(1))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("skeleton3") && player.intersects_left(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);
                     } else {
                         player.setVelocity(-100, 0);
                     }
@@ -201,6 +209,14 @@ public class Dungeon extends Map{
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
+                    } else if (game.checkExisting("skeleton1") && player.intersects_right(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);   
+                            
+                    } else if (game.checkExisting("skeleton2") && player.intersects_right(enemy_sprites.get(1))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("skeleton3") && player.intersects_right(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);
                     } else {
                         player.setVelocity(100, 0);
                     }
@@ -236,6 +252,15 @@ public class Dungeon extends Map{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
+                    } else if (game.checkExisting("skeleton1") && player.intersects_top(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);   
+                            
+                    } else if (game.checkExisting("skeleton2") && player.intersects_top(enemy_sprites.get(1))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("skeleton3") && player.intersects_top(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);
+                            
                     } else {
                         player.setVelocity(0, -100);
                     }
@@ -250,6 +275,14 @@ public class Dungeon extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
+                    } else if (game.checkExisting("skeleton1") && player.intersects_bottom(enemy_sprites.get(0))) {
+                            player.setVelocity(0, 0);   
+                            
+                    } else if (game.checkExisting("skeleton2") && player.intersects_bottom(enemy_sprites.get(1))) {
+                            player.setVelocity(0, 0);
+                                
+                    } else if (game.checkExisting("skeleton3") && player.intersects_bottom(enemy_sprites.get(2))) {
+                            player.setVelocity(0, 0);
                     }
                     else {
                         player.setVelocity(0, 100);
