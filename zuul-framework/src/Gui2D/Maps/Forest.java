@@ -345,8 +345,14 @@ public class Forest extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_background.get(1))) {
-                        for (String s : game.goTo(new Command(CommandWord.GO, "haystack"))) {
+                    if (player.intersect(sprites_foreground.get(3))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "mushroom"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        playerinventory.update(game);
+                    }
+                    if (player.intersect(sprites_foreground.get(4))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "goblin"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
