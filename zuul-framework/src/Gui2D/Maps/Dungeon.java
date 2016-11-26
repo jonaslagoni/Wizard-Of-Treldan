@@ -107,7 +107,17 @@ public class Dungeon extends Map{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(500, 400);
+        switch(game.getLastRoomId()){
+            case 2:
+                player.setPosition(250, 400);
+                break;
+            case 12:
+                player.setPosition(700, 140);
+                break;
+            default:
+                player.setPosition(200, 330);
+        }
+
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
@@ -293,19 +303,19 @@ public class Dungeon extends Map{
                 }
                 
                 if (menu_input.contains("E")) {
-                    if (player.intersect(dungeon_background_sprites.get(1))) {
+                    if (player.intersect(enemy_sprites.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "skeleton1"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(dungeon_background_sprites.get(1))) {
+                    if (player.intersect(enemy_sprites.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "skeleton2"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(dungeon_background_sprites.get(1))) {
+                    if (player.intersect(enemy_sprites.get(2))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "skeleton3"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -320,6 +330,7 @@ public class Dungeon extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                enemiesGC.clearRect(0, 0, 1024, 512);
                 if(game.checkExisting("skeleton1")){
                     enemy_sprites.get(0).render(enemiesGC);
                 }
@@ -345,7 +356,7 @@ public class Dungeon extends Map{
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 12:
-                        WizardOfTreldan.setGruulsLairScene();
+                        WizardOfTreldan.setLibraryScene();
                         break;
                     
                 }
