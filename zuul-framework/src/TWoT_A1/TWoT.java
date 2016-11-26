@@ -273,7 +273,17 @@ public class TWoT implements Serializable{
         HashMap<Integer, String> welcomeList = new HashMap();
         welcomeList.put(1, "Welcome to The Wizard of Treldan!\n");
         welcomeList.put(2, "The Wizard of Treldan is a new, incredibly boring adventure game.\n\n");
+        welcomeList.put(3, currentRoom.getDescription() + "\n");
         welcomeList.put(4, currentRoom.getDescription() + "\n");
+        welcomeList.put(5, currentRoom.getDescription() + "\n");
+        welcomeList.put(6, currentRoom.getDescription() + "\n");
+        welcomeList.put(7, currentRoom.getDescription() + "\n");
+        welcomeList.put(8, currentRoom.getDescription() + "\n");
+        welcomeList.put(9, currentRoom.getDescription() + "\n");
+        welcomeList.put(10, currentRoom.getDescription() + "\n");
+        welcomeList.put(11, currentRoom.getDescription() + "\n");
+        welcomeList.put(12, currentRoom.getDescription() + "\n");
+        welcomeList.put(13, currentRoom.getDescription() + "\n");
         return welcomeList;
     }
 

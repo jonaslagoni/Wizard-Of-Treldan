@@ -251,18 +251,24 @@ public class Dungeon extends Map{
                     } else if (player.intersects_top(dungeon_background_sprites.get(2))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "library"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
+                        if (!game.checkExisting("skeleton1") && !game.checkExisting("skeleton2") && !game.checkExisting("skeleton3")) {
+                            int oldId = game.getCurrentRoomId();
+                            for (String s : game.goTo(new Command(CommandWord.GO, "library"))) {
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            if (game.getCurrentRoomId() != oldId) {
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                        }
                     } else if (game.checkExisting("skeleton1") && player.intersects_top(enemy_sprites.get(0))) {
                             player.setVelocity(0, 0);   
                             

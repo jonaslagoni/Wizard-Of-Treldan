@@ -117,7 +117,7 @@ public class Forest extends Map{
             case 7:
                 player.setPosition(410, 420);
                 break;
-            case 6:
+            case 9:
                 player.setPosition(700, 50);
                 break;
             case 10:

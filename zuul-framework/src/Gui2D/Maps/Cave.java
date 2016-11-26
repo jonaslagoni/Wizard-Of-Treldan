@@ -255,14 +255,11 @@ public class Cave extends Map{
                             ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        if (!troll1Dead && !troll2Dead && !troll3Dead) {
+                        if (!game.checkExisting("troll1") && !game.checkExisting("troll2") && !game.checkExisting("troll3")) {
                             int oldId = game.getCurrentRoomId();
                             for (String s : game.goTo(new Command(CommandWord.GO, "forest"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
-                            troll1Dead = true;
-                            troll2Dead = true;
-                            troll3Dead = true;
                             if (game.getCurrentRoomId() != oldId) {
                                 //remove all the inputs
                                 input.removeAll(input);
@@ -276,18 +273,16 @@ public class Cave extends Map{
                                 WizardOfTreldan.saveGame();
                             }
                         }
-                        
-                    } else if (player.intersects_top(sprites_background.get(6))) {
+                    } 
+                    else if (player.intersects_top(sprites_background.get(6))
+                            ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        if (!troll1Dead && !troll2Dead && !troll3Dead) {
+                        if (!game.checkExisting("troll1") && !game.checkExisting("troll2") && !game.checkExisting("troll3")) {
                             int oldId = game.getCurrentRoomId();
                             for (String s : game.goTo(new Command(CommandWord.GO, "lair"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
-                            troll1Dead = true;
-                            troll2Dead = true;
-                            troll3Dead = true;
                             if (game.getCurrentRoomId() != oldId) {
                                 //remove all the inputs
                                 input.removeAll(input);
@@ -301,7 +296,6 @@ public class Cave extends Map{
                                 WizardOfTreldan.saveGame();
                             }
                         }
-                        
                     } else {
                         player.setVelocity(0, -100);
                     }
