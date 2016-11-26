@@ -246,7 +246,7 @@ public class Clearing extends Map{
                     }else if(player.intersects_top(sprites_still.get(7))){
                        if(!hasPrinted){
                             int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                            for(String s: game.goTo(new Command(CommandWord.GO, "forest"))){
                                 infobox.appendText("\n" + s + "\n");
                             }
                             hasPrinted = true;
