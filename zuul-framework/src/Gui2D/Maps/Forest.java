@@ -144,6 +144,7 @@ public class Forest extends Map{
         List<Sprite> sprites_foreground = forest_sprites.getForest_foreground_sprites();
         //render all the sprites
         
+        forest_background.clearRect(0, 0, 1024, 512);
         if(game.checkExisting("mushroom")){
             sprites_background.get(17).render(forest_background);
         }
