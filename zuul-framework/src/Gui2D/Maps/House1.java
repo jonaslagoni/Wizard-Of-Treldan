@@ -127,6 +127,12 @@ public class House1 extends Map{
             sprites_interact.get(0).render(monster_gc);
         }
         
+        //stranger sprite
+        Sprite stranger_sprite = house_sprites.getStranger_sprite();
+        if(game.checkExisting("stranger")){
+            stranger_sprite.render(monster_gc);
+        }
+        
         //generate all the background sprites
         List<Sprite> sprites_still = house_sprites.getHouse1();
         for(Sprite sprite : sprites_still){
@@ -170,12 +176,10 @@ public class House1 extends Map{
                             || player.intersects_left(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("man")){
-                        if(player.intersects_left(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(-100,0);
-                        }
+                    }else if(game.checkExisting("man") && player.intersects_left(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("stranger") && player.intersects_left(stranger_sprite)){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -195,12 +199,10 @@ public class House1 extends Map{
                             || player.intersects_right(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("man")){
-                        if(player.intersects_right(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(100,0);
-                        }
+                    }else if(game.checkExisting("man") && player.intersects_right(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("stranger") && player.intersects_right(stranger_sprite)){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -234,12 +236,10 @@ public class House1 extends Map{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    }else if(game.checkExisting("man")){
-                        if(player.intersects_top(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(0,-100);
-                        }
+                    }else if(game.checkExisting("man") && player.intersects_top(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("stranger") && player.intersects_top(stranger_sprite)){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -258,12 +258,10 @@ public class House1 extends Map{
                             || player.intersects_bottom(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("man")){
-                        if(player.intersects_bottom(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(0, 100);
-                        }
+                    }else if(game.checkExisting("man") && player.intersects_bottom(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("stranger") && player.intersects_bottom(stranger_sprite)){
+                        player.setVelocity(0, 0);
                     }else {
                         player.setVelocity(0, 100);
                     }
@@ -278,13 +276,26 @@ public class House1 extends Map{
                         }
                         playerinventory.update(game);
                     }
-                    if(game.checkExisting("man")){
-                        if(player.intersect(sprites_interact.get(0))){
-                            for(String s : game.goTo(new Command(CommandWord.GO, "man"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            playerinventory.update(game);
+                    if(game.checkExisting("man") && player.intersect(sprites_interact.get(0))){
+                        for(String s : game.goTo(new Command(CommandWord.GO, "man"))) {
+                            infobox.appendText("\n" + s + "\n");
                         }
+                        playerinventory.update(game);
+                    }
+                    if(game.checkExisting("stranger") && player.intersect(stranger_sprite)){
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        game.goTo(new Command(CommandWord.GO, "door"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     }
                     menu_input.remove("E");
                 }
@@ -299,6 +310,9 @@ public class House1 extends Map{
                 //render pickup items
                 if(game.checkExisting("man")){
                     sprites_interact.get(0).render(monster_gc);
+                }
+                if(game.checkExisting("stranger")){
+                    stranger_sprite.render(monster_gc);
                 }
                 
                 //check if the user wants to see a menu.
@@ -317,6 +331,9 @@ public class House1 extends Map{
                 switch (game.getCurrentRoomId()) {
                     case 2:
                         WizardOfTreldan.setVillageScene();
+                        break;
+                    case 11:
+                        WizardOfTreldan.setDungeonScene();
                         break;
                 }
             }

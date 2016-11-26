@@ -12,6 +12,7 @@ import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
 import TWoT_A1.Command;
 import TWoT_A1.CommandWord;
+import TWoT_A1.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,7 @@ public class House2 extends Map{
     private ArrayList<String> menu_input;
     
     
-    private TWoT_A1.TWoT game;
+    private TWoT game;
     private House2_sprites house_sprites;
     /**
      * Constructor for Cellar
@@ -67,6 +68,14 @@ public class House2 extends Map{
         //relocate the canvas so its centered.
         canvas_background.relocate(337, 75);
         root.getChildren().add(canvas_background);
+        
+        
+        //add a canvas only for the stranger
+        Canvas stranger_canvas = new Canvas(350, 250);
+        //relocate the canvas
+        stranger_canvas.relocate(337, 75);
+        //add the canvas to the group
+        root.getChildren().add(stranger_canvas);
         
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(350, 250);
@@ -108,6 +117,8 @@ public class House2 extends Map{
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
         //create GraphicsContext from our player_canvas
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        //create GraphicsContext from our player_canvas
+        GraphicsContext stranger_gc = stranger_canvas.getGraphicsContext2D();
                 
         //generate all the background sprites
         List<Sprite> sprites_still = house_sprites.getHouse2();
@@ -115,6 +126,12 @@ public class House2 extends Map{
             sprite.render(background_gc);
         }
             
+        //stranger sprite
+        Sprite stranger_sprite = house_sprites.getStranger_sprite();
+        if(game.checkExisting("stranger")){
+            stranger_sprite.render(stranger_gc);
+        }
+        
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(350, 0, 1, 300);
         Rectangle2D worldBoundLeft = new Rectangle2D(0, 0, 1, 300);
@@ -145,11 +162,13 @@ public class House2 extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     //no collission continue
-                    } else if (player.intersects_left(sprites_still.get(1))
+                    }else if (player.intersects_left(sprites_still.get(1))
                             || player.intersects_left(sprites_still.get(4))
                             || player.intersects_left(sprites_still.get(5))
                             || player.intersects_left(sprites_still.get(6))) {
                         //Reset the velocity
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("stranger") && player.intersects_left(stranger_sprite)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
@@ -164,11 +183,13 @@ public class House2 extends Map{
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    } else if (player.intersects_right(sprites_still.get(1))
+                    }else if (player.intersects_right(sprites_still.get(1))
                             || player.intersects_right(sprites_still.get(4))
                             || player.intersects_right(sprites_still.get(5))
                             || player.intersects_right(sprites_still.get(6))) {
                         //Reset the velocity
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("stranger") && player.intersects_right(stranger_sprite)){
                         player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
@@ -203,6 +224,8 @@ public class House2 extends Map{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
+                    }else if(game.checkExisting("stranger") && player.intersects_top(stranger_sprite)){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -220,6 +243,8 @@ public class House2 extends Map{
                             || player.intersects_bottom(sprites_still.get(5))
                             || player.intersects_bottom(sprites_still.get(6))) {
                         //Reset the velocity
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("stranger") && player.intersects_bottom(stranger_sprite)){
                         player.setVelocity(0, 0);
                     }else {
                         player.setVelocity(0, 100);
@@ -249,6 +274,23 @@ public class House2 extends Map{
                         }
                         playerinventory.update(game);
                     }
+                    
+                    if(game.checkExisting("stranger") && player.intersect(stranger_sprite)){
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        game.goTo(new Command(CommandWord.GO, "door"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
+                    }
+                    
                     menu_input.remove("E");
                 }
                 //update the players velocity
@@ -257,6 +299,12 @@ public class House2 extends Map{
                 moveable_gc.clearRect(0, 0, 400, 300);
                 //render our new player
                 player.render(moveable_gc);
+                
+                
+                stranger_gc.clearRect(0, 0, 400, 300);
+                if(game.checkExisting("stranger")){
+                    stranger_sprite.render(stranger_gc);
+                }
                 
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
@@ -274,6 +322,9 @@ public class House2 extends Map{
                 switch (game.getCurrentRoomId()) {
                     case 2:
                         WizardOfTreldan.setVillageScene();
+                        break;
+                    case 11:
+                        WizardOfTreldan.setDungeonScene();
                         break;
                 }
             }

@@ -24,6 +24,7 @@ public class House3_sprites{
     private final List<Sprite> house_background_sprites;
     private final List<Sprite> house_monster_sprites;
     
+    private Sprite stranger_sprite;
     private final List<SingleSprite> house_background_walls;
     private final List<SingleSprite> house_background_floor;
     
@@ -124,6 +125,10 @@ public class House3_sprites{
          Sprite woman = world.getMisc_sprites().getVillage_woman();
          woman.setPosition(400, 170);
          house_monster_sprites.add(woman);
+         
+         Sprite stranger = world.getMisc_sprites().getNPC_stranger();
+        stranger.setPosition(60, 50);
+        stranger_sprite = stranger;
     }
     
     public List<Sprite> getHouse(){
@@ -136,10 +141,11 @@ public class House3_sprites{
     public List<Sprite> getHouse_monster_sprites() {
         return house_monster_sprites;
     }
-            
 
     /**
-     * @return the cellar_background_sprites
+     * @return the stranger_sprite
      */
-    
+    public Sprite getStranger_sprite() {
+        return stranger_sprite;
+    }
 }

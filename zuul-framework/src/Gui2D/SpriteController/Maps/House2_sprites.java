@@ -24,6 +24,7 @@ public class House2_sprites{
     
     private final List<SingleSprite> house2_background_walls;
     private final List<SingleSprite> house2_background_floor;
+    private Sprite stranger_sprite;
     
     
     public House2_sprites(SpriteController world){
@@ -88,20 +89,24 @@ public class House2_sprites{
         house2_background_sprites.add(wardrobe);
         
         
-        
-        
-        
-        
+        Sprite stranger = world.getMisc_sprites().getNPC_stranger();
+        stranger.setPosition(100, 40);
+        stranger_sprite = stranger;
         
     }
     
-        public List getHouse2(){
+    /**
+     * 
+     * @return returns the background
+     */
+    public List getHouse2(){
         return house2_background_sprites;
     }
-            
 
     /**
-     * @return the cellar_background_sprites
+     * @return the stranger_sprite
      */
-    
+    public Sprite getStranger_sprite() {
+        return stranger_sprite;
+    }
 }

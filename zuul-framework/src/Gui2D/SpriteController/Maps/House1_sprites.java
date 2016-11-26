@@ -22,7 +22,7 @@ public class House1_sprites{
     private SpriteController world;
     private final List<Sprite> house1_background_sprites;
     private final List<Sprite> house1_monster_sprites;
-    
+    private Sprite stranger_sprite;
     private final List<SingleSprite> house1_background_walls;
     private final List<SingleSprite> house1_background_floor;
     
@@ -82,10 +82,16 @@ public class House1_sprites{
         house1_background_sprites.add(bookshelf);
         
         
-       //enemy
-       Sprite enemy = world.getMisc_sprites().getEnemy_Imp2();
-       enemy.setPosition(200,150);
-       house1_monster_sprites.add(enemy);
+        //enemy
+        Sprite enemy = world.getMisc_sprites().getEnemy_Imp2();
+        enemy.setPosition(200,150);
+        house1_monster_sprites.add(enemy);
+        
+        
+        Sprite stranger = world.getMisc_sprites().getNPC_stranger();
+        stranger.setPosition(100, 50);
+        stranger_sprite = stranger;
+        
         
     }
     
@@ -99,10 +105,12 @@ public class House1_sprites{
     public List<Sprite> getHouse1_monster_sprites() {
         return house1_monster_sprites;
     }
-            
 
     /**
-     * @return the cellar_background_sprites
+     * @return the stranger_sprite
      */
+    public Sprite getStranger_sprite() {
+        return stranger_sprite;
+    }
     
 }
