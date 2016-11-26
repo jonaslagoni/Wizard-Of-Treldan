@@ -139,20 +139,6 @@ public class Cellar extends Map{
             sprite.render(background_gc);
         }
         
-        //right
-        moveable_gc.setFill(Color.BLUE);
-        moveable_gc.fillRect(player.getPositionX()+player.getWidth()-32,  player.getPositionY()+player.getWidth()-21, 5, 12);
-        //Left
-        moveable_gc.setFill(Color.CHOCOLATE);
-        moveable_gc.fillRect(player.getPositionX()+11, player.getPositionY()+player.getWidth()-21, 5, 12);
-        //top
-        moveable_gc.setFill(Color.DARKCYAN);
-        moveable_gc.fillRect(player.getPositionX()+12, player.getPositionY()+player.getHeight()-22, player.getWidth()-40, 5);
-        //bottom
-        moveable_gc.setFill(Color.AQUA);
-        moveable_gc.fillRect(player.getPositionX()+12, player.getPositionY()+player.getHeight()-14, player.getWidth()-40, 5);
-        
-        
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(479, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(-2, 0, 1, 512);
