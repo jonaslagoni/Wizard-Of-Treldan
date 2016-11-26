@@ -92,6 +92,10 @@ public class EvilWizardsLair extends Map{
         GraphicsContext background_gc = background.getGraphicsContext2D();
         GraphicsContext monster_gc = monster_canvas.getGraphicsContext2D();
         
+         //escape menu start
+        GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
+        //escape menu stop
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -103,9 +107,11 @@ public class EvilWizardsLair extends Map{
         s.setPrefSize(300, 150);
         s.relocate(0, 362);
         root.getChildren().add(s);
+        theScene.getStylesheets().add("TextAreaStyle.css");
+        
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get(4) + "\n");
+        infobox.appendText(welcome.get(13) + "\n");
         
         //Menu testing start
         PlayerInventory playerinventory = new PlayerInventory(game,infobox);
@@ -297,12 +303,26 @@ public class EvilWizardsLair extends Map{
                     
                     menu_input.remove("E");
                 }
+                //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
+                    }
+                }
                 //update the players velocity
                 player.update(elapsedTime);
                 //clear our player
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
+                
+               
                 
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
@@ -316,18 +336,30 @@ public class EvilWizardsLair extends Map{
                 }
                 //clear monsters
                 monster_gc.clearRect(0, 0, 1024, 512);
+                
                 //render monsters
                 if(game.checkExisting("wizard")){
                     spriteList_foreground.get(0).render(monster_gc);
                 }
+                
                 if(game.checkExisting("minion1")){
                     spriteList_foreground.get(1).render(monster_gc);
+                    
                 }
                 if(game.checkExisting("minion2")){
                     spriteList_foreground.get(2).render(monster_gc);
+                    
                 }
             }
                     
+            public void setNewScene() {
+                switch (game.getCurrentRoomId()) {
+                    case 14:
+                        WizardOfTreldan.setFinishScene();
+                        break;
+                    
+                }
+            }
     
         }.start();
         

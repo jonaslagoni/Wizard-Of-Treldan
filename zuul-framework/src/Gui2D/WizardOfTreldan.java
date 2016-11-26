@@ -141,7 +141,7 @@ public class WizardOfTreldan extends Application {
         });
         mediaPlayer.play();
         
-        setLibraryScene();
+        setEvilWizardsLairScene();
         primaryStage.show();
     }
     
