@@ -91,8 +91,6 @@ public class Clearing extends Map{
         
         
         
-        theScene.getStylesheets().add("TextAreaStyle.css");
-        
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
@@ -103,6 +101,8 @@ public class Clearing extends Map{
         s.setPrefSize(300, 150);
         s.relocate(0, 362);
         root.getChildren().add(s);
+        theScene.getStylesheets().add("TextAreaStyle.css");
+        
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(10) + "\n");

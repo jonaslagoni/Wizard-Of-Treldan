@@ -82,7 +82,7 @@ public class Library extends Map{
         //set canvas of our items
         Canvas library_monsters = new Canvas(1024, 512);
         //add the canvas to the group
-        library_monsters.relocate(300,350);
+        library_monsters.relocate(126,66);
         root.getChildren().add(library_monsters);
         
         /**
@@ -99,14 +99,17 @@ public class Library extends Map{
         
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get("getRooms") + "\n");
+        infobox.appendText(welcome.get(11) + "\n");
         
         //add our player inventory
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         //player menu visuals
         AnchorPane menu = playerinventory.getMenu();
         
-        
+        //escape menu start
+        GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
+        //escape menu stop
         
    
         //set the keylisteners to the scene.
@@ -147,6 +150,7 @@ public class Library extends Map{
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
+            private boolean hasPrinted = false;
 
             //what to do each cycle
             @Override
@@ -237,42 +241,6 @@ public class Library extends Map{
                 }
 
                
-                //check if the user wants to walk down.
-                if(input.contains("DOWN")) {
-                    //check if the user walks into a world boundary
-                    if (player.intersects_bottom(worldBoundBottom)) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                    }else if (
-                            player.intersects_bottom(sprites_still.get(3))  ||
-                            player.intersects_bottom(sprites_still.get(4))  ||
-                            player.intersects_bottom(sprites_still.get(5))  ||
-                            player.intersects_bottom(sprites_still.get(6))  ||
-                            player.intersects_bottom(sprites_still.get(7))  ||
-                            player.intersects_bottom(sprites_still.get(9))  ||
-                            player.intersects_bottom(sprites_still.get(10)) ||
-                            player.intersects_bottom(sprites_still.get(11)) ||
-                            player.intersects_bottom(sprites_still.get(12)) ||
-                            player.intersects_bottom(sprites_still.get(13)) ||
-                            player.intersects_bottom(sprites_still.get(14)) ||
-                            player.intersects_bottom(sprites_still.get(15)) ||
-                            player.intersects_bottom(sprites_still.get(16)) ||
-                            player.intersects_bottom(sprites_still.get(17)) 
-                             ){
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                    }else if(game.checkExisting("librarian")){
-                        if(player.intersects_bottom(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(0, 100);
-                        }
-                    }else {
-                        player.setVelocity(0, 100);
-                    }
-                    //set the direction the player walks
-                    player.setDirection(PlayerSprite.Direction.WALK_DOWN);
-                }
                 
                 //check if the user wants to walk up.
                 if (input.contains("UP")) {
@@ -280,9 +248,7 @@ public class Library extends Map{
                     if (player.intersects_top(worldBoundTop)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //check if the player walks into a sprite
-                   
-                    }else if(
+                    }else if (
                             player.intersects_top(sprites_still.get(3))  ||
                             player.intersects_top(sprites_still.get(4))  ||
                             player.intersects_top(sprites_still.get(5))  ||
@@ -297,31 +263,34 @@ public class Library extends Map{
                             player.intersects_top(sprites_still.get(15)) ||
                             player.intersects_top(sprites_still.get(16)) ||
                             player.intersects_top(sprites_still.get(17)) 
-                             ){
-                         player.setVelocity(0, 0);
-                         
-                    }else if(game.checkExisting("librarian")){
-                        if(player.intersects_top(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }
-                         
+                            ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     }else if(player.intersects_top(sprites_still.get(2))){
-                    //Reset the velocity
-                    player.setVelocity(0, 0);
-                    game.goTo(new Command(CommandWord.GO, "door"));
-                    //remove all the inputs
-                    input.removeAll(input);
-                    //stop this AnimationTimer
-                    this.stop();
-                    //clear the textarea
-                    infobox.clear();
-                    //set the menu as a scene instead.
-                    setNewScene();
-                    //save the game when we walk out
-                    WizardOfTreldan.saveGame();
-                        
+                       if(!hasPrinted){
+                            int oldId = game.getCurrentRoomId();
+                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                                infobox.appendText("\n" + s + "\n");
+                            }
+                            hasPrinted = true;
+                            if(game.getCurrentRoomId() != oldId){
+                                //remove all the inputs
+                                input.removeAll(input);
+                                //stop this AnimationTimer
+                                this.stop();
+                                //clear the textarea
+                                infobox.clear();
+                                //set the menu as a scene instead.
+                                setNewScene();
+                                //save the game when we walk out
+                                WizardOfTreldan.saveGame();
+                            }
+                       }
+                    }else if(game.checkExisting("librarian") && player.intersects_top(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
+                    
                     }else{
-                        player.setVelocity(0,-100);  
+                        player.setVelocity(0,-100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
@@ -356,7 +325,7 @@ public class Library extends Map{
                                 player.setVelocity(0, 0);
                             }else{
                                 player.setVelocity(0,100);
-                            }
+                     }
                       
                     }
                     //set the direction the player walks
@@ -375,7 +344,7 @@ public class Library extends Map{
                             for(String s : game.goTo(new Command(CommandWord.GO, "librarian"))) {
                                 infobox.appendText("\n" + s + "\n");
                             }
-                            playerinventory.update(game);
+                          playerinventory.update(game);
                         }
                     
                            
@@ -388,6 +357,7 @@ public class Library extends Map{
                 player.update(elapsedTime);
                 //clear our player
                 moveable_gc.clearRect(0, 0, 1024, 512);
+                
                 //render our new player
                 player.render(moveable_gc);
                 
@@ -397,7 +367,20 @@ public class Library extends Map{
                 if(game.checkExisting("librarian")){
                     sprites_interact.get(0).render(monster_gc);
                 }
-
+                
+                //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
+                    }
+                }
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {

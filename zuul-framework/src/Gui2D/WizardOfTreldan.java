@@ -141,7 +141,7 @@ public class WizardOfTreldan extends Application {
         });
         mediaPlayer.play();
         
-        setClearingScene();
+        setLibraryScene();
         primaryStage.show();
     }
     
