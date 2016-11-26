@@ -255,7 +255,7 @@ public class TWoT implements Serializable{
         
         
         //set which room you start in.
-        currentRoom = roomCellar;
+        currentRoom = roomClearing;
         lastRoomId = currentRoom.getRoomId();
         currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getMapInterior());
     }

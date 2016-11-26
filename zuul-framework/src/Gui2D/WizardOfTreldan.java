@@ -130,7 +130,8 @@ public class WizardOfTreldan extends Application {
 
   
         
-        setClearingScene();
+        setMenuScene();
+        
         MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("assets/test.mp3").toURI().toString()));
         mediaPlayer.setOnEndOfMedia(new Runnable() {
             public void run() {
@@ -140,7 +141,7 @@ public class WizardOfTreldan extends Application {
         });
         mediaPlayer.play();
         
-        setMenuScene();
+        setClearingScene();
         primaryStage.show();
     }
     

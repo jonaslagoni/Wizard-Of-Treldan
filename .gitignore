@@ -14,3 +14,4 @@ zuul-framework/src/Gui2D/WizardOfTreldan.java
 zuul-framework/src/Gui2D/SpriteController/SingleSprite/SingleSpriteGrouping/Misc_sprites.java
 zuul-framework/src/Gui2D/Maps/Village.java
 zuul-framework/src/Gui2D/Maps/Village.java
+*.data

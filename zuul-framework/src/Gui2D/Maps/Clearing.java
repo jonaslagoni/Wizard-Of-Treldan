@@ -108,7 +108,7 @@ public class Clearing extends Map{
         root.getChildren().add(s);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get("getRooms") + "\n");
+        infobox.appendText(welcome.get(10) + "\n");
         
         
 
@@ -116,20 +116,22 @@ public class Clearing extends Map{
         AnchorPane menu = playerinventory.getMenu();
 
         
-        //menu testing done
+        GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(322,125 );
+        player.setPosition(322,130 );
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
         theScene.setOnKeyPressed(getOnKeyPress());
         
-        
+        //create GraphicsContext from our player canvas
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
+        //create GraphicsContext from our interactable objects canvas
         GraphicsContext interact_gc = clearing_interact.getGraphicsContext2D();
-        //create GraphicsContext from our player_canvas
+        //create GraphicsContext from our background canvas
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
         
         
@@ -140,20 +142,22 @@ public class Clearing extends Map{
         Rectangle2D worldBoundLeft = new Rectangle2D(150, 0, 1, 512);
         Rectangle2D worldBoundRight = new Rectangle2D(800, 0, 1, 512);
         
-        //get all the sprites of monsters
+        //get all the sprites of interactables
         List<Sprite> sprites_interact = clearing_sprites.getClearing_interact();
-        
+            //draw the sprites if they exist with the graphicscontext
             if(game.checkExisting("unicorn")){
                 sprites_interact.get(0).render(interact_gc);
             }
-
+            //draw the sprites if they exist with the graphicscontext  
             if(game.checkExisting("tree")){
                 sprites_interact.get(1).render(interact_gc);
             }
+        //get all the sprites of the background  
         List<Sprite> sprites_still = clearing_sprites.getClearing_background_sprites();
-        for(Sprite sprite : sprites_still){
-            sprite.render(background_gc);
-        }
+             //draw the sprites if they exist with the graphicscontext
+            for(Sprite sprite : sprites_still){
+                sprite.render(background_gc);
+            }
         
         
         
@@ -181,15 +185,13 @@ public class Clearing extends Map{
                     if (player.intersects_left(worldBoundLeft)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                   
-                
                         //check if the player walks into a sprite
-                    }else if(player.intersects_left(sprites_still.get(8))  ||
-                             player.intersects_left(sprites_still.get(9))  ||
-                             player.intersects_left(sprites_still.get(10)) ||
-                             player.intersects_left(sprites_still.get(11)) 
-                             ){
-                         player.setVelocity(0, 0);
+                    } else if (player.intersects_left(sprites_still.get(8))
+                            || player.intersects_left(sprites_still.get(9))
+                            || player.intersects_left(sprites_still.get(10))
+                            || player.intersects_left(sprites_still.get(11))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
                     }else if(game.checkExisting("unicorn")){
                         if(player.intersects_left(sprites_interact.get(0))){
                             player.setVelocity(0, 0);
@@ -203,7 +205,7 @@ public class Clearing extends Map{
                             player.setVelocity(-100,0);
                         }
                     }else{
-                        player.setVelocity(-100, 0);
+                        player.setVelocity(-100,0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
@@ -217,27 +219,21 @@ public class Clearing extends Map{
                         player.setVelocity(0, 0);
                     
                         
-                    //check if the player walks into a sprite
-                    }else if(player.intersects_right(sprites_still.get(8))  ||
-                             player.intersects_right(sprites_still.get(9))  ||
-                             player.intersects_right(sprites_still.get(10)) ||
-                             player.intersects_right(sprites_still.get(11)) 
-                             ){
-                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("unicorn")){
-                        if(player.intersects_left(sprites_interact.get(0))){
+                   //check if the player walks into a sprite
+                   }else if(game.checkExisting("unicorn")){
+                        if(player.intersects_right(sprites_interact.get(0))){
                             player.setVelocity(0, 0);
                         }else{
-                            player.setVelocity(-100,0);
+                            player.setVelocity(100,0);
                         }
                     }else if(game.checkExisting("tree")){
-                        if(player.intersects_left(sprites_interact.get(1))){
+                        if(player.intersects_right(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
                         }else{
-                            player.setVelocity(-100,0);
+                            player.setVelocity(100,0);
                         }
                     }else{
-                        player.setVelocity(100, 0);
+                        player.setVelocity(100,0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
@@ -250,49 +246,46 @@ public class Clearing extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                             //check if the player walks into the exit
-                    }else if(player.intersects_top(sprites_still.get(7))){ 
-                        if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "exit"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
+                    }else if(player.intersects_top(sprites_still.get(7))){
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        game.goTo(new Command(CommandWord.GO, "forest"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
+          
+                    //check if the player walks into a sprite
+                   } else if (player.intersects_top(sprites_still.get(8))
+                            || player.intersects_top(sprites_still.get(9))
+                            || player.intersects_top(sprites_still.get(10))
+                            || player.intersects_top(sprites_still.get(11))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                       
+                   //check if the player walks into a specific sprite
+                   //check if the player walks into a specific sprite
+                   }else if(game.checkExisting("unicorn")){
+                        if(player.intersects_top(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        }else{
+                            player.setVelocity(0,-100);
                         }
                         
-                        //check if the player walks into a sprite
-                    }else if(player.intersects_top(sprites_still.get(8))  ||
-                             player.intersects_top(sprites_still.get(9))  ||
-                             player.intersects_top(sprites_still.get(10)) ||
-                             player.intersects_top(sprites_still.get(11)) 
-                     
-                             ){
-                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("unicorn")){
-                        if(player.intersects_left(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(-100,0);
-                        }
                     }else if(game.checkExisting("tree")){
-                        if(player.intersects_left(sprites_interact.get(1))){
+                        if(player.intersects_top(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
                         }else{
-                            player.setVelocity(-100,0);
+                            player.setVelocity(0,-100);
                         }
-                    }else {
-                        player.setVelocity(0, -100);
+                    }else{
+                        player.setVelocity(0,-100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
@@ -307,31 +300,32 @@ public class Clearing extends Map{
                         
                       
                            
-                        //check if the player walks into a sprite
-                    }else if(player.intersects_bottom(sprites_still.get(8))  ||
-                             player.intersects_bottom(sprites_still.get(9))  ||
-                             player.intersects_bottom(sprites_still.get(10)) ||
-                             player.intersects_bottom(sprites_still.get(11)) 
-                             ){
-                         player.setVelocity(0, 0);
-                         
-                    }else if(game.checkExisting("unicorn")){
-                        if(player.intersects_left(sprites_interact.get(0))){
+                    //check if the player walks into a sprite
+                   } else if (player.intersects_bottom(sprites_still.get(8))
+                            || player.intersects_bottom(sprites_still.get(9))
+                            || player.intersects_bottom(sprites_still.get(10))
+                            || player.intersects_bottom(sprites_still.get(11))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                       
+                   //check if the player walks into a specific sprite
+                   }else if(game.checkExisting("unicorn")){
+                        if(player.intersects_bottom(sprites_interact.get(0))){
                             player.setVelocity(0, 0);
                         }else{
-                            player.setVelocity(-100,0);
+                            player.setVelocity(0,100);
                         }
                     }else if(game.checkExisting("tree")){
-                        if(player.intersects_left(sprites_interact.get(1))){
+                        if(player.intersects_bottom(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
                         }else{
-                            player.setVelocity(-100,0);
+                            player.setVelocity(0,100);
                         }
                     }else{
-                        player.setVelocity(0, 100);
+                        player.setVelocity(0,100);
                     }
                     //set the direction the player walks
-                    player.setDirection(PlayerSprite.Direction.WALK_DOWN);
+                player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
             
                 //interact with the world around the player
@@ -340,7 +334,8 @@ public class Clearing extends Map{
                         for (String s : game.goTo(new Command(CommandWord.GO, "unicorn"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
-                    
+                        
+                        playerinventory.update(game);
                   
                     }
                     if (player.intersect(sprites_interact.get(1))) {
@@ -350,7 +345,7 @@ public class Clearing extends Map{
                             sprites_interact.get(2).render(interact_gc);
                         }
                     
-                  
+                        playerinventory.update(game);
                     }
                     menu_input.remove("E");
                 }
@@ -362,15 +357,35 @@ public class Clearing extends Map{
                 //render our new player
                 player.render(moveable_gc);
                 
-                interact_gc.clearRect(0, 0, 400, 300);
-                //render pickup items
+                //clear the items that have been interacted with and should e 
+                interact_gc.clearRect(0, 0, 1024, 512);
+                
+                //
                 if(game.checkExisting("unicorn")){
                     sprites_interact.get(0).render(interact_gc);
+                    
+                    
                 }
+                
                 if(game.checkExisting("tree")){
                     sprites_interact.get(1).render(interact_gc);
+                }else{
+                    sprites_interact.get(2).render(interact_gc);
                 }
-
+                
+                //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
+                    }
+                }
+                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
@@ -382,10 +397,10 @@ public class Clearing extends Map{
                     playerinventory.setShown(false);
                 }
             }
-                    
+                         
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
-                    case 4:
+                    case 6:
                         WizardOfTreldan.setForestScene();
                         break;
                 }
