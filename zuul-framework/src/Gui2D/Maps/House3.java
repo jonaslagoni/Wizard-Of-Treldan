@@ -314,13 +314,27 @@ public class House3 extends Map{
                         }
                         playerinventory.update(game);
                     }
-                    if(game.checkExisting("woman")){
-                        if(player.intersect(sprites_interact.get(0))){
-                            for(String s : game.goTo(new Command(CommandWord.GO, "woman"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            playerinventory.update(game);
+                    if(game.checkExisting("woman") && player.intersect(sprites_interact.get(0))){
+                        for(String s : game.goTo(new Command(CommandWord.GO, "woman"))) {
+                            infobox.appendText("\n" + s + "\n");
                         }
+                        playerinventory.update(game);
+                    }
+                    
+                    if(game.checkExisting("stranger") && player.intersect(stranger_sprite)){
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        game.goTo(new Command(CommandWord.GO, "stranger"));
+                        //remove all the inputs
+                        input.removeAll(input);
+                        //stop this AnimationTimer
+                        this.stop();
+                        //clear the textarea
+                        infobox.clear();
+                        //set the menu as a scene instead.
+                        setNewScene();
+                        //save the game when we walk out
+                        WizardOfTreldan.saveGame();
                     }
                     menu_input.remove("E");
                 }
@@ -356,6 +370,9 @@ public class House3 extends Map{
                 switch (game.getCurrentRoomId()) {
                     case 2:
                         WizardOfTreldan.setVillageScene();
+                        break;
+                    case 11:
+                        WizardOfTreldan.setDungeonScene();
                         break;
                 }
             }

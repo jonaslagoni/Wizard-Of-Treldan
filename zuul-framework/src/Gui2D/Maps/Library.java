@@ -75,7 +75,7 @@ public class Library extends Map{
        
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(600,350 );
+        player.setPosition(600,350);
         Canvas player_canvas = new Canvas(1024, 512);
         root.getChildren().add(player_canvas);
         
@@ -141,8 +141,8 @@ public class Library extends Map{
         }
         
         //set our world boundaries
-        Rectangle2D worldBoundRight = new Rectangle2D(840, 0, 1, 512);
-        Rectangle2D worldBoundLeft = new Rectangle2D(145, 0, 1, 512);
+        Rectangle2D worldBoundRight = new Rectangle2D(830, 0, 1, 512);
+        Rectangle2D worldBoundLeft = new Rectangle2D(155, 0, 1, 512);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 415, 1024, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 64, 1024, 1);
         
@@ -176,8 +176,6 @@ public class Library extends Map{
                             player.intersects_left(sprites_still.get(3))  ||
                             player.intersects_left(sprites_still.get(4))  ||
                             player.intersects_left(sprites_still.get(5))  ||
-                            player.intersects_left(sprites_still.get(6))  ||
-                            player.intersects_left(sprites_still.get(7))  ||
                             player.intersects_left(sprites_still.get(9))  ||
                             player.intersects_left(sprites_still.get(10)) ||
                             player.intersects_left(sprites_still.get(11)) ||
@@ -189,12 +187,8 @@ public class Library extends Map{
                             player.intersects_left(sprites_still.get(17)) 
                              ){
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("librarian")){
-                        if(player.intersects_left(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(-100,0);
-                        }
+                    }else if(game.checkExisting("librarian") && player.intersects_left(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -212,8 +206,6 @@ public class Library extends Map{
                             player.intersects_right(sprites_still.get(3))  ||
                             player.intersects_right(sprites_still.get(4))  ||
                             player.intersects_right(sprites_still.get(5))  ||
-                            player.intersects_right(sprites_still.get(6))  ||
-                            player.intersects_right(sprites_still.get(7))  ||
                             player.intersects_right(sprites_still.get(9))  ||
                             player.intersects_right(sprites_still.get(10)) ||
                             player.intersects_right(sprites_still.get(11)) ||
@@ -227,12 +219,8 @@ public class Library extends Map{
                          player.setVelocity(0, 0);
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("librarian")){
-                        if(player.intersects_right(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(100,0);
-                        }
+                    }else if(game.checkExisting("librarian")&& player.intersects_right(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -252,8 +240,6 @@ public class Library extends Map{
                             player.intersects_top(sprites_still.get(3))  ||
                             player.intersects_top(sprites_still.get(4))  ||
                             player.intersects_top(sprites_still.get(5))  ||
-                            player.intersects_top(sprites_still.get(6))  ||
-                            player.intersects_top(sprites_still.get(7))  ||
                             player.intersects_top(sprites_still.get(9))  ||
                             player.intersects_top(sprites_still.get(10)) ||
                             player.intersects_top(sprites_still.get(11)) ||
@@ -267,28 +253,24 @@ public class Library extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else if(player.intersects_top(sprites_still.get(2))){
-                       if(!hasPrinted){
-                            int oldId = game.getCurrentRoomId();
-                            for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            hasPrinted = true;
-                            if(game.getCurrentRoomId() != oldId){
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
-                       }
+                        int oldId = game.getCurrentRoomId();
+                        for(String s: game.goTo(new Command(CommandWord.GO, "door"))){
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        if(game.getCurrentRoomId() != oldId){
+                            //remove all the inputs
+                            input.removeAll(input);
+                            //stop this AnimationTimer
+                            this.stop();
+                            //clear the textarea
+                            infobox.clear();
+                            //set the menu as a scene instead.
+                            setNewScene();
+                            //save the game when we walk out
+                            WizardOfTreldan.saveGame();
+                        }
                     }else if(game.checkExisting("librarian") && player.intersects_top(sprites_interact.get(0))){
                         player.setVelocity(0, 0);
-                    
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -307,8 +289,6 @@ public class Library extends Map{
                             player.intersects_bottom(sprites_still.get(3))  ||
                             player.intersects_bottom(sprites_still.get(4))  ||
                             player.intersects_bottom(sprites_still.get(5))  ||
-                            player.intersects_bottom(sprites_still.get(6))  ||
-                            player.intersects_bottom(sprites_still.get(7))  ||
                             player.intersects_bottom(sprites_still.get(9))  ||
                             player.intersects_bottom(sprites_still.get(10)) ||
                             player.intersects_bottom(sprites_still.get(11)) ||
@@ -319,19 +299,16 @@ public class Library extends Map{
                             player.intersects_bottom(sprites_still.get(16)) ||
                             player.intersects_bottom(sprites_still.get(17)) 
                              ){
-                         player.setVelocity(0, 0);
-                     }else if(game.checkExisting("librarian")){
-                            if(player.intersects_bottom(sprites_interact.get(0))){
-                                player.setVelocity(0, 0);
-                            }else{
-                                player.setVelocity(0,100);
-                     }
-                      
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("librarian") && player.intersects_bottom(sprites_interact.get(0))){
+                        player.setVelocity(0, 0);
+                    }else{
+                        player.setVelocity(0,100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
-                
+                infobox.appendText("\nX:" + player.getPositionX()+player.getSprite_width() + " - Y:" + player.getPositionY());
                 if (menu_input.contains("E")) {
                     if (player.intersect(sprites_still.get(3))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
@@ -339,16 +316,11 @@ public class Library extends Map{
                         }
                         playerinventory.update(game);
                     }
-                    if(player.intersect(sprites_interact.get(0))){
-                           if(game.checkExisting("librarian")){ 
-                            for(String s : game.goTo(new Command(CommandWord.GO, "librarian"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                          playerinventory.update(game);
+                    if(game.checkExisting("librarian") && player.intersect(sprites_interact.get(0))){
+                        for(String s : game.goTo(new Command(CommandWord.GO, "librarian"))) {
+                            infobox.appendText("\n" + s + "\n");
                         }
-                    
-                           
-                           
+                        playerinventory.update(game); 
                     }
                     
                     menu_input.remove("E");
@@ -396,15 +368,11 @@ public class Library extends Map{
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 13:
-                        WizardOfTreldan.setEvilWizardLairScene();
+                        WizardOfTreldan.setEvilWizardsLairScene();
                         break;
-                    
                 }
             }
         }.start();
-        
-        System.out.println(game.getCurrentRoomId());
-        
         return theScene;
     }
 }

@@ -278,7 +278,7 @@ public class House2 extends Map{
                     if(game.checkExisting("stranger") && player.intersect(stranger_sprite)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        game.goTo(new Command(CommandWord.GO, "door"));
+                        game.goTo(new Command(CommandWord.GO, "stranger"));
                         //remove all the inputs
                         input.removeAll(input);
                         //stop this AnimationTimer

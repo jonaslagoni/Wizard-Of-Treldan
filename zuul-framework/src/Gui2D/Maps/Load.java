@@ -143,7 +143,7 @@ public class Load extends Map{
                                         break;
                                     case 12: WizardOfTreldan.setLibraryScene();
                                         break;
-                                    case 13: WizardOfTreldan.setEvilWizardLairScene();
+                                    case 13: WizardOfTreldan.setEvilWizardsLairScene();
                                         break;
                                     default: WizardOfTreldan.setMenuScene();
                                         break; 

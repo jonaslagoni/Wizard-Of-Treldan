@@ -65,7 +65,6 @@ public class WizardOfTreldan extends Application {
     private static Map wizardHouse;
     private static Map evilwizardslair;
     private static Map library;
-    private static Map evilWizardsLair;
     private static Map highscore;
     private static Map finish;
 
@@ -127,21 +126,7 @@ public class WizardOfTreldan extends Application {
         highscore = new Highscore(world);
         finish = new Finish(world);
 //            
-
-  
-        
         setMenuScene();
-        
-        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("assets/test.mp3").toURI().toString()));
-        mediaPlayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                mediaPlayer.seek(Duration.ZERO);
-                mediaPlayer.play();
-            }
-        });
-        mediaPlayer.play();
-        
-        setEvilWizardsLairScene();
         primaryStage.show();
     }
     
@@ -264,10 +249,6 @@ public class WizardOfTreldan extends Application {
     
     public static void setLibraryScene() {
         primaryStage.setScene(library.getScene());
-    } 
-    
-    public static void setEvilWizardLairScene() {
-        primaryStage.setScene(evilWizardsLair.getScene());
     }
     
     public static void resetGame(){

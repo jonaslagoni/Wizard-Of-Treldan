@@ -5,7 +5,6 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Cave_sprites;
 import Gui2D.SpriteController.Maps.Forest_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
@@ -18,19 +17,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 /**
  *
  * @author jonas
@@ -199,22 +194,7 @@ public class Forest extends Map{
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    } else if (player.intersects_left(sprites_background.get(10))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "wizardhouse"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                    } else if (player.intersects_left(sprites_background.get(7))) {
+                    }else if (player.intersects_left(sprites_background.get(7))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //go to house1
@@ -251,22 +231,7 @@ public class Forest extends Map{
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    } else if (player.intersects_right(sprites_background.get(10))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //go to house1
-                        game.goTo(new Command(CommandWord.GO, "wizardhouse"));
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //set the menu as a scene instead.
-                        setNewScene();
-                        //save the game when we walk out
-                        WizardOfTreldan.saveGame();
-                    } else {
+                    }else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
@@ -384,14 +349,6 @@ public class Forest extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
-
-                if(game.checkExisting("mushroom")){
-                    sprites_background.get(17).render(forest_background);
-                }
-        
-                if(game.checkExisting("goblin")){
-                    sprites_background.get(18).render(forest_background);
-                }
                 
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {

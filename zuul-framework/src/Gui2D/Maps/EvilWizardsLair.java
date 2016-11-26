@@ -362,12 +362,6 @@ public class EvilWizardsLair extends Map{
             }
     
         }.start();
-        
-        
-        
-        
-        
-        
         return theScene;
     }
 }

@@ -17,19 +17,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 /**
  *
  * @author jonas
@@ -109,7 +105,7 @@ public class Dungeon extends Map{
         PlayerSprite player = super.getPlayer();
         switch(game.getLastRoomId()){
             case 2:
-                player.setPosition(250, 400);
+                player.setPosition(325, 300);
                 break;
             case 12:
                 player.setPosition(700, 140);
@@ -251,33 +247,28 @@ public class Dungeon extends Map{
                     } else if (player.intersects_top(dungeon_background_sprites.get(2))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        if (!game.checkExisting("skeleton1") && !game.checkExisting("skeleton2") && !game.checkExisting("skeleton3")) {
-                            int oldId = game.getCurrentRoomId();
-                            for (String s : game.goTo(new Command(CommandWord.GO, "library"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            if (game.getCurrentRoomId() != oldId) {
-                                //remove all the inputs
-                                input.removeAll(input);
-                                //stop this AnimationTimer
-                                this.stop();
-                                //clear the textarea
-                                infobox.clear();
-                                //set the menu as a scene instead.
-                                setNewScene();
-                                //save the game when we walk out
-                                WizardOfTreldan.saveGame();
-                            }
+                        int oldId = game.getCurrentRoomId();
+                        for (String s : game.goTo(new Command(CommandWord.GO, "pathway"))) {
+                            infobox.appendText("\n" + s + "\n");
+                        }
+                        if (game.getCurrentRoomId() != oldId) {
+                            //remove all the inputs
+                            input.removeAll(input);
+                            //stop this AnimationTimer
+                            this.stop();
+                            //clear the textarea
+                            infobox.clear();
+                            //set the menu as a scene instead.
+                            setNewScene();
+                            //save the game when we walk out
+                            WizardOfTreldan.saveGame();
                         }
                     } else if (game.checkExisting("skeleton1") && player.intersects_top(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);   
-                            
+                        player.setVelocity(0, 0);   
                     } else if (game.checkExisting("skeleton2") && player.intersects_top(enemy_sprites.get(1))) {
-                            player.setVelocity(0, 0);
-                                
+                        player.setVelocity(0, 0);
                     } else if (game.checkExisting("skeleton3") && player.intersects_top(enemy_sprites.get(2))) {
-                            player.setVelocity(0, 0);
-                            
+                        player.setVelocity(0, 0);
                     } else {
                         player.setVelocity(0, -100);
                     }

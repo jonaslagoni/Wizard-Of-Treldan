@@ -255,7 +255,7 @@ public class TWoT implements Serializable{
         
         
         //set which room you start in.
-        currentRoom = roomEvilWizardsLair;
+        currentRoom = roomCellar;
         lastRoomId = currentRoom.getRoomId();
         currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getMapInterior());
     }
@@ -721,24 +721,26 @@ public class TWoT implements Serializable{
     
     public void writeHighScore() {
         long endTime = (System.currentTimeMillis() / 1000L);
-            try{
-                FileWriter fw = new FileWriter("Highscore.txt", true);
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw);
-                out.println(player.getPlayerName() + ":" + player.getHighscore() + ":" + (endTime - getStartTime()));
-            } catch (IOException e) {
-                System.out.println("Error at writing to Highscore.txt" + e);
-            } 
+        try{
+            FileWriter fw = new FileWriter("Highscore.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(player.getPlayerName() + ":" + player.getHighscore() + ":" + (endTime - getStartTime()));
+            bw.newLine();
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("Error at writing to Highscore.txt" + e);
+        } 
     }
     
     public List<Score> readHighScore() {
         List <Score> scoreList = new ArrayList();
         try  {
             for (String line : Files.readAllLines(Paths.get("Highscore.txt"))) {
-                 String playerName = Arrays.asList(line.split(":")).get(0);
-                 int playerScore = Integer.parseInt(Arrays.asList(line.split(":")).get(1));
-                 int playerTime = Integer.parseInt(Arrays.asList(line.split(":")).get(2));
-                 scoreList.add(new Score(playerName, playerScore, playerTime));
+                String playerName = Arrays.asList(line.split(":")).get(0);
+                int playerScore = Integer.parseInt(Arrays.asList(line.split(":")).get(1));
+                int playerTime = Integer.parseInt(Arrays.asList(line.split(":")).get(2));
+                scoreList.add(new Score(playerName, playerScore, playerTime));
             }
         } catch (IOException e){
             scoreList.add(new Score("Error",0,0));
