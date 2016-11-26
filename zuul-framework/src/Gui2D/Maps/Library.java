@@ -308,7 +308,6 @@ public class Library extends Map{
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
-                infobox.appendText("\nX:" + player.getPositionX()+player.getSprite_width() + " - Y:" + player.getPositionY());
                 if (menu_input.contains("E")) {
                     if (player.intersect(sprites_still.get(3))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
