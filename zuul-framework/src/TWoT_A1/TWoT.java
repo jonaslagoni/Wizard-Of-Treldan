@@ -579,6 +579,7 @@ public class TWoT implements Serializable{
     }
     public List<String> useItem(Command command){
         List<String> use = new ArrayList();
+        //no items used yet
         boolean check = false;
         Item usedItem = null;
         for (Item i : getInventoryItems()) {
@@ -593,7 +594,7 @@ public class TWoT implements Serializable{
                             if(getPlayerHealth() != 100){
                                 use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
                                 playerRegenHealth(((UseableItem) i).getHealthRegen());
-
+                                
                             }else{
                                 use.add("You're already at full health");
                                 usedItem = null;
@@ -656,12 +657,11 @@ public class TWoT implements Serializable{
                                 usedItem = null;
                             }
                             break;
-                            
-                        default:
-                            
                     }
-
+                    //an item is used
                     check = true;
+                    //break the loop so only one item is used
+                    break;
                 }
             }
         }
