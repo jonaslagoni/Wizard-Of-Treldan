@@ -83,7 +83,7 @@ public class House1_sprites{
         
         
         //enemy
-        Sprite enemy = world.getMisc_sprites().getEnemy_Imp2();
+        Sprite enemy = world.getMisc_sprites().getEnemy_Skeleton();
         enemy.setPosition(200,150);
         house1_monster_sprites.add(enemy);
         

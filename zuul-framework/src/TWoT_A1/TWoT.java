@@ -8,7 +8,6 @@ import static TWoT_A1.UseableItem.Usables.MAGIC_ITEM;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -54,8 +53,8 @@ public class TWoT implements Serializable{
                 + "by a sobbing by the gate.\nA guard seems to be crying, and something doesn’t seem right in the "
                 + "village. All houses seem to be empty through the windows.\nYou gasp as you see several "
                 + "people lying dead in the side of the road.", 2);
-        roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \nThe house you venture into is dark – very dark. It seems like "
-                + "there is a man in a corner close to you and a woman in the other end of the room.", 3);
+        roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \n The house you venture into is dark – very dark. It seems like "
+                + "there is a dead person in the room.", 3);
         roomHouse2 = new Room("House of Riches", "\n\n***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
                 + "candle on the table.\nThere’s a blood-stained bed in the corner of the room. A bunch of sacks "
                 + "are placed up against a poorly build wardrobe.\nThe other corner is not lit up by the candle and "
@@ -112,7 +111,7 @@ public class TWoT implements Serializable{
         Interior roomVillageExit1 = new Exit(roomHouse1);
         Interior roomVillageExit2 = new Exit(roomHouse2);
         Interior roomVillageExit3 = new Exit(roomHouse3);
-        Interior roomVillageAxe = new QuestItem("Lumberjack axe", 1, "Could be useful later.", 99904, "You pickup the axe from the road.");
+        Interior roomVillageAxe = new QuestItem("Lumberjack axe", 1, "Could be useful for cutting old trees down.", 99904, "You pickup the axe from the road.");
         Npc mogens = new Npc("Mogens", true, 22201);
         Interior roomVillageNPC = mogens;
         roomVillage.addMapInterior("house1", roomVillageExit1);
@@ -123,10 +122,10 @@ public class TWoT implements Serializable{
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
-        Monster zombie = new Monster("Zombie man", 0.7, 0.7, 50, 50, "A dead man is half-sitting in a chair. He gets on his feet and attacks you.");
+        Monster zombie = new Monster("Living Skeleton", 0.7, 0.7, 50, 50, "A dead man is slouched in a chair. He gets on his feet and attacks you.");
         Interior roomHouse1Man = zombie;
-        zombie.addDropItem(new EquippableItem("Amulet of Pain", 4565, "Painful to wear.", 0.4, 0.4, AMULET_SLOT, "", 33308));
-        Interior roomHouse1Chest = new UseableItem("CheezBurga", 20, "Nom nom nom", "You move the loose stone and to your surprise you find a cheezBurga", 55508, FOOD, 50);
+        zombie.addDropItem(new EquippableItem("Amulet of Protection", 4565, "Cold to the touch", 0.4, 0.4, AMULET_SLOT, "", 33308));
+        Interior roomHouse1Chest = new UseableItem("Health Potion", 20, "Nom nom nom", "You search the chest and pick up at health potion", 55508, FOOD, 50);
         roomHouse1.addMapInterior("man", roomHouse1Man);
         roomHouse1.addMapInterior("chest", roomHouse1Chest);
         roomHouse1.addMapInterior("door", roomHouse1Exit);
@@ -135,7 +134,7 @@ public class TWoT implements Serializable{
         Interior roomHouse2Exit = new Exit(roomVillage);
         Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",1.9,0.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
-        Interior roomHouse2Table = new UseableItem("Cinnamon Roll",5,"Cinnamon roll with cinnamon", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
+        Interior roomHouse2Table = new UseableItem("Cinnamon Roll",5,"Cinnamon roll", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
 
         roomHouse2.addMapInterior("door", roomHouse2Exit);
         roomHouse2.addMapInterior("wardrobe", roomHouse2Wardrobe);
@@ -159,7 +158,7 @@ public class TWoT implements Serializable{
         Interior roomForrestExit2 = new Exit(roomCave);
         Interior roomForrestExit3 = new Exit(roomClearing);
         Interior roomForrestExit4 = new Exit(roomVillage);
-        Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "It stinks, but it might come in handy scaring off weaker foes.", "You go pick up a mushroom, it stinks, but it might come in handy scaring off weaker foes.", 55504, MAGIC_ITEM, 0);
+        Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "Might come in handy scaring off packs of trolls", "You go pick up a mushroom, ight come in handy scaring off packs of trolls", 55504, MAGIC_ITEM, 0);
         Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.9, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
         roomForest.addMapInterior("mushroom", roomForrestMushroom);
         roomForest.addMapInterior("goblin", roomForrestDeadGoblin);
@@ -209,14 +208,10 @@ public class TWoT implements Serializable{
         
         //roomClearing
         Interior roomClearingExit1 = new Exit(roomForest);
-        Monster giant_troll_boss = new Monster("Humongous troll", 2.1, 1.5, 200, 100, "A humongous troll attacks you.");
         Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "The unicorn doesent like you so it charges at you.");
         unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of good", 99905, ""));
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
-        Interior roomClearingBoss = giant_troll_boss;
-        giant_troll_boss.addDropItem(new EquippableItem("Giant's Gloves", 23534, "You could fit two hands in one of these.", 0.0, 0.5 , GLOVES_SLOT, "", 33312));
-        roomClearing.addMapInterior("troll", roomClearingBoss);
         roomClearing.addMapInterior("forest", roomClearingExit1);
         roomClearing.addMapInterior("unicorn", roomClearingMonster1);
         roomClearing.addMapInterior("tree", roomClearingTree);
@@ -230,6 +225,7 @@ public class TWoT implements Serializable{
         roomDungeon.addMapInterior("skeleton1", skeleton1);
         roomDungeon.addMapInterior("skeleton2", skeleton2);
         roomDungeon.addMapInterior("skeleton3", skeleton3);
+        skeleton3.addDropItem(new EquippableItem("Giant's Gloves", 23534, "You could fit two hands in one of these.", 0.0, 0.5 , GLOVES_SLOT, "", 33312));
         skeleton2.addDropItem(new QuestItem("Broken handle", 545, "Couldn't handle it.", 99903, ""));
         roomDungeon.addMapInterior("pathway", roomDungeonExit);
         
@@ -255,7 +251,7 @@ public class TWoT implements Serializable{
         
         
         //set which room you start in.
-        currentRoom = roomCellar;
+        currentRoom = roomVillage;
         lastRoomId = currentRoom.getRoomId();
         currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getMapInterior());
     }
