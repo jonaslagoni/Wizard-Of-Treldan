@@ -99,6 +99,6 @@ public class Fight {
     
     
     public String toString(){
-        return winner + " dealt " + damage + " damage.";
+        return "** " + winner + " dealt " + damage + " damage.";
     }
 }

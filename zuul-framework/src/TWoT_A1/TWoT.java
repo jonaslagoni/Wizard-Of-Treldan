@@ -270,16 +270,6 @@ public class TWoT implements Serializable{
         welcomeList.put(1, "Welcome to The Wizard of Treldan!\n");
         welcomeList.put(2, "The Wizard of Treldan is a new, incredibly boring adventure game.\n\n");
         welcomeList.put(3, currentRoom.getDescription() + "\n");
-        welcomeList.put(4, currentRoom.getDescription() + "\n");
-        welcomeList.put(5, currentRoom.getDescription() + "\n");
-        welcomeList.put(6, currentRoom.getDescription() + "\n");
-        welcomeList.put(7, currentRoom.getDescription() + "\n");
-        welcomeList.put(8, currentRoom.getDescription() + "\n");
-        welcomeList.put(9, currentRoom.getDescription() + "\n");
-        welcomeList.put(10, currentRoom.getDescription() + "\n");
-        welcomeList.put(11, currentRoom.getDescription() + "\n");
-        welcomeList.put(12, currentRoom.getDescription() + "\n");
-        welcomeList.put(13, currentRoom.getDescription() + "\n");
         return welcomeList;
     }
 
@@ -520,29 +510,29 @@ public class TWoT implements Serializable{
         else if(interior instanceof Monster){
             
             Combat combat = new Combat(player, (Monster)interior);
-            description.add("You found a monster! It's a " + ((Monster) interior).getMonsterName() + ".");
+            description.add("***** You found a monster! It's a " + ((Monster) interior).getMonsterName() + ".");
             for(Fight f : combat.AFight()){
                 if(!f.isDone()){
                     description.add(f.toString());
                 } else {
                     description.add(f.toString());
-                    description.add("The winner of the fight is " + f.winner());
+                    description.add("** The winner of the fight is " + f.winner());
                 }
             }
             if(player.getHealth() < 1){
-                description.add("YOU DIED! You lost highscore points.");
+                description.add("***** YOU DIED! You lost highscore points.");
                 player.removeHighscore(69);
                 player.setHealth(100);
             } else {
                 for(Item i: combat.getMonster().getItemDrop()){
-                    description.add("You got item " + i.getItemName());
+                    description.add("** You got item " + i.getItemName());
                     player.addItemToInventory(i);
                 }
                 int goldDrop = combat.getMonster().getGoldDrop();
-                description.add("You got " + goldDrop + " gold.");
+                description.add("** You got " + goldDrop + " gold.");
                 player.addGold(goldDrop);
                 currentRoom.removeInterior(command.getSecondWord());
-                description.add("Your remaining hp: " + player.getHealth());
+                description.add("***** Your remaining hp: " + player.getHealth());
                 if(((Monster) interior).getMobId() == 1){
                     isOver = true;
                 }
@@ -628,7 +618,7 @@ public class TWoT implements Serializable{
                             break;
                             
                         case 55506: //mysterius ring
-                            use.add("You examine the ring, and suddenly a bright light shines out, and you ");
+                            use.add("You examine the ring, and suddenly a bright light shines out, and you get teleported to the village.");
                             currentRoom = roomVillage;
                             break;
                             
