@@ -92,6 +92,11 @@ public class Cellar extends Map{
         //add the canvas to the group
         root.getChildren().add( player_canvas );
         
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        Canvas miniMapCanvas = miniMap.getMiniMap();
+        miniMap.updateMiniMap();
+        root.getChildren().add( miniMapCanvas );
         
         /**
          * TextArea used to give the user more information about the game.

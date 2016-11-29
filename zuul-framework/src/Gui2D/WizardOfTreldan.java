@@ -27,7 +27,6 @@ import Gui2D.Maps.Village;
 import Gui2D.Maps.WizardHouse;
 import Gui2D.SpriteController.SpriteController;
 import TWoT_A1.TWoT;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,11 +35,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 
 /**
  *
