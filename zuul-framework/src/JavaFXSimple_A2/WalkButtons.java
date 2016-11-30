@@ -116,13 +116,13 @@ public class WalkButtons {
         Button button_axe = new Button("Axe");
         Button button_forest = new Button("Forest");
         
-        VBox cellarButtons = new VBox(20);
+        VBox villageButtons = new VBox(20);
         //if guard children not delivered.
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe);
+        villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
-        Group root = new Group(cellarButtons);
+        Group root = new Group(villageButtons);
         
         
         button_reborn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
@@ -180,7 +180,7 @@ public class WalkButtons {
         //if guard children not delivered.
         house1Buttons.getChildren().addAll(button_man, button_chest, button_door);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        house1Buttons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(house1Buttons);
         
@@ -220,7 +220,7 @@ public class WalkButtons {
         //if guard children not delivered.
         house2Buttons.getChildren().addAll(button_door, button_wardrobe, button_bed, button_table);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        house2Buttons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(house2Buttons);
         
@@ -267,7 +267,7 @@ public class WalkButtons {
         //if guard children not delivered.
         house3Buttons.getChildren().addAll(button_door, button_kitchen, button_woman, button_chest);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        house3Buttons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(house3Buttons);
         
@@ -316,7 +316,7 @@ public class WalkButtons {
         //if guard children not delivered.
         forestButtons.getChildren().addAll(button_mushroom, button_goblin, button_house, button_cave, button_clearing, button_village);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        forestButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(forestButtons);
         
@@ -378,7 +378,7 @@ public class WalkButtons {
         //if guard children not delivered.
         wizardHouseButtons.getChildren().addAll(button_upstairs, button_box, button_lab, button_wizard, button_door);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        wizardHouseButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(wizardHouseButtons);
         
@@ -433,7 +433,7 @@ public class WalkButtons {
         //if guard children not delivered.
         caveButtons.getChildren().addAll(button_troll1, button_troll2, button_troll3, button_forest, button_lair);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        caveButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(caveButtons);
         
@@ -485,7 +485,7 @@ public class WalkButtons {
         //if guard children not delivered.
         lairButtons.getChildren().addAll(button_gruul, button_cave);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        lairButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(lairButtons);
         
@@ -518,7 +518,7 @@ public class WalkButtons {
         //if guard children not delivered.
         clearingButtons.getChildren().addAll(button_forest, button_unicorn, button_tree);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        clearingButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(clearingButtons);
         
@@ -558,7 +558,7 @@ public class WalkButtons {
         //if guard children not delivered.
         dungeonButtons.getChildren().addAll(button_skeleton1, button_skeleton2, button_skeleton3, button_pathway);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        dungeonButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
         Group root = new Group(dungeonButtons);
         
