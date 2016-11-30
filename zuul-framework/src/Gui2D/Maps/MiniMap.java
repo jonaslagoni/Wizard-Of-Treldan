@@ -18,7 +18,7 @@ import javafx.scene.image.Image;
 public class MiniMap {
     //all image files for minimaps
     private static final Image cellarImage = new Image("minimap/cellar.png");
-    private static final Image playerImage = new Image("minimap/cellar.png");
+    private static final Image playerImage = new Image("minimap/player.png");
     private Group root;
     private Canvas miniMap_background;
     private Canvas miniMap_player;
