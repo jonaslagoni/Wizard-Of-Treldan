@@ -362,7 +362,7 @@ public class EvilWizardsLair extends Map{
                     playerinventory.setShown(false);
                 }
                 
-                //render lava
+                //render lava in a delayd way
                 if(lavaCounter != 50){
                     lavaCounter++;
                 }else{
