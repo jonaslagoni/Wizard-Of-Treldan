@@ -207,8 +207,8 @@ public class TWoT implements Serializable{
         
         //roomClearing
         Interior roomClearingExit1 = new Exit(roomForest);
-        Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "The unicorn doesent like you so it charges at you.");
-        unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of good", 99905, ""));
+        Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "The unicorn charges at you.");
+        unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of rainbow", 99905, ""));
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
         roomClearing.addMapInterior("forest", roomClearingExit1);
@@ -645,13 +645,7 @@ public class TWoT implements Serializable{
                             }
                             break;
                             
-                        case 99906:
-                                use.add("The Magic staff the wizard told you to get");
-                            break;
-                            
-                        case 99905:
-                                use.add("The Vial of Liquid Rainbow the wizard asked you to get");
-                            break;
+                        
                     }
                     //an item is used
                     check = true;
@@ -661,13 +655,51 @@ public class TWoT implements Serializable{
                  
                 }
             }
+            
+            
+                if (i instanceof QuestItem) {
+                    if (i.getItemName().equals(command.getSecondWord())) {
+                    
+                    int itemID = i.getItemId();
+                    usedItem = i;
+                    
+                    switch(itemID){
+                        //lumberjack axe
+                        case 99904:
+                            use.add("Useful for cutting things down");
+                        break;
+                        
+                        //magic staff
+                        case 99905:
+                            use.add("The wizard told you to go get this");
+                        break;
+                        
+                        //vial of liquid rainbow
+                        case 99906:
+                            use.add("The wizard told you to go get this");
+                        break;
+                    
+                        
+                    }
+                       
+                        
+                    }
+                }    
+             
+            
         }
+        //if the item is used remove it from player inventory
         if(usedItem != null){
             removeItemFromInventory(usedItem);
         }
+        //error message
         if(!check){
             use.add("You carry no item with that name");
         }
+        
+        
+        
+        
     
     return use;
 }
