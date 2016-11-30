@@ -24,9 +24,10 @@ public class MiniMap {
     private Canvas miniMap_player;
     private GraphicsContext miniMapContext; 
     private GraphicsContext miniMap_playerContext; 
-    private int width = 200, height = 120;
-    private int width_player = 8, height_player = 8;
+    private int width = 160, height = 64;
+    private int width_player = 16, height_player = 16;
     private int posX = 0, posY = 0;
+    private double constWidthRatio = 0.0, constHeightRatio = 0.0;
     private TWoT game;
     
     /**
@@ -72,7 +73,9 @@ public class MiniMap {
     /**
      * 
      */
-    public void updateMiniMap(){
+    public void updateMiniMap(double playerCanvasWidth, double playerCanvasHeight){
+        constWidthRatio = playerCanvasWidth/width;
+        constHeightRatio = playerCanvasHeight/height;
         clearMiniMap_background();
         switch(game.getCurrentRoomId()){
             case 1:
@@ -83,7 +86,7 @@ public class MiniMap {
     
     public void updateMiniMap_player(double posX, double posY){
         clearMiniMap_player();
-        miniMapContext.drawImage(cellarImage, posX, posY, width_player, height_player);
+        miniMap_playerContext.drawImage(playerImage, posX/constWidthRatio, posY/constHeightRatio, width_player, height_player);
     }
     
     public Group getMinimap(){

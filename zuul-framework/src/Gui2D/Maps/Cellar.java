@@ -95,7 +95,7 @@ public class Cellar extends Map{
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
         Group miniMapGroup = miniMap.getMinimap();
-        miniMap.updateMiniMap();
+        miniMap.updateMiniMap(512.0, 256.0);
         root.getChildren().add( miniMapGroup );
         
         /**
