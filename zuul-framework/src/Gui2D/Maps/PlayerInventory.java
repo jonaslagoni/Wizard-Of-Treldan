@@ -5,6 +5,7 @@
  */
 package Gui2D.Maps;
 
+import Gui2D.WizardOfTreldan;
 import TWoT_A1.Command;
 import TWoT_A1.CommandWord;
 import TWoT_A1.EquippableItem;
@@ -249,9 +250,42 @@ public class PlayerInventory {
             public void handle(ActionEvent e) {
                 AnchorPane t = getSelected();
                 if (t != null) {
+                    int pre_room = game.getCurrentRoomId();
                     Text text = (Text) t.getChildren().get(0);
                     for (String s : game.useItem(new Command(CommandWord.USE, text.getText()))) {
                         infobox.appendText(s + "\n");
+                    }
+                    if(pre_room != game.getCurrentRoomId()){
+                        switch(game.getCurrentRoomId()){
+                            case 1: WizardOfTreldan.setCellarScene();
+                                break;
+                            case 2: WizardOfTreldan.setVillageScene();
+                                break;
+                            case 3: WizardOfTreldan.setHouse1Scene();
+                                break;
+                            case 4: WizardOfTreldan.setHouse2Scene();
+                                break;
+                            case 5: WizardOfTreldan.setHouse3Scene();
+                                break;
+                            case 6: WizardOfTreldan.setForestScene();
+                                break;
+                            case 7: WizardOfTreldan.setWizardHouseScene();
+                                break;
+                            case 8: WizardOfTreldan.setCaveScene();
+                                break;
+                            case 9: WizardOfTreldan.setGruulsLairScene();
+                                break;
+                            case 10: WizardOfTreldan.setClearingScene();
+                                break;
+                            case 11: WizardOfTreldan.setDungeonScene();
+                                break;
+                            case 12: WizardOfTreldan.setLibraryScene();
+                                break;
+                            case 13: WizardOfTreldan.setEvilWizardsLairScene();
+                                break;
+                            default: WizardOfTreldan.setMenuScene();
+                                break; 
+                        }
                     }
                     update(game);
                 }
