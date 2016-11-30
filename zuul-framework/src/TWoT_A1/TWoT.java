@@ -200,7 +200,7 @@ public class TWoT implements Serializable{
         //roomCaveGrull
         Interior roomCaveGruulExit1 = new Exit(roomCave);
         Interior gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, the giant troll it rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
-        ((Monster)gruul).addDropItem(new QuestItem("Magic staff", 700, "Magic staff the wizard told you to get", 99906, ""));
+        ((Monster)gruul).addDropItem(new QuestItem("Magic staff", 700, "The Magic staff the wizard told you to get", 99906, ""));
         ((Monster)gruul).addDropItem(new EquippableItem("Gruul's Giant Club", 7000, "Huge club.", 2.6, 0.0 , WEAPON_SLOT, "", 33311));
         roomCaveGruul.addMapInterior("gruul", gruul);
         roomCaveGruul.addMapInterior("cave", roomCaveGruulExit1);
@@ -503,6 +503,8 @@ public class TWoT implements Serializable{
                     description.add("You approach the old tree, it looks like it can be cut down fairly easily with 	the right tool");
                     break;
                     
+                
+                    
             }
             return description;
         }
@@ -642,11 +644,21 @@ public class TWoT implements Serializable{
                                 usedItem = null;
                             }
                             break;
+                            
+                        case 99906:
+                                use.add("The Magic staff the wizard told you to get");
+                            break;
+                            
+                        case 99905:
+                                use.add("The Vial of Liquid Rainbow the wizard asked you to get");
+                            break;
                     }
                     //an item is used
                     check = true;
                     //break the loop so only one item is used
                     break;
+                    
+                 
                 }
             }
         }
