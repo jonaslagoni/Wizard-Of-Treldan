@@ -22,12 +22,14 @@ public class EvilWizardsLair_sprites{
     private SpriteController world;
     
     private List<Sprite> spriteList;
+    private List<Sprite> spriteList_lava;
     private List<Sprite> spriteList_monsters;
     
     public EvilWizardsLair_sprites(SpriteController world){
         this.world = world;
         this.spriteList = new ArrayList();
         this.spriteList_monsters = new ArrayList();
+        this.spriteList_lava = new ArrayList();
     }
     
     public void setEvilWizardsLair_background_SingleSprites(){
@@ -39,7 +41,7 @@ public class EvilWizardsLair_sprites{
         Sprite backgroundCastleLava = new Groupsprite_random(backgroundLava);
         backgroundCastleLava.setSize(1024, 512);
         backgroundCastleLava.setPosition(0, 0);
-        spriteList.add(backgroundCastleLava);
+        spriteList_lava.add(backgroundCastleLava);
         
         //floor 1
         List<SingleSprite> backgroundCastleFloorList = new ArrayList();
@@ -158,6 +160,12 @@ public class EvilWizardsLair_sprites{
     public List<Sprite> getSpriteList_monsters() {
         return spriteList_monsters;
     }
-    
-    
+
+    /**
+     * @return the spriteList_lava
+     */
+    public List<Sprite> getSpriteList_lava() {
+        return spriteList_lava;
+    }
+
 }

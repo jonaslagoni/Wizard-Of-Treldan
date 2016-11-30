@@ -71,6 +71,14 @@ public class EvilWizardsLair extends Map{
         Group root = new Group();
         //set new scene
         Scene theScene = new Scene( root );
+        
+        
+        //add a canvas only for the player lava
+        Canvas lava_canvas = new Canvas(1024, 512);
+        //add the canvas to the group
+        root.getChildren().add(lava_canvas);
+        
+        
         //add the canvas for backgroundsprites
         Canvas background = new Canvas(1024, 512);
         theScene.getStylesheets().add("TextAreaStyle.css");
@@ -91,6 +99,7 @@ public class EvilWizardsLair extends Map{
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         GraphicsContext background_gc = background.getGraphicsContext2D();
         GraphicsContext monster_gc = monster_canvas.getGraphicsContext2D();
+        GraphicsContext lava_gc = lava_canvas.getGraphicsContext2D();
         
          //escape menu start
         GameMenu escmenu = new GameMenu();
@@ -138,11 +147,14 @@ public class EvilWizardsLair extends Map{
         
          //spritelist of background sprites
         List<Sprite> spriteList = evilWizardsLair_sprites.getSpriteList();
+         //spritelist of lava sprites
+        List<Sprite> spriteList_lava = evilWizardsLair_sprites.getSpriteList_lava();
         //spritelist of foreground sprites
         List<Sprite > spriteList_foreground = evilWizardsLair_sprites.getSpriteList_monsters();
         for (Sprite background_sprites : spriteList) {
             background_sprites.render(background_gc);
         }
+        spriteList_lava.get(0).render(lava_gc);
         //render monsters
         if(game.checkExisting("wizard")){
             spriteList_foreground.get(0).render(monster_gc);
@@ -157,7 +169,7 @@ public class EvilWizardsLair extends Map{
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
-
+            private int lavaCounter = 0;
             //what to do each cycle
             @Override
             public void handle(long currentNanoTime) {
@@ -322,8 +334,6 @@ public class EvilWizardsLair extends Map{
                 //render our new player
                 player.render(moveable_gc);
                 
-               
-                
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
@@ -334,6 +344,16 @@ public class EvilWizardsLair extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //render lava
+                if(lavaCounter != 50){
+                    lavaCounter++;
+                }else{
+                    lava_gc.clearRect(0, 0, 1024, 512);
+                    spriteList_lava.get(0).render(lava_gc);
+                    lavaCounter = 0;
+                }
+                
                 //clear monsters
                 monster_gc.clearRect(0, 0, 1024, 512);
                 
