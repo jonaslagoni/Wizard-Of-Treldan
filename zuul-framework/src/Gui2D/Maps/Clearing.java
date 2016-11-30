@@ -147,7 +147,7 @@ public class Clearing extends Map{
             }
             //draw the sprites if they exist with the graphicscontext  
             if(game.checkExisting("tree")){
-                sprites_interact.get(1).render(interact_gc);
+                sprites_interact.get(2).render(interact_gc);
             }
         //get all the sprites of the background  
         List<Sprite> sprites_still = clearing_sprites.getClearing_background_sprites();
@@ -371,7 +371,7 @@ public class Clearing extends Map{
                 }
                 
                 if(game.checkExisting("tree")){
-                    sprites_interact.get(1).render(interact_gc);
+                    sprites_interact.get(2).render(interact_gc);
                 }else{
                     sprites_interact.get(2).render(interact_gc);
                 }

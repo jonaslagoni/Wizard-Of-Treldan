@@ -74,6 +74,7 @@ public class Dungeon extends Map{
         theScene.getStylesheets().add("TextAreaStyle.css");
         
         
+        
         root.getChildren().add(canvas_background);
         
         //add a canvas only for the player
@@ -100,6 +101,10 @@ public class Dungeon extends Map{
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
         //menu testing done
+        
+        //escape menu
+        GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
@@ -336,6 +341,19 @@ public class Dungeon extends Map{
                 }
                 if(game.checkExisting("skeleton3")){
                     enemy_sprites.get(2).render(enemiesGC);
+                }
+                
+                //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
+                    }
                 }
                 
                 //check if the user wants to see a menu.

@@ -97,11 +97,14 @@ public class House1 extends Map{
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(4) + "\n");
 
-//Menu testing start
+        //Inventory menu
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
+        
+        //escape menu
+         GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
        
-//menu testing done
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
@@ -313,6 +316,19 @@ public class House1 extends Map{
                 }
                 if(game.checkExisting("stranger")){
                     stranger_sprite.render(monster_gc);
+                }
+                
+                //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
+                    }
                 }
                 
                 //check if the user wants to see a menu.

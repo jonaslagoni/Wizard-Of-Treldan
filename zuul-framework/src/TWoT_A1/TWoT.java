@@ -611,9 +611,9 @@ public class TWoT implements Serializable{
                                 use.add("Can't use that here");
                                 usedItem = null;
                             }
-
+                            break;
                         case 55505: //smooth ruby
-                            use.add("A smooth looking ruby");
+                            use.add("A smooth looking ruby, only good for high score");
                             break;
                             
                         case 55506: //mysterious ring
@@ -632,7 +632,7 @@ public class TWoT implements Serializable{
                            
                             break;
                             
-                        case 55508: //CheezBurga
+                        case 55508: //Cheese Sandwhich
                             if(getPlayerHealth() != 100){
                                 use.add("You used " + i.getItemName() + " and regenerated " + ((UseableItem) i).getHealthRegen() + " hp back.");
                                 playerRegenHealth(((UseableItem) i).getHealthRegen());

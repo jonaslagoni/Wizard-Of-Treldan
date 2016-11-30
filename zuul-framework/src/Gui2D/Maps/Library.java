@@ -106,10 +106,10 @@ public class Library extends Map{
         //player menu visuals
         AnchorPane menu = playerinventory.getMenu();
         
-        //escape menu start
+        //escape menu 
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
-        //escape menu stop
+        
         
    
         //set the keylisteners to the scene.

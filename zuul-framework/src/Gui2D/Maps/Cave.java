@@ -89,6 +89,10 @@ public class Cave extends Map{
         Canvas foreground_canvas = new Canvas(1024, 512);
         root.getChildren().add(foreground_canvas);
         
+        //esc menu
+        GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
+        
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
@@ -372,6 +376,19 @@ public class Cave extends Map{
                 }
                 
                 //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
+                    }
+                }
+                
+                //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
                         root.getChildren().add(menu);
@@ -382,6 +399,7 @@ public class Cave extends Map{
                     playerinventory.setShown(false);
                 }
             }
+            
                     
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {

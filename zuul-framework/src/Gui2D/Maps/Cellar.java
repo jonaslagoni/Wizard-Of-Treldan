@@ -113,14 +113,15 @@ public class Cellar extends Map{
         infobox.appendText(welcome.get(4) + "\n");
         
         
-        //playerinventory start
+        //Inventory Menu
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-        //playerinventory stop
-        //escape menu start
+        
+        
+        //Escape Menu
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
-        //escape menu stop
+        
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();

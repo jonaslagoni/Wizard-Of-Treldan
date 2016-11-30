@@ -101,7 +101,9 @@ public class Forest extends Map{
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
         
-        //menu testing done
+        //esc menu
+        GameMenu escmenu = new GameMenu();
+        AnchorPane gameMenu = escmenu.getMenu();
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
@@ -349,6 +351,19 @@ public class Forest extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
+                
+                //check if the user wants to see a menu.
+                if(menu_input.contains("ESCAPE")){
+                    if(!escmenu.isShown()){
+                        root.getChildren().add(gameMenu);
+                        escmenu.setShown(true);
+                    }
+                }else{
+                    if(escmenu.isShown()){
+                        root.getChildren().remove(gameMenu);
+                        escmenu.setShown(false);
+                    }
+                }
                 
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
