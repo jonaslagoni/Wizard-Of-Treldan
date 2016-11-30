@@ -144,7 +144,7 @@ private final List<SingleSprite> clearing_pathway_sprites;
             //ENEMY 0
             Sprite unicorn = world.getMisc_sprites().getUnicorner();
             unicorn.setPosition(500,100);
-            unicorn.setBoundary(new Rectangle2D(unicorn.getPositionX()+126,unicorn.getPositionY()+66,unicorn.getWidth(),unicorn.getHeight()));
+            unicorn.setBoundary(new Rectangle2D(unicorn.getPositionX()+126,unicorn.getPositionY()+66,unicorn.getWidth()+126,unicorn.getHeight()+35));
             clearing_interact.add(unicorn);
             
             //tree 1

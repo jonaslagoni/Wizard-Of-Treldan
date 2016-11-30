@@ -189,18 +189,12 @@ public class Clearing extends Map{
                             || player.intersects_left(sprites_still.get(11))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("unicorn")){
-                        if(player.intersects_left(sprites_interact.get(0))){
+                    }else if(game.checkExisting("unicorn") && player.intersects_left(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(-100,0);
-                        }
-                    }else if(game.checkExisting("tree")){
-                        if(player.intersects_left(sprites_interact.get(1))){
+                        
+                    }else if(game.checkExisting("tree") && player.intersects_left(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(-100,0);
-                        }
+                        
                     }else{
                         player.setVelocity(-100,0);
                     }
@@ -217,18 +211,19 @@ public class Clearing extends Map{
                     
                         
                    //check if the player walks into a sprite
-                   }else if(game.checkExisting("unicorn")){
-                        if(player.intersects_right(sprites_interact.get(0))){
+                   } else if (player.intersects_right(sprites_still.get(8))
+                            || player.intersects_right(sprites_still.get(9))
+                            || player.intersects_right(sprites_still.get(10))
+                            || player.intersects_right(sprites_still.get(11))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else if(game.checkExisting("unicorn") && player.intersects_right(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(100,0);
-                        }
-                    }else if(game.checkExisting("tree")){
-                        if(player.intersects_right(sprites_interact.get(1))){
+                        
+                    }else if(game.checkExisting("tree") && player.intersects_right(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(100,0);
-                        }
+                        
                     }else{
                         player.setVelocity(100,0);
                     }
@@ -243,7 +238,7 @@ public class Clearing extends Map{
                         //Reset the velocity
                         player.setVelocity(0, 0);
                             //check if the player walks into the exit
-                    }else if(player.intersects_top(sprites_still.get(7))){
+                    } else if(player.intersects_top(sprites_still.get(7))){
                        if(!hasPrinted){
                             int oldId = game.getCurrentRoomId();
                             for(String s: game.goTo(new Command(CommandWord.GO, "forest"))){
@@ -274,19 +269,12 @@ public class Clearing extends Map{
                        
                    //check if the player walks into a specific sprite
                    //check if the player walks into a specific sprite
-                   }else if(game.checkExisting("unicorn")){
-                        if(player.intersects_top(sprites_interact.get(0))){
+                   }else if(game.checkExisting("unicorn") && player.intersects_top(sprites_interact.get(0))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(0,-100);
-                        }
                         
-                    }else if(game.checkExisting("tree")){
-                        if(player.intersects_top(sprites_interact.get(1))){
+                    }else if(game.checkExisting("tree") && player.intersects_top(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(0,-100);
-                        }
+                        
                     }else{
                         player.setVelocity(0,-100);
                     }
@@ -312,18 +300,12 @@ public class Clearing extends Map{
                         player.setVelocity(0, 0);
                        
                    //check if the player walks into a specific sprite
-                   }else if(game.checkExisting("unicorn")){
-                        if(player.intersects_bottom(sprites_interact.get(0))){
+                   }else if(game.checkExisting("unicorn") && player.intersects_bottom(sprites_interact.get(0))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(0,100);
-                        }
-                    }else if(game.checkExisting("tree")){
-                        if(player.intersects_bottom(sprites_interact.get(1))){
+                        
+                    }else if(game.checkExisting("tree") && player.intersects_bottom(sprites_interact.get(1))){
                             player.setVelocity(0, 0);
-                        }else{
-                            player.setVelocity(0,100);
-                        }
+                        
                     }else{
                         player.setVelocity(0,100);
                     }
