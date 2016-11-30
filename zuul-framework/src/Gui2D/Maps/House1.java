@@ -165,6 +165,9 @@ public class House1 extends Map{
 
                 //set our initial direction standstill
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
+                
+                // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
+                
                 //now check for the users input
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
@@ -190,6 +193,10 @@ public class House1 extends Map{
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
 
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
+                
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
@@ -213,6 +220,10 @@ public class House1 extends Map{
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
 
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" UP INPUT ">
+                
                 //check if the user wants to walk up.
                 if (input.contains("UP")) {
                     //check if the user walks into a world boundary
@@ -249,6 +260,11 @@ public class House1 extends Map{
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
+                
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" DOWN INPUT ">
+                
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
@@ -272,6 +288,8 @@ public class House1 extends Map{
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
 
+                // </editor-fold>
+                
                 if (menu_input.contains("E")) {
                     if(player.intersect(sprites_still.get(4))){
                         for(String s : game.goTo(new Command(CommandWord.GO, "chest"))) {

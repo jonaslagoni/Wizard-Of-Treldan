@@ -165,9 +165,6 @@ public class Cave extends Map{
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
-            private boolean troll1Dead = false;
-            private boolean troll2Dead = false;
-            private boolean troll3Dead = false;
 
             //what to do each cycle
             @Override
@@ -181,6 +178,9 @@ public class Cave extends Map{
 
                 //set our initial direction standstill
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
+                
+                // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
+                
                 //now check for the users input
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
@@ -210,6 +210,10 @@ public class Cave extends Map{
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
                 
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
+                
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
@@ -237,6 +241,10 @@ public class Cave extends Map{
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
+                
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" UP INPUT ">
                 
                 //check if the user wants to walk up.
                 if (input.contains("UP")) {
@@ -307,6 +315,10 @@ public class Cave extends Map{
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
                 
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" DOWN INPUT ">
+                
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
@@ -334,6 +346,8 @@ public class Cave extends Map{
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
+                
+                // </editor-fold>
                 
                 if (menu_input.contains("E")) {
                     if (player.intersect(enemy_sprites.get(0))) {

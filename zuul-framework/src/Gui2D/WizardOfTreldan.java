@@ -22,7 +22,6 @@ import Gui2D.Maps.Load;
 import Gui2D.Maps.Map;
 import Gui2D.Maps.Menu;
 import Gui2D.Maps.PlayerSelection;
-import Gui2D.Maps.Unicorn;
 import Gui2D.Maps.Village;
 import Gui2D.Maps.WizardHouse;
 import Gui2D.SpriteController.SpriteController;
@@ -111,7 +110,6 @@ public class WizardOfTreldan extends Application {
         house2 = new House2(world);
         gruulslair = new GruulsLair(world);
         clearing = new Clearing(world);
-        unicorn = new Unicorn(world);
         forest = new Forest(world);
         cave = new Cave(world);
         dungeon = new Dungeon(world);
