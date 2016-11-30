@@ -192,7 +192,7 @@ public class Clearing extends Map{
                             || player.intersects_left(sprites_still.get(11))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("unicorn") && player.intersects_left(sprites_interact.get(1))){
+                    }else if(game.checkExisting("unicorn") && player.intersects_left(sprites_interact.get(0))){
                             player.setVelocity(0, 0);
                         
                     }else if(game.checkExisting("tree") && player.intersects_left(sprites_interact.get(1))){
@@ -225,7 +225,7 @@ public class Clearing extends Map{
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    } else if(game.checkExisting("unicorn") && player.intersects_right(sprites_interact.get(1))){
+                    } else if(game.checkExisting("unicorn") && player.intersects_right(sprites_interact.get(0))){
                             player.setVelocity(0, 0);
                         
                     }else if(game.checkExisting("tree") && player.intersects_right(sprites_interact.get(1))){
