@@ -99,7 +99,7 @@ public class TWoT implements Serializable{
 
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
-        Interior roomCellarStick = new QuestItem("A needle", 1, "It was found in the haystack", 99901, "It must have been super uncomfortable laying on the haystack.\nYou search around the haystack and end up finding a strong needle. The needle has been added to your inventory.");
+        Interior roomCellarStick = new QuestItem("A needle", 1, "Can be used to lockpick doors", 99901, "It must have been super uncomfortable laying on the haystack.\nYou search around the haystack and end up finding a strong needle. The needle has been added to your inventory.");
         Interior roomCellarCheeseSandwich = new UseableItem("Cheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501, FOOD, 50);
         roomCellar.addMapInterior("door", roomCellarExit);
         roomCellar.addMapInterior("haystack", roomCellarStick);
@@ -132,7 +132,7 @@ public class TWoT implements Serializable{
         //roomHouse2
         Interior roomHouse2Exit = new Exit(roomVillage);
         Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",1.9,0.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
-        Interior roomHouse2Bed = new QuestItem("Kids", 2, "Small and crying", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
+        Interior roomHouse2Bed = new QuestItem("Kids", 2, "The kids of the guard in the village", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
         Interior roomHouse2Table = new UseableItem("Cinnamon Roll",5,"Cinnamon roll", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
 
         roomHouse2.addMapInterior("door", roomHouse2Exit);
@@ -145,7 +145,7 @@ public class TWoT implements Serializable{
         Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503, MAGIC_ITEM, 0);
         Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
         Interior roomHouse3Woman = woman;
-        woman.addDropItem(new QuestItem("Bloody key", 8273, "This key looks bloody", 99907, ""));
+        woman.addDropItem(new QuestItem("Bloody key", 8273, "Used to unlock a house in the village of treldan", 99907, ""));
         Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 0, 1.3, CHEST_SLOT, "There is a set of leather armor  in the chest, it's old and rusty but durable, you  put it on and it suits you surprisingly well.", 33302);
         roomHouse3.addMapInterior("door", roomHouse3Exit);
         roomHouse3.addMapInterior("woman", roomHouse3Woman);
@@ -208,7 +208,7 @@ public class TWoT implements Serializable{
         //roomClearing
         Interior roomClearingExit1 = new Exit(roomForest);
         Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "The unicorn charges at you.");
-        unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of rainbow", 99905, ""));
+        unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of rainbow the wizard told you to get", 99905, ""));
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
         roomClearing.addMapInterior("forest", roomClearingExit1);
@@ -225,7 +225,7 @@ public class TWoT implements Serializable{
         roomDungeon.addMapInterior("skeleton2", skeleton2);
         roomDungeon.addMapInterior("skeleton3", skeleton3);
         skeleton3.addDropItem(new EquippableItem("Giant's Gloves", 23534, "You could fit two hands in one of these.", 0.0, 0.5 , GLOVES_SLOT, "", 33312));
-        skeleton2.addDropItem(new QuestItem("Broken handle", 545, "Couldn't handle it.", 99903, ""));
+        skeleton2.addDropItem(new QuestItem("Broken handle", 545, "Opens the door in the library", 99903, ""));
         roomDungeon.addMapInterior("pathway", roomDungeonExit);
         
         //roomLibrary
@@ -389,7 +389,7 @@ public class TWoT implements Serializable{
                     description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     return description;
                 }else{
-                    description.add("You have to defeat the 3 skeleton to continue.");
+                    description.add("You have to defeat the 3 skeletons to continue.");
                     return description;
                 }
             }else if(currentRoom == roomLibrary){
@@ -399,7 +399,7 @@ public class TWoT implements Serializable{
                         if(i instanceof QuestItem){
                             if(((QuestItem)i).getItemId() == 99903){
                                 currentRoom = ((Exit)interior).getNewRoom();
-                                description.add("You attach the broken handle to the door and it will now open,");
+                                description.add("You attach the broken handle to the door and it opens easily,");
                                 description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                                 return description;
                             }
@@ -644,9 +644,11 @@ public class TWoT implements Serializable{
                                 usedItem = null;
                             }
                             break;
-                            
+                        
+                    
                         
                     }
+                    
                     //an item is used
                     check = true;
                     //break the loop so only one item is used
@@ -664,19 +666,54 @@ public class TWoT implements Serializable{
                     usedItem = i;
                     
                     switch(itemID){
+                        
+                        //needle
+                        case 99901:
+                            use.add("\n" + i.getItemDescription());
+                            usedItem = null;
+                            check = true;
+                        break;
+                        
+                        //bloody key
+                        case 99907:
+                            use.add(i.getItemDescription());
+                            usedItem = null;
+                            check = true;
+                        break;
+                        
+                        //Kids
+                        case 99902:
+                            use.add("\n" + i.getItemDescription());
+                            usedItem = null;
+                            check = true;
+                        break;
+                                
                         //lumberjack axe
                         case 99904:
-                            use.add("Useful for cutting things down");
+                            use.add("\n" + i.getItemDescription());
+                            usedItem = null;
+                            check = true;
                         break;
                         
                         //magic staff
                         case 99905:
-                            use.add("The wizard told you to go get this");
+                            use.add("\n" + i.getItemDescription());
+                            usedItem = null;
+                            check = true;
                         break;
                         
                         //vial of liquid rainbow
                         case 99906:
-                            use.add("The wizard told you to go get this");
+                            use.add("\n" + i.getItemDescription());
+                            usedItem = null;
+                            check = true;
+                        break;
+                        
+                        //Broken handle to the library
+                        case 99903:
+                            use.add("\n" + i.getItemDescription());
+                            usedItem = null;
+                            check = true;
                         break;
                     
                         
