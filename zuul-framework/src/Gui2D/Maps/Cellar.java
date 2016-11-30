@@ -94,9 +94,9 @@ public class Cellar extends Map{
         
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
-        Canvas miniMapCanvas = miniMap.getMiniMap();
+        Group miniMapGroup = miniMap.getMinimap();
         miniMap.updateMiniMap();
-        root.getChildren().add( miniMapCanvas );
+        root.getChildren().add( miniMapGroup );
         
         /**
          * TextArea used to give the user more information about the game.
@@ -353,6 +353,11 @@ public class Cellar extends Map{
                         escmenu.setShown(false);
                     }
                 }
+                
+                
+                
+                //minimap
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
             public void setNewScene(){
                 switch(game.getCurrentRoomId()){
