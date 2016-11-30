@@ -68,12 +68,29 @@ public class PlayerSelection extends Map{
         anchorpane.getChildren().add(playernameText);
         
         
+        //back to menu button
+        Button Back = new Button();
+        Back.setText("Back");
+        Back.setFont(new Font("Tahoma", 20));
+        Back.setPrefSize(100, 50);
+        Back.relocate(562,260);
+        Back.addEventHandler(MouseEvent.MOUSE_CLICKED, 
+            new EventHandler<MouseEvent>() {
+                @Override 
+                public void handle(MouseEvent a) {
+                
+                    WizardOfTreldan.setMenuScene();
+                   
+                }
+        });
+        anchorpane.getChildren().add(Back);
         
+        //start game button
         Button start = new Button();
         start.setText("Start Game");
         start.setFont(new Font("Tahoma", 20));
         start.setPrefSize(150, 50);
-        start.relocate(437, 260);
+        start.relocate(362, 260);
         start.addEventHandler(MouseEvent.MOUSE_CLICKED, 
             new EventHandler<MouseEvent>() {
                 @Override 
@@ -91,6 +108,7 @@ public class PlayerSelection extends Map{
                 }
         });
         
+       
         playerScene.setOnKeyPressed(
             new EventHandler<KeyEvent>(){
                 @Override
