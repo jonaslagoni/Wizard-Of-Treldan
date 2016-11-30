@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JavaFXSimple;
+package JavaFXSimple_A2;
 
 import Gui2D.WizardOfTreldan;
 import TWoT_A1.*;
@@ -60,7 +60,7 @@ import javafx.stage.Stage;
  */
 public class GUIFX extends Application {
 
-    private TWoT twot;
+    private static TWoT twot;
     private WalkButtons wb;
     
     private TextArea textArea;
@@ -325,7 +325,7 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, inputField, healthbar, invTable, label1, statsField, wb.updateButtons());
+        Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, inputField, healthbar, invTable, label1, statsField, wb.updateButtons(twot, textArea));
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
