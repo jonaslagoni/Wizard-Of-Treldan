@@ -105,7 +105,7 @@ public class Clearing extends Map{
         
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
-        infobox.appendText(welcome.get(10) + "\n");
+        infobox.appendText(welcome.get(3) + "\n");
         
         
 
