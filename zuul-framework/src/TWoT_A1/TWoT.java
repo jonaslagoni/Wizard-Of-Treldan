@@ -38,7 +38,6 @@ public class TWoT implements Serializable{
         player.addItemToEquippableInventory(new EquippableItem("Dagger", 291, "Small dagger.", 0.2, 0.0, WEAPON_SLOT, "", 33305), player);
         player.addItemToEquippableInventory(new EquippableItem("Tattered Shirt", 291, "Smells awful.", 0.0, 0.2, CHEST_SLOT, "", 33306), player);
         player.addItemToEquippableInventory(new EquippableItem("Tattered Pants", 291, "Uncomfortable to wear.", 0.0, 0.1, LEG_SLOT, "", 33307), player);
-
     }   
     
     /**
@@ -285,7 +284,7 @@ public class TWoT implements Serializable{
     public HashMap<String, String> getHelpMessages(){
         //init a new object of type hashmap
         HashMap<String, String> helpList = new HashMap();
-        helpList.put("helpMessage1",  "\nYou are at " + currentRoom.getName() + "\n");
+        helpList.put("helpMessage1", "\nYou are at " + currentRoom.getName() + "\n");
         helpList.put("helpMessage2", currentRoom.getMapInterior() + "\n");
         helpList.put("helpMessage3", "You can type 'go [interactable object]' to move around in rooms.");
         
@@ -447,7 +446,7 @@ public class TWoT implements Serializable{
                     for(Item i: getInventoryItems()){
                         if(i instanceof QuestItem){
                             if(((QuestItem)i).getItemId() == 99902){
-                                description.add("Thank you, thank you so much, i dont know what I would do without them \"Please, leave the village through the gate.");
+                                description.add("Thank you, thank you so much, I dont know what I would do without them \"Please, leave the village through the gate.");
                                 player.removeInventoryItem(i);
                                 Interior roomVillageExit4 = new Exit(roomForest);
                                 roomVillage.addMapInterior("forest", roomVillageExit4);
@@ -476,7 +475,7 @@ public class TWoT implements Serializable{
                         roomWizardHouse.removeInterior("wizard");
                         roomVillage.addMapInterior("stranger", stranger);
                     }else{
-                        description.add("zzzzzzzzzzzzzzzz\" You wake up the wizard \"zzz..oo.ahwhat? who? oh it's you traveler, thank you for coming to see me. As i mentioned i have need of help to defeat the evil Wizard, first of all i can't get inside his evil castle, buta stranger in the village will be able to teleport you inside if you want to help me, but the evil troll Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
+                        description.add("zzzzzzzzzzzzzzzz\" You wake up the wizard \"zzz..oo.ahwhat? Who? Oh it's you traveler; thank you for coming to see me. As I mentioned I have need of help to defeat the evil Wizard. First of all I can't get inside his evil castle, but a stranger in the village will be able to teleport you inside if you want to help me, but the evil troll Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
                     }
                     break;
                 
@@ -547,7 +546,6 @@ public class TWoT implements Serializable{
     
     public List<String> equipItem(Command command){
         List<String> equip = new ArrayList();
-        Item usedItem = null;
         //for (Item i : player.getInventoryItems()) {
         for(int i = 0; i < player.getInventoryItems().size(); i++){
             Item item = player.getInventoryItems().get(i);
@@ -563,6 +561,7 @@ public class TWoT implements Serializable{
         }
         return equip;
     }
+    
     public List<String> useItem(Command command){
         List<String> use = new ArrayList();
         //no items used yet
@@ -617,7 +616,7 @@ public class TWoT implements Serializable{
                             use.add("A smooth looking ruby");
                             break;
                             
-                        case 55506: //mysterius ring
+                        case 55506: //mysterious ring
                             use.add("You examine the ring, and suddenly a bright light shines out, and you get teleported to the village.");
                             currentRoom = roomVillage;
                             break;
@@ -660,8 +659,6 @@ public class TWoT implements Serializable{
     
     return use;
 }
-    
-    
     
     public boolean endGame(){
         if(currentRoom == roomEvilWizardsLair){
