@@ -596,126 +596,78 @@ public class WalkButtons {
     }
     private Group libraryButtons(TWoT twot, TextArea textArea) {
         
-        Button button_reborn = new Button("Reborn");
-        Button button_riches = new Button("Riches");
-        Button button_hOfGuard = new Button("Guards House");
-        Button button_guard = new Button("The Guard");
-        Button button_axe = new Button("Axe");
-        Button button_forest = new Button("Forest");
-        
-        VBox cellarButtons = new VBox(20);
+        Button button_librarian = new Button("Librarian");
+        Button button_door = new Button("Door");
+        Button button_chest = new Button("Chest");
+	
+        VBox libraryButtons = new VBox(20);
         //if guard children not delivered.
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe);
+        libraryButtons.getChildren().addAll(button_librarian, button_door, button_chest);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        libraryButtons.getChildren().addAll(button_librarian, button_door, button_chest);
         */
-        Group root = new Group(cellarButtons);
+        Group root = new Group(libraryButtons);
         
         
-        button_reborn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Reborns");
+        button_librarian.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "Librarian");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             
         });
-        button_riches.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Riches");
+        button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "Door");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             
         });
-        button_hOfGuard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Guard House");
+        button_chest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "Chest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             
         });
-        button_guard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "guard");
-            for(String s: twot.goTo(command)){
-                textArea.appendText("\n" + s + "\n");
-            }
-            
-        });
-        button_axe.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "axe");
-            for(String s: twot.goTo(command)){
-                textArea.appendText("\n" + s + "\n");
-            }
-            
-        });
-        button_forest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "forest");
-            for(String s: twot.goTo(command)){
-                textArea.appendText("\n" + s + "\n");
-            }
-            
-        });
-        
+	
         return root;
     }
     private Group evilWizardsButtons(TWoT twot, TextArea textArea) {
         
-        Button button_reborn = new Button("Reborn");
-        Button button_riches = new Button("Riches");
-        Button button_hOfGuard = new Button("Guards House");
-        Button button_guard = new Button("The Guard");
-        Button button_axe = new Button("Axe");
-        Button button_forest = new Button("Forest");
+        Button button_evilWizard = new Button("Evil Wizard");
+        Button button_minion1 = new Button("Minion1");
+        Button button_minion2 = new Button("Minion2");
         
-        VBox cellarButtons = new VBox(20);
+        VBox evilWizardsButtons = new VBox(20);
         //if guard children not delivered.
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe);
+        evilWizardsButtons.getChildren().addAll(button_evilWizard, button_minion1, button_minion2);
         /*else
-        cellarButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
+        evilWizardsButtons.getChildren().addAll(button_evilWizard, button_minion1, button_minion2);
         */
-        Group root = new Group(cellarButtons);
+        Group root = new Group(evilWizardsButtons);
         
         
-        button_reborn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Reborns");
+        button_evilWizard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "Evil Wizard");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             
         });
-        button_riches.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Riches");
+        button_minion1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "Minion1");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             
         });
-        button_hOfGuard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Guard House");
+        button_minion2.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "Minion2");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
-        });
-        button_guard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "guard");
-            for(String s: twot.goTo(command)){
-                textArea.appendText("\n" + s + "\n");
-            }
-            
-        });
-        button_axe.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "axe");
-            for(String s: twot.goTo(command)){
-                textArea.appendText("\n" + s + "\n");
-            }
-            
-        });
-        button_forest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "forest");
-            for(String s: twot.goTo(command)){
-                textArea.appendText("\n" + s + "\n");
-            }
-            
+
         });
         
         return root;
