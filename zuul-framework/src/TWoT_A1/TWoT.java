@@ -97,6 +97,8 @@ public class TWoT implements Serializable{
                 + "heavier.\nYou can barely walk as you make it up to the final step – the pain is then suddenly "
                 + "relieved.\nYou open a large door and you see the Evil Wizard of Treldan standing in the room.", 13);
 
+        // <editor-fold defaultstate="collapsed" desc=" Creating Interior for rooms ">
+        
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
         Interior roomCellarStick = new QuestItem("A needle", 1, "Can be used to lockpick doors", 99901, "It must have been super uncomfortable laying on the haystack.\nYou search around the haystack and end up finding a strong needle. The needle has been added to your inventory.");
@@ -105,7 +107,6 @@ public class TWoT implements Serializable{
         roomCellar.addMapInterior("haystack", roomCellarStick);
         roomCellar.addMapInterior("table", roomCellarCheeseSandwich);
         
-
         //roomVillage
         Interior roomVillageExit1 = new Exit(roomHouse1);
         Interior roomVillageExit2 = new Exit(roomHouse2);
@@ -152,19 +153,19 @@ public class TWoT implements Serializable{
         roomHouse3.addMapInterior("kitchen", roomHouse3Kitchen);
         roomHouse3.addMapInterior("chest", roomHouse3Chest);
         
-        //roomForrest
-        Interior roomForrestExit1 = new Exit(roomWizardHouse);
-        Interior roomForrestExit2 = new Exit(roomCave);
-        Interior roomForrestExit3 = new Exit(roomClearing);
-        Interior roomForrestExit4 = new Exit(roomVillage);
-        Interior roomForrestMushroom = new UseableItem("Mushroom", 286, "Might come in handy scaring off packs of trolls", "You go pick up a mushroom, ight come in handy scaring off packs of trolls", 55504, MAGIC_ITEM, 0);
-        Interior roomForrestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.9, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
-        roomForest.addMapInterior("mushroom", roomForrestMushroom);
-        roomForest.addMapInterior("goblin", roomForrestDeadGoblin);
-        roomForest.addMapInterior("house", roomForrestExit1);
-        roomForest.addMapInterior("cave", roomForrestExit2);
-        roomForest.addMapInterior("clearing", roomForrestExit3);
-        roomForest.addMapInterior("village", roomForrestExit4);
+        //roomForest
+        Interior roomForestExit1 = new Exit(roomWizardHouse);
+        Interior roomForestExit2 = new Exit(roomCave);
+        Interior roomForestExit3 = new Exit(roomClearing);
+        Interior roomForestExit4 = new Exit(roomVillage);
+        Interior roomForestMushroom = new UseableItem("Mushroom", 286, "Might come in handy scaring off packs of trolls", "You go pick up a mushroom, ight come in handy scaring off packs of trolls", 55504, MAGIC_ITEM, 0);
+        Interior roomForestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.9, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
+        roomForest.addMapInterior("mushroom", roomForestMushroom);
+        roomForest.addMapInterior("goblin", roomForestDeadGoblin);
+        roomForest.addMapInterior("house", roomForestExit1);
+        roomForest.addMapInterior("cave", roomForestExit2);
+        roomForest.addMapInterior("clearing", roomForestExit3);
+        roomForest.addMapInterior("village", roomForestExit4);
         
         //roomWizardHouse
         Interior roomWizardHouseExit = new Exit(roomForest);
@@ -215,7 +216,6 @@ public class TWoT implements Serializable{
         roomClearing.addMapInterior("unicorn", roomClearingMonster1);
         roomClearing.addMapInterior("tree", roomClearingTree);
         
-        
         //roomDungeon
         Interior roomDungeonExit = new Exit(roomLibrary);
         Monster skeleton1 = new Monster("Skeleton", 1.5, 1.5, 175, 300, "The skeleton attacks you.");
@@ -248,6 +248,7 @@ public class TWoT implements Serializable{
         roomEvilWizardsLair.addMapInterior("minion1", roomEvilWizardsLairMinion1);
         roomEvilWizardsLair.addMapInterior("minion2", roomEvilWizardsLairMinion2);
         
+        // </editor-fold>
         
         //set which room you start in.
         currentRoom = roomCellar;
