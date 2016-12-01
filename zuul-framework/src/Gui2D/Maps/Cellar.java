@@ -95,10 +95,14 @@ public class Cellar extends Map{
         //add the canvas to the group
         root.getChildren().add( player_canvas );
         
+        
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
         Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
         miniMap.updateMiniMap(512.0, 256.0);
+        //add the group to the root group
         root.getChildren().add( miniMapGroup );
         
         /**
@@ -308,14 +312,14 @@ public class Cellar extends Map{
                 // </editor-fold>
                 
                 if(menu_input.contains("E")){
-                    if(player.intersect(sprites_still.get(1))){
+                    if(game.checkExisting("haystack") && player.intersect(sprites_still.get(1))){
                         for(String s: game.goTo(new Command(CommandWord.GO, "haystack"))){
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                         hasPrinted = false;
                     }
-                    if(player.intersect(sprites_still.get(12))){
+                    if(game.checkExisting("table") && player.intersect(sprites_still.get(12))){
                         for(String s: game.goTo(new Command(CommandWord.GO, "table"))){
                             infobox.appendText("\n" + s + "\n");
                         }

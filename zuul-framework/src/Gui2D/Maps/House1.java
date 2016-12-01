@@ -35,8 +35,12 @@ public class House1 extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
+    // our global TWoT object
     private TWoT game;
+    
+    // our house sprites
     private House1_sprites house_sprites;
+    
     /**
      * Constructor for Cellar
      * @param world 
@@ -45,17 +49,21 @@ public class House1 extends Map{
         //init our super constructor
         super();
         
-        //set the world constructor
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
+        //set the house sprites
         house_sprites = new House1_sprites(world);
         house_sprites.setHouse1_background_SingleSprites();
     }
     
     @Override
     public Scene getScene(){
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
+        
+        //link the TWoT object to our main TWoT object
         this.game = WizardOfTreldan.getGame();
+        
+        //our main Group for all the components
         Group root = new Group();
         Scene theScene = new Scene( root );
         //set background color
@@ -83,16 +91,25 @@ public class House1 extends Map{
         //add the canvas to the group
         root.getChildren().add(player_canvas);
         
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(400.0, 300.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -102,7 +119,7 @@ public class House1 extends Map{
         AnchorPane menu = playerinventory.getMenu();
         
         //escape menu
-         GameMenu escmenu = new GameMenu();
+        GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
        
 
@@ -290,19 +307,27 @@ public class House1 extends Map{
 
                 // </editor-fold>
                 
+                //check if the user wanst to pickup an item
                 if (menu_input.contains("E")) {
-                    if(player.intersect(sprites_still.get(4))){
+                    //check if the player intersects with the chest and the item exist ingame
+                    if(game.checkExisting("chest") && player.intersect(sprites_still.get(4))){
+                        //goto the chest and print out what happens
                         for(String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
+                        //update the inventory since we might have pickedup an item
                         playerinventory.update(game);
                     }
+                    //check if the player intersects with the man and the man exist ingame
                     if(game.checkExisting("man") && player.intersect(sprites_interact.get(0))){
+                        //goto the man and print what happens
                         for(String s : game.goTo(new Command(CommandWord.GO, "man"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
+                        //update the inventory.
                         playerinventory.update(game);
                     }
+                    //check if the player intersects with the stranger and the stranger exist ingame
                     if(game.checkExisting("stranger") && player.intersect(stranger_sprite)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -318,6 +343,7 @@ public class House1 extends Map{
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
                     }
+                    //remove the key E from the list
                     menu_input.remove("E");
                 }
                 //update the players velocity
@@ -327,40 +353,56 @@ public class House1 extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                //clear the monster graphicscontext
                 monster_gc.clearRect(0, 0, 400, 300);
-                //render pickup items
+                //render the man ingame
                 if(game.checkExisting("man")){
                     sprites_interact.get(0).render(monster_gc);
                 }
+                //render the stranger if he exists
                 if(game.checkExisting("stranger")){
                     stranger_sprite.render(monster_gc);
                 }
                 
-                //check if the user wants to see a menu.
+                //check if the user wants to see the esc menu.
                 if(menu_input.contains("ESCAPE")){
+                    //if the menu is not shown show it
                     if(!escmenu.isShown()){
+                        //add the menu to the root
                         root.getChildren().add(gameMenu);
+                        //set the menu to shown.
                         escmenu.setShown(true);
                     }
                 }else{
+                    //if the menu is shown remove it
                     if(escmenu.isShown()){
                         root.getChildren().remove(gameMenu);
                         escmenu.setShown(false);
                     }
                 }
                 
-                //check if the user wants to see a menu.
+                //check if the user wants to see the inventory
                 if (menu_input.contains("I")) {
+                    //if the inventory is not shown show it.
                     if (!playerinventory.isShown()) {
                         root.getChildren().add(menu);
                         playerinventory.setShown(true);
                     }
+                //if the inventory is shown remove the inventory.
                 } else if (playerinventory.isShown()) {
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
 
+            
+            /**
+             * set the new scene depending on which room you entered
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 2:
@@ -372,6 +414,7 @@ public class House1 extends Map{
                 }
             }
         }.start();
+        //return the scene
         return theScene;
     }
 }

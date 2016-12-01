@@ -69,7 +69,8 @@ public class StartMe extends Application {
             @Override
             public void handle(ActionEvent event) {
                 primaryStage.close();
-                new WizardOfTreldan().start(new Stage());
+                //open the gui with commands
+                new SimpleWithCommands.GUIFX().start(new Stage());
             }
         });
         //set a new action when the mouse enteres the button
@@ -103,7 +104,8 @@ public class StartMe extends Application {
             @Override
             public void handle(ActionEvent event) {
                 primaryStage.close();
-                new WizardOfTreldan().start(new Stage());
+                //open the gui with buttons
+                new SimpleWithButtons.GUIFX().start(new Stage());
             }
         });
         //set a new action when the mouse enteres the button

@@ -51,15 +51,6 @@ public class Clearing extends Map{
     public Clearing(SpriteController world){
         //init our super constructor
         super();
-            
-        
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
         
         //set the rooms sprites
         clearing_sprites = new Clearing_sprites(world);
@@ -68,16 +59,21 @@ public class Clearing extends Map{
     }
     
     public Scene getScene(){
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
+        
         Group root = new Group();
         Scene theScene = new Scene( root ); 
         theScene.setFill(Color.rgb(83, 83, 83));
+        
         Canvas canvas_background = new Canvas(730,370);
         canvas_background.relocate(126,66);
-        
         //background canvas
         root.getChildren().add(canvas_background);
         //add a canvas only for the player
+        
         Canvas player_canvas = new Canvas(1024, 512);
         //add canvas to group
         root.getChildren().add(player_canvas);
@@ -90,6 +86,15 @@ public class Clearing extends Map{
         root.getChildren().add(clearing_interact);
         
         
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(1024.0, 512.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -97,22 +102,21 @@ public class Clearing extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         theScene.getStylesheets().add("TextAreaStyle.css");
         
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
         
-        
-
+        //the players inventory
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
 
-        
+        //the escape menu
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
         
@@ -129,36 +133,35 @@ public class Clearing extends Map{
         //create GraphicsContext from our interactable objects canvas
         GraphicsContext interact_gc = clearing_interact.getGraphicsContext2D();
         //create GraphicsContext from our background canvas
-        GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
+        GraphicsContext background_gc = canvas_background.getGraphicsContext2D();       
+        
+        //get all the sprites of interactables
+        List<Sprite> sprites_interact = clearing_sprites.getClearing_interact();
+        //draw the sprites if they exist with the graphicscontext
+        if(game.checkExisting("unicorn")){
+            sprites_interact.get(0).render(interact_gc);
+        }
+        //draw the sprites if they exist with the graphicscontext  
+        if(game.checkExisting("tree")){
+            sprites_interact.get(2).render(interact_gc);
+        }
+        //get all the sprites of the background  
+        List<Sprite> sprites_still = clearing_sprites.getClearing_background_sprites();
+        //draw the sprites if they exist with the graphicscontext
+        for(Sprite sprite : sprites_still){
+            sprite.render(background_gc);
+        }
         
         
-       
+        
         //world boundaries
         Rectangle2D worldBoundTop = new Rectangle2D(0, 78, 1024, 1);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 350, 1024, 1);
         Rectangle2D worldBoundLeft = new Rectangle2D(150, 0, 1, 512);
         Rectangle2D worldBoundRight = new Rectangle2D(800, 0, 1, 512);
         
-        //get all the sprites of interactables
-        List<Sprite> sprites_interact = clearing_sprites.getClearing_interact();
-            //draw the sprites if they exist with the graphicscontext
-            if(game.checkExisting("unicorn")){
-                sprites_interact.get(0).render(interact_gc);
-            }
-            //draw the sprites if they exist with the graphicscontext  
-            if(game.checkExisting("tree")){
-                sprites_interact.get(2).render(interact_gc);
-            }
-        //get all the sprites of the background  
-        List<Sprite> sprites_still = clearing_sprites.getClearing_background_sprites();
-             //draw the sprites if they exist with the graphicscontext
-            for(Sprite sprite : sprites_still){
-                sprite.render(background_gc);
-            }
         
-        
-        
-         new AnimationTimer() {
+        new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
             private boolean hasPrinted = false;
@@ -332,7 +335,7 @@ public class Clearing extends Map{
                 
                 //interact with the world around the player
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_interact.get(0))) {
+                    if (game.checkExisting("unicorn") && player.intersect(sprites_interact.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "unicorn"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -340,13 +343,10 @@ public class Clearing extends Map{
                         playerinventory.update(game);
                   
                     }
-                    if (player.intersect(sprites_interact.get(1))) {
+                    if (game.checkExisting("tree") && player.intersect(sprites_interact.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "tree"))) {
                             infobox.appendText("\n" + s + "\n");
-                            
-                            sprites_interact.get(2).render(interact_gc);
                         }
-                    
                         playerinventory.update(game);
                     }
                     menu_input.remove("E");
@@ -359,18 +359,15 @@ public class Clearing extends Map{
                 //render our new player
                 player.render(moveable_gc);
                 
-                //clear the items that have been interacted with and should e 
+                //clear interactable items
                 interact_gc.clearRect(0, 0, 1024, 512);
                 
-                //
+                //render the interactable items
                 if(game.checkExisting("unicorn")){
                     sprites_interact.get(0).render(interact_gc);
-                    
-                    
                 }
-                
                 if(game.checkExisting("tree")){
-                    sprites_interact.get(2).render(interact_gc);
+                    sprites_interact.get(1).render(interact_gc);
                 }else{
                     sprites_interact.get(2).render(interact_gc);
                 }
@@ -398,8 +395,14 @@ public class Clearing extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-                         
+                
+            /**
+             * Sets the new scene depending on the room id.
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 6:

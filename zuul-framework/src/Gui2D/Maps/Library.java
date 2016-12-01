@@ -58,19 +58,15 @@ public class Library extends Map{
         input = super.getInput();
         menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
+
         Group root = new Group();
         Scene theScene = new Scene( root );
-        
         theScene.setFill(Color.rgb(83, 83, 83));
+        theScene.getStylesheets().add("TextAreaStyle.css");
+        
         Canvas canvas_background = new Canvas(770,385);
         canvas_background.relocate(126,66);
         root.getChildren().add(canvas_background);
-       
-        //get our player from super class since no inheritence in AnimationTimer
-        PlayerSprite player = super.getPlayer();
-        player.setPosition(600,350);
-        Canvas player_canvas = new Canvas(1024, 512);
-        root.getChildren().add(player_canvas);
         
         //set canvas of our items
         Canvas library_monsters = new Canvas(1024, 512);
@@ -78,17 +74,32 @@ public class Library extends Map{
         library_monsters.relocate(126,66);
         root.getChildren().add(library_monsters);
         
+        //get our player from super class since no inheritence in AnimationTimer
+        PlayerSprite player = super.getPlayer();
+        player.setPosition(600,350);
+        Canvas player_canvas = new Canvas(1024, 512);
+        root.getChildren().add(player_canvas);
+        
+        
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(1024.0, 512.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
-        theScene.getStylesheets().add("TextAreaStyle.css");
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
@@ -317,8 +328,9 @@ public class Library extends Map{
                 
                 // </editor-fold>
                 
+                //check if the user wants to interact
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_still.get(3))) {
+                    if (game.checkExisting("chest") && player.intersect(sprites_still.get(3))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -337,13 +349,11 @@ public class Library extends Map{
                 player.update(elapsedTime);
                 //clear our player
                 moveable_gc.clearRect(0, 0, 1024, 512);
-                
                 //render our new player
                 player.render(moveable_gc);
                 
+                //rerender the monters
                 monster_gc.clearRect(0, 0, 1024, 512);
-                
-                //check if monsters still exist in the game world
                 if(game.checkExisting("librarian")){
                     sprites_interact.get(0).render(monster_gc);
                 }
@@ -371,8 +381,14 @@ public class Library extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-                    
+                
+            /**
+             * Sets the new scene depending on the room id.
+             */    
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 13:

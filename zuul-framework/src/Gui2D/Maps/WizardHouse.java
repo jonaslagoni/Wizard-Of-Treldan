@@ -5,7 +5,6 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.SpriteController.Maps.Cave_sprites;
 import Gui2D.SpriteController.Maps.WizardHouse_sprites;
 import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
@@ -18,19 +17,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 /**
  *
  * @author jonas
@@ -54,36 +49,45 @@ public class WizardHouse extends Map{
         //init our super constructor
         super();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
         wizardHouse_sprites = new WizardHouse_sprites(world);
         wizardHouse_sprites.setWizardHouse_background_SingleSprites();
     }
     
     @Override
     public Scene getScene(){
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
+        
         Group root = new Group();
         Scene theScene = new Scene( root );
-        Canvas canvas_background = new Canvas(1024, 512);
-        Canvas canvas_interactables = new Canvas(1024, 512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
         
+        
+        Canvas canvas_background = new Canvas(1024, 512);
+        //add the canvas to the group
         root.getChildren().add(canvas_background);
+        
+        Canvas canvas_interactables = new Canvas(1024, 512);
+        //add the canvas to the group
+        root.getChildren().add(canvas_interactables);
         
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
-        root.getChildren().add(canvas_interactables);
         root.getChildren().add(player_canvas);
+        
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(512.0, 256.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -91,10 +95,11 @@ public class WizardHouse extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
+        
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -125,9 +130,9 @@ public class WizardHouse extends Map{
         //get all the sprites used in the wizardHouse
         List<Sprite> sprites_interactables = wizardHouse_sprites.getWizardHouse_interactable_sprites();
         List<Sprite> sprites_background = wizardHouse_sprites.getWizardHouse_background_sprites();
-        //render all the sprites
-
         
+
+        //render all the sprites
         for (Sprite sprite : sprites_background) {
             sprite.render(wizardHouse_background);
         }
@@ -297,25 +302,25 @@ public class WizardHouse extends Map{
                 
                 // interactable items
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_interactables.get(0))) {
+                    if (game.checkExisting("wizard") && player.intersect(sprites_interactables.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "wizard"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(sprites_interactables.get(1))) {
+                    if (game.checkExisting("box") && player.intersect(sprites_interactables.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "box"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(sprites_interactables.get(2))) {
+                    if (game.checkExisting("lab") && player.intersect(sprites_interactables.get(2))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "lab"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(sprites_interactables.get(3))) {
+                    if (game.checkExisting("upstairs") && player.intersect(sprites_interactables.get(3))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "upstairs"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -353,8 +358,14 @@ public class WizardHouse extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-                    
+            
+            /**
+             * Sets the new scene depending on the room id.
+             */  
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 6:

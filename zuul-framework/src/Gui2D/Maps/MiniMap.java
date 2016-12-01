@@ -164,7 +164,7 @@ public class MiniMap {
      *  Clears the player canvas
      */
     private void clearMiniMap_player(){
-        miniMap_playerContext.clearRect(posX, posY, width, height);
+        miniMap_playerContext.clearRect(0, 0, width, height);
     }
     
     /**

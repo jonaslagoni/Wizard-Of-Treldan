@@ -91,6 +91,15 @@ public class EvilWizardsLair extends Map{
         root.getChildren().add(player_canvas);
         
         
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(1024.0, 512.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         GraphicsContext background_gc = background.getGraphicsContext2D();
         GraphicsContext monster_gc = monster_canvas.getGraphicsContext2D();
@@ -107,10 +116,10 @@ public class EvilWizardsLair extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         theScene.getStylesheets().add("TextAreaStyle.css");
         
         //get some of the games welcome message and add to the infobox
@@ -149,6 +158,7 @@ public class EvilWizardsLair extends Map{
         for (Sprite background_sprites : spriteList) {
             background_sprites.render(background_gc);
         }
+        //render the lava once
         spriteList_lava.get(0).render(lava_gc);
         //render monsters
         if(game.checkExisting("wizard")){
@@ -279,22 +289,19 @@ public class EvilWizardsLair extends Map{
                 
                 // </editor-fold>
                 
+                //check if the user wants to interact
                 if (menu_input.contains("E")) {
-                    if(game.checkExisting("minion1")){
-                        if(player.intersect(spriteList_foreground.get(1))){
-                            for(String s : game.goTo(new Command(CommandWord.GO, "minion1"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            playerinventory.update(game);
+                    if(game.checkExisting("minion1") && player.intersect(spriteList_foreground.get(1))){
+                        for(String s : game.goTo(new Command(CommandWord.GO, "minion1"))) {
+                            infobox.appendText("\n" + s + "\n");
                         }
+                        playerinventory.update(game);
                     }
-                    if(game.checkExisting("minion2")){
-                        if(player.intersect(spriteList_foreground.get(2))){
-                            for(String s : game.goTo(new Command(CommandWord.GO, "minion2"))) {
-                                infobox.appendText("\n" + s + "\n");
-                            }
-                            playerinventory.update(game);
+                    if(game.checkExisting("minion2") && player.intersect(spriteList_foreground.get(2))){
+                        for(String s : game.goTo(new Command(CommandWord.GO, "minion2"))) {
+                            infobox.appendText("\n" + s + "\n");
                         }
+                        playerinventory.update(game);
                     }
                     if(game.checkExisting("wizard")){
                         if(player.intersect(spriteList_foreground.get(0))){
@@ -357,7 +364,7 @@ public class EvilWizardsLair extends Map{
                     playerinventory.setShown(false);
                 }
                 
-                //render lava in a delayd way
+                //render lava in each 50 frame
                 if(lavaCounter != 50){
                     lavaCounter++;
                 }else{
@@ -382,8 +389,14 @@ public class EvilWizardsLair extends Map{
                     spriteList_foreground.get(2).render(monster_gc);
                     
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
                     
+            /**
+             * Sets the new scene depending on the room id.
+             */  
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 14:

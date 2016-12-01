@@ -38,6 +38,7 @@ public class Cave extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
+    //global game object
     private TWoT game;
     
     private Cave_sprites cave_sprites;
@@ -49,21 +50,18 @@ public class Cave extends Map{
         //init our super constructor
         super();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
         cave_sprites = new Cave_sprites(world);
         cave_sprites.setCave_background_SingleSprites();
     }
     
     @Override
     public Scene getScene(){
-        this.game = WizardOfTreldan.getGame();
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
+        game = WizardOfTreldan.getGame();
+        
+        //main group
         Group root = new Group();
         Scene theScene = new Scene( root );
         Canvas canvas_background = new Canvas(1024, 512);
@@ -84,6 +82,15 @@ public class Cave extends Map{
         Canvas foreground_canvas = new Canvas(1024, 512);
         root.getChildren().add(foreground_canvas);
         
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(1024.0, 512.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
         //esc menu
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
@@ -94,10 +101,10 @@ public class Cave extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -135,13 +142,14 @@ public class Cave extends Map{
         List<Sprite> sprites_background = cave_sprites.getCave_background_sprites();
         // get all enemy sprites used in cave
         List<Sprite> enemy_sprites = cave_sprites.getEnemy_sprites();
-        //render all the sprites
+        
 
+        //render all the sprites
         if(game.checkExisting("troll1")){
-                    enemy_sprites.get(0).render(enemiesGC);
+            enemy_sprites.get(0).render(enemiesGC);
         }
         if(game.checkExisting("troll2")){
-                    enemy_sprites.get(1).render(enemiesGC);
+            enemy_sprites.get(1).render(enemiesGC);
         }
         if(game.checkExisting("troll3")){
             enemy_sprites.get(2).render(enemiesGC);
@@ -344,20 +352,21 @@ public class Cave extends Map{
                 
                 // </editor-fold>
                 
+                //check if the user wants to interact
                 if (menu_input.contains("E")) {
-                    if (player.intersect(enemy_sprites.get(0))) {
+                    if (game.checkExisting("troll1") && player.intersect(enemy_sprites.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll1"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(enemy_sprites.get(1))) {
+                    if (game.checkExisting("troll1") && player.intersect(enemy_sprites.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll2"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(enemy_sprites.get(2))) {
+                    if (game.checkExisting("troll1") && player.intersect(enemy_sprites.get(2))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll3"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -373,6 +382,7 @@ public class Cave extends Map{
                 //render our new player
                 player.render(moveable_gc);
                 
+                //clear and rerender monsters
                 enemiesGC.clearRect(0, 0, 1024, 512);
                 if(game.checkExisting("troll1")){
                     enemy_sprites.get(0).render(enemiesGC);
@@ -407,9 +417,15 @@ public class Cave extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
             
                     
+            /**
+             * Sets the new scene depending on the room id.
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 9:

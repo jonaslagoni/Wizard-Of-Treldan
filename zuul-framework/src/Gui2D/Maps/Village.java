@@ -51,15 +51,14 @@ public class Village extends Map {
         //init our super constructor
         super();
 
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-
         villageSprites = new Village_sprites(world);
         villageSprites.setVillage_background_SingleSprites();
     }
 
     public Scene getScene() {
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
         //add group
         Group root = new Group();
@@ -102,10 +101,10 @@ public class Village extends Map {
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoPane = new StackPane(infobox);
+        infoPane.setPrefSize(300, 150);
+        infoPane.relocate(0, 362);
+        root.getChildren().add(infoPane);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -120,6 +119,7 @@ public class Village extends Map {
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
+        //set the player position dynamicly depending on the last place the user were.
         switch(game.getLastRoomId()){
             case 3:
                 player.setPosition(960, 270);
@@ -174,7 +174,7 @@ public class Village extends Map {
             sprite.render(foreground_gc);
         }
 
-        //add a color overlay to the foreground canvas
+        //add a color overlay to the foreground canvas to make it dark
         foreground_gc.setFill(Color.rgb(0, 0, 0, 0.5));
         foreground_gc.fillRect(0, 0, 1024, 512);
         
@@ -481,10 +481,13 @@ public class Village extends Map {
                     playerinventory.setShown(false);
                 }
                 
-                //minimap
+                //update the player on the minimaps position
                 miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-
+            
+            /**
+             * set the new scene depending on which room you entered
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 3:
@@ -503,6 +506,7 @@ public class Village extends Map {
             }
         }.start();
 
+        //return the created scene
         return theScene;
     }
 }

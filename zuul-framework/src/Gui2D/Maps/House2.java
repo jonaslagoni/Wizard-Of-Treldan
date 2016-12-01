@@ -35,8 +35,10 @@ public class House2 extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    
+    // our global for the TWoT object
     private TWoT game;
+    
+    // our global for the house sprites
     private House2_sprites house_sprites;
     /**
      * Constructor for Cellar
@@ -46,9 +48,6 @@ public class House2 extends Map{
         //init our super constructor
         super();
         
-        //set the world constructor
-        input = super.getInput();
-        menu_input = super.getMenu_input();
         
         house_sprites = new House2_sprites(world);
         house_sprites.setHouse2_background_SingleSprites();
@@ -56,7 +55,13 @@ public class House2 extends Map{
     
     @Override
     public Scene getScene(){
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
+        //link the TWoT object to our main TWoT object
         this.game = WizardOfTreldan.getGame();
+        
+        //create a new group containing all the components
         Group root = new Group();
         Scene theScene = new Scene( root );
         //set background color
@@ -84,16 +89,25 @@ public class House2 extends Map{
         //add the canvas to the group
         root.getChildren().add(player_canvas);
         
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(350.0, 250.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
        /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -138,7 +152,7 @@ public class House2 extends Map{
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(350, 0, 1, 300);
         Rectangle2D worldBoundLeft = new Rectangle2D(0, 0, 1, 300);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 220, 400, 1);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 150, 400, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 400, 1);
              
         new AnimationTimer() {
@@ -274,22 +288,23 @@ public class House2 extends Map{
 
                 // </editor-fold>
                 
+                //check if the user wants to intersect with something
                 if (menu_input.contains("E")) {
-                    if(player.intersect(sprites_still.get(6))){
+                    if(game.checkExisting("wardrobe") && player.intersect(sprites_still.get(6))){
                         for(String s : game.goTo(new Command(CommandWord.GO, "wardrobe"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
                     
-                    if(player.intersect(sprites_still.get(5))){
+                    if(game.checkExisting("table") && player.intersect(sprites_still.get(5))){
                         for(String s : game.goTo(new Command(CommandWord.GO, "table"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
                     
-                    if(player.intersect(sprites_still.get(4))){
+                    if(game.checkExisting("bed") && player.intersect(sprites_still.get(4))){
                         for(String s : game.goTo(new Command(CommandWord.GO, "bed"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -321,7 +336,7 @@ public class House2 extends Map{
                 //render our new player
                 player.render(moveable_gc);
                 
-                
+                //clear the stranger
                 stranger_gc.clearRect(0, 0, 400, 300);
                 if(game.checkExisting("stranger")){
                     stranger_sprite.render(stranger_gc);
@@ -350,8 +365,13 @@ public class House2 extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-
+            /**
+             * set the new scene depending on which room you entered
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 2:

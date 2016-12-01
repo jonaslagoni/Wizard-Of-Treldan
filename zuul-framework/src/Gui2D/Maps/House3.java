@@ -35,7 +35,10 @@ public class House3 extends Map{
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
+    //global TWoT object
     private TWoT game;
+    
+    //global sprites
     private House3_sprites house_sprites;
     /**
      * Constructor for Cellar
@@ -45,17 +48,18 @@ public class House3 extends Map{
         //init our super constructor
         super();
         
-        //set the world constructor
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
         house_sprites = new House3_sprites(world);
         house_sprites.setHouse3_background_SingleSprites();
     }
     
     @Override
     public Scene getScene(){
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
+        
         this.game = WizardOfTreldan.getGame();
+                
         Group root = new Group();
         Scene theScene = new Scene( root );
         //set background color
@@ -86,6 +90,15 @@ public class House3 extends Map{
         //add the canvas to the group
         root.getChildren().add(player_canvas);
         
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(512.0, 300.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -93,10 +106,10 @@ public class House3 extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -322,13 +335,13 @@ public class House3 extends Map{
                 // </editor-fold>
 
                 if (menu_input.contains("E")) {
-                    if(player.intersect(sprites_still.get(14))){
+                    if(game.checkExisting("chest") && player.intersect(sprites_still.get(14))){
                         for(String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if(player.intersect(sprites_still.get(13))){
+                    if(game.checkExisting("kitchen") && player.intersect(sprites_still.get(13))){
                         for(String s : game.goTo(new Command(CommandWord.GO, "kitchen"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -397,8 +410,14 @@ public class House3 extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
 
+            /**
+             * Sets the scene from the current room id
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 2:

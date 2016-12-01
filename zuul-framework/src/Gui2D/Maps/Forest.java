@@ -75,9 +75,18 @@ public class Forest extends Map{
         //add the canvas to the group
         root.getChildren().add(player_canvas);
         
+        //add a canvas for the foreground
         Canvas canvas_foreground = new Canvas(1024,512);
-        
         root.getChildren().add(canvas_foreground);
+        
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(1024.0, 512.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
         
         /**
          * TextArea used to give the user more information about the game. What
@@ -85,10 +94,10 @@ public class Forest extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -133,11 +142,10 @@ public class Forest extends Map{
         
         //get all the sprites used in the cave
         List<Sprite> sprites_background = forest_sprites.getForest_background_sprites();
-        List<Sprite> sprites_interactables = forest_sprites.getForest_foreground_sprites();
         List<Sprite> sprites_foreground = forest_sprites.getForest_foreground_sprites();
-        //render all the sprites
         
-        forest_background.clearRect(0, 0, 1024, 512);
+
+        //render all the sprites
         if(game.checkExisting("mushroom")){
             sprites_background.get(17).render(forest_background);
         }
@@ -343,14 +351,15 @@ public class Forest extends Map{
                 
                 // </editor-fold>
                 
+                //Check if the user wants to interact with the following
                 if (menu_input.contains("E")) {
-                    if (player.intersect(sprites_background.get(17))) {
+                    if (game.checkExisting("mushroom") && player.intersect(sprites_background.get(17))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "mushroom"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(sprites_background.get(18))) {
+                    if (game.checkExisting("goblin") && player.intersect(sprites_background.get(18))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "goblin"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -388,8 +397,14 @@ public class Forest extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
                     
+            /**
+             * Sets the new scene depending on the room id.
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 2:

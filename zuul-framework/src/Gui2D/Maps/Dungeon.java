@@ -49,39 +49,50 @@ public class Dungeon extends Map{
         //init our super constructor
         super();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
         dungeon_sprites = new Dungeon_sprites(world);
         dungeon_sprites.setDungeon_background_SingleSprites();
     }
     
     @Override
     public Scene getScene(){
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
+        
         Group root = new Group();
         Scene theScene = new Scene( root );
-        Canvas canvas_background = new Canvas(1024, 512);
-        Canvas canvas_foreground = new Canvas(1024, 512);
-        Canvas canvas_enemies = new Canvas (1024,512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
         
         
         
+        Canvas canvas_background = new Canvas(1024, 512);
         root.getChildren().add(canvas_background);
+        
+        Canvas canvas_enemies = new Canvas (1024, 512);
+        root.getChildren().add(canvas_enemies);
         
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
-        //add the canvas to the group
-        root.getChildren().add(canvas_enemies);
         root.getChildren().add(player_canvas);
+        
+        Canvas canvas_foreground = new Canvas(1024, 512);
+        root.getChildren().add(canvas_foreground);
+        
+        
+        
+        
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(1024.0, 512.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
+        
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -89,10 +100,10 @@ public class Dungeon extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -135,8 +146,8 @@ public class Dungeon extends Map{
         List<Sprite> dungeon_background_sprites = dungeon_sprites.getDungeon_background_sprites();
         List<Sprite> dungeon_foreground_sprites = dungeon_sprites.getDungeon_foreground_sprites();
         List<Sprite> enemy_sprites = dungeon_sprites.getDungeon_enemy_sprite();
-        //render all the sprites
         
+        //render all the sprites
         if (game.checkExisting("skeleton1")) {
             enemy_sprites.get(0).render(enemiesGC);
         }
@@ -321,20 +332,21 @@ public class Dungeon extends Map{
                 
                 // </editor-fold>
                 
+                //check if the user want to interact
                 if (menu_input.contains("E")) {
-                    if (player.intersect(enemy_sprites.get(0))) {
+                    if (game.checkExisting("skeleton1") && player.intersect(enemy_sprites.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "skeleton1"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(enemy_sprites.get(1))) {
+                    if (game.checkExisting("skeleton2") && player.intersect(enemy_sprites.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "skeleton2"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
                     }
-                    if (player.intersect(enemy_sprites.get(2))) {
+                    if (game.checkExisting("skeleton3") && player.intersect(enemy_sprites.get(2))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "skeleton3"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -349,6 +361,7 @@ public class Dungeon extends Map{
                 //render our new player
                 player.render(moveable_gc);
 
+                //clear and rerender enemies
                 enemiesGC.clearRect(0, 0, 1024, 512);
                 if(game.checkExisting("skeleton1")){
                     enemy_sprites.get(0).render(enemiesGC);
@@ -383,8 +396,15 @@ public class Dungeon extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-                    
+                
+            
+            /**
+             * Sets the new scene depending on the room id.
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 12:

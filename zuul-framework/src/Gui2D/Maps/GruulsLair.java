@@ -49,37 +49,45 @@ public class GruulsLair extends Map{
         //init our super constructor
         super();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
         gruulsLair_sprites = new GruulsLair_sprites(world);
         gruulsLair_sprites.setGruulsLair_background_SingleSprites();
     }
     
     @Override
     public Scene getScene(){
+        
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
+        
         Group root = new Group();
         Scene theScene = new Scene( root );
-        Canvas canvas_background = new Canvas(1024, 512);
-        Canvas enemy_canvas = new Canvas(1024, 512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
         
         
+        Canvas canvas_background = new Canvas(1024, 512);
         root.getChildren().add(canvas_background);
+        
+        Canvas enemy_canvas = new Canvas(1024, 512);
+        root.getChildren().add(enemy_canvas);
         
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
-        root.getChildren().add(enemy_canvas);
         root.getChildren().add(player_canvas);
+        
+        
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        //get the group of canvases from minimap object
+        Group miniMapGroup = miniMap.getMinimap();
+        //update the minimap correctly with the player canvas size
+        miniMap.updateMiniMap(1024.0, 512.0);
+        //add the group to the root group
+        root.getChildren().add( miniMapGroup );
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -87,10 +95,11 @@ public class GruulsLair extends Map{
          */
         TextArea infobox = Infobox.getInfoBox();
         //adding stackPane with the textarea component.
-        StackPane s = new StackPane(infobox);
-        s.setPrefSize(300, 150);
-        s.relocate(0, 362);
-        root.getChildren().add(s);
+        StackPane infoboxPane = new StackPane(infobox);
+        infoboxPane.setPrefSize(300, 150);
+        infoboxPane.relocate(0, 362);
+        root.getChildren().add(infoboxPane);
+        
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
@@ -122,8 +131,8 @@ public class GruulsLair extends Map{
         //get all the sprites used in the cave
         List<Sprite> enemy_sprites = gruulsLair_sprites.getGruulsLair_enemy_sprites();
         List<Sprite> sprites_background = gruulsLair_sprites.getGruulsLair_background_sprites();
+       
         //render all the sprites
-        
         if (game.checkExisting("gruul")) {
             enemy_sprites.get(0).render(enemiesGC);
         }
@@ -255,8 +264,9 @@ public class GruulsLair extends Map{
                 
                 // </editor-fold>
                 
+                //check if the user wants to interact
                 if (menu_input.contains("E")) {
-                    if (game.checkExisting("gruul")) {
+                    if (game.checkExisting("gruul") && player.intersect(enemy_sprites.get(0))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "gruul"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
@@ -300,8 +310,14 @@ public class GruulsLair extends Map{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //update the player on the minimaps position
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-                    
+            
+            /**
+             * Sets the new scene depending on the room id.
+             */    
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 8:
