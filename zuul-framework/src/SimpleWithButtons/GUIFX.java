@@ -654,7 +654,7 @@ public class GUIFX extends Application {
         cellarButtons.setLayoutX(5);
         cellarButtons.setLayoutY(10);
         
-        cellarButtons.getChildren().addAll(button_haystack, button_table, button_door);
+        cellarButtons.getChildren().addAll(button_door, button_table, button_haystack);
         
         walkButtons = new Group(cellarButtons);
         
@@ -770,7 +770,7 @@ public class GUIFX extends Application {
         button_door.setPrefSize(110, 10);
         
         VBox house1Buttons = new VBox(20);
-        house1Buttons.getChildren().addAll(button_man, button_chest, button_door);
+        house1Buttons.getChildren().addAll(button_door, button_chest, button_man);
         Group root = new Group(house1Buttons);
         
         
@@ -911,7 +911,7 @@ public class GUIFX extends Application {
         button_village.setPrefSize(110, 10);
         
         VBox forestButtons = new VBox(20);
-        forestButtons.getChildren().addAll(button_mushroom, button_goblin, button_house, button_cave, button_clearing, button_village);
+        forestButtons.getChildren().addAll(button_village, button_goblin, button_house, button_cave, button_clearing, button_mushroom);
         
         Group root = new Group(forestButtons);
         
@@ -976,7 +976,7 @@ public class GUIFX extends Application {
         button_door.setPrefSize(110, 10);
         
         VBox wizardHouseButtons = new VBox(20);
-        wizardHouseButtons.getChildren().addAll(button_upstairs, button_box, button_lab, button_wizard, button_door);
+        wizardHouseButtons.getChildren().addAll(button_door, button_box, button_lab, button_wizard, button_upstairs);
         
         Group root = new Group(wizardHouseButtons);
         
@@ -1034,7 +1034,7 @@ public class GUIFX extends Application {
         button_lair.setPrefSize(110, 10);
         
         VBox caveButtons = new VBox(20);
-        caveButtons.getChildren().addAll(button_troll1, button_troll2, button_troll3, button_forest, button_lair);
+        caveButtons.getChildren().addAll(button_forest, button_troll1, button_troll2, button_troll3, button_lair);
         
         Group root = new Group(caveButtons);
         
@@ -1086,7 +1086,7 @@ public class GUIFX extends Application {
         button_cave.setPrefSize(110, 10);
         
         VBox lairButtons = new VBox(20);
-        lairButtons.getChildren().addAll(button_gruul, button_cave);
+        lairButtons.getChildren().addAll(button_cave, button_gruul);
         Group root = new Group(lairButtons);
         
         
@@ -1160,7 +1160,7 @@ public class GUIFX extends Application {
         button_pathway.setPrefSize(110, 10);
         
         VBox dungeonButtons = new VBox(20);
-        dungeonButtons.getChildren().addAll(button_skeleton1, button_skeleton2, button_skeleton3, button_pathway);
+        dungeonButtons.getChildren().addAll(button_pathway, button_skeleton1, button_skeleton2, button_skeleton3,);
         Group root = new Group(dungeonButtons);
         
         
@@ -1206,7 +1206,7 @@ public class GUIFX extends Application {
         button_chest.setPrefSize(110, 10);
 	
         VBox libraryButtons = new VBox(20);
-        libraryButtons.getChildren().addAll(button_librarian, button_door, button_chest);
+        libraryButtons.getChildren().addAll(button_door, button_librarian, button_chest);
         Group root = new Group(libraryButtons);
         
         
