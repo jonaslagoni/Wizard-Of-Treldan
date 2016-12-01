@@ -63,7 +63,6 @@ import static javafx.application.Application.launch;
 public class GUIFX extends Application {
 
     private static TWoT twot;
-    private WalkButtons wb;
     
     private TextArea textArea;
     private TextArea statsArea;
@@ -73,6 +72,7 @@ public class GUIFX extends Application {
     private VBox statsField = new VBox(20);
     private Label label1;
     private Group walkButtons = new Group();
+    private int pos = 120;
     
     private TableView<InventoryItems> invTable = new TableView();
     private final ObservableList<InventoryItems> invData = FXCollections.observableArrayList();
@@ -90,7 +90,6 @@ public class GUIFX extends Application {
     public GUIFX () {
         
         twot = new TWoT();
-        wb = new WalkButtons();
                
     }
     public static void main(String[] args) {
@@ -146,8 +145,8 @@ public class GUIFX extends Application {
         button_save.setMaxWidth(90);
         
         VBox gameButtons = new VBox(20);
-        gameButtons.setLayoutX(591);
-        gameButtons.setLayoutY(5);
+        gameButtons.setLayoutX(591 + pos);
+        gameButtons.setLayoutY(10);
         gameButtons.getChildren().addAll(button_clear, button_help, button_save, button_exit);
         
         //end menu
@@ -190,7 +189,7 @@ public class GUIFX extends Application {
         //smth else
         
         HBox invButtons = new HBox(20);
-        invButtons.setLayoutX(770);
+        invButtons.setLayoutX(770 + pos);
         invButtons.setLayoutY(420);
         invButtons.getChildren().addAll(button_use, button_equip);
 
@@ -227,7 +226,7 @@ public class GUIFX extends Application {
  
         invTable.setItems(invData);
         invTable.getColumns().addAll(itemName, itemType, itemDescription);
-        invTable.setLayoutX(652);
+        invTable.setLayoutX(652 + pos);
         equipTable.setEditable(false);
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
         for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
@@ -274,7 +273,7 @@ public class GUIFX extends Application {
         
         equipTable.setItems(equipData);
         equipTable.getColumns().addAll(itemNames, itemSlot, itemAttack, itemDefence);
-        equipTable.setLayoutX(264);
+        equipTable.setLayoutX(264 + pos);
         equipTable.setLayoutY(265);
         equipTable.setMinWidth(370);
         equipTable.setMaxWidth(370);
@@ -283,6 +282,7 @@ public class GUIFX extends Application {
         
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
+        outputField.setLayoutX(pos);
         textArea.setMinWidth(572);
         textArea.setMinHeight(258);
         textArea.setMaxHeight(258);
@@ -298,17 +298,17 @@ public class GUIFX extends Application {
         statsArea.appendText("****************************");
         statsField.setMaxWidth(256);
         statsField.setMaxHeight(110);
-        statsField.relocate(0, 300);
+        statsField.relocate(0 + pos, 300);
         statsField.getChildren().addAll(statsArea);
         
         healthbar = new ProgressBar(twot.getPlayerHealth()/100);
         healthbar.setStyle("-fx-accent: red;");
         healthbar.setPrefSize(256, 26);
-        healthbar.relocate(0, 265);
+        healthbar.relocate(0 + pos, 265);
                        
         label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("BLACK"));
-        label1.relocate(10, 269);
+        label1.relocate(10 + pos, 269);
         
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
@@ -328,7 +328,7 @@ public class GUIFX extends Application {
         Pane root5 = new Pane(endScore, button_exitGame);
         
         
-        Scene scene1 = new Scene(root, 1052, 512);
+        Scene scene1 = new Scene(root, 1052 + pos, 512);
         Scene menu = new Scene(root2, 512, 288);
         Scene nameScene = new Scene(root3, 512, 288);
         Scene loadMenu = new Scene(root4, 512, 288);
@@ -343,6 +343,7 @@ public class GUIFX extends Application {
         });
         
         button_equip.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            
             for(String s: twot.equipItem(new Command(CommandWord.USE, invTable.getSelectionModel().getSelectedItem().getItemName()))){
                 if(invTable.getSelectionModel().getSelectedItem().getItemType() == "Equippable Item"){
                 textArea.appendText("\n" + s);
@@ -645,8 +646,13 @@ public class GUIFX extends Application {
         Button button_table = new Button("Table");
         Button button_door = new Button("Door");
         
+        button_haystack.setPrefSize(110, 10);
+        button_table.setPrefSize(110, 10);
+        button_door.setPrefSize(110, 10);
+        
         VBox cellarButtons = new VBox(20);
-        cellarButtons.setLayoutX(0);
+        cellarButtons.setLayoutX(5);
+        cellarButtons.setLayoutY(10);
         
         cellarButtons.getChildren().addAll(button_haystack, button_table, button_door);
         
@@ -680,21 +686,28 @@ public class GUIFX extends Application {
     
     private Group villageButtons() {
         
-        Button button_reborn = new Button("Reborn");
-        Button button_riches = new Button("Riches");
-        Button button_hOfGuard = new Button("Guards House");
+        Button button_reborn = new Button("House 1");
+        Button button_riches = new Button("House 2");
+        Button button_hOfGuard = new Button("House 3");
         Button button_guard = new Button("The Guard");
         Button button_axe = new Button("Axe");
         Button button_forest = new Button("Forest");
         
+        button_reborn.setPrefSize(110, 10);
+        button_riches.setPrefSize(110, 10);
+        button_hOfGuard.setPrefSize(110, 10);
+        button_guard.setPrefSize(110, 10);
+        button_axe.setPrefSize(110, 10);
+        button_forest.setPrefSize(110, 10);
+        
         VBox villageButtons = new VBox(20);
         //if guard children not delivered.
-        villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe);
-        /*else
-        villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
-        */
-        walkButtons = new Group(villageButtons);
         
+        
+        
+        villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe);
+        
+        walkButtons = new Group(villageButtons);
         
         button_reborn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "house1");
@@ -719,6 +732,11 @@ public class GUIFX extends Application {
         });
         button_guard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "guard");
+           /* for(Item i : twot.getInventoryItems()){
+                if(i.getItemId() == 99902){
+                villageButtons.getChildren().add(button_forest);
+            }
+                updateGUI();*/
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
@@ -738,14 +756,18 @@ public class GUIFX extends Application {
             }
             updateGUI();
         });
-        
         return walkButtons;
     }
+
     private Group house1Buttons() {
         
         Button button_man = new Button("Man");
         Button button_chest = new Button("Chest");
         Button button_door = new Button("Door");
+        
+        button_man.setPrefSize(110, 10);
+        button_chest.setPrefSize(110, 10);
+        button_door.setPrefSize(110, 10);
         
         VBox house1Buttons = new VBox(20);
         house1Buttons.getChildren().addAll(button_man, button_chest, button_door);
@@ -783,6 +805,11 @@ public class GUIFX extends Application {
         Button button_bed = new Button("Bed");
         Button button_table = new Button("Table");
         
+        button_door.setPrefSize(110, 10);
+        button_wardrobe.setPrefSize(110, 10);
+        button_bed.setPrefSize(110, 10);
+        button_table.setPrefSize(110, 10);
+        
         VBox house2Buttons = new VBox(20);
         house2Buttons.getChildren().addAll(button_door, button_wardrobe, button_bed, button_table);
         Group root = new Group(house2Buttons);
@@ -796,21 +823,21 @@ public class GUIFX extends Application {
             updateGUI();
         });
         button_wardrobe.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Riches");
+            Command command = new Command(commandword.getCommandWord("go"), "wardrobe");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_bed.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Guard House");
+            Command command = new Command(commandword.getCommandWord("go"), "bed");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_table.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "guard");
+            Command command = new Command(commandword.getCommandWord("go"), "table");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
@@ -825,6 +852,11 @@ public class GUIFX extends Application {
         Button button_kitchen = new Button("Kitchen");
         Button button_woman = new Button("Woman");
         Button button_chest = new Button("Chest");
+        
+        button_door.setPrefSize(110, 10);
+        button_kitchen.setPrefSize(110, 10);
+        button_woman.setPrefSize(110, 10);
+        button_chest.setPrefSize(110, 10);
         
         VBox house3Buttons = new VBox(20);
         house3Buttons.getChildren().addAll(button_door, button_kitchen, button_woman, button_chest);
@@ -870,6 +902,13 @@ public class GUIFX extends Application {
         Button button_cave = new Button("Cave");
         Button button_clearing = new Button("Clearing");
         Button button_village = new Button("Village");
+        
+        button_mushroom.setPrefSize(110, 10);
+        button_goblin.setPrefSize(110, 10);
+        button_house.setPrefSize(110, 10);
+        button_cave.setPrefSize(110, 10);
+        button_clearing.setPrefSize(110, 10);
+        button_village.setPrefSize(110, 10);
         
         VBox forestButtons = new VBox(20);
         forestButtons.getChildren().addAll(button_mushroom, button_goblin, button_house, button_cave, button_clearing, button_village);
