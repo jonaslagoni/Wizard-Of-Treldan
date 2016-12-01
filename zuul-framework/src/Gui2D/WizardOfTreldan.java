@@ -62,18 +62,11 @@ public class WizardOfTreldan extends Application {
     private static Map library;
     private static Map highscore;
     private static Map finish;
-
-
-    /**
-     * @return the game
-     */
-    public static TWoT getGame() {
-        return game;
-    }
     
     //our global world generator
     private SpriteController world;
     
+    //our global twot game
     private static TWoT game;
     
     //set a global stage from the primaryStage
@@ -91,9 +84,10 @@ public class WizardOfTreldan extends Application {
         this.primaryStage.setWidth(1024);
         this.primaryStage.setHeight(512);
         
+        //create a new TWoT object
         game = new TWoT();
         
-        //set the title
+        //set the title of the stage
         this.primaryStage.setTitle("The Wizard of Treldan");
         //Init our world sprite controller
         world = new SpriteController();
@@ -119,165 +113,223 @@ public class WizardOfTreldan extends Application {
         library = new Library(world);
         highscore = new Highscore(world);
         finish = new Finish(world);
-//            
+        
+        //set our first scene to the menu.
         setMenuScene();
         primaryStage.show();
     }
     
     
     /**
+     * Starts the gui
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
     /**
-     * Force the game to load menu scene
+     * Force the gui to load menu scene
      */
     public static void setMenuScene(){
         primaryStage.setScene(menu.getScene());
     }
     
     /**
-     * Force the game to load loading scene
+     * Force the gui to load loading scene
      */
     public static void setLoadScene(){
         primaryStage.setScene(load.getScene());
     }
     
     /**
-     * Force the game to load highscore scene
+     * Force the gui to load highscore scene
      */
     public static void setHighscoreScene(){
         primaryStage.setScene(highscore.getScene());
     }
     
     /**
-     * Force the game to load highscore scene
+     * Force the gui to load highscore scene
      */
     public static void setFinishScene(){
         primaryStage.setScene(finish.getScene());
     }
+    
     /**
-     * Force the game to load playerSelection scene
+     * Force the gui to load playerSelection scene
      */
     public static void setPlayerSelectionScene(){
         primaryStage.setScene(playerSelection.getScene());
     }
     
     /**
-     * Force the game to load CellarScene
+     * Force the gui to load CellarScene
      */
     public static void setCellarScene(){
         primaryStage.setScene(cellar.getScene());
     }
-     /**
-     *  Force the game to load VillageScene
+    
+    /**
+     *  Force the gui to load VillageScene
      */
     public static void setVillageScene(){
         primaryStage.setScene(village.getScene());
     }
-     /**
-     *  Force the game to load House1Scene
+    
+    /**
+     *  Force the gui to load House1Scene
      */
     public static void setHouse1Scene(){
         primaryStage.setScene(house1.getScene());
     }
     
     /**
-     * Force the game to load House2Scene
+     * Force the gui to load House2Scene
      */
     public static void setHouse2Scene(){
         primaryStage.setScene(house2.getScene());
     }
     
+    /**
+     * Force the gui to load House3Scene
+     */
     public static void setHouse3Scene(){
         primaryStage.setScene(house3.getScene());
     }
         
     /**
-     *  Force the game to load UnicornScene
+     *  Force the gui to load UnicornScene
      */
     public static void setUnicornScene(){
         primaryStage.setScene(unicorn.getScene());
     }
     
     /**
-     * Force the game to load ForestScene
+     * Force the gui to load ForestScene
      */
     public static void setForestScene() {
         primaryStage.setScene(forest.getScene());
-    }
-    
-    
+    }    
     
     /**
-     * Force the game to load GruulsLairScene
+     * Force the gui to load GruulsLairScene
      */
     public static void setGruulsLairScene(){
         primaryStage.setScene(gruulslair.getScene());
     }
     
+    /**
+     * Force the gui to load the clearing scene
+     */
     public static void setClearingScene(){
         primaryStage.setScene(clearing.getScene());
     }
     
+    /**
+     * Force the gui to load the cave scene
+     */
     public static void setCaveScene() {
         primaryStage.setScene(cave.getScene());
     }
-
-    public static void setGame(TWoT loaded){
-        game = loaded;
-    }
     
+    /**
+     * Force the gui to load the dungeon scene
+     */
     public static void setDungeonScene() {
         primaryStage.setScene(dungeon.getScene());
     }
     
+    /**
+     * Force the gui to load the wizardhouse scene
+     */
     public static void setWizardHouseScene() {
         primaryStage.setScene(wizardHouse.getScene());
     }
+    
+    /**
+     * Force the gui to load the evil wizards lair scene
+     */
     public static void setEvilWizardsLairScene() {
         primaryStage.setScene(evilwizardslair.getScene());
     }
     
+    /**
+     * Force the gui to load the library scene
+     */
     public static void setLibraryScene() {
         primaryStage.setScene(library.getScene());
     }
     
+    /**
+     * Resets the game by making a new instance of TWoT
+     */
     public static void resetGame(){
         game = new TWoT();
     }
     
     
+    /**
+     * Set the twot object to another twot object 
+     * @param loaded 
+     */
+    public static void setGame(TWoT loaded){
+        game = loaded;
+    }
+
+
+    /**
+     * return the game object
+     * @return the game
+     */
+    public static TWoT getGame() {
+        return game;
+    }
+    
+    /**
+     * Saves the game
+     * Name of the file will be the current date and time and the current room name. 
+     * Stores the file under the folder "loads"
+     */
     public static void saveGame(){
+        //Make a SimpleDateFormat object of date and time
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");//dd/MM/yyyy
+        //get the current date
         Date now = new Date();
+        //get the current date and time formated from the SimpleDateFormat
         String strDate = sdfDate.format(now);
         try {
-            // Store Serialized User Object in File
+            // Store Serialized game Object in File
             FileOutputStream fileOutputStream = new FileOutputStream("loads/" + game.getCurrentRoomName() + " - " + strDate + ".data");
             ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
+            //write the game object 
             output.writeObject(game);
+            //close the connection
             output.close();
         } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         } catch (IOException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         } 
     }
     
+    /**
+     * Saves the game with a string as filename
+     * Stores the file under the folder "loads"
+     * @param name 
+     */
     public static void saveGame(String name){
         try {
-            // Store Serialized User Object in File
+            // Store Serialized game Object in File
             FileOutputStream fileOutputStream = new FileOutputStream("loads/" + name);
             ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
+            //write the game object 
             output.writeObject(game);
+            //close the connection
             output.close();
         } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         } catch (IOException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         } 
     }
 }
