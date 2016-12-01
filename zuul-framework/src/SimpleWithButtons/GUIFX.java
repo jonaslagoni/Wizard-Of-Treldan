@@ -930,6 +930,12 @@ public class GUIFX extends Application {
         Button button_wizard = new Button("Wizard");
         Button button_door = new Button("Door");
         
+        button_upstairs.setPrefSize(110, 10);
+        button_box.setPrefSize(110, 10);
+        button_lab.setPrefSize(110, 10);
+        button_wizard.setPrefSize(110, 10);
+        button_door.setPrefSize(110, 10);
+        
         VBox wizardHouseButtons = new VBox(20);
         wizardHouseButtons.getChildren().addAll(button_upstairs, button_box, button_lab, button_wizard, button_door);
         
@@ -982,6 +988,12 @@ public class GUIFX extends Application {
         Button button_forest = new Button("Forest");
         Button button_lair = new Button("Lair");
         
+        button_troll1.setPrefSize(110, 10);
+        button_troll2.setPrefSize(110, 10);
+        button_troll3.setPrefSize(110, 10);
+        button_forest.setPrefSize(110, 10);
+        button_lair.setPrefSize(110, 10);
+        
         VBox caveButtons = new VBox(20);
         caveButtons.getChildren().addAll(button_troll1, button_troll2, button_troll3, button_forest, button_lair);
         
@@ -1031,6 +1043,9 @@ public class GUIFX extends Application {
         Button button_gruul = new Button("Gruul");
         Button button_cave = new Button("Cave");
         
+        button_gruul.setPrefSize(110, 10);
+        button_cave.setPrefSize(110, 10);
+        
         VBox lairButtons = new VBox(20);
         lairButtons.getChildren().addAll(button_gruul, button_cave);
         Group root = new Group(lairButtons);
@@ -1059,6 +1074,10 @@ public class GUIFX extends Application {
         Button button_forest = new Button("Forest");
         Button button_unicorn = new Button("Unicorn");
         Button button_tree = new Button("Tree");
+        
+        button_forest.setPrefSize(110, 10);
+        button_unicorn.setPrefSize(110, 10);
+        button_tree.setPrefSize(110, 10);
         
         VBox clearingButtons = new VBox(20);
         clearingButtons.getChildren().addAll(button_forest, button_unicorn, button_tree);
@@ -1095,6 +1114,11 @@ public class GUIFX extends Application {
         Button button_skeleton2 = new Button("Skeleton");
         Button button_skeleton3 = new Button("Skeleton");
         Button button_pathway = new Button("Pathway");
+        
+        button_skeleton1.setPrefSize(110, 10);
+        button_skeleton2.setPrefSize(110, 10);
+        button_skeleton3.setPrefSize(110, 10);
+        button_pathway.setPrefSize(110, 10);
         
         VBox dungeonButtons = new VBox(20);
         dungeonButtons.getChildren().addAll(button_skeleton1, button_skeleton2, button_skeleton3, button_pathway);
@@ -1137,6 +1161,10 @@ public class GUIFX extends Application {
         Button button_librarian = new Button("Librarian");
         Button button_door = new Button("Door");
         Button button_chest = new Button("Chest");
+        
+        button_librarian.setPrefSize(110, 10);
+        button_door.setPrefSize(110, 10);
+        button_chest.setPrefSize(110, 10);
 	
         VBox libraryButtons = new VBox(20);
         libraryButtons.getChildren().addAll(button_librarian, button_door, button_chest);
@@ -1172,6 +1200,10 @@ public class GUIFX extends Application {
         Button button_evilWizard = new Button("Evil Wizard");
         Button button_minion1 = new Button("Minion1");
         Button button_minion2 = new Button("Minion2");
+        
+        button_evilWizard.setPrefSize(110, 10);
+        button_minion1.setPrefSize(110, 10);
+        button_minion2.setPrefSize(110, 10);
         
         VBox evilWizardsButtons = new VBox(20);
         evilWizardsButtons.getChildren().addAll(button_evilWizard, button_minion1, button_minion2);
