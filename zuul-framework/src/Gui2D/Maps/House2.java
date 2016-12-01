@@ -138,7 +138,7 @@ public class House2 extends Map{
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(350, 0, 1, 300);
         Rectangle2D worldBoundLeft = new Rectangle2D(0, 0, 1, 300);
-        Rectangle2D worldBoundBottom = new Rectangle2D(0, 220, 400, 1);
+        Rectangle2D worldBoundBottom = new Rectangle2D(0, 155, 400, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 400, 1);
              
         new AnimationTimer() {
