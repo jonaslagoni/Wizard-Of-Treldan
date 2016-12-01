@@ -665,7 +665,7 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "door");
@@ -701,42 +701,42 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_riches.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "house2");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_hOfGuard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "house3");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_guard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "guard");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_axe.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "axe");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_forest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "forest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return group;
@@ -757,21 +757,21 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_chest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "chest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "door");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -793,28 +793,28 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_wardrobe.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Riches");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_bed.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Guard House");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_table.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "guard");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -836,28 +836,28 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_kitchen.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "kitchen");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_woman.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "woman");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_chest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "chest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -882,42 +882,42 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_goblin.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "goblin");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_house.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "house");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_cave.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "cave");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_clearing.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "clearing");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_village.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "village");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -941,35 +941,35 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_box.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "box");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_lab.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "lab");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_wizard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "wizard");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "door");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -993,35 +993,35 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_troll2.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "troll");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_troll3.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "troll");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_forest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "forest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_lair.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "lair");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -1041,14 +1041,14 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_cave.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "cave");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -1070,21 +1070,21 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_unicorn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Unicorn");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_tree.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Tree");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -1106,28 +1106,28 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_skeleton2.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "skeleton2");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_skeleton3.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "skeleton3");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_pathway.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "pathway");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         
         return root;
@@ -1148,21 +1148,21 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Door");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_chest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Chest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
 	
         return root;
@@ -1183,21 +1183,21 @@ public class GUIFX extends Application {
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_minion1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Minion1");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-            
+            updateGUI();
         });
         button_minion2.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "Minion2");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
-
+            updateGUI();
         });
         
         return root;
