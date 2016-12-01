@@ -5,7 +5,6 @@
  */
 package Gui2D.SpriteController;
 
-import java.awt.Rectangle;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -30,13 +29,14 @@ public abstract class Sprite {
     private double width;
     private double height;
     
-    /**
+    /*
      * The sprite width and height this is not the width and height of the image displayed.
      * This is the single sprite width and height in the sprite sheet
      */
     private double sprite_width = 64;
     private double sprite_height = 64;
     
+    //Global boundary
     private Rectangle2D boundary;
     
     /**
@@ -276,6 +276,7 @@ public abstract class Sprite {
     }
 
     /**
+     * Sets the boundary to a predefined rectangle
      * @param boundary the boundary to set
      */
     public void setBoundary(Rectangle2D boundary) {
@@ -283,7 +284,7 @@ public abstract class Sprite {
     }
     
     /**
-     * 
+     * update the boundary
      */
     public void updateBoundary(){
         setBoundary(new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight()));
