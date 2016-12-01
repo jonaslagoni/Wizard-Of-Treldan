@@ -49,20 +49,16 @@ public class Forest extends Map{
         //init our super constructor
         super();
         
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
         forest_sprites = new Forest_sprites(world);
         forest_sprites.setForest_background_SingleSprites();
     }
     
     @Override
     public Scene getScene(){
+        
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
         Group root = new Group();
         Scene theScene = new Scene( root );

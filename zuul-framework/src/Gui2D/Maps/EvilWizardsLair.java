@@ -38,26 +38,16 @@ public class EvilWizardsLair extends Map{
     private ArrayList<String> menu_input;
     
     private EvilWizardsLair_sprites evilWizardsLair_sprites;
+    
+    private TWoT game;
+    
     /**
      * Constructor for EvilWizardsLair
      * @param world 
      */
-    private TWoT game;
-    
     public EvilWizardsLair(SpriteController world){
         //init our super constructor
         super();
-        
-        //set the ArrayList's from the super class Map
-        super.setInput(new ArrayList<String>());
-        super.setMenu_input(new ArrayList<String>());
-        
-        // Link our globals to super class user inputs since no inheritence in AnimationTimer
-        input = super.getInput();
-        menu_input = super.getMenu_input();
-        
-        //set the world constructor
-        super.setWorld(world);
         
         evilWizardsLair_sprites = new EvilWizardsLair_sprites(world);
         evilWizardsLair_sprites.setEvilWizardsLair_background_SingleSprites();
@@ -65,6 +55,11 @@ public class EvilWizardsLair extends Map{
     
     @Override
     public Scene getScene(){
+        
+        // Link our globals to super class user inputs since no inheritence in AnimationTimer
+        input = super.getInput();
+        menu_input = super.getMenu_input();
+        
         //initialize game
         this.game = WizardOfTreldan.getGame();
         //new group

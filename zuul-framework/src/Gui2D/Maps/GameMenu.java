@@ -26,7 +26,6 @@ public class GameMenu {
     private boolean shown;
     /**
      * PlayerInventory object
-     * @param game 
      */
     public GameMenu(){
         gameMenu = new AnchorPane();

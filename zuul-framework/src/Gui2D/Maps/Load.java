@@ -44,10 +44,8 @@ import javafx.scene.text.Text;
 public class Load extends Map{
     private Text status;
     private boolean canLoad;
-    public Load(SpriteController world){
+    public Load(){
         super();
-        //set the world constructor
-        super.setWorld(world);
     }
     
     @Override

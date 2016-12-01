@@ -10,7 +10,7 @@ import Gui2D.SpriteController.SpriteController;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
-
+import javafx.scene.Scene;
 /**
  *
  * @author jonas
@@ -22,14 +22,16 @@ public abstract class Map {
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     
-    // Our custom sprite generator.
-    private SpriteController world;
-    
     // Our PlayerSprite 
     PlayerSprite player;
     
-    public abstract javafx.scene.Scene getScene();
+    //force each subclass to implement this method
+    public abstract Scene getScene();
     
+    
+    /**
+     * Constructor for a Map
+     */
     public Map(){
         player = new PlayerSprite();
         player.setImage(SpriteController.getPLAYER_SPRITESHEET());
@@ -37,11 +39,10 @@ public abstract class Map {
         player.setHeight(64);
         player.setWidth(64);
         
-        
-        //set the ArrayList'cellar_sprites from the super class Map
         input = new ArrayList();
         menu_input = new ArrayList();
     }
+    
     /**
      * Return the player EventHandler for key release
      * @param player
@@ -122,29 +123,11 @@ public abstract class Map {
     public void setMenu_input(ArrayList<String> menu_input) {
         this.menu_input = menu_input;
     }
-
-    /**
-     * @return the world
-     */
-    public SpriteController getWorld() {
-        return world;
-    }
-
-    /**
-     * @param world the world to set
-     */
-    public void setWorld(SpriteController world) {
-        this.world = world;
-    }
-
+    
     /**
      * @return the player
      */
     public PlayerSprite getPlayer() {
         return player;
-    }
-    
-    public void setScene(){
-        
     }
 }

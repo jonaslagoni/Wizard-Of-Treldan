@@ -39,10 +39,8 @@ public class Highscore extends Map {
     private boolean canLoad;
     private TWoT game;
 
-    public Highscore(SpriteController world) {
+    public Highscore() {
         super();
-        //set the world constructor
-        super.setWorld(world);
     }
 
     @Override

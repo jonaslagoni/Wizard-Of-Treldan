@@ -69,7 +69,10 @@ public class Cellar extends Map{
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
+        
+        //get the TWoT object from the main class
         this.game = WizardOfTreldan.getGame();
+        
         //add our group
         Group root = new Group();
         //add a scene from the group

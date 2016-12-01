@@ -99,8 +99,8 @@ public class WizardOfTreldan extends Application {
         house2 = new House2(world);
         house3 = new House3(world);
         menu = new Menu(world);
-        load = new Load(world);
-        playerSelection = new PlayerSelection(world);
+        load = new Load();
+        playerSelection = new PlayerSelection();
         house2 = new House2(world);
         gruulslair = new GruulsLair(world);
         clearing = new Clearing(world);
@@ -111,7 +111,7 @@ public class WizardOfTreldan extends Application {
         gruulslair = new GruulsLair(world);
         evilwizardslair = new EvilWizardsLair(world);
         library = new Library(world);
-        highscore = new Highscore(world);
+        highscore = new Highscore();
         finish = new Finish(world);
         
         //set our first scene to the menu.

@@ -26,8 +26,6 @@ import javafx.scene.text.Font;
 public class Menu extends Map{
     public Menu(SpriteController world){
         super();
-        //set the world constructor
-        super.setWorld(world);
     }
     
     @Override

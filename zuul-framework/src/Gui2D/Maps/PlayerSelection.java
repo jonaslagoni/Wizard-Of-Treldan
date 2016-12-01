@@ -28,10 +28,8 @@ import javafx.scene.text.Text;
  */
 public class PlayerSelection extends Map{
     private TWoT game;
-    public PlayerSelection(SpriteController world){
+    public PlayerSelection(){
         super();
-        //set the world constructor
-        super.setWorld(world);
     }
     
     @Override
