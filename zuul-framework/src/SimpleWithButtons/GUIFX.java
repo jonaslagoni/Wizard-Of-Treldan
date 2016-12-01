@@ -73,6 +73,9 @@ public class GUIFX extends Application {
     private Label label1;
     private Group walkButtons = new Group();
     private int pos = 120;
+    private Label endScore = new Label();
+    private Stage primaryStage;
+    private Scene endMenu;
     
     private TableView<InventoryItems> invTable = new TableView();
     private final ObservableList<InventoryItems> invData = FXCollections.observableArrayList();
@@ -99,11 +102,11 @@ public class GUIFX extends Application {
     @Override
     public void start (Stage primaryStage) {
         
-        primaryStage.setTitle("The Wizard of Treldan");
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("The Wizard of Treldan");
         textArea = new TextArea();
         statsArea = new TextArea();
         nameArea = new TextField();
-        Label endScore = new Label();
         
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
@@ -332,7 +335,7 @@ public class GUIFX extends Application {
         Scene menu = new Scene(root2, 512, 288);
         Scene nameScene = new Scene(root3, 512, 288);
         Scene loadMenu = new Scene(root4, 512, 288);
-        Scene endMenu = new Scene(root5, 512, 288);
+        endMenu = new Scene(root5, 512, 288);
                 
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -343,7 +346,9 @@ public class GUIFX extends Application {
         });
         
         button_equip.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            
+            if(invTable.getSelectionModel().getSelectedItem() == null){
+                textArea.appendText("\n\nPlease select an item.");
+            }else{
             for(String s: twot.equipItem(new Command(CommandWord.USE, invTable.getSelectionModel().getSelectedItem().getItemName()))){
                 if(invTable.getSelectionModel().getSelectedItem().getItemType() == "Equippable Item"){
                 textArea.appendText("\n" + s);
@@ -352,6 +357,7 @@ public class GUIFX extends Application {
                     textArea.appendText("\nThis item cannot be equipped.");
                 }
             }
+        }
         });
         button_loadGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             TWoT loadedGame = getLoad((((Text)list.getSelectionModel().getSelectedItem().getChildren().get(0)).getText()));
@@ -371,6 +377,9 @@ public class GUIFX extends Application {
             textArea.appendText("\n\nGame has been saved. It can be loaded from the start menu.\n\n");
         });
         button_use.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            if(invTable.getSelectionModel().getSelectedItem() == null){
+                textArea.appendText("\n\nPlease select an item.");
+            }else{
             for(String s: twot.useItem(new Command(CommandWord.USE, invTable.getSelectionModel().getSelectedItem().getItemName()))){
                 if(invTable.getSelectionModel().getSelectedItem().getItemType() == "Usable Item"){
                 textArea.appendText("\n" + s);
@@ -379,6 +388,7 @@ public class GUIFX extends Application {
                     textArea.appendText("\nThis item cannot be used.");
                 }
             }
+        }
         });
         button_play.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             primaryStage.setScene(nameScene);
@@ -416,7 +426,7 @@ public class GUIFX extends Application {
         button_exit.setOnAction(actionEvent -> Platform.exit());        
         button_exitMenu.setOnAction(actionEvent -> Platform.exit());  
         button_exitGame.setOnAction(actionEvent -> Platform.exit());
-        
+               
         primaryStage.setScene(menu);
         primaryStage.centerOnScreen();
         primaryStage.show();
@@ -426,6 +436,8 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
+        
+        
     }
     
     public void updateGUI(){
@@ -636,7 +648,7 @@ public class GUIFX extends Application {
     }
 
 
-//WALK BUTTONS
+    //WALK BUTTONS
     
     CommandWords commandword = new CommandWords();
       
@@ -700,12 +712,22 @@ public class GUIFX extends Application {
         button_axe.setPrefSize(110, 10);
         button_forest.setPrefSize(110, 10);
         
+        button_forest.setDisable(true);
+        
         VBox villageButtons = new VBox(20);
         //if guard children not delivered.
         
+        villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         
+        if(twot.checkExisting("forest")){
+           
+            button_forest.setDisable(false);
+        }
         
-        villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe);
+        if(!twot.checkExisting("axe")){
+           
+            button_axe.setDisable(true);
+        }
         
         walkButtons = new Group(villageButtons);
         
@@ -732,17 +754,14 @@ public class GUIFX extends Application {
         });
         button_guard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "guard");
-           /* for(Item i : twot.getInventoryItems()){
-                if(i.getItemId() == 99902){
-                villageButtons.getChildren().add(button_forest);
-            }
-                updateGUI();*/
+            
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_axe.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            
             Command command = new Command(commandword.getCommandWord("go"), "axe");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
@@ -764,15 +783,24 @@ public class GUIFX extends Application {
         Button button_man = new Button("Man");
         Button button_chest = new Button("Chest");
         Button button_door = new Button("Door");
+        Button button_stranger = new Button("Stranger");
         
         button_man.setPrefSize(110, 10);
         button_chest.setPrefSize(110, 10);
         button_door.setPrefSize(110, 10);
+        button_stranger.setPrefSize(110, 10);
         
         VBox house1Buttons = new VBox(20);
         house1Buttons.getChildren().addAll(button_door, button_chest, button_man);
         Group root = new Group(house1Buttons);
         
+        if(!twot.checkExisting("man")){
+                button_man.setDisable(true);
+            }
+        
+        if(twot.checkExisting("stranger")){
+            house1Buttons.getChildren().add(button_stranger);
+        }
         
         button_man.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "man");
@@ -796,6 +824,14 @@ public class GUIFX extends Application {
             updateGUI();
         });
         
+        button_stranger.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "stranger");
+            for(String s: twot.goTo(command)){
+                textArea.appendText("\n" + s + "\n");
+            }
+            updateGUI();
+        });
+        
         return root;
     }
     private Group house2Buttons() {
@@ -804,16 +840,21 @@ public class GUIFX extends Application {
         Button button_wardrobe = new Button("Wardrobe");
         Button button_bed = new Button("Bed");
         Button button_table = new Button("Table");
+        Button button_stranger = new Button("Stranger");
         
         button_door.setPrefSize(110, 10);
         button_wardrobe.setPrefSize(110, 10);
         button_bed.setPrefSize(110, 10);
         button_table.setPrefSize(110, 10);
+        button_stranger.setPrefSize(110, 10);
         
         VBox house2Buttons = new VBox(20);
         house2Buttons.getChildren().addAll(button_door, button_wardrobe, button_bed, button_table);
         Group root = new Group(house2Buttons);
         
+        if(twot.checkExisting("stranger")){
+            house2Buttons.getChildren().add(button_stranger);
+        }
         
         button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "door");
@@ -844,6 +885,14 @@ public class GUIFX extends Application {
             updateGUI();
         });
         
+        button_stranger.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "stranger");
+            for(String s: twot.goTo(command)){
+                textArea.appendText("\n" + s + "\n");
+            }
+            updateGUI();
+        });
+        
         return root;
     }
     private Group house3Buttons() {
@@ -852,16 +901,32 @@ public class GUIFX extends Application {
         Button button_kitchen = new Button("Kitchen");
         Button button_woman = new Button("Woman");
         Button button_chest = new Button("Chest");
+        Button button_stranger = new Button("Stranger");
         
         button_door.setPrefSize(110, 10);
         button_kitchen.setPrefSize(110, 10);
         button_woman.setPrefSize(110, 10);
         button_chest.setPrefSize(110, 10);
+        button_stranger.setPrefSize(110, 10);
         
         VBox house3Buttons = new VBox(20);
         house3Buttons.getChildren().addAll(button_door, button_kitchen, button_woman, button_chest);
         Group root = new Group(house3Buttons);
         
+        if(twot.checkExisting("stranger")){
+            house3Buttons.getChildren().add(button_stranger);
+        }
+        if(!twot.checkExisting("woman")){
+                button_woman.setDisable(true);
+            }
+        
+        button_stranger.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            Command command = new Command(commandword.getCommandWord("go"), "stranger");
+            for(String s: twot.goTo(command)){
+                textArea.appendText("\n" + s + "\n");
+            }
+            updateGUI();
+        });
         
         button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "door");
@@ -1038,23 +1103,33 @@ public class GUIFX extends Application {
         
         Group root = new Group(caveButtons);
         
+        if(!twot.checkExisting("troll1")){
+                button_troll1.setDisable(true);
+            }
+        if(!twot.checkExisting("troll2")){
+                button_troll2.setDisable(true);
+            }
+        if(!twot.checkExisting("troll3")){
+                button_troll3.setDisable(true);
+            }
+        
         
         button_troll1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "troll");
+            Command command = new Command(commandword.getCommandWord("go"), "troll1");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_troll2.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "troll");
+            Command command = new Command(commandword.getCommandWord("go"), "troll2");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_troll3.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "troll");
+            Command command = new Command(commandword.getCommandWord("go"), "troll3");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
@@ -1089,6 +1164,9 @@ public class GUIFX extends Application {
         lairButtons.getChildren().addAll(button_cave, button_gruul);
         Group root = new Group(lairButtons);
         
+        if(!twot.checkExisting("gruul")){
+                button_gruul.setDisable(true);
+            }        
         
         button_gruul.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "gruul");
@@ -1122,23 +1200,26 @@ public class GUIFX extends Application {
         clearingButtons.getChildren().addAll(button_forest, button_unicorn, button_tree);
         Group root = new Group(clearingButtons);
         
+        if(!twot.checkExisting("unicorn")){
+                button_unicorn.setDisable(true);
+            }
         
         button_forest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Forest");
+            Command command = new Command(commandword.getCommandWord("go"), "forest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_unicorn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Unicorn");
+            Command command = new Command(commandword.getCommandWord("go"), "unicorn");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_tree.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Tree");
+            Command command = new Command(commandword.getCommandWord("go"), "tree");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
@@ -1163,6 +1244,15 @@ public class GUIFX extends Application {
         dungeonButtons.getChildren().addAll(button_pathway, button_skeleton1, button_skeleton2, button_skeleton3,);
         Group root = new Group(dungeonButtons);
         
+        if(!twot.checkExisting("skeleton1")){
+                button_skeleton1.setDisable(true);
+            }
+        if(!twot.checkExisting("skeleton2")){
+                button_skeleton1.setDisable(true);
+            }
+        if(!twot.checkExisting("skeleton3")){
+                button_skeleton1.setDisable(true);
+            }
         
         button_skeleton1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "skeleton1");
@@ -1209,23 +1299,26 @@ public class GUIFX extends Application {
         libraryButtons.getChildren().addAll(button_door, button_librarian, button_chest);
         Group root = new Group(libraryButtons);
         
+        if(!twot.checkExisting("librarian")){
+                button_librarian.setDisable(true);
+            }        
         
         button_librarian.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Librarian");
+            Command command = new Command(commandword.getCommandWord("go"), "librarian");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_door.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Door");
+            Command command = new Command(commandword.getCommandWord("go"), "door");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_chest.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Chest");
+            Command command = new Command(commandword.getCommandWord("go"), "chest");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
@@ -1248,23 +1341,44 @@ public class GUIFX extends Application {
         evilWizardsButtons.getChildren().addAll(button_evilWizard, button_minion1, button_minion2);
         Group root = new Group(evilWizardsButtons);
         
+        if(!twot.checkExisting("minion2")){
+                button_minion2.setDisable(true);
+            }
+        
+        if(!twot.checkExisting("minion1")){
+                button_minion1.setDisable(true);
+            }
         
         button_evilWizard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Evil Wizard");
-            for(String s: twot.goTo(command)){
+            
+            Command command = new Command(commandword.getCommandWord("go"), "wizard");
+            if(!twot.checkExisting("minion1") && !twot.checkExisting("minion2")){
+                for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
+                }
+            }else{
+                textArea.appendText("\n\nFoolish mortal! You have to defeat my minions before you prove yourself worthy to fight me.");
             }
+            
+            if(twot.endGame() == true){endScore.setText("Congratulations! You have beaten The Wizard of Treldan!\n"
+                                                                              + "                        Your final score is: " + twot.getHighscore() +
+                                                                                "\n        It took you " + ((long)(System.currentTimeMillis() / 1000L) - twot.getStartTime()) + " seconds to finish the game.");
+            primaryStage.setScene(endMenu);
+            }
+            
             updateGUI();
         });
         button_minion1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Minion1");
+            Command command = new Command(commandword.getCommandWord("go"), "minion1");
+            
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
             updateGUI();
         });
         button_minion2.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
-            Command command = new Command(commandword.getCommandWord("go"), "Minion2");
+            Command command = new Command(commandword.getCommandWord("go"), "minion2");
+            
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
             }
