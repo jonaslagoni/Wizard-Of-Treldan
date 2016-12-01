@@ -91,7 +91,13 @@ public class Village extends Map {
         Canvas village_foreground = new Canvas(1024, 512);
         //add the canvas to the group
         root.getChildren().add(village_foreground);
-
+        
+        
+        //minimap ontop of everything else
+        MiniMap miniMap = new MiniMap(game);
+        Group miniMapGroup = miniMap.getMinimap();
+        miniMap.updateMiniMap(512.0, 256.0);
+        root.getChildren().add( miniMapGroup );
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -477,6 +483,9 @@ public class Village extends Map {
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
+                
+                //minimap
+                miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
 
             public void setNewScene() {
