@@ -98,19 +98,19 @@ public class WizardOfTreldan extends Application {
         house1 = new House1(world);
         house2 = new House2(world);
         house3 = new House3(world);
-        menu = new Menu(world);
-        load = new Load();
-        playerSelection = new PlayerSelection();
-        house2 = new House2(world);
+        forest = new Forest(world);
         gruulslair = new GruulsLair(world);
         clearing = new Clearing(world);
-        forest = new Forest(world);
         cave = new Cave(world);
-        dungeon = new Dungeon(world);
         wizardHouse = new WizardHouse(world);
         gruulslair = new GruulsLair(world);
-        evilwizardslair = new EvilWizardsLair(world);
+        dungeon = new Dungeon(world);
         library = new Library(world);
+        evilwizardslair = new EvilWizardsLair(world);
+        //init normal scenes
+        menu = new Menu();
+        load = new Load();
+        playerSelection = new PlayerSelection();
         highscore = new Highscore();
         finish = new Finish(world);
         
@@ -127,6 +127,7 @@ public class WizardOfTreldan extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
     /**
      * Force the gui to load menu scene
      */
@@ -149,7 +150,7 @@ public class WizardOfTreldan extends Application {
     }
     
     /**
-     * Force the gui to load highscore scene
+     * Force the gui to finish scene
      */
     public static void setFinishScene(){
         primaryStage.setScene(finish.getScene());

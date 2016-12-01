@@ -17,21 +17,21 @@ import javafx.scene.image.Image;
  */
 public class MiniMap {
     //add all constant image files for minimaps
-    private static final Image cellarImage = new Image("minimap/cellar.png");
-    private static final Image villageImage = new Image("minimap/village.png");
-    private static final Image house1Image = new Image("minimap/house1.png");
-    private static final Image house2Image = new Image("minimap/house2.png");
-    private static final Image house3Image = new Image("minimap/house3.png");
-    private static final Image forrestImage = new Image("minimap/forrest.png");
-    private static final Image wizardhouseImage = new Image("minimap/WizzardHouse.png");
-    private static final Image caveImage = new Image("minimap/cave.png");
-    private static final Image lairImage = new Image("minimap/lair.png");
-    private static final Image clearingImage = new Image("minimap/clearing.png");
-    private static final Image dungeonImage = new Image("minimap/Dungeon.png");
-    private static final Image libraryImage = new Image("minimap/library.png");
-    private static final Image wizardlairImage = new Image("minimap/wizardLair.png");
+    private static final Image CELLARIMAGE = new Image("minimap/cellar.png");
+    private static final Image VILLAGEIMAGE = new Image("minimap/village.png");
+    private static final Image HOUSE1IMAGE = new Image("minimap/house1.png");
+    private static final Image HOUSE2IMAGE = new Image("minimap/house2.png");
+    private static final Image HOUSE3IMAGE = new Image("minimap/house3.png");
+    private static final Image FORRESTIMAGE = new Image("minimap/forrest.png");
+    private static final Image WIZARDHOUSEIMAGE = new Image("minimap/WizzardHouse.png");
+    private static final Image CAVEIMAGE = new Image("minimap/cave.png");
+    private static final Image LAIRIMAGE = new Image("minimap/lair.png");
+    private static final Image CLEARINGIMAGE = new Image("minimap/clearing.png");
+    private static final Image DUNGEONIMAGE = new Image("minimap/Dungeon.png");
+    private static final Image LIBRARYIMAGE = new Image("minimap/library.png");
+    private static final Image WIZARDLAIRIMAGE = new Image("minimap/wizardLair.png");
     //the playerhead image
-    private static final Image playerImage = new Image("minimap/player.png");
+    private static final Image PLAYERIMAGE = new Image("minimap/player.png");
     //global group for the canvases
     private Group root;
     //the two global graphics context's
@@ -142,7 +142,7 @@ public class MiniMap {
         //first clear the minimap
         clearMiniMap_player();
         //draw a new image
-        miniMap_playerContext.drawImage(playerImage, posX/constWidthRatio, posY/constHeightRatio, width_player, height_player);
+        miniMap_playerContext.drawImage(PLAYERIMAGE, posX/constWidthRatio, posY/constHeightRatio, width_player, height_player);
     }
     
     /**
@@ -152,7 +152,6 @@ public class MiniMap {
     public Group getMinimap(){
         return root;
     }
-    
     
     /**
      * clears the background canvas
@@ -172,90 +171,90 @@ public class MiniMap {
      * Sets the cellar minimap image
      */
     private void setCellar(){
-        miniMapContext.drawImage(cellarImage, 0, 0, width, height);
+        miniMapContext.drawImage(CELLARIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the village minimap image
      */
     private void setVillage(){
-        miniMapContext.drawImage(villageImage, 0, 0, width, height);
+        miniMapContext.drawImage(VILLAGEIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the house1 minimap image
      */
     private void setHouse1(){
-        miniMapContext.drawImage(house1Image, 0, 0, width, height);
+        miniMapContext.drawImage(HOUSE1IMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the house2 minimap image
      */
     private void setHouse2(){
-        miniMapContext.drawImage(house2Image, 0, 0, width, height);
+        miniMapContext.drawImage(HOUSE2IMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the house3 minimap image
      */
     private void setHouse3(){
-        miniMapContext.drawImage(house3Image, 0, 0, width, height);
+        miniMapContext.drawImage(HOUSE3IMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the forrest minimap image
      */
     private void setForrest(){
-        miniMapContext.drawImage(forrestImage, 0, 0, width, height);
+        miniMapContext.drawImage(FORRESTIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the wizard house minimap image
      */
     private void setWizardHouse(){
-        miniMapContext.drawImage(wizardhouseImage, 0, 0, width, height);
+        miniMapContext.drawImage(WIZARDHOUSEIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the cave minimap image
      */
     private void setCave(){
-        miniMapContext.drawImage(caveImage, 0, 0, width, height);
+        miniMapContext.drawImage(CAVEIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the lair minimap image
      */
     private void setLair(){
-        miniMapContext.drawImage(lairImage, 0, 0, width, height);
+        miniMapContext.drawImage(LAIRIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the lair minimap image
      */
     private void setClearing(){
-        miniMapContext.drawImage(clearingImage, 0, 0, width, height);
+        miniMapContext.drawImage(CLEARINGIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the dungeon minimap image
      */
     private void setDungeon(){
-        miniMapContext.drawImage(dungeonImage, 0, 0, width, height);
+        miniMapContext.drawImage(DUNGEONIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the library minimap image
      */
     private void setLibrary(){
-        miniMapContext.drawImage(libraryImage, 0, 0, width, height);
+        miniMapContext.drawImage(LIBRARYIMAGE, 0, 0, width, height);
     }
     
     /**
      * Sets the Wizard lair minimap image
      */
     private void setWizardLair(){
-        miniMapContext.drawImage(wizardlairImage, 0, 0, width, height);
+        miniMapContext.drawImage(WIZARDLAIRIMAGE, 0, 0, width, height);
     }
 }

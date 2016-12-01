@@ -24,7 +24,7 @@ import javafx.scene.text.Font;
  * @author jonas
  */
 public class Menu extends Map{
-    public Menu(SpriteController world){
+    public Menu(){
         super();
     }
     

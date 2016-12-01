@@ -12,8 +12,6 @@ import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
 import TWoT_A1.Command;
 import TWoT_A1.CommandWord;
-import TWoT_A1.Item;
-import TWoT_A1.QuestItem;
 import TWoT_A1.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,11 +90,10 @@ public class Village extends Map {
         //add the canvas to the group
         root.getChildren().add(village_foreground);
         
-        
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
         Group miniMapGroup = miniMap.getMinimap();
-        miniMap.updateMiniMap(512.0, 256.0);
+        miniMap.updateMiniMap(1024.0, 512.0);
         root.getChildren().add( miniMapGroup );
 
         /**
