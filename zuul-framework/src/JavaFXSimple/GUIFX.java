@@ -61,7 +61,6 @@ import javafx.stage.Stage;
 public class GUIFX extends Application {
 
     private TWoT twot;
-    private WalkButtons wb;
     
     private TextArea textArea;
     private TextArea statsArea;
@@ -88,7 +87,6 @@ public class GUIFX extends Application {
     public GUIFX () {
         
         twot = new TWoT();
-        wb = new WalkButtons();
                
     }
     public static void main(String[] args) {
@@ -145,7 +143,7 @@ public class GUIFX extends Application {
         button_save.setMaxWidth(90);
         
         VBox gameButtons = new VBox(20);
-        gameButtons.setLayoutX(591);
+        gameButtons.setLayoutX(741);
         gameButtons.setLayoutY(5);
         gameButtons.getChildren().addAll(button_clear, button_help, button_save, button_exit);
         
@@ -189,7 +187,7 @@ public class GUIFX extends Application {
         //smth else
         
         HBox invButtons = new HBox(20);
-        invButtons.setLayoutX(770);
+        invButtons.setLayoutX(920);
         invButtons.setLayoutY(420);
         invButtons.getChildren().addAll(button_use, button_equip);
 
@@ -226,7 +224,7 @@ public class GUIFX extends Application {
  
         invTable.setItems(invData);
         invTable.getColumns().addAll(itemName, itemType, itemDescription);
-        invTable.setLayoutX(652);
+        invTable.setLayoutX(802);
         equipTable.setEditable(false);
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
         for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
@@ -273,7 +271,7 @@ public class GUIFX extends Application {
         
         equipTable.setItems(equipData);
         equipTable.getColumns().addAll(itemNames, itemSlot, itemAttack, itemDefence);
-        equipTable.setLayoutX(264);
+        equipTable.setLayoutX(414);
         equipTable.setLayoutY(300);
         equipTable.setMinWidth(370);
         equipTable.setMaxWidth(370);
@@ -285,6 +283,7 @@ public class GUIFX extends Application {
         textArea.setMinWidth(572);
         textArea.setMinHeight(258);
         textArea.setMaxHeight(258);
+        outputField.setLayoutX(150);
         textArea.setWrapText(true);
         textArea.setEditable(false);
         outputField.getChildren().addAll(textArea);
@@ -297,22 +296,22 @@ public class GUIFX extends Application {
         statsArea.appendText("****************************");
         statsField.setMaxWidth(256);
         statsField.setMaxHeight(110);
-        statsField.relocate(0, 300);
+        statsField.relocate(150, 300);
         statsField.getChildren().addAll(statsArea);
         
         healthbar = new ProgressBar(twot.getPlayerHealth()/100);
         healthbar.setStyle("-fx-accent: red;");
         healthbar.setPrefSize(256, 26);
-        healthbar.relocate(0, 265);
+        healthbar.relocate(150, 265);
                        
         label1 = new Label("Health "+ twot.getPlayerHealth());
         label1.setTextFill(Color.web("BLACK"));
-        label1.relocate(10, 269);
+        label1.relocate(160, 269);
         
         inputArea.setPromptText("Write here: ");
         VBox inputField = new VBox(20);
         inputField.setPrefSize(308, 28);
-        inputField.relocate(264, 265);
+        inputField.relocate(414, 265);
         inputField.getChildren().addAll(inputArea);
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
@@ -325,14 +324,14 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, inputField, healthbar, invTable, label1, statsField, wb.updateButtons());
+        Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, inputField, healthbar, invTable, label1, statsField);
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
         Pane root5 = new Pane(endScore, button_exitGame);
         
         
-        Scene scene1 = new Scene(root, 1052, 512);
+        Scene scene1 = new Scene(root, 1202, 512);
         Scene menu = new Scene(root2, 512, 288);
         Scene nameScene = new Scene(root3, 512, 288);
         Scene loadMenu = new Scene(root4, 512, 288);
@@ -473,6 +472,10 @@ public class GUIFX extends Application {
         updateHealth();
         updateInventory();
         updateEquipInventory();
+    }
+    
+    public void updateButtons(){
+        
     }
     
     public void updatePlayer(){

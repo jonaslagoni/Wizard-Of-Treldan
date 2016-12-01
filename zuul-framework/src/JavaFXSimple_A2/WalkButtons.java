@@ -22,7 +22,6 @@ import javafx.scene.control.TextField;
 public class WalkButtons {
     
     CommandWords commandword = new CommandWords();
-    private List<String> button_description = new ArrayList<>();
     
     public Group updateButtons(TWoT twot, TextArea textArea) {
         Group group = new Group();
