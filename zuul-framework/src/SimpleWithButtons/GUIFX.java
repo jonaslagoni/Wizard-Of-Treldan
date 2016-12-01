@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JavaFXSimple_A2;
+package SimpleWithButtons;
 
 import Gui2D.WizardOfTreldan;
 import TWoT_A1.*;
@@ -72,7 +72,7 @@ public class GUIFX extends Application {
     private TextField nameArea;
     private VBox statsField = new VBox(20);
     private Label label1;
-    private Group group = new Group();
+    private Group walkButtons = new Group();
     
     private TableView<InventoryItems> invTable = new TableView();
     private final ObservableList<InventoryItems> invData = FXCollections.observableArrayList();
@@ -321,7 +321,7 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, healthbar, invTable, label1, statsField, group);
+        Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, healthbar, invTable, label1, statsField, walkButtons);
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
@@ -499,56 +499,56 @@ public class GUIFX extends Application {
                       
         switch (twot.getCurrentRoomId()) {
             case 1:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(cellarButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(cellarButtons());
                 break;
             case 2:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(villageButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(villageButtons());
                 break;
             case 3:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(house1Buttons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(house1Buttons());
                 break;
             case 4:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(house2Buttons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(house2Buttons());
                 break;
             case 5:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(house3Buttons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(house3Buttons());
                 break;
             case 6:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(forestButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(forestButtons());
                 break;
             case 7:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(wizardHouseButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(wizardHouseButtons());
                 break;
             case 8:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(caveButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(caveButtons());
                 break;
             case 9:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(lairButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(lairButtons());
                 break;
             case 10:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(clearingButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(clearingButtons());
                 break;
             case 11:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(dungeonButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(dungeonButtons());
                 break;
             case 12:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(libraryButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(libraryButtons());
                 break;
             case 13:
-                group.getChildren().removeAll(group.getChildren());
-                group.getChildren().add(evilWizardsButtons());
+                walkButtons.getChildren().removeAll(walkButtons.getChildren());
+                walkButtons.getChildren().add(evilWizardsButtons());
                 break;
             default:
                 break;
@@ -650,7 +650,7 @@ public class GUIFX extends Application {
         
         cellarButtons.getChildren().addAll(button_haystack, button_table, button_door);
         
-        group = new Group(cellarButtons);
+        walkButtons = new Group(cellarButtons);
         
         button_haystack.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             Command command = new Command(commandword.getCommandWord("go"), "haystack");
@@ -675,7 +675,7 @@ public class GUIFX extends Application {
             }
             updateGUI();
         });
-        return group;
+        return walkButtons;
     }
     
     private Group villageButtons() {
@@ -693,7 +693,7 @@ public class GUIFX extends Application {
         /*else
         villageButtons.getChildren().addAll(button_reborn, button_riches, button_hOfGuard, button_guard, button_axe, button_forest);
         */
-        group = new Group(villageButtons);
+        walkButtons = new Group(villageButtons);
         
         
         button_reborn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
@@ -739,7 +739,7 @@ public class GUIFX extends Application {
             updateGUI();
         });
         
-        return group;
+        return walkButtons;
     }
     private Group house1Buttons() {
         

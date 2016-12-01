@@ -5,7 +5,7 @@
  */
 package TWoT_A1;
 
-import JavaFXSimple.EquippedItems;
+import SimpleWithCommands.EquippedItems;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

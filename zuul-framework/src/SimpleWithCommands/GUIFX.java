@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JavaFXSimple;
+package SimpleWithCommands;
 
 import Gui2D.WizardOfTreldan;
 import TWoT_A1.*;

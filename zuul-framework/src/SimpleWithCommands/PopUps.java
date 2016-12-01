@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JavaFXSimple_A2;
+package SimpleWithCommands;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
