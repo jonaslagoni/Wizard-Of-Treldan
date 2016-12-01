@@ -210,6 +210,11 @@ public class TWoT implements Serializable{
         Interior roomClearingExit1 = new Exit(roomForest);
         Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "The unicorn charges at you.");
         unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of rainbow the wizard told you to get", 99905, ""));
+        unicorn.addDropItem(new UseableItem("Health Potion",20,"Regenerates health points", "", 55507, FOOD, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion",20,"Regenerates health points", "", 55507, FOOD, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion",20,"Regenerates health points", "", 55507, FOOD, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion",20,"Regenerates health points", "", 55507, FOOD, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion",20,"Regenerates health points", "", 55507, FOOD, 50));
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
         roomClearing.addMapInterior("forest", roomClearingExit1);
@@ -224,6 +229,7 @@ public class TWoT implements Serializable{
         roomDungeon.addMapInterior("skeleton1", skeleton1);
         roomDungeon.addMapInterior("skeleton2", skeleton2);
         roomDungeon.addMapInterior("skeleton3", skeleton3);
+        skeleton1.addDropItem(new UseableItem("Health Potion",20,"Regenerates health points", "", 55507, FOOD, 50));
         skeleton3.addDropItem(new EquippableItem("Giant's Gloves", 23534, "You could fit two hands in one of these.", 0.0, 0.5 , GLOVES_SLOT, "", 33312));
         skeleton2.addDropItem(new QuestItem("Broken handle", 545, "Opens the door in the library", 99903, ""));
         roomDungeon.addMapInterior("pathway", roomDungeonExit);
