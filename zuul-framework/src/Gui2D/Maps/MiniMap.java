@@ -142,7 +142,7 @@ public class MiniMap {
         //first clear the minimap
         clearMiniMap_player();
         //draw a new image
-        miniMap_playerContext.drawImage(PLAYERIMAGE, posX/constWidthRatio, posY/constHeightRatio, width_player, height_player);
+        miniMap_playerContext.drawImage(PLAYERIMAGE, (posX-20)/constWidthRatio, (posY-20)/constHeightRatio, width_player, height_player);
     }
     
     /**
