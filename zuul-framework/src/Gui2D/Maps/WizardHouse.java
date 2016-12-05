@@ -85,7 +85,7 @@ public class WizardHouse extends Map{
         //get the group of canvases from minimap object
         Group miniMapGroup = miniMap.getMinimap();
         //update the minimap correctly with the player canvas size
-        miniMap.updateMiniMap(512.0, 256.0);
+        miniMap.updateMiniMap(1024.0, 512.0);
         //add the group to the root group
         root.getChildren().add( miniMapGroup );
 
