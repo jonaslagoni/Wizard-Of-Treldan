@@ -18,6 +18,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -1241,7 +1242,7 @@ public class GUIFX extends Application {
         button_pathway.setPrefSize(110, 10);
         
         VBox dungeonButtons = new VBox(20);
-        dungeonButtons.getChildren().addAll(button_pathway, button_skeleton1, button_skeleton2, button_skeleton3,);
+        dungeonButtons.getChildren().addAll(button_pathway, button_skeleton1, button_skeleton2, button_skeleton3);
         Group root = new Group(dungeonButtons);
         
         if(!twot.checkExisting("skeleton1")){
