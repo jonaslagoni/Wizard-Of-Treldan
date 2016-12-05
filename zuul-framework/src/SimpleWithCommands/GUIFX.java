@@ -106,6 +106,7 @@ public class GUIFX extends Application {
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
         Button button_how = new Button("HOW TO PLAY");
+        Button button_highscore = new Button("HIGHSCORES");
         Button button_exitMenu = new Button("EXIT GAME");
         
         Button button_loadGame = new Button("Load Game");
@@ -123,10 +124,12 @@ public class GUIFX extends Application {
         button_load.setMinWidth(180);
         button_how.setMinWidth(180);
         button_exitMenu.setMinWidth(180);
-        button_play.setMinHeight(40);
-        button_load.setMinHeight(40);
-        button_how.setMinHeight(40);
-        button_exitMenu.setMinHeight(40);
+        button_highscore.setMinWidth(180);
+        button_play.setMinHeight(30);
+        button_load.setMinHeight(30);
+        button_how.setMinHeight(30);
+        button_exitMenu.setMinHeight(30);
+        button_highscore.setMinHeight(30);
         
         Button button_clear = new Button("Clear");
         Button button_help = new Button("Help");
@@ -194,7 +197,7 @@ public class GUIFX extends Application {
         VBox menuButtons = new VBox(20);
         menuButtons.setLayoutX(166);
         menuButtons.setLayoutY(30);
-        menuButtons.getChildren().addAll(button_play, button_load, button_how, button_exitMenu);
+        menuButtons.getChildren().addAll(button_play, button_load, button_how, button_highscore, button_exitMenu);
                       
         invTable.setEditable(true);
         List<Item> l = twot.getInventoryItems();
@@ -324,11 +327,37 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
+         //Highscore screen
+        Button button_cancel = new Button("EXIT TO MENU");
+        ListView<AnchorPane> hList = new ListView();
+        
+        button_cancel.relocate(0, 220);
+        hList.relocate(0, 0);
+        hList.setPrefWidth(300);
+        hList.setPrefHeight(210);
+        
+        //adding observableList with type AnchorPane
+        ObservableList<AnchorPane> hloads = FXCollections.observableArrayList();
+        //Getting an arraylist of load files,
+        List<String> loadHList = getHighscoreList();
+        //Go through each String in the list
+        for (String i : loadHList) {
+            //add a new anchorpane with a Text component to the ObservableList
+            AnchorPane t = new AnchorPane();
+            Text hItemName = new Text(i);
+            hItemName.relocate(0, 3);
+            t.getChildren().add(hItemName);
+            hloads.add(t);
+        }
+        //add the ObservableList to the ListView
+        hList.setItems(hloads);
+        
         Pane root = new Pane(equipTable, invButtons, gameButtons, outputField, inputField, healthbar, invTable, label1, statsField);
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
         Pane root5 = new Pane(endScore, button_exitGame);
+        Pane root6 = new Pane(hList, button_cancel);
         
         
         Scene scene1 = new Scene(root, 1202, 512);
@@ -336,6 +365,7 @@ public class GUIFX extends Application {
         Scene nameScene = new Scene(root3, 512, 288);
         Scene loadMenu = new Scene(root4, 512, 288);
         Scene endMenu = new Scene(root5, 512, 288);
+        Scene highscoreMenu = new Scene(root6, 512, 288);
                 
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -383,6 +413,12 @@ public class GUIFX extends Application {
         });
         button_play.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             primaryStage.setScene(nameScene);
+        });
+        button_cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            primaryStage.setScene(menu);
+        });
+        button_highscore.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
+            primaryStage.setScene(highscoreMenu);
         });
         button_help.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             help=printHelp();
@@ -465,6 +501,19 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
+    }
+    
+    public List<String> getHighscoreList() {
+        //create empty arraylist.
+        List<String> loadList = new ArrayList();
+        //try to get each file in the directory "loads" by using Files.walk
+        List<Score> highscores = twot.readHighScore();
+                
+        for(Score s : highscores){
+            loadList.add("Name: " + s.getName() + " | Score: " + s.getScore() + " | Time: " + s.getTime());
+        }
+        //return the List
+        return loadList;
     }
     
     public void updateGUI(){

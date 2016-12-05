@@ -22,13 +22,14 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,6 +59,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
 import javafx.scene.image.Image;
+import static javafx.application.Application.launch;
 
 /**
  *
@@ -91,8 +93,6 @@ public class GUIFX extends Application {
             return printHelpMSG.get("helpMessage1") + printHelpMSG.get("helpMessage2") + printHelpMSG.get("helpMessage3");
         }
     
-    
-    
     public GUIFX () {
         
         twot = new TWoT();
@@ -123,7 +123,6 @@ public class GUIFX extends Application {
         Button button_exitToMenu = new Button("Exit To Menu");
         
         Button button_exitGame = new Button("Exit Game");
-        
         
         button_loadGame.setMinWidth(180);
         button_exitToMenu.setMinWidth(180);
@@ -333,7 +332,6 @@ public class GUIFX extends Application {
         nameField.relocate(106, 119);
         nameField.getChildren().addAll(setNamePls, nameArea);
         
-        
         //Highscore screen
         Button button_cancel = new Button("EXIT TO MENU");
         ListView<AnchorPane> hList = new ListView();
@@ -346,7 +344,7 @@ public class GUIFX extends Application {
         //adding observableList with type AnchorPane
         ObservableList<AnchorPane> hloads = FXCollections.observableArrayList();
         //Getting an arraylist of load files,
-        List<String> loadHList = getHishscoreList();
+        List<String> loadHList = getHighscoreList();
         //Go through each String in the list
         for (String i : loadHList) {
             //add a new anchorpane with a Text component to the ObservableList
@@ -365,7 +363,6 @@ public class GUIFX extends Application {
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
         Pane root5 = new Pane(endScore, button_exitGame);
         Pane root6 = new Pane(hList, button_cancel);
-        
         
         Scene game = new Scene(root, 1052 + pos, 512);
         Scene menu = new Scene(root2, 512, 288);
@@ -481,11 +478,12 @@ public class GUIFX extends Application {
         textArea.appendText(welcome);
     }
     
-    public List<String> getHishscoreList() {
+    public List<String> getHighscoreList() {
         //create empty arraylist.
         List<String> loadList = new ArrayList();
         //try to get each file in the directory "loads" by using Files.walk
         List<Score> highscores = twot.readHighScore();
+                
         for(Score s : highscores){
             loadList.add("Name: " + s.getName() + " | Score: " + s.getScore() + " | Time: " + s.getTime());
         }
@@ -701,8 +699,7 @@ public class GUIFX extends Application {
     public void setGame(TWoT loaded){
         twot = loaded;
     }
-
-
+    
     //WALK BUTTONS
     
     CommandWords commandword = new CommandWords();
