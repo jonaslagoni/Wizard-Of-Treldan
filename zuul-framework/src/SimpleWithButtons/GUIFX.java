@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,6 +57,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -102,6 +104,8 @@ public class GUIFX extends Application {
     
     @Override
     public void start (Stage primaryStage) {
+        
+        primaryStage.getIcons().add(new Image("icon.png"));
         
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("The Wizard of Treldan");
@@ -297,10 +301,12 @@ public class GUIFX extends Application {
         textArea.setEditable(false);
         outputField.getChildren().addAll(textArea);
         
+        NumberFormat df = new DecimalFormat("#0.0");
+        
         statsArea.appendText("****************************\n");
         statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
-        statsArea.appendText("** Attack value: " + twot.getPlayerAtt() + "\n");
-        statsArea.appendText("** Defense value: " + twot.getPlayerDeff() + "\n");
+        statsArea.appendText("** Attack value: " + df.format(twot.getPlayerAtt()) + "\n");
+        statsArea.appendText("** Defense value: " + df.format(twot.getPlayerDeff()) + "\n");
         statsArea.appendText("** Gold: " + twot.getPlayerGold() + "\n");
         statsArea.appendText("****************************");
         statsField.setMaxWidth(256);
@@ -473,8 +479,6 @@ public class GUIFX extends Application {
             welcome = welcome + entry.getValue();
         }
         textArea.appendText(welcome);
-        
-        
     }
     
     public List<String> getHishscoreList() {
@@ -499,10 +503,12 @@ public class GUIFX extends Application {
     
     public void updatePlayer(){
         statsArea.clear();
+        NumberFormat df = new DecimalFormat("#0.0");
+        
         statsArea.appendText("****************************\n");
         statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
-        statsArea.appendText("** Attack value: " + twot.getPlayerAtt() + "\n");
-        statsArea.appendText("** Defense value: " + twot.getPlayerDeff() + "\n");
+        statsArea.appendText("** Attack value: " + df.format(twot.getPlayerAtt()) + "\n");
+        statsArea.appendText("** Defense value: " + df.format(twot.getPlayerDeff()) + "\n");
         statsArea.appendText("** Gold: " + twot.getPlayerGold() + "\n");
         statsArea.appendText("****************************");
     }

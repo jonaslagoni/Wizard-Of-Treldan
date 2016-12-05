@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -23,6 +24,8 @@ public class StartMe extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        
+        primaryStage.getIcons().add(new Image("icon.png"));
         
         //create a new button for picking the 2d gui game
         Button Gui2D = new Button();
