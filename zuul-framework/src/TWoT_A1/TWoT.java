@@ -47,62 +47,37 @@ public class TWoT implements Serializable{
         roomCellar = new Room("Cellar", "***Cellar*** \nYou wake up in a dull cellar. Light is emitting from a torch on the wall "
                 + "and you barely get on your feet.\nYou’ve been laying on a haystack for God knows how long and "
                 + "your feet are extremely sore.", 1);
-        roomVillage = new Room("Village of Treldan", "\n\n***Village of Treldan*** \nIt’s dark outside. You seem to be familiar with this part of the village. "
+        roomVillage = new Room("Village of Treldan", "***Village of Treldan*** \nIt’s dark outside. You seem to be familiar with this part of the village. "
                 + "\nYou still wonder why you were locked up in that cell, but your thoughts are quickly interrupted "
                 + "by a sobbing by the gate.\nA guard seems to be crying, and something doesn’t seem right in the "
-                + "village. All houses seem to be empty through the windows.\nYou gasp as you see several "
-                + "people lying dead in the side of the road.", 2);
-        roomHouse1 = new Room("House of the Reborn", "\n\n***House of the Reborn*** \n The house you venture into is dark – very dark. It seems like "
-                + "there is a dead person in the room.", 3);
-        roomHouse2 = new Room("House of Riches", "\n\n***House of Riches*** \n You use your bloody key to get in. This house is lit up by a "
-                + "candle on the table.\nThere’s a blood-stained bed in the corner of the room. A bunch of sacks "
-                + "are placed up against a poorly build wardrobe.\nThe other corner is not lit up by the candle and "
-                + "you can’t see what is there.\nYou enter the house.", 4);
-        roomHouse3 = new Room("House of the Guard", "\n\n***House of the Guard*** \nThe door is barred from the inside, you jump through an open "
-                + "window in the house, cutting yourself on a sharp piece of glass. You lose 5 HP.\nThe house is neatly "
-                + "decorated, and the infected clearly havent been in here, in the left corner of the room there is "
-                + "a dusty set of armor and lying in an open chest at the end of a double-bed.\nAdditionally, there "
-                + "is also a small kitchen area with knives, pots, pans, and the like.\nYou enter the house.", 5);
-        roomForest = new Room("The Forest of Treldan", "\n\n***The Forest of Treldan*** \nAs you ride through the forest you are ambushed by a pack "
-                + "of goblins who try to murder you and take your valuables.\nYou almost fall prey to the savages, "
-                + "as you are saved by a wizard who zaps! the goblins with magic and scare them away.\nHe heals your "
-                + "wounds and helps you back on your feet.\nYou thank the wizard and ask him if there is anything "
-                + "you can do to repay him. Come meet me in my house when you're ready, its the Large Tree-house "
-                + "over there.\nI have need of help in order to save Treldan! You enter the Forest of Treldan, you "
-                + "scout around and look for anything, and spot a dead goblin and a couple of suspicious looking "
-                + "mushrooms.", 6);
-        roomWizardHouse = new Room ("The Nice Wizard's House","\n\n***The Wizard's House*** \nThe wizard's house is better described as a hollow tree with doors "
-                + "and windows, you can see a number of magical artifacts, a staircase to a upstairs part of the "
-                + "house, there is also what looks to be an alchemy lab.\nThe wizard sits quietly in a comfy chair "
-                + "with his legs up, snoring.", 7);
-        roomCave = new Room("Troll Cave", "\n\n***Troll Cave*** \nYou enter the troll cave, and immediately get sorrounded by 3 trolls,"
-                + " one directly in fron of you, one to the left, and one to your right.\nIn the back "
-                + "you can see a larger shadowy figure in the back of the cave, but you need to "
-                + "get rid of the trolls to get to him first.", 8);
-        roomCaveGruul = new Room("Gruul's Lair","\n\n***Gruul's Lair*** \n You approach the shadowy figure and as you come closer, the giant troll rises"
-                + " up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.", 9);
+                + "village. \nYou gasp as you see several people lying dead in the side of the road.", 2);
+        roomHouse1 = new Room("House of the Reborn", "***House of the Reborn*** \nYou slightly regret entering as you see a skeleton as soon as you enter the house", 3);
+        roomHouse2 = new Room("House of Riches", "***House of Riches*** \nYou use your bloody key to get in. Now it's time to save those kids", 4);
+        roomHouse3 = new Room("House of the Guard", "***House of the Guard*** \nThe interior of the house looks normal, but at the back of the house "
+                + "you see a woman that doesn't look like she is in her right mind.", 5);
+        roomForest = new Room("The Forest of Treldan", "***The Forest of Treldan*** \nYou see a lot of different paths as soon as you enter the forest."
+                + " It might be a good idea to enter the house to find out what is happening.", 6);
+        roomWizardHouse = new Room ("The Nice Wizard's House","***The Wizard's House*** \nYou enter the wizards house and see him in "
+                + "the far corner by his bed. There are multiple places in the house where you might find goods to help you on your journey.", 7);
+        roomCave = new Room("Troll Cave", "***Troll Cave*** \nAs soon as you enter the cave you notice three golems standing by a bigger entrance. ", 8);
+        roomCaveGruul = new Room("Gruul's Lair","***Gruul's Lair*** \nThis must be the Gruul the wizard was talking about. I have to get that staff of his.", 9);
         roomClearing = new Room("Clearing of Unicorns", "***Clearing of Unicorns*** \nYou enter the clearing of unicorns and are immediately"
                 + " blinded by a bright light.\nAs you regain your sight you lay eyes upon the most magnificent "
-                + "create you have ever seen.\nThe unicorn looks at you curiously and goes back to eating grass. "
+                + "create you have ever seen."
                 + "\nYou scout the surrounding area for anything else, and spot an old tree.", 10);
-        roomDungeon = new Room("Dungeon of Suffering", "\n\n***Dungeon of Suffering*** \nA loud whoosh and you find yourself in some kind of dungeon "
+        roomDungeon = new Room("Dungeon of Suffering", "***Dungeon of Suffering*** \nA loud whoosh and you find yourself in some kind of dungeon "
                 + "– probably the one belonging to the evil wizard of Treldan.\nYou realise you must be in his Tower."
-                + "\nYou get up on your feet and sees that the room your in is barely lit by torches, the walls are "
-                + "slimy and there are no windows. To no surprise you find three heavely armored skeletons.\nYou "
-                + "sigh.", 11);
-        roomLibrary = new Room("The Neverending Library", "\n\n***The Neverending Library*** \nYou find yourself in the biggest room you’ve ever been "
-                + "in. Books upon books is all you see, and bookcases fill up the gigantic room.\nIt would take ages "
+                + "\nTo no surprise you find three skeletons.\nYou sigh.", 11);
+        roomLibrary = new Room("The Neverending Library", "***The Neverending Library*** \nBooks upon books is all you see, and bookcases fill up the gigantic room.\nIt would take ages "
                 + "to go through every single book, you think to yourself. A librarian is sitting in the library.", 12);
-        roomEvilWizardsLair = new Room("The Evil Wizard's Lair", "\n\n***The Evil Wizard's Lair*** \nAs you ascend the stairs your legs feel heavier and "
-                + "heavier.\nYou can barely walk as you make it up to the final step – the pain is then suddenly "
-                + "relieved.\nYou open a large door and you see the Evil Wizard of Treldan standing in the room.", 13);
+        roomEvilWizardsLair = new Room("The Evil Wizard's Lair", "***The Evil Wizard's Lair*** \nYou open a large door and you see the Evil Wizard of Treldan standing in the room.", 13);
 
         // <editor-fold defaultstate="collapsed" desc=" Creating Interior for rooms ">
         
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
         Interior roomCellarStick = new QuestItem("A needle", 1, "Can be used to lockpick doors", 99901, "It must have been super uncomfortable laying on the haystack.\nYou search around the haystack and end up finding a strong needle. The needle has been added to your inventory.");
-        Interior roomCellarCheeseSandwich = new UseableItem("Cheese sandwhich", 20, "Do you dare eat it?", "The table has several books and journals that are of no interest to you. In the drawer you find a cheese sandwich for eating.", 55501, FOOD, 50);
+        Interior roomCellarCheeseSandwich = new UseableItem("Cheese sandwich", 20, "Do you dare eat it?", "You find a cheese sandwich on the table", 55501, FOOD, 50);
         roomCellar.addMapInterior("door", roomCellarExit);
         roomCellar.addMapInterior("haystack", roomCellarStick);
         roomCellar.addMapInterior("table", roomCellarCheeseSandwich);
@@ -122,18 +97,19 @@ public class TWoT implements Serializable{
         
         //roomHouse1
         Interior roomHouse1Exit = new Exit(roomVillage);
-        Monster zombie = new Monster("Living Skeleton", 0.7, 0.7, 50, 50, "A dead man is slouched in a chair. He gets on his feet and attacks you.");
+        Monster zombie = new Monster("Living Skeleton", 0.7, 0.7, 50, 50, "A skeleton attacks you, defend yourself!");
         Interior roomHouse1Man = zombie;
         zombie.addDropItem(new EquippableItem("Amulet of Protection", 4565, "Cold to the touch", 0.4, 0.4, AMULET_SLOT, "", 33308));
-        Interior roomHouse1Chest = new UseableItem("Health Potion", 20, "Nom nom nom", "You search the chest and pick up at health potion", 55508, FOOD, 50);
+        Interior roomHouse1Chest = new UseableItem("Health Potion", 20, "Refreshing", "You search the chest and pick up at health potion", 55508, FOOD, 50);
         roomHouse1.addMapInterior("man", roomHouse1Man);
         roomHouse1.addMapInterior("chest", roomHouse1Chest);
         roomHouse1.addMapInterior("door", roomHouse1Exit);
         
         //roomHouse2
         Interior roomHouse2Exit = new Exit(roomVillage);
-        Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",1.9,0.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. You lift up a dull but usable sword.", 33301); //Tag 10 skade
-        Interior roomHouse2Bed = new QuestItem("Kids", 2, "The kids of the guard in the village", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
+        Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 842,"It looks mega.",1.9,0.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. A sword.", 33301);
+        Interior roomHouse2Bed = new QuestItem("Kids", 2, "The kids of the guard in the village", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 "
+                + "and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
         Interior roomHouse2Table = new UseableItem("Cinnamon Roll",5,"Cinnamon roll", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
 
         roomHouse2.addMapInterior("door", roomHouse2Exit);
@@ -144,7 +120,7 @@ public class TWoT implements Serializable{
         //roomHouse3
         Interior roomHouse3Exit = new Exit(roomVillage);
         Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503, MAGIC_ITEM, 0);
-        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman is lying on the floor but quickly gets up as you near her. You realize that the woman must be the guard’s wife. She seems furious, her face all molested – almost like a zombie. She charges at you.");
+        Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman must be the guards wife, she has gone mad.");
         Interior roomHouse3Woman = woman;
         woman.addDropItem(new QuestItem("Bloody key", 8273, "Used to unlock a house in the village of treldan", 99907, ""));
         Interior roomHouse3Chest = new EquippableItem("Old leather armor", 32819, "Quite fabulous", 0, 1.3, CHEST_SLOT, "There is a set of leather armor  in the chest, it's old and rusty but durable, you  put it on and it suits you surprisingly well.", 33302);
@@ -158,8 +134,9 @@ public class TWoT implements Serializable{
         Interior roomForestExit2 = new Exit(roomCave);
         Interior roomForestExit3 = new Exit(roomClearing);
         Interior roomForestExit4 = new Exit(roomVillage);
-        Interior roomForestMushroom = new UseableItem("Mushroom", 286, "Might come in handy scaring off packs of trolls", "You go pick up a mushroom, ight come in handy scaring off packs of trolls", 55504, MAGIC_ITEM, 0);
-        Interior roomForestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.9, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth. You find 25 gold and a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
+        Interior roomForestMushroom = new UseableItem("Mushroom", 286, "", "You go pick up a mushroom", 55504, MAGIC_ITEM, 0);
+        Interior roomForestDeadGoblin = new EquippableItem("Handaxe", 293811, "Sturdy, and propably packs a punch.", 1.9, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth."
+                + " You a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
         roomForest.addMapInterior("mushroom", roomForestMushroom);
         roomForest.addMapInterior("goblin", roomForestDeadGoblin);
         roomForest.addMapInterior("house", roomForestExit1);
@@ -169,8 +146,9 @@ public class TWoT implements Serializable{
         
         //roomWizardHouse
         Interior roomWizardHouseExit = new Exit(roomForest);
-        Interior roomWizardHouseUpstairs = new UseableItem("Smooth ruby", 200, "A valueable stone.", "You check the wizards room for any valuables, find a piece of jewelry, and go downstairs again.", 55505, MAGIC_ITEM, 0);
-        Interior roomWizardHouseBox = new UseableItem("Mysterious Ring",150,"Odd looking ring with a curiously intricate design, you decide to hold onto it.", "You rummage through the box of magical artifacts, and find a odd looking ring with a curiously intricate design, you decide to hold onto it.", 55506, MAGIC_ITEM, 0);
+        Interior roomWizardHouseUpstairs = new UseableItem("Smooth ruby", 200, "A valueable stone.", "You check the sacks in the wizards house and find a piece of jewelry", 55505, MAGIC_ITEM, 0);
+        Interior roomWizardHouseBox = new UseableItem("Mysterious Ring",150,"Odd looking ring with a curiously intricate design, you decide to hold onto it.", "You rummage through the box of magical artifacts, and find a odd looking ring with a curiously intricate design,"
+                + " you decide to hold onto it.", 55506, MAGIC_ITEM, 0);
         Interior roomWizardHouseLab = new UseableItem("Health Potion",20,"Regenerates health points", "You search the alchemy lab and find a health potion.", 55507, FOOD, 50);
         Npc wizard = new Npc("Wizard", true, 22202);
         Interior roomWizardHouseNPC = wizard;
@@ -183,9 +161,9 @@ public class TWoT implements Serializable{
         //roomCave
         Interior roomCaveExit1 = new Exit(roomForest);
         Interior roomCaveExit2 = new Exit(roomCaveGruul);
-        Monster troll1 = new Monster("Nasty troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
-        Monster troll2 = new Monster("Ugly troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
-        Monster troll3 = new Monster("Beautifull troll", 1.0, 1.0, 50, 3000, "The troll gets on its feet and starts attacking you.");
+        Monster troll1 = new Monster("Nasty troll", 1.0, 1.0, 50, 3000, "Defend yourself against this savage monstrosity");
+        Monster troll2 = new Monster("Ugly troll", 1.0, 1.0, 50, 3000, "Defend yourself against this savage monstrosity");
+        Monster troll3 = new Monster("Beautifull troll", 1.0, 1.0, 50, 3000, "Defend yourself against this savage monstrosity");
         Interior roomWizardHouseMonster1 = troll1;
         Interior roomWizardHouseMonster2 = troll2;
         Interior roomWizardHouseMonster3 = troll3;
@@ -200,7 +178,7 @@ public class TWoT implements Serializable{
         
         //roomCaveGrull
         Interior roomCaveGruulExit1 = new Exit(roomCave);
-        Interior gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "You approach the shadowy figure and as you come closer, the giant troll it rises up, easily towering 2 meters above you, opens its mouth and roars fiercely at you.");
+        Interior gruul = new Monster("Gruul", 1.8, 2.0, 100, 5, "An even bigger golem stands before you. Slay it.");
         ((Monster)gruul).addDropItem(new QuestItem("Magic staff", 700, "The Magic staff the wizard told you to get", 99906, ""));
         ((Monster)gruul).addDropItem(new EquippableItem("Gruul's Giant Club", 7000, "Huge club.", 2.6, 0.0 , WEAPON_SLOT, "", 33311));
         roomCaveGruul.addMapInterior("gruul", gruul);
@@ -236,7 +214,7 @@ public class TWoT implements Serializable{
         
         //roomLibrary
         Interior roomLibraryDoor = new Exit(roomEvilWizardsLair);
-        Monster librarian = new Monster("Evil Librarian", 2.2, 2.0, 250, 500, "A librarian gets up from his seat - \"Hey, leave this place immdiately! You book is due!\".\nThe librarian starts throwing books at you. ");
+        Monster librarian = new Monster("Evil Librarian", 2.2, 2.0, 250, 500, "A lonely and aggressive librarian attacks you.");
         librarian.addDropItem(new EquippableItem("Fancy librarian-hotpants", 677, "These pants are pretty tight.", 0.0, 1.2, LEG_SLOT, "", 33304));
         Interior roomLibraryChest = new UseableItem("Health Potion",20,"Regenerates health points", "You search the chest and find a health potion", 55507, FOOD, 50);
         roomLibrary.addMapInterior("librarian", librarian);
@@ -461,7 +439,9 @@ public class TWoT implements Serializable{
                             }
                         }
                     }
-                    description.add("The guard stops his sobbing as you near him. “Who’s there?!” he yells. You decide not to reveal your identity, and the guard continues: ”Oh, why does it matter? I’ll letout of the Treldan if you find my wife and kids. I have orders to stay at my post.” The guard sits down and continues his sobbing.");
+                    description.add("The guard stops his sobbing as you near him. “Who’s there?!” he yells. You decide not to reveal your identity, and the guard continues:"
+                            + " ”Oh, why does it matter? I’ll letout of the Treldan if you find my wife and kids."
+                            + " I have orders to stay at my post.” The guard sits down and continues his sobbing.");
                     break;
                 case 22202:
                     Item item1 = null;
@@ -476,13 +456,16 @@ public class TWoT implements Serializable{
                         }
                     }
                     if(item1 != null && item2 != null){
-                        description.add("Thank you for bringing me the items the I asked for! Go find the stranger in the village. He is known for hiding in the houses or the village. He may move his position.");
+                        description.add("Thank you for bringing me the items the I asked for! Go find the stranger in the village."
+                                + " He is known for hiding in the houses or the village. He may move his position.");
                         player.removeInventoryItem(item1);
                         player.removeInventoryItem(item2);
                         roomWizardHouse.removeInterior("wizard");
                         roomVillage.addMapInterior("stranger", stranger);
                     }else{
-                        description.add("zzzzzzzzzzzzzzzz\" You wake up the wizard \"zzz..oo.ahwhat? Who? Oh it's you traveler; thank you for coming to see me. As I mentioned I have need of help to defeat the evil Wizard. First of all I can't get inside his evil castle, but a stranger in the village will be able to teleport you inside if you want to help me, but the evil troll Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
+                        description.add("Greetings traveler. I am in need of your help. There is an evil wizard that you need to slay. First of all I can't get inside his evil castle, but a stranger in the village will be able to"
+                                + " teleport you inside if you want to help me, but the evil Gruul has taken my magic staff, so go get that for me! He's inside his lair in the forest. "
+                                + "Additionally I need some liquid rainbow that is inside the heart of a unicorn, go kill one in the clearing nearby.");
                     }
                     break;
                 
