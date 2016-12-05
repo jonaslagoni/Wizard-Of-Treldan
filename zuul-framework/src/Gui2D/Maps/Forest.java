@@ -191,7 +191,7 @@ public class Forest extends Map{
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_left(worldBoundLeft) || player.intersects_top(worldBoundTop)) {
+                    if (player.intersects_left(worldBoundLeft)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
@@ -373,6 +373,19 @@ public class Forest extends Map{
                 moveable_gc.clearRect(0, 0, 1024, 512);
                 //render our new player
                 player.render(moveable_gc);
+                
+                //Intersects top
+                moveable_gc.setFill(Color.BLACK);
+                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-22, player.getWidth()-47, 5);
+                //intersects bottom
+                moveable_gc.setFill(Color.BLUE);
+                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-13, player.getWidth()-47, 5);
+                //intersects right
+                moveable_gc.setFill(Color.CRIMSON);
+                moveable_gc.fillRect(player.getPositionX()+player.getWidth()-32,  player.getPositionY()+player.getWidth()-20, 5, 10);
+                //intersects left
+                moveable_gc.setFill(Color.DARKGREEN);
+                moveable_gc.fillRect(player.getPositionX()+11, player.getPositionY()+player.getWidth()-20, 5, 10);
                 
                 //check if the user wants to see a menu.
                 if(menu_input.contains("ESCAPE")){
