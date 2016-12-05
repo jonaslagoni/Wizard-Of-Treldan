@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -116,6 +117,7 @@ public class WizardOfTreldan extends Application {
         
         //set our first scene to the menu.
         setMenuScene();
+        primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.show();
     }
     
