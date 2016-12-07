@@ -468,7 +468,8 @@ public class GUIFX extends Application {
                                     if(twot.endGame() == true){endScore.setText("Congratulations! You have beaten The Wizard of Treldan!\n"
                                                                               + "                        Your final score is: " + twot.getHighscore() +
                                                                                 "\n        It took you " + ((long)(System.currentTimeMillis() / 1000L) - twot.getStartTime()) + " seconds to finish the game.");
-                                        primaryStage.setScene(endMenu);
+                                    twot.writeHighScore();
+                                    primaryStage.setScene(endMenu);
                                     }
                                     updateGUI();
                                     break;

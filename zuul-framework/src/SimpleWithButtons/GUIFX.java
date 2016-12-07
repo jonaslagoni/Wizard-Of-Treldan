@@ -1300,10 +1300,10 @@ public class GUIFX extends Application {
                 button_skeleton1.setDisable(true);
             }
         if(!twot.checkExisting("skeleton2")){
-                button_skeleton1.setDisable(true);
+                button_skeleton2.setDisable(true);
             }
         if(!twot.checkExisting("skeleton3")){
-                button_skeleton1.setDisable(true);
+                button_skeleton3.setDisable(true);
             }
         
         button_skeleton1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
@@ -1412,10 +1412,12 @@ public class GUIFX extends Application {
                 textArea.appendText("\n\nFoolish mortal! You have to defeat my minions before you prove yourself worthy to fight me.");
             }
             
-            if(twot.endGame() == true){endScore.setText("Congratulations! You have beaten The Wizard of Treldan!\n"
+            if(twot.endGame() == true){
+                endScore.setText("Congratulations! You have beaten The Wizard of Treldan!\n"
                                                                               + "                        Your final score is: " + twot.getHighscore() +
                                                                                 "\n        It took you " + ((long)(System.currentTimeMillis() / 1000L) - twot.getStartTime()) + " seconds to finish the game.");
-            primaryStage.setScene(endMenu);
+                twot.writeHighScore();
+                primaryStage.setScene(endMenu);
             }
             
             updateGUI();

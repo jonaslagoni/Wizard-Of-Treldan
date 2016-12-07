@@ -5,9 +5,11 @@
  */
 package TWoT_A1;
 
+import TWoT_A1.EquippableItem.EItem;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -205,7 +207,16 @@ public class Player implements Serializable{
      * @return the highscore
      */
     public int getHighscore() {
-        return highscore;
+        int value = 0;
+        for(Item i: playersInventory.getInventoryItems()){
+            value = value + i.getItemValue();
+        }
+        
+        for(Map.Entry<EItem, EquippableItem> i : playersInventory.getEquippableItem().entrySet()){
+            value = value + i.getValue().getItemValue();
+        }
+        
+        return gold + value + highscore;
     }
 
     /**
@@ -220,7 +231,7 @@ public class Player implements Serializable{
     }
     
     public void removeHighscore(int h){
-        this.highscore = this.highscore + h;
+        this.highscore = this.highscore - h;
     }
     
     public void removeInventoryItem(Item i){
