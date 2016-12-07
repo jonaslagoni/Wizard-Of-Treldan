@@ -53,7 +53,8 @@ public class Cellar extends PlayableMaps{
         cellar_sprites = new Cellar_sprites(world);
         //init our Cellar's sprites
         cellar_sprites.setCellar_background_SingleSprites();
-        
+        //get the TWoT object from the main class
+        this.game = WizardOfTreldan.getGame();
         SCENE = setScene();
     }
     
@@ -66,9 +67,6 @@ public class Cellar extends PlayableMaps{
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
-        
-        //get the TWoT object from the main class
-        this.game = WizardOfTreldan.getGame();
         
         //add our group
         Group root = new Group();
@@ -357,9 +355,6 @@ public class Cellar extends PlayableMaps{
                         escmenu.setShown(false);
                     }
                 }
-                
-                
-                
                 //minimap
                 miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
@@ -381,6 +376,8 @@ public class Cellar extends PlayableMaps{
      */
     @Override
     public Scene getScene(){
+        //get the TWoT object from the main class
+        this.game = WizardOfTreldan.getGame();
         return SCENE;
     }
 }

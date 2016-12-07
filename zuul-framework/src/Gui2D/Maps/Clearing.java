@@ -339,9 +339,7 @@ public class Clearing extends PlayableMaps{
                         for (String s : game.goTo(new Command(CommandWord.GO, "unicorn"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
-                        
                         playerinventory.update(game);
-                  
                     }
                     if (game.checkExisting("tree") && player.intersect(sprites_interact.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "tree"))) {

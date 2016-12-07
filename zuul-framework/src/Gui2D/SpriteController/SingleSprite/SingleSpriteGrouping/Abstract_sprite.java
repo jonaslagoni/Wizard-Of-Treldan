@@ -7,7 +7,6 @@ package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping;
 
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.SpriteController;
-import javafx.geometry.Rectangle2D;
 
 /**
  *

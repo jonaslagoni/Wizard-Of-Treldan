@@ -17,7 +17,6 @@ public class Tree_cutdown extends Abstract_sprite{
      */
     @Override
     public void setSprite(){
-
         super.getSprite().setSpritePosX(1292);
         super.getSprite().setSpritePosY(431);
         super.getSprite().setSprite_width(122);
