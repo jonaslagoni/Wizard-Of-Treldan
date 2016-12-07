@@ -62,12 +62,18 @@ public class Forest extends PlayableMaps{
         this.game = WizardOfTreldan.getGame();
         Group root = new Group();
         Scene theScene = new Scene( root );
+        
+        
         Canvas canvas_background = new Canvas(1024, 512);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
         
+        //boundries fix canvas
+        Canvas boundries_fix_canvas = new Canvas(1024,512);
+        root.getChildren().add(boundries_fix_canvas);
         
+        //add background canvas
         root.getChildren().add(canvas_background);
         
         //add a canvas only for the player
@@ -134,13 +140,16 @@ public class Forest extends PlayableMaps{
         theScene.setOnKeyReleased(getOnKeyRelease(player));
         theScene.setOnKeyPressed(getOnKeyPress());
 
+        //create GraphicsContext for boundries fix
+        GraphicsContext boundriesFix_gc = boundries_fix_canvas.getGraphicsContext2D();
         //create GraphicsContext from our player_canvas
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         //create GraphicsContext from our canvas_background
         GraphicsContext forest_background = canvas_background.getGraphicsContext2D();
         GraphicsContext forest_foreground = canvas_foreground.getGraphicsContext2D();
         
-        //get all the sprites used in the cave
+        //get all the sprites used in the Forest
+        List<Sprite> sprites_boundriesFIX = forest_sprites.getForest_boundriesFIX_sprites();
         List<Sprite> sprites_background = forest_sprites.getForest_background_sprites();
         List<Sprite> sprites_foreground = forest_sprites.getForest_foreground_sprites();
         
@@ -152,6 +161,10 @@ public class Forest extends PlayableMaps{
         
         if(game.checkExisting("goblin")){
             sprites_background.get(18).render(forest_background);
+        }
+        
+        for (Sprite sprite : sprites_boundriesFIX) {
+            sprite.render(boundriesFix_gc);
         }
         
         for (Sprite sprite : sprites_background) {
@@ -166,7 +179,7 @@ public class Forest extends PlayableMaps{
         Rectangle2D worldBoundRight = new Rectangle2D(770, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(-100, 0, 1, 512);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 512, 1024, 1);
-        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 662, 130);
+        Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 650, 130);
         
         new AnimationTimer() {
             //set the current time we started.
@@ -200,6 +213,7 @@ public class Forest extends PlayableMaps{
                             || player.intersects_left(sprites_background.get(0))
                             || player.intersects_left(sprites_background.get(17))
                             || player.intersects_left(sprites_background.get(18))
+                            || player.intersects_left(sprites_boundriesFIX.get(0))
                               ) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -274,7 +288,7 @@ public class Forest extends PlayableMaps{
                     } else if (player.intersects_top(sprites_background.get(9))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //go to house1
+                        //go to cave
                         game.goTo(new Command(CommandWord.GO, "cave"));
                         //remove all the inputs
                         input.removeAll(input);
@@ -289,7 +303,7 @@ public class Forest extends PlayableMaps{
                     } else if (player.intersects_top(sprites_background.get(10))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        //go to house1
+                        //go to wizardHouse
                         game.goTo(new Command(CommandWord.GO, "house"));
                         //remove all the inputs
                         input.removeAll(input);

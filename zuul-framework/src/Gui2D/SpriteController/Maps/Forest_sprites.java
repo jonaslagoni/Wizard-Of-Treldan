@@ -23,14 +23,28 @@ public class Forest_sprites{
     
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
+    private List<Sprite> boundriesFIX_sprites;
     
     public Forest_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
         this.foreground_sprites = new ArrayList();
+        this.boundriesFIX_sprites = new ArrayList();
     }
     
     public void setForest_background_SingleSprites(){
+        
+        // BOUNDRIES FIX START
+        
+        List<SingleSprite> boundriesForestFixList = new ArrayList<>();
+        boundriesForestFixList.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite boundriesForestFix = new Groupsprite_random(boundriesForestFixList);
+        boundriesForestFix.setSize(32, 192);
+        boundriesForestFix.setPosition(645, -10);
+        boundriesFIX_sprites.add(boundriesForestFix);
+        
+        // BOUNDRIES FIX END
         
         // BOUNDRIES FOR HOUSE START
         
@@ -237,6 +251,10 @@ public class Forest_sprites{
     
     public List<Sprite> getForest_foreground_sprites() {
         return foreground_sprites;
+    }
+    
+    public List<Sprite> getForest_boundriesFIX_sprites() {
+        return boundriesFIX_sprites;
     }
     
 }

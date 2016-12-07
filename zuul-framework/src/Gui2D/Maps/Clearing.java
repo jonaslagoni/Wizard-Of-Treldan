@@ -122,7 +122,7 @@ public class Clearing extends PlayableMaps{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(322,130 );
+        player.setPosition(340,140 );
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
