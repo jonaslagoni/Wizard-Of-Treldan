@@ -57,7 +57,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import static javafx.application.Application.launch;
 import javafx.scene.image.Image;
 import static javafx.application.Application.launch;
 
