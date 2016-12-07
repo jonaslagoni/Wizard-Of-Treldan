@@ -49,6 +49,7 @@ public class PlayerInventory {
     private boolean shown;
     private Text deffv;
     private Text attv;
+    private Text gold;
     
     /**
      * PlayerInventory object
@@ -86,6 +87,13 @@ public class PlayerInventory {
         deffv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         deffv.setFill(Color.WHITE);
         menu.getChildren().add(deffv);
+        
+        //Adding a Text component to indicate the players gold
+        gold = new Text(""+game.getPlayerGold() + " Gold");
+        gold.relocate(230, 475);
+        gold.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
+        gold.setFill(Color.WHITE);
+        menu.getChildren().add(gold);
         
         //Adding a ListView containting AnchorPane's
         list = new ListView();

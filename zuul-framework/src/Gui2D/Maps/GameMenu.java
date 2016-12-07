@@ -65,6 +65,14 @@ public class GameMenu {
         controlsINTERACT.setTextFill(Color.WHITE);
         gameMenu.getChildren().add(controlsINTERACT);
         
+        Label controlsINVENTORY = new Label();
+        controlsINVENTORY.setPrefSize(400, 50);
+        controlsINVENTORY.relocate(710, 200);
+        controlsINVENTORY.setFont(new Font("Verdana",20));
+        controlsINVENTORY.setText("Use \"I\" to display inventory");
+        controlsINVENTORY.setTextFill(Color.WHITE);
+        gameMenu.getChildren().add(controlsINVENTORY); 
+        
         Pane anchorpane = new Pane();
         anchorpane.setPrefSize(768, 512);
         Button exit = new Button();

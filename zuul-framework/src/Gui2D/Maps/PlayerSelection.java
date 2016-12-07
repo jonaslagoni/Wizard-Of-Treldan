@@ -76,6 +76,14 @@ public class PlayerSelection implements Map{
         controlsINTERACT.setTextFill(Color.WHITE);
         anchorpane.getChildren().add(controlsINTERACT);
         
+        Label controlsINVENTORY = new Label();
+        controlsINVENTORY.setPrefSize(400, 50);
+        controlsINVENTORY.relocate(50, 200);
+        controlsINVENTORY.setFont(new Font("Verdana",20));
+        controlsINVENTORY.setText("Use \"I\" to display inventory");
+        controlsINVENTORY.setTextFill(Color.WHITE);
+        anchorpane.getChildren().add(controlsINVENTORY); 
+        
         TextField playerName = new TextField();
         playerName.setPrefSize(300, 50);
         playerName.relocate(362, 200);

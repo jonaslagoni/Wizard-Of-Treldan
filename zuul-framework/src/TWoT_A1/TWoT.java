@@ -921,7 +921,7 @@ public class TWoT implements Serializable {
      *
      * @return
      */
-    public double getPlayerHealth() {
+    public int getPlayerHealth() {
         return player.getHealth();
     }
 
@@ -929,7 +929,7 @@ public class TWoT implements Serializable {
      *
      * @return
      */
-    public double getPlayerGold() {
+    public int getPlayerGold() {
         return player.getGold();
     }
 
