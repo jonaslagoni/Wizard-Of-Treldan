@@ -172,7 +172,7 @@ public class GUIFX extends Application {
         anchorpane.getChildren().add(list);
         
         /**
-         * scene1 buttons
+         * game layout
          */
         
         Button button_clear = new Button("Clear");
