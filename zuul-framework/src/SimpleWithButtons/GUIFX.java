@@ -66,7 +66,7 @@ import static javafx.application.Application.launch;
  */
 public class GUIFX extends Application {
 
-    private static TWoT twot;
+    private TWoT twot;
     
     private TextArea textArea;
     private TextArea statsArea;
@@ -112,12 +112,6 @@ public class GUIFX extends Application {
         statsArea = new TextArea();
         
         /**
-         * Name scene visuals
-         */
-        Label setName = new Label("ENTER YOUR NAME: ");
-        nameArea = new TextField();
-        
-        /**
          * Main menu buttons
          */
         Button button_play = new Button("NEW GAME");
@@ -137,6 +131,12 @@ public class GUIFX extends Application {
         button_how.setMinHeight(30);
         button_exitMenu.setMinHeight(30);
         button_highscore.setMinHeight(30);
+        
+        /**
+         * Name scene visuals
+         */
+        Label setName = new Label("ENTER YOUR NAME: ");
+        nameArea = new TextField();
         
         /**
          * Loadscreen buttons and list of loads
