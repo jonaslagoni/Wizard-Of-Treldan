@@ -49,6 +49,7 @@ public class PlayerInventory {
     private boolean shown;
     private Text deffv;
     private Text attv;
+    
     /**
      * PlayerInventory object
      * @param game 

@@ -32,17 +32,14 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class Cellar extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     // Contains all the sprites to this map
     private final Cellar_sprites cellar_sprites;
-    
     private TWoT game;
+    private final Scene SCENE;
     
     /**
      * Constructor for Cellar
@@ -52,19 +49,19 @@ public class Cellar extends PlayableMaps{
     public Cellar(SpriteController world){
         //init our super constructor first
         super();
-        
         //init our Cellar_sprites
         cellar_sprites = new Cellar_sprites(world);
         //init our Cellar's sprites
         cellar_sprites.setCellar_background_SingleSprites();
+        
+        SCENE = setScene();
     }
     
     /**
-     * Returns the scene for the map Cellar
+     * Sets the scene once.
      * @return 
      */
-    @Override
-    public Scene getScene(){
+    public Scene setScene(){
         
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
@@ -377,5 +374,13 @@ public class Cellar extends PlayableMaps{
         
         //return our created scene
         return theScene;
+    }
+    /**
+     * Returns the scene for the map Cellar
+     * @return 
+     */
+    @Override
+    public Scene getScene(){
+        return SCENE;
     }
 }
