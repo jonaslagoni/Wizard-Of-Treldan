@@ -38,7 +38,9 @@ public class Cellar extends PlayableMaps{
     private ArrayList<String> menu_input;
     // Contains all the sprites to this map
     private final Cellar_sprites cellar_sprites;
+    // our global TWoT object
     private TWoT game;
+    // the global scene for this map
     private final Scene SCENE;
     
     /**
@@ -62,8 +64,7 @@ public class Cellar extends PlayableMaps{
      * Sets the scene once.
      * @return 
      */
-    public Scene setScene(){
-        
+    private Scene setScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();

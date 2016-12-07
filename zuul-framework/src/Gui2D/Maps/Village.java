@@ -32,34 +32,38 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class Village extends PlayableMaps {
-
     // Arraylist for player movement
     private ArrayList<String> input;
-
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-
+    // our global TWoT object
     private TWoT game;
-    private Village_sprites villageSprites;
+    // the global scene for the cellar
+    private final Scene SCENE;
+    // Contains all the sprites to this map
+    private final Village_sprites villageSprites;
 
     /**
      * Constructor for Cellar
-     *
      * @param world
      */
     public Village(SpriteController world) {
         //init our super constructor
         super();
-
+        this.game = WizardOfTreldan.getGame();
         villageSprites = new Village_sprites(world);
         villageSprites.setVillage_background_SingleSprites();
+        SCENE = setScene();
     }
-
-    public Scene getScene() {
+    
+    /**
+     * Sets the scene for this class
+     * @return 
+     */
+    public Scene setScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
-        this.game = WizardOfTreldan.getGame();
         //add group
         Group root = new Group();
         //set the scene
@@ -508,5 +512,15 @@ public class Village extends PlayableMaps {
 
         //return the created scene
         return theScene;
+    }
+    
+    /**
+     * returns the created scene
+     * @return 
+     */
+    @Override
+    public Scene getScene() {
+        this.game = WizardOfTreldan.getGame();
+        return SCENE;
     }
 }

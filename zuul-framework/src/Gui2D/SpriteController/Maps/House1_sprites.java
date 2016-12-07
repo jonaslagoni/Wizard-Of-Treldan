@@ -18,7 +18,6 @@ import java.util.List;
  * @author Mads B
  */
 public class House1_sprites{
-    
     private SpriteController world;
     private final List<Sprite> house1_background_sprites;
     private final List<Sprite> house1_monster_sprites;
@@ -26,7 +25,10 @@ public class House1_sprites{
     private final List<SingleSprite> house1_background_walls;
     private final List<SingleSprite> house1_background_floor;
     
-    
+    /**
+     * Sets the sprites for this map
+     * @param world 
+     */
     public House1_sprites(SpriteController world){
         this.world = world;
         house1_background_sprites = new ArrayList();
@@ -35,6 +37,10 @@ public class House1_sprites{
         house1_background_floor = new ArrayList();
         
     }
+    
+    /**
+     * Set all the sprites to the arraylist
+     */
     public void setHouse1_background_SingleSprites(){
         //floor
         house1_background_floor.add(world.getGround_sprite().getWood_light_2());
@@ -95,7 +101,10 @@ public class House1_sprites{
         
     }
     
-        public List getHouse1(){
+    /**
+     * @return the background sprites
+     */
+    public List<Sprite> getHouse1(){
         return house1_background_sprites;
     }
 
@@ -112,5 +121,4 @@ public class House1_sprites{
     public Sprite getStranger_sprite() {
         return stranger_sprite;
     }
-    
 }

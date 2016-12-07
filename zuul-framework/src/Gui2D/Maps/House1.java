@@ -31,15 +31,14 @@ public class House1 extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     // our global TWoT object
     private TWoT game;
-    
     // our house sprites
-    private House1_sprites house_sprites;
+    private final House1_sprites house_sprites;
+    // the global scene for this map
+    private final Scene SCENE;
     
     /**
      * Constructor for Cellar
@@ -49,19 +48,23 @@ public class House1 extends PlayableMaps{
         //init our super constructor
         super();
         
+        //link the TWoT object to our main TWoT object
+        this.game = WizardOfTreldan.getGame();
+        
         //set the house sprites
         house_sprites = new House1_sprites(world);
         house_sprites.setHouse1_background_SingleSprites();
+        SCENE = setScene();
     }
     
-    @Override
-    public Scene getScene(){
+    /**
+     * Sets the scene for the global
+     * @return 
+     */
+    private Scene setScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
-        
-        //link the TWoT object to our main TWoT object
-        this.game = WizardOfTreldan.getGame();
         
         //our main Group for all the components
         Group root = new Group();
@@ -416,5 +419,15 @@ public class House1 extends PlayableMaps{
         }.start();
         //return the scene
         return theScene;
+    }
+    
+    /**
+     * @return the scene for this map
+     */
+    @Override
+    public Scene getScene(){
+        //link the TWoT object to our main TWoT object
+        this.game = WizardOfTreldan.getGame();
+        return SCENE;
     }
 }
