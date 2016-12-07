@@ -48,7 +48,6 @@ public class WizardOfTreldan extends Application {
     private static Map gruulslair;
     private static Map menu;
     private static Map load;
-    private static Map unicorn;
     private static Map clearing;
     private static Map house1;
     private static Map house2;
@@ -198,13 +197,6 @@ public class WizardOfTreldan extends Application {
      */
     public static void setHouse3Scene(){
         primaryStage.setScene(house3.getScene());
-    }
-        
-    /**
-     *  Force the gui to load UnicornScene
-     */
-    public static void setUnicornScene(){
-        primaryStage.setScene(unicorn.getScene());
     }
     
     /**

@@ -5,7 +5,6 @@
  */
 package TWoT_A1;
 
-import TWoT_test.*;
 import java.util.ArrayList;
 import java.util.List;
 
