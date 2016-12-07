@@ -7,7 +7,6 @@ package Gui2D.SpriteController.GroupSprites;
 
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import java.util.List;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -30,14 +29,6 @@ public class Groupsprite_circle extends GroupSprite{
      */
     public Groupsprite_circle(List<SingleSprite> sprites){
         super(sprites);
-    }
-    
-    /**
-     * Return the Rectangle2D of this object
-     * @return 
-     */
-    public Rectangle2D getBoundary(){
-        return new Rectangle2D(super.getPositionX(), super.getPositionY(), super.getWidth(), super.getHeight());
     }
     
     /**

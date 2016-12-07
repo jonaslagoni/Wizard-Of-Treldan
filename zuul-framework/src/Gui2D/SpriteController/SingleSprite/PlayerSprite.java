@@ -15,7 +15,7 @@ import javafx.scene.canvas.GraphicsContext;
  * http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/
  * @author jonas
  */
-public class PlayerSprite extends Sprite{
+public class PlayerSprite extends AbstractSprite{
     // Directions variable for keep controll over which direction the sprite is moving
     private Direction direction;
     
@@ -92,6 +92,11 @@ public class PlayerSprite extends Sprite{
         
     }
     
+    /**
+     * checks if this intersects with anything.
+     * @param s
+     * @return 
+     */
     public boolean intersect(Sprite s){
         //Since the player sprite is not 100 % accurate we have to tweek its boundaries so it will look natural.
         Rectangle2D player_boundary = new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight());
@@ -190,6 +195,7 @@ public class PlayerSprite extends Sprite{
      * Return position and velocity of the class
      * @return 
      */
+    @Override
     public String toString() {
         return " Position: [" + getPositionX() + "," + getPositionY() + "]"
                 + " Velocity: [" + getVelocityX() + "," + getVelocityY() + "]";

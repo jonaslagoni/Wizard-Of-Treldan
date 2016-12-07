@@ -6,7 +6,6 @@
 package Gui2D.SpriteController.GroupSprites;
 
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -16,15 +15,27 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Groupsprite_GroupRender extends GroupSprite {
     
+    /**
+     * Creates the object from a single SingleSprite
+     * @param sprites 
+     */
     public Groupsprite_GroupRender (SingleSprite sprites){
         super(sprites);
     }
     
+    /**
+     * Creates the object from a list of SingleSprites
+     * @param sprites 
+     */
     public Groupsprite_GroupRender (List<SingleSprite> sprites){
         super(sprites);
     }
     
     
+    /**
+     * Custom render function.
+     * @param gc 
+     */
     @Override
     public void render(GraphicsContext gc) {
         int sprite_number = 0;
@@ -47,10 +58,4 @@ public class Groupsprite_GroupRender extends GroupSprite {
             randomPlacementY = Math.random()*10+7;
         }
     }
-    
-    @Override
-    public String toString() {
-        return " Position: [" + getPositionX() + "," + getPositionY() + "]";
-    }
-    
 }

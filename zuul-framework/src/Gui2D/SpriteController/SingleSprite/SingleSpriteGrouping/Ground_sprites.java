@@ -265,10 +265,18 @@ public class Ground_sprites {
         return new Wood_light_2_broken().getSprite();
     }
     
+    /**
+     * 
+     * @return castle floor
+     */
     public SingleSprite getCastle_Stone_Floor() {
         return new Castle_Stone_Floor().getSprite();
     }
     
+    /**
+     * 
+     * @return the stone stile 
+     */
     public SingleSprite getStone_Tile() {
         return new Stone_Tile().getSprite();
     }

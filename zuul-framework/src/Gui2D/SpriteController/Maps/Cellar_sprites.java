@@ -22,7 +22,6 @@ public class Cellar_sprites{
     private List<SingleSprite> celler_grass_singlesprites;
     private List<SingleSprite> cellar_stone_walls;
     private SpriteController world;
-    
     //contains all the sprites kept in the background
     private List<Sprite> cellar_background_sprites;
     
@@ -34,8 +33,6 @@ public class Cellar_sprites{
     }
     
     public void setCellar_background_SingleSprites(){
-        
-            
             celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_1());
             celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_2());
             celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_3());

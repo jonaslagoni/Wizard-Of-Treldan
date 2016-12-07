@@ -31,7 +31,11 @@ public class Groupsprite_random extends GroupSprite{
         super(sprites);
     }
     
-    
+    /**
+     * 
+     * @param gc 
+     */
+    @Override
     public void render(GraphicsContext gc) {
         int sprite_number = 0;
         SingleSprite singleSprite =  getSprites().get(sprite_number);
@@ -47,9 +51,5 @@ public class Groupsprite_random extends GroupSprite{
             gc.drawImage(singleSprite.getImage(), singleSprite.getSpritePosX(), singleSprite.getSpritePosY(), singleSprite.getSprite_width(), singleSprite.getSprite_height(), getPositionX(), getPositionY()+(singleSprite.getHeight()*i), singleSprite.getWidth(), singleSprite.getHeight());
         }
         
-    }
-
-    public String toString() {
-        return " Position: [" + getPositionX() + "," + getPositionY() + "]";
     }
 }

@@ -4,13 +4,12 @@ import Gui2D.SpriteController.Sprite;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.ImageView;
 
-public class SingleSprite extends Sprite {
+public class SingleSprite extends AbstractSprite {
     //position of the sprite
     private double spritePosX;
-    private double spritePosY;
-
+    private double spritePosY;    
+    
     /**
      *  constructor sets the position and size of the super class
      *  Then sets a standard sprite position
@@ -36,8 +35,8 @@ public class SingleSprite extends Sprite {
         super.setImage(i);
         super.setPosition(0,0);
         super.setVelocity(0, 0);
-        super.setSpriteSize(sW, sH);
         super.setSize(w, h);
+        super.setSpriteSize(sW, sH);
         spritePosX = sPosX;
         spritePosY = sPosY;
         super.setBoundary(new Rectangle2D(super.getPositionX(), super.getPositionY(), super.getWidth(), super.getHeight()));
@@ -58,8 +57,8 @@ public class SingleSprite extends Sprite {
         super.setImage(i);
         super.setPosition(0,0);
         super.setVelocity(0, 0);
-        super.setSpriteSize(sW, sH);
         super.setSize(w, h);
+        super.setSpriteSize(sW, sH);
         spritePosX = sPosX;
         spritePosY = sPosY;
         super.setBoundary(boundary);
@@ -69,15 +68,17 @@ public class SingleSprite extends Sprite {
      * renders the sprite to the canvas's graphic context
      * @param gc 
      */
+    @Override
     public void render(GraphicsContext gc) {
         //gc.drawImage(image, positionX, getPositionY());
-        gc.drawImage(super.getImage(), getSpritePosX(), getSpritePosY(), super.getSprite_width(), super.getSprite_height(), super.getPositionX(), super.getPositionY(), super.getWidth(), super.getHeight());
+        gc.drawImage(super.getImage(), getSpritePosX(), getSpritePosY(), getSprite_width(), getSprite_height(), super.getPositionX(), super.getPositionY(), super.getWidth(), super.getHeight());
     }
 
     /**
      * Custom toString return position and velocity of the singlesprite
      * @return 
      */
+    @Override
     public String toString() {
         return " Position: [" + super.getPositionX() + "," + super.getPositionY() + "]"
                 + " Velocity: [" + super.getVelocityX() + "," + super.getVelocityY() + "]";

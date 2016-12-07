@@ -5,7 +5,6 @@
  */
 package Gui2D.Maps;
 
-import Gui2D.WizardOfTreldan;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -26,6 +25,7 @@ import javafx.scene.text.Font;
 public class GameMenu {
     private AnchorPane gameMenu;
     private boolean shown;
+    
     /**
      * PlayerInventory object
      */

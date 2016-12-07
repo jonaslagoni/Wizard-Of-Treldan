@@ -9,7 +9,6 @@ import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.canvas.GraphicsContext;
 /**
  * Abstract class for GroupSprites
  * @author jonas
@@ -17,16 +16,25 @@ import javafx.scene.canvas.GraphicsContext;
 public abstract class GroupSprite extends Sprite{
     private List<SingleSprite> sprites;
     
+    /**
+     * Creates the object from a single SingleSprites
+     * @param sprites 
+     */
     public GroupSprite(SingleSprite sprites) {
         this.sprites = new ArrayList();
         this.sprites.add(sprites);
         super.setPosition(0, 0);
     }
     
+    /**
+     * Creates the object from a list of SingleSprites
+     * @param sprites 
+     */
     public GroupSprite(List<SingleSprite> sprites) {
         this.sprites = sprites;
         super.setPosition(0, 0);
     }
+    
     /**
      * @return the sprites
      */
@@ -40,6 +48,4 @@ public abstract class GroupSprite extends Sprite{
     public void setSprites(List<SingleSprite> sprites) {
         this.sprites = sprites;
     }
-    
-    public abstract void render(GraphicsContext gc);
 }
