@@ -28,14 +28,10 @@ public class PopUps {
      * @param message 
      */
     public static void display(String title, String message){
-<<<<<<< HEAD
         
         /**
          * creates new stage
          */
-=======
-                
->>>>>>> origin/master
         Stage window = new Stage();
         
         window.getIcons().add(new Image("icon.png"));
