@@ -29,12 +29,12 @@ import javafx.scene.text.Text;
  */
 public class PlayerSelection implements Map{
     private TWoT game;
-    public PlayerSelection(){
-        super();
-    }
+    private final Scene SCENE;
     
-    @Override
-    public Scene getScene(){
+    /**
+     * Creates the scene for player selection
+     */
+    public PlayerSelection(){
         
         game = WizardOfTreldan.getGame();
         
@@ -150,6 +150,15 @@ public class PlayerSelection implements Map{
         anchorpane.getChildren().add(start);
         
         playerSelectionGroup.getChildren().add(anchorpane);
-        return playerScene;
+        SCENE = playerScene;
+    }
+    
+    /**
+     * Returns the scene where the player can select a name.
+     * @return Scene
+     */
+    @Override
+    public Scene getScene(){
+        return SCENE;
     }
 }

@@ -17,7 +17,7 @@ import javafx.scene.input.KeyEvent;
  */
 public abstract class PlayableMaps implements Map {    
     // Our PlayerSprite 
-    PlayerSprite player;
+    private PlayerSprite player;
     
     // Arraylist for player movement
     private ArrayList<String> input;

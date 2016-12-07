@@ -43,12 +43,12 @@ import javafx.scene.text.Text;
 public class Load implements Map{
     private Text status;
     private boolean canLoad;
-    public Load(){
-        super();
-    }
+    private final Scene SCENE;
     
-    @Override
-    public Scene getScene(){
+    /**
+     * Creates the load scene
+     */
+    public Load(){
         Group menuGroup = new Group();
         Scene menuScene = new Scene( menuGroup );
         
@@ -182,15 +182,23 @@ public class Load implements Map{
         //add the pane to the scene group.
         menuGroup.getChildren().add(anchorpane);
         
-        //returns the scene.
-        return menuScene;
+        //Set the global
+        SCENE = menuScene;
+    }
+    /**
+     * Returns the scene for the load menu.
+     * @return Scene
+     */
+    @Override
+    public Scene getScene(){
+        return SCENE;
     }
     
     /**
      * Returns the List of Strings of saved files.
      * @return List of Strings
      */
-    public List<String> getLoadList(){
+    private List<String> getLoadList(){
         //create empty arraylist.
         List<String> loadList = new ArrayList();
         //try to get each file in the directory "loads" by using Files.walk
@@ -216,7 +224,7 @@ public class Load implements Map{
      * @param filename
      * @return TWoT game file
      */
-    public TWoT getLoad(String filename){
+    private TWoT getLoad(String filename){
         //Try loading the file. 
         try {
             //Read from the stored file in folder "loads"

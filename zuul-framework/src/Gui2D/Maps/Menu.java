@@ -23,12 +23,12 @@ import javafx.scene.text.Font;
  * @author jonas
  */
 public class Menu implements Map{
-    public Menu(){
-        super();
-    }
+    private final Scene SCENE;
     
-    @Override
-    public Scene getScene(){
+    /**
+     * Creates the scene for the menu
+     */
+    public Menu(){
         Group menuGroup = new Group();
         Scene menuScene = new Scene( menuGroup );
         
@@ -78,8 +78,6 @@ public class Menu implements Map{
         anchorpane.getChildren().add(load);
         
         
-        
-        
         Button highscore = new Button();
         highscore.setText("Highscores");
         highscore.setFont(new Font("Tahoma", 20));
@@ -118,6 +116,15 @@ public class Menu implements Map{
         
         menuGroup.getChildren().add( canvas_movealbe_sprites );
         menuGroup.getChildren().add(anchorpane);
-        return menuScene;
+        SCENE = menuScene;
+    }
+    
+    /**
+     * Returns the SCENE for the menu.
+     * @return Scene
+     */
+    @Override
+    public Scene getScene(){
+        return SCENE;
     }
 }

@@ -6,7 +6,6 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import Gui2D.SpriteController.SpriteController;
 import TWoT_A1.TWoT;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -28,12 +27,12 @@ import javafx.scene.text.Text;
  */
 public class Finish implements Map{
     private TWoT game;
-    public Finish(){
-        super();
-    }
+    private final Scene SCENE;
     
-    @Override
-    public Scene getScene(){
+    /**
+     * Create the scene for Finish
+     */
+    public Finish(){
         this.game = WizardOfTreldan.getGame();
         Group menuGroup = new Group();
         Scene menuScene = new Scene( menuGroup );
@@ -120,6 +119,15 @@ public class Finish implements Map{
         
         menuGroup.getChildren().add( canvas_movealbe_sprites );
         menuGroup.getChildren().add(anchorpane);
-        return menuScene;
+        SCENE = menuScene;
+    }
+    
+    /**
+     * Returns the scene for the end game.
+     * @return Scene
+     */
+    @Override
+    public Scene getScene(){
+        return SCENE;
     }
 }

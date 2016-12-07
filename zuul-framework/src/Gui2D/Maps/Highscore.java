@@ -33,18 +33,17 @@ import javafx.scene.text.Text;
  * @author jonas
  */
 public class Highscore implements Map {
-
     private Text status;
-    private boolean canLoad;
     private TWoT game;
-
-    public Highscore() {
-        super();
-    }
-
-    @Override
-    public Scene getScene() {
+    private final Scene SCENE;
+    
+    /**
+     * Creates the scene for Highscore
+     */
+    public Highscore(){
+        //returns the current TWoT object
         game = WizardOfTreldan.getGame();
+        
         Group menuGroup = new Group();
         Scene menuScene = new Scene(menuGroup);
 
@@ -119,8 +118,16 @@ public class Highscore implements Map {
         //add the pane to the scene group.
         menuGroup.getChildren().add(anchorpane);
 
-        //returns the scene.
-        return menuScene;
+        //Set the global
+        SCENE = menuScene;
+    }
+    /**
+     * Returns the scene for the highscore menu.
+     * @return Scene
+     */
+    @Override
+    public Scene getScene() {
+        return SCENE;
     }
 
     /**
@@ -128,7 +135,7 @@ public class Highscore implements Map {
      *
      * @return List of Strings
      */
-    public List<String> getHishscoreList() {
+    private List<String> getHishscoreList() {
         //create empty arraylist.
         List<String> loadList = new ArrayList();
         //try to get each file in the directory "loads" by using Files.walk
