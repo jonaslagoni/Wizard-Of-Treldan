@@ -30,7 +30,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class GruulsLair extends Map{
+public class GruulsLair extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;

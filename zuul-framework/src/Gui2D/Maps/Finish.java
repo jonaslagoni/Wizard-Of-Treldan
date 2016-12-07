@@ -26,9 +26,9 @@ import javafx.scene.text.Text;
  *
  * @author jonas
  */
-public class Finish extends Map{
+public class Finish implements Map{
     private TWoT game;
-    public Finish(SpriteController world){
+    public Finish(){
         super();
     }
     

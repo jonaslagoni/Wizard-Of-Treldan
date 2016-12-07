@@ -6,7 +6,6 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import Gui2D.SpriteController.SpriteController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -23,7 +22,7 @@ import javafx.scene.text.Font;
  *
  * @author jonas
  */
-public class Menu extends Map{
+public class Menu implements Map{
     public Menu(){
         super();
     }

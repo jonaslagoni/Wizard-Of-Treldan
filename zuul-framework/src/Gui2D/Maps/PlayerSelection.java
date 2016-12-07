@@ -6,7 +6,6 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import Gui2D.SpriteController.SpriteController;
 import TWoT_A1.TWoT;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -26,7 +25,7 @@ import javafx.scene.text.Text;
  *
  * @author jonas
  */
-public class PlayerSelection extends Map{
+public class PlayerSelection implements Map{
     private TWoT game;
     public PlayerSelection(){
         super();

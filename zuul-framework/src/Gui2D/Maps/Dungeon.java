@@ -30,7 +30,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class Dungeon extends Map{
+public class Dungeon extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;

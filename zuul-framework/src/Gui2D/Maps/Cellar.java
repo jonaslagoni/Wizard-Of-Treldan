@@ -31,7 +31,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class Cellar extends Map{
+public class Cellar extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;

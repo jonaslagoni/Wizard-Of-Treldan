@@ -27,7 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-public class House2 extends Map{
+public class House2 extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;

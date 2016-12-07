@@ -6,7 +6,6 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import Gui2D.SpriteController.SpriteController;
 import TWoT_A1.Score;
 import TWoT_A1.TWoT;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import javafx.scene.text.Text;
  *
  * @author jonas
  */
-public class Highscore extends Map {
+public class Highscore implements Map {
 
     private Text status;
     private boolean canLoad;

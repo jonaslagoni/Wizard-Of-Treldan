@@ -30,7 +30,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class Cave extends Map{
+public class Cave extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;

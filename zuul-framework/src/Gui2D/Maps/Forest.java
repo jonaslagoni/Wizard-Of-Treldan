@@ -30,7 +30,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class Forest extends Map{
+public class Forest extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;
@@ -374,18 +374,6 @@ public class Forest extends Map{
                 //render our new player
                 player.render(moveable_gc);
                 
-                //Intersects top
-                moveable_gc.setFill(Color.BLACK);
-                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-22, player.getWidth()-47, 5);
-                //intersects bottom
-                moveable_gc.setFill(Color.BLUE);
-                moveable_gc.fillRect(player.getPositionX()+15, player.getPositionY()+player.getHeight()-13, player.getWidth()-47, 5);
-                //intersects right
-                moveable_gc.setFill(Color.CRIMSON);
-                moveable_gc.fillRect(player.getPositionX()+player.getWidth()-32,  player.getPositionY()+player.getWidth()-20, 5, 10);
-                //intersects left
-                moveable_gc.setFill(Color.DARKGREEN);
-                moveable_gc.fillRect(player.getPositionX()+11, player.getPositionY()+player.getWidth()-20, 5, 10);
                 
                 //check if the user wants to see a menu.
                 if(menu_input.contains("ESCAPE")){

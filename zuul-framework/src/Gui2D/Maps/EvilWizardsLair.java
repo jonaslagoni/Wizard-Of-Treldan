@@ -29,7 +29,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author Mads
  */
-public class EvilWizardsLair extends Map{
+public class EvilWizardsLair extends PlayableMaps{
     
     // Arraylist for player movement
     private ArrayList<String> input;

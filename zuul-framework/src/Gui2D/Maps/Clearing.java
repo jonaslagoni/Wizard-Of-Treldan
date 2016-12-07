@@ -32,7 +32,7 @@ import javafx.scene.paint.Color;
  *
  * @author jonas
  */
-public class Clearing extends Map{
+public class Clearing extends PlayableMaps{
     
     
     // ArrayList for menu key strokes.

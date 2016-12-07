@@ -6,7 +6,6 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import Gui2D.SpriteController.SpriteController;
 import TWoT_A1.TWoT;
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,7 +40,7 @@ import javafx.scene.text.Text;
  *
  * @author jonas
  */
-public class Load extends Map{
+public class Load implements Map{
     private Text status;
     private boolean canLoad;
     public Load(){

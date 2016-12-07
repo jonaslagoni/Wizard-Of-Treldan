@@ -112,7 +112,7 @@ public class WizardOfTreldan extends Application {
         load = new Load();
         playerSelection = new PlayerSelection();
         highscore = new Highscore();
-        finish = new Finish(world);
+        finish = new Finish();
         
         //set our first scene to the menu.
         setMenuScene();
