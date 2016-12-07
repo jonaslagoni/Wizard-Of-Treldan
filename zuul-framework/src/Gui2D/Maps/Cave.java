@@ -359,14 +359,12 @@ public class Cave extends PlayableMaps{
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
-                    }
-                    if (game.checkExisting("troll1") && player.intersect(enemy_sprites.get(1))) {
+                    }else if (game.checkExisting("troll2") && player.intersect(enemy_sprites.get(1))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll2"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         playerinventory.update(game);
-                    }
-                    if (game.checkExisting("troll1") && player.intersect(enemy_sprites.get(2))) {
+                    }else if (game.checkExisting("troll3") && player.intersect(enemy_sprites.get(2))) {
                         for (String s : game.goTo(new Command(CommandWord.GO, "troll3"))) {
                             infobox.appendText("\n" + s + "\n");
                         }

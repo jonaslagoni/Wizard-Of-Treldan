@@ -30,7 +30,6 @@ public class MiniMap {
     private static final Image DUNGEONIMAGE = new Image("minimap/Dungeon.png");
     private static final Image LIBRARYIMAGE = new Image("minimap/library.png");
     private static final Image WIZARDLAIRIMAGE = new Image("minimap/wizardLair.png");
-    //the playerhead image
     private static final Image PLAYERIMAGE = new Image("minimap/player.png");
     //global group for the canvases
     private Group root;
