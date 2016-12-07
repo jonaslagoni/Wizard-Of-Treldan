@@ -78,7 +78,7 @@ public class GUIFX extends Application {
     private Label label1;
     private Group walkButtons = new Group();
     private int pos = 120;
-    private Label endScore = new Label();
+    private Label endScore;
     private Stage primaryStage;
     private Scene endMenu;
     
@@ -111,23 +111,22 @@ public class GUIFX extends Application {
         this.primaryStage.setTitle("The Wizard of Treldan");
         textArea = new TextArea();
         statsArea = new TextArea();
+        
+        /**
+         * Name scene visuals
+         */
+        Label setName = new Label("ENTER YOUR NAME: ");
         nameArea = new TextField();
         
+        /**
+         * Main menu buttons
+         */
         Button button_play = new Button("NEW GAME");
         Button button_load = new Button("LOAD GAME");
         Button button_how = new Button("HOW TO PLAY");
         Button button_highscore = new Button("HIGHSCORES");
         Button button_exitMenu = new Button("EXIT GAME");
         
-        Button button_loadGame = new Button("Load Game");
-        Button button_exitToMenu = new Button("Exit To Menu");
-        
-        Button button_exitGame = new Button("Exit Game");
-        
-        button_loadGame.setMinWidth(180);
-        button_exitToMenu.setMinWidth(180);
-        button_loadGame.setMinHeight(40);
-        button_exitToMenu.setMinHeight(40);
         
         button_play.setMinWidth(180);
         button_load.setMinWidth(180);
@@ -140,36 +139,18 @@ public class GUIFX extends Application {
         button_exitMenu.setMinHeight(30);
         button_highscore.setMinHeight(30);
         
-        Button button_clear = new Button("Clear");
-        Button button_help = new Button("Help");
-        Button button_exit = new Button("Exit");
-        Button button_save = new Button("Save");
-        Button button_use = new Button("Use Item");
-        Button button_equip = new Button("Equip Item");
+        /**
+         * Loadscreen buttons and list of loads
+         */
         
-        button_help.setMaxWidth(90);
-        button_exit.setMaxWidth(90);
-        button_clear.setMaxWidth(90);
-        button_use.setMaxWidth(90);
-        button_equip.setMaxWidth(90);
-        button_save.setMaxWidth(90);
+        Button button_loadGame = new Button("Load Game");
+        Button button_exitToMenu = new Button("Exit To Menu");
         
-        VBox gameButtons = new VBox(20);
-        gameButtons.setLayoutX(591 + pos);
-        gameButtons.setLayoutY(10);
-        gameButtons.getChildren().addAll(button_clear, button_help, button_save, button_exit);
+        button_loadGame.setMinWidth(180);
+        button_exitToMenu.setMinWidth(180);
+        button_loadGame.setMinHeight(40);
+        button_exitToMenu.setMinHeight(40);
         
-        //end menu
-        button_exitGame.setMinWidth(180);
-        button_exitGame.setMinHeight(40);
-                
-        endScore.setLayoutX(110);
-        endScore.setLayoutY(80);
-        
-        button_exitGame.setLayoutX(170);
-        button_exitGame.setLayoutY(150);
-        
-        //load Menu
         Pane anchorpane = new Pane();
         
         ListView<AnchorPane> list = new ListView();
@@ -190,24 +171,48 @@ public class GUIFX extends Application {
         list.setPrefWidth(250);
         list.setPrefHeight(288);
         anchorpane.getChildren().add(list);
+        
+        /**
+         * scene1 buttons
+         */
+        
+        Button button_clear = new Button("Clear");
+        Button button_help = new Button("Help");
+        Button button_exit = new Button("Exit");
+        Button button_save = new Button("Save");
+        Button button_use = new Button("Use Item");
+        Button button_equip = new Button("Equip Item");
+        
+        button_help.setMaxWidth(90);
+        button_exit.setMaxWidth(90);
+        button_clear.setMaxWidth(90);
+        button_use.setMaxWidth(90);
+        button_equip.setMaxWidth(90);
+        button_save.setMaxWidth(90);
+        
+        healthbar = new ProgressBar(twot.getPlayerHealth()/100);
+        label1 = new Label("Health "+ twot.getPlayerHealth());
+        
+        
+        /**
+         * End menu
+         */
+        Button button_endGameExitGame = new Button("Exit Game");
+        endScore = new Label();
+        
+        button_endGameExitGame.setMinWidth(180);
+        button_endGameExitGame.setMinHeight(40);
                 
-        VBox loadMenuButtons = new VBox(20);
-        loadMenuButtons.setLayoutX(295);
-        loadMenuButtons.setLayoutY(70);
-        loadMenuButtons.getChildren().addAll(button_loadGame, button_exitToMenu);
+        endScore.setLayoutX(110);
+        endScore.setLayoutY(80);
         
-        //smth else
+        button_endGameExitGame.setLayoutX(170);
+        button_endGameExitGame.setLayoutY(150);
         
-        HBox invButtons = new HBox(20);
-        invButtons.setLayoutX(770 + pos);
-        invButtons.setLayoutY(420);
-        invButtons.getChildren().addAll(button_use, button_equip);
-
-        VBox menuButtons = new VBox(20);
-        menuButtons.setLayoutX(166);
-        menuButtons.setLayoutY(30);
-        menuButtons.getChildren().addAll(button_play, button_load, button_how, button_highscore, button_exitMenu);
-                      
+        
+        /**
+         * Inventory list
+         */
         invTable.setEditable(true);
         List<Item> l = twot.getInventoryItems();
         for(Item i: l){
@@ -234,9 +239,80 @@ public class GUIFX extends Application {
         itemDescription.setCellValueFactory(
                 new PropertyValueFactory<InventoryItems, String>("itemDesc"));
  
+        
+        /**
+         * Nodes
+         */
+        
+        
+        /**
+         * Layouts for game scene
+         */
+        HBox invButtons = new HBox(20);
+        invButtons.setLayoutX(770 + pos);
+        invButtons.setLayoutY(420);
+        invButtons.getChildren().addAll(button_use, button_equip);
+        
+        VBox loadMenuButtons = new VBox(20);
+        loadMenuButtons.setLayoutX(295);
+        loadMenuButtons.setLayoutY(70);
+        loadMenuButtons.getChildren().addAll(button_loadGame, button_exitToMenu);
+        
+        VBox gameButtons = new VBox(20);
+        gameButtons.setLayoutX(591 + pos);
+        gameButtons.setLayoutY(10);
+        gameButtons.getChildren().addAll(button_clear, button_help, button_save, button_exit);
+        
+        VBox menuButtons = new VBox(20);
+        menuButtons.setLayoutX(166);
+        menuButtons.setLayoutY(30);
+        menuButtons.getChildren().addAll(button_play, button_load, button_how, button_highscore, button_exitMenu);
+        
         invTable.setItems(invData);
         invTable.getColumns().addAll(itemName, itemType, itemDescription);
         invTable.setLayoutX(652 + pos);
+        
+        healthbar.setStyle("-fx-accent: red;");
+        healthbar.setPrefSize(256, 26);
+        healthbar.relocate(0 + pos, 265);
+                       
+        label1.setTextFill(Color.web("BLACK"));
+        label1.relocate(10 + pos, 269);
+        
+        /**
+         * Buttons for the main menu
+         */
+        
+        /**
+         * Label
+         * Name area field
+         * Added to VBox
+         */
+        
+        VBox nameField = new VBox();
+        nameField.setMaxWidth(300);
+        nameField.setMinWidth(300);
+        nameField.setMaxHeight(50);
+        nameField.setMinHeight(50);
+        nameField.relocate(106, 119);
+        nameField.getChildren().addAll(setName, nameArea);
+        
+        /**
+         * Textarea for the playing scene
+         */
+        VBox outputField = new VBox(20);
+        textArea.setMaxWidth(572);
+        outputField.setLayoutX(pos);
+        textArea.setMinWidth(572);
+        textArea.setMinHeight(258);
+        textArea.setMaxHeight(258);
+        textArea.setWrapText(true);
+        textArea.setEditable(false);
+        outputField.getChildren().addAll(textArea);
+        
+        /**
+         * Equipped items list
+         */
         equipTable.setEditable(false);
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
         for(Map.Entry<EquippableItem.EItem, EquippableItem> entry : k.entrySet()){
@@ -258,7 +334,6 @@ public class GUIFX extends Application {
                 equipData.add(new EquippedItems(entry.getValue().getItemName(), "Ring Slot", entry.getValue().getAttackBuff(), entry.getValue().getDefenseBuff()));
             }
         }
-        
         TableColumn itemNames = new TableColumn("Item Name");
         itemNames.setMinWidth(100);
         itemNames.setCellValueFactory(
@@ -290,18 +365,10 @@ public class GUIFX extends Application {
         equipTable.setMinHeight(235);
         equipTable.setMaxHeight(235);
         
-        VBox outputField = new VBox(20);
-        textArea.setMaxWidth(572);
-        outputField.setLayoutX(pos);
-        textArea.setMinWidth(572);
-        textArea.setMinHeight(258);
-        textArea.setMaxHeight(258);
-        textArea.setWrapText(true);
-        textArea.setEditable(false);
-        outputField.getChildren().addAll(textArea);
-        
+        /**
+         * Statsarea on the playing scene
+         */
         NumberFormat df = new DecimalFormat("#0.0");
-        
         statsArea.appendText("****************************\n");
         statsArea.appendText("** Player name: " + twot.getPlayerName() + "\n");
         statsArea.appendText("** Attack value: " + df.format(twot.getPlayerAtt()) + "\n");
@@ -313,6 +380,9 @@ public class GUIFX extends Application {
         statsField.relocate(0 + pos, 300);
         statsField.getChildren().addAll(statsArea);
         
+        /**
+         * adding buttons to panes
+         */
         healthbar = new ProgressBar(twot.getPlayerHealth()/100);
         healthbar.setStyle("-fx-accent: red;");
         healthbar.setPrefSize(256, 26);
@@ -324,13 +394,6 @@ public class GUIFX extends Application {
         
         Label setNamePls = new Label("ENTER YOUR NAME: ");
         
-        VBox nameField = new VBox();
-        nameField.setMaxWidth(300);
-        nameField.setMinWidth(300);
-        nameField.setMaxHeight(50);
-        nameField.setMinHeight(50);
-        nameField.relocate(106, 119);
-        nameField.getChildren().addAll(setNamePls, nameArea);
         
         //Highscore screen
         Button button_cancel = new Button("EXIT TO MENU");
@@ -361,7 +424,7 @@ public class GUIFX extends Application {
         Pane root2 = new Pane(menuButtons);
         Pane root3 = new Pane(nameField);
         Pane root4 = new Pane(loadMenuButtons, anchorpane);
-        Pane root5 = new Pane(endScore, button_exitGame);
+        Pane root5 = new Pane(endScore, button_endGameExitGame);
         Pane root6 = new Pane(hList, button_cancel);
         
         Scene game = new Scene(root, 1052 + pos, 512);
@@ -371,6 +434,10 @@ public class GUIFX extends Application {
         endMenu = new Scene(root5, 512, 288);
         Scene highscoreMenu = new Scene(root6, 512, 288);
                 
+        /**
+         * Actions events
+         */
+        
         DropShadow shade = new DropShadow();
         root.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
             root.setEffect(shade);
@@ -393,6 +460,9 @@ public class GUIFX extends Application {
             }
         }
         });
+        /**
+         * makes an instance of TWoT and equals it with the load, then sets it
+         */
         button_loadGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             TWoT loadedGame = getLoad((((Text)list.getSelectionModel().getSelectedItem().getChildren().get(0)).getText()));
             //set the game to the loaded instance
@@ -410,6 +480,9 @@ public class GUIFX extends Application {
             saveGame();
             textArea.appendText("\n\nGame has been saved. It can be loaded from the start menu.\n\n");
         });
+        /**
+         * If a useable item is selected and the button is clicked, the action events takes the commandword USE and the item name
+         */
         button_use.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             if(invTable.getSelectionModel().getSelectedItem() == null){
                 textArea.appendText("\n\nPlease select an item.");
@@ -440,6 +513,9 @@ public class GUIFX extends Application {
         button_clear.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             textArea.clear();
         });
+        /**
+         * Takes the text in the inputfield and uses the setPlayerName() method in the twot class
+         */
         nameField.setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
             public void handle(KeyEvent k){
@@ -451,6 +527,9 @@ public class GUIFX extends Application {
                 }
             }
         });
+        /**
+         * Calls on the other class 'PopUps' with the parameters given below
+         */
         button_how.setOnAction(new EventHandler<ActionEvent>(){
             @Override public void handle(ActionEvent e){
                     PopUps.display("HOW TO PLAY", "Move around with the 'go [interactable object]' "
@@ -462,11 +541,16 @@ public class GUIFX extends Application {
         button_exitToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e)->{
             primaryStage.setScene(menu);
         });
-                
+        /**
+         * closes the platform
+         */
         button_exit.setOnAction(actionEvent -> Platform.exit());        
         button_exitMenu.setOnAction(actionEvent -> Platform.exit());  
-        button_exitGame.setOnAction(actionEvent -> Platform.exit());
+        button_endGameExitGame.setOnAction(actionEvent -> Platform.exit());
                
+        /**
+         * sets and shows the primarystage
+         */
         primaryStage.setScene(menu);
         primaryStage.centerOnScreen();
         primaryStage.show();
@@ -490,7 +574,9 @@ public class GUIFX extends Application {
         //return the List
         return loadList;
     }
-    
+    /**
+     * Method that runs methods to update the GUI, hardcoded to update everyting actionevents are called
+     */
     public void updateGUI(){
         updatePlayer();
         updateHealth();
@@ -499,6 +585,9 @@ public class GUIFX extends Application {
         updateButtons();
     }
     
+    /**
+     * Method that fetches player stats
+     */
     public void updatePlayer(){
         statsArea.clear();
         NumberFormat df = new DecimalFormat("#0.0");
@@ -511,6 +600,9 @@ public class GUIFX extends Application {
         statsArea.appendText("****************************");
     }
     
+    /**
+     * updates health on the healthbar
+     */
     public void updateHealth(){
         label1.setText("Health "+ twot.getPlayerHealth());
         healthbar.setProgress(twot.getPlayerHealth()/100);
@@ -523,6 +615,9 @@ public class GUIFX extends Application {
         }
     }
     
+    /**
+     * Removes all instances of items in the list, and adds the ones in the inventory
+     */
     public void updateInventory(){
         List<Item> l = twot.getInventoryItems();
         invData.removeAll(invData);
@@ -537,6 +632,9 @@ public class GUIFX extends Application {
         }
     }
     
+    /**
+     * Removes all instances of items in the list, and adds the equippableItems from the inventory
+     */
     public void updateEquipInventory(){
         HashMap<EquippableItem.EItem, EquippableItem> k = twot.getEquippableItems();
         equipData.removeAll(equipData);
@@ -561,6 +659,9 @@ public class GUIFX extends Application {
         }
     }
     
+    /**
+     * Runs the switch to check the current room and adds the buttons defined with the methods bellow
+     */
      public void updateButtons() {
                       
         switch (twot.getCurrentRoomId()) {
@@ -620,85 +721,6 @@ public class GUIFX extends Application {
                 break;
         }      
     }
-     
-    public void saveGame(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
-        Date date = new Date();
-        String strDate = sdf.format(date);
-        try {
-            FileOutputStream fos = new FileOutputStream("loads/" + twot.getCurrentRoomName() + "-" + strDate + ".data");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(twot);
-            oos.close();
-        }
-        catch(FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        } 
-    }
-    public void saveGame(String name) {
-        try {
-            FileOutputStream fos = new FileOutputStream("loads/" + name +  ".data");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(twot);
-            oos.close();
-        }
-        catch(FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public List<String> getLoadList(){
-        //create empty arraylist.
-        List<String> loadList = new ArrayList();
-        //try to get each file in the directory "loads" by using Files.walk
-        try{
-            //Go through each Path in the Stream.
-            Stream<Path> paths = Files.walk(Paths.get("loads/"));
-            paths.forEach(filePath -> {
-                //if the file is a FILE continue
-                if (Files.isRegularFile(filePath)) {
-                    //add the filename with extenstion to the List.
-                    loadList.add(filePath.getFileName().toString());
-                }
-            });
-        } catch (IOException ex) {
-            System.out.println("FAIL");
-        }
-        //return the List
-        return loadList;
-    }
-    
-     public TWoT getLoad(String filename){
-        //Try loading the file. 
-        try {
-            //Read from the stored file in folder "loads"
-            FileInputStream fileInputStream = new FileInputStream(new File("loads/" + filename));
-            //Create a ObjectInputStream object from the FileInputStream
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
-            //load the TWoT file into object
-            TWoT twot = (TWoT) input.readObject();
-            //close the objects
-            input.close();
-            fileInputStream.close();
-            //returns the gamefile
-            return twot;
-        } catch (FileNotFoundException e) {
-                System.out.println("File not found");
-        } catch (IOException e) {
-                System.out.println("Wrong version of game");
-        } catch (ClassNotFoundException e) {
-                System.out.println("Game was not found.");
-        }
-        return null;
-    }
-     
-    public void setGame(TWoT loaded){
-        twot = loaded;
-    }
     
     //WALK BUTTONS
     
@@ -741,7 +763,6 @@ public class GUIFX extends Application {
             Command command = new Command(commandword.getCommandWord("go"), "door");
             for(String s: twot.goTo(command)){
                 textArea.appendText("\n" + s + "\n");
-                
             }
             updateGUI();
         });
@@ -1441,4 +1462,88 @@ public class GUIFX extends Application {
         
         return root;
     }
+    
+    /**
+     * Opens a FileOutputStream and an oObjectOutputStream and saves the game in a .data file with the date
+     * and currentRoom as the name, and saves it in the projectfolder under a folder called "loads"
+     */
+    public void saveGame(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
+        Date date = new Date();
+        String strDate = sdf.format(date);
+        try {
+            FileOutputStream fos = new FileOutputStream("loads/" + twot.getCurrentRoomName() + "-" + strDate + ".data");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(twot);
+            oos.close();
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
+    
+    /**
+     * checks the folder "loads" for files, and adds them to a list<String> and then returns it
+     * @return 
+     */
+    public List<String> getLoadList(){
+        //create empty arraylist.
+        List<String> loadList = new ArrayList();
+        //try to get each file in the directory "loads" by using Files.walk
+        try{
+            //Go through each Path in the Stream.
+            Stream<Path> paths = Files.walk(Paths.get("loads/"));
+            paths.forEach(filePath -> {
+                //if the file is a FILE continue
+                if (Files.isRegularFile(filePath)) {
+                    //add the filename with extenstion to the List.
+                    loadList.add(filePath.getFileName().toString());
+                }
+            });
+        } catch (IOException ex) {
+            System.out.println("FAIL");
+        }
+        //return the List
+        return loadList;
+    }
+    /**
+     * uses the filename and checks if the file exists, then it takes TWoT and equals the inputStream to that.
+     * @param filename
+     * @return 
+     */
+     public TWoT getLoad(String filename){
+        //Try loading the file. 
+        try {
+            //Read from the stored file in folder "loads"
+            FileInputStream fileInputStream = new FileInputStream(new File("loads/" + filename));
+            //Create a ObjectInputStream object from the FileInputStream
+            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            //load the TWoT file into object
+            TWoT twot = (TWoT) input.readObject();
+            //close the objects
+            input.close();
+            fileInputStream.close();
+            //returns the gamefile
+            return twot;
+        } catch (FileNotFoundException e) {
+                System.out.println("File not found");
+        } catch (IOException e) {
+                System.out.println("Wrong version of game");
+        } catch (ClassNotFoundException e) {
+                System.out.println("Game was not found.");
+        }
+        return null;
+    }
+     
+     /**
+      * method that sets twot to the loaded game
+      * @param loaded 
+      */
+    public void setGame(TWoT loaded){
+        twot = loaded;
+    }
+
+
 }

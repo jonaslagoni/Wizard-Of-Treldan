@@ -22,9 +22,20 @@ import javafx.stage.Stage;
 
 public class PopUps {
     
-    
+    /**
+     * Uses title, and message to construct the window
+     * @param title
+     * @param message 
+     */
     public static void display(String title, String message){
+<<<<<<< HEAD
+        
+        /**
+         * creates new stage
+         */
+=======
                 
+>>>>>>> origin/master
         Stage window = new Stage();
         
         window.getIcons().add(new Image("icon.png"));
@@ -45,8 +56,8 @@ public class PopUps {
         layout.getChildren().addAll(label, closeButton);
         layout.setAlignment(Pos.CENTER);
         
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
+        Scene howToPlay = new Scene(layout);
+        window.setScene(howToPlay);
         window.showAndWait();
     }
     
