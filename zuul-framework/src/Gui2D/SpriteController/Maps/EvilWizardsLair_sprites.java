@@ -24,16 +24,54 @@ public class EvilWizardsLair_sprites{
     private List<Sprite> spriteList;
     private List<Sprite> spriteList_lava;
     private List<Sprite> spriteList_monsters;
+    private List<Sprite> spriteList_boundriesFix;
     
     public EvilWizardsLair_sprites(SpriteController world){
         this.world = world;
         this.spriteList = new ArrayList();
         this.spriteList_monsters = new ArrayList();
         this.spriteList_lava = new ArrayList();
+        this.spriteList_boundriesFix = new ArrayList<>();
     }
     
     public void setEvilWizardsLair_background_SingleSprites(){
             
+        // BOUNDRIES WORKAROUND START
+        
+        List<SingleSprite> boundriesFixList1 = new ArrayList<>();
+        boundriesFixList1.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite boundriesFix1 = new Groupsprite_random(boundriesFixList1);
+        boundriesFix1.setSize(416, 32);
+        boundriesFix1.setPosition(60, 165);
+        spriteList_boundriesFix.add(boundriesFix1);
+        
+        List<SingleSprite> boundriesFixList2 = new ArrayList<>();
+        boundriesFixList2.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite boundriesFix2 = new Groupsprite_random(boundriesFixList2);
+        boundriesFix2.setSize(416, 32);
+        boundriesFix2.setPosition(570, 165);
+        spriteList_boundriesFix.add(boundriesFix2);
+      
+        List<SingleSprite> boundriesFixList3 = new ArrayList<>();
+        boundriesFixList3.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite boundriesFix3 = new Groupsprite_random(boundriesFixList3);
+        boundriesFix3.setSize(32, 384);
+        boundriesFix3.setPosition(570, 200);
+        spriteList_boundriesFix.add(boundriesFix3);
+        
+        List<SingleSprite> boundriesFixList4 = new ArrayList<>();
+        boundriesFixList4.add(world.getGround_sprite().getCastle_Stone_Floor());
+        
+        Sprite boundriesFix4 = new Groupsprite_random(boundriesFixList4);
+        boundriesFix4.setSize(32, 384);
+        boundriesFix4.setPosition(447, 200);
+        spriteList_boundriesFix.add(boundriesFix4);
+        
+        // BOUNDRIES WORKAROUND END
+        
         //lava floor 0 
         List<SingleSprite> backgroundLava = new ArrayList();
         backgroundLava.add(world.getGround_sprite().getLava_1());
@@ -145,9 +183,6 @@ public class EvilWizardsLair_sprites{
         spriteList.add(pillar8);
        
       
-        
-       
-        
     }
 
     public List<Sprite> getSpriteList() {
@@ -166,6 +201,10 @@ public class EvilWizardsLair_sprites{
      */
     public List<Sprite> getSpriteList_lava() {
         return spriteList_lava;
+    }
+    
+    public List<Sprite> getSpriteList_BoundriesFIX() {
+        return spriteList_boundriesFix;
     }
 
 }

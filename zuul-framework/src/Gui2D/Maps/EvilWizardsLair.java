@@ -68,11 +68,16 @@ public class EvilWizardsLair extends PlayableMaps{
         Scene theScene = new Scene( root );
         
         
+        // Needs to be rendered in the background (has to not be visible)
+        // add canvas for boundriesFIX
+        Canvas boundriesFix_canvas = new Canvas(1024,512);
+        // add canvas to group
+        root.getChildren().add(boundriesFix_canvas);
+        
         //add a canvas only for the player lava
         Canvas lava_canvas = new Canvas(1024, 512);
         //add the canvas to the group
         root.getChildren().add(lava_canvas);
-        
         
         //add the canvas for backgroundsprites
         Canvas background = new Canvas(1024, 512);
@@ -100,6 +105,7 @@ public class EvilWizardsLair extends PlayableMaps{
         //add the group to the root group
         root.getChildren().add( miniMapGroup );
         
+        GraphicsContext boundriesFIX_gc = boundriesFix_canvas.getGraphicsContext2D();
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
         GraphicsContext background_gc = background.getGraphicsContext2D();
         GraphicsContext monster_gc = monster_canvas.getGraphicsContext2D();
@@ -145,16 +151,24 @@ public class EvilWizardsLair extends PlayableMaps{
         Rectangle2D worldBoundLeft = new Rectangle2D(35,0,1,512);
         Rectangle2D worldBoundRight = new Rectangle2D(965,0,1,512);
         
-        Rectangle2D worldBoundLeft2 = new Rectangle2D(0,160,440,512);    
-        Rectangle2D worldBoundRight2 = new Rectangle2D(580,160,500,512);    
+        //Rectangle2D worldBoundLeft2 = new Rectangle2D(0,160,440,512);    
+        //Rectangle2D worldBoundRight2 = new Rectangle2D(580,160,500,512);
         
-        
+        // spritelist of boundries fix
+        List<Sprite> spriteList_boundriesFIX = evilWizardsLair_sprites.getSpriteList_BoundriesFIX();
          //spritelist of background sprites
         List<Sprite> spriteList = evilWizardsLair_sprites.getSpriteList();
          //spritelist of lava sprites
         List<Sprite> spriteList_lava = evilWizardsLair_sprites.getSpriteList_lava();
         //spritelist of foreground sprites
         List<Sprite > spriteList_foreground = evilWizardsLair_sprites.getSpriteList_monsters();
+        
+        // render boundries (shouldn't be seen)
+        for (Sprite boundries_sprites : spriteList_boundriesFIX) {
+            boundries_sprites.render(boundriesFIX_gc);
+        }
+        
+        // render everything in spriteList
         for (Sprite background_sprites : spriteList) {
             background_sprites.render(background_gc);
         }
@@ -209,8 +223,7 @@ public class EvilWizardsLair extends PlayableMaps{
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_left(worldBoundLeft) ||
-                        player.intersects_left(worldBoundLeft2)){
+                    if (player.intersects_left(worldBoundLeft)){
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
@@ -219,6 +232,9 @@ public class EvilWizardsLair extends PlayableMaps{
                     }else if(game.checkExisting("minion1") && player.intersects_left(spriteList_foreground.get(1))){
                         player.setVelocity(0,0);
                     }else if(game.checkExisting("minion2") && player.intersects_left(spriteList_foreground.get(2))){
+                        player.setVelocity(0,0);
+                    }else if (player.intersects_left(spriteList_boundriesFIX.get(3)) ||
+                            player.intersects_left(spriteList_boundriesFIX.get(0))) {
                         player.setVelocity(0,0);
                     }else {
                         player.setVelocity(-100, 0);
@@ -234,8 +250,7 @@ public class EvilWizardsLair extends PlayableMaps{
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_right(worldBoundRight) ||
-                        player.intersects_right(worldBoundRight2))
+                    if (player.intersects_right(worldBoundRight))
                             {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -245,6 +260,9 @@ public class EvilWizardsLair extends PlayableMaps{
                     }else if(game.checkExisting("minion1") && player.intersects_right(spriteList_foreground.get(1))){
                         player.setVelocity(0,0);
                     }else if(game.checkExisting("minion2") && player.intersects_right(spriteList_foreground.get(2))){
+                        player.setVelocity(0,0);
+                    }else if (player.intersects_right(spriteList_boundriesFIX.get(2)) ||
+                            player.intersects_right(spriteList_boundriesFIX.get(1))) {
                         player.setVelocity(0,0);
                     }else {
                         player.setVelocity(100, 0);
@@ -284,9 +302,8 @@ public class EvilWizardsLair extends PlayableMaps{
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
-                    if (player.intersects_bottom(worldBoundBottom)||
-                        player.intersects_bottom(worldBoundRight2)||
-                        player.intersects_bottom(worldBoundLeft2)) {
+                    if (player.intersects_bottom(worldBoundBottom))
+                            {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     }else if(game.checkExisting("wizard") && player.intersects_bottom(spriteList_foreground.get(0))){
@@ -294,6 +311,9 @@ public class EvilWizardsLair extends PlayableMaps{
                     }else if(game.checkExisting("minion1") && player.intersects_bottom(spriteList_foreground.get(1))){
                         player.setVelocity(0,0);
                     }else if(game.checkExisting("minion2") && player.intersects_bottom(spriteList_foreground.get(2))){
+                        player.setVelocity(0,0);
+                    }else if (player.intersects_bottom(spriteList_boundriesFIX.get(0)) ||
+                            player.intersects_bottom(spriteList_boundriesFIX.get(1))) {
                         player.setVelocity(0,0);
                     }else {
                         player.setVelocity(0, 100);

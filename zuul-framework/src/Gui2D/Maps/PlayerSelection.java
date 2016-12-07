@@ -13,11 +13,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -50,6 +52,30 @@ public class PlayerSelection implements Map{
         Pane anchorpane = new Pane();
         anchorpane.setPrefSize(1024, 512);
         
+        Label controlsMOVING = new Label();
+        controlsMOVING.setPrefSize(400, 50);
+        controlsMOVING.relocate(50, 50);
+        controlsMOVING.setFont(new Font("Verdana",20));
+        controlsMOVING.setText("Use Arrow Keys to move");
+        controlsMOVING.setTextFill(Color.WHITE);
+        anchorpane.getChildren().add(controlsMOVING);
+        
+        Label controlsESC = new Label();
+        controlsESC.setPrefSize(400, 50);
+        controlsESC.relocate(50, 100);
+        controlsESC.setFont(new Font("Verdana",20));
+        controlsESC.setText("Press ESCAPE to exit game");
+        controlsESC.setTextFill(Color.WHITE);
+        anchorpane.getChildren().add(controlsESC);
+        
+        Label controlsINTERACT = new Label();
+        controlsINTERACT.setPrefSize(400, 50);
+        controlsINTERACT.relocate(50, 150);
+        controlsINTERACT.setFont(new Font("Verdana",20));
+        controlsINTERACT.setText("Use \"E\" to interact");
+        controlsINTERACT.setTextFill(Color.WHITE);
+        anchorpane.getChildren().add(controlsINTERACT);
+        
         TextField playerName = new TextField();
         playerName.setPrefSize(300, 50);
         playerName.relocate(362, 200);
@@ -60,7 +86,7 @@ public class PlayerSelection implements Map{
         Text playernameText = new Text();
         playernameText.setFont(new Font(27));
         playernameText.setText("Insert your player name");
-        playernameText.relocate(250, 160);
+        playernameText.relocate(365, 160);
         playernameText.setFill(Color.WHITE);
         anchorpane.getChildren().add(playernameText);
         
