@@ -178,6 +178,21 @@ public class EvilWizardsLair extends PlayableMaps{
             //what to do each cycle
             @Override
             public void handle(long currentNanoTime) {
+                if(!game.checkExisting("wizard")){
+                    //write to highscore
+                    game.writeHighScore();
+                    //remove all the inputs
+                    input.removeAll(input);
+                    //stop this AnimationTimer
+                    this.stop();
+                    //clear the textarea
+                    infobox.clear();
+                    //remove the input
+                    menu_input.remove("E");
+                    //set the menu as a scene instead.
+                    WizardOfTreldan.setFinishScene();
+                        
+                }
                 //request the focus back
                 root.requestFocus();
                 //get how many sec have passed
@@ -316,20 +331,6 @@ public class EvilWizardsLair extends PlayableMaps{
                                 }
                             }
                         }
-                    }else{
-                        //write to highscore
-                        game.writeHighScore();
-                        //remove all the inputs
-                        input.removeAll(input);
-                        //stop this AnimationTimer
-                        this.stop();
-                        //clear the textarea
-                        infobox.clear();
-                        //remove the input
-                        menu_input.remove("E");
-                        //set the menu as a scene instead.
-                        WizardOfTreldan.setFinishScene();
-                        
                     }
                     
                     menu_input.remove("E");
