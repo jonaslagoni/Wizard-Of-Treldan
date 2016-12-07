@@ -1101,9 +1101,9 @@ public class GUIFX extends Application {
     }
     private Group wizardHouseButtons() {
         
-        Button button_upstairs = new Button("Upstairs");
+        Button button_upstairs = new Button("Sacks");
         Button button_box = new Button("Box");
-        Button button_lab = new Button("Lab");
+        Button button_lab = new Button("Alchemy Lab");
         Button button_wizard = new Button("Wizard");
         Button button_door = new Button("Door");
         
