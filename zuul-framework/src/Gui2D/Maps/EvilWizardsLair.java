@@ -151,9 +151,6 @@ public class EvilWizardsLair extends PlayableMaps{
         Rectangle2D worldBoundLeft = new Rectangle2D(35,0,1,512);
         Rectangle2D worldBoundRight = new Rectangle2D(965,0,1,512);
         
-        //Rectangle2D worldBoundLeft2 = new Rectangle2D(0,160,440,512);    
-        //Rectangle2D worldBoundRight2 = new Rectangle2D(580,160,500,512);
-        
         // spritelist of boundries fix
         List<Sprite> spriteList_boundriesFIX = evilWizardsLair_sprites.getSpriteList_BoundriesFIX();
          //spritelist of background sprites
