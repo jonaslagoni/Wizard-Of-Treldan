@@ -19,12 +19,14 @@ import javafx.geometry.Rectangle2D;
  */
 public class Cave_sprites{
     private SpriteController world;
-    
-    
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
     private List<Sprite> enemy_sprites;
     
+    /**
+     * Inits the variables
+     * @param world 
+     */    
     public Cave_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
@@ -32,6 +34,9 @@ public class Cave_sprites{
         this.enemy_sprites = new ArrayList();
     }
     
+    /**
+     * Adds the sprites to the lists
+     */
     public void setCave_background_SingleSprites(){
         
         List<SingleSprite> caveGroundList = new ArrayList();
@@ -154,16 +159,16 @@ public class Cave_sprites{
     }
     
     /**
-     * 
      * @return cave_foreground_sprites
      */
     public List<Sprite> getCave_foreground_sprites() {
         return foreground_sprites;
     }
     
+    /**
+     * @return the enemy sprites
+     */
     public List<Sprite> getEnemy_sprites() {
         return enemy_sprites;
     }
-   
-    
 }

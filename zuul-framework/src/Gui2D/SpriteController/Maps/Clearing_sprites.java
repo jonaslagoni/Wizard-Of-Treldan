@@ -16,22 +16,24 @@ import javafx.geometry.Rectangle2D;
 
 
 public class Clearing_sprites{
-private SpriteController world;
-//list containing all sprites for the room
-private List<Sprite> clearing_background_sprites;
-private List<Sprite> clearing_interact;
-
-//lists of treeline
-private final List<SingleSprite> clearing_tree_walls_RIGHT;
-private final List<SingleSprite> clearing_tree_walls_LEFT;
-private final List<SingleSprite> clearing_tree_walls_TOP;
-private final List<SingleSprite> clearing_tree_walls_BOTTOM;
-//lists containing individual sprites   
-private final List<SingleSprite> clearing_grass_singlesprites;
-private final List<SingleSprite> clearing_ruins_singlesprites;
-private final List<SingleSprite> clearing_pathway_sprites;
+    private SpriteController world;
+    //list containing all sprites for the room
+    private List<Sprite> clearing_background_sprites;
+    private List<Sprite> clearing_interact;
+    //lists of treeline
+    private final List<SingleSprite> clearing_tree_walls_RIGHT;
+    private final List<SingleSprite> clearing_tree_walls_LEFT;
+    private final List<SingleSprite> clearing_tree_walls_TOP;
+    private final List<SingleSprite> clearing_tree_walls_BOTTOM;
+    //lists containing individual sprites   
+    private final List<SingleSprite> clearing_grass_singlesprites;
+    private final List<SingleSprite> clearing_ruins_singlesprites;
+    private final List<SingleSprite> clearing_pathway_sprites;
     
-    
+    /**
+     * Inits the arraylists
+     * @param world 
+     */
     public Clearing_sprites(SpriteController world){
         //initialize world + list of spritess
         this.world = world;
@@ -48,12 +50,12 @@ private final List<SingleSprite> clearing_pathway_sprites;
         clearing_grass_singlesprites = new ArrayList();
         clearing_ruins_singlesprites = new ArrayList();
         clearing_pathway_sprites = new ArrayList();
-        
-        
     }
     
+    /**
+     * 
+     */
     public void setClearing_background_sprites(){
- 
             //BACKGROUND GRASS 0
             clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_light_1());
             clearing_grass_singlesprites.add(world.getGround_sprite().getGrass_light_2()); 
@@ -171,10 +173,17 @@ private final List<SingleSprite> clearing_pathway_sprites;
             clearing_background_sprites.add(door);
             */
     }
-
+    
+    /**
+     * @return the background sprites
+     */
     public List<Sprite> getClearing_background_sprites(){
        return clearing_background_sprites; 
     }
+    
+    /**
+     * @return the interact sprites
+     */
     public List<Sprite> getClearing_interact(){
         return clearing_interact;
     }

@@ -31,16 +31,13 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class WizardHouse extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     private TWoT game;
-    
     private WizardHouse_sprites wizardHouse_sprites;
+    
     /**
      * Constructor for Cave
      * @param world 
@@ -53,6 +50,10 @@ public class WizardHouse extends PlayableMaps{
         wizardHouse_sprites.setWizardHouse_background_SingleSprites();
     }
     
+    /**
+     * returns the wizardhouse scene
+     * @return 
+     */
     @Override
     public Scene getScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer

@@ -26,19 +26,19 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+
 /**
  *
  * @author Mads
  */
 public class Library extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     private TWoT game;
     private Library_sprites library_sprites;
+    
     /**
      * Constructor for Library
      * @param world 
@@ -46,11 +46,13 @@ public class Library extends PlayableMaps{
     public Library(SpriteController world){
         //init our super constructor
         super();
-        
         library_sprites = new Library_sprites(world);
         library_sprites.setLibrary_background_SingleSprites();
     }
     
+    /**
+     * @return the library scene.
+     */
     @Override
     public Scene getScene(){
         

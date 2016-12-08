@@ -19,24 +19,28 @@ import java.util.List;
  * @author jonas
  */
 public class House3_sprites{
-    
     private SpriteController world;
     private final List<Sprite> house_background_sprites;
     private final List<Sprite> house_monster_sprites;
-    
     private Sprite stranger_sprite;
     private final List<SingleSprite> house_background_walls;
     private final List<SingleSprite> house_background_floor;
     
-    
+    /**
+     * Inits the variables
+     * @param world 
+     */
     public House3_sprites(SpriteController world){
         this.world = world;
         house_background_sprites = new ArrayList();
         house_monster_sprites = new ArrayList();
         house_background_walls = new ArrayList();
         house_background_floor = new ArrayList();
-        
     }
+    
+    /**
+     * Adds the sprites to the lists
+     */
     public void setHouse3_background_SingleSprites(){
         //floor
         house_background_floor.add(world.getGround_sprite().getWood_light_2());
@@ -131,6 +135,9 @@ public class House3_sprites{
         stranger_sprite = stranger;
     }
     
+    /**
+     * @return the background sprites 
+     */
     public List<Sprite> getHouse(){
         return house_background_sprites;
     }

@@ -31,16 +31,14 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class Forest extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     private TWoT game;
-    
     private Forest_sprites forest_sprites;
+    
+    
     /**
      * Constructor for Cave
      * @param world 
@@ -48,11 +46,14 @@ public class Forest extends PlayableMaps{
     public Forest(SpriteController world){
         //init our super constructor
         super();
-        
         forest_sprites = new Forest_sprites(world);
         forest_sprites.setForest_background_SingleSprites();
     }
     
+    /**
+     * Returns the forest scene
+     * @return 
+     */
     @Override
     public Scene getScene(){
         

@@ -20,15 +20,16 @@ import javafx.geometry.Rectangle2D;
  */
 public class Library_sprites{
     private SpriteController world;
-    
     private List<Sprite> spriteList_background;
     private List<Sprite> spriteList_monsters;
-    
     private final List<SingleSprite> LibraryWalls;
     private final List<SingleSprite> LibraryFloor;
     private final List<SingleSprite> LibraryWallE;
     
-    
+    /**
+     * Inits the variables
+     * @param world 
+     */
     public Library_sprites(SpriteController world){
         this.world = world;
         //inintizalise spritelists
@@ -37,12 +38,12 @@ public class Library_sprites{
         this.LibraryFloor = new ArrayList();
         this.LibraryWalls = new ArrayList();
         this.LibraryWallE = new ArrayList();
-        
     }
     
+    /**
+     * adds the sprites to the lists
+     */
     public void setLibrary_background_SingleSprites(){
-        
-        
         //0
         LibraryFloor.add(world.getGround_sprite().getCastle_Stone_Floor());
         Sprite library_floor = new Groupsprite_random(LibraryFloor);
@@ -171,10 +172,16 @@ public class Library_sprites{
         
     }
 
+    /**
+     * @return the background sprites
+     */
     public List<Sprite> getSpriteList_background() {
         return spriteList_background;
     }
     
+    /**
+     * @return the monster list
+     */
     public List<Sprite> getSpriteList_monsters(){
         return spriteList_monsters;
     }

@@ -20,11 +20,14 @@ import javafx.geometry.Rectangle2D;
  */
 public class Forest_sprites{
     private SpriteController world;
-    
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
     private List<Sprite> boundriesFIX_sprites;
     
+    /**
+     * inits the variables
+     * @param world 
+     */
     public Forest_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
@@ -32,6 +35,9 @@ public class Forest_sprites{
         this.boundriesFIX_sprites = new ArrayList();
     }
     
+    /**
+     * add the sprites to the lists
+     */
     public void setForest_background_SingleSprites(){
         
         // BOUNDRIES FIX START
@@ -245,14 +251,23 @@ public class Forest_sprites{
         
     }
 
+    /**
+     * @return the background sprites
+     */
     public List<Sprite> getForest_background_sprites() {
         return background_sprites;
     }
     
+    /**
+     * @return the foreground sprites
+     */
     public List<Sprite> getForest_foreground_sprites() {
         return foreground_sprites;
     }
     
+    /**
+     * @return 
+     */
     public List<Sprite> getForest_boundriesFIX_sprites() {
         return boundriesFIX_sprites;
     }

@@ -18,12 +18,14 @@ import java.util.List;
  */
 public class GruulsLair_sprites{
     private SpriteController world;
-    
-    
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
     private List<Sprite> enemy_sprites;
     
+    /**
+     * Inits the variables
+     * @param world 
+     */    
     public GruulsLair_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
@@ -31,6 +33,9 @@ public class GruulsLair_sprites{
         this.enemy_sprites = new ArrayList();
     }
     
+    /**
+     * Adds the sprites to the lists
+     */
     public void setGruulsLair_background_SingleSprites(){
         
         // BACKGROUND START
@@ -134,6 +139,9 @@ public class GruulsLair_sprites{
         return background_sprites;
     }
     
+    /**
+     * @return the enemies.
+     */
     public List<Sprite> getGruulsLair_enemy_sprites() {
         return enemy_sprites;
     }

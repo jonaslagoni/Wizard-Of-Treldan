@@ -5,7 +5,6 @@
  */
 package Gui2D.SpriteController.Maps;
 
-import Gui2D.SpriteController.GroupSprites.Groupsprite_circle;
 import Gui2D.SpriteController.GroupSprites.Groupsprite_random;
 import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
@@ -20,12 +19,15 @@ import javafx.geometry.Rectangle2D;
  */
 public class EvilWizardsLair_sprites{
     private SpriteController world;
-    
     private List<Sprite> spriteList;
     private List<Sprite> spriteList_lava;
     private List<Sprite> spriteList_monsters;
     private List<Sprite> spriteList_boundriesFix;
     
+    /**
+     * Inits the variables
+     * @param world 
+     */
     public EvilWizardsLair_sprites(SpriteController world){
         this.world = world;
         this.spriteList = new ArrayList();
@@ -34,6 +36,9 @@ public class EvilWizardsLair_sprites{
         this.spriteList_boundriesFix = new ArrayList<>();
     }
     
+    /**
+     * Adds the sprites to the lists
+     */
     public void setEvilWizardsLair_background_SingleSprites(){
             
         // BOUNDRIES WORKAROUND START
@@ -185,6 +190,9 @@ public class EvilWizardsLair_sprites{
       
     }
 
+    /**
+     * @return the sprite list
+     */
     public List<Sprite> getSpriteList() {
         return spriteList;
     }
@@ -203,8 +211,10 @@ public class EvilWizardsLair_sprites{
         return spriteList_lava;
     }
     
+    /**
+     * @return the boundries
+     */
     public List<Sprite> getSpriteList_BoundriesFIX() {
         return spriteList_boundriesFix;
     }
-
 }

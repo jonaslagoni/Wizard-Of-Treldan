@@ -18,16 +18,22 @@ import java.util.List;
  */
 public class WizardHouse_sprites{
     private SpriteController world;
-    
     private List<Sprite> background_sprites;
     private List<Sprite> interactable_sprites;
     
+    /**
+     * Sets the variables
+     * @param world 
+     */
     public WizardHouse_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
         this.interactable_sprites = new ArrayList();
     }
     
+    /**
+     * adds the sprites to the lists
+     */
     public void setWizardHouse_background_SingleSprites(){
         
         // START OF WIZARDHOUSE BACKGROUND
@@ -119,16 +125,19 @@ public class WizardHouse_sprites{
         interactable_sprites.add(sacks);
         
         // END OF INTERACTABLES
-
-        
     }
 
+    /**
+     * @return the background sprites
+     */
     public List<Sprite> getWizardHouse_background_sprites() {
         return background_sprites;
     }
     
+    /**
+     * @return the interactable sprites
+     */
     public List<Sprite> getWizardHouse_interactable_sprites() {
         return interactable_sprites;
     }
-    
 }

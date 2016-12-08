@@ -31,16 +31,13 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class GruulsLair extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     private TWoT game;
-    
     private GruulsLair_sprites gruulsLair_sprites;
+    
     /**
      * Constructor for Cave
      * @param world 
@@ -48,14 +45,16 @@ public class GruulsLair extends PlayableMaps{
     public GruulsLair(SpriteController world){
         //init our super constructor
         super();
-        
         gruulsLair_sprites = new GruulsLair_sprites(world);
         gruulsLair_sprites.setGruulsLair_background_SingleSprites();
     }
     
+    /**
+     * Gets the scene for gruulslair
+     * @return 
+     */
     @Override
     public Scene getScene(){
-        
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
@@ -326,7 +325,6 @@ public class GruulsLair extends PlayableMaps{
                 }
             }
         }.start();
-        
         return theScene;
     }
 }

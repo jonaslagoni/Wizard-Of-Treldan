@@ -33,15 +33,11 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class Clearing extends PlayableMaps{
-    
-    
     // ArrayList for menu key strokes.
-    private Clearing_sprites clearing_sprites;
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
+    private Clearing_sprites clearing_sprites;
     private TWoT game;
     
     /**
@@ -51,13 +47,16 @@ public class Clearing extends PlayableMaps{
     public Clearing(SpriteController world){
         //init our super constructor
         super();
-        
         //set the rooms sprites
         clearing_sprites = new Clearing_sprites(world);
         clearing_sprites.setClearing_background_sprites();
-
     }
     
+    /**
+     * returns the scene clearing
+     * @return 
+     */
+    @Override
     public Scene getScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();

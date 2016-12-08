@@ -19,11 +19,14 @@ import java.util.List;
  */
 public class Dungeon_sprites {
     private SpriteController world;
-    
     private List<Sprite> background_sprites;
     private List<Sprite> foreground_sprites;
     private List<Sprite> enemy_sprites;
     
+    /**
+     * inits the variables
+     * @param world 
+     */
     public Dungeon_sprites(SpriteController world){
         this.world = world;
         this.background_sprites = new ArrayList();
@@ -31,6 +34,9 @@ public class Dungeon_sprites {
         this.enemy_sprites = new ArrayList();
     }
     
+    /**
+     * Adds the sprites to the lists
+     */
     public void setDungeon_background_SingleSprites(){
         
         // START OF TILESET
@@ -165,15 +171,22 @@ public class Dungeon_sprites {
     }
 
     /**
-     * 
-     * @return 
+     * @return the background sprites
      */
     public List<Sprite> getDungeon_background_sprites() {
         return background_sprites;
     }
+    
+    /**
+     * @return the foreground sprites
+     */
     public List<Sprite> getDungeon_foreground_sprites() {
         return foreground_sprites;
     }
+    
+    /**
+     * @return the enemy sprites
+     */
     public List<Sprite> getDungeon_enemy_sprite() {
         return enemy_sprites;
     }

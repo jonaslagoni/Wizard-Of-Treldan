@@ -40,6 +40,8 @@ public class House3 extends PlayableMaps{
     
     //global sprites
     private House3_sprites house_sprites;
+    
+    
     /**
      * Constructor for Cellar
      * @param world 
@@ -52,6 +54,11 @@ public class House3 extends PlayableMaps{
         house_sprites.setHouse3_background_SingleSprites();
     }
     
+    
+    /**
+     * Returns the house3 scene
+     * @return 
+     */
     @Override
     public Scene getScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
@@ -429,7 +436,6 @@ public class House3 extends PlayableMaps{
                 }
             }
         }.start();
-        
         return theScene;
     }
 }

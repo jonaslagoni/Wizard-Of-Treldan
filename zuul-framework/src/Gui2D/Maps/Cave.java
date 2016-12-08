@@ -31,17 +31,14 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class Cave extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     //global game object
     private TWoT game;
-    
     private Cave_sprites cave_sprites;
+    
     /**
      * Constructor for Cave
      * @param world 
@@ -49,11 +46,14 @@ public class Cave extends PlayableMaps{
     public Cave(SpriteController world){
         //init our super constructor
         super();
-        
         cave_sprites = new Cave_sprites(world);
         cave_sprites.setCave_background_SingleSprites();
     }
     
+    /**
+     * sets the cave scene
+     * @return 
+     */
     @Override
     public Scene getScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer

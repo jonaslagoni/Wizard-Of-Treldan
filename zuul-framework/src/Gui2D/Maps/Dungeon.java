@@ -31,16 +31,13 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class Dungeon extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     private TWoT game;
-    
     private Dungeon_sprites dungeon_sprites;
+    
     /**
      * Constructor for Dungeon
      * @param world 
@@ -53,6 +50,10 @@ public class Dungeon extends PlayableMaps{
         dungeon_sprites.setDungeon_background_SingleSprites();
     }
     
+    /**
+     * Gets the dungeon scene
+     * @return 
+     */
     @Override
     public Scene getScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer

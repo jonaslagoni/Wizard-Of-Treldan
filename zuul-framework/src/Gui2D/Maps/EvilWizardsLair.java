@@ -30,15 +30,11 @@ import javafx.scene.layout.StackPane;
  * @author Mads
  */
 public class EvilWizardsLair extends PlayableMaps{
-    
     // Arraylist for player movement
     private ArrayList<String> input;
-    
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
-    
     private EvilWizardsLair_sprites evilWizardsLair_sprites;
-    
     private TWoT game;
     
     /**
@@ -53,6 +49,10 @@ public class EvilWizardsLair extends PlayableMaps{
         evilWizardsLair_sprites.setEvilWizardsLair_background_SingleSprites();
     }
     
+    /**
+     * gets the EvilWizardsLair scene
+     * @return 
+     */
     @Override
     public Scene getScene(){
         

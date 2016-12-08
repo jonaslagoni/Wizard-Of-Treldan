@@ -25,6 +25,11 @@ public class Cellar_sprites{
     //contains all the sprites kept in the background
     private List<Sprite> cellar_background_sprites;
     
+    
+    /**
+     * Inits the lists
+     * @param world 
+     */
     public Cellar_sprites(SpriteController world){
         cellar_background_sprites = new ArrayList();
         cellar_stone_walls = new ArrayList();
@@ -32,6 +37,9 @@ public class Cellar_sprites{
         this.world = world;
     }
     
+    /**
+     * Adds the sprites to the lists
+     */
     public void setCellar_background_SingleSprites(){
             celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_1());
             celler_grass_singlesprites.add(world.getGround_sprite().getStone_floor_2());

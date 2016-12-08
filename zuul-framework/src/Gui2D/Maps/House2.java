@@ -40,6 +40,7 @@ public class House2 extends PlayableMaps{
     
     // our global for the house sprites
     private House2_sprites house_sprites;
+    
     /**
      * Constructor for Cellar
      * @param world 
@@ -47,12 +48,14 @@ public class House2 extends PlayableMaps{
     public House2(SpriteController world){
         //init our super constructor
         super();
-        
-        
         house_sprites = new House2_sprites(world);
         house_sprites.setHouse2_background_SingleSprites();
     }
     
+    /**
+     * returns the house scene
+     * @return House 2 scene 
+     */
     @Override
     public Scene getScene(){
         // Link our globals to super class user inputs since no inheritence in AnimationTimer

@@ -38,8 +38,6 @@ public class Village extends PlayableMaps {
     private ArrayList<String> menu_input;
     // our global TWoT object
     private TWoT game;
-    // the global scene for the cellar
-    private final Scene SCENE;
     // Contains all the sprites to this map
     private final Village_sprites villageSprites;
 
@@ -50,20 +48,20 @@ public class Village extends PlayableMaps {
     public Village(SpriteController world) {
         //init our super constructor
         super();
-        this.game = WizardOfTreldan.getGame();
         villageSprites = new Village_sprites(world);
         villageSprites.setVillage_background_SingleSprites();
-        SCENE = setScene();
     }
     
     /**
-     * Sets the scene for this class
+     * returns the created scene
      * @return 
      */
-    public Scene setScene(){
+    @Override
+    public Scene getScene() {
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
+        this.game = WizardOfTreldan.getGame();
         //add group
         Group root = new Group();
         //set the scene
@@ -512,15 +510,5 @@ public class Village extends PlayableMaps {
 
         //return the created scene
         return theScene;
-    }
-    
-    /**
-     * returns the created scene
-     * @return 
-     */
-    @Override
-    public Scene getScene() {
-        this.game = WizardOfTreldan.getGame();
-        return SCENE;
     }
 }

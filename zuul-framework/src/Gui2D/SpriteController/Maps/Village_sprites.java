@@ -25,7 +25,6 @@ public class Village_sprites{
     private List<Sprite> village_background_sprites;
     private List<Sprite> village_foreground_sprites;
     private List<Sprite> village_items;
-    
     //lists of sprites
     private List<SingleSprite> village_background_ground;
     private final List<SingleSprite> village_background_grass;
@@ -33,7 +32,10 @@ public class Village_sprites{
     private final List<SingleSprite> village_walls;
     
     
-    
+    /**
+     * Inits the lists
+     * @param world 
+     */
     public Village_sprites(SpriteController world){
         this.world = world;
         //initialize the arraylists();
@@ -47,6 +49,9 @@ public class Village_sprites{
  
     }
     
+    /**
+     * Add sprites to the lists
+     */
     public void setVillage_background_SingleSprites(){
        
         //tiles
