@@ -1470,6 +1470,12 @@ public class GUIFX extends Application {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
         Date date = new Date();
         String strDate = sdf.format(date);
+        
+        // Creating the directory "loads" if it doesn't exist
+        File directory = new File(String.valueOf("loads/"));
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         try {
             FileOutputStream fos = new FileOutputStream("loads/" + twot.getCurrentRoomName() + "-" + strDate + ".data");
             ObjectOutputStream oos = new ObjectOutputStream(fos);

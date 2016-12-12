@@ -26,6 +26,7 @@ import Gui2D.Maps.Village;
 import Gui2D.Maps.WizardHouse;
 import Gui2D.SpriteController.SpriteController;
 import TWoT_A1.TWoT;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -292,6 +293,12 @@ public class WizardOfTreldan extends Application {
         Date now = new Date();
         //get the current date and time formated from the SimpleDateFormat
         String strDate = sdfDate.format(now);
+        
+        // Creating the directory "loads" if it doesn't exist
+        File directory = new File(String.valueOf("loads/"));
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         try {
             // Store Serialized game Object in File
             FileOutputStream fileOutputStream = new FileOutputStream("loads/" + game.getCurrentRoomName() + " - " + strDate + ".data");
