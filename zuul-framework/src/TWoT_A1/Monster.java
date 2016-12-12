@@ -5,6 +5,7 @@
  */
 package TWoT_A1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Kasper
  */
-public class Monster extends Interior {
+public class Monster extends Interior implements Serializable{
     private String monsterName;
     private double attValue;
     private double defValue;
@@ -21,6 +22,7 @@ public class Monster extends Interior {
     private List<Item> itemDrop = new ArrayList();
     private String roomDescription;
     private int mobId;
+    
     /**
      * 
      */
@@ -35,6 +37,7 @@ public class Monster extends Interior {
      * @param defValue
      * @param health
      * @param goldDrop 
+     * @param roomDescription 
      */
     public Monster(String monsterName, double attValue, double defValue, int health, int goldDrop, String roomDescription){
         this.monsterName = monsterName;

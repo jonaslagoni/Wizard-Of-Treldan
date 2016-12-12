@@ -20,8 +20,6 @@ public class SpriteController {
     private Ground_sprites ground_sprite;
     //all misc sprites
     private Misc_sprites misc_sprites;
-    //all water sprites
-    private Water_sprites water_sprites;
     //all structure sprites
     private Structure_sprites structure_sprites;
     
@@ -39,7 +37,6 @@ public class SpriteController {
     public void initSingleSprites(){
         ground_sprite = new Ground_sprites();
         misc_sprites = new Misc_sprites();
-        water_sprites = new Water_sprites();
         structure_sprites = new Structure_sprites();
     }
 
@@ -55,13 +52,6 @@ public class SpriteController {
      */
     public Misc_sprites getMisc_sprites() {
         return misc_sprites;
-    }
-
-    /**
-     * @return the water_sprites
-     */
-    public Water_sprites getWater_sprites() {
-        return water_sprites;
     }
     
     /**

@@ -305,7 +305,7 @@ public class PlayerInventory {
 
         Button equip = new Button("equip");
         equip.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+            @Override 
             public void handle(ActionEvent e) {
                 AnchorPane t = getSelected();
                 if (t != null) {
