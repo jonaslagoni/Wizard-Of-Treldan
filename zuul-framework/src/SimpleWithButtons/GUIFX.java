@@ -245,7 +245,7 @@ public class GUIFX extends Application {
         
         
         /**
-         * Layouts for game scene
+         * Layouts for game
          */
         HBox invButtons = new HBox(20);
         invButtons.setLayoutX(770 + pos);
@@ -297,7 +297,7 @@ public class GUIFX extends Application {
         nameField.getChildren().addAll(setName, nameArea);
         
         /**
-         * Textarea for the playing scene
+         * Textarea for the "game" scene
          */
         VBox outputField = new VBox(20);
         textArea.setMaxWidth(572);
@@ -365,7 +365,7 @@ public class GUIFX extends Application {
         equipTable.setMaxHeight(235);
         
         /**
-         * Statsarea on the playing scene
+         * Statsarea on the "game" scene
          */
         NumberFormat df = new DecimalFormat("#0.0");
         statsArea.appendText("****************************\n");
