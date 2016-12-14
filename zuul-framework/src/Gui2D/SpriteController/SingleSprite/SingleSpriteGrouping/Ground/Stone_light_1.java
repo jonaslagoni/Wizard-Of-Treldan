@@ -15,6 +15,7 @@ public class Stone_light_1 extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
+    @Override
     public void setSprite(){
         
         super.getSprite().setSpritePosX(8);

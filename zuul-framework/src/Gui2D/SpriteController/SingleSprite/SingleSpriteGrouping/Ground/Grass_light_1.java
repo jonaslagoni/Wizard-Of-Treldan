@@ -15,6 +15,7 @@ public class Grass_light_1 extends Abstract_sprite{
     /**
      * Sets the sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(216);
         super.getSprite().setSpritePosY(8);

@@ -15,6 +15,7 @@ public class Stone_floor_3 extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
+    @Override
     public void setSprite(){
         
         super.getSprite().setSpritePosX(386);

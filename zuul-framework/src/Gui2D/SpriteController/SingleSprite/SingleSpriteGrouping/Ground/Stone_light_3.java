@@ -15,6 +15,7 @@ public class Stone_light_3  extends Abstract_sprite{
     /**
      * Sets the sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(74);
         super.getSprite().setSpritePosY(8);

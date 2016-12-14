@@ -15,6 +15,7 @@ public class Stone_wall_SW  extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(897);
         super.getSprite().setSpritePosY(138);

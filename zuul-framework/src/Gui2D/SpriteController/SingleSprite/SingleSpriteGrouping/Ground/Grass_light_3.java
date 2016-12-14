@@ -15,6 +15,7 @@ public class Grass_light_3 extends Abstract_sprite{
     /**
      * Sets the Candle sprite
      */
+    @Override
     public void setSprite(){
         super.getSprite().setSpritePosX(282);
         super.getSprite().setSpritePosY(8);
