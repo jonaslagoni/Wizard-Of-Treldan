@@ -11,6 +11,6 @@ import javafx.scene.Scene;
  * @author jonas
  */
 public interface Map {
-    //force each subclass to implement this method
+    //force each class that implements this interface to implement this method
     public Scene getScene();
 }
