@@ -5,7 +5,6 @@
  */
 package SimpleWithButtons;
 
-import Gui2D.WizardOfTreldan;
 import TWoT_A1.*;
 import static TWoT_A1.EquippableItem.EItem.*;
 import java.io.File;
@@ -22,8 +21,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;

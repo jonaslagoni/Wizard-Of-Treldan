@@ -5,7 +5,6 @@
  */
 package SimpleWithCommands;
 
-import Gui2D.WizardOfTreldan;
 import TWoT_A1.*;
 import static TWoT_A1.EquippableItem.EItem.*;
 import java.io.File;

@@ -1,6 +1,5 @@
 package Gui2D.SpriteController.SingleSprite;
 
-import Gui2D.SpriteController.Sprite;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;

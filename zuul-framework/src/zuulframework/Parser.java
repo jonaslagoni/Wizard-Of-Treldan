@@ -1,7 +1,6 @@
 package zuulframework;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Parser{
     // Init the variables
