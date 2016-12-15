@@ -357,6 +357,7 @@ public class Forest extends PlayableMaps{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
+                        
                     } else {
                         player.setVelocity(0, 100);
                     }

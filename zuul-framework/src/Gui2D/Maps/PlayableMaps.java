@@ -47,16 +47,9 @@ public abstract class PlayableMaps implements Map {
             public void handle(KeyEvent e){
                 String code = e.getCode().toString();
                 getInput().remove(code);
-                if(code.equals("LEFT")){
+                if(code.equals("LEFT") || code.equals("RIGHT")){
                     player.setVelocity(0,player.getVelocityY());
-                }
-                if(code.equals("RIGHT")){
-                    player.setVelocity(0,player.getVelocityY());
-                }
-                if(code.equals("UP")){
-                    player.setVelocity(player.getVelocityX(),0);
-                }
-                if(code.equals("DOWN")){
+                }else if(code.equals("UP") || code.equals("DOWN")){
                     player.setVelocity(player.getVelocityX(),0);
                 } 
             }
@@ -73,6 +66,7 @@ public abstract class PlayableMaps implements Map {
             public void handle(KeyEvent e)
             {
                 String code = e.getCode().toString();
+                System.out.println(code);
                 // only add once... prevent duplicates
                 if(code.equals("I") || code.equals("E") || code.equals("ESCAPE")){
                     if(!menu_input.contains(code)){

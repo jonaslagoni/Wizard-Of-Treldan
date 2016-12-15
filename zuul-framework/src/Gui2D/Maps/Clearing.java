@@ -121,8 +121,8 @@ public class Clearing extends PlayableMaps{
         
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        player.setPosition(340,140 );
-
+        player.setPosition(340,140);
+        player.setVelocity(0, 0);
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
         theScene.setOnKeyPressed(getOnKeyPress());
@@ -150,9 +150,6 @@ public class Clearing extends PlayableMaps{
         for(Sprite sprite : sprites_still){
             sprite.render(background_gc);
         }
-        
-        
-        
         //world boundaries
         Rectangle2D worldBoundTop = new Rectangle2D(0, 78, 1024, 1);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 350, 1024, 1);
@@ -177,70 +174,6 @@ public class Clearing extends PlayableMaps{
 
                 //set our initial direction standstill
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
-                
-                // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
-                
-                //now check for the users input
-                //check if the user wants to walk left.
-                if (input.contains("LEFT")) {
-                    //check if the user walks into a world boundary
-                    if (player.intersects_left(worldBoundLeft)) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                        //check if the player walks into a sprite
-                    } else if (player.intersects_left(sprites_still.get(8))
-                            || player.intersects_left(sprites_still.get(9))
-                            || player.intersects_left(sprites_still.get(10))
-                            || player.intersects_left(sprites_still.get(11))) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                    }else if(game.checkExisting("unicorn") && player.intersects_left(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        
-                    }else if(game.checkExisting("tree") && player.intersects_left(sprites_interact.get(1))){
-                            player.setVelocity(0, 0);
-                        
-                    }else{
-                        player.setVelocity(-100,0);
-                    }
-                    //set the direction the player walks
-                    player.setDirection(PlayerSprite.Direction.WALK_LEFT);
-                }
-                
-                // </editor-fold>
-                
-                // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
-                
-                //check if the user wants to walk right.
-                if (input.contains("RIGHT")) {
-                    //check if the user walks into a world boundary
-                    if (player.intersects_right(worldBoundRight)) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                    
-                        
-                   //check if the player walks into a sprite
-                   } else if (player.intersects_right(sprites_still.get(8))
-                            || player.intersects_right(sprites_still.get(9))
-                            || player.intersects_right(sprites_still.get(10))
-                            || player.intersects_right(sprites_still.get(11))
-                              ) {
-                        //Reset the velocity
-                        player.setVelocity(0, 0);
-                    } else if(game.checkExisting("unicorn") && player.intersects_right(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
-                        
-                    }else if(game.checkExisting("tree") && player.intersects_right(sprites_interact.get(1))){
-                            player.setVelocity(0, 0);
-                        
-                    }else{
-                        player.setVelocity(100,0);
-                    }
-                    //set the direction the player walks
-                    player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
-                }
-                
-                // </editor-fold>
                 
                 // <editor-fold defaultstate="collapsed" desc=" UP INPUT ">
                 
@@ -283,16 +216,77 @@ public class Clearing extends PlayableMaps{
                    //check if the player walks into a specific sprite
                    //check if the player walks into a specific sprite
                    }else if(game.checkExisting("unicorn") && player.intersects_top(sprites_interact.get(0))){
-                            player.setVelocity(0, 0);
+                        player.setVelocity(0, 0);
                         
                     }else if(game.checkExisting("tree") && player.intersects_top(sprites_interact.get(1))){
-                            player.setVelocity(0, 0);
-                        
+                        player.setVelocity(0, 0);
                     }else{
                         player.setVelocity(0,-100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
+                }
+                
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
+                
+                //now check for the users input
+                //check if the user wants to walk left.
+                if (input.contains("LEFT")) {
+                    //check if the user walks into a world boundary
+                    if (player.intersects_left(worldBoundLeft)) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                        //check if the player walks into a sprite
+                    } else if (player.intersects_left(sprites_still.get(8))
+                            || player.intersects_left(sprites_still.get(9))
+                            || player.intersects_left(sprites_still.get(10))
+                            || player.intersects_left(sprites_still.get(11))) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    }else if(game.checkExisting("unicorn") && player.intersects_left(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        
+                    }else if(game.checkExisting("tree") && player.intersects_left(sprites_interact.get(1))){
+                            player.setVelocity(0, 0);
+                        
+                    }else{
+                        player.setVelocity(-100,0);
+                    }
+                    //set the direction the player walks
+                    player.setDirection(PlayerSprite.Direction.WALK_LEFT);
+                }
+                
+                // </editor-fold>
+                
+                // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
+                
+                //check if the user wants to walk right.
+                if (input.contains("RIGHT")) {
+                    //check if the user walks into a world boundary
+                    if (player.intersects_right(worldBoundRight)) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                   //check if the player walks into a sprite
+                   } else if (player.intersects_right(sprites_still.get(8))
+                            || player.intersects_right(sprites_still.get(9))
+                            || player.intersects_right(sprites_still.get(10))
+                            || player.intersects_right(sprites_still.get(11))
+                              ) {
+                        //Reset the velocity
+                        player.setVelocity(0, 0);
+                    } else if(game.checkExisting("unicorn") && player.intersects_right(sprites_interact.get(0))){
+                            player.setVelocity(0, 0);
+                        
+                    }else if(game.checkExisting("tree") && player.intersects_right(sprites_interact.get(1))){
+                            player.setVelocity(0, 0);
+                        
+                    }else{
+                        player.setVelocity(100,0);
+                    }
+                    //set the direction the player walks
+                    player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
                 
                 // </editor-fold>
@@ -305,9 +299,6 @@ public class Clearing extends PlayableMaps{
                     if (player.intersects_bottom(worldBoundBottom)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                        
-                      
-                           
                     //check if the player walks into a sprite
                    } else if (player.intersects_bottom(sprites_still.get(8))
                             || player.intersects_bottom(sprites_still.get(9))
@@ -327,7 +318,7 @@ public class Clearing extends PlayableMaps{
                         player.setVelocity(0,100);
                     }
                     //set the direction the player walks
-                player.setDirection(PlayerSprite.Direction.WALK_DOWN);
+                    player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
             
                 // </editor-fold>
