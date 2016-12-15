@@ -129,7 +129,6 @@ public class Finish implements Map{
         anchorpane.getChildren().add(timeTakenText);
         
         
-        
         Text totalScore = new Text("Score: " + game.getHighscore());
         totalScore.relocate(450, 250);
         totalScore.setFont(new Font("Verdana", 20));
