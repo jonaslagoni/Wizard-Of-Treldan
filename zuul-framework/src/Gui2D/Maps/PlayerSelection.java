@@ -132,6 +132,7 @@ public class PlayerSelection implements Map{
                             }else{
                                 game.setPlayerName(playerName.getText());
                             }
+                            WizardOfTreldan.setGame(game);
                             WizardOfTreldan.setCellarScene();
                         }
                     });
@@ -149,6 +150,7 @@ public class PlayerSelection implements Map{
                         }else{
                             game.setPlayerName(playerName.getText());
                         }
+                        WizardOfTreldan.setGame(game);
                         WizardOfTreldan.setCellarScene();
                     }
                 }
