@@ -124,7 +124,7 @@ public class Village extends PlayableMaps {
         //set the player position dynamicly depending on the last place the user were.
         switch(game.getLastRoomId()){
             case 3:
-                player.setPosition(960, 270);
+                player.setPosition(940, 240);
                 break;
             case 4:
                 player.setPosition(290, 180);
