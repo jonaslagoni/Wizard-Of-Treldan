@@ -66,7 +66,6 @@ public abstract class PlayableMaps implements Map {
             public void handle(KeyEvent e)
             {
                 String code = e.getCode().toString();
-                System.out.println(code);
                 // only add once... prevent duplicates
                 if(code.equals("I") || code.equals("E") || code.equals("ESCAPE")){
                     if(!menu_input.contains(code)){
