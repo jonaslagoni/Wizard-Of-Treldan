@@ -23,7 +23,7 @@ public class TWoT implements Serializable {
     private Npc stranger = new Npc("Stranger", true, 22203);
     private long startTime;
     private boolean isOver;
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 6L;
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
 
@@ -311,11 +311,12 @@ public class TWoT implements Serializable {
                 for (Item i : getInventoryItems()) {
                     if (i instanceof QuestItem) {
                         if (((QuestItem) i).getItemId() == 99901) {
-                            currentRoom = ((Exit) interior).getNewRoom();
                             description.add("You manage to pick the lock with the needle, but sadly the needle breaks and cannot be used later.");
                             player.removeInventoryItem(i);
                             description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
-                            return description;
+                            lastRoomId = currentRoom.getRoomId();
+                            currentRoom = ((Exit) interior).getNewRoom();
+                            return description; 
                         }
                     }
                 }
@@ -325,9 +326,10 @@ public class TWoT implements Serializable {
             } else if (currentRoom == roomCave) {
                 currentRoom.setDescription("***Troll Cave***\nThe place is still dark.");
                 if (roomCave.getMapInterior("troll1") == null && roomCave.getMapInterior("troll2") == null && roomCave.getMapInterior("troll3") == null) {
-                    currentRoom = ((Exit) interior).getNewRoom();
                     description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
-                    return description;
+                    lastRoomId = currentRoom.getRoomId();
+                    currentRoom = ((Exit) interior).getNewRoom();
+                    return description; 
                 } else {
                     description.add("You have to defeat the 3 trolls to continue.");
                     return description;
@@ -338,10 +340,11 @@ public class TWoT implements Serializable {
                     for (Item i : getInventoryItems()) {
                         if (i instanceof QuestItem) {
                             if (((QuestItem) i).getItemId() == 99907) {
-                                currentRoom = ((Exit) interior).getNewRoom();
                                 description.add("You inserted the key, and the door unlocked.");
                                 description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
-                                return description;
+                                lastRoomId = currentRoom.getRoomId();
+                                currentRoom = ((Exit) interior).getNewRoom();
+                                return description; 
                             }
                         }
                     }
@@ -365,9 +368,10 @@ public class TWoT implements Serializable {
             } else if (currentRoom == roomDungeon) {
                 currentRoom.setDescription("***Dungeon of Suffering***\nYou wouldn't like to live here.");
                 if (roomDungeon.getMapInterior("skeleton1") == null && roomDungeon.getMapInterior("skeleton2") == null && roomDungeon.getMapInterior("skeleton3") == null) {
-                    currentRoom = ((Exit) interior).getNewRoom();
                     description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
-                    return description;
+                    lastRoomId = currentRoom.getRoomId();
+                    currentRoom = ((Exit) interior).getNewRoom();
+                    return description; 
                 } else {
                     description.add("You have to defeat the 3 skeletons to continue.");
                     return description;
@@ -378,10 +382,11 @@ public class TWoT implements Serializable {
                     for (Item i : getInventoryItems()) {
                         if (i instanceof QuestItem) {
                             if (((QuestItem) i).getItemId() == 99903) {
-                                currentRoom = ((Exit) interior).getNewRoom();
                                 description.add("You attach the broken handle to the door and it opens easily,");
                                 description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
-                                return description;
+                                lastRoomId = currentRoom.getRoomId();
+                                currentRoom = ((Exit) interior).getNewRoom();
+                                return description; 
                             }
                         }
                     }
