@@ -14,8 +14,6 @@ import java.io.Serializable;
 public class UseableItem extends Item  implements Serializable{
     
     private int healthRegen;
-    private Usables usables;
-    
     /**
      * 
      * @param itemName
@@ -23,15 +21,14 @@ public class UseableItem extends Item  implements Serializable{
      * @param itemDescription 
      * @param roomDescription 
      * @param itemId 
-     * @param usables 
+     * @param healthRegen 
      */
-    public UseableItem(String itemName, int itemValue, String itemDescription, String roomDescription, int itemId, Usables usables, int healthRegen){
+    public UseableItem(String itemName, int itemValue, String itemDescription, String roomDescription, int itemId, int healthRegen){
         super.setItemName(itemName);
         super.setItemValue(itemValue);
         super.setItemDescription(itemDescription);
         super.setRoomDescription(roomDescription);
         super.setItemId(itemId);
-        this.usables= usables;
         this.healthRegen = healthRegen;
     }
 
@@ -47,17 +44,5 @@ public class UseableItem extends Item  implements Serializable{
      */
     public void setHealthRegen(int healthRegen) {
         this.healthRegen = healthRegen;
-    }
-    
-    public enum Usables {
-        FOOD,MAGIC_ITEM,ITEM_USE,RARE;
-    }
-    
-    public Usables getUsables() {
-        return usables;
-    }
-
-    public void setUsables(Usables usables) {
-        this.usables = usables;
     }
 }

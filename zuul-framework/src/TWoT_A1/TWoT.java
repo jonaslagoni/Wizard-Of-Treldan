@@ -2,8 +2,6 @@
 package TWoT_A1;
 
 import static TWoT_A1.EquippableItem.EItem.*;
-import static TWoT_A1.UseableItem.Usables.FOOD;
-import static TWoT_A1.UseableItem.Usables.MAGIC_ITEM;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -76,7 +74,7 @@ public class TWoT implements Serializable {
         // roomCellar
         Interior roomCellarExit = new Exit(roomVillage);
         Interior roomCellarStick = new QuestItem("A needle", 1, "Can be used to lockpick doors", 99901, "It must have been super uncomfortable laying on the haystack.\nYou search around the haystack and end up finding a strong needle. The needle has been added to your inventory.");
-        Interior roomCellarCheeseSandwich = new UseableItem("Cheese sandwich", 20, "Do you dare eat it?", "You find a cheese sandwich on the table", 55501, FOOD, 50);
+        Interior roomCellarCheeseSandwich = new UseableItem("Cheese sandwich", 20, "Do you dare eat it?", "You find a cheese sandwich on the table", 55501, 50);
         roomCellar.addMapInterior("door", roomCellarExit);
         roomCellar.addMapInterior("haystack", roomCellarStick);
         roomCellar.addMapInterior("table", roomCellarCheeseSandwich);
@@ -99,7 +97,7 @@ public class TWoT implements Serializable {
         Monster zombie = new Monster("Living Skeleton", 0.7, 0.7, 50, 50, "A skeleton attacks you, defend yourself!");
         Interior roomHouse1Man = zombie;
         zombie.addDropItem(new EquippableItem("Amulet of Protection", 465, "Cold to the touch", 0.4, 0.4, AMULET_SLOT, "", 33308));
-        Interior roomHouse1Chest = new UseableItem("Health Potion", 20, "Refreshing", "You search the chest and pick up at health potion", 55508, FOOD, 50);
+        Interior roomHouse1Chest = new UseableItem("Health Potion", 20, "Refreshing", "You search the chest and pick up at health potion", 55508, 50);
         roomHouse1.addMapInterior("man", roomHouse1Man);
         roomHouse1.addMapInterior("chest", roomHouse1Chest);
         roomHouse1.addMapInterior("door", roomHouse1Exit);
@@ -109,7 +107,7 @@ public class TWoT implements Serializable {
         Interior roomHouse2Wardrobe = new EquippableItem("Mega Sword", 342, "It looks mega.", 1.9, 0.0, WEAPON_SLOT, "You find nothing of interest in the wardrobe. You tear open the sacks with your bare hands and cut your fingers on something. A sword.", 33301);
         Interior roomHouse2Bed = new QuestItem("Kids", 2, "The kids of the guard in the village", 99902, "As you approach the bed, you hear muffled sniffling and crying, you quickly duck down and lift the duvey covers -  you find two children around the age of 10 "
                 + "and 7 huddled up tears on their cheecks.\n\"Please mister, don’t hurt us\" - you reassure the children that you are not going to hurt them, but taking them back to their father, the guard. ");
-        Interior roomHouse2Table = new UseableItem("Cinnamon Roll", 5, "Cinnamon roll", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, FOOD, 50);
+        Interior roomHouse2Table = new UseableItem("Cinnamon Roll", 5, "Cinnamon roll", "As you approach the dark corner you fear the worst, but to your surprise you find a cinnamon roll on a shelf.", 55502, 50);
 
         roomHouse2.addMapInterior("door", roomHouse2Exit);
         roomHouse2.addMapInterior("wardrobe", roomHouse2Wardrobe);
@@ -118,7 +116,7 @@ public class TWoT implements Serializable {
 
         //roomHouse3
         Interior roomHouse3Exit = new Exit(roomVillage);
-        Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503, MAGIC_ITEM, 0);
+        Interior roomHouse3Kitchen = new UseableItem("Old rusty coin", 366, "It's old and rusty.", "The knives are all rusty and dull, you cant use them for anything, but you find a rusty coin stashed away in a secret compartment of the oven.", 55503, 0);
         Monster woman = new Monster("Woman", 1.0, 1.0, 50, 50, "The woman must be the guards wife, she has gone mad.");
         Interior roomHouse3Woman = woman;
         woman.addDropItem(new QuestItem("Bloody key", 83, "Used to unlock a house in the village of treldan", 99907, ""));
@@ -133,7 +131,7 @@ public class TWoT implements Serializable {
         Interior roomForestExit2 = new Exit(roomCave);
         Interior roomForestExit3 = new Exit(roomClearing);
         Interior roomForestExit4 = new Exit(roomVillage);
-        Interior roomForestMushroom = new UseableItem("Mushroom", 286, "", "You go pick up a mushroom", 55504, MAGIC_ITEM, 0);
+        Interior roomForestMushroom = new UseableItem("Mushroom", 286, "", "You go pick up a mushroom", 55504, 0);
         Interior roomForestDeadGoblin = new EquippableItem("Handaxe", 291, "Sturdy, and propably packs a punch.", 1.9, 0.0, WEAPON_SLOT, "You search the dead goblin. Its skin is charred from the wizards light magic and its black blood is slowly seeping out its mouth."
                 + " You a well kept short handaxe, its sturdy and probably packs quite a punch.", 55504);
         roomForest.addMapInterior("mushroom", roomForestMushroom);
@@ -145,10 +143,10 @@ public class TWoT implements Serializable {
 
         //roomWizardHouse
         Interior roomWizardHouseExit = new Exit(roomForest);
-        Interior roomWizardHouseUpstairs = new UseableItem("Smooth ruby", 200, "A valueable stone.", "You check the sacks in the wizards house and find a piece of jewelry", 55505, MAGIC_ITEM, 0);
+        Interior roomWizardHouseUpstairs = new UseableItem("Smooth ruby", 200, "A valueable stone.", "You check the sacks in the wizards house and find a piece of jewelry", 55505, 0);
         Interior roomWizardHouseBox = new UseableItem("Mysterious Ring", 150, "Odd looking ring with a curiously intricate design, you decide to hold onto it.", "You rummage through the box of magical artifacts, and find a odd looking ring with a curiously intricate design,"
-                + " you decide to hold onto it.", 55506, MAGIC_ITEM, 0);
-        Interior roomWizardHouseLab = new UseableItem("Health Potion", 20, "Regenerates health points", "You search the alchemy lab and find a health potion.", 55507, FOOD, 50);
+                + " you decide to hold onto it.", 55506, 0);
+        Interior roomWizardHouseLab = new UseableItem("Health Potion", 20, "Regenerates health points", "You search the alchemy lab and find a health potion.", 55507, 50);
         Npc wizard = new Npc("Wizard", true, 22202);
         Interior roomWizardHouseNPC = wizard;
         roomWizardHouse.addMapInterior("upstairs", roomWizardHouseUpstairs);
@@ -167,7 +165,7 @@ public class TWoT implements Serializable {
         Interior roomWizardHouseMonster2 = troll2;
         Interior roomWizardHouseMonster3 = troll3;
         troll1.addDropItem(new EquippableItem("Troll Helmet", 298, "It's way too big for you.", 0.0, 1.1, HEAD_SLOT, "", 33309));
-        troll2.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, FOOD, 50));
+        troll2.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
         troll3.addDropItem(new EquippableItem("Spurs of Speed", 296, "Fast and furious.", 0.0, 0.6, BOOT_SLOT, "", 33310));
         roomCave.addMapInterior("troll1", roomWizardHouseMonster1);
         roomCave.addMapInterior("troll2", roomWizardHouseMonster2);
@@ -187,11 +185,11 @@ public class TWoT implements Serializable {
         Interior roomClearingExit1 = new Exit(roomForest);
         Monster unicorn = new Monster("Unicorn", 1.6, 1.5, 400, 200, "The unicorn charges at you.");
         unicorn.addDropItem(new QuestItem("Vial of Rainbow", 1, "Vial of rainbow the wizard told you to get", 99905, ""));
-        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, FOOD, 50));
-        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, FOOD, 50));
-        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, FOOD, 50));
-        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, FOOD, 50));
-        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, FOOD, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
+        unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
         Interior roomClearingMonster1 = unicorn;
         Interior roomClearingTree = new Npc("Old Tree", false, 22204);
         roomClearing.addMapInterior("forest", roomClearingExit1);
@@ -206,7 +204,7 @@ public class TWoT implements Serializable {
         roomDungeon.addMapInterior("skeleton1", skeleton1);
         roomDungeon.addMapInterior("skeleton2", skeleton2);
         roomDungeon.addMapInterior("skeleton3", skeleton3);
-        skeleton1.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, FOOD, 50));
+        skeleton1.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
         skeleton3.addDropItem(new EquippableItem("Giant's Gloves", 234, "You could fit two hands in one of these.", 0.0, 0.5, GLOVES_SLOT, "", 33312));
         roomDungeon.addMapInterior("pathway", roomDungeonExit);
 
@@ -215,7 +213,7 @@ public class TWoT implements Serializable {
         Monster librarian = new Monster("Evil Librarian", 2.2, 2.0, 250, 500, "A lonely and aggressive librarian attacks you.");
         librarian.addDropItem(new EquippableItem("Fancy librarian-hotpants", 477, "These pants are pretty tight.", 0.0, 1.2, LEG_SLOT, "", 33304));
         librarian.addDropItem(new QuestItem("Broken handle", 545, "Opens the door in the library", 99903, ""));
-        Interior roomLibraryChest = new UseableItem("Health Potion", 20, "Regenerates health points", "You search the chest and find a health potion", 55507, FOOD, 50);
+        Interior roomLibraryChest = new UseableItem("Health Potion", 20, "Regenerates health points", "You search the chest and find a health potion", 55507, 50);
         roomLibrary.addMapInterior("librarian", librarian);
         roomLibrary.addMapInterior("door", roomLibraryDoor);
         roomLibrary.addMapInterior("chest", roomLibraryChest);
