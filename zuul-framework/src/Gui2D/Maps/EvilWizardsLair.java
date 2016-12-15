@@ -189,7 +189,7 @@ public class EvilWizardsLair extends PlayableMaps{
             //what to do each cycle
             @Override
             public void handle(long currentNanoTime) {
-                if(!game.checkExisting("wizard")){
+                if(!game.checkExisting("wizard") && game.getCurrentRoomId() == 13){
                     //write to highscore
                     game.writeHighScore();
                     //remove all the inputs

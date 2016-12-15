@@ -28,6 +28,9 @@ import javafx.scene.text.Text;
 public class Finish implements Map{
     private TWoT game;
     private final Scene SCENE;
+    private final Long startTime;
+    private Text timeTakenText;
+    private Pane anchorpane;
     
     /**
      * Create the scene for Finish
@@ -43,23 +46,10 @@ public class Finish implements Map{
         //set our  menu image
         background_context.drawImage(new Image("won_scene.png"), 0, 0);
         
-        Pane anchorpane = new Pane();
+        anchorpane = new Pane();
         anchorpane.setPrefSize(768, 512);
         
-        Long endTime = (long)(System.currentTimeMillis() / 1000L);
-        Long startTime = game.getStartTime();
-        Long timeTaken = endTime-startTime;
-        Text timeTakenText = new Text("Time taken: " + timeTaken.toString() + " sec");
-        timeTakenText.relocate(450, 200);
-        timeTakenText.setFont(new Font("Verdana", 20));
-        timeTakenText.setFill(Color.CHOCOLATE);
-        anchorpane.getChildren().add(timeTakenText);
-        
-        Text totalScore = new Text("Score: " + game.getHighscore());
-        totalScore.relocate(450, 250);
-        totalScore.setFont(new Font("Verdana", 20));
-        totalScore.setFill(Color.CHOCOLATE);
-        anchorpane.getChildren().add(totalScore);
+        startTime = game.getStartTime();
         
         Button start = new Button();
         start.setText("New Game");
@@ -128,6 +118,24 @@ public class Finish implements Map{
      */
     @Override
     public Scene getScene(){
+        
+        this.game = WizardOfTreldan.getGame();
+        Long endTime = (long)(System.currentTimeMillis() / 1000L);
+        Long timeTaken = endTime-startTime;
+        timeTakenText = new Text("Time taken: " + timeTaken.toString() + " sec");
+        timeTakenText.relocate(450, 200);
+        timeTakenText.setFont(new Font("Verdana", 20));
+        timeTakenText.setFill(Color.CHOCOLATE);
+        anchorpane.getChildren().add(timeTakenText);
+        
+        
+        
+        Text totalScore = new Text("Score: " + game.getHighscore());
+        totalScore.relocate(450, 250);
+        totalScore.setFont(new Font("Verdana", 20));
+        totalScore.setFill(Color.CHOCOLATE);
+        anchorpane.getChildren().add(totalScore);
+        
         return SCENE;
     }
 }

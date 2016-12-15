@@ -90,7 +90,7 @@ public class PlayerInventory {
         
         //Adding a Text component to indicate the players gold
         gold = new Text(""+game.getPlayerGold() + " Gold");
-        gold.relocate(230, 475);
+        gold.relocate(150, 475);
         gold.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         gold.setFill(Color.WHITE);
         menu.getChildren().add(gold);
