@@ -48,8 +48,8 @@ public class PlayerSelection implements Map{
         
         playerSelectionGroup.getChildren().addAll(testGroup.getChildren());
         
-        Pane anchorpane = new Pane();
-        anchorpane.setPrefSize(1024, 512);
+        Pane pane = new Pane();
+        pane.setPrefSize(1024, 512);
         
         Label controlsMOVING = new Label();
         controlsMOVING.setPrefSize(400, 50);
@@ -57,7 +57,7 @@ public class PlayerSelection implements Map{
         controlsMOVING.setFont(new Font("Verdana",20));
         controlsMOVING.setText("Use Arrow Keys to move");
         controlsMOVING.setTextFill(Color.WHITE);
-        anchorpane.getChildren().add(controlsMOVING);
+        pane.getChildren().add(controlsMOVING);
         
         Label controlsESC = new Label();
         controlsESC.setPrefSize(400, 50);
@@ -65,7 +65,7 @@ public class PlayerSelection implements Map{
         controlsESC.setFont(new Font("Verdana",20));
         controlsESC.setText("Press ESCAPE to exit game");
         controlsESC.setTextFill(Color.WHITE);
-        anchorpane.getChildren().add(controlsESC);
+        pane.getChildren().add(controlsESC);
         
         Label controlsINTERACT = new Label();
         controlsINTERACT.setPrefSize(400, 50);
@@ -73,7 +73,7 @@ public class PlayerSelection implements Map{
         controlsINTERACT.setFont(new Font("Verdana",20));
         controlsINTERACT.setText("Use \"E\" to interact");
         controlsINTERACT.setTextFill(Color.WHITE);
-        anchorpane.getChildren().add(controlsINTERACT);
+        pane.getChildren().add(controlsINTERACT);
         
         Label controlsINVENTORY = new Label();
         controlsINVENTORY.setPrefSize(400, 50);
@@ -81,21 +81,21 @@ public class PlayerSelection implements Map{
         controlsINVENTORY.setFont(new Font("Verdana",20));
         controlsINVENTORY.setText("Use \"I\" to display inventory");
         controlsINVENTORY.setTextFill(Color.WHITE);
-        anchorpane.getChildren().add(controlsINVENTORY); 
+        pane.getChildren().add(controlsINVENTORY); 
         
         TextField playerName = new TextField();
         playerName.setPrefSize(300, 50);
         playerName.relocate(362, 200);
         playerName.setFont(new Font(20));
         playerName.setAlignment(Pos.CENTER);
-        anchorpane.getChildren().add(playerName);
+        pane.getChildren().add(playerName);
         
         Text playernameText = new Text();
         playernameText.setFont(new Font(27));
         playernameText.setText("Insert your player name");
         playernameText.relocate(365, 160);
         playernameText.setFill(Color.WHITE);
-        anchorpane.getChildren().add(playernameText);
+        pane.getChildren().add(playernameText);
         
         
         //back to menu button
@@ -113,7 +113,7 @@ public class PlayerSelection implements Map{
                    
                 }
         });
-        anchorpane.getChildren().add(Back);
+        pane.getChildren().add(Back);
         
         //start game button
         Button start = new Button();
@@ -154,9 +154,9 @@ public class PlayerSelection implements Map{
                 }
             });
         
-        anchorpane.getChildren().add(start);
+        pane.getChildren().add(start);
         
-        playerSelectionGroup.getChildren().add(anchorpane);
+        playerSelectionGroup.getChildren().add(pane);
         SCENE = playerScene;
     }
     
