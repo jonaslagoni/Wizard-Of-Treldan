@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Bed_tree_facing_down  extends Abstract_sprite{
+public class Bed_tree_facing_down extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(786);
         super.getSprite().setSpritePosY(325);
         super.getSprite().setSprite_width(48);

@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class SpiderWeb_UPPER_LEFT  extends Abstract_sprite{
+public class SpiderWeb_UPPER_LEFT extends Abstract_sprite {
+
     /**
      * Sets the SpiderWeb_UPPER_LEFT sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(782);
         super.getSprite().setSpritePosY(250);
         super.getSprite().setSprite_width(32);

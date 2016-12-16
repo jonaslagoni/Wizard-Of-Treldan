@@ -1,7 +1,13 @@
 // Use package zuulframework
-package TWoT_A1;
+package TWoT;
 
-import static TWoT_A1.EquippableItem.EItem.*;
+import static TWoT.EquippableItem.EItem.AMULET_SLOT;
+import static TWoT.EquippableItem.EItem.BOOT_SLOT;
+import static TWoT.EquippableItem.EItem.CHEST_SLOT;
+import static TWoT.EquippableItem.EItem.GLOVES_SLOT;
+import static TWoT.EquippableItem.EItem.HEAD_SLOT;
+import static TWoT.EquippableItem.EItem.LEG_SLOT;
+import static TWoT.EquippableItem.EItem.WEAPON_SLOT;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,14 +26,16 @@ public class TWoT implements Serializable {
     private Room currentRoom;
     private int lastRoomId;
     private Player player;
-    private Npc stranger = new Npc("Stranger", true, 22203);
+    private Npc stranger = new Npc("Stranger", 22203);
     private long startTime;
     private boolean isOver;
     private static final long serialVersionUID = 6L;
     // Deffine rooms
     private Room roomCellar, roomVillage, roomHouse1, roomHouse2, roomHouse3, roomForest, roomWizardHouse, roomCave, roomCaveGruul, roomClearing, roomDungeon, roomLibrary, roomEvilWizardsLair;
 
-    // Create the constructor for TWoT class
+    /**
+     * Create the constructor for TWoT class
+     */
     public TWoT() {
         // Create the different rooms used
         createRooms();
@@ -84,7 +92,7 @@ public class TWoT implements Serializable {
         Interior roomVillageExit2 = new Exit(roomHouse2);
         Interior roomVillageExit3 = new Exit(roomHouse3);
         Interior roomVillageAxe = new QuestItem("Lumberjack axe", 1, "Could be useful for cutting old trees down.", 99904, "You pickup the axe from the road.");
-        Npc mogens = new Npc("Mogens", true, 22201);
+        Npc mogens = new Npc("Mogens", 22201);
         Interior roomVillageNPC = mogens;
         roomVillage.addMapInterior("house1", roomVillageExit1);
         roomVillage.addMapInterior("house2", roomVillageExit2);
@@ -147,7 +155,7 @@ public class TWoT implements Serializable {
         Interior roomWizardHouseBox = new UseableItem("Mysterious Ring", 150, "Odd looking ring with a curiously intricate design, you decide to hold onto it.", "You rummage through the box of magical artifacts, and find a odd looking ring with a curiously intricate design,"
                 + " you decide to hold onto it.", 55506, 0);
         Interior roomWizardHouseLab = new UseableItem("Health Potion", 20, "Regenerates health points", "You search the alchemy lab and find a health potion.", 55507, 50);
-        Npc wizard = new Npc("Wizard", true, 22202);
+        Npc wizard = new Npc("Wizard", 22202);
         Interior roomWizardHouseNPC = wizard;
         roomWizardHouse.addMapInterior("upstairs", roomWizardHouseUpstairs);
         roomWizardHouse.addMapInterior("box", roomWizardHouseBox);
@@ -191,7 +199,7 @@ public class TWoT implements Serializable {
         unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
         unicorn.addDropItem(new UseableItem("Health Potion", 20, "Regenerates health points", "", 55507, 50));
         Interior roomClearingMonster1 = unicorn;
-        Interior roomClearingTree = new Npc("Old Tree", false, 22204);
+        Interior roomClearingTree = new Npc("Old Tree", 22204);
         roomClearing.addMapInterior("forest", roomClearingExit1);
         roomClearing.addMapInterior("unicorn", roomClearingMonster1);
         roomClearing.addMapInterior("tree", roomClearingTree);
@@ -238,9 +246,9 @@ public class TWoT implements Serializable {
 
     /**
      * Return the WelcomeMessage hashmap which contains the welcome messages.
-     * The keys are: welcomeMessage1 welcomeMessage2 needHelp getRooms
+     * The keys are: 1, 2, 3
      *
-     * @return
+     * @return Hashmap Integer String
      */
     public HashMap<Integer, String> getWelcomeMessages() {
         HashMap<Integer, String> welcomeList = new HashMap();
@@ -252,11 +260,9 @@ public class TWoT implements Serializable {
 
     /**
      * Return the HelpMessage hashmap which contains the help messages. The keys
-     * are: helpMessage1 : "You are lost. You are alone. You wander"
-     * helpMessage2 : "around at the university." helpMessage3 : "Your command
-     * words are:" commands : display all the commands possible
+     * are: helpMessage1 helpMessage2 helpMessage3
      *
-     * @return
+     * @return Hashmap of String, String
      */
     public HashMap<String, String> getHelpMessages() {
         //init a new object of type hashmap
@@ -272,8 +278,8 @@ public class TWoT implements Serializable {
     /**
      * Check if the interior is in the map
      *
-     * @param direction
-     * @return
+     * @param direction the direction we wanna check
+     * @return boolean if there is an interior.
      */
     public boolean checkExisting(String direction) {
         // Create an object of klass Room and return if the exit is correct.
@@ -289,8 +295,8 @@ public class TWoT implements Serializable {
     /**
      * Go to the desired room defined from the command param.
      *
-     * @param command
-     * @return String
+     * @param command the command to use
+     * @return list of string of what happened.
      */
     public List<String> goTo(Command command) {
 
@@ -316,7 +322,7 @@ public class TWoT implements Serializable {
                             description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                             lastRoomId = currentRoom.getRoomId();
                             currentRoom = ((Exit) interior).getNewRoom();
-                            return description; 
+                            return description;
                         }
                     }
                 }
@@ -329,7 +335,7 @@ public class TWoT implements Serializable {
                     description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     lastRoomId = currentRoom.getRoomId();
                     currentRoom = ((Exit) interior).getNewRoom();
-                    return description; 
+                    return description;
                 } else {
                     description.add("You have to defeat the 3 trolls to continue.");
                     return description;
@@ -344,7 +350,7 @@ public class TWoT implements Serializable {
                                 description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                                 lastRoomId = currentRoom.getRoomId();
                                 currentRoom = ((Exit) interior).getNewRoom();
-                                return description; 
+                                return description;
                             }
                         }
                     }
@@ -371,7 +377,7 @@ public class TWoT implements Serializable {
                     description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                     lastRoomId = currentRoom.getRoomId();
                     currentRoom = ((Exit) interior).getNewRoom();
-                    return description; 
+                    return description;
                 } else {
                     description.add("You have to defeat the 3 skeletons to continue.");
                     return description;
@@ -386,7 +392,7 @@ public class TWoT implements Serializable {
                                 description.add(currentRoom.getDescription() + currentRoom.getMapInterior());
                                 lastRoomId = currentRoom.getRoomId();
                                 currentRoom = ((Exit) interior).getNewRoom();
-                                return description; 
+                                return description;
                             }
                         }
                     }
@@ -530,6 +536,12 @@ public class TWoT implements Serializable {
         }
     }
 
+    /**
+     * Equip an item from the inventory.
+     *
+     * @param command The command to use
+     * @return List of strings of what happened.
+     */
     public List<String> equipItem(Command command) {
         List<String> equip = new ArrayList();
         //for (Item i : player.getInventoryItems()) {
@@ -537,7 +549,7 @@ public class TWoT implements Serializable {
             Item item = player.getInventoryItems().get(i);
             if (item instanceof EquippableItem) {
                 if (item.getItemName().equals(command.getSecondWord())) {
-                    player.equipItem((EquippableItem) item, player);
+                    player.addItemToEquippableInventory((EquippableItem) item, player);
                     equip.add(item.getItemName() + " was added to your equippable items");
                 }
             }
@@ -548,6 +560,12 @@ public class TWoT implements Serializable {
         return equip;
     }
 
+    /**
+     * Use an item in the players inventory.
+     *
+     * @param command The command to use
+     * @return List of strings of what happened.
+     */
     public List<String> useItem(Command command) {
         List<String> use = new ArrayList();
         //no items used yet
@@ -715,6 +733,11 @@ public class TWoT implements Serializable {
         return use;
     }
 
+    /**
+     * Check if the game is over.
+     *
+     * @return Boolean
+     */
     public boolean endGame() {
         if (currentRoom == roomEvilWizardsLair) {
             if (currentRoom.getMapInterior("wizard") == null) {
@@ -725,41 +748,35 @@ public class TWoT implements Serializable {
     }
 
     /**
+     * Returns a list containing all items in the players inventory.
      *
-     * @return
+     * @return List of Items
      */
     public List<Item> getInventoryItems() {
         return player.getInventoryItems();
     }
 
+    /**
+     * Removes an item from the players inventory.
+     *
+     * @param i Item to be removed
+     */
     public void removeItemFromInventory(Item i) {
         player.removeInventoryItem(i);
     }
 
     /**
+     * Returns the hashmap of all equipped items
      *
-     * @return
+     * @return Hashmap over the equipped item
      */
     public HashMap<EquippableItem.EItem, EquippableItem> getEquippableItems() {
         return player.getEquippableItems();
     }
 
     /**
-     * Returns false if the user entered more then "quit" and return true
-     * otherwise
-     *
-     * @param command
-     * @return Boolean
+     * Write the highscore
      */
-    public boolean quit(Command command) {
-        //if the command is quit and has a second word do nothing. Else quit.
-        if (command.hasSecondWord()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void writeHighScore() {
         long endTime = (System.currentTimeMillis() / 1000L);
         try {
@@ -774,6 +791,11 @@ public class TWoT implements Serializable {
         }
     }
 
+    /**
+     * Returns the current highscore list containing Score object
+     *
+     * @return list of scores
+     */
     public List<Score> readHighScore() {
         List<Score> scoreList = new ArrayList();
         try {
@@ -789,75 +811,15 @@ public class TWoT implements Serializable {
         return scoreList;
     }
 
-    public ArrayList<String> getInventory() {
-        ArrayList<String> inventory = new ArrayList();
-        List<TWoT_A1.Item> usableItems = new ArrayList();
-        List<TWoT_A1.Item> equippableItems = new ArrayList();
-        List<TWoT_A1.Item> questItems = new ArrayList();
-        inventory.add("\n|--INVENTORY---\n");
-        for (TWoT_A1.Item i : getInventoryItems()) {
-            if (i instanceof TWoT_A1.QuestItem) {
-                questItems.add(i);
-            } else if (i instanceof TWoT_A1.UseableItem) {
-                usableItems.add(i);
-            } else if (i instanceof TWoT_A1.EquippableItem) {
-                equippableItems.add(i);
-            }
-        }
-        inventory.add("|QUEST ITEMS|\n");
-        if (!questItems.isEmpty()) {
-            for (TWoT_A1.Item q : questItems) {
-                inventory.add(q.getItemName() + " - " + q.getItemDescription() + "\n");
-            }
-        } else {
-            inventory.add("No items\n");
-        }
-
-        inventory.add("|USABLE ITEMS|\n");
-
-        if (!usableItems.isEmpty()) {
-            for (TWoT_A1.Item u : usableItems) {
-                inventory.add(u.getItemName() + " - " + u.getItemDescription() + "\n");
-            }
-        } else {
-            inventory.add("No items\n");
-        }
-
-        inventory.add("|EQUIPPABLE ITEMS|\n");
-        if (!equippableItems.isEmpty()) {
-            for (TWoT_A1.Item e : equippableItems) {
-                inventory.add(e.getItemName() + " - " + e.getItemDescription() + "\n");
-            }
-        } else {
-            inventory.add("No items\n");
-        }
-        return inventory;
-    }
-
     /**
-     *
-     * @return
-     */
-    public static List<String> getMenuSelections() {
-        List<String> menu = new ArrayList();
-        menu.add("NEW GAME ");
-        menu.add("LOAD GAME");
-        menu.add("HOW TO PLAY");
-        menu.add("EXIT GAME");
-        return menu;
-    }
-
-    /**
-     *
-     * @param playerName
+     * @param playerName set the player name to this string
      */
     public void setPlayerName(String playerName) {
         player.setPlayerName(playerName);
     }
 
     /**
-     *
-     * @return
+     * @return the player name
      */
     public String getPlayerName() {
         return player.getPlayerName();
@@ -884,8 +846,7 @@ public class TWoT implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * @return Arraylist of Strings of the current player description.
      */
     public ArrayList<String> getPlayer() {
         ArrayList<String> player = new ArrayList();
@@ -899,7 +860,7 @@ public class TWoT implements Serializable {
         player.add("******************\n");
         player.add("**EQUIPPED ITEMS**\n");
         if (!getEquippableItems().isEmpty()) {
-            for (Map.Entry<TWoT_A1.EquippableItem.EItem, TWoT_A1.EquippableItem> ei : getEquippableItems().entrySet()) {
+            for (Map.Entry<EquippableItem.EItem, EquippableItem> ei : getEquippableItems().entrySet()) {
                 player.add(ei.getKey() + ": " + ei.getValue().getItemName() + " : ATTV " + ei.getValue().getAttackBuff() + " : DEFFV " + ei.getValue().getDefenseBuff());
             }
         } else {
@@ -908,34 +869,39 @@ public class TWoT implements Serializable {
         return player;
     }
 
+    /**
+     *
+     * @return the players att value
+     */
     public double getPlayerAtt() {
         return player.getAttValue();
     }
 
     /**
      *
-     * @return
+     * @return the players deff value
      */
     public double getPlayerDeff() {
         return player.getDefValue();
     }
 
     /**
-     *
-     * @return
+     * @return the player health
      */
     public double getPlayerHealth() {
         return player.getHealth();
     }
 
     /**
-     *
-     * @return
+     * @return the player gold
      */
     public int getPlayerGold() {
         return player.getGold();
     }
 
+    /**
+     * @param healthToRegen health to regen.
+     */
     public void playerRegenHealth(int healthToRegen) {
         if (player.getHealth() == 100) {
             System.out.println("You're already at max health");
@@ -954,14 +920,23 @@ public class TWoT implements Serializable {
         return isOver;
     }
 
+    /**
+     * @return current room id
+     */
     public int getCurrentRoomId() {
         return currentRoom.getRoomId();
     }
 
+    /**
+     * @return the room description
+     */
     public String getCurrentRoomDescription() {
         return currentRoom.getDescription();
     }
 
+    /**
+     * @return the current room name.
+     */
     public String getCurrentRoomName() {
         return currentRoom.getName();
     }
@@ -981,7 +956,6 @@ public class TWoT implements Serializable {
     }
 
     /**
-     *
      * @return the highscore
      */
     public int getHighscore() {

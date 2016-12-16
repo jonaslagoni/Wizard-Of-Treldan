@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Bush  extends Abstract_sprite{
+public class Bush extends Abstract_sprite {
+
     /**
      * Sets the Bush sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(1096);
         super.getSprite().setSpritePosY(10);
         super.getSprite().setSprite_width(94);

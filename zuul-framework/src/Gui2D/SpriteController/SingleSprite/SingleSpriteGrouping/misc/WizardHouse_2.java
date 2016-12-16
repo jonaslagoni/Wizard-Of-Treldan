@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class WizardHouse_2 extends Abstract_sprite{
+public class WizardHouse_2 extends Abstract_sprite {
+
     /**
      * Sets the WizardHouse sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(795);
         super.getSprite().setSpritePosY(693);
         super.getSprite().setSprite_width(239);

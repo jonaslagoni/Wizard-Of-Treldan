@@ -17,42 +17,43 @@ import java.util.List;
  *
  * @author Mads B
  */
-public class House2_sprites{
+public class House2_sprites {
+
     private SpriteController world;
     private final List<Sprite> house2_background_sprites;
     private final List<SingleSprite> house2_background_walls;
     private final List<SingleSprite> house2_background_floor;
     private Sprite stranger_sprite;
-    
-    
+
     /**
      * Inits the variable
-     * @param world 
+     *
+     * @param world SpriteController
      */
-    public House2_sprites(SpriteController world){
+    public House2_sprites(SpriteController world) {
         this.world = world;
         house2_background_sprites = new ArrayList();
         house2_background_walls = new ArrayList();
         house2_background_floor = new ArrayList();
-        
+
     }
-    
+
     /**
      * add the sprites to the lists
      */
-    public void setHouse2_background_SingleSprites(){
+    public void setHouse2_background_SingleSprites() {
         //floor
         house2_background_floor.add(world.getGround_sprite().getWood_light_2());
         Sprite house_floor = new Groupsprite_random(house2_background_floor);
-        house_floor.setSize(300,200);
+        house_floor.setSize(300, 200);
         house_floor.setPosition(0, 0);
         house2_background_sprites.add(house_floor);
-        
+
         //sacks
         Sprite sacks = world.getMisc_sprites().getSacks_1();
-        sacks.setPosition(250,125);
+        sacks.setPosition(250, 125);
         house2_background_sprites.add(sacks);
-        
+
         //walls
         house2_background_walls.add(world.getStructure_sprites().getStone_wall_NW());
         house2_background_walls.add(world.getStructure_sprites().getStone_wall_N());
@@ -66,45 +67,39 @@ public class House2_sprites{
         house_walls_circle.setPosition(0, 0);
         house_walls_circle.setSize(350, 250);
         house2_background_sprites.add(house_walls_circle);
-        
+
         //exit
         Sprite exit = world.getMisc_sprites().getDoor_wood();
         exit.setPosition(175, 20);
         house2_background_sprites.add(exit);
-       
+
         //kids
-        
-        
         //bed
         Sprite bed = world.getMisc_sprites().getInterior_doublebed();
-        bed.setPosition(30,50);
+        bed.setPosition(30, 50);
         house2_background_sprites.add(bed);
-        
+
         //table
         Sprite table = world.getMisc_sprites().getInterior_table();
-        table.setPosition(175,125);
+        table.setPosition(175, 125);
         house2_background_sprites.add(table);
-        
+
         //candle on table
-        
-        
-        
         //wardrobe
         Sprite wardrobe = world.getMisc_sprites().getInterior_cupboard_facingdown_large();
-        wardrobe.setPosition(258,30);
+        wardrobe.setPosition(258, 30);
         house2_background_sprites.add(wardrobe);
-        
-        
+
         Sprite stranger = world.getMisc_sprites().getNPC_stranger();
         stranger.setPosition(100, 40);
         stranger_sprite = stranger;
-        
+
     }
-    
+
     /**
      * @return returns the background
      */
-    public List getHouse2(){
+    public List getHouse2() {
         return house2_background_sprites;
     }
 

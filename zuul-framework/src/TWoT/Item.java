@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
+package TWoT;
 
 import java.io.Serializable;
-
 
 /**
  *
  * @author Mads
  */
-public class Item extends Interior  implements Serializable{
-    
+public class Item extends Interior implements Serializable {
+
     // creating variables for Items
     private String itemName;
     private int itemValue;

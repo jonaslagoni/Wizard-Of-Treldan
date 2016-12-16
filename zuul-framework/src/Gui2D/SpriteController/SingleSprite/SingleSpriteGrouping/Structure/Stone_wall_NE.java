@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Stone_wall_NE  extends Abstract_sprite{
+public class Stone_wall_NE extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(1027);
         super.getSprite().setSpritePosY(8);
         super.getSprite().setSprite_width(64);

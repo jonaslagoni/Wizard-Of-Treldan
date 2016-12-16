@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Big_Rock extends Abstract_sprite{
+public class Big_Rock extends Abstract_sprite {
+
     /**
      * Sets the Big_Rock sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(2);
         super.getSprite().setSpritePosY(547);
         super.getSprite().setSprite_width(61);

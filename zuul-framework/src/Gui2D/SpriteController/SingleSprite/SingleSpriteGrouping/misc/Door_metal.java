@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Door_metal extends Abstract_sprite {    
+public class Door_metal extends Abstract_sprite {
+
     /**
      * Sets the metal door sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(711);
         super.getSprite().setSpritePosY(8);
         super.getSprite().setSprite_width(32);

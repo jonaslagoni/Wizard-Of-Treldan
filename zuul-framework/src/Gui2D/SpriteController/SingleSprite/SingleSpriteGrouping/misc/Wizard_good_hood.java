@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads B
  */
-public class Wizard_good_hood  extends Abstract_sprite{
+public class Wizard_good_hood extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(534);
         super.getSprite().setSpritePosY(577);
         super.getSprite().setSprite_width(29);

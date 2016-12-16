@@ -4,18 +4,20 @@
  * and open the template in the editor.
  */
 package Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.misc;
+
 import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
 
 /**
  *
  * @author Mads
  */
-public class DeadGoblin  extends Abstract_sprite{
+public class DeadGoblin extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(1175);
         super.getSprite().setSpritePosY(342);
         super.getSprite().setSprite_width(48);

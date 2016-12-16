@@ -5,16 +5,17 @@ import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 
 public class SingleSprite extends AbstractSprite {
+
     //position of the sprite
     private double spritePosX;
-    private double spritePosY;    
-    
+    private double spritePosY;
+
     /**
-     *  constructor sets the position and size of the super class
-     *  Then sets a standard sprite position
+     * constructor sets the position and size of the super class Then sets a
+     * standard sprite position
      */
     public SingleSprite() {
-        super.setPosition(0,0);
+        super.setPosition(0, 0);
         super.setSize(0, 0);
         spritePosX = 0;
         spritePosY = 0;
@@ -22,17 +23,18 @@ public class SingleSprite extends AbstractSprite {
 
     /**
      * Sets all the necessary variables for a singlesprite
-     * @param sPosX
-     * @param sPosY
-     * @param sW
-     * @param sH
-     * @param w
-     * @param h
-     * @param i 
+     *
+     * @param sPosX position x
+     * @param sPosY position y
+     * @param sW sprite width
+     * @param sH sprite height
+     * @param w width of the display
+     * @param h height of the display
+     * @param i the image
      */
     public SingleSprite(double sPosX, double sPosY, double sW, double sH, double w, double h, Image i) {
         super.setImage(i);
-        super.setPosition(0,0);
+        super.setPosition(0, 0);
         super.setVelocity(0, 0);
         super.setSize(w, h);
         super.setSpriteSize(sW, sH);
@@ -40,21 +42,23 @@ public class SingleSprite extends AbstractSprite {
         spritePosY = sPosY;
         super.setBoundary(new Rectangle2D(super.getPositionX(), super.getPositionY(), super.getWidth(), super.getHeight()));
     }
-    
+
     /**
-     * Sets all the necessary variables for a singlesprite including custom boundary
-     * @param sPosX
-     * @param sPosY
-     * @param sW
-     * @param sH
-     * @param w
-     * @param h
-     * @param i
-     * @param boundary 
+     * Sets all the necessary variables for a singlesprite including custom
+     * boundary
+     *
+     * @param sPosX position x
+     * @param sPosY position y
+     * @param sW sprite width
+     * @param sH sprite height
+     * @param w width of the display
+     * @param h height of the display
+     * @param i the image
+     * @param boundary costum boundary
      */
     public SingleSprite(double sPosX, double sPosY, double sW, double sH, double w, double h, Image i, Rectangle2D boundary) {
         super.setImage(i);
-        super.setPosition(0,0);
+        super.setPosition(0, 0);
         super.setVelocity(0, 0);
         super.setSize(w, h);
         super.setSpriteSize(sW, sH);
@@ -62,10 +66,11 @@ public class SingleSprite extends AbstractSprite {
         spritePosY = sPosY;
         super.setBoundary(boundary);
     }
-    
+
     /**
      * renders the sprite to the canvas's graphic context
-     * @param gc 
+     *
+     * @param gc GraphicsContext to render on
      */
     @Override
     public void render(GraphicsContext gc) {
@@ -75,7 +80,8 @@ public class SingleSprite extends AbstractSprite {
 
     /**
      * Custom toString return position and velocity of the singlesprite
-     * @return 
+     *
+     * @return String
      */
     @Override
     public String toString() {

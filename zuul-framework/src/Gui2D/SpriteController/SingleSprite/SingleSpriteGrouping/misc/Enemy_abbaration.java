@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Enemy_abbaration  extends Abstract_sprite{
+public class Enemy_abbaration extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(412);
         super.getSprite().setSpritePosY(446);
         super.getSprite().setSprite_width(46);

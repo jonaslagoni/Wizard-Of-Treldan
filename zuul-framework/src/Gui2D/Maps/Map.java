@@ -6,11 +6,13 @@
 package Gui2D.Maps;
 
 import javafx.scene.Scene;
+
 /**
  *
  * @author jonas
  */
 public interface Map {
+
     //force each class that implements this interface to implement this method
     public Scene getScene();
 }

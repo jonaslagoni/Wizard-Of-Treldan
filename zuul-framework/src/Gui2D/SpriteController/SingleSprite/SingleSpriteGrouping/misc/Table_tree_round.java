@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Table_tree_round  extends Abstract_sprite{
+public class Table_tree_round extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(718);
         super.getSprite().setSpritePosY(253);
         super.getSprite().setSprite_width(32);

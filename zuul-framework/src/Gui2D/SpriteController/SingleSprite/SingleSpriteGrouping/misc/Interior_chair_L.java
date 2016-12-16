@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Interior_chair_L extends Abstract_sprite{
+public class Interior_chair_L extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
 
         super.getSprite().setSpritePosX(1029);
         super.getSprite().setSpritePosY(542);

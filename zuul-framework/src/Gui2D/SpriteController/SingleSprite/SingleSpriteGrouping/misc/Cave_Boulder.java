@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Cave_Boulder extends Abstract_sprite{
+public class Cave_Boulder extends Abstract_sprite {
+
     /**
      * Sets the Cave_Boulder sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(821);
         super.getSprite().setSpritePosY(212);
         super.getSprite().setSprite_width(64);

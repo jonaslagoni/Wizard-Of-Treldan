@@ -10,9 +10,9 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.Command;
-import TWoT_A1.CommandWord;
-import TWoT_A1.TWoT;
+import TWoT.Command;
+import TWoT.CommandWord;
+import TWoT.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,59 +26,61 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+
 /**
  *
  * @author jonas
  */
-public class GruulsLair extends PlayableMaps{
+public class GruulsLair extends PlayableMaps {
+
     // Arraylist for player movement
     private ArrayList<String> input;
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     private TWoT game;
     private GruulsLair_sprites gruulsLair_sprites;
-    
+
     /**
      * Constructor for Cave
-     * @param world 
+     *
+     * @param world SpriteController
      */
-    public GruulsLair(SpriteController world){
+    public GruulsLair(SpriteController world) {
         //init our super constructor
         super();
         gruulsLair_sprites = new GruulsLair_sprites(world);
         gruulsLair_sprites.setGruulsLair_background_SingleSprites();
     }
-    
+
     /**
      * Gets the scene for gruulslair
-     * @return 
+     *
+     * @return the GruulsLair
      */
     @Override
-    public Scene getScene(){
+    public Scene getScene() {
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
-        
+
         Group root = new Group();
-        Scene theScene = new Scene( root );
+        Scene theScene = new Scene(root);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
-        
-        
+
         Canvas canvas_background = new Canvas(1024, 512);
         root.getChildren().add(canvas_background);
-        
+
         Canvas enemy_canvas = new Canvas(1024, 512);
         root.getChildren().add(enemy_canvas);
-        
+
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         //add the canvas to the group
         root.getChildren().add(player_canvas);
-        
-        
+
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
         //get the group of canvases from minimap object
@@ -86,7 +88,7 @@ public class GruulsLair extends PlayableMaps{
         //update the minimap correctly with the player canvas size
         miniMap.updateMiniMap(1024.0, 512.0);
         //add the group to the root group
-        root.getChildren().add( miniMapGroup );
+        root.getChildren().add(miniMapGroup);
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -98,20 +100,20 @@ public class GruulsLair extends PlayableMaps{
         infoboxPane.setPrefSize(300, 150);
         infoboxPane.relocate(0, 362);
         root.getChildren().add(infoboxPane);
-        
+
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
-        
+
         //Menu testing start
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
         //menu testing done
-        
+
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
         player.setPosition(500, 400);
-        
+
         //esc menu
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
@@ -126,26 +128,26 @@ public class GruulsLair extends PlayableMaps{
         GraphicsContext cave_background = canvas_background.getGraphicsContext2D();
         // create GraphicsContext for our monsters in gruulsLair
         GraphicsContext enemiesGC = enemy_canvas.getGraphicsContext2D();
-        
+
         //get all the sprites used in the cave
         List<Sprite> enemy_sprites = gruulsLair_sprites.getGruulsLair_enemy_sprites();
         List<Sprite> sprites_background = gruulsLair_sprites.getGruulsLair_background_sprites();
-       
+
         //render all the sprites
         if (game.checkExisting("gruul")) {
             enemy_sprites.get(0).render(enemiesGC);
         }
-        
+
         for (Sprite sprite : sprites_background) {
             sprite.render(cave_background);
         }
-        
+
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(628, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(345, 0, 1, 512);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 520, 1024, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 1024, 1);
-        
+
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
@@ -162,9 +164,8 @@ public class GruulsLair extends PlayableMaps{
 
                 //set our initial direction standstill
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
-                
+
                 // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
-                
                 //now check for the users input
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
@@ -174,40 +175,36 @@ public class GruulsLair extends PlayableMaps{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (game.checkExisting("gruul") && player.intersects_left(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);
-                    
+                        player.setVelocity(0, 0);
+
                     } else {
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
-                
+
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
-                
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //check if the player walks into a sprite
+                        //check if the player walks into a sprite
                     } else if (game.checkExisting("gruul") && player.intersects_right(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);
-                    
+                        player.setVelocity(0, 0);
+
                     } else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
-                
+
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" UP INPUT ">
-                
                 //check if the user wants to walk up.
                 if (input.contains("UP")) {
                     //check if the user walks into a world boundary
@@ -216,19 +213,17 @@ public class GruulsLair extends PlayableMaps{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (game.checkExisting("gruul") && player.intersects_top(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);
-                    
+                        player.setVelocity(0, 0);
+
                     } else {
                         player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
-                
+
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" DOWN INPUT ">
-                
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
@@ -237,8 +232,8 @@ public class GruulsLair extends PlayableMaps{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (game.checkExisting("gruul") && player.intersects_bottom(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);
-                    
+                        player.setVelocity(0, 0);
+
                     } else if (player.intersects_top(sprites_background.get(4))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -260,9 +255,8 @@ public class GruulsLair extends PlayableMaps{
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
-                
+
                 // </editor-fold>
-                
                 //check if the user wants to interact
                 if (menu_input.contains("E")) {
                     if (game.checkExisting("gruul") && player.intersect(enemy_sprites.get(0))) {
@@ -284,21 +278,18 @@ public class GruulsLair extends PlayableMaps{
                 if (game.checkExisting("gruul")) {
                     enemy_sprites.get(0).render(enemiesGC);
                 }
-                
+
                 //check if the user wants to see a menu.
-                if(menu_input.contains("ESCAPE")){
-                    if(!escmenu.isShown()){
+                if (menu_input.contains("ESCAPE")) {
+                    if (!escmenu.isShown()) {
                         root.getChildren().add(gameMenu);
                         escmenu.setShown(true);
                     }
-                }else{
-                    if(escmenu.isShown()){
-                        root.getChildren().remove(gameMenu);
-                        escmenu.setShown(false);
-                    }
+                } else if (escmenu.isShown()) {
+                    root.getChildren().remove(gameMenu);
+                    escmenu.setShown(false);
                 }
-                
-                
+
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
@@ -309,14 +300,14 @@ public class GruulsLair extends PlayableMaps{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
-                
+
                 //update the player on the minimaps position
                 miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-            
+
             /**
              * Sets the new scene depending on the room id.
-             */    
+             */
             public void setNewScene() {
                 switch (game.getCurrentRoomId()) {
                     case 8:

@@ -10,9 +10,9 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.Command;
-import TWoT_A1.CommandWord;
-import TWoT_A1.TWoT;
+import TWoT.Command;
+import TWoT.CommandWord;
+import TWoT.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,65 +26,62 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+
 /**
  *
  * @author jonas
  */
-public class Dungeon extends PlayableMaps{
+public class Dungeon extends PlayableMaps {
+
     // Arraylist for player movement
     private ArrayList<String> input;
     // ArrayList for menu key strokes.
     private ArrayList<String> menu_input;
     private TWoT game;
     private Dungeon_sprites dungeon_sprites;
-    
+
     /**
      * Constructor for Dungeon
-     * @param world 
+     *
+     * @param world SpriteController
      */
-    public Dungeon(SpriteController world){
+    public Dungeon(SpriteController world) {
         //init our super constructor
         super();
-        
+
         dungeon_sprites = new Dungeon_sprites(world);
         dungeon_sprites.setDungeon_background_SingleSprites();
     }
-    
+
     /**
-     * Gets the dungeon scene
-     * @return 
+     * @return Dungeon scene
      */
     @Override
-    public Scene getScene(){
+    public Scene getScene() {
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
         this.game = WizardOfTreldan.getGame();
-        
+
         Group root = new Group();
-        Scene theScene = new Scene( root );
+        Scene theScene = new Scene(root);
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
-        
-        
-        
+
         Canvas canvas_background = new Canvas(1024, 512);
         root.getChildren().add(canvas_background);
-        
-        Canvas canvas_enemies = new Canvas (1024, 512);
+
+        Canvas canvas_enemies = new Canvas(1024, 512);
         root.getChildren().add(canvas_enemies);
-        
+
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(1024, 512);
         root.getChildren().add(player_canvas);
-        
+
         Canvas canvas_foreground = new Canvas(1024, 512);
         root.getChildren().add(canvas_foreground);
-        
-        
-        
-        
+
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
         //get the group of canvases from minimap object
@@ -92,8 +89,7 @@ public class Dungeon extends PlayableMaps{
         //update the minimap correctly with the player canvas size
         miniMap.updateMiniMap(1024.0, 512.0);
         //add the group to the root group
-        root.getChildren().add( miniMapGroup );
-        
+        root.getChildren().add(miniMapGroup);
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -108,19 +104,19 @@ public class Dungeon extends PlayableMaps{
         //get some of the games welcome message and add to the infobox
         HashMap<Integer, String> welcome = game.getWelcomeMessages();
         infobox.appendText(welcome.get(3) + "\n");
-        
+
         //Menu testing start
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
         //menu testing done
-        
+
         //escape menu
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
-        
+
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
-        switch(game.getLastRoomId()){
+        switch (game.getLastRoomId()) {
             case 2:
                 player.setPosition(325, 300);
                 break;
@@ -130,7 +126,6 @@ public class Dungeon extends PlayableMaps{
             default:
                 player.setPosition(200, 330);
         }
-
 
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
@@ -142,39 +137,39 @@ public class Dungeon extends PlayableMaps{
         GraphicsContext dungeon_background = canvas_background.getGraphicsContext2D();
         GraphicsContext dungeon_foreground = canvas_foreground.getGraphicsContext2D();
         GraphicsContext enemiesGC = canvas_enemies.getGraphicsContext2D();
-        
+
         //get all the sprites used in the dungeon
         List<Sprite> dungeon_background_sprites = dungeon_sprites.getDungeon_background_sprites();
         List<Sprite> dungeon_foreground_sprites = dungeon_sprites.getDungeon_foreground_sprites();
         List<Sprite> enemy_sprites = dungeon_sprites.getDungeon_enemy_sprite();
-        
+
         //render all the sprites
         if (game.checkExisting("skeleton1")) {
             enemy_sprites.get(0).render(enemiesGC);
         }
-        
+
         if (game.checkExisting("skeleton2")) {
             enemy_sprites.get(1).render(enemiesGC);
         }
-        
+
         if (game.checkExisting("skeleton3")) {
             enemy_sprites.get(2).render(enemiesGC);
         }
-        
+
         for (Sprite sprite : dungeon_background_sprites) {
             sprite.render(dungeon_background);
         }
-        
+
         for (Sprite sprite : dungeon_foreground_sprites) {
             sprite.render(dungeon_foreground);
         }
-        
+
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(860, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(125, 0, 1, 512);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 405, 1024, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 59, 1024, 1);
-        
+
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
@@ -191,9 +186,8 @@ public class Dungeon extends PlayableMaps{
 
                 //set our initial direction standstill
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
-                
+
                 // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
-                
                 //now check for the users input
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
@@ -203,62 +197,56 @@ public class Dungeon extends PlayableMaps{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_left(dungeon_background_sprites.get(12))
-                              || player.intersects_left(dungeon_background_sprites.get(13))
-                              || player.intersects_left(dungeon_background_sprites.get(14))
-                              ) {
+                            || player.intersects_left(dungeon_background_sprites.get(13))
+                            || player.intersects_left(dungeon_background_sprites.get(14))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if (game.checkExisting("skeleton1") && player.intersects_left(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);   
-                            
+                    } else if (game.checkExisting("skeleton1") && player.intersects_left(enemy_sprites.get(0))) {
+                        player.setVelocity(0, 0);
+
                     } else if (game.checkExisting("skeleton2") && player.intersects_left(enemy_sprites.get(1))) {
-                            player.setVelocity(0, 0);
-                                
+                        player.setVelocity(0, 0);
+
                     } else if (game.checkExisting("skeleton3") && player.intersects_left(enemy_sprites.get(2))) {
-                            player.setVelocity(0, 0);
+                        player.setVelocity(0, 0);
                     } else {
                         player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
-                
+
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
-                
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //check if the player walks into a sprite
+                        //check if the player walks into a sprite
                     } else if (player.intersects_right(dungeon_background_sprites.get(12))
-                              || player.intersects_right(dungeon_background_sprites.get(13))
-                              || player.intersects_right(dungeon_background_sprites.get(14))
-                              ) {
+                            || player.intersects_right(dungeon_background_sprites.get(13))
+                            || player.intersects_right(dungeon_background_sprites.get(14))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     } else if (game.checkExisting("skeleton1") && player.intersects_right(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);   
-                            
+                        player.setVelocity(0, 0);
+
                     } else if (game.checkExisting("skeleton2") && player.intersects_right(enemy_sprites.get(1))) {
-                            player.setVelocity(0, 0);
-                                
+                        player.setVelocity(0, 0);
+
                     } else if (game.checkExisting("skeleton3") && player.intersects_right(enemy_sprites.get(2))) {
-                            player.setVelocity(0, 0);
+                        player.setVelocity(0, 0);
                     } else {
                         player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
-                
+
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" UP INPUT ">
-                
                 //check if the user wants to walk up.
                 if (input.contains("UP")) {
                     //check if the user walks into a world boundary
@@ -267,9 +255,8 @@ public class Dungeon extends PlayableMaps{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (player.intersects_top(dungeon_background_sprites.get(12))
-                              || player.intersects_top(dungeon_background_sprites.get(13))
-                              || player.intersects_top(dungeon_background_sprites.get(14))
-                              ) {
+                            || player.intersects_top(dungeon_background_sprites.get(13))
+                            || player.intersects_top(dungeon_background_sprites.get(14))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                     } else if (player.intersects_top(dungeon_background_sprites.get(2))) {
@@ -292,7 +279,7 @@ public class Dungeon extends PlayableMaps{
                             WizardOfTreldan.saveGame();
                         }
                     } else if (game.checkExisting("skeleton1") && player.intersects_top(enemy_sprites.get(0))) {
-                        player.setVelocity(0, 0);   
+                        player.setVelocity(0, 0);
                     } else if (game.checkExisting("skeleton2") && player.intersects_top(enemy_sprites.get(1))) {
                         player.setVelocity(0, 0);
                     } else if (game.checkExisting("skeleton3") && player.intersects_top(enemy_sprites.get(2))) {
@@ -303,11 +290,9 @@ public class Dungeon extends PlayableMaps{
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
-                
+
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" DOWN INPUT ">
-                
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
@@ -316,23 +301,21 @@ public class Dungeon extends PlayableMaps{
                         player.setVelocity(0, 0);
                         //check if the player walks into a sprite
                     } else if (game.checkExisting("skeleton1") && player.intersects_bottom(enemy_sprites.get(0))) {
-                            player.setVelocity(0, 0);   
-                            
+                        player.setVelocity(0, 0);
+
                     } else if (game.checkExisting("skeleton2") && player.intersects_bottom(enemy_sprites.get(1))) {
-                            player.setVelocity(0, 0);
-                                
+                        player.setVelocity(0, 0);
+
                     } else if (game.checkExisting("skeleton3") && player.intersects_bottom(enemy_sprites.get(2))) {
-                            player.setVelocity(0, 0);
-                    }
-                    else {
+                        player.setVelocity(0, 0);
+                    } else {
                         player.setVelocity(0, 100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_DOWN);
                 }
-                
+
                 // </editor-fold>
-                
                 //check if the user want to interact
                 if (menu_input.contains("E")) {
                     if (game.checkExisting("skeleton1") && player.intersect(enemy_sprites.get(0))) {
@@ -364,29 +347,27 @@ public class Dungeon extends PlayableMaps{
 
                 //clear and rerender enemies
                 enemiesGC.clearRect(0, 0, 1024, 512);
-                if(game.checkExisting("skeleton1")){
+                if (game.checkExisting("skeleton1")) {
                     enemy_sprites.get(0).render(enemiesGC);
                 }
-                if(game.checkExisting("skeleton2")){
+                if (game.checkExisting("skeleton2")) {
                     enemy_sprites.get(1).render(enemiesGC);
                 }
-                if(game.checkExisting("skeleton3")){
+                if (game.checkExisting("skeleton3")) {
                     enemy_sprites.get(2).render(enemiesGC);
                 }
-                
+
                 //check if the user wants to see a menu.
-                if(menu_input.contains("ESCAPE")){
-                    if(!escmenu.isShown()){
+                if (menu_input.contains("ESCAPE")) {
+                    if (!escmenu.isShown()) {
                         root.getChildren().add(gameMenu);
                         escmenu.setShown(true);
                     }
-                }else{
-                    if(escmenu.isShown()){
-                        root.getChildren().remove(gameMenu);
-                        escmenu.setShown(false);
-                    }
+                } else if (escmenu.isShown()) {
+                    root.getChildren().remove(gameMenu);
+                    escmenu.setShown(false);
                 }
-                
+
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
@@ -397,12 +378,11 @@ public class Dungeon extends PlayableMaps{
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
-                
+
                 //update the player on the minimaps position
                 miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-                
-            
+
             /**
              * Sets the new scene depending on the room id.
              */
@@ -411,11 +391,11 @@ public class Dungeon extends PlayableMaps{
                     case 12:
                         WizardOfTreldan.setLibraryScene();
                         break;
-                    
+
                 }
             }
         }.start();
-        
+
         return theScene;
     }
 }

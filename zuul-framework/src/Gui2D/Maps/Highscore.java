@@ -6,8 +6,8 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.Score;
-import TWoT_A1.TWoT;
+import TWoT.Score;
+import TWoT.TWoT;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Platform;
@@ -33,17 +33,18 @@ import javafx.scene.text.Text;
  * @author jonas
  */
 public class Highscore implements Map {
+
     private Text status;
     private TWoT game;
     private final Scene SCENE;
-    
+
     /**
      * Creates the scene for Highscore
      */
-    public Highscore(){
+    public Highscore() {
         //returns the current TWoT object
         game = WizardOfTreldan.getGame();
-        
+
         Group menuGroup = new Group();
         Scene menuScene = new Scene(menuGroup);
 
@@ -88,7 +89,7 @@ public class Highscore implements Map {
         list.setItems(loads);
         //add the ListView to the pane.
         anchorpane.getChildren().add(list);
-        
+
         /**
          * Adding a cancel button to return to the main menu. This just sets the
          * scene to the menu.
@@ -121,8 +122,10 @@ public class Highscore implements Map {
         //Set the global
         SCENE = menuScene;
     }
+
     /**
      * Returns the scene for the highscore menu.
+     *
      * @return Scene
      */
     @Override
@@ -140,7 +143,7 @@ public class Highscore implements Map {
         List<String> loadList = new ArrayList();
         //try to get each file in the directory "loads" by using Files.walk
         List<Score> highscores = game.readHighScore();
-        for(Score s : highscores){
+        for (Score s : highscores) {
             loadList.add("Name: " + s.getName() + " | Score: " + s.getScore() + " | Time: " + s.getTime());
         }
         //return the List

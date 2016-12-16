@@ -25,7 +25,7 @@ import Gui2D.Maps.PlayerSelection;
 import Gui2D.Maps.Village;
 import Gui2D.Maps.WizardHouse;
 import Gui2D.SpriteController.SpriteController;
-import TWoT_A1.TWoT;
+import TWoT.TWoT;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,6 +44,7 @@ import javafx.stage.StageStyle;
  * @author jonas
  */
 public class WizardOfTreldan extends Application {
+
     //set all our maps
     private static Map cellar;
     private static Map gruulslair;
@@ -63,36 +64,41 @@ public class WizardOfTreldan extends Application {
     private static Map library;
     private static Map highscore;
     private static Map finish;
-    
+
     //our global world generator
     private SpriteController world;
-    
+
     //our global twot game
     private static TWoT game;
-    
+
     //set a global stage from the primaryStage
     private static Stage primaryStage;
-    
+
+    /**
+     * The start method this program.
+     *
+     * @param primaryStage this stage
+     */
     @Override
     public void start(Stage primaryStage) {
         //set our stage
         this.primaryStage = primaryStage;
-        
+
         //remove the top bar of the frame
         this.primaryStage.initStyle(StageStyle.UNDECORATED);
-        
+
         //set our width and height
         this.primaryStage.setWidth(1024);
         this.primaryStage.setHeight(512);
-        
+
         //create a new TWoT object
         game = new TWoT();
-        
+
         //set the title of the stage
         this.primaryStage.setTitle("The Wizard of Treldan");
         //Init our world sprite controller
         world = new SpriteController();
-        
+
         //Init all world maps
         cellar = new Cellar(world);
         village = new Village(world);
@@ -114,186 +120,185 @@ public class WizardOfTreldan extends Application {
         playerSelection = new PlayerSelection();
         highscore = new Highscore();
         finish = new Finish();
-        
+
         //set our first scene to the menu.
         setMenuScene();
         primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.show();
     }
-    
-    
+
     /**
      * Starts the gui
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
-    
+
     /**
      * Force the gui to load menu scene
      */
-    public static void setMenuScene(){
+    public static void setMenuScene() {
         primaryStage.setScene(menu.getScene());
     }
-    
+
     /**
      * Force the gui to load loading scene
      */
-    public static void setLoadScene(){
+    public static void setLoadScene() {
         primaryStage.setScene(load.getScene());
     }
-    
+
     /**
      * Force the gui to load highscore scene
      */
-    public static void setHighscoreScene(){
+    public static void setHighscoreScene() {
         primaryStage.setScene(highscore.getScene());
     }
-    
+
     /**
      * Force the gui to finish scene
      */
-    public static void setFinishScene(){
+    public static void setFinishScene() {
         primaryStage.setScene(finish.getScene());
     }
-    
+
     /**
      * Force the gui to load playerSelection scene
      */
-    public static void setPlayerSelectionScene(){
+    public static void setPlayerSelectionScene() {
         primaryStage.setScene(playerSelection.getScene());
     }
-    
+
     /**
      * Force the gui to load CellarScene
      */
-    public static void setCellarScene(){
+    public static void setCellarScene() {
         primaryStage.setScene(cellar.getScene());
     }
-    
+
     /**
-     *  Force the gui to load VillageScene
+     * Force the gui to load VillageScene
      */
-    public static void setVillageScene(){
+    public static void setVillageScene() {
         primaryStage.setScene(village.getScene());
     }
-    
+
     /**
-     *  Force the gui to load House1Scene
+     * Force the gui to load House1Scene
      */
-    public static void setHouse1Scene(){
+    public static void setHouse1Scene() {
         primaryStage.setScene(house1.getScene());
     }
-    
+
     /**
      * Force the gui to load House2Scene
      */
-    public static void setHouse2Scene(){
+    public static void setHouse2Scene() {
         primaryStage.setScene(house2.getScene());
     }
-    
+
     /**
      * Force the gui to load House3Scene
      */
-    public static void setHouse3Scene(){
+    public static void setHouse3Scene() {
         primaryStage.setScene(house3.getScene());
     }
-    
+
     /**
      * Force the gui to load ForestScene
      */
     public static void setForestScene() {
         primaryStage.setScene(forest.getScene());
-    }    
-    
+    }
+
     /**
      * Force the gui to load GruulsLairScene
      */
-    public static void setGruulsLairScene(){
+    public static void setGruulsLairScene() {
         primaryStage.setScene(gruulslair.getScene());
     }
-    
+
     /**
      * Force the gui to load the clearing scene
      */
-    public static void setClearingScene(){
+    public static void setClearingScene() {
         primaryStage.setScene(clearing.getScene());
     }
-    
+
     /**
      * Force the gui to load the cave scene
      */
     public static void setCaveScene() {
         primaryStage.setScene(cave.getScene());
     }
-    
+
     /**
      * Force the gui to load the dungeon scene
      */
     public static void setDungeonScene() {
         primaryStage.setScene(dungeon.getScene());
     }
-    
+
     /**
      * Force the gui to load the wizardhouse scene
      */
     public static void setWizardHouseScene() {
         primaryStage.setScene(wizardHouse.getScene());
     }
-    
+
     /**
      * Force the gui to load the evil wizards lair scene
      */
     public static void setEvilWizardsLairScene() {
         primaryStage.setScene(evilwizardslair.getScene());
     }
-    
+
     /**
      * Force the gui to load the library scene
      */
     public static void setLibraryScene() {
         primaryStage.setScene(library.getScene());
     }
-    
+
     /**
      * Resets the game by making a new instance of TWoT
      */
-    public static void resetGame(){
+    public static void resetGame() {
         game = new TWoT();
     }
-    
-    
+
     /**
-     * Set the twot object to another twot object 
-     * @param loaded 
+     * Set the twot object to another twot object
+     *
+     * @param loaded TWoT object
      */
-    public static void setGame(TWoT loaded){
+    public static void setGame(TWoT loaded) {
         game = loaded;
     }
 
-
     /**
      * return the game object
+     *
      * @return the game
      */
     public static TWoT getGame() {
         return game;
     }
-    
+
     /**
-     * Saves the game
-     * Name of the file will be the current date and time and the current room name. 
-     * Stores the file under the folder "loads"
+     * Saves the game Name of the file will be the current date and time and the
+     * current room name. Stores the file under the folder "loads"
      */
-    public static void saveGame(){
+    public static void saveGame() {
         //Make a SimpleDateFormat object of date and time
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");//dd/MM/yyyy
         //get the current date
         Date now = new Date();
         //get the current date and time formated from the SimpleDateFormat
         String strDate = sdfDate.format(now);
-        
+
         // Creating the directory "loads" if it doesn't exist
         File directory = new File(String.valueOf("loads/"));
         if (!directory.exists()) {
@@ -311,15 +316,16 @@ public class WizardOfTreldan extends Application {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } 
+        }
     }
-    
+
     /**
-     * Saves the game with a string as filename
-     * Stores the file under the folder "loads"
-     * @param name 
+     * Saves the game with a string as filename Stores the file under the folder
+     * "loads"
+     *
+     * @param name String of the file to save
      */
-    public static void saveGame(String name){
+    public static void saveGame(String name) {
         try {
             // Store Serialized game Object in File
             FileOutputStream fileOutputStream = new FileOutputStream("loads/" + name);
@@ -332,6 +338,6 @@ public class WizardOfTreldan extends Application {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } 
+        }
     }
 }

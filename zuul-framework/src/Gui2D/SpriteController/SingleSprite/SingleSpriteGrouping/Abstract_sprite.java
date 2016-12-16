@@ -13,28 +13,31 @@ import Gui2D.SpriteController.SpriteController;
  * @author jonas
  */
 public abstract class Abstract_sprite {
+
     // Our sprite
     public SingleSprite sprite;
-    
+
     /**
      * Abstract constructor
      */
-    public Abstract_sprite(){
+    public Abstract_sprite() {
         sprite = new SingleSprite();
         sprite.setImage(SpriteController.getSPRITESHEET());
         setSprite();
     }
+
     /**
      * Must have a setSprite method.
      */
     public abstract void setSprite();
-    
+
     /**
      * Get the sprite variable
-     * @return 
+     *
+     * @return SingleSprite
      */
-    public SingleSprite getSprite(){
+    public SingleSprite getSprite() {
         return sprite;
     }
-    
+
 }

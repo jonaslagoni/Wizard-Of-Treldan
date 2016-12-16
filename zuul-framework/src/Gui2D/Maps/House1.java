@@ -10,9 +10,9 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.Command;
-import TWoT_A1.CommandWord;
-import TWoT_A1.TWoT;
+import TWoT.Command;
+import TWoT.CommandWord;
+import TWoT.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +27,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-public class House1 extends PlayableMaps{
+public class House1 extends PlayableMaps {
+
     // Arraylist for player movement
     private ArrayList<String> input;
     // ArrayList for menu key strokes.
@@ -36,58 +37,58 @@ public class House1 extends PlayableMaps{
     private TWoT game;
     // our house sprites
     private final House1_sprites house_sprites;
-    
+
     /**
      * Constructor for Cellar
-     * @param world 
+     *
+     * @param world SpriteController
      */
-    public House1(SpriteController world){
+    public House1(SpriteController world) {
         //init our super constructor
         super();
         //set the house sprites
         house_sprites = new House1_sprites(world);
         house_sprites.setHouse1_background_SingleSprites();
     }
-    
+
     /**
      * @return the scene for this map
      */
     @Override
-    public Scene getScene(){
+    public Scene getScene() {
         // Link our globals to super class user inputs since no inheritence in AnimationTimer
         input = super.getInput();
         menu_input = super.getMenu_input();
         //link the TWoT object to our main TWoT object
         this.game = WizardOfTreldan.getGame();
-        
+
         //our main Group for all the components
         Group root = new Group();
-        Scene theScene = new Scene( root );
+        Scene theScene = new Scene(root);
         //set background color
         theScene.setFill(Color.rgb(83, 83, 83));
         //set the styleScheet
         theScene.getStylesheets().add("TextAreaStyle.css");
-        
-        Canvas canvas_background = new Canvas( 400, 300);
+
+        Canvas canvas_background = new Canvas(400, 300);
         //relocate the canvas so its centered.
         canvas_background.relocate(312, 75);
-        root.getChildren().add(canvas_background);      
-        
+        root.getChildren().add(canvas_background);
+
         //set canvas of our items
         Canvas house3_monsters = new Canvas(400, 300);
         //relocate the canvas
         house3_monsters.relocate(312, 75);
         //add the canvas to the group
         root.getChildren().add(house3_monsters);
-        
-        
+
         //add a canvas only for the player
         Canvas player_canvas = new Canvas(400, 300);
         //relocate the canvas
         player_canvas.relocate(312, 75);
         //add the canvas to the group
         root.getChildren().add(player_canvas);
-        
+
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
         //get the group of canvases from minimap object
@@ -95,8 +96,8 @@ public class House1 extends PlayableMaps{
         //update the minimap correctly with the player canvas size
         miniMap.updateMiniMap(400.0, 300.0);
         //add the group to the root group
-        root.getChildren().add( miniMapGroup );
-        
+        root.getChildren().add(miniMapGroup);
+
         /**
          * TextArea used to give the user more information about the game. What
          * to do and and what happens.
@@ -114,11 +115,10 @@ public class House1 extends PlayableMaps{
         //Inventory menu
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-        
+
         //escape menu
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
-       
 
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
@@ -127,42 +127,38 @@ public class House1 extends PlayableMaps{
         //set the keylisteners to the scene.
         theScene.setOnKeyReleased(getOnKeyRelease(player));
         theScene.setOnKeyPressed(getOnKeyPress());
-        
-        
+
         //add graphicscontext to each canvas
         GraphicsContext background_gc = canvas_background.getGraphicsContext2D();
         //create GraphicsContext from our monster canvas containing all
         GraphicsContext monster_gc = house3_monsters.getGraphicsContext2D();
         //create GraphicsContext from our player_canvas
         GraphicsContext moveable_gc = player_canvas.getGraphicsContext2D();
-        
-        
-        
+
         //get all the sprites of monsters
         List<Sprite> sprites_interact = house_sprites.getHouse1_monster_sprites();
-        if(game.checkExisting("man")){
+        if (game.checkExisting("man")) {
             sprites_interact.get(0).render(monster_gc);
         }
-        
+
         //stranger sprite
         Sprite stranger_sprite = house_sprites.getStranger_sprite();
-        if(game.checkExisting("stranger")){
+        if (game.checkExisting("stranger")) {
             stranger_sprite.render(monster_gc);
         }
-        
+
         //generate all the background sprites
         List<Sprite> sprites_still = house_sprites.getHouse1();
-        for(Sprite sprite : sprites_still){
+        for (Sprite sprite : sprites_still) {
             sprite.render(background_gc);
         }
-            
+
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(350, 0, 1, 300);
         Rectangle2D worldBoundLeft = new Rectangle2D(0, 0, 1, 300);
         Rectangle2D worldBoundBottom = new Rectangle2D(0, 220, 400, 1);
         Rectangle2D worldBoundTop = new Rectangle2D(0, 0, 400, 1);
-            
-        
+
         new AnimationTimer() {
             //set the current time we started.
             private long lastNanoTime = System.nanoTime();
@@ -179,9 +175,8 @@ public class House1 extends PlayableMaps{
 
                 //set our initial direction standstill
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
-                
+
                 // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
-                
                 //now check for the users input
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
@@ -189,28 +184,26 @@ public class House1 extends PlayableMaps{
                     if (player.intersects_left(worldBoundLeft)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //no collission continue
+                        //no collission continue
                     } else if (player.intersects_left(sprites_still.get(3))
                             || player.intersects_left(sprites_still.get(4))
                             || player.intersects_left(sprites_still.get(5))
                             || player.intersects_left(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("man") && player.intersects_left(sprites_interact.get(0))){
+                    } else if (game.checkExisting("man") && player.intersects_left(sprites_interact.get(0))) {
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("stranger") && player.intersects_left(stranger_sprite)){
+                    } else if (game.checkExisting("stranger") && player.intersects_left(stranger_sprite)) {
                         player.setVelocity(0, 0);
-                    }else{
-                        player.setVelocity(-100,0);
+                    } else {
+                        player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
 
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
-                
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
@@ -223,34 +216,32 @@ public class House1 extends PlayableMaps{
                             || player.intersects_right(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("man") && player.intersects_right(sprites_interact.get(0))){
+                    } else if (game.checkExisting("man") && player.intersects_right(sprites_interact.get(0))) {
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("stranger") && player.intersects_right(stranger_sprite)){
+                    } else if (game.checkExisting("stranger") && player.intersects_right(stranger_sprite)) {
                         player.setVelocity(0, 0);
-                    }else{
-                        player.setVelocity(100,0);
+                    } else {
+                        player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
 
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" UP INPUT ">
-                
                 //check if the user wants to walk up.
                 if (input.contains("UP")) {
                     //check if the user walks into a world boundary
                     if (player.intersects_top(worldBoundTop)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if (player.intersects_top(sprites_still.get(3))
+                    } else if (player.intersects_top(sprites_still.get(3))
                             || player.intersects_top(sprites_still.get(4))
                             || player.intersects_top(sprites_still.get(5))
                             || player.intersects_top(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(player.intersects_top(sprites_still.get(2))){
+                    } else if (player.intersects_top(sprites_still.get(2))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         game.goTo(new Command(CommandWord.GO, "door"));
@@ -264,38 +255,36 @@ public class House1 extends PlayableMaps{
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    }else if(game.checkExisting("man") && player.intersects_top(sprites_interact.get(0))){
+                    } else if (game.checkExisting("man") && player.intersects_top(sprites_interact.get(0))) {
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("stranger") && player.intersects_top(stranger_sprite)){
+                    } else if (game.checkExisting("stranger") && player.intersects_top(stranger_sprite)) {
                         player.setVelocity(0, 0);
-                    }else{
-                        player.setVelocity(0,-100);
+                    } else {
+                        player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
-                
+
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" DOWN INPUT ">
-                
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
                     if (player.intersects_bottom(worldBoundBottom)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if (player.intersects_bottom(sprites_still.get(3))
+                    } else if (player.intersects_bottom(sprites_still.get(3))
                             || player.intersects_bottom(sprites_still.get(4))
                             || player.intersects_bottom(sprites_still.get(5))
                             || player.intersects_bottom(sprites_still.get(6))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("man") && player.intersects_bottom(sprites_interact.get(0))){
+                    } else if (game.checkExisting("man") && player.intersects_bottom(sprites_interact.get(0))) {
                         player.setVelocity(0, 0);
-                    }else if(game.checkExisting("stranger") && player.intersects_bottom(stranger_sprite)){
+                    } else if (game.checkExisting("stranger") && player.intersects_bottom(stranger_sprite)) {
                         player.setVelocity(0, 0);
-                    }else {
+                    } else {
                         player.setVelocity(0, 100);
                     }
                     //set the direction the player walks
@@ -303,29 +292,28 @@ public class House1 extends PlayableMaps{
                 }
 
                 // </editor-fold>
-                
                 //check if the user wanst to pickup an item
                 if (menu_input.contains("E")) {
                     //check if the player intersects with the chest and the item exist ingame
-                    if(game.checkExisting("chest") && player.intersect(sprites_still.get(4))){
+                    if (game.checkExisting("chest") && player.intersect(sprites_still.get(4))) {
                         //goto the chest and print out what happens
-                        for(String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "chest"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         //update the inventory since we might have pickedup an item
                         playerinventory.update(game);
                     }
                     //check if the player intersects with the man and the man exist ingame
-                    if(game.checkExisting("man") && player.intersect(sprites_interact.get(0))){
+                    if (game.checkExisting("man") && player.intersect(sprites_interact.get(0))) {
                         //goto the man and print what happens
-                        for(String s : game.goTo(new Command(CommandWord.GO, "man"))) {
+                        for (String s : game.goTo(new Command(CommandWord.GO, "man"))) {
                             infobox.appendText("\n" + s + "\n");
                         }
                         //update the inventory.
                         playerinventory.update(game);
                     }
                     //check if the player intersects with the stranger and the stranger exist ingame
-                    if(game.checkExisting("stranger") && player.intersect(stranger_sprite)){
+                    if (game.checkExisting("stranger") && player.intersect(stranger_sprite)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         game.goTo(new Command(CommandWord.GO, "stranger"));
@@ -353,31 +341,31 @@ public class House1 extends PlayableMaps{
                 //clear the monster graphicscontext
                 monster_gc.clearRect(0, 0, 400, 300);
                 //render the man ingame
-                if(game.checkExisting("man")){
+                if (game.checkExisting("man")) {
                     sprites_interact.get(0).render(monster_gc);
                 }
                 //render the stranger if he exists
-                if(game.checkExisting("stranger")){
+                if (game.checkExisting("stranger")) {
                     stranger_sprite.render(monster_gc);
                 }
-                
+
                 //check if the user wants to see the esc menu.
-                if(menu_input.contains("ESCAPE")){
+                if (menu_input.contains("ESCAPE")) {
                     //if the menu is not shown show it
-                    if(!escmenu.isShown()){
+                    if (!escmenu.isShown()) {
                         //add the menu to the root
                         root.getChildren().add(gameMenu);
                         //set the menu to shown.
                         escmenu.setShown(true);
                     }
-                }else{
-                    //if the menu is shown remove it
-                    if(escmenu.isShown()){
+                } else //if the menu is shown remove it
+                {
+                    if (escmenu.isShown()) {
                         root.getChildren().remove(gameMenu);
                         escmenu.setShown(false);
                     }
                 }
-                
+
                 //check if the user wants to see the inventory
                 if (menu_input.contains("I")) {
                     //if the inventory is not shown show it.
@@ -385,18 +373,16 @@ public class House1 extends PlayableMaps{
                         root.getChildren().add(menu);
                         playerinventory.setShown(true);
                     }
-                //if the inventory is shown remove the inventory.
+                    //if the inventory is shown remove the inventory.
                 } else if (playerinventory.isShown()) {
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
-                
-                
+
                 //update the player on the minimaps position
                 miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
 
-            
             /**
              * set the new scene depending on which room you entered
              */

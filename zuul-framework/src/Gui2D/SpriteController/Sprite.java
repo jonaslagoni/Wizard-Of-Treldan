@@ -14,41 +14,45 @@ import javafx.scene.image.Image;
  * @author jonas
  */
 public abstract class Sprite {
+
     // Our image we use as a spritesheet
     private Image image;
-    
+
     // Position x and y
     private double positionX;
     private double positionY;
-    
+
     // Velocity which way it should move
     private double velocityX;
     private double velocityY;
-    
+
     //the width and height of the player sprite
     private double width;
     private double height;
-    
+
     //Global boundary
     private Rectangle2D boundary;
-    
+
     /**
      * Every class extended by Sprite need a render function.
-     * @param gc 
+     *
+     * @param gc GraphicsContext
      */
     public abstract void render(GraphicsContext gc);
-    
+
     /**
      * return a normal boundary for the sprite
-     * @return 
+     *
+     * @return Rectangle2D boundary for this object
      */
-    public Rectangle2D getBoundary(){
+    public Rectangle2D getBoundary() {
         return boundary;
     }
-    
+
     /**
      * Set image with and Image
-     * @param i 
+     *
+     * @param i Image
      */
     public void setImage(Image i) {
         image = i;
@@ -56,16 +60,18 @@ public abstract class Sprite {
 
     /**
      * Set our image by filename
-     * @param filename 
+     *
+     * @param filename String
      */
     public void setImage(String filename) {
         setImage(new Image(filename));
     }
-    
+
     /**
      * Set our x and y position
-     * @param x
-     * @param y 
+     *
+     * @param x x positionen
+     * @param y y position
      */
     public void setPosition(double x, double y) {
         setPositionX(x);
@@ -74,10 +80,11 @@ public abstract class Sprite {
     }
 
     /**
-     * Set movement to the player so his position will change.
-     * Set both for x and y.
-     * @param x
-     * @param y 
+     * Set movement to the player so his position will change. Set both for x
+     * and y.
+     *
+     * @param x Set velocity for x axis
+     * @param y Set velocity for y axis
      */
     public void setVelocity(double x, double y) {
         setVelocityX(x);
@@ -85,10 +92,11 @@ public abstract class Sprite {
     }
 
     /**
-     * Add movement to the player so his position will change.
-     * Add both for x and y.
-     * @param x
-     * @param y 
+     * Add movement to the player so his position will change. Add both for x
+     * and y.
+     *
+     * @param x Add velocity for x axis
+     * @param y Add velocity for y axis
      */
     public void addVelocity(double x, double y) {
         setVelocityX(getVelocityX() + x);
@@ -96,44 +104,48 @@ public abstract class Sprite {
     }
 
     /**
-     * update our position by using the velocity and a time passed to make it smooth
-     * @param time 
+     * update our position by using the velocity and a time passed to make it
+     * smooth
+     *
+     * @param time Double
      */
     public void update(double time) {
         setPositionX(getPositionX() + getVelocityX() * time);
         setPositionY(getPositionY() + getVelocityY() * time);
     }
 
-    
     /**
      * Set both width and height
-     * @param width
-     * @param height 
+     *
+     * @param width double width of the sprite
+     * @param height double height of the sprite
      */
-    public void setSize(double width, double height){
+    public void setSize(double width, double height) {
         this.setWidth(width);
         this.setHeight(height);
         updateBoundary();
     }
-    
+
     /**
      * Add double to the current X position
-     * @param add 
+     *
+     * @param add to position x
      */
-    public void addPositionX(double add){
+    public void addPositionX(double add) {
         setPositionX(getPositionX() + add);
         updateBoundary();
     }
-    
+
     /**
      * Add double to the current Y position
-     * @param add 
+     *
+     * @param add double to y position
      */
-    public void addPositionY(double add){
+    public void addPositionY(double add) {
         setPositionY(getPositionY() + add);
         updateBoundary();
     }
-    
+
     /**
      * @return the image
      */
@@ -231,16 +243,17 @@ public abstract class Sprite {
 
     /**
      * Sets the boundary to a predefined rectangle
+     *
      * @param boundary the boundary to set
      */
     public void setBoundary(Rectangle2D boundary) {
         this.boundary = boundary;
     }
-    
+
     /**
      * update the boundary
      */
-    public void updateBoundary(){
+    public void updateBoundary() {
         setBoundary(new Rectangle2D(getPositionX(), getPositionY(), getWidth(), getHeight()));
     }
 }

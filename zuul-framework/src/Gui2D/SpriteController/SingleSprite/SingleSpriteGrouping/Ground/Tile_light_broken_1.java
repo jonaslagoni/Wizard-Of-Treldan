@@ -11,13 +11,14 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Tile_light_broken_1  extends Abstract_sprite{
+public class Tile_light_broken_1 extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
-        super.getSprite().setSpritePosX(51  );
+    public void setSprite() {
+        super.getSprite().setSpritePosX(51);
         super.getSprite().setSpritePosY(80);
         super.getSprite().setSprite_width(38);
         super.getSprite().setSprite_height(32);

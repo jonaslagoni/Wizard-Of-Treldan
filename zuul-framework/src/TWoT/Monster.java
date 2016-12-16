@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
+package TWoT;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,7 +13,8 @@ import java.util.List;
  *
  * @author Kasper
  */
-public class Monster extends Interior implements Serializable{
+public class Monster extends Interior implements Serializable {
+
     private String monsterName;
     private double attValue;
     private double defValue;
@@ -22,24 +23,24 @@ public class Monster extends Interior implements Serializable{
     private List<Item> itemDrop = new ArrayList();
     private String roomDescription;
     private int mobId;
-    
+
     /**
-     * 
+     * empty monster
      */
-    public Monster(){
-        
+    public Monster() {
+
     }
-    
+
     /**
-     * 
-     * @param monsterName
-     * @param attValue
-     * @param defValue
-     * @param health
-     * @param goldDrop 
-     * @param roomDescription 
+     *
+     * @param monsterName monster name
+     * @param attValue start attack value
+     * @param defValue start def value
+     * @param health start health
+     * @param goldDrop start gold drop
+     * @param roomDescription start room description
      */
-    public Monster(String monsterName, double attValue, double defValue, int health, int goldDrop, String roomDescription){
+    public Monster(String monsterName, double attValue, double defValue, int health, int goldDrop, String roomDescription) {
         this.monsterName = monsterName;
         this.attValue = attValue;
         this.defValue = defValue;
@@ -47,9 +48,16 @@ public class Monster extends Interior implements Serializable{
         this.goldDrop = goldDrop;
         this.roomDescription = roomDescription;
     }
-    public void addDropItem(Item i){
+
+    /**
+     * Adds a Item to the drop list.
+     *
+     * @param i Item
+     */
+    public void addDropItem(Item i) {
         itemDrop.add(i);
     }
+
     /**
      * @return the monsterName
      */
@@ -105,7 +113,7 @@ public class Monster extends Interior implements Serializable{
     public void setDamage(int damage) {
         health -= damage;
     }
-    
+
     /**
      * @return the goldDrop
      */
@@ -154,6 +162,4 @@ public class Monster extends Interior implements Serializable{
     public void setMobId(int mobId) {
         this.mobId = mobId;
     }
-    
-    
 }

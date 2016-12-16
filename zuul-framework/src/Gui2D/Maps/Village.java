@@ -10,9 +10,9 @@ import Gui2D.SpriteController.SingleSprite.PlayerSprite;
 import Gui2D.SpriteController.Sprite;
 import Gui2D.SpriteController.SpriteController;
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.Command;
-import TWoT_A1.CommandWord;
-import TWoT_A1.TWoT;
+import TWoT.Command;
+import TWoT.CommandWord;
+import TWoT.TWoT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +32,7 @@ import javafx.scene.paint.Color;
  * @author jonas
  */
 public class Village extends PlayableMaps {
+
     // Arraylist for player movement
     private ArrayList<String> input;
     // ArrayList for menu key strokes.
@@ -43,7 +44,8 @@ public class Village extends PlayableMaps {
 
     /**
      * Constructor for Cellar
-     * @param world
+     *
+     * @param world SpriteController
      */
     public Village(SpriteController world) {
         //init our super constructor
@@ -51,10 +53,11 @@ public class Village extends PlayableMaps {
         villageSprites = new Village_sprites(world);
         villageSprites.setVillage_background_SingleSprites();
     }
-    
+
     /**
      * returns the created scene
-     * @return 
+     *
+     * @return the scene for Village
      */
     @Override
     public Scene getScene() {
@@ -75,7 +78,7 @@ public class Village extends PlayableMaps {
         Canvas village_background = new Canvas(1024, 512);
         //add the canvas to the group
         root.getChildren().add(village_background);
-        
+
         //set canvas of our items
         Canvas village_items = new Canvas(1024, 512);
         //add the canvas to the group
@@ -90,12 +93,12 @@ public class Village extends PlayableMaps {
         Canvas village_foreground = new Canvas(1024, 512);
         //add the canvas to the group
         root.getChildren().add(village_foreground);
-        
+
         //minimap ontop of everything else
         MiniMap miniMap = new MiniMap(game);
         Group miniMapGroup = miniMap.getMinimap();
         miniMap.updateMiniMap(1024.0, 512.0);
-        root.getChildren().add( miniMapGroup );
+        root.getChildren().add(miniMapGroup);
 
         /**
          * TextArea used to give the user more information about the game. What
@@ -114,7 +117,7 @@ public class Village extends PlayableMaps {
         //Inventory Menu
         PlayerInventory playerinventory = new PlayerInventory(game, infobox);
         AnchorPane menu = playerinventory.getMenu();
-        
+
         //Escape Menu
         GameMenu escmenu = new GameMenu();
         AnchorPane gameMenu = escmenu.getMenu();
@@ -122,7 +125,7 @@ public class Village extends PlayableMaps {
         //get our player from super class since no inheritence in AnimationTimer
         PlayerSprite player = super.getPlayer();
         //set the player position dynamicly depending on the last place the user were.
-        switch(game.getLastRoomId()){
+        switch (game.getLastRoomId()) {
             case 3:
                 player.setPosition(940, 240);
                 break;
@@ -158,10 +161,10 @@ public class Village extends PlayableMaps {
 
         //get all the sprites which can be picked up
         List<Sprite> sprites_interact = villageSprites.getVillage_items();
-        if(game.checkExisting("axe")){
+        if (game.checkExisting("axe")) {
             sprites_interact.get(0).render(interact_gc);
         }
-        
+
         //get all the sprites used in the village
         List<Sprite> sprites_still = villageSprites.getVillage_background_sprites();
         //render all the sprites
@@ -179,7 +182,7 @@ public class Village extends PlayableMaps {
         //add a color overlay to the foreground canvas to make it dark
         foreground_gc.setFill(Color.rgb(0, 0, 0, 0.5));
         foreground_gc.fillRect(0, 0, 1024, 512);
-        
+
         //set our world boundaries
         Rectangle2D worldBoundRight = new Rectangle2D(995, 0, 1, 512);
         Rectangle2D worldBoundLeft = new Rectangle2D(-2, 0, 1, 512);
@@ -204,9 +207,8 @@ public class Village extends PlayableMaps {
 
                 //set our initial direction standstill
                 player.setDirection(PlayerSprite.Direction.STANDSTILL);
-                
+
                 // <editor-fold defaultstate="collapsed" desc=" LEFT INPUT ">
-                
                 //now check for the users input
                 //check if the user wants to walk left.
                 if (input.contains("LEFT")) {
@@ -234,25 +236,23 @@ public class Village extends PlayableMaps {
                     } else if (player.intersects_left(sprites_foreground.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //if no colission
-                    }else{
-                        player.setVelocity(-100,0);
+                        //if no colission
+                    } else {
+                        player.setVelocity(-100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_LEFT);
                 }
 
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" RIGHT INPUT ">
-                
                 //check if the user wants to walk right.
                 if (input.contains("RIGHT")) {
                     //check if the user walks into a world boundary
                     if (player.intersects_right(worldBoundRight)) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //check if the player walks into a sprite
+                        //check if the player walks into a sprite
                     } else if (player.intersects_right(sprites_foreground.get(0))
                             || player.intersects_right(sprites_still.get(7))
                             || player.intersects_right(sprites_still.get(8))
@@ -272,18 +272,16 @@ public class Village extends PlayableMaps {
                     } else if (player.intersects_right(sprites_foreground.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //if no colission
-                    }else{
-                        player.setVelocity(100,0);
+                        //if no colission
+                    } else {
+                        player.setVelocity(100, 0);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_RIGHT);
                 }
 
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" UP INPUT ">
-                
                 //check if the user wants to walk up.
                 if (input.contains("UP")) {
                     //check if the user walks into a world boundary
@@ -326,7 +324,7 @@ public class Village extends PlayableMaps {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    //if collission to house2
+                        //if collission to house2
                     } else if (player.intersects_top(sprites_still.get(15))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
@@ -349,8 +347,8 @@ public class Village extends PlayableMaps {
                                 WizardOfTreldan.saveGame();
                             }
                         }
-                    //if colission with house 3
-                    }else if (player.intersects_top(sprites_still.get(16))) {
+                        //if colission with house 3
+                    } else if (player.intersects_top(sprites_still.get(16))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         game.goTo(new Command(CommandWord.GO, "house1"));
@@ -364,8 +362,8 @@ public class Village extends PlayableMaps {
                         setNewScene();
                         //save the game when we walk out
                         WizardOfTreldan.saveGame();
-                    //check collision with forrest door
-                    }else if (player.intersects_top(sprites_still.get(17))) {
+                        //check collision with forrest door
+                    } else if (player.intersects_top(sprites_still.get(17))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
                         if (game.checkExisting("forest")) {
@@ -381,18 +379,16 @@ public class Village extends PlayableMaps {
                             //save the game when we walk out
                             WizardOfTreldan.saveGame();
                         }
-                    //if no colission
-                    }else{
-                        player.setVelocity(0,-100);
+                        //if no colission
+                    } else {
+                        player.setVelocity(0, -100);
                     }
                     //set the direction the player walks
                     player.setDirection(PlayerSprite.Direction.WALK_UP);
                 }
 
                 // </editor-fold>
-                
                 // <editor-fold defaultstate="collapsed" desc=" DOWN INPUT ">
-                
                 //check if the user wants to walk down.
                 if (input.contains("DOWN")) {
                     //check if the user walks into a world boundary
@@ -419,8 +415,8 @@ public class Village extends PlayableMaps {
                     } else if (player.intersects_bottom(sprites_foreground.get(0))) {
                         //Reset the velocity
                         player.setVelocity(0, 0);
-                    //if no colission
-                    }else {
+                        //if no colission
+                    } else {
                         player.setVelocity(0, 100);
                     }
                     //set the direction the player walks
@@ -428,9 +424,8 @@ public class Village extends PlayableMaps {
                 }
 
                 // </editor-fold>
-                
                 if (menu_input.contains("E")) {
-                    if(game.checkExisting("axe")){
+                    if (game.checkExisting("axe")) {
                         if (player.intersect(sprites_interact.get(0))) {
                             for (String s : game.goTo(new Command(CommandWord.GO, "axe"))) {
                                 infobox.appendText("\n" + s + "\n");
@@ -455,23 +450,21 @@ public class Village extends PlayableMaps {
 
                 interact_gc.clearRect(0, 0, 1024, 512);
                 //render pickup items
-                if(game.checkExisting("axe")){
+                if (game.checkExisting("axe")) {
                     sprites_interact.get(0).render(interact_gc);
                 }
-                
+
                 //check if the user wants to see a menu.
-                if(menu_input.contains("ESCAPE")){
-                    if(!escmenu.isShown()){
+                if (menu_input.contains("ESCAPE")) {
+                    if (!escmenu.isShown()) {
                         root.getChildren().add(gameMenu);
                         escmenu.setShown(true);
                     }
-                }else{
-                    if(escmenu.isShown()){
-                        root.getChildren().remove(gameMenu);
-                        escmenu.setShown(false);
-                    }
+                } else if (escmenu.isShown()) {
+                    root.getChildren().remove(gameMenu);
+                    escmenu.setShown(false);
                 }
-                
+
                 //check if the user wants to see a menu.
                 if (menu_input.contains("I")) {
                     if (!playerinventory.isShown()) {
@@ -482,11 +475,11 @@ public class Village extends PlayableMaps {
                     root.getChildren().remove(menu);
                     playerinventory.setShown(false);
                 }
-                
+
                 //update the player on the minimaps position
                 miniMap.updateMiniMap_player(player.getPositionX(), player.getPositionY());
             }
-            
+
             /**
              * set the new scene depending on which room you entered
              */

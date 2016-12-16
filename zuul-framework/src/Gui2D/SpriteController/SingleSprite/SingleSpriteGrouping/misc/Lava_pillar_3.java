@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Lava_pillar_3  extends Abstract_sprite{
+public class Lava_pillar_3 extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(285);
         super.getSprite().setSpritePosY(309);
         super.getSprite().setSprite_width(30);

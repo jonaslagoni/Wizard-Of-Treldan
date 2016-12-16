@@ -12,11 +12,12 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  * @author jonas
  */
 public class Torch_wall extends Abstract_sprite {
+
     /**
      * Sets the torch wall sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(846);
         super.getSprite().setSpritePosY(8);
         super.getSprite().setSprite_width(16);

@@ -6,13 +6,13 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.Command;
-import TWoT_A1.CommandWord;
-import TWoT_A1.EquippableItem;
-import TWoT_A1.Item;
-import TWoT_A1.QuestItem;
-import TWoT_A1.TWoT;
-import TWoT_A1.UseableItem;
+import TWoT.Command;
+import TWoT.CommandWord;
+import TWoT.EquippableItem;
+import TWoT.Item;
+import TWoT.QuestItem;
+import TWoT.TWoT;
+import TWoT.UseableItem;
 import static java.lang.Math.round;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +34,7 @@ import javafx.scene.text.Text;
  * @author Lagoni
  */
 public class PlayerInventory {
+
     private AnchorPane menu;
     private Text weaponValue;
     private Text bootsValue;
@@ -50,51 +51,53 @@ public class PlayerInventory {
     private Text deffv;
     private Text attv;
     private Text gold;
-    
+
     /**
      * PlayerInventory object
-     * @param game 
+     *
+     * @param game TWoT
+     * @param infobox TextArea
      */
-    public PlayerInventory(TWoT game, TextArea infobox){
+    public PlayerInventory(TWoT game, TextArea infobox) {
         //since not shown from start set the boolean to false
         shown = false;
-        
+
         //create a new main AnchorPane for the components
         menu = new AnchorPane();
         menu.getStyleClass().add("inventory");
         menu.relocate(724, 0);
         menu.setPrefSize(300, 512);
-        
+
         /**
-         * Create a ProgressBar to indicate the players health.
-         * From start set the bar to playerhealth divided by 100
+         * Create a ProgressBar to indicate the players health. From start set
+         * the bar to playerhealth divided by 100
          */
-        pb = new ProgressBar(game.getPlayerHealth()/100);
+        pb = new ProgressBar(game.getPlayerHealth() / 100);
         pb.setPrefSize(292, 10);
         pb.relocate(4, 25);
         menu.getChildren().add(pb);
-        
+
         //Adding a Text component to indicate the player's attack value.
-        attv = new Text(""+round(game.getPlayerAtt()*100.0)/100.0);
+        attv = new Text("" + round(game.getPlayerAtt() * 100.0) / 100.0);
         attv.relocate(60, 64);
         attv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         attv.setFill(Color.WHITE);
         menu.getChildren().add(attv);
-        
+
         //Adding a Text component to indicate the player's deffensive value.
-        deffv = new Text(""+round(game.getPlayerDeff()*100.0)/100.0);
+        deffv = new Text("" + round(game.getPlayerDeff() * 100.0) / 100.0);
         deffv.relocate(216, 64);
         deffv.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         deffv.setFill(Color.WHITE);
         menu.getChildren().add(deffv);
-        
+
         //Adding a Text component to indicate the players gold
-        gold = new Text(""+game.getPlayerGold() + " Gold");
+        gold = new Text("" + game.getPlayerGold() + " Gold");
         gold.relocate(150, 475);
         gold.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         gold.setFill(Color.WHITE);
         menu.getChildren().add(gold);
-        
+
         //Adding a ListView containting AnchorPane's
         list = new ListView();
         //adding css style to the ListView
@@ -103,11 +106,11 @@ public class PlayerInventory {
         list.setPrefWidth(292);
         list.setPrefHeight(210);
         //adding the ObservableList which contains an achorpane to each Item in the player's inventory
-        items = FXCollections.observableArrayList ();
+        items = FXCollections.observableArrayList();
         //get the List of Items the player have in the inventory
         List<Item> items_ingame = game.getInventoryItems();
         //Go through each Item in the List
-        for(Item i: items_ingame){
+        for (Item i : items_ingame) {
             //create a new achorpane to each Item
             AnchorPane t = new AnchorPane();
             //Add a Text component with th name of the item
@@ -117,8 +120,8 @@ public class PlayerInventory {
             t.getChildren().add(itemName);
             //Add a Text component which indicated the type of item
             Text itemType;
-            if(i instanceof EquippableItem){
-                switch (((EquippableItem) i).geteItem()){
+            if (i instanceof EquippableItem) {
+                switch (((EquippableItem) i).geteItem()) {
                     case AMULET_SLOT:
                         itemType = new Text("Amulet");
                         break;
@@ -147,17 +150,17 @@ public class PlayerInventory {
                         itemType = new Text("Item");
                         break;
                 }
-            }else if(i instanceof UseableItem){
+            } else if (i instanceof UseableItem) {
                 itemType = new Text("UI");
-            }else if(i instanceof QuestItem){
+            } else if (i instanceof QuestItem) {
                 itemType = new Text("QI");
-            }else{
+            } else {
                 itemType = new Text("I");
             }
             itemType.setFill(Color.GOLDENROD);
             itemType.relocate(220, 3);
             t.getChildren().add(itemType);
-            
+
             //add the pane to the ObservableList
             items.add(t);
         }
@@ -165,64 +168,64 @@ public class PlayerInventory {
         list.setItems(items);
         //add the ListView to the pane
         menu.getChildren().add(list);
-        
+
         //create a Text component for each of the enum types of equippable items a player can have
         weaponValue = new Text("0");
         weaponValue.relocate(110, 117);
         weaponValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         weaponValue.setFill(Color.WHITE);
         menu.getChildren().add(weaponValue);
-        
+
         bootsValue = new Text("0");
         bootsValue.relocate(110, 144);
         bootsValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         bootsValue.setFill(Color.WHITE);
         menu.getChildren().add(bootsValue);
-        
+
         pantsValue = new Text("0");
         pantsValue.relocate(110, 171);
         pantsValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         pantsValue.setFill(Color.WHITE);
         menu.getChildren().add(pantsValue);
-        
+
         ringValue = new Text("0");
         ringValue.relocate(110, 198);
         ringValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         ringValue.setFill(Color.WHITE);
         menu.getChildren().add(ringValue);
-        
+
         chestValue = new Text("0");
         chestValue.relocate(260, 117);
         chestValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         chestValue.setFill(Color.WHITE);
         menu.getChildren().add(chestValue);
-        
+
         glovesValue = new Text("0");
         glovesValue.relocate(260, 144);
         glovesValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         glovesValue.setFill(Color.WHITE);
         menu.getChildren().add(glovesValue);
-        
+
         headValue = new Text("0");
         headValue.relocate(260, 171);
         headValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         headValue.setFill(Color.WHITE);
         menu.getChildren().add(headValue);
-        
+
         amuletValue = new Text("0");
         amuletValue.relocate(260, 198);
         amuletValue.setFont(Font.font("Verdana", javafx.scene.text.FontWeight.SEMI_BOLD, 15));
         amuletValue.setFill(Color.WHITE);
         menu.getChildren().add(amuletValue);
-        
+
         //return the HashMap of equipped items
         HashMap<EquippableItem.EItem, EquippableItem> eqItems = game.getEquippableItems();
         //go through each of the entries in the HashMap
-        for(java.util.Map.Entry<EquippableItem.EItem, EquippableItem> entry: eqItems.entrySet()){
+        for (java.util.Map.Entry<EquippableItem.EItem, EquippableItem> entry : eqItems.entrySet()) {
             //check if the entry is not null
-            if(null != entry.getKey()){
+            if (null != entry.getKey()) {
                 //check the enum type of the equipped item and set the corresponding value.
-                switch (entry.getKey()){
+                switch (entry.getKey()) {
                     case AMULET_SLOT:
                         amuletValue.setText("" + entry.getValue().getDefenseBuff());
                         break;
@@ -252,7 +255,7 @@ public class PlayerInventory {
                 }
             }
         }
-        
+
         Button use = new Button("Use");
         use.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -264,36 +267,50 @@ public class PlayerInventory {
                     for (String s : game.useItem(new Command(CommandWord.USE, text.getText()))) {
                         infobox.appendText(s + "\n");
                     }
-                    if(pre_room != game.getCurrentRoomId()){
-                        switch(game.getCurrentRoomId()){
-                            case 1: WizardOfTreldan.setCellarScene();
+                    if (pre_room != game.getCurrentRoomId()) {
+                        switch (game.getCurrentRoomId()) {
+                            case 1:
+                                WizardOfTreldan.setCellarScene();
                                 break;
-                            case 2: WizardOfTreldan.setVillageScene();
+                            case 2:
+                                WizardOfTreldan.setVillageScene();
                                 break;
-                            case 3: WizardOfTreldan.setHouse1Scene();
+                            case 3:
+                                WizardOfTreldan.setHouse1Scene();
                                 break;
-                            case 4: WizardOfTreldan.setHouse2Scene();
+                            case 4:
+                                WizardOfTreldan.setHouse2Scene();
                                 break;
-                            case 5: WizardOfTreldan.setHouse3Scene();
+                            case 5:
+                                WizardOfTreldan.setHouse3Scene();
                                 break;
-                            case 6: WizardOfTreldan.setForestScene();
+                            case 6:
+                                WizardOfTreldan.setForestScene();
                                 break;
-                            case 7: WizardOfTreldan.setWizardHouseScene();
+                            case 7:
+                                WizardOfTreldan.setWizardHouseScene();
                                 break;
-                            case 8: WizardOfTreldan.setCaveScene();
+                            case 8:
+                                WizardOfTreldan.setCaveScene();
                                 break;
-                            case 9: WizardOfTreldan.setGruulsLairScene();
+                            case 9:
+                                WizardOfTreldan.setGruulsLairScene();
                                 break;
-                            case 10: WizardOfTreldan.setClearingScene();
+                            case 10:
+                                WizardOfTreldan.setClearingScene();
                                 break;
-                            case 11: WizardOfTreldan.setDungeonScene();
+                            case 11:
+                                WizardOfTreldan.setDungeonScene();
                                 break;
-                            case 12: WizardOfTreldan.setLibraryScene();
+                            case 12:
+                                WizardOfTreldan.setLibraryScene();
                                 break;
-                            case 13: WizardOfTreldan.setEvilWizardsLairScene();
+                            case 13:
+                                WizardOfTreldan.setEvilWizardsLairScene();
                                 break;
-                            default: WizardOfTreldan.setMenuScene();
-                                break; 
+                            default:
+                                WizardOfTreldan.setMenuScene();
+                                break;
                         }
                     }
                     update(game);
@@ -305,7 +322,7 @@ public class PlayerInventory {
 
         Button equip = new Button("equip");
         equip.setOnAction(new EventHandler<ActionEvent>() {
-            @Override 
+            @Override
             public void handle(ActionEvent e) {
                 AnchorPane t = getSelected();
                 if (t != null) {
@@ -319,7 +336,7 @@ public class PlayerInventory {
         });
         equip.relocate(90, 470);
         menu.getChildren().add(equip);
-        
+
     }
 
     /**
@@ -328,19 +345,20 @@ public class PlayerInventory {
     public AnchorPane getMenu() {
         return menu;
     }
-    
+
     /**
      * Updates all relevent information.
-     * @param game 
+     *
+     * @param game TWoT
      */
-    public void update(TWoT game){
+    public void update(TWoT game) {
         /**
          * Update the equipped items
          */
         HashMap<EquippableItem.EItem, EquippableItem> eqItems = game.getEquippableItems();
-        for(java.util.Map.Entry<EquippableItem.EItem, EquippableItem> entry: eqItems.entrySet()){
-            if(null != entry.getKey()){
-                switch (entry.getKey()){
+        for (java.util.Map.Entry<EquippableItem.EItem, EquippableItem> entry : eqItems.entrySet()) {
+            if (null != entry.getKey()) {
+                switch (entry.getKey()) {
                     case AMULET_SLOT:
                         amuletValue.setText("" + entry.getValue().getDefenseBuff());
                         break;
@@ -370,21 +388,19 @@ public class PlayerInventory {
                 }
             }
         }
-        
-        /**
-         * Remove all the items in the ListView and then them again.
-         */
+
+        //Remove all the items in the ListView and then them again.
         items.removeAll(items);
         List<Item> items_ingame = game.getInventoryItems();
-        for(Item i: items_ingame){
+        for (Item i : items_ingame) {
             AnchorPane t = new AnchorPane();
             Text itemName = new Text(i.getItemName());
             itemName.setFill(Color.AZURE);
             itemName.relocate(0, 3);
             t.getChildren().add(itemName);
             Text itemType;
-            if(i instanceof EquippableItem){
-                switch (((EquippableItem) i).geteItem()){
+            if (i instanceof EquippableItem) {
+                switch (((EquippableItem) i).geteItem()) {
                     case AMULET_SLOT:
                         itemType = new Text("Amulet");
                         break;
@@ -413,11 +429,11 @@ public class PlayerInventory {
                         itemType = new Text("Item");
                         break;
                 }
-            }else if(i instanceof UseableItem){
+            } else if (i instanceof UseableItem) {
                 itemType = new Text("UI");
-            }else if(i instanceof QuestItem){
+            } else if (i instanceof QuestItem) {
                 itemType = new Text("QI");
-            }else{
+            } else {
                 itemType = new Text("I");
             }
             itemType.setFill(Color.GOLDENROD);
@@ -425,13 +441,13 @@ public class PlayerInventory {
             t.getChildren().add(itemType);
             items.add(t);
         }
-        
+
         //Update the healthbar
-        pb.setProgress(game.getPlayerHealth()/100);
-        
+        pb.setProgress(game.getPlayerHealth() / 100);
+
         //update the user's attack and deff values
-        attv.setText(""+Math.round(game.getPlayerAtt()*100.0)/100.0);
-        deffv.setText(""+Math.round(game.getPlayerDeff()*100.0)/100.0);
+        attv.setText("" + Math.round(game.getPlayerAtt() * 100.0) / 100.0);
+        deffv.setText("" + Math.round(game.getPlayerDeff() * 100.0) / 100.0);
     }
 
     /**
@@ -447,13 +463,14 @@ public class PlayerInventory {
     public void setShown(boolean shown) {
         this.shown = shown;
     }
-    
+
     /**
      * Returns the selected Pane from the ListView.
-     * @return 
+     *
+     * @return AnchorPane
      */
-    public AnchorPane getSelected(){
+    public AnchorPane getSelected() {
         return list.getSelectionModel().getSelectedItem();
     }
-    
+
 }

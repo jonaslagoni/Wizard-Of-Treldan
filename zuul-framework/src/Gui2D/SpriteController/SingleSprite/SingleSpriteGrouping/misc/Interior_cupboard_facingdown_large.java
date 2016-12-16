@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads B
  */
-public class Interior_cupboard_facingdown_large  extends Abstract_sprite{
+public class Interior_cupboard_facingdown_large extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(728);
         super.getSprite().setSpritePosY(579);
         super.getSprite().setSprite_width(32);

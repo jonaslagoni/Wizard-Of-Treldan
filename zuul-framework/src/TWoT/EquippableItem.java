@@ -3,30 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
+package TWoT;
 
 import java.io.Serializable;
-
 
 /**
  *
  * @author Lagoni
  */
-public class EquippableItem extends Item  implements Serializable{
-    
+public class EquippableItem extends Item implements Serializable {
+
     private double attackBuff;
     private double defenseBuff;
     private EItem eItem;
-    
+
     /**
-     * 
-     * @param itemName
-     * @param itemValue
-     * @param itemDescription
-     * @param attackBuff
-     * @param defenseBuff 
+     *
+     * @param itemName Name of the item
+     * @param itemValue Value of the item
+     * @param itemDescription Description of the item
+     * @param attackBuff Start attack buff
+     * @param defenseBuff Start deff buff
+     * @param eItem Type of this item
+     * @param roomDescription The description for when picked up
+     * @param itemId Id of the item
      */
-    public EquippableItem (String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff, EItem eItem, String roomDescription, int itemId){
+    public EquippableItem(String itemName, int itemValue, String itemDescription, double attackBuff, double defenseBuff, EItem eItem, String roomDescription, int itemId) {
         super.setItemName(itemName);
         super.setItemValue(itemValue);
         super.setItemDescription(itemDescription);
@@ -50,10 +52,14 @@ public class EquippableItem extends Item  implements Serializable{
     public void seteItem(EItem eItem) {
         this.eItem = eItem;
     }
-    
+
+    /**
+     * Item types
+     */
     public enum EItem {
         HEAD_SLOT, WEAPON_SLOT, CHEST_SLOT, LEG_SLOT, BOOT_SLOT, GLOVES_SLOT, RING_SLOT, AMULET_SLOT;
     }
+
     /**
      * @return the attackBuff
      */
@@ -82,5 +88,4 @@ public class EquippableItem extends Item  implements Serializable{
         this.defenseBuff = defenseBuff;
     }
 
-    
 }

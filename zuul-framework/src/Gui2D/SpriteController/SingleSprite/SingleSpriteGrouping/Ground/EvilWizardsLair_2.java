@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class EvilWizardsLair_2  extends Abstract_sprite{
+public class EvilWizardsLair_2 extends Abstract_sprite {
+
     /**
      * Sets the Castle_Stone_Floor sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(353);
         super.getSprite().setSpritePosY(215);
         super.getSprite().setSprite_width(32);

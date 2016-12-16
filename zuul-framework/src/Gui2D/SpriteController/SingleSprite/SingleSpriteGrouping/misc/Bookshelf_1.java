@@ -12,8 +12,9 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  * @author Mads
  */
 public class Bookshelf_1 extends Abstract_sprite {
+
     /**
-     * Sets the Tree1 Sprite 
+     * Sets the Tree1 Sprite
      */
     @Override
     public void setSprite() {
@@ -24,5 +25,5 @@ public class Bookshelf_1 extends Abstract_sprite {
         super.getSprite().setWidth(64);
         super.getSprite().setHeight(69);
     }
-    
+
 }

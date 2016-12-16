@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads
  */
-public class Big_Cave_Entrance extends Abstract_sprite{
+public class Big_Cave_Entrance extends Abstract_sprite {
+
     /**
      * Sets the Big_Cave_Entrance sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(114);
         super.getSprite().setSpritePosY(216);
         super.getSprite().setSprite_width(157);

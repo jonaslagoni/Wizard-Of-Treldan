@@ -5,7 +5,7 @@
  */
 package Gui2D.Maps;
 
-import TWoT_A1.TWoT;
+import TWoT.TWoT;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
  * @author jonas
  */
 public class MiniMap {
+
     //add all constant image files for minimaps
     private static final Image CELLARIMAGE = new Image("minimap/cellar.png");
     private static final Image VILLAGEIMAGE = new Image("minimap/village.png");
@@ -34,8 +35,8 @@ public class MiniMap {
     //global group for the canvases
     private Group root;
     //the two global graphics context's
-    private GraphicsContext miniMapContext; 
-    private GraphicsContext miniMap_playerContext; 
+    private GraphicsContext miniMapContext;
+    private GraphicsContext miniMap_playerContext;
     //set the width and height of the minimap
     private int width = 160, height = 64;
     //set the width and height of the player icon
@@ -44,52 +45,51 @@ public class MiniMap {
     private int posX = 0, posY = 0;
     //set the start ratio's for the width and height
     private double constWidthRatio = 0.0, constHeightRatio = 0.0;
-    
+
     //our global TWoT ref.
     private TWoT game;
-    
+
     /**
      * constructor for the minimap
-     * @param game 
+     *
+     * @param game TWoT
      */
-    public MiniMap(TWoT game){
+    public MiniMap(TWoT game) {
         //save the game object ref
         this.game = game;
         //init a new group object
         root = new Group();
-        
+
         //init the background canvas
         Canvas miniMap_background = new Canvas(width, height);
         miniMap_background.relocate(posX, posY);
         miniMapContext = miniMap_background.getGraphicsContext2D();
-        
+
         //init the player canvas
         Canvas miniMap_player = new Canvas(width, height);
         miniMap_player.relocate(posX, posY);
         miniMap_playerContext = miniMap_player.getGraphicsContext2D();
-        
+
         //add the canvases to the group
         root.getChildren().add(miniMap_background);
         root.getChildren().add(miniMap_player);
     }
-    
-    
 
     /**
      * Updates the minimap background canvas
-     * 
-     * @param playerCanvasWidth
-     * @param playerCanvasHeight 
+     *
+     * @param playerCanvasWidth double
+     * @param playerCanvasHeight double
      */
-    public void updateMiniMap(double playerCanvasWidth, double playerCanvasHeight){
+    public void updateMiniMap(double playerCanvasWidth, double playerCanvasHeight) {
         //get the ratio of width and height of the minimap and the player canvas
-        constWidthRatio = playerCanvasWidth/width;
-        constHeightRatio = playerCanvasHeight/height;
+        constWidthRatio = playerCanvasWidth / width;
+        constHeightRatio = playerCanvasHeight / height;
         //clear the background
         clearMiniMap_background();
-        
+
         //draw the new minimap
-        switch(game.getCurrentRoomId()){
+        switch (game.getCurrentRoomId()) {
             case 1:
                 this.setCellar();
                 break;
@@ -131,129 +131,131 @@ public class MiniMap {
                 break;
         }
     }
-    
+
     /**
      * Updates the minimap player position
-     * @param posX
-     * @param posY 
+     *
+     * @param posX double
+     * @param posY double
      */
-    public void updateMiniMap_player(double posX, double posY){
+    public void updateMiniMap_player(double posX, double posY) {
         //first clear the minimap
         clearMiniMap_player();
         //draw a new image
-        miniMap_playerContext.drawImage(PLAYERIMAGE, (posX-16)/constWidthRatio, (posY-16)/constHeightRatio, width_player, height_player);
+        miniMap_playerContext.drawImage(PLAYERIMAGE, (posX - 16) / constWidthRatio, (posY - 16) / constHeightRatio, width_player, height_player);
     }
-    
+
     /**
      * Returns the group of canvases in the minimap
-     * @return 
+     *
+     * @return Group
      */
-    public Group getMinimap(){
+    public Group getMinimap() {
         return root;
     }
-    
+
     /**
      * clears the background canvas
      */
-    private void clearMiniMap_background(){
+    private void clearMiniMap_background() {
         miniMapContext.clearRect(posX, posY, width, height);
     }
-    
+
     /**
-     *  Clears the player canvas
+     * Clears the player canvas
      */
-    private void clearMiniMap_player(){
+    private void clearMiniMap_player() {
         miniMap_playerContext.clearRect(0, 0, width, height);
     }
-    
+
     /**
      * Sets the cellar minimap image
      */
-    private void setCellar(){
+    private void setCellar() {
         miniMapContext.drawImage(CELLARIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the village minimap image
      */
-    private void setVillage(){
+    private void setVillage() {
         miniMapContext.drawImage(VILLAGEIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the house1 minimap image
      */
-    private void setHouse1(){
+    private void setHouse1() {
         miniMapContext.drawImage(HOUSE1IMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the house2 minimap image
      */
-    private void setHouse2(){
+    private void setHouse2() {
         miniMapContext.drawImage(HOUSE2IMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the house3 minimap image
      */
-    private void setHouse3(){
+    private void setHouse3() {
         miniMapContext.drawImage(HOUSE3IMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the forrest minimap image
      */
-    private void setForrest(){
+    private void setForrest() {
         miniMapContext.drawImage(FORRESTIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the wizard house minimap image
      */
-    private void setWizardHouse(){
+    private void setWizardHouse() {
         miniMapContext.drawImage(WIZARDHOUSEIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the cave minimap image
      */
-    private void setCave(){
+    private void setCave() {
         miniMapContext.drawImage(CAVEIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the lair minimap image
      */
-    private void setLair(){
+    private void setLair() {
         miniMapContext.drawImage(LAIRIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the lair minimap image
      */
-    private void setClearing(){
+    private void setClearing() {
         miniMapContext.drawImage(CLEARINGIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the dungeon minimap image
      */
-    private void setDungeon(){
+    private void setDungeon() {
         miniMapContext.drawImage(DUNGEONIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the library minimap image
      */
-    private void setLibrary(){
+    private void setLibrary() {
         miniMapContext.drawImage(LIBRARYIMAGE, 0, 0, width, height);
     }
-    
+
     /**
      * Sets the Wizard lair minimap image
      */
-    private void setWizardLair(){
+    private void setWizardLair() {
         miniMapContext.drawImage(WIZARDLAIRIMAGE, 0, 0, width, height);
     }
 }

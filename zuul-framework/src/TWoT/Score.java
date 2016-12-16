@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
+package TWoT;
 
 /**
  *
  * @author Mads
  */
 public class Score {
-    
+
     private int score;
     private int time;
     private String name;
-    
-    public Score (String name, int score, int time) {
+
+    public Score(String name, int score, int time) {
         this.name = name;
         this.score = score;
         this.time = time;
     }
-    
+
     /**
      * @return the score
      */
@@ -41,5 +41,5 @@ public class Score {
     public String getName() {
         return name;
     }
-    
+
 }

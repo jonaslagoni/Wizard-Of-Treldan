@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author Mads B
  */
-public class Village_woman  extends Abstract_sprite{
+public class Village_woman extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(162);
         super.getSprite().setSpritePosY(939);
         super.getSprite().setSprite_width(25);

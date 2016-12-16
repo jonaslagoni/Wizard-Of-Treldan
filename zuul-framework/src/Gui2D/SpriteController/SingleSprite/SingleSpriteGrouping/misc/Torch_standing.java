@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Torch_standing extends Abstract_sprite{
+public class Torch_standing extends Abstract_sprite {
+
     /**
      * Sets the Torch standing sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(877);
         super.getSprite().setSpritePosY(16);
         super.getSprite().setSprite_width(8);

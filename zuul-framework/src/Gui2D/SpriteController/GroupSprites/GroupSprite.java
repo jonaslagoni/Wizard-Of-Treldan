@@ -9,34 +9,39 @@ import Gui2D.SpriteController.SingleSprite.SingleSprite;
 import Gui2D.SpriteController.Sprite;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Abstract class for GroupSprites
+ *
  * @author jonas
  */
-public abstract class GroupSprite extends Sprite{
+public abstract class GroupSprite extends Sprite {
+
     private List<SingleSprite> sprites;
-    
+
     /**
      * Creates the object from a single SingleSprites
-     * @param sprites 
+     *
+     * @param sprites SingleSprite
      */
     public GroupSprite(SingleSprite sprites) {
         this.sprites = new ArrayList();
         this.sprites.add(sprites);
         super.setPosition(0, 0);
     }
-    
+
     /**
      * Creates the object from a list of SingleSprites
-     * @param sprites 
+     *
+     * @param sprites List of SingleSprite
      */
     public GroupSprite(List<SingleSprite> sprites) {
         this.sprites = sprites;
         super.setPosition(0, 0);
     }
-    
+
     /**
-     * @return the sprites
+     * @return the list of SingleSprite
      */
     public List<SingleSprite> getSprites() {
         return sprites;

@@ -11,15 +11,14 @@ import Gui2D.SpriteController.Sprite;
  *
  * @author Lagoni
  */
-public abstract class AbstractSprite extends Sprite{
-    
-    
+public abstract class AbstractSprite extends Sprite {
+
     /*
      * The sprite width and height this is not the width and height of the image displayed.
      * This is the single sprite width and height in the sprite sheet
      */
     private double sprite_width = 64;
-    private double sprite_height = 64;    
+    private double sprite_height = 64;
 
     /**
      * @param sprite_width the sprite_width to set
@@ -48,13 +47,14 @@ public abstract class AbstractSprite extends Sprite{
     public double getSprite_height() {
         return sprite_height;
     }
-    
+
     /**
      * Set the spriteSize, both width and height
-     * @param sprite_width
-     * @param sprite_height 
+     *
+     * @param sprite_width width of the sprite
+     * @param sprite_height height of the sprite
      */
-    public void setSpriteSize(double sprite_width, double sprite_height){
+    public void setSpriteSize(double sprite_width, double sprite_height) {
         this.setSprite_height(sprite_height);
         this.setSprite_width(sprite_width);
         updateBoundary();

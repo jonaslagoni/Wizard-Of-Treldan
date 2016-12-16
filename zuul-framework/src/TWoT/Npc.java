@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
+package TWoT;
 
 import java.io.Serializable;
 
@@ -11,20 +11,20 @@ import java.io.Serializable;
  *
  * @author Lagoni
  */
-public class Npc extends Interior  implements Serializable{
+public class Npc extends Interior implements Serializable {
+
     private String name;
     private Item itemToGive, itemToGet;
-    private boolean passiv;
     private int npcID;
+
     /**
-     * Constructor.
-     * @param name
-     * @param dialog
-     * @param passiv 
+     * This is used to representate an NPC
+     *
+     * @param name the name for this
+     * @param npcID The ID for this object
      */
-    public Npc(String name, boolean passiv, int npcID){
+    public Npc(String name, int npcID) {
         this.name = name;
-        this.passiv = passiv;
         this.npcID = npcID;
     }
 
@@ -34,8 +34,6 @@ public class Npc extends Interior  implements Serializable{
     public String getName() {
         return name;
     }
-
-
 
     /**
      * @return the itemToGive
@@ -66,20 +64,6 @@ public class Npc extends Interior  implements Serializable{
     }
 
     /**
-     * @return the passiv
-     */
-    public boolean isPassiv() {
-        return passiv;
-    }
-
-    /**
-     * @param passiv the passiv to set
-     */
-    public void setPassiv(boolean passiv) {
-        this.passiv = passiv;
-    }
-
-    /**
      * @return the npcID
      */
     public int getNpcID() {
@@ -92,5 +76,5 @@ public class Npc extends Interior  implements Serializable{
     public void setNpcID(int npcID) {
         this.npcID = npcID;
     }
-    
+
 }

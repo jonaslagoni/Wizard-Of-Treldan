@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Big_Tree_Stump extends Abstract_sprite{
+public class Big_Tree_Stump extends Abstract_sprite {
+
     /**
      * Sets the Big_Tree_Stump sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(1102);
         super.getSprite().setSpritePosY(98);
         super.getSprite().setSprite_width(50);

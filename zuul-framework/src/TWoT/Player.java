@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
+package TWoT;
 
-import TWoT_A1.EquippableItem.EItem;
+import TWoT.EquippableItem.EItem;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +15,8 @@ import java.util.Map;
  *
  * @author Lagoni
  */
-public class Player implements Serializable{
+public class Player implements Serializable {
+
     private String playerName;
     private double attValue;
     private double defValue;
@@ -23,60 +24,94 @@ public class Player implements Serializable{
     private int gold = 0;
     private int highscore = 0;
     private Inventory playersInventory;
-    
+
     /**
-     * 
+     * Empty player
      */
-    public Player(){
-        
+    public Player() {
+
     }
-    
+
     /**
-     * 
-     * @param playerName
-     * @param attValue
-     * @param defValue
-     * @param health
-     * @param playersInventory 
+     * A player
+     *
+     * @param playerName the players name
+     * @param attValue start attack value
+     * @param defValue start deff value
+     * @param health start health
+     * @param playersInventory the start inventory
      */
-    public Player(String playerName, double attValue, double defValue, int health, Inventory playersInventory){
+    public Player(String playerName, double attValue, double defValue, int health, Inventory playersInventory) {
         this.playerName = playerName;
         this.attValue = attValue;
         this.defValue = defValue;
         this.health = health;
         this.playersInventory = playersInventory;
     }
-    
-    public Player(String playerName, double attValue, double defValue, int health){
+
+    /**
+     * A player
+     *
+     * @param playerName the players name
+     * @param attValue start attack value
+     * @param defValue start deff value
+     * @param health start health
+     */
+    public Player(String playerName, double attValue, double defValue, int health) {
         this.playerName = playerName;
         this.attValue = attValue;
         this.defValue = defValue;
         this.health = health;
     }
-    
-    public void addItemToInventory(Item i){
+
+    /**
+     * adds an item to the inventory
+     *
+     * @param i Item
+     */
+    public void addItemToInventory(Item i) {
         playersInventory.addInventoryItem(i);
     }
-    public void addItemToEquippableInventory(EquippableItem i, Player p){
+
+    /**
+     * Equips an item to a player
+     *
+     * @param i EquippableItem to be equipped
+     * @param p The player to equip item on
+     */
+    public void addItemToEquippableInventory(EquippableItem i, Player p) {
         playersInventory.addEquipItem(i, p);
     }
-    public void equipItem(EquippableItem i, Player p){
-        playersInventory.equipItem(i, p);
-    }
-    public void removeItemToEquippableInventory(EquippableItem i){
+
+    /**
+     * Removes an item from inventory and puts in equipped inventory
+     *
+     * @param i EquippableItem
+     */
+    public void removeItemToEquippableInventory(EquippableItem i) {
         playersInventory.removeEquipItem(i);
         this.removeAtt(i.getAttackBuff());
         this.removeDef(i.getDefenseBuff());
     }
-    
-    public List<Item> getInventoryItems(){
+
+    /**
+     * Returns the list of items in the inventory-
+     *
+     * @return List of items
+     */
+    public List<Item> getInventoryItems() {
         return playersInventory.getInventoryItems();
     }
-    
-    public HashMap<EquippableItem.EItem, EquippableItem> getEquippableItems(){
+
+    /**
+     * returns the current equipped items
+     *
+     * @return Hashmap of equiped items
+     */
+    public HashMap<EquippableItem.EItem, EquippableItem> getEquippableItems() {
         return playersInventory.getEquippableItem();
     }
-            
+
     /**
      * @return the monsterName
      */
@@ -125,8 +160,13 @@ public class Player implements Serializable{
     public void setHealth(int health) {
         this.health = health;
     }
-    
-    public void regenHealth(int healthToRegen){
+
+    /**
+     * add health to the current health
+     *
+     * @param healthToRegen to add to current health
+     */
+    public void regenHealth(int healthToRegen) {
         this.health += healthToRegen;
     }
 
@@ -145,61 +185,56 @@ public class Player implements Serializable{
     }
 
     /**
-     * @param gold the gold to set
-     */
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-    
-    /**
-     * 
-     * @param att 
+     * adds attack to the current attack value
+     *
+     * @param att double
      */
     public void addAtt(double att) {
         this.attValue += att;
     }
-    
+
     /**
-     * 
-     * @param att 
+     * removes attack value
+     *
+     * @param att double
      */
     public void removeAtt(double att) {
         this.attValue -= att;
     }
 
-    
     /**
-     * 
-     * @param def 
+     * adds deff value to current
+     *
+     * @param def double
      */
     public void addDef(double def) {
         this.defValue += def;
     }
-    
+
     /**
-     * 
-     * @param def 
+     * removes def from current def value
+     *
+     * @param def double
      */
     public void removeDef(double def) {
         this.defValue -= def;
     }
-    
-    
+
     /**
-     * 
-     * @param gold 
+     * adds gold to current gold
+     *
+     * @param gold int
      */
     public void addGold(int gold) {
         this.gold += gold;
     }
-    
-    
-    
+
     /**
-     * 
-     * @param playerName 
+     * Sets the playername for this object
+     *
+     * @param playerName String
      */
-    public void setPlayerName(String playerName){
+    public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 
@@ -208,14 +243,14 @@ public class Player implements Serializable{
      */
     public int getHighscore() {
         int value = 0;
-        for(Item i: playersInventory.getInventoryItems()){
+        for (Item i : playersInventory.getInventoryItems()) {
             value = value + i.getItemValue();
         }
-        
-        for(Map.Entry<EItem, EquippableItem> i : playersInventory.getEquippableItem().entrySet()){
+
+        for (Map.Entry<EItem, EquippableItem> i : playersInventory.getEquippableItem().entrySet()) {
             value = value + i.getValue().getItemValue();
         }
-        
+
         return gold + value + highscore;
     }
 
@@ -225,16 +260,31 @@ public class Player implements Serializable{
     public void setHighscore(int highscore) {
         this.highscore = highscore;
     }
-    
-    public void addHighscore(int h){
+
+    /**
+     * Highscore to add to the player
+     *
+     * @param h int highscore
+     */
+    public void addHighscore(int h) {
         this.highscore = this.highscore + h;
     }
-    
-    public void removeHighscore(int h){
+
+    /**
+     * Removes highscore from current
+     *
+     * @param h int highscore
+     */
+    public void removeHighscore(int h) {
         this.highscore = this.highscore - h;
     }
-    
-    public void removeInventoryItem(Item i){
+
+    /**
+     * Item to be removed from the players inventory.
+     *
+     * @param i Item
+     */
+    public void removeInventoryItem(Item i) {
         playersInventory.removeInventoryItem(i);
     }
 }

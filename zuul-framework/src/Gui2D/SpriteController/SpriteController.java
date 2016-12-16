@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
  * @author jonas
  */
 public class SpriteController {
+
     //The spritesheet used for all the sprites
     private static final Image SPRITESHEET = new Image("spriteSheet.png");
     private static final Image PLAYER_SPRITESHEET = new Image("player.png");
@@ -22,19 +23,19 @@ public class SpriteController {
     private Misc_sprites misc_sprites;
     //all structure sprites
     private Structure_sprites structure_sprites;
-    
+
     /**
      * Inits all sprites in game
      */
-    public SpriteController(){
+    public SpriteController() {
         //Lets start by init every single sprite in the game so everything is ready to use
         initSingleSprites();
     }
-    
+
     /**
      * Inits all group sprite objects
      */
-    public void initSingleSprites(){
+    public void initSingleSprites() {
         ground_sprite = new Ground_sprites();
         misc_sprites = new Misc_sprites();
         structure_sprites = new Structure_sprites();
@@ -53,7 +54,7 @@ public class SpriteController {
     public Misc_sprites getMisc_sprites() {
         return misc_sprites;
     }
-    
+
     /**
      * @return the SPRITESHEET
      */

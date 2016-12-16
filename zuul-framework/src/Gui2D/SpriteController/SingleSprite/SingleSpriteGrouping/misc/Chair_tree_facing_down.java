@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Chair_tree_facing_down  extends Abstract_sprite{
+public class Chair_tree_facing_down extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(690);
         super.getSprite().setSpritePosY(252);
         super.getSprite().setSprite_width(24);

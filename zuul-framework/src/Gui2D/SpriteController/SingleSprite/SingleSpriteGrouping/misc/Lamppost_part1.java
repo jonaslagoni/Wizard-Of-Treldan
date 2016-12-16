@@ -11,17 +11,18 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Lamppost_part1  extends Abstract_sprite{
+public class Lamppost_part1 extends Abstract_sprite {
+
     /**
      * Sets the Candle sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(155);
-        super.getSprite().setSpritePosY(709+70);
+        super.getSprite().setSpritePosY(709 + 70);
         super.getSprite().setSprite_width(20);
-        super.getSprite().setSprite_height(111-70);
+        super.getSprite().setSprite_height(111 - 70);
         super.getSprite().setWidth(20);
-        super.getSprite().setHeight(111-70);
+        super.getSprite().setHeight(111 - 70);
     }
 }

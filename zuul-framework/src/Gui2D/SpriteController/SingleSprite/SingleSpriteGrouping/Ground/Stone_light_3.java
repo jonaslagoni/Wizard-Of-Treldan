@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Stone_light_3  extends Abstract_sprite{
+public class Stone_light_3 extends Abstract_sprite {
+
     /**
      * Sets the sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(74);
         super.getSprite().setSpritePosY(8);
         super.getSprite().setSprite_width(32);

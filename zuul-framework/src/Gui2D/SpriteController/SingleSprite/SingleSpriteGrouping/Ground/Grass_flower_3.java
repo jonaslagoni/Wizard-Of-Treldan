@@ -11,12 +11,13 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  *
  * @author jonas
  */
-public class Grass_flower_3 extends Abstract_sprite{
+public class Grass_flower_3 extends Abstract_sprite {
+
     /**
      * Sets the sprite
      */
     @Override
-    public void setSprite(){
+    public void setSprite() {
         super.getSprite().setSpritePosX(282);
         super.getSprite().setSpritePosY(41);
         super.getSprite().setSprite_width(32);

@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
-
+package TWoT;
 
 /**
  *
  * @author Mathias
  */
 public class Fight {
-    
+
     private Player player = new Player();
     private Monster monster = new Monster();
     private int playerRoll;
@@ -19,18 +18,18 @@ public class Fight {
     private int damage;
     private boolean isDone;
     private String winner;
-    
+
     /**
-     * 
-     * @param winner
-     * @param player
-     * @param monster
-     * @param playerRoll
-     * @param monsterRoll
-     * @param damage
-     * @param isDone 
+     *
+     * @param winner String winner of the round
+     * @param player the player object
+     * @param monster Monster object
+     * @param playerRoll what the player rolled
+     * @param monsterRoll what the monster rolled
+     * @param damage what the damage was
+     * @param isDone is the match over
      */
-    public Fight(String winner, Player player, Monster monster, int playerRoll, int monsterRoll, int damage, boolean isDone){
+    public Fight(String winner, Player player, Monster monster, int playerRoll, int monsterRoll, int damage, boolean isDone) {
         this.winner = winner;
         this.player = player;
         this.monster = monster;
@@ -39,66 +38,61 @@ public class Fight {
         this.damage = damage;
         this.isDone = isDone;
     }
-    
+
     /**
-     * 
-     * @return 
+     * @return Player
      */
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
-    
+
     /**
-     * 
-     * @return 
+     * @return String winner
      */
-    public String winner(){
+    public String winner() {
         return winner;
     }
-    
+
     /**
-     * 
-     * @return 
+     * @return Monster
      */
-    public Monster getMonster(){
+    public Monster getMonster() {
         return monster;
     }
-    
+
     /**
-     * 
-     * @return 
+     * @return Monster roll
      */
-    public int getMonsterRoll(){
+    public int getMonsterRoll() {
         return monsterRoll;
     }
-    
+
     /**
-     * 
-     * @return 
+     * @return Player roll
      */
-    public int getPlayerRoll(){
+    public int getPlayerRoll() {
         return playerRoll;
     }
-    
-    
+
     /**
-     * 
-     * @return 
+     * @return damage done
      */
-    public int getDamage(){
+    public int getDamage() {
         return damage;
     }
-    
+
     /**
-     * 
-     * @return 
+     * @return is the match over
      */
-    public boolean isDone(){
+    public boolean isDone() {
         return isDone;
     }
-    
-    
-    public String toString(){
+
+    /**
+     * @return String
+     */
+    @Override
+    public String toString() {
         return "** " + winner + " dealt " + damage + " damage.";
     }
 }

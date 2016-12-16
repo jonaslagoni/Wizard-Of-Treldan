@@ -12,6 +12,7 @@ import Gui2D.SpriteController.SingleSprite.SingleSpriteGrouping.Abstract_sprite;
  * @author Mads
  */
 public class Cave_Hole extends Abstract_sprite {
+
     /**
      * Sets the Cave_Hole sprite
      */

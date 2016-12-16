@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TWoT_A1;
+package TWoT;
 
 import java.io.Serializable;
 
@@ -11,6 +11,6 @@ import java.io.Serializable;
  *
  * @author Lagoni
  */
-public abstract class Interior implements Serializable{
-    
+public abstract class Interior implements Serializable {
+
 }

@@ -12,11 +12,13 @@ import javafx.scene.control.TextArea;
  * @author Lagoni
  */
 public class Infobox {
+
     /**
      * Returns the TextArea used to indicate actions in the game
+     *
      * @return TextArea infobox
      */
-    public static TextArea getInfoBox(){
+    public static TextArea getInfoBox() {
         TextArea infobox = new TextArea();
         infobox.prefHeight(200);
         infobox.prefWidth(150);

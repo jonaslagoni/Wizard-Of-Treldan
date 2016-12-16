@@ -21,12 +21,16 @@ import javafx.stage.Stage;
  * @author Lagoni
  */
 public class StartMe extends Application {
-    
+
+    /**
+     * Sets the stage
+     * @param primaryStage Stage
+     */
     @Override
     public void start(Stage primaryStage) {
-        
+
         primaryStage.getIcons().add(new Image("icon.png"));
-        
+
         //create a new button for picking the 2d gui game
         Button Gui2D = new Button();
         //set the size of the button
@@ -59,8 +63,7 @@ public class StartMe extends Application {
                 Gui2D.setStyle("-fx-background-image: url('/GuiSelection/buttonBackground_GUI2D.png')");
             }
         });
-        
-        
+
         //create a new button for picking the text based gui game
         Button GuiText = new Button();
         //set the size of the button
@@ -94,8 +97,7 @@ public class StartMe extends Application {
         });
         //relocate the button
         GuiText.relocate(300, 0);
-        
-        
+
         //create a new button for picking the button based gui game
         Button GuiButtons = new Button();
         //set the size of the button
@@ -129,20 +131,17 @@ public class StartMe extends Application {
         });
         //relocate the button
         GuiButtons.relocate(600, 0);
-        
-        
-        
-        
+
         //create a new group object to hold all our buttons
         Group root = new Group();
         //add all the buttons
         root.getChildren().add(Gui2D);
         root.getChildren().add(GuiText);
         root.getChildren().add(GuiButtons);
-        
+
         //Create a new Scene object from our group of buttons
         Scene scene = new Scene(root, 900, 539);
-        
+
         //set the title of the stage
         primaryStage.setTitle("Wizard of Treldan");
         //set the size of the stage
@@ -160,5 +159,5 @@ public class StartMe extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }
-    
+
 }

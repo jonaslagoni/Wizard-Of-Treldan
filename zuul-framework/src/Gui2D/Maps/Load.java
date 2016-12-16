@@ -6,7 +6,7 @@
 package Gui2D.Maps;
 
 import Gui2D.WizardOfTreldan;
-import TWoT_A1.TWoT;
+import TWoT.TWoT;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -40,48 +40,49 @@ import javafx.scene.text.Text;
  *
  * @author jonas
  */
-public class Load implements Map{
+public class Load implements Map {
+
     private Text status;
     private boolean canLoad;
     private final Scene SCENE;
-    
+
     /**
      * Creates the load scene
      */
-    public Load(){
+    public Load() {
         Group menuGroup = new Group();
-        Scene menuScene = new Scene( menuGroup );
-        
+        Scene menuScene = new Scene(menuGroup);
+
         //add a canvas for the background
-        Canvas canvas_movealbe_sprites = new Canvas( 1024, 512 );
+        Canvas canvas_movealbe_sprites = new Canvas(1024, 512);
         canvas_movealbe_sprites.relocate(0, 0);
         GraphicsContext background_context = canvas_movealbe_sprites.getGraphicsContext2D();
         //draw out image to the GraphicsContext.
         background_context.drawImage(new Image("load_background.png"), 0, 0);
-        
+
         Pane anchorpane = new Pane();
         anchorpane.setPrefSize(1024, 512);
-        
+
         status = new Text();
         status.relocate(50, 350);
         status.setFill(Color.RED);
         anchorpane.getChildren().add(status);
         /**
-         * add listView with anchorpanels 
-         * Adding Text component and using it for name of the file.
-         * Then getting that child when wanted to get the selected file.
+         * add listView with anchorpanels Adding Text component and using it for
+         * name of the file. Then getting that child when wanted to get the
+         * selected file.
          */
         ListView<AnchorPane> list = new ListView();
         list.relocate(170, 140);
         list.setPrefWidth(300);
         list.setPrefHeight(210);
-        
+
         //adding observableList with type AnchorPane
-        ObservableList<AnchorPane> loads = FXCollections.observableArrayList ();
+        ObservableList<AnchorPane> loads = FXCollections.observableArrayList();
         //Getting an arraylist of load files,
         List<String> loadList = getLoadList();
         //Go through each String in the list
-        for(String i: loadList){
+        for (String i : loadList) {
             //add a new anchorpane with a Text component to the ObservableList
             AnchorPane t = new AnchorPane();
             Text itemName = new Text(i);
@@ -93,116 +94,134 @@ public class Load implements Map{
         list.setItems(loads);
         //add the ListView to the pane.
         anchorpane.getChildren().add(list);
-        
-        
+
         /**
-         * Adding a new button component which loads the selected saved game from the ListView.
+         * Adding a new button component which loads the selected saved game
+         * from the ListView.
          */
         Button load = new Button();
         load.setText("Load Selected Game");
         load.setFont(new Font("Tahoma", 20));
         load.setPrefSize(250, 50);
         load.relocate(100, 400);
-        load.addEventHandler(MouseEvent.MOUSE_CLICKED, 
-            new EventHandler<MouseEvent>() {
-                @Override 
-                public void handle(MouseEvent e) {
-                    Platform.runLater(new Runnable() {
-                        @Override public void run() {
-                            //get the game from the selected save
-                            TWoT loadedGame = getLoad((((Text)list.getSelectionModel().getSelectedItem().getChildren().get(0)).getText()));
-                            //set the game to the loaded instance
-                            WizardOfTreldan.setGame(loadedGame);
-                            //check which scene the player is in.
-                            if(canLoad){
-                                switch(loadedGame.getCurrentRoomId()){
-                                    case 1: WizardOfTreldan.setCellarScene();
-                                        break;
-                                    case 2: WizardOfTreldan.setVillageScene();
-                                        break;
-                                    case 3: WizardOfTreldan.setHouse1Scene();
-                                        break;
-                                    case 4: WizardOfTreldan.setHouse2Scene();
-                                        break;
-                                    case 5: WizardOfTreldan.setHouse3Scene();
-                                        break;
-                                    case 6: WizardOfTreldan.setForestScene();
-                                        break;
-                                    case 7: WizardOfTreldan.setWizardHouseScene();
-                                        break;
-                                    case 8: WizardOfTreldan.setCaveScene();
-                                        break;
-                                    case 9: WizardOfTreldan.setGruulsLairScene();
-                                        break;
-                                    case 10: WizardOfTreldan.setClearingScene();
-                                        break;
-                                    case 11: WizardOfTreldan.setDungeonScene();
-                                        break;
-                                    case 12: WizardOfTreldan.setLibraryScene();
-                                        break;
-                                    case 13: WizardOfTreldan.setEvilWizardsLairScene();
-                                        break;
-                                    default: WizardOfTreldan.setMenuScene();
-                                        break; 
-                                }
+        load.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        //get the game from the selected save
+                        TWoT loadedGame = getLoad((((Text) list.getSelectionModel().getSelectedItem().getChildren().get(0)).getText()));
+                        //set the game to the loaded instance
+                        WizardOfTreldan.setGame(loadedGame);
+                        //check which scene the player is in.
+                        if (canLoad) {
+                            switch (loadedGame.getCurrentRoomId()) {
+                                case 1:
+                                    WizardOfTreldan.setCellarScene();
+                                    break;
+                                case 2:
+                                    WizardOfTreldan.setVillageScene();
+                                    break;
+                                case 3:
+                                    WizardOfTreldan.setHouse1Scene();
+                                    break;
+                                case 4:
+                                    WizardOfTreldan.setHouse2Scene();
+                                    break;
+                                case 5:
+                                    WizardOfTreldan.setHouse3Scene();
+                                    break;
+                                case 6:
+                                    WizardOfTreldan.setForestScene();
+                                    break;
+                                case 7:
+                                    WizardOfTreldan.setWizardHouseScene();
+                                    break;
+                                case 8:
+                                    WizardOfTreldan.setCaveScene();
+                                    break;
+                                case 9:
+                                    WizardOfTreldan.setGruulsLairScene();
+                                    break;
+                                case 10:
+                                    WizardOfTreldan.setClearingScene();
+                                    break;
+                                case 11:
+                                    WizardOfTreldan.setDungeonScene();
+                                    break;
+                                case 12:
+                                    WizardOfTreldan.setLibraryScene();
+                                    break;
+                                case 13:
+                                    WizardOfTreldan.setEvilWizardsLairScene();
+                                    break;
+                                default:
+                                    WizardOfTreldan.setMenuScene();
+                                    break;
                             }
                         }
-                    });
-                }
+                    }
+                });
+            }
         });
         //add the button to the pane.
         anchorpane.getChildren().add(load);
-        
-        
+
         /**
-         * Adding a cancel button to return to the main menu.
-         * This just sets the scene to the menu.
+         * Adding a cancel button to return to the main menu. This just sets the
+         * scene to the menu.
          */
         Button cancel = new Button();
         cancel.setText("Cancel");
         cancel.setFont(new Font("Tahoma", 20));
         cancel.setPrefSize(150, 50);
         cancel.relocate(400, 400);
-        cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, 
-            new EventHandler<MouseEvent>() {
-                @Override 
-                public void handle(MouseEvent e) {
-                    Platform.runLater(new Runnable() {
-                        @Override public void run() {
-                            WizardOfTreldan.setMenuScene();
-                        }
-                    });
-                }
+        cancel.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        WizardOfTreldan.setMenuScene();
+                    }
+                });
+            }
         });
         //add the button to the pane.
         anchorpane.getChildren().add(cancel);
-        
+
         //add the canvas(background) to the scene group.
-        menuGroup.getChildren().add( canvas_movealbe_sprites );
+        menuGroup.getChildren().add(canvas_movealbe_sprites);
         //add the pane to the scene group.
         menuGroup.getChildren().add(anchorpane);
-        
+
         //Set the global
         SCENE = menuScene;
     }
+
     /**
      * Returns the scene for the load menu.
+     *
      * @return Scene
      */
     @Override
-    public Scene getScene(){
+    public Scene getScene() {
         return SCENE;
     }
-    
+
     /**
      * Returns the List of Strings of saved files.
+     *
      * @return List of Strings
      */
-    private List<String> getLoadList(){
+    private List<String> getLoadList() {
         //create empty arraylist.
         List<String> loadList = new ArrayList();
         //try to get each file in the directory "loads" by using Files.walk
-        try{
+        try {
             //Go through each Path in the Stream.
             Stream<Path> paths = Files.walk(Paths.get("loads/"));
             paths.forEach(filePath -> {
@@ -218,13 +237,14 @@ public class Load implements Map{
         //return the List
         return loadList;
     }
-    
+
     /**
      * Returns the Game file corresponding to which file the user selected
+     *
      * @param filename
      * @return TWoT game file
      */
-    private TWoT getLoad(String filename){
+    private TWoT getLoad(String filename) {
         //Try loading the file. 
         try {
             //Read from the stored file in folder "loads"
@@ -240,11 +260,11 @@ public class Load implements Map{
             //returns the gamefile
             return twot;
         } catch (FileNotFoundException e) {
-                status.setText("File was not found...");
+            status.setText("File was not found...");
         } catch (IOException e) {
-                status.setText("This save is a wrong version of the game..");
+            status.setText("This save is a wrong version of the game..");
         } catch (ClassNotFoundException e) {
-                status.setText("The game was not found.");
+            status.setText("The game was not found.");
         }
         canLoad = false;
         return null;

@@ -17,39 +17,40 @@ import java.util.List;
  *
  * @author Mads B
  */
-public class House1_sprites{
+public class House1_sprites {
+
     private SpriteController world;
     private final List<Sprite> house1_background_sprites;
     private final List<Sprite> house1_monster_sprites;
     private Sprite stranger_sprite;
     private final List<SingleSprite> house1_background_walls;
     private final List<SingleSprite> house1_background_floor;
-    
+
     /**
      * Sets the sprites for this map
-     * @param world 
+     *
+     * @param world SpriteController
      */
-    public House1_sprites(SpriteController world){
+    public House1_sprites(SpriteController world) {
         this.world = world;
         house1_background_sprites = new ArrayList();
         house1_monster_sprites = new ArrayList();
         house1_background_walls = new ArrayList();
         house1_background_floor = new ArrayList();
-        
+
     }
-    
+
     /**
      * Set all the sprites to the arraylist
      */
-    public void setHouse1_background_SingleSprites(){
+    public void setHouse1_background_SingleSprites() {
         //floor
         house1_background_floor.add(world.getGround_sprite().getWood_light_2());
         Sprite house_floor = new Groupsprite_random(house1_background_floor);
-        house_floor.setSize(375,250);
+        house_floor.setSize(375, 250);
         house_floor.setPosition(0, 0);
         house1_background_sprites.add(house_floor);
-       
-        
+
         //walls
         house1_background_walls.add(world.getStructure_sprites().getStone_wall_NW());
         house1_background_walls.add(world.getStructure_sprites().getStone_wall_N());
@@ -63,48 +64,45 @@ public class House1_sprites{
         house_walls_circle.setPosition(0, 0);
         house_walls_circle.setSize(400, 300);
         house1_background_sprites.add(house_walls_circle);
-        
+
         //exit
         Sprite exit = world.getMisc_sprites().getDoor_wood();
         exit.setPosition(175, 20);
         house1_background_sprites.add(exit);
         //bed
         Sprite bed = world.getMisc_sprites().getInterior_doublebed();
-        bed.setPosition(30,50);
+        bed.setPosition(30, 50);
         house1_background_sprites.add(bed);
         //chest
         Sprite chest = world.getMisc_sprites().getChestClosed();
-        chest.setPosition(35,125);
+        chest.setPosition(35, 125);
         house1_background_sprites.add(chest);
-        
+
         //kitchen
         Sprite kitchen = world.getMisc_sprites().getInterior_kitchen();
-        kitchen.setPosition(255,50);
+        kitchen.setPosition(255, 50);
         house1_background_sprites.add(kitchen);
-        
+
         //shelf
         Sprite bookshelf = world.getMisc_sprites().getBookshelf_1();
-        bookshelf.setPosition(80,10);
+        bookshelf.setPosition(80, 10);
         house1_background_sprites.add(bookshelf);
-        
-        
+
         //enemy
         Sprite enemy = world.getMisc_sprites().getEnemy_Skeleton();
-        enemy.setPosition(200,150);
+        enemy.setPosition(200, 150);
         house1_monster_sprites.add(enemy);
-        
-        
+
         Sprite stranger = world.getMisc_sprites().getNPC_stranger();
         stranger.setPosition(100, 50);
         stranger_sprite = stranger;
-        
-        
+
     }
-    
+
     /**
      * @return the background sprites
      */
-    public List<Sprite> getHouse1(){
+    public List<Sprite> getHouse1() {
         return house1_background_sprites;
     }
 
