@@ -2,8 +2,6 @@
 This is a javafx 2D/text/button based game. Developed for the first semester in Software Engineering on University of Southern Denmark (SDU) of 2016.
 ## Installation
 Open the netbeans project and run the project.
-## History
-TODO: Write history
 ## Credits
 All credits go to:
 [Jonas Lagoni](https://github.com/jonaslagoni/)
