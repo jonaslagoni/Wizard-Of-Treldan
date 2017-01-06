@@ -1,4 +1,4 @@
-# ${1:Wizard of Treldan}
+#Wizard of Treldan
 This is a javafx 2D/text/button based game. Developed for the first semester in Software Engineering on University of Southern Denmark (SDU) of 2016.
 ## Installation
 Open the netbeans project and run the project.
