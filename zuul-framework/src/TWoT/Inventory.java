@@ -61,18 +61,16 @@ public class Inventory implements Serializable {
     public void addEquipItem(EquippableItem i, Player p) {
         if (equippedInventory.containsKey(i.geteItem())) {
             EquippableItem currentEItem = equippedInventory.get(i.geteItem());
-            if (currentEItem.geteItem() == EquippableItem.EItem.WEAPON_SLOT && i.geteItem() == EquippableItem.EItem.WEAPON_SLOT) {
-                if (currentEItem.getAttackBuff() < i.getAttackBuff()) {
-                    addInventoryItem(currentEItem);
-                    equippedInventory.remove(i.geteItem());
-                    equippedInventory.put(i.geteItem(), i);
-                    p.removeAtt(currentEItem.getAttackBuff());
-                    p.addAtt(i.getAttackBuff());
-                } else {
-                    addInventoryItem(i);
-                }
-            } else if (currentEItem.getDefenseBuff() < i.getDefenseBuff()) {
+            if (currentEItem.geteItem() == EquippableItem.EItem.WEAPON_SLOT) {
                 addInventoryItem(currentEItem);
+                removeInventoryItem(i);
+                equippedInventory.remove(i.geteItem());
+                equippedInventory.put(i.geteItem(), i);
+                p.removeAtt(currentEItem.getAttackBuff());
+                p.addAtt(i.getAttackBuff());
+            } else if (currentEItem.geteItem() != EquippableItem.EItem.WEAPON_SLOT) {
+                addInventoryItem(currentEItem);
+                removeInventoryItem(i);
                 equippedInventory.remove(i.geteItem());
                 equippedInventory.put(i.geteItem(), i);
                 p.removeDef(currentEItem.getDefenseBuff());
