@@ -37,7 +37,7 @@ public class Highscore implements Map {
     private Text status;
     private TWoT game;
     private final Scene SCENE;
-
+    private ObservableList<AnchorPane> loads;
     /**
      * Creates the scene for Highscore
      */
@@ -73,7 +73,7 @@ public class Highscore implements Map {
         list.setPrefHeight(210);
 
         //adding observableList with type AnchorPane
-        ObservableList<AnchorPane> loads = FXCollections.observableArrayList();
+        loads = FXCollections.observableArrayList();
         //Getting an arraylist of load files,
         List<String> loadList = getHishscoreList();
         //Go through each String in the list
@@ -130,6 +130,18 @@ public class Highscore implements Map {
      */
     @Override
     public Scene getScene() {
+        loads.clear();
+        //Getting an arraylist of load files,
+        List<String> loadList = getHishscoreList();
+        //Go through each String in the list
+        for (String i : loadList) {
+            //add a new anchorpane with a Text component to the ObservableList
+            AnchorPane t = new AnchorPane();
+            Text itemName = new Text(i);
+            itemName.relocate(0, 3);
+            t.getChildren().add(itemName);
+            loads.add(t);
+        }
         return SCENE;
     }
 

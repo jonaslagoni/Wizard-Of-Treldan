@@ -782,6 +782,7 @@ public class TWoT implements Serializable {
         try {
             FileWriter fw = new FileWriter("Highscore.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
+            bw.newLine();
             bw.write(player.getPlayerName() + ":" + player.getHighscore() + ":" + (endTime - getStartTime()));
             bw.newLine();
             bw.flush();
@@ -800,10 +801,12 @@ public class TWoT implements Serializable {
         List<Score> scoreList = new ArrayList();
         try {
             for (String line : Files.readAllLines(Paths.get("Highscore.txt"))) {
-                String playerName = Arrays.asList(line.split(":")).get(0);
-                int playerScore = Integer.parseInt(Arrays.asList(line.split(":")).get(1));
-                int playerTime = Integer.parseInt(Arrays.asList(line.split(":")).get(2));
-                scoreList.add(new Score(playerName, playerScore, playerTime));
+                if(!line.isEmpty()){
+                    String playerName = Arrays.asList(line.split(":")).get(0);
+                    int playerScore = Integer.parseInt(Arrays.asList(line.split(":")).get(1));
+                    int playerTime = Integer.parseInt(Arrays.asList(line.split(":")).get(2));
+                    scoreList.add(new Score(playerName, playerScore, playerTime));
+                }
             }
         } catch (IOException e) {
             scoreList.add(new Score("Error", 0, 0));

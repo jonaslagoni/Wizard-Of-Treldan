@@ -29,7 +29,6 @@ public class Finish implements Map {
 
     private TWoT game;
     private final Scene SCENE;
-    private final Long startTime;
     private Text timeTakenText;
     private Pane anchorpane;
 
@@ -49,8 +48,6 @@ public class Finish implements Map {
 
         anchorpane = new Pane();
         anchorpane.setPrefSize(768, 512);
-
-        startTime = game.getStartTime();
 
         Button start = new Button();
         start.setText("New Game");
@@ -125,6 +122,7 @@ public class Finish implements Map {
 
         this.game = WizardOfTreldan.getGame();
         Long endTime = (long) (System.currentTimeMillis() / 1000L);
+        Long startTime = game.getStartTime();
         Long timeTaken = endTime - startTime;
         timeTakenText = new Text("Time taken: " + timeTaken.toString() + " sec");
         timeTakenText.relocate(450, 200);
