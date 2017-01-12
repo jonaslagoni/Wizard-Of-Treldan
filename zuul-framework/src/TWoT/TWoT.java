@@ -407,7 +407,7 @@ public class TWoT implements Serializable {
         } else if (interior instanceof Item) {
             if (interior instanceof EquippableItem) {
                 currentRoom.removeInterior(command.getSecondWord());
-                player.addItemToEquippableInventory((EquippableItem) interior, player);
+                player.addItemToInventory((EquippableItem) interior);
                 description.add(((EquippableItem) interior).getRoomDescription());
                 player.addHighscore(((EquippableItem) interior).getItemValue());
                 return description;
