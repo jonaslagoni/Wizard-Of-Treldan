@@ -87,7 +87,7 @@ public class PlayerSprite extends AbstractSprite {
                 animationDelay++;
             }
         } else {
-            animationCounter = 1;
+            animationCounter = 0;
         }
 
     }
